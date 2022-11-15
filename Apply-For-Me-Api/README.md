@@ -1,4 +1,4 @@
-**Project Title: ** Apply for Me.
+**Project Title:** Apply for Me.
 
 **Description:**
 
@@ -8,7 +8,7 @@ You work at a remote company and you earn $1k a month. You are very happy. But y
 - [Entity Relational Diagram](https://github.com/teamhydraulic/apply-for-me-backend-architectural-design/blob/main/docs/updated_db_design.png)
 - [Sequence Diagram](https://github.com/teamhydraulic/apply-for-me-backend-architectural-design/blob/main/docs/sequence-diagram.png)
 - [Class Diagram](https://github.com/teamhydraulic/apply-for-me-backend-architectural-design/blob/main/docs/ClassdiagramPNG.PNG)
-- [SQL Schema]()
+- [SQL Schema](https://github.com/workshopapps/applyforme.web/blob/main/Apply-For-Me-Api/src/main/resources/schema.sql)
 
 **Project Development Requirement**
 
