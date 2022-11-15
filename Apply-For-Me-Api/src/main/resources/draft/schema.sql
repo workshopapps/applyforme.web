@@ -97,3 +97,84 @@ CREATE TABLE IF NOT EXISTS `roles` (
 
 	PRIMARY KEY (`id`)
 );
+
+--CREATE TABLE IF NOT EXISTS `member_roles` (
+--  `member_id` BIGINT NOT NULL,
+--  `role_id` BIGINT NOT NULL
+--);
+--
+--
+--ALTER TABLE `member`
+--    ADD UNIQUE `email_phone_uq` (`email_address`, `phone_number`);
+--
+--ALTER TABLE `country`
+--    ADD UNIQUE `country_uq` (`title`, `abbreviation`);
+--
+--ALTER TABLE `member_roles`
+--    ADD UNIQUE `member_role_uq` (`member_id`, `role_id`);
+--
+--ALTER TABLE `member`
+--    ADD CONSTRAINT `member_nationality_fk`
+--        FOREIGN KEY (`nationality_id`)
+--            REFERENCES `country` (`id`)
+--                ON DELETE RESTRICT
+--                ON UPDATE RESTRICT;
+--
+--ALTER TABLE `member`
+--    ADD CONSTRAINT `member_country_of_residence_fk`
+--        FOREIGN KEY (`country_of_residence_id`)
+--            REFERENCES `country` (`id`)
+--                ON DELETE RESTRICT
+--                ON UPDATE RESTRICT;
+--
+--ALTER TABLE `applier`
+--    ADD CONSTRAINT `applier_member_fk`
+--        FOREIGN KEY (`member_id`)
+--            REFERENCES `member` (`id`)
+--                ON DELETE CASCADE
+--                ON UPDATE CASCADE;
+--
+--ALTER TABLE `applier`
+--    ADD CONSTRAINT `applier_professional_fk`
+--        FOREIGN KEY (`professional_id`)
+--            REFERENCES `professional` (`id`)
+--                ON DELETE SET NULL
+--                ON UPDATE CASCADE;
+--
+--ALTER TABLE `professional`
+--    ADD CONSTRAINT `professional_member_fk`
+--        FOREIGN KEY (`member_id`)
+--            REFERENCES `member` (`id`)
+--                ON DELETE CASCADE
+--                ON UPDATE CASCADE;
+--
+--ALTER TABLE `professional_profile`
+--    ADD CONSTRAINT `profile_professional_fk`
+--        FOREIGN KEY (`professional_id`)
+--            REFERENCES `professional` (`id`)
+--                ON DELETE CASCADE
+--                ON UPDATE CASCADE;
+--
+--ALTER TABLE `job_submission`
+--    ADD CONSTRAINT `submission_professional_fk`
+--        FOREIGN KEY (`professional_id`)
+--            REFERENCES `professional` (`id`);
+--
+--ALTER TABLE `job_submission`
+--    ADD CONSTRAINT `submission_applier_fk`
+--        FOREIGN KEY (`applier_id`)
+--            REFERENCES `applier` (`id`);
+--
+--ALTER TABLE `member_roles`
+--    ADD CONSTRAINT `member_role_fk`
+--        FOREIGN KEY (`role_id`)
+--            REFERENCES `roles` (`id`)
+--                ON DELETE CASCADE
+--                ON UPDATE CASCADE;
+--
+--ALTER TABLE `member_roles`
+--    ADD CONSTRAINT `member_member_fk`
+--        FOREIGN KEY (`member_id`)
+--            REFERENCES `member` (`id`)
+--                ON DELETE CASCADE
+--                ON UPDATE CASCADE;
