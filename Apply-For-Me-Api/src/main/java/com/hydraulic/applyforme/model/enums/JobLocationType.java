@@ -1,0 +1,27 @@
+package com.hydraulic.applyforme.model.enums;
+
+import lombok.Getter;
+
+@Getter
+public enum JobLocationType {
+
+    REMOTE("Remote"),
+    ONSITE("Onsite"),
+    HYBRID("Hybrid");
+
+    private String value;
+
+    JobLocationType(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return this.value;
+    }
+
+    @Override
+    public String toString() {
+        return this.getValue();
+    }
+
+}
