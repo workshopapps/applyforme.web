@@ -1,11 +1,11 @@
-package com.hydraulic.applyforme.model;
+package com.hydraulic.applyforme.model.domain;
 
+import com.hydraulic.applyforme.model.enums.JobLocationType;
+import com.hydraulic.applyforme.model.enums.JobSeniority;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ng.hng.hydraulic.applyforme.model.enums.JobLocationType;
-import ng.hng.hydraulic.applyforme.model.enums.JobSeniority;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 

@@ -43,7 +43,7 @@ You work at a remote company and you earn $1k a month. You are very happy. But y
 - branch name :- feat/branch-name or feature/branch-name
 
 **Revision**
-- commit message :- revision:summary-of-task or revision/summary-of-task
+- commit message :- revision:summary-of-revision or revision/summary-of-revision
 - branch name :- revision/branch-name
 
 **Bug Fix**
@@ -53,7 +53,7 @@ You work at a remote company and you earn $1k a month. You are very happy. But y
 
 **Code Cleanup**
 
-- commit message :- chore:summary
+- commit message :- chore:summary-of-cleanup 
 - branch name:- chore/branch-name
 
 **Reference**

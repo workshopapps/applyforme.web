@@ -1,4 +1,4 @@
-package com.hydraulic.applyforme.model;
+package com.hydraulic.applyforme.model.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
