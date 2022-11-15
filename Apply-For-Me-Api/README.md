@@ -34,6 +34,8 @@ You work at a remote company and you earn $1k a month. You are very happy. But y
 - Staging
 - Main
 
+**NB:** All collaborator or member push will be made to development branch
+
 #### Branch Naming Style Guide
 
 **Feature**
