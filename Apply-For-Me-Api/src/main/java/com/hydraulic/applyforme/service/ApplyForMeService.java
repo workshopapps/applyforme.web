@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ApplyForMeService {
 
-    List<ApplyForMe> findAll();
+    List<ApplyForMe> findAll(Integer pageOffset);
 
     ApplyForMe findOne(Long id);
 

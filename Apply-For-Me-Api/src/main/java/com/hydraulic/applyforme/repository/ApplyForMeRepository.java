@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ApplyForMeRepository {
 
-    List<ApplyForMe> getAll();
+    List<ApplyForMe> getAll(Integer pageOffset);
 
     ApplyForMe getOne(Long id);
 

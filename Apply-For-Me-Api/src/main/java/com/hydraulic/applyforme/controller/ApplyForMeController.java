@@ -24,8 +24,8 @@ public class ApplyForMeController {
     }
 
     @GetMapping("/entries")
-    public List<ApplyForMe> findAll() {
-        return service.findAll();
+    public List<ApplyForMe> findAll(@RequestParam(required = false, defaultValue = "1" , name = "page") Integer pageNumber) {
+        return service.findAll(pageNumber);
     }
 
     @GetMapping("/detail/{id}")

@@ -19,8 +19,8 @@ public class ApplyForMeServiceImpl implements ApplyForMeService {
     }
 
     @Override
-    public List<ApplyForMe> findAll() {
-        return repository.getAll();
+    public List<ApplyForMe> findAll(Integer pageOffset) {
+        return repository.getAll(pageOffset);
     }
 
     @Override
