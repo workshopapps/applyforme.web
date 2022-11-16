@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping(
         value = "apply",
         produces = { MediaType.APPLICATION_JSON_VALUE },
-        consumes = {MediaType.APPLICATION_JSON_VALUE }
+        consumes = { MediaType.APPLICATION_JSON_VALUE }
 )
 public class ApplyForMeController {
 
