@@ -21,7 +21,4 @@ public class MemberSecretCode {
 
     @Column(name ="sign_up_verification_code")
     private String signUpVerificationCode;
-
-    @Column(name = "email_address")
-    private String emailAddress;
 }
