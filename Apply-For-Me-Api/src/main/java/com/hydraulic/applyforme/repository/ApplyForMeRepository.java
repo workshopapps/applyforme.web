@@ -14,5 +14,9 @@ public interface ApplyForMeRepository {
 
     ApplyForMe updateOne(ApplyForMe body);
 
-    boolean deleteOne(ApplyForMe body);
+    boolean remove(Long id);
+
+    boolean removeMany(List<Long> customerIds);
+
+    boolean removeAll();
 }
