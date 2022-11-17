@@ -34,7 +34,7 @@ You work at a remote company and you earn $1k a month. You are very happy. But y
 - Staging
 - Main
 
-**NB:** All collaborator or member push will be made to development branch
+**NB:** All collaborator or member push will be made to a new branch related to the tasks they are working on and if approved, will be merged to the development and if all tests has passed, to be merged with the production branch
 
 #### Branch Naming Style Guide
 
