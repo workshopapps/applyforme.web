@@ -48,7 +48,7 @@ public class CountryServiceImpl implements CountryService {
 
         try {
             for (Country country : countriesList) {
-               gi Optional<Country> countryExists = jpaRepository.findByTitleAndAbbreviation(country.getTitle(), country.getAbbreviation());
+               Optional<Country> countryExists = jpaRepository.findByTitleAndAbbreviation(country.getTitle(), country.getAbbreviation());
 
                 if (countryExists.isPresent()) {
                     continue;
