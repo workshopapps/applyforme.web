@@ -77,7 +77,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### Folder Structure
 
-1. These are the folders relevant for the project:
+1. Relevant for the project:
 
 ```bash
 .

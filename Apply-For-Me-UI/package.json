@@ -58,7 +58,10 @@
         "prettier": "^2.7.1"
     },
     "lint-staged": {
-        "*.js": "eslint --fix ",
-        "*.{js,css,md,html,json}": "prettier --cache --write"
+        "*.js": [
+            "npm run lint:check",
+            "npm run lint:fix",
+            "npm run prettier:fix"
+        ]
     }
 }
