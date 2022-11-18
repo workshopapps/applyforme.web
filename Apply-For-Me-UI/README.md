@@ -1,4 +1,57 @@
-# Getting Started with Create React App
+# ApplyForMe UI
+
+This project provides the user interface and client-side logic to implement a service that helps users apply for jobs without stress.
+
+# How To Contribute
+
+Contribute to ApplyForMe UI in a few steps:
+
+### Clone this repository
+Clone this repository to your computer
+
+		git clone https://github.com/workshopapps/applyforme.web.git
+
+### Switch to the `ui` branch
+
+		git checkout ui
+
+### Create a branch
+
+Create a new branch for your work, naming your branch accordingly, following the [recommended naming format](#):
+
+		git checkout -b feat/new-feature
+
+### NOTE:
+
+- Do NOT work on or make changes to files while on `main` or `ui` branches or any others you did not create.
+
+- Make your pull requests to the `ui` branch.
+
+- Read the [documentation](./docs) for more information. 
+
+## Run in Development Mode
+Run this project on your machine by navigating to the folder where you want to locate the project and following the steps below.
+
+1.  Clone the repository by running this command in the terminal:  
+
+		git clone https://github.com/workshopapps/applyforme.web.git
+
+2. Navigate to the project folder:
+
+		cd applyforme.web/Apply-For-Me-UI
+
+3. Install the dependencies:
+	
+		npm install
+
+4. Start the local development server:
+
+		npm start
+
+5. Finally, open your browser and visit [http://localhost:3000](http://localhost:3000) to explore the app.
+
+
+# More Information on Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
