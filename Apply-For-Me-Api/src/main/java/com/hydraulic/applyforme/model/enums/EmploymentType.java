@@ -3,17 +3,15 @@ package com.hydraulic.applyforme.model.enums;
 import lombok.Getter;
 
 @Getter
-public enum JobSeniority {
+public enum EmploymentType {
 
-    TRAINEE("Trainee"),
-    INTERN("Intern"),
-    JUNIOR("Junior"),
-    MID_LEVEL("Mid-Level"),
-    SENIOR("Senior");
+    FULL_TIME("Full Time"),
+    PART_TIME("Part Time"),
+    CONTRACT("Contract");
 
     private final String value;
 
-    JobSeniority(String value) {
+    EmploymentType(String value) {
         this.value = value;
     }
 
@@ -21,5 +19,4 @@ public enum JobSeniority {
     public String toString() {
         return this.value;
     }
-
 }

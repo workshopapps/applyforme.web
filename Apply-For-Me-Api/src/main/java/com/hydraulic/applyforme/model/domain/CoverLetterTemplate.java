@@ -1,6 +1,5 @@
 package com.hydraulic.applyforme.model.domain;
 
-
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -8,25 +7,24 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
-
-@Builder
 @Getter
 @Setter
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name ="apply_for_me")
-public class ApplyForMe {
+@Table(name = "cover_letter_template")
+public class CoverLetterTemplate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name ="title", nullable = false)
     private String title;
 
-    @Column
-    private String version;
+    @Column(name ="template_text", nullable = false)
+    private String templateText;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
