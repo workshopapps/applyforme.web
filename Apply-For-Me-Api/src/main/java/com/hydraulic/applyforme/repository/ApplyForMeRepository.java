@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ApplyForMeRepository {
 
-    List<ApplyForMe> getAll();
+    List<ApplyForMe> getAll(Integer pageOffset);
 
     ApplyForMe getOne(Long id);
 
@@ -14,5 +14,9 @@ public interface ApplyForMeRepository {
 
     ApplyForMe updateOne(ApplyForMe body);
 
-    boolean deleteOne(ApplyForMe body);
+    boolean remove(Long id);
+
+    boolean removeMany(List<Long> applyForMeIds);
+
+    boolean removeAll();
 }

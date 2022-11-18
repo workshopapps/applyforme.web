@@ -21,4 +21,7 @@ public class Role {
 
     @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
+    private String code;
 }
