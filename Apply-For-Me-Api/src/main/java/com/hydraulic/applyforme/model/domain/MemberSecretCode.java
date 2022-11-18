@@ -21,8 +21,4 @@ public class MemberSecretCode {
 
     @Column(name ="sign_up_verification_code")
     private String signUpVerificationCode;
-
-    @OneToOne
-    @JoinColumn(name = "member_email_fk", referencedColumnName ="email_address")
-    private Member member;
 }

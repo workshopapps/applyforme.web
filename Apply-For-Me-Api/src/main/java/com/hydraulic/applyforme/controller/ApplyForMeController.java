@@ -2,8 +2,10 @@ package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.ApplyForMe;
 import com.hydraulic.applyforme.model.dto.ApplyForMeDto;
+import com.hydraulic.applyforme.model.dto.DeleteManyApplyForMeDto;
 import com.hydraulic.applyforme.service.ApplyForMeService;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -13,7 +15,7 @@ import java.util.List;
 @RequestMapping(
         value = "apply",
         produces = { MediaType.APPLICATION_JSON_VALUE },
-        consumes = {MediaType.APPLICATION_JSON_VALUE }
+        consumes = { MediaType.APPLICATION_JSON_VALUE }
 )
 public class ApplyForMeController {
 
@@ -24,8 +26,8 @@ public class ApplyForMeController {
     }
 
     @GetMapping("/entries")
-    public List<ApplyForMe> findAll() {
-        return service.findAll();
+    public List<ApplyForMe> findAll(@RequestParam(required = false, defaultValue = "1" , name = "page") Integer pageNumber) {
+        return service.findAll(pageNumber);
     }
 
     @GetMapping("/detail/{id}")
@@ -34,17 +36,27 @@ public class ApplyForMeController {
     }
 
     @PostMapping("/save")
-    public ApplyForMe save(@Valid @RequestBody ApplyForMeDto body) {
+    public ApplyForMe save(@Validated @RequestBody ApplyForMeDto body) {
         return service.save(body);
     }
 
     @PutMapping("/update/{id}")
-    public ApplyForMe update(@Valid @RequestBody ApplyForMeDto body, @PathVariable(name ="id") Long id) {
+    public ApplyForMe update(@Validated @RequestBody ApplyForMeDto body, @PathVariable(name ="id") Long id) {
         return service.update(id, body);
     }
 
     @DeleteMapping("/delete/{id}")
     public boolean delete(@PathVariable Long id) {
         return service.delete(id);
+    }
+
+    @PutMapping("/remove/many")
+    public boolean deleteManyCustomer(@Validated @RequestBody DeleteManyApplyForMeDto applyForMeDto) {
+        return service.deleteMany(applyForMeDto);
+    }
+
+    @PutMapping("/remove/all")
+    public boolean deleteAll() {
+        return service.deleteAll();
     }
 }
