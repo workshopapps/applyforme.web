@@ -22,10 +22,10 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title", nullable = false, unique = true)
     private String title;
 
-    @Column(name = "abbreviation", nullable = false)
+    @Column(name = "abbreviation", nullable = false, unique = true)
     private String abbreviation;
 
     @CreationTimestamp
