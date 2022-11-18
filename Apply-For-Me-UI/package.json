@@ -58,10 +58,7 @@
         "prettier": "^2.7.1"
     },
     "lint-staged": {
-        "*.jsx": [
-            "npm run lint:check",
-            "npm run lint:fix",
-            "npm run prettier:fix"
-        ]
+        "*.js": "eslint --fix "
+      
     }
 }
