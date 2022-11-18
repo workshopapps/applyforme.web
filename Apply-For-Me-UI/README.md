@@ -7,19 +7,20 @@ This project provides the user interface and client-side logic to implement a se
 Contribute to ApplyForMe UI in a few steps:
 
 ### Clone this repository
+
 Clone this repository to your computer
 
-		git clone https://github.com/workshopapps/applyforme.web.git
+    	git clone https://github.com/workshopapps/applyforme.web.git
 
 ### Switch to the `ui` branch
 
-		git checkout ui
+    	git checkout Ui
 
 ### Create a branch
 
 Create a new branch for your work, naming your branch accordingly, following the [recommended naming format](#):
 
-		git checkout -b feat/new-feature
+    	git checkout -b feat/FE-new-feature
 
 ### NOTE:
 
@@ -27,29 +28,29 @@ Create a new branch for your work, naming your branch accordingly, following the
 
 - Make your pull requests to the `ui` branch.
 
-- Read the [documentation](./docs) for more information. 
+- Read the [documentation](./docs/CONTRIBUTING.md) for more information.
 
 ## Run in Development Mode
+
 Run this project on your machine by navigating to the folder where you want to locate the project and following the steps below.
 
-1.  Clone the repository by running this command in the terminal:  
+1.  Clone the repository by running this command in the terminal:
 
-		git clone https://github.com/workshopapps/applyforme.web.git
+        git clone https://github.com/workshopapps/applyforme.web.git
 
-2. Navigate to the project folder:
+2.  Navigate to the project folder:
 
-		cd applyforme.web/Apply-For-Me-UI
+        cd applyforme.web/Apply-For-Me-UI
 
-3. Install the dependencies:
-	
-		npm install
+3.  Install the dependencies:
 
-4. Start the local development server:
+        npm install
 
-		npm start
+4.  Start the local development server:
 
-5. Finally, open your browser and visit [http://localhost:3000](http://localhost:3000) to explore the app.
+        npm start
 
+5.  Finally, open your browser and visit [http://localhost:3000](http://localhost:3000) to explore the app.
 
 # More Information on Getting Started with Create React App
 
@@ -72,52 +73,44 @@ You may also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+<br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Folder Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. These are the folders relevant for the project:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+.
+├── docs
+├── src
+  ├── assets
+    ├── fonts
+    ├── images
+  ├── components
+  ├── pages
+  ├── App.js
+├── README.md
 
-### `npm run eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<br >
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🤝 Contribute
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Contributions, issues, and feature requests are welcome!
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Feel free to check the [issues page](https://github.com/workshopapps/applyforme.web.git/issues)
 
-## Learn More
+## Show your support
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Give a ⭐️ if you like this project!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Acknowledgments
 
-### Code Splitting
+- Zuri HNG
+- Hat tip to anyone whose code was used
+- Inspiration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📝 License
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is [MIT](./MIT.md) licensed.

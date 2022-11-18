@@ -1,0 +1,146 @@
+.footer {
+    background: #2e3192;
+    width: 100vw;
+}
+
+.footer__wrapper {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 5rem;
+}
+
+.about {
+    display: flex;
+    justify-content: space-between;
+    gap: 5rem;
+    align-items: center;
+}
+
+.about__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 249px;
+}
+.about__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.about__text p {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.7rem;
+}
+
+.footer__social_icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+}
+
+.footer__social_icons li {
+    list-style-type: none;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.links li {
+    list-style-type: none;
+}
+
+.links li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.links li:nth-child(1) {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.sub_footer {
+    width: 100vw;
+    background: #171646;
+    padding-top: 12px;
+    padding-bottom: 16px;
+}
+
+.sub_footer__wrapper {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    gap: 2rem;
+}
+
+.sub_footer__wrapper p {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+}
+
+.sub_footer__wrapper ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.sub_footer__wrapper ul li {
+    list-style-type: none;
+}
+
+.sub_footer__wrapper ul a {
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: #fff;
+}
+
+/* Media Query */
+@media screen and (max-width: 1050px) {
+    .about {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .footer__social_icons {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .about__text_google {
+        display: none;
+    }
+}
+
+@media screen and(max-width:710px) {
+    .footer__wrapper {
+        justify-content: flex-start;
+    }
+
+    .sub_footer__wrapper p {
+        font-size: 0.7rem;
+    }
+}
