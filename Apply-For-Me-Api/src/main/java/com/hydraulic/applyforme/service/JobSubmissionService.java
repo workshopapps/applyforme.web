@@ -6,5 +6,5 @@ import com.hydraulic.applyforme.model.domain.Submission;
 
 public interface JobSubmissionService {
 
-	List<Submission> getAllSubmissions(Integer pageOffset);
+	List<Submission> getAllSubmissions(Long pId, Integer pageOffset);
 }

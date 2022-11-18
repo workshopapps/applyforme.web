@@ -14,15 +14,16 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class JobSubmissionServiceImpl implements JobSubmissionService{
 	
-	private final JobSubmissionRepository jobSubmissionRepository;
+	private final JobSubmissionRepository repository;
+	
 	public JobSubmissionServiceImpl(JobSubmissionRepository jobSubmissionRepository) {
-		this.jobSubmissionRepository = jobSubmissionRepository;
+		this.repository = jobSubmissionRepository;
 	}
 
 	@Override
-	public List<Submission> getAllSubmissions(Integer pageOffset) {
+	public List<Submission> getAllSubmissions(Long pId, Integer pageOffset) {
 		
-		return null;
+		return repository.getAll(pId, pageOffset);
 	}
 
 	
