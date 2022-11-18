@@ -144,3 +144,11 @@ CREATE TABLE IF NOT EXISTS `roles` (
 
 	PRIMARY KEY (`id`)
 );
+
+CREATE TABLE IF NOT EXISTS `member_roles` (
+	`id` BIGINT AUTO_INCREMENT,
+  	`member_id` BIGINT NOT NULL,
+  	`role_id` BIGINT NOT NULL,
+
+	PRIMARY KEY (`id`)
+);
