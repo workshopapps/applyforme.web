@@ -21,10 +21,18 @@ public class JobSubmissionServiceImpl implements JobSubmissionService{
 	}
 
 	@Override
-	public List<Submission> getAllSubmissions(Long pId, Integer pageOffset) {
-		
-		return repository.getAll(pId, pageOffset);
+	public List<Submission> getAllSubmissionsByPagination(Long pId, Integer pageOffset) {
+				
+		return repository.getAllSubmissionsByPagination(pId, pageOffset);
 	}
+
+	@Override
+	public List<Submission> getallSubmissionsSortedByField(Long pId, Integer pageOffset, String field) {
+		
+		return repository.getallSubmissionsSortedByField(pId, pageOffset, field);
+	}
+
+	
 
 	
 	
