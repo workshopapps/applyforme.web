@@ -1,7 +1,9 @@
 package com.hydraulic.applyforme.service;
 
 import com.hydraulic.applyforme.model.domain.ApplyForMe;
+import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.ApplyForMeDto;
+import com.hydraulic.applyforme.model.dto.CreateAccountDto;
 import com.hydraulic.applyforme.model.dto.DeleteManyApplyForMeDto;
 
 import javax.transaction.Transactional;

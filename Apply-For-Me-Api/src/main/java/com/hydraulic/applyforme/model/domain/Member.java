@@ -101,7 +101,7 @@ public class Member {
     /**
      * This column or property stores a reference to the display picture of a member or user of the system.
      */
-    @Column(name ="avatar")
+    @Column(name ="avatar", nullable = true)
     private String avatar;
 
     /**

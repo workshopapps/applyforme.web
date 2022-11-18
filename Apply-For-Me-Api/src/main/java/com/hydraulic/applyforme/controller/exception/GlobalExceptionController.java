@@ -1,6 +1,7 @@
 package com.hydraulic.applyforme.controller.exception;
 
 import com.hydraulic.applyforme.model.exception.ApplyForMeNotFoundException;
+import com.hydraulic.applyforme.model.exception.SignUpEmailExistsException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -52,6 +53,16 @@ public class GlobalExceptionController {
         errors.put("entityName", ApplyForMeNotFoundException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
         ex.setCode(HttpStatus.NOT_FOUND.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(SignUpEmailExistsException.class)
+    public Object notFound(SignUpEmailExistsException ex) {
+        Map<String, String> errors = new HashMap<String, String>();
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.BAD_REQUEST.value());
         errors.put("code", ex.getCode().toString());
         return errors;
     }
