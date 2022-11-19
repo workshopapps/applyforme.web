@@ -1,7 +1,7 @@
 package com.hydraulic.applyforme.repository.impl;
 
-import com.hydraulic.applyforme.model.domain.Country;
-import com.hydraulic.applyforme.model.exception.CounntryDuplicateEntityException;
+import com.hydraulic.applyforme.model.domain.Country;;
+import com.hydraulic.applyforme.model.exception.CountryDuplicateEntityException;
 import com.hydraulic.applyforme.repository.CountryRepository;
 import org.springframework.stereotype.Repository;
 
@@ -44,7 +44,7 @@ public class CountryRepositoryImpl implements CountryRepository {
             return body;
         }
         catch (EntityExistsException ex) {
-            throw new CounntryDuplicateEntityException();
+            throw new CountryDuplicateEntityException();
         }
     }
 
@@ -66,9 +66,9 @@ public class CountryRepositoryImpl implements CountryRepository {
     }
 
     @Override
-    public boolean removeMany(List<Long> countryIds) {
+    public boolean removeMany(List<Long> ids) {
         Query query = entityManager.createQuery("delete from Country c where c.id in (:ids)");
-        query.setParameter("ids", countryIds);
+        query.setParameter("ids", ids);
         if (query.executeUpdate() > 0) {
             return true;
         }

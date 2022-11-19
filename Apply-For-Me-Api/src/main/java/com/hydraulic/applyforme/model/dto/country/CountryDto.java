@@ -1,4 +1,4 @@
-package com.hydraulic.applyforme.model.dto;
+package com.hydraulic.applyforme.model.dto.country;
 
 import lombok.Getter;
 import lombok.Setter;
