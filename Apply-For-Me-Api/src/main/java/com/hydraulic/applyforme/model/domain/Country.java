@@ -15,7 +15,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "country")
+@Table(name = "country", uniqueConstraints = {
+        @UniqueConstraint(
+                columnNames = {"title", "abbreviation"}
+        )
+})
 public class Country {
 
     @Id

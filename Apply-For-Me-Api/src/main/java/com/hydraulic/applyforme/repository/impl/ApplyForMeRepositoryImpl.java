@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.List;
-@Slf4j
 @Repository
 public class ApplyForMeRepositoryImpl implements ApplyForMeRepository {
 
@@ -48,13 +47,36 @@ public class ApplyForMeRepositoryImpl implements ApplyForMeRepository {
     }
 
     @Override
-    public boolean deleteOne(ApplyForMe body) {
+    public boolean remove(Long id) {
         try {
-            ApplyForMe applyForMe = entityManager.getReference(ApplyForMe.class, body.getId());
+            ApplyForMe applyForMe = entityManager.getReference(ApplyForMe.class, id);
             entityManager.remove(applyForMe);
             return true;
         }
         catch (EntityNotFoundException ex) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removeMany(List<Long> ids) {
+        Query query = entityManager.createQuery("delete from ApplyForMe afm where afm.id in (:ids)");
+        query.setParameter("ids", ids);
+        if (query.executeUpdate() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removeAll() {
+        Query query = entityManager.createQuery("delete from ApplyForMe");
+        if (query.executeUpdate() > 0) {
+            return true;
+        }
+        else {
             return false;
         }
     }
