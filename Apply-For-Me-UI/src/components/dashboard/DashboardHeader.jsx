@@ -250,7 +250,7 @@ const DashboardHeader = ({ func }) => {
 
                                 <p>Female</p>
 
-                                <BlueButton text="Assign Quota" width="234" />
+                                <BlueButton text="Assign Quota" width="214" />
                             </div>
                         </div>
 

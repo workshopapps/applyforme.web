@@ -351,6 +351,9 @@
 .user_action__btn__mobile .trash {
     color: #eb5757;
 }
+.user_action__btn__mobile {
+    display: none;
+}
 
 /* MEDIA QUERY */
 
@@ -456,7 +459,18 @@
     }
 
     .user_action__btn__mobile {
+        width: 100%;
+    }
+
+    .user_action__btn__mobile p {
         display: none;
+    }
+
+    .user_profile__header {
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 20px;
     }
 }
 
@@ -484,5 +498,9 @@
     }
     .toggle_user ul li {
         font-size: 1rem;
+    }
+
+    .profile_details__text_content p {
+        font-size: 0.9rem;
     }
 }
