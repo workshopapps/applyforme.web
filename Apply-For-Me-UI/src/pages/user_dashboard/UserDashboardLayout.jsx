@@ -1,9 +1,8 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
-import classes from "./Layout.module.css";
-
-const Layout = () => {
+import { Outlet } from "react-router-dom";
+import classes from "./UserDashboardLayout.module.css";
+const UserDashboardLayout = () => {
     return (
         <section className={classes.dashboard_container}>
             <DashboardSidebar />
@@ -12,4 +11,4 @@ const Layout = () => {
     );
 };
 
-export default Layout;
+export default UserDashboardLayout;
