@@ -20,3 +20,21 @@ body {
     font-family: "Outfit", sans-serif;
     box-sizing: inherit;
 }
+
+p,
+h1 {
+    margin: 0;
+}
+
+:root {
+    --primary-white: #fff;
+    --primary-gray: rgba(82, 81, 91, 1);
+    --primary-black: #434343;
+
+    --primary-border: rgba(247, 247, 247, 0.1);
+    --primary-background: #eaecf0;
+    --primary-blue: #2e3192;
+    --secondary-blue: #171646;
+    --primary-gray-bg: #f7f7f8;
+    --primary-text-btn: rgba(196, 213, 238, 0.2);
+}
