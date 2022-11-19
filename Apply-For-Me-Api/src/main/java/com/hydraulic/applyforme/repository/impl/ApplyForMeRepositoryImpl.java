@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.List;
-@Slf4j
 @Repository
 public class ApplyForMeRepositoryImpl implements ApplyForMeRepository {
 
@@ -60,9 +59,9 @@ public class ApplyForMeRepositoryImpl implements ApplyForMeRepository {
     }
 
     @Override
-    public boolean removeMany(List<Long> applyForMeIds) {
+    public boolean removeMany(List<Long> ids) {
         Query query = entityManager.createQuery("delete from ApplyForMe afm where afm.id in (:ids)");
-        query.setParameter("ids", applyForMeIds);
+        query.setParameter("ids", ids);
         if (query.executeUpdate() > 0) {
             return true;
         }

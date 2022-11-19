@@ -17,7 +17,7 @@ public interface CountryRepository {
 
     boolean remove(Long id);
 
-    boolean removeMany(List<Long> customerIds);
+    boolean removeMany(List<Long> ids);
 
     boolean removeAll();
 }

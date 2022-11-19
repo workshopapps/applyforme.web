@@ -1,4 +1,4 @@
-package com.hydraulic.applyforme.model.domain;
+package com.hydraulic.applyforme.model.dto.role;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class DeleteManyCountryDto {
+public class DeleteManyRoleDto {
 
     List<Long> ids;
 }

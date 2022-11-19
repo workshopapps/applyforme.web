@@ -1,31 +1,32 @@
 package com.hydraulic.applyforme.repository.impl;
 
-import com.hydraulic.applyforme.model.domain.Role;
-import com.hydraulic.applyforme.model.exception.RoleDuplicateEntityException;
-import com.hydraulic.applyforme.repository.RoleRepository;
+import com.hydraulic.applyforme.model.domain.SalaryRange;
+import com.hydraulic.applyforme.model.domain.SalaryRange;
+import com.hydraulic.applyforme.model.exception.SalaryRangeDuplicateEntityException;
+import com.hydraulic.applyforme.repository.SalaryRangeRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.List;
 
-
 @Repository
-public class RoleRepositoryImpl implements RoleRepository {
+public class SalaryRangeRepositoryImpl implements SalaryRangeRepository {
+
     private static final int DEFAULT_PAGE_SIZE = 11;
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public List<Role> getAll() {
-        String queryText = "select c from Role c order by c.updatedOn desc";
-        TypedQuery<Role> applyForMeQuery = entityManager.createQuery(queryText, Role.class);
+    public List<SalaryRange> getAll() {
+        String queryText = "select sr from SalaryRange sr order by sr.updatedOn desc";
+        TypedQuery<SalaryRange> applyForMeQuery = entityManager.createQuery(queryText, SalaryRange.class);
         return applyForMeQuery.getResultList();
     }
 
     @Override
-    public List<Role> getAll(Integer pageOffset) {
-        String queryText = "select r from Role r order by r.updatedOn desc";
-        TypedQuery<Role> applyForMeQuery = entityManager.createQuery(queryText, Role.class);
+    public List<SalaryRange> getAll(Integer pageOffset) {
+        String queryText = "select sr from SalaryRange sr order by sr.updatedOn desc";
+        TypedQuery<SalaryRange> applyForMeQuery = entityManager.createQuery(queryText, SalaryRange.class);
 
         applyForMeQuery.setFirstResult((pageOffset - 1) * DEFAULT_PAGE_SIZE);
         applyForMeQuery.setMaxResults(DEFAULT_PAGE_SIZE);
@@ -33,30 +34,30 @@ public class RoleRepositoryImpl implements RoleRepository {
     }
 
     @Override
-    public Role getOne(Long id) {
-        return entityManager.find(Role.class, id);
+    public SalaryRange getOne(Long id) {
+        return entityManager.find(SalaryRange.class, id);
     }
 
     @Override
-    public Role saveOne(Role body) {
+    public SalaryRange saveOne(SalaryRange body) {
         try {
             entityManager.persist(body);
             return body;
         }
         catch (EntityExistsException ex) {
-            throw new RoleDuplicateEntityException();
+            throw new SalaryRangeDuplicateEntityException();
         }
     }
 
     @Override
-    public Role updateOne(Role body) {
+    public SalaryRange updateOne(SalaryRange body) {
         return entityManager.merge(body);
     }
 
     @Override
     public boolean remove(Long id) {
         try {
-            Role applyForMe = entityManager.getReference(Role.class, id);
+            SalaryRange applyForMe = entityManager.getReference(SalaryRange.class, id);
             entityManager.remove(applyForMe);
             return true;
         }
@@ -67,7 +68,7 @@ public class RoleRepositoryImpl implements RoleRepository {
 
     @Override
     public boolean removeMany(List<Long> ids) {
-        Query query = entityManager.createQuery("delete from Role r where r.id in (:ids)");
+        Query query = entityManager.createQuery("delete from SalaryRange sr where sr.id in (:ids)");
         query.setParameter("ids", ids);
         if (query.executeUpdate() > 0) {
             return true;
@@ -79,7 +80,7 @@ public class RoleRepositoryImpl implements RoleRepository {
 
     @Override
     public boolean removeAll() {
-        Query query = entityManager.createQuery("delete from Role");
+        Query query = entityManager.createQuery("delete from SalaryRange");
         if (query.executeUpdate() > 0) {
             return true;
         }

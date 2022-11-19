@@ -15,17 +15,21 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "country")
+@Table(name = "country", uniqueConstraints = {
+        @UniqueConstraint(
+                columnNames = {"title", "abbreviation"}
+        )
+})
 public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title", nullable = false, unique = true)
+    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "abbreviation", nullable = false, unique = true)
+    @Column(name = "abbreviation", nullable = false)
     private String abbreviation;
 
     @CreationTimestamp
