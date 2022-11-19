@@ -1,3 +1,19 @@
+.container {
+    width: 97%;
+    margin: 0;
+    margin-bottom: 15%;
+    display: block;
+    justify-content: center;
+    flex-direction: column;
+    display: contents;
+    justify-content: center;
+}
+
+.container2 {
+    width: ;
+    margin: 0;
+}
+
 .heading {
     font-family: 'Outfit';
     font-style: normal;
@@ -6,6 +22,8 @@
     line-height: 150%;
     color: #2E3192;
     flex-grow: 0;
+    margin: 0;
+    justify-content: center;
     }
     
     .headSub {
@@ -13,6 +31,7 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 150%;
+    margin: 0;
     }
     
     .informationH {
@@ -51,3 +70,11 @@
     line-height: 150%;
     letter-spacing: 0.01em;
     }
+
+    .lis {
+        margin: 0;
+    }
+
+   .techAll {
+    width: 93%;
+   } 
