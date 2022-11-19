@@ -13,8 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(
         value = "role",
-        produces = { MediaType.APPLICATION_JSON_VALUE },
-        consumes = { MediaType.APPLICATION_JSON_VALUE }
+        produces = { MediaType.APPLICATION_JSON_VALUE }
 )
 public class RoleController {
 

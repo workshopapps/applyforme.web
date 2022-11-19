@@ -9,4 +9,6 @@ public interface JobSubmissionService {
 	List<Submission> getAllSubmissionsByPagination(Long pId, Integer pageOffset);
 
 	List<Submission> getallSubmissionsSortedByField(Long pId, Integer pageOffset, String field);
+
+    public Long countAllSubmissions(Long Id);
 }
