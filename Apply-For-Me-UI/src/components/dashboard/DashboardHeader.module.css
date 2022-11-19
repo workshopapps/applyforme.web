@@ -127,6 +127,7 @@
     align-items: flex-end;
     justify-content: center;
     position: relative;
+    padding: 1rem 0;
 }
 
 .toggle_user ul {
@@ -134,6 +135,7 @@
     align-items: center;
     gap: 5rem;
     position: relative;
+    flex-wrap: wrap;
 }
 
 .toggle_user ul li {
@@ -156,13 +158,14 @@
 .__active_toggle::after {
     content: "";
     position: absolute;
-    bottom: -90%;
+    bottom: -150%;
     left: -38px;
     width: calc(100% + 2.5rem);
     height: 3px;
     background-color: #2e3192;
 }
 
+/* Tablet */
 @media screen and (max-width: 914px) {
     .swap_nav {
         flex-direction: row-reverse;
@@ -261,7 +264,7 @@
         background-color: #fff;
     }
     .toggle_user ul {
-        gap: 2rem;
+        gap: 1rem;
     }
     .toggle_user ul li {
         font-size: 1rem;
