@@ -15,7 +15,7 @@ import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.service.JobSubmissionService;
 
 @RestController
-@RequestMapping(value = "profile", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
+@RequestMapping(value = "job-submission", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
 		MediaType.APPLICATION_JSON_VALUE })
 public class JobSubmissionController {
 
