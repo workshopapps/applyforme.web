@@ -44,7 +44,7 @@ const TermsAndCondition = () => {
                                 us.
                             </p>
                             <p>These Terms shall describe the following:</p>
-                            <ol>
+                            <ol className={classes.indent}>
                                 <li>Use of Site</li>
                                 <li>What’s in these terms?</li>
                                 <li>
@@ -106,51 +106,57 @@ const TermsAndCondition = () => {
                         <p className={classes.heading}>
                             2. What’s in these terms?
                         </p>
-                        <p>
-                            These jobseeker terms (the “Jobseeker Terms“) set
-                            out the information applicable to jobseekers (the
-                            “Jobseekers“) who wish to use the Site and apply to
-                            the contractual agreement (hereinafter referred to
-                            as the “Agreement”) between Us and you on the other
-                            hand, who are interested in or use any career
-                            service that is offered at on the Site or other
-                            websites that incorporate these Terms of Use and our
-                            mobile applications (“apps”) (collectively referred
-                            to as “Service” hereinafter). Such websites and the
-                            apps are collectively referred to as “Platforms”
-                            hereinafter. If you do not agree to these Jobseeker
-                            Terms, you must not use the Site.
-                        </p>
+                        <div className={classes.child}>
+                            <p>
+                                These jobseeker terms (the “Jobseeker Terms“)
+                                set out the information applicable to jobseekers
+                                (the “Jobseekers“) who wish to use the Site and
+                                apply to the contractual agreement (hereinafter
+                                referred to as the “Agreement”) between Us and
+                                you on the other hand, who are interested in or
+                                use any career service that is offered at on the
+                                Site or other websites that incorporate these
+                                Terms of Use and our mobile applications
+                                (“apps”) (collectively referred to as “Service”
+                                hereinafter). Such websites and the apps are
+                                collectively referred to as “Platforms”
+                                hereinafter. If you do not agree to these
+                                Jobseeker Terms, you must not use the Site.
+                            </p>
+                        </div>
                     </div>
                     {/* 3 */}
                     <div>
                         <p className={classes.heading}>
                             3. There are other Terms that may apply to you
                         </p>
-                        <p>
-                            This Acceptable Use Policy refers to the following
-                            additional terms, which also apply to your use of
-                            the Site:
-                        </p>
-                        <ul>
-                            <li>
-                                Our Privacy policy, which sets out the terms on
-                                which We process any personal data We collect
-                                from you, or that you provide to Us. By using
-                                the Site, you consent to such processing and you
-                                warrant that all data provided by you is
-                                accurate;
-                            </li>
-                            <li>
-                                Our Cookie policy, which sets out information
-                                about the cookies on the Site; and
-                            </li>
-                            <li>
-                                If you are a recruiter, our Recruiter terms and
-                                conditions, which sets out information
-                                applicable to Recruiters.
-                            </li>
-                        </ul>
+                        <div className={classes.child}>
+                            <p>
+                                This Acceptable Use Policy refers to the
+                                following additional terms, which also apply to
+                                your use of the Site:
+                            </p>
+                            <ul className={classes.indent}>
+                                <li>
+                                    Our Privacy policy, which sets out the terms
+                                    on which We process any personal data We
+                                    collect from you, or that you provide to Us.
+                                    By using the Site, you consent to such
+                                    processing and you warrant that all data
+                                    provided by you is accurate;
+                                </li>
+                                <li>
+                                    Our Cookie policy, which sets out
+                                    information about the cookies on the Site;
+                                    and
+                                </li>
+                                <li>
+                                    If you are a recruiter, our Recruiter terms
+                                    and conditions, which sets out information
+                                    applicable to Recruiters.
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     {/* 4 */}
                     <div>
@@ -273,49 +279,44 @@ const TermsAndCondition = () => {
                                 hereinafter. You can register for an account as
                                 described below.
                             </p>
-                            <div className={classes.child}>
-                                <p>
-                                    7.1. Should you wish to create an account
-                                    with us, you must provide a valid email
-                                    address and a password which we will store
-                                    to perform our obligation under this
-                                    Agreement (or use Google). After we have
-                                    received your registration application to
-                                    create an account, we will confirm the
-                                    receipt of such an application with a
-                                    message to the email address provided by
-                                    you. The Agreement for your account between
-                                    you and us will come into effect when we
-                                    activate your account. The Agreement for
-                                    your account between you and us will come
-                                    into effect when we activate your account.
-                                </p>
-                                <p>
-                                    7.2. The completion of the registration by
-                                    you only constitutes an offer to enter into
-                                    a contract. We reserve the right to accept
-                                    or decline the conclusion of the contract at
-                                    its own discretion. There is no right to
-                                    claim a conclusion of contract.
-                                </p>
-                                <p>
-                                    7.3. You must provide the requested
-                                    information and data completely and
-                                    truthfully. You are responsible to keep your
-                                    contact data (especially your email-address)
-                                    up to date and to ensure that you can be
-                                    contacted under the address provided and
-                                    that the email-address is not transferred to
-                                    another person. Should any of the provided
-                                    data change, you must adjust and correct the
-                                    data immediately. In the event of incomplete
-                                    or false information provided by you, we
-                                    shall have the right to block your account
-                                    and the access to our Platform temporarily
-                                    or permanently and/or terminate in
-                                    accordance.
-                                </p>
-                            </div>
+                            <p>
+                                7.1. Should you wish to create an account with
+                                us, you must provide a valid email address and a
+                                password which we will store to perform our
+                                obligation under this Agreement (or use Google).
+                                After we have received your registration
+                                application to create an account, we will
+                                confirm the receipt of such an application with
+                                a message to the email address provided by you.
+                                The Agreement for your account between you and
+                                us will come into effect when we activate your
+                                account. The Agreement for your account between
+                                you and us will come into effect when we
+                                activate your account.
+                            </p>
+                            <p>
+                                7.2. The completion of the registration by you
+                                only constitutes an offer to enter into a
+                                contract. We reserve the right to accept or
+                                decline the conclusion of the contract at its
+                                own discretion. There is no right to claim a
+                                conclusion of contract.
+                            </p>
+                            <p>
+                                7.3. You must provide the requested information
+                                and data completely and truthfully. You are
+                                responsible to keep your contact data
+                                (especially your email-address) up to date and
+                                to ensure that you can be contacted under the
+                                address provided and that the email-address is
+                                not transferred to another person. Should any of
+                                the provided data change, you must adjust and
+                                correct the data immediately. In the event of
+                                incomplete or false information provided by you,
+                                we shall have the right to block your account
+                                and the access to our Platform temporarily or
+                                permanently and/or terminate in accordance.
+                            </p>
                         </div>
                     </div>
                     {/* 8 */}
@@ -353,15 +354,18 @@ const TermsAndCondition = () => {
                     {/* 9 */}
                     <div>
                         <p className={classes.heading}>9. Dormant Emails</p>
-                        <p>
-                            If you have an account but you have been inactive
-                            for a predetermined period, we may email you to
-                            check whether you are still on the lookout for a
-                            job. This will not occur if you have unsubscribed to
-                            receive emails from us. As part of your lifelong
-                            career assistant and recruiting agency, we like to
-                            be kept up to date with your status quo.
-                        </p>
+                        <div className={classes.child}>
+                            <p>
+                                If you have an account but you have been
+                                inactive for a predetermined period, we may
+                                email you to check whether you are still on the
+                                lookout for a job. This will not occur if you
+                                have unsubscribed to receive emails from us. As
+                                part of your lifelong career assistant and
+                                recruiting agency, we like to be kept up to date
+                                with your status quo.
+                            </p>
+                        </div>
                     </div>
                     {/* 10 */}
                     <div>
