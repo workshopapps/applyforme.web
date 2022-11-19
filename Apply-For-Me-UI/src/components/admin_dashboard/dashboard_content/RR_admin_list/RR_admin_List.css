@@ -71,10 +71,10 @@ thead th{
 }
 .view_mobile_Container button {
     border-radius: 4px;
-     font-size: 15px;
+     font-size: 13px;
      width: 90%;
      background: #2E3192;
-     padding: 0.5rem 1rem;
+     padding: 0.3rem 0.5rem;
      border: 1px solid white;
      color: white;
      margin-right: 0.3rem;
@@ -94,7 +94,7 @@ thead select{
     padding: 0.2rem;
 }
 .img_rapper{
-    width:15%;
+    width:10%;
 }
 .dropdown{
     position: relative;
@@ -120,7 +120,7 @@ thead select{
         left:-1rem;
     }
     .img_rapper{
-        width:15%;
+        width:10%;
     }
    .tableContainer{
         display: none;
@@ -138,6 +138,7 @@ thead select{
     .mobileList select{
         padding: 0.2rem;
         font-size:10px ;
+        border: 1px solid gainsboro;
     }
     .mobileList label{
         font-size: 13px;

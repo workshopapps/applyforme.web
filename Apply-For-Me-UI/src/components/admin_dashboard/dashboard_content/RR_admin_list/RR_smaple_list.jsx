@@ -27,7 +27,7 @@ export const List=[
         name:"Forth User",
         img:"https://res.cloudinary.com/hamskid/image/upload/v1668865249/Frame_51202_uoy0ee.png",
         email:"forth@gmail.com",
-        work:"Fine Tech",
+        work:"Financial Recruiter Tech",
         date:"08, jan 2021",
         id:new Date().getTime()
     },
