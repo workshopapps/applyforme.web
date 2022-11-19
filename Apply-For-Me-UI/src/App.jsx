@@ -12,6 +12,8 @@ import PricingPlan from "./pages/pricing_plan/PricingPlan";
 import Error from "./pages/error/Error";
 import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
+import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
+import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
 
 function App() {
     return (
@@ -29,6 +31,10 @@ function App() {
                 <Route exact path="/user-page" element={<Dashboard />} />
                 <Route exact path="/blog/:id" element={<Blog />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
+                <Route path="dashboard" element={<UserDashboardLayout />}>
+                    <Route path="/dashboard/" element={<DashboardNothing />} />
+                </Route>
+
                 <Route path="*" element={<Error />} />
             </Routes>
         </>
