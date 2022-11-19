@@ -22,12 +22,14 @@ import ProfileIcon from "../../assets/images/profile-circle.svg";
 import Help from "../../assets/images/help_outline.svg";
 import { getActiveLink } from "./service/DashboardSidebarService";
 import BlueButton from "../buttons/blue_background/BlueButton";
+import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
 
 const DashboardHeader = ({ func }) => {
     const [dashboardActive, setDashboardActive] = useState({
         dashboard: true,
         user: false
     });
+    const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
@@ -36,6 +38,16 @@ const DashboardHeader = ({ func }) => {
         setDashboardActive(getActiveLink(data));
     };
     const handleSubmit = event => {
+        event.preventDefault();
+        setShowModal(false);
+        // Quota submission code goes here
+    };
+
+    const handleModalShow = () => {
+        setShowModal(true);
+    };
+
+    const handleQuota = event => {
         event.preventDefault();
     };
     return (
@@ -250,7 +262,11 @@ const DashboardHeader = ({ func }) => {
 
                                 <p>Female</p>
 
-                                <BlueButton text="Assign Quota" width="214" />
+                                <BlueButton
+                                    text="Assign Quota"
+                                    width="214"
+                                    func={handleModalShow}
+                                />
                             </div>
                         </div>
 
@@ -327,6 +343,49 @@ const DashboardHeader = ({ func }) => {
                             </p>
                         </li>
                     </ul>
+                </section>
+            )}
+
+            {showModal && (
+                <section className={classes.modal_container}>
+                    <div className={classes.modal_wrapper}>
+                        <div className={classes.close_modal}>
+                            <img
+                                src={CloseMenu}
+                                alt="Close"
+                                onClick={() => setShowModal(false)}
+                            />
+                        </div>
+                        <form onSubmit={e => handleQuota(e)}>
+                            <div className={classes.input_container}>
+                                <p>Select month</p>
+                                <select>
+                                    <option value="January">January</option>
+                                </select>
+                            </div>
+
+                            <div className={classes.input_container}>
+                                <input
+                                    type="number"
+                                    placeholder="Enter digits"
+                                />
+                            </div>
+
+                            <div className={classes.btn_container}>
+                                <BlueButton
+                                    text="Set"
+                                    width="195"
+                                    type="submit"
+                                    func={() => {}}
+                                />
+                                <BlueBorderButton
+                                    text="Cancel"
+                                    width="195"
+                                    func={() => setShowModal(false)}
+                                />
+                            </div>
+                        </form>
+                    </div>
                 </section>
             )}
         </section>
