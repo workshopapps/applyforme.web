@@ -46,10 +46,10 @@ public class RoleServiceImpl implements RoleService {
         ObjectMapper mapper = new ObjectMapper();
 
         Role[] countriesArray = mapper.readValue(roleJsonAsString, Role[].class);
-        List<Role> countriesList = Arrays.asList(countriesArray);
+        List<Role> rolesList = Arrays.asList(countriesArray);
 
         try {
-            for (Role role : countriesList) {
+            for (Role role : rolesList) {
                 Optional<Role> roleExists = jpaRepository.findByTitleAndCode(role.getTitle(), role.getCode());
 
                 if (roleExists.isPresent()) {

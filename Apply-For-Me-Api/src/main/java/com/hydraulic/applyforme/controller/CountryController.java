@@ -14,8 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping(
         value = "country",
-        produces = { MediaType.APPLICATION_JSON_VALUE },
-        consumes = { MediaType.APPLICATION_JSON_VALUE }
+        produces = { MediaType.APPLICATION_JSON_VALUE }
 )
 @Tag(name = "Country")
 public class CountryController {

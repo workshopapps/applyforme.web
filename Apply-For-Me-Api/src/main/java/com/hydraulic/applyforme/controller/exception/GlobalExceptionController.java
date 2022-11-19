@@ -136,6 +136,7 @@ public class GlobalExceptionController {
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
+
     @ExceptionHandler(MemberNotFoundException.class)
     public Object notFound(MemberNotFoundException ex) {
         Map<String, String> errors = new HashMap<String, String>();
@@ -144,5 +145,8 @@ public class GlobalExceptionController {
         ex.setCode(HttpStatus.NOT_FOUND.value());
         errors.put("code", ex.getCode().toString());
         return errors;
+
+
     }
+
 }
