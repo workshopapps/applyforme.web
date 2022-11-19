@@ -17,6 +17,14 @@ import AdminApplication from "./pages/admin_application/AdminApplication";
 import AdminUsers from "./pages/admin_users/AdminUsers";
 import AdminHelp from "./pages/admin_help/AdminHelp";
 import AdminMessage from "./pages/admin_messages/AdminMessage";
+import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
+import Skills from "./pages/blog/pages/skills/Skills";
+import Cover from "./pages/blog/pages/cover/Cover";
+import Work from "./pages/blog/pages/work/Work";
+import Signs from "./pages/blog/pages/signs/Signs";
+import Resume from "./pages/blog/pages/resume/Resume";
+import Brand from "./pages/blog/pages/brand/Brand";
+import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
 
 function App() {
     return (
@@ -31,7 +39,20 @@ function App() {
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
                 <Route exact path="/pricing" element={<PricingPlan />} />
-                <Route exact path="/blog/:id" element={<Blog />} />
+                <Route exact path="blog" element={<Blog />} />
+                <Route
+                    exact
+                    path="/blog/questions"
+                    element={<BestQuestions />}
+                />
+                <Route exact path="/blog/skills" element={<Skills />} />
+                <Route exact path="blog/cover" element={<Cover />} />
+                <Route exact path="blog/work" element={<Work />} />
+                <Route exact path="blog/signs" element={<Signs />} />
+                <Route exact path="blog/cover" element={<Cover />} />
+                <Route exact path="blog/resume" element={<Resume />} />
+                <Route exact path="blog/brand" element={<Brand />} />
+                <Route exact path="blog/endorsment" element={<Endorsment />} />
                 <Route path="dashboard" element={<Layout />}>
                     <Route path="/dashboard/" element={<AdminDashboard />} />
                     <Route path="profile" element={<AdminProfile />} />
