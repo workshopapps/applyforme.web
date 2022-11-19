@@ -1,6 +1,6 @@
 package com.hydraulic.applyforme.model.exception;
 
-public class CounntryDuplicateEntityException extends ApplyForMeException {
+public class CountryDuplicateEntityException extends ApplyForMeException {
     private static final long serialVersionUID = 1L;
     public static final String ENTITY_NAME = "Country";
 

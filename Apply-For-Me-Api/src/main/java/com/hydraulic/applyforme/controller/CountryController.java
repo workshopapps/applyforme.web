@@ -1,9 +1,10 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.domain.ApplyForMe;
-import com.hydraulic.applyforme.model.dto.applyforme.ApplyForMeDto;
-import com.hydraulic.applyforme.model.dto.applyforme.DeleteManyApplyForMeDto;
-import com.hydraulic.applyforme.service.ApplyForMeService;
+import com.hydraulic.applyforme.model.domain.Country;
+import com.hydraulic.applyforme.model.dto.country.CountryDto;
+import com.hydraulic.applyforme.model.dto.country.DeleteManyCountryDto;
+import com.hydraulic.applyforme.service.CountryService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -12,35 +13,41 @@ import java.util.List;
 
 @RestController
 @RequestMapping(
-        value = "apply",
+        value = "country",
         produces = { MediaType.APPLICATION_JSON_VALUE },
         consumes = { MediaType.APPLICATION_JSON_VALUE }
 )
-public class ApplyForMeController {
+@Tag(name = "Country")
+public class CountryController {
 
-    private ApplyForMeService service;
+    private CountryService service;
 
-    public ApplyForMeController(ApplyForMeService service) {
+    public CountryController(CountryService service) {
         this.service = service;
     }
 
     @GetMapping("/entries")
-    public List<ApplyForMe> findAll(@RequestParam(required = false, defaultValue = "1" , name = "page") Integer pageNumber) {
+    public List<Country> findAll(@RequestParam(required = false, defaultValue = "1" , name = "page") Integer pageNumber) {
         return service.findAll(pageNumber);
     }
 
+    @GetMapping("/entries/all")
+    public List<Country> findAll() {
+        return service.findAll();
+    }
+
     @GetMapping("/detail/{id}")
-    public ApplyForMe findOne(@PathVariable(name ="id") Long id) {
+    public Country findOne(@PathVariable(name ="id") Long id) {
         return service.findOne(id);
     }
 
     @PostMapping("/save")
-    public ApplyForMe save(@Validated @RequestBody ApplyForMeDto body) {
+    public Country save(@Validated @RequestBody CountryDto body) {
         return service.save(body);
     }
 
     @PutMapping("/update/{id}")
-    public ApplyForMe update(@Validated @RequestBody ApplyForMeDto body, @PathVariable(name ="id") Long id) {
+    public Country update(@Validated @RequestBody CountryDto body, @PathVariable(name ="id") Long id) {
         return service.update(id, body);
     }
 
@@ -50,7 +57,7 @@ public class ApplyForMeController {
     }
 
     @PutMapping("/remove/many")
-    public boolean deleteMany(@Validated @RequestBody DeleteManyApplyForMeDto body) {
+    public boolean deleteMany(@Validated @RequestBody DeleteManyCountryDto body) {
         return service.deleteMany(body);
     }
 
