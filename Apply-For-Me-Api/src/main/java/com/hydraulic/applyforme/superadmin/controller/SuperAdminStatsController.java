@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(
         value = "statistic",
         produces = { MediaType.APPLICATION_JSON_VALUE }
-)public class SuperAdminStatsController {
+)
+public class SuperAdminStatsController {
 
     private final SuperAdminStatsService service;
 
