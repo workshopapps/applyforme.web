@@ -28,7 +28,7 @@ const DashboardSidebar = () => {
         <section className={classes.sidebar_container}>
             <ul>
                 <li>
-                    <img src={Logo} alt="Footer logo" />
+                    <img src={Logo} alt="Footer logo" className={classes.logo}/>
                 </li>
                 <li
                     className={activeLink.dashboard ? classes.__active : ""}

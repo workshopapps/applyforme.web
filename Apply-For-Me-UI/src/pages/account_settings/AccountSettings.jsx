@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import "./AccountSettings.css"
+import classes from "./AccountSettings.module.css"
 import SettingsTopNav from './SettingsTopNav'
 import person from "../../assets/images/Friendly Ones Avatar.png"
-import SettingsSidebar from './SettingsSidebar'
+import DashboardSidebar from '../../components/dashboard_sidebar/DashboardSidebar'
 //import { getActiveLink } from './settingservice/SettingsSecondSidebar'
 
 const AccountSettings = () => {
@@ -17,34 +17,32 @@ const AccountSettings = () => {
     };
 
     return (
-        <div className='account_settings_container'>
-            <div className='sidebar_container'>
-                <SettingsSidebar />
+        <div className={classes.account_settings_container}>
+            <div >
+                <DashboardSidebar/>
             </div>
 
-            <div className="body_container">
+            <div className={classes.body_container}>
                 <SettingsTopNav />
 
-                <div className="body_content">
-                    <div className="second_sidenav">
+                <div className={classes.body_content}>
+                    <div className={classes.second_sidenav}>
                         <ul>
                             <li
-                                className={activeLink.profile ? document.getElementsByClassName('active') : ""}
+                                className={activeLink.profile ? classes.active : ""}
                                 onClick={handleAciveLink}
                             >
                                 Profile
                             </li>
                             <li
-                                className={activeLink.password ? document.getElementsByClassName('active') : ""}
-                            // onClick={() => document.querySelectorAll("#passwordContent")}
+                                className={activeLink.password ? classes.active : ""}
                             >
                                 Password
                             </li>
                             <li>Membership Status</li>
 
                             <li
-                                className={activeLink.preference ? document.getElementsByClassName('active') : ""}
-                            // onClick={() => document.querySelectorAll("#preference")}
+                                className={activeLink.preference ? classes.active : ""}
                             >
                                 Account Preference
                             </li>
@@ -52,10 +50,10 @@ const AccountSettings = () => {
                     </div>
 
                     <form>
-                        <div id='profile'>
+                        <div id={classes.profile}>
                             <h3>Personal Information</h3>
-                            <div className='change_image'>
-                                <div className='image'>
+                            <div className={classes.change_image}>
+                                <div className={classes.image}>
                                     <img src={person} alt="" />
                                 </div>
 
@@ -64,52 +62,52 @@ const AccountSettings = () => {
                                 </span>
                             </div>
 
-                            <div className="input_fields">
-                                <div className="row">
-                                    <div className="form-control">
+                            <div className={classes.input_fields}>
+                                <div className={classes.row}>
+                                    <div className={classes.form_control}>
                                         <label htmlFor='name'>First Name</label>
                                         <input type="text" name="name" id="name" placeholder='First Name' />
                                     </div>
-                                    <div className="form-control">
+                                    <div className={classes.form_control}>
                                         <label htmlFor='name'>Last Name</label>
                                         <input type="text" name="name" id="name" placeholder='Last Name' />
                                     </div>
                                 </div>
 
-                                <div className="row">
-                                    <div className="form-control">
+                                <div className={classes.row}>
+                                    <div className={classes.form_control}>
                                         <label htmlFor="email">Email</label>
                                         <input type="email" name="email" id="email" placeholder='Email Address' />
                                     </div>
                                 </div>
 
-                                <div className="row">
-                                    <div className="form-control">
+                                <div className={classes.row}>
+                                    <div className={classes.form_control}>
                                         <label htmlFor="number">Contact Number</label>
                                         <input type="text" name="number" id="number" placeholder='+234-567-890-00' />
                                     </div>
                                 </div>
 
-                                <div className="row">
-                                    <div className="form-control">
+                                <div className={classes.row}>
+                                    <div className={classes.form_control}>
                                         <label htmlFor="address">Address</label>
                                         <input type="text" name="address" id="address" placeholder='36, Amen Estate' />
                                     </div>
                                 </div>
 
-                                <div className="row">
-                                    <div className="form-control">
+                                <div className={classes.row}>
+                                    <div className={classes.form_control}>
                                         <label htmlFor='city'>City</label>
                                         <input type="text" name="city" id="city" placeholder='Ikeja' />
                                     </div>
-                                    <div className="form-control">
+                                    <div className={classes.form_control}>
                                         <label htmlFor='state'>State</label>
                                         <input type="text" name="state" id="state" placeholder='Lagos' />
                                     </div>
                                 </div>
 
-                                <div className="row">
-                                    <div className="form-control">
+                                <div className={classes.row}>
+                                    <div className={classes.form_control}>
                                         <label htmlFor="country">Country</label>
                                         <input type="text" name="country" id="country" placeholder='Nigeria' />
                                     </div>
@@ -121,24 +119,24 @@ const AccountSettings = () => {
                             </div>
                         </div>
 
-                        <div id='passwordContent'>
+                        <div id={classes.passwordContent}>
                             <h3>Password page</h3>
 
-                            <div className="input_fields">
-                                <div className="row">
-                                    <div className="form-control">
+                            <div className={classes.input_fields}>
+                                <div className={classes.row}>
+                                    <div className={classes.form_control}>
                                         <label htmlFor="password">Old Password</label>
                                         <input type="password" />
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="form-control">
+                                <div className={classes.row}>
+                                    <div className={classes.form_control}>
                                         <label htmlFor="password">New Password</label>
                                         <input type="password" />
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="form-control">
+                                <div className={classes.row}>
+                                    <div className={classes.form_control}>
                                         <label htmlFor="password">Confirm New Password</label>
                                         <input type="password" />
                                     </div>
@@ -147,7 +145,7 @@ const AccountSettings = () => {
                         </div>
                     </form>
 
-                    <div id="preference">
+                    <div id={classes.preference}>
                         <div>
                             <h3>Notification</h3>
                             <p>Manage the kind of notification you get about your activities,interest and recommendations</p>
