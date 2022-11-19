@@ -1,11 +1,7 @@
 export const getActiveLink = active => {
     let initState = {
         dashboard: false,
-        profile: false,
-        application: false,
-        users: false,
-        messages: false,
-        help: false
+        user: false
     };
 
     Object.keys(initState).forEach(key => {
