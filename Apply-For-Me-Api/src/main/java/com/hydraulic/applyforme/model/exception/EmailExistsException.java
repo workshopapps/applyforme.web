@@ -3,13 +3,12 @@ package com.hydraulic.applyforme.model.exception;
 import lombok.Getter;
 import lombok.Setter;
 
-public class EmailExistsException extends RuntimeException{
+public class EmailExistsException extends ApplyForMeException{
+
+    private static final long serialVersionUID = 1L;
 
     public static final String ENTITY_NAME = "Email Address";
 
-    @Getter
-    @Setter
-    private Integer code = 500;
 
     public EmailExistsException() {
     }
