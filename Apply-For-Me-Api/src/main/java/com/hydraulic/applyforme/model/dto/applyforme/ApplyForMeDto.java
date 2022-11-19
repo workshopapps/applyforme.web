@@ -1,4 +1,4 @@
-package com.hydraulic.applyforme.model.dto;
+package com.hydraulic.applyforme.model.dto.applyforme;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
