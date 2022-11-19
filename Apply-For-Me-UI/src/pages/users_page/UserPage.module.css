@@ -1,0 +1,50 @@
+.main_container {
+    padding-top: 2rem;
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.user_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user_header p {
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 150%;
+    letter-spacing: 0.03rem;
+    color: #52515b;
+}
+
+.month_year {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: #eeefff;
+    border-radius: 4px;
+    padding: 0.6rem;
+}
+
+.month_year p {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #2e3192;
+}
+
+.table {
+    width: 100%;
+    margin-top: 5rem;
+}
+
+.table .lines {
+    opacity: 0.4;
+}
+
+.table tr {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
