@@ -17,6 +17,6 @@ public class SalaryRange {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name ="sal_range", nullable = false)
+    @Column(name ="salary_range", nullable = false)
     private String salaryRange;
 }

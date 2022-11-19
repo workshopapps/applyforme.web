@@ -1,24 +1,31 @@
 package com.hydraulic.applyforme.repository.impl;
 
-import com.hydraulic.applyforme.model.domain.ApplyForMe;
-import com.hydraulic.applyforme.model.exception.ApplyForMeDuplicateEntityException;
-import com.hydraulic.applyforme.repository.ApplyForMeRepository;
-import lombok.extern.slf4j.Slf4j;
+import com.hydraulic.applyforme.model.domain.Role;
+import com.hydraulic.applyforme.model.exception.RoleDuplicateEntityException;
+import com.hydraulic.applyforme.repository.RoleRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.List;
-@Repository
-public class ApplyForMeRepositoryImpl implements ApplyForMeRepository {
 
+
+@Repository
+public class RoleRepositoryImpl implements RoleRepository {
     private static final int DEFAULT_PAGE_SIZE = 11;
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public List<ApplyForMe> getAll(Integer pageOffset) {
-        String queryText = "select afm from ApplyForMe afm order by afm.updatedOn desc";
-        TypedQuery<ApplyForMe> applyForMeQuery = entityManager.createQuery(queryText, ApplyForMe.class);
+    public List<Role> getAll() {
+        String queryText = "select c from Role c order by c.updatedOn desc";
+        TypedQuery<Role> applyForMeQuery = entityManager.createQuery(queryText, Role.class);
+        return applyForMeQuery.getResultList();
+    }
+
+    @Override
+    public List<Role> getAll(Integer pageOffset) {
+        String queryText = "select r from Role r order by r.updatedOn desc";
+        TypedQuery<Role> applyForMeQuery = entityManager.createQuery(queryText, Role.class);
 
         applyForMeQuery.setFirstResult((pageOffset - 1) * DEFAULT_PAGE_SIZE);
         applyForMeQuery.setMaxResults(DEFAULT_PAGE_SIZE);
@@ -26,30 +33,30 @@ public class ApplyForMeRepositoryImpl implements ApplyForMeRepository {
     }
 
     @Override
-    public ApplyForMe getOne(Long id) {
-        return entityManager.find(ApplyForMe.class, id);
+    public Role getOne(Long id) {
+        return entityManager.find(Role.class, id);
     }
 
     @Override
-    public ApplyForMe saveOne(ApplyForMe body) {
+    public Role saveOne(Role body) {
         try {
             entityManager.persist(body);
             return body;
         }
         catch (EntityExistsException ex) {
-            throw new ApplyForMeDuplicateEntityException();
+            throw new RoleDuplicateEntityException();
         }
     }
 
     @Override
-    public ApplyForMe updateOne(ApplyForMe body) {
+    public Role updateOne(Role body) {
         return entityManager.merge(body);
     }
 
     @Override
     public boolean remove(Long id) {
         try {
-            ApplyForMe applyForMe = entityManager.getReference(ApplyForMe.class, id);
+            Role applyForMe = entityManager.getReference(Role.class, id);
             entityManager.remove(applyForMe);
             return true;
         }
@@ -60,7 +67,7 @@ public class ApplyForMeRepositoryImpl implements ApplyForMeRepository {
 
     @Override
     public boolean removeMany(List<Long> ids) {
-        Query query = entityManager.createQuery("delete from ApplyForMe afm where afm.id in (:ids)");
+        Query query = entityManager.createQuery("delete from Role r where r.id in (:ids)");
         query.setParameter("ids", ids);
         if (query.executeUpdate() > 0) {
             return true;
@@ -72,7 +79,7 @@ public class ApplyForMeRepositoryImpl implements ApplyForMeRepository {
 
     @Override
     public boolean removeAll() {
-        Query query = entityManager.createQuery("delete from ApplyForMe");
+        Query query = entityManager.createQuery("delete from Role");
         if (query.executeUpdate() > 0) {
             return true;
         }
