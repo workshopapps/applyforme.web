@@ -2,26 +2,32 @@ package com.hydraulic.applyforme.superadmin.controller;
 
 import com.hydraulic.applyforme.superadmin.service.SuperAdminStatsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/statistic/")
-@RequiredArgsConstructor
-public class SuperAdminStatsController {
+@RequestMapping(
+        value = "statistic",
+        produces = { MediaType.APPLICATION_JSON_VALUE }
+)public class SuperAdminStatsController {
 
-    final SuperAdminStatsService superAdminStatsService;
+    private final SuperAdminStatsService service;
+
+    public SuperAdminStatsController(SuperAdminStatsService service) {
+        this.service = service;
+    }
 
     @GetMapping("/total-users")
-    public ResponseEntity<Long> getTotalUserCount(){
-        return ResponseEntity.ok(superAdminStatsService.getTotalUsers());
+    public Long getTotalUserCount(){
+        return service.getTotalUsers();
     }
 
     @GetMapping("/total-applications")
-    public ResponseEntity<Long> getTotalApplicationCount(){
-        return ResponseEntity.ok(superAdminStatsService.getTotalApplications());
+    public Long getTotalApplicationCount(){
+        return service.getTotalApplications();
     }
 
 }

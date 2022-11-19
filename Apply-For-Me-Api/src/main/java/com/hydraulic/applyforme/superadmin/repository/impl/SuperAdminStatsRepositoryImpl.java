@@ -20,14 +20,14 @@ public class SuperAdminStatsRepositoryImpl implements SuperAdminStatsRepository 
 
     @Override
     public Long getAllSubmissions() {
-        String queryText = "select count(submissions) from Submission submissions";
+        String queryText = "select count(jb) from Submission jb";
         TypedQuery<Long> allSubmissionsQuery = entityManager.createQuery(queryText, Long.class);
         return allSubmissionsQuery.getSingleResult();
     }
 
     @Override
     public Long getAllUsers() {
-        String queryText = "select count(members) from Member members";
+        String queryText = "select count(m) from Member m";
         TypedQuery<Long> allMembersQuery = entityManager.createQuery(queryText, Long.class);
         return allMembersQuery.getSingleResult();
     }
