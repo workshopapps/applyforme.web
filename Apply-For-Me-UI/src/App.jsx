@@ -14,6 +14,14 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
 import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
+import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
+import Skills from "./pages/blog/pages/skills/Skills";
+import Cover from "./pages/blog/pages/cover/Cover";
+import Work from "./pages/blog/pages/work/Work";
+import Signs from "./pages/blog/pages/signs/Signs";
+import Resume from "./pages/blog/pages/resume/Resume";
+import Brand from "./pages/blog/pages/brand/Brand";
+import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
 
 function App() {
     return (
@@ -31,6 +39,20 @@ function App() {
                 <Route exact path="/user-page" element={<Dashboard />} />
                 <Route exact path="/blog/:id" element={<Blog />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
+                <Route exact path="blog" element={<Blog />} />
+                <Route
+                    exact
+                    path="/blog/questions"
+                    element={<BestQuestions />}
+                />
+                <Route exact path="/blog/skills" element={<Skills />} />
+                <Route exact path="blog/cover" element={<Cover />} />
+                <Route exact path="blog/work" element={<Work />} />
+                <Route exact path="blog/signs" element={<Signs />} />
+                <Route exact path="blog/cover" element={<Cover />} />
+                <Route exact path="blog/resume" element={<Resume />} />
+                <Route exact path="blog/brand" element={<Brand />} />
+                <Route exact path="blog/endorsment" element={<Endorsment />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
                     <Route path="/dashboard/" element={<DashboardNothing />} />
                 </Route>
