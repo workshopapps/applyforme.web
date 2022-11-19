@@ -1,8 +1,5 @@
 package com.hydraulic.applyforme.model.exception;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class EmailExistsException extends ApplyForMeException{
 
     private static final long serialVersionUID = 1L;
