@@ -3,6 +3,8 @@ package com.hydraulic.applyforme.service.impl;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.repository.jpa.SuperAdminRepository;
+import com.hydraulic.applyforme.service.SuperAdminService;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SuperAdminServiceImpl{
+public class SuperAdminServiceImpl implements SuperAdminService {
 
     SuperAdminRepository repository;
 
