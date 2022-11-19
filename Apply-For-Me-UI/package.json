@@ -17,10 +17,7 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "prepare": "cd .. && husky install Apply-For-Me-UI/.husky",
-        "lint": "eslint . --fix --max-warnings=0",
-        "format": "prettier . --write"
+        "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": [
@@ -51,13 +48,16 @@
         "eslint-plugin-cypress": "^2.12.1",
         "eslint-plugin-jsx-a11y": "^6.6.1",
         "eslint-plugin-prettier": "^4.2.1",
-        "eslint-plugin-react": "^7.31.10",
+        "eslint-plugin-react": "^7.31.11",
         "eslint-plugin-react-hooks": "^4.6.0",
         "husky": "^8.0.2",
         "lint-staged": "^13.0.3",
         "prettier": "^2.7.1"
+<<<<<<< HEAD
     },
     "lint-staged": {
         "*.js": "eslint --fix "
+=======
+>>>>>>> cc383e37b10f42dfde63e23ac2ee46468dec993d
     }
 }
