@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Red+Rose:wght@400;600;700&display=swap");
+
+:root {
+    --primary-color: #52515b;
+    --secondary-color: #2e3192;
+    --primary-purple: #6a00ff;
+    --dark-blue: #171646;
+    --color-gray: #52515b;
+    --darkGray: #171b1d;
+    --text-dark: #1b1b1b;
+    --primary-gray: #b4b4b4;
+    --secondary-gray: #e1e1e1;
+    --color-white: #ffffff;
+    --darkblue: #5052a5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Outfit", sans-serif;
+}
+main {
+    width: 100vw;
+    padding-top: 1.7rem;
+    padding-bottom: 2rem;
+    border-top: 1px solid #140f31;
+}
+
+.hero_container_wrapper {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* .grid_box {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: auto;
+    padding-top: 64px;
+    justify-items: center;
+    column-gap: 32px;
+    max-width: 1280px;
+} */
+
+.hero_left_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: start;
+    padding: 32px 8px;
+}
+
+.text-box {
+    width: 592px;
+}
+
+.hero_heading_text {
+    padding-top: 12px;
+    font-weight: 400;
+    line-height: 120%;
+    font-style: normal;
+    font-family: Outfit;
+    color: #202065;
+    font-size: 72px;
+}
+
+.hero_parag_text {
+    font-size: 16px;
+    margin-bottom: 56px;
+    color: #52515b;
+    margin-top: 20px;
+}
+
+.upload-box {
+    width: 479px;
+    border: 1px solid #999999;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px 37px;
+    gap: 10px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.upload-box_img {
+    display: flex;
+    justify-content: center;
+}
+
+.hero-img-wrapper {
+    width: 585.65px;
+}
+
+/* .hero-img {
+    width: 100%;
+} */
+
+@media screen and (max-width: 768px) {
+    .hero_container_wrapper {
+        flex-direction: column;
+    }
+
+    .text-box {
+        width: 100%;
+    }
+
+    .hero_heading_text {
+        padding-top: 12px;
+        font-weight: 400;
+        line-height: 48px;
+        font-style: normal;
+        font-family: Outfit;
+        color: #202065;
+        font-size: 40px;
+    }
+
+    .hero_parag_text {
+        font-size: 14px;
+
+        line-height: 21px;
+    }
+
+    .upload-box {
+        display: none;
+    }
+
+    .hero-img-wrapper {
+        width: 318px;
+    }
+
+    .hero-img {
+        width: 100%;
+    }
+}
