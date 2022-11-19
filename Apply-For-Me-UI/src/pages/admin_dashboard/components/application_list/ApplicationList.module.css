@@ -1,0 +1,31 @@
+.list_header *:last-child
+{
+    color: var(--blue);
+    font-size: 16px;
+}
+
+.list_list
+{
+    background: white;
+}
+
+.list_list ul
+{
+    display: grid;
+    grid-template-columns: 16.67% 16.67% 10% 16.67% 10% 10%;
+    gap: 5%;
+    list-style-type: none;
+    padding: 32px 47px 16px;
+}
+
+.list_list ul:not(.list_list ul:last-child)
+{
+    border-bottom: 1px solid rgba(230, 230, 233, 1);
+}
+
+.list_list ul li:not(.list_list ul:first-child li)
+{
+
+    color: rgba(82, 81, 91, 1);
+    font-size: var(--font-size-2);
+}

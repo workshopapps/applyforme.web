@@ -1,7 +1,18 @@
-import React from "react";
+import style from "./AdminDashboard.module.css";
+
+import { Routes, Route } from "react-router-dom";
+import DashboardHome from "./components/dashboard_home/DashboardHome";
+import ApplicationDetails from "./components/application_details/ApplicationDetails";
+import ApplicationForm from './components/application_form/ApplicationForm';
 
 const AdminDashboard = () => {
-    return <div>Dash Amin</div>;
+    return (
+        <Routes className={style}>
+            <Route path="/" element={<DashboardHome/>}/>
+            <Route path="/dashboard/application-form" element={<ApplicationForm/>} />
+            <Route path="/dashboard/details" element={<ApplicationDetails/>} />
+        </Routes>
+    );
 };
 
 export default AdminDashboard;
