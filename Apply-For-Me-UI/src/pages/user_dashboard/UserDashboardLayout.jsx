@@ -1,9 +1,9 @@
 
-import { DashboardContent } from "../../components/admin_dashboard/dashboard_content/dashboard_content";
+import Dashboard from "../dashboard/Dashboard";
 const UserDashboardLayout = () => {
     return (
         <>
-            <DashboardContent/>
+           <Dashboard/>
         </>
     );
 };

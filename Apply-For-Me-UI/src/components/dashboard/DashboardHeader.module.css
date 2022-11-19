@@ -203,10 +203,10 @@
 
     .mobile_menu {
         position: relative;
-        top: 100px;
-        left: 10px;
+        top: 5px;
+        margin:0 auto;
         background-color: #fff;
-        width: 80%;
+        width: 90%;
         border-radius: 18px;
         padding: 3rem 0;
         -webkit-box-shadow: -1px 9px 34px -8px rgba(0, 0, 0, 0.54);

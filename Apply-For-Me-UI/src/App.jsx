@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landing_page/LandingPage";
 import AboutUs from "./pages/about_us/AboutUs";
-import FAQs from "./pages/faqs/FAQs";
+import FAQs from "./pages/about_us/faqs/FAQs";
 import ContactUs from "./pages/contact_us/ContactUs";
 import TermsAndCondition from "./pages/terms_condition/TermsAndCondition";
 import Privacy from "./pages/privacy/Privacy";
