@@ -1,8 +1,8 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.ApplyForMe;
-import com.hydraulic.applyforme.model.dto.ApplyForMeDto;
-import com.hydraulic.applyforme.model.dto.DeleteManyApplyForMeDto;
+import com.hydraulic.applyforme.model.dto.applyforme.ApplyForMeDto;
+import com.hydraulic.applyforme.model.dto.applyforme.DeleteManyApplyForMeDto;
 import com.hydraulic.applyforme.model.exception.ApplyForMeNotFoundException;
 import com.hydraulic.applyforme.repository.ApplyForMeRepository;
 import com.hydraulic.applyforme.service.ApplyForMeService;
@@ -76,8 +76,8 @@ public class ApplyForMeServiceImpl implements ApplyForMeService {
 
     @Override
     @Transactional
-    public boolean deleteMany(DeleteManyApplyForMeDto applyForMeDto) {
-        return repository.removeMany(applyForMeDto.getIds());
+    public boolean deleteMany(DeleteManyApplyForMeDto manyDto) {
+        return repository.removeMany(manyDto.getIds());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.hydraulic.applyforme.model.dto;
+package com.hydraulic.applyforme.model.dto.signup;
 
 import com.hydraulic.applyforme.annotation.PhoneNumberConstraint;
 import lombok.AllArgsConstructor;
@@ -14,21 +14,21 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 public class SignUpDto {
 
-    @NotEmpty(message = "member.firstName.notEmpty")
+    @NotNull(message = "{member.firstName.notNull}")
     private String firstName;
 
-    @NotEmpty(message = "member.lastName.notEmpty")
+    @NotNull(message = "{member.lastName.notNull}")
     private String lastName;
 
-    @NotBlank(message = "member.email.notBlank")
-    @Email(message = "member.email.valid")
+    @NotBlank(message = "{member.email.notBlank}")
+    @Email(message = "{member.email.valid}")
     private String emailAddress;
 
-    @NotBlank(message = "member.phoneNumber.notBlank")
+    @NotNull(message = "{member.phoneNumber.notNull}")
     @PhoneNumberConstraint
     private String phoneNumber;
 
-    @NotBlank(message = "member.password.notBlank")
-    @Size(min = 8, message = "member.password.size")
+    @NotBlank(message = "{member.password.notNull}")
+    @Size(min = 8, message = "{member.password.size}")
     private String password;
 }

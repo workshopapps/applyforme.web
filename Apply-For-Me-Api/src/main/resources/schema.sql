@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `member_secret_code` (
 
 CREATE TABLE IF NOT EXISTS `salary_range` (
 	`id` BIGINT AUTO_INCREMENT,
-  	`sal_range` VARCHAR(300),
+  	`salary_range` VARCHAR(300),
 
 	PRIMARY KEY (`id`)
 );

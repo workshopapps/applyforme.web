@@ -1,7 +1,7 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.dto.SignUpDto;
+import com.hydraulic.applyforme.model.dto.signup.SignUpDto;
 import com.hydraulic.applyforme.model.exception.EmailExistsException;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.service.MemberService;

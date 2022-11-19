@@ -1,5 +1,6 @@
-package com.hydraulic.applyforme.repository;
+package com.hydraulic.applyforme.repository.impl;
 
+import com.hydraulic.applyforme.repository.InMemoryRepository;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,7 +1,7 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.dto.SignUpDto;
+import com.hydraulic.applyforme.model.dto.signup.SignUpDto;
 import com.hydraulic.applyforme.service.MemberService;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
