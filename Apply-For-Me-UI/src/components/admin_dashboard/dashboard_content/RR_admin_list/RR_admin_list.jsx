@@ -63,8 +63,8 @@ export const RR_Admin_list=()=>{
                                             <span className="dropdown">
                                                 <img className="icon" src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png" alt="object not found"/>
                                                 <div className="dropdownContent">
-                                                    <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/back-arrow_e22btd.png"/>
-                                                    <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/arrow_back_ios_new_wskxof.png"/>
+                                                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51367_mndagi.png"/>
+                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51368_n4nns4.png"/>
                                                 </div>
                                             </span>
                                         </div>
@@ -103,8 +103,8 @@ export const RR_Admin_list=()=>{
                                             <span className="dropdown">
                                                     <img className="icon" src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png" alt="object not found"/>
                                                     <div className="dropdownContent">
-                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/back-arrow_e22btd.png"/>
-                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/arrow_back_ios_new_wskxof.png"/>
+                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51367_mndagi.png"/>
+                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51368_n4nns4.png"/>
                                                     </div>
                                                 </span>
                                             <button>view</button>
@@ -120,8 +120,8 @@ export const RR_Admin_list=()=>{
             <div className="pagination">
                 <h5>1-5 of {List.length}</h5>
                 <div className="pagiantion_control">
-                    {counter >= 4?<span onClick={backwardHandler}><img style={{width:'60%'}} src="/back-arrow.png" alt="object not found"/></span>:null}
-                    {counter < List.length ?<span onClick={forwardHandler}><img style={{width:'60%'}} src="/arrow_back_ios_new.png" alt="object not found"/></span>:null}
+                    {counter >= 4?<span onClick={backwardHandler}><img style={{width:'60%'}} src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/back-arrow_e22btd.png" alt="object not found"/></span>:null}
+                    {counter < List.length ?<span onClick={forwardHandler}><img style={{width:'60%'}} src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/arrow_back_ios_new_wskxof.png" alt="object not found"/></span>:null}
                 </div> 
             </div>
             

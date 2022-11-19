@@ -6,7 +6,7 @@ export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
                 <div className="profile_header">
                     <h1>Profile</h1>
                     <button className="profile_content_btn">
-                        <img src="/superAdmin/pencil-edit.png" alt="object not found"/>
+                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1668865249/pencil-edit_g9boq4.png" alt="object not found"/>
                         <h4>Edit</h4> 
                     </button>
                 </div>
