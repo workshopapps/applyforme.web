@@ -1,7 +1,11 @@
-import React from "react";
+import Footer from "../../components/footer/Footer";
 
 const TermsAndCondition = () => {
-    return <div>Terms and Condition</div>;
+    return (
+        <div>
+            <Footer />
+        </div>
+    );
 };
 
 export default TermsAndCondition;
