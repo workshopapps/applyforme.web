@@ -1,9 +1,9 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.domain.ApplyForMe;
-import com.hydraulic.applyforme.model.dto.applyforme.ApplyForMeDto;
-import com.hydraulic.applyforme.model.dto.applyforme.DeleteManyApplyForMeDto;
-import com.hydraulic.applyforme.service.ApplyForMeService;
+import com.hydraulic.applyforme.model.domain.Role;
+import com.hydraulic.applyforme.model.dto.role.RoleDto;
+import com.hydraulic.applyforme.model.dto.role.DeleteManyRoleDto;
+import com.hydraulic.applyforme.service.RoleService;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -12,35 +12,40 @@ import java.util.List;
 
 @RestController
 @RequestMapping(
-        value = "apply",
+        value = "role",
         produces = { MediaType.APPLICATION_JSON_VALUE },
         consumes = { MediaType.APPLICATION_JSON_VALUE }
 )
-public class ApplyForMeController {
+public class RoleController {
 
-    private ApplyForMeService service;
+    private RoleService service;
 
-    public ApplyForMeController(ApplyForMeService service) {
+    public RoleController(RoleService service) {
         this.service = service;
     }
 
     @GetMapping("/entries")
-    public List<ApplyForMe> findAll(@RequestParam(required = false, defaultValue = "1" , name = "page") Integer pageNumber) {
+    public List<Role> findAll(@RequestParam(required = false, defaultValue = "1" , name = "page") Integer pageNumber) {
         return service.findAll(pageNumber);
     }
 
+    @GetMapping("/entries/all")
+    public List<Role> findAll() {
+        return service.findAll();
+    }
+
     @GetMapping("/detail/{id}")
-    public ApplyForMe findOne(@PathVariable(name ="id") Long id) {
+    public Role findOne(@PathVariable(name ="id") Long id) {
         return service.findOne(id);
     }
 
     @PostMapping("/save")
-    public ApplyForMe save(@Validated @RequestBody ApplyForMeDto body) {
+    public Role save(@Validated @RequestBody RoleDto body) {
         return service.save(body);
     }
 
     @PutMapping("/update/{id}")
-    public ApplyForMe update(@Validated @RequestBody ApplyForMeDto body, @PathVariable(name ="id") Long id) {
+    public Role update(@Validated @RequestBody RoleDto body, @PathVariable(name ="id") Long id) {
         return service.update(id, body);
     }
 
@@ -50,7 +55,7 @@ public class ApplyForMeController {
     }
 
     @PutMapping("/remove/many")
-    public boolean deleteMany(@Validated @RequestBody DeleteManyApplyForMeDto body) {
+    public boolean deleteMany(@Validated @RequestBody DeleteManyRoleDto body) {
         return service.deleteMany(body);
     }
 
