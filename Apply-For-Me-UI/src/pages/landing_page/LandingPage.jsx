@@ -1,15 +1,17 @@
 import React from "react";
+import "./landing.css";
 import Nav from "../../components/nav/Nav";
 import Footer from "../../components/footer/Footer";
 import upload from "../../assets/landing-page-imgs/upload.png";
 import HeroImg from "../../assets/landing-page-imgs/hero-img.png";
-import "./landing.css";
+import check from "../../assets/landing-page-imgs/check-icon.png";
 
 const LandingPage = () => {
     return (
         <div className="">
             <Nav />
             <main>
+                {/* =========================Hero==Section============================ */}
                 <div className="hero_container_wrapper">
                     {/* ===========Letf==wrapper=============== */}
                     <div className="hero_left_wrapper">
@@ -46,6 +48,67 @@ const LandingPage = () => {
                 </div>
             </main>
 
+            {/* ==================Feature==Section=============================== */}
+            <div className="features">
+                <div className="feature-section-container">
+                    <div className="card-container">
+                        <div className="card-one">
+                            <div className="check-wrapper">
+                                <img src={check} alt="" className="check-img" />
+                            </div>
+
+                            <h5 className="">
+                                Apply to over a hundred Jobs without lifting a
+                                finger
+                            </h5>
+                            <p>
+                                We believe career is life, life is once, it is
+                                therefore worth enjoying.Study, work, travel,
+                                tour, worship, keep working and keep
+                                exploring.... It begins with you. We believe
+                                career is life, life is once, it is therefore
+                                worth enjoying.
+                            </p>
+                        </div>
+                        <div className="card-one">
+                            <div className="check-wrapper">
+                                <img src={check} alt="" className="check-img" />
+                            </div>
+
+                            <h5 className="">
+                                Apply to over a hundred Jobs without lifting a
+                                finger
+                            </h5>
+                            <p>
+                                We believe career is life, life is once, it is
+                                therefore worth enjoying.Study, work, travel,
+                                tour, worship, keep working and keep
+                                exploring.... It begins with you. We believe
+                                career is life, life is once, it is therefore
+                                worth enjoying.
+                            </p>
+                        </div>
+                        <div className="card-one">
+                            <div className="check-wrapper">
+                                <img src={check} alt="" className="check-img" />
+                            </div>
+
+                            <h5 className="">
+                                Apply to over a hundred Jobs without lifting a
+                                finger
+                            </h5>
+                            <p>
+                                We believe career is life, life is once, it is
+                                therefore worth enjoying.Study, work, travel,
+                                tour, worship, keep working and keep
+                                exploring.... It begins with you. We believe
+                                career is life, life is once, it is therefore
+                                worth enjoying.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <Footer />
         </div>
     );

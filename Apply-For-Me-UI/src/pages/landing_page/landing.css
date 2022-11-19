@@ -23,6 +23,10 @@
 html {
     font-family: "Outfit", sans-serif;
 }
+
+h5 {
+    color: var(--dark-blue);
+}
 main {
     width: 100vw;
     padding-top: 1.7rem;
@@ -101,13 +105,59 @@ main {
     width: 585.65px;
 }
 
-/* .hero-img {
+/* ==============================Features===section=============== */
+
+.features {
+    border-top: 1px solid #140f31;
+    padding-top: 1.7rem;
+    padding-bottom: 2rem;
+}
+
+.feature-section-container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px;
+}
+
+.card-one {
+    display: flex;
+    flex-direction: column;
+}
+
+.check-wrapper {
+    width: 40px;
+    height: 40px;
+}
+
+.check-img {
     width: 100%;
-} */
+    height: 100%;
+}
+
+.card-one h5 {
+    font-size: 28px;
+    margin-top: 14px;
+}
+
+.card-one p {
+    font-size: 16px;
+    color: var(--color-gray);
+    margin-top: 16px;
+}
 
 @media screen and (max-width: 768px) {
     .hero_container_wrapper {
         flex-direction: column;
+        justify-content: center;
     }
 
     .text-box {
@@ -140,5 +190,47 @@ main {
 
     .hero-img {
         width: 100%;
+    }
+
+    /* -=======================Features===Section=================== */
+    .feature-section-container {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+
+        padding-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 48px;
+    }
+
+    .card-one {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .check-wrapper {
+        width: 20px;
+        height: 20px;
+    }
+
+    .check-img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .card-one h5 {
+        font-size: 20px;
+        margin-top: 14px;
+    }
+
+    .card-one p {
+        font-size: 14px;
+        color: var(--color-gray);
+        margin-top: 16px;
     }
 }
