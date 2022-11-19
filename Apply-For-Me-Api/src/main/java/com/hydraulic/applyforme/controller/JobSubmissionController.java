@@ -19,9 +19,9 @@ public class JobSubmissionController {
     private final JobSubmissionService jobSubmissionService;
 
     @GetMapping("count/{applier_id}")
-    public ResponseEntity<Integer> countApplierSubmissions(@PathVariable  Long applier_id){
+    public ResponseEntity<Integer> countApplierSubmissions(@PathVariable  Long applierId){
 
-        return new ResponseEntity<>(jobSubmissionService.countAllSubmissions(applier_id), HttpStatus.OK);
+        return new ResponseEntity<>(jobSubmissionService.countAllSubmissions(applierId), HttpStatus.OK);
     }
 
 
