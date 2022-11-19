@@ -13,6 +13,7 @@ import Error from "./pages/error/Error";
 import Dashboard from "./pages/dashboard/Dashboard";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
 import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
+import Applications from "./pages/applications/Applications";
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                 <Route exact path="/blog/:id" element={<Blog />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
                     <Route path="/dashboard/" element={<DashboardNothing />} />
+                    <Route path="applications" element={<Applications />} />
                 </Route>
 
                 <Route path="*" element={<Error />} />

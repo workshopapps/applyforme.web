@@ -1,0 +1,115 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.applications_container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.applications_top_nav {
+    height: 101px;
+    padding: 24px 80px 24px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2e3192;
+    border-bottom: 0.5px #cccccc solid;
+}
+
+.application_main {
+    flex: 1 1 auto;
+}
+
+.application_user_menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.application_nav_avatar {
+    width: 53px;
+    height: 53px;
+    background-color: rgb(213, 211, 211);
+    border-radius: 50%;
+}
+
+.applications_table_header {
+    height: 112px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0.5px #cccccc solid;
+}
+
+input[type="search"] {
+    width: 516px;
+    color: #bfbfbf;
+    border: 1px #bfbfbf solid;
+    border-radius: 8px;
+    outline: none;
+    padding: 16px 40px;
+    height: 56px;
+}
+.applications_search_form {
+    position: relative;
+    padding-left: 0.5rem;
+}
+
+.applications_search_form > svg {
+    position: absolute;
+    left: 3%;
+    top: 30%;
+    width: 1.5em;
+    height: 1.5em;
+    color: #bfbfbf;
+}
+
+table {
+    border-collapse: collapse;
+    width: 95%;
+    padding: 0 80px;
+    border-spacing: 1em 0px;
+}
+
+tr {
+    padding-left: 30px;
+}
+thead,
+tbody {
+    padding: 0px 80px;
+}
+th,
+td {
+    padding-left: 0.5rem;
+    text-align: start;
+}
+.applications_table_head_row {
+    border-bottom: 0.5px #cccccc solid;
+    height: 62px;
+    color: #52515b;
+    font-weight: 500;
+    text-align: start;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+}
+.applications_table_body_row {
+    border-bottom: 0.5px #ededed solid;
+    height: 56px;
+    text-align: start;
+    font-weight: 400;
+    font-size: 16px;
+    border-radius: 8px;
+    letter-spacing: 0.01em;
+}
+
+.applications_table_body_row:hover {
+    background-color: #e9eef7;
+    color: #2e3192;
+}
