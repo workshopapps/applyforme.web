@@ -12,7 +12,6 @@ import java.util.List;
 public class ApplierRepositoryImpl implements ApplierRepository {
     @PersistenceContext
     private EntityManager entityManager;
-
     @Override
     public List<Applier> getAll(Integer pageOffset) {
         return null;
