@@ -29,3 +29,20 @@
     color: rgba(82, 81, 91, 1);
     font-size: var(--font-size-2);
 }
+
+
+
+@media only screen and (max-width: 480px)
+{
+    .list ul
+    {
+        grid-template-columns: auto auto auto;
+    }
+
+    ul li:nth-child(2),
+    ul li:nth-child(4),
+    ul li:nth-child(5)
+    {
+        display: none;
+    }
+}

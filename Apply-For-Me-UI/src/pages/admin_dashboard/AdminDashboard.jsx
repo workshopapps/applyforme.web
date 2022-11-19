@@ -9,8 +9,8 @@ const AdminDashboard = () => {
     return (
         <Routes className={style}>
             <Route path="/" element={<DashboardHome/>}/>
-            <Route path="/dashboard/application-form" element={<ApplicationForm/>} />
-            <Route path="/dashboard/details" element={<ApplicationDetails/>} />
+            <Route path="/application-form" element={<ApplicationForm/>} />
+            <Route path="/details" element={<ApplicationDetails/>} />
         </Routes>
     );
 };

@@ -8,7 +8,7 @@ const ApplicationList = () => {
             <ul>
                 <li>Name</li>
                 <li>Job title</li>
-                <li>Experience</li>
+                <li>Plan</li>
                 <li>Salary</li>
                 <li>Type</li>
                 <li>Details</li>
@@ -19,7 +19,7 @@ const ApplicationList = () => {
                 <li>Premium</li>
                 <li>$10,000 - $15,000</li>
                 <li>Remote</li>
-                <li><Link to="/details">View</Link></li>
+                <li><Link to="/dashboard/details">View</Link></li>
             </ul>
 
             <ul>
@@ -28,7 +28,7 @@ const ApplicationList = () => {
                 <li>Basic</li>
                 <li>$10,000 - $15,000</li>
                 <li>Hybrid</li>
-                <li><Link to="/details">View</Link></li>
+                <li><Link to="/dashboard/details">View</Link></li>
             </ul>
             <ul>
                 <li>Sharon Sunday</li>
@@ -36,7 +36,7 @@ const ApplicationList = () => {
                 <li>Standard</li>
                 <li>$10,000 - $15,000</li>
                 <li>Remote</li>
-                <li><Link to="/details">View</Link></li>
+                <li><Link to="/dashboard/details">View</Link></li>
             </ul>
             <ul>
                 <li>Michael Anu</li>
@@ -44,7 +44,7 @@ const ApplicationList = () => {
                 <li>Premium</li>
                 <li>$10,000 - $15,000</li>
                 <li>On-site</li>
-                <li><Link to="/details">View</Link></li>
+                <li><Link to="/dashboard/details">View</Link></li>
             </ul>
             <ul>
                 <li>Michael Anu</li>
@@ -52,7 +52,7 @@ const ApplicationList = () => {
                 <li>Basic</li>
                 <li>$10,000 - $15,000</li>
                 <li>Remote</li>
-                <li><Link to="/details">View</Link></li>
+                <li><Link to="/dashboard/details">View</Link></li>
             </ul>
             <ul>
                 <li>Michael Anu</li>
@@ -60,7 +60,7 @@ const ApplicationList = () => {
                 <li>Standard</li>
                 <li>$10,000 - $15,000</li>
                 <li>Remote</li>
-                <li><Link to="/details">View</Link></li>
+                <li><Link to="/dashboard/details">View</Link></li>
             </ul>
         </div>
     );

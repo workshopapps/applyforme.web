@@ -24,13 +24,13 @@ const DashboardHome = () => {
                         <br />
                         <p>Total Applications</p>
                     </p>
-                    <button><Link to="/application-form">Job application form</Link></button>
+                    <button><Link to="/dashboard/application-form">Job application form</Link></button>
                 </div>
             </div>
             <div className={style.list}>
                 <div className={style.list_header}>
                     <p>New Applications (23)</p>
-                    <p><Link to="/applications">View all</Link></p>
+                    <p><Link to="/dashboard/applications">View all</Link></p>
                 </div>
                 <ApplicationList />
             </div>
