@@ -12,13 +12,13 @@ export const formData = {
     type: "number",
     naming: "pin"
   },
-  cred: "put your credential",
+  cred: "invalid credential",
 
   userCred: {
     label: "Cardholder's name",
     placeholder: "Kanyinsola George",
     type: "text",
-    naming: "kayin"
+    naming: "userCred"
   },
   validity: {
     label: "Expiration date",
@@ -27,7 +27,7 @@ export const formData = {
   },
   cvv: {
     label: "CVV",
-    placeholder: "xxx"
+    placeholder: "XXX"
   },
   btnText: "Make payment",
   terms:
