@@ -9,14 +9,8 @@ import Cookies from "./pages/cookies/Cookies";
 import Career from "./pages/career/Career";
 import Blog from "./pages/blog/Blog";
 import PricingPlan from "./pages/pricing_plan/PricingPlan";
-import Layout from "./pages/dashboard_layout/Layout";
-import AdminDashboard from "./pages/admin_dashboard/AdminDashboard";
-import AdminProfile from "./pages/admin_profile/AdminProfile";
 import Error from "./pages/error/Error";
-import AdminApplication from "./pages/admin_application/AdminApplication";
-import AdminUsers from "./pages/admin_users/AdminUsers";
-import AdminHelp from "./pages/admin_help/AdminHelp";
-import AdminMessage from "./pages/admin_messages/AdminMessage";
+import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
 
 function App() {
@@ -32,8 +26,8 @@ function App() {
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
                 <Route exact path="/pricing" element={<PricingPlan />} />
+                <Route exact path="/user-page" element={<Dashboard />} />
                 <Route exact path="/blog/:id" element={<Blog />} />
-                <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="dashboard" element={<Layout />}>
                     <Route path="/dashboard/" element={<AdminDashboard />} />
                     <Route path="profile" element={<AdminProfile />} />

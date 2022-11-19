@@ -1,5 +1,0 @@
-.dashboard_container {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    grid-gap: 3rem;
-}
