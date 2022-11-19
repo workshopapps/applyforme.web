@@ -3,13 +3,14 @@ package com.hydraulic.applyforme.service.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hydraulic.applyforme.model.domain.Country;
-import com.hydraulic.applyforme.model.domain.DeleteManyCountryDto;
-import com.hydraulic.applyforme.model.dto.CountryDto;
-import com.hydraulic.applyforme.model.exception.CounntryDuplicateEntityException;
+import com.hydraulic.applyforme.model.dto.country.CountryDto;
+import com.hydraulic.applyforme.model.dto.country.DeleteManyCountryDto;
+import com.hydraulic.applyforme.model.exception.CountryDuplicateEntityException;
 import com.hydraulic.applyforme.model.exception.CountryNotFoundException;
 import com.hydraulic.applyforme.repository.CountryRepository;
 import com.hydraulic.applyforme.repository.jpa.CountryJpaRepository;
 import com.hydraulic.applyforme.service.CountryService;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -23,6 +24,7 @@ import java.util.Optional;
 
 import static com.hydraulic.applyforme.util.ApplyForMeUtil.readResourceFile;
 
+@Slf4j
 @Service
 public class CountryServiceImpl implements CountryService {
 
@@ -48,7 +50,7 @@ public class CountryServiceImpl implements CountryService {
 
         try {
             for (Country country : countriesList) {
-               gi Optional<Country> countryExists = jpaRepository.findByTitleAndAbbreviation(country.getTitle(), country.getAbbreviation());
+               Optional<Country> countryExists = jpaRepository.findByTitleAndAbbreviation(country.getTitle(), country.getAbbreviation());
 
                 if (countryExists.isPresent()) {
                     continue;
@@ -58,7 +60,7 @@ public class CountryServiceImpl implements CountryService {
                 repository.saveOne(country);
             }
         }
-        catch (CounntryDuplicateEntityException exception) {
+        catch (CountryDuplicateEntityException exception) {
             /**
              * If a duplicate entry exists, it means we don't need to reinsert or save it as new row or entity in the database.
              * It means we will ignore.
@@ -72,6 +74,11 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public List<Country> findAll(Integer pageOffset) {
         return repository.getAll(pageOffset);
+    }
+
+    @Override
+    public List<Country> findAll() {
+        return repository.getAll();
     }
 
     @Override
@@ -119,8 +126,8 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     @Transactional
-    public boolean deleteMany(DeleteManyCountryDto countryDto) {
-        return repository.removeMany(countryDto.getIds());
+    public boolean deleteMany(DeleteManyCountryDto manyDto) {
+        return repository.removeMany(manyDto.getIds());
     }
 
     @Override

@@ -16,7 +16,7 @@ public interface ApplyForMeRepository {
 
     boolean remove(Long id);
 
-    boolean removeMany(List<Long> applyForMeIds);
+    boolean removeMany(List<Long> ids);
 
     boolean removeAll();
 }
