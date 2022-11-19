@@ -16,7 +16,7 @@ public class JobSubmissionController {
 
     @GetMapping("count/{applierId}")
     public Long countApplierSubmissions(@PathVariable  Long applierId){
-        System.out.println("HI");
+
         return jobSubmissionService.countAllSubmissions(applierId);
     }
 

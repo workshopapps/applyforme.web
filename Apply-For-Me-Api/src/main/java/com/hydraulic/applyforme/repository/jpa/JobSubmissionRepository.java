@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface JobSubmissionRepository extends CrudRepository<Submission,Long> {
-//     List<Submission> findSubmissionByApplier(Applier applier);
-     @Query("SELECT count (u) FROM Submission u where u.applier.id=?1")
+
+     @Query("SELECT count (jb) FROM Submission jb where jb.applier.id= ?1")
      Long countByApplier(Long id);
 }
