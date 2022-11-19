@@ -22,14 +22,13 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     }
 
     @Override
-    public Integer countAllSubmissions(Long id) {
+    public Long countAllSubmissions(Long id) {
         Optional<Applier> applier = Optional.ofNullable(applierRepository.getOne(id));
         if(applier.isPresent())
         {
-        List<Submission> submissions = jobSubmissionRepository.findSubmissionByApplier(applier.get());
-        return submissions.size();
+            return jobSubmissionRepository.countByApplier(id);
         }
-        return 0;
+        return 0L;
 
     }
 }
