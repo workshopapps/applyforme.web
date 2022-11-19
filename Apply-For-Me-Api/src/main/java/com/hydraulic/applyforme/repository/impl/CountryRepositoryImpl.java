@@ -1,6 +1,6 @@
 package com.hydraulic.applyforme.repository.impl;
 
-import com.hydraulic.applyforme.model.domain.Country;;
+import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.exception.CountryDuplicateEntityException;
 import com.hydraulic.applyforme.repository.CountryRepository;
 import org.springframework.stereotype.Repository;
