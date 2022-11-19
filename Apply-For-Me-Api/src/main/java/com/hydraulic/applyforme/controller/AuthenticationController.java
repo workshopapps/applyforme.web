@@ -1,8 +1,8 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.dto.CreateAccountDto;
-import com.hydraulic.applyforme.service.SignUpService;
+import com.hydraulic.applyforme.model.dto.SignUpDto;
+import com.hydraulic.applyforme.service.MemberService;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.*;
         produces = {MediaType.APPLICATION_JSON_VALUE},
         consumes = {MediaType.APPLICATION_JSON_VALUE}
 )
-public class SignUpController {
+public class AuthenticationController {
 
-    private final SignUpService service;
+    private final MemberService service;
 
-    public SignUpController(SignUpService service) {
+    public AuthenticationController(MemberService service) {
         this.service = service;
     }
 
-    @PostMapping("/register")
-    public Member signUp(@Validated @RequestBody CreateAccountDto user) {
-        return service.signUp(user);
+    @PostMapping("/sign-up")
+    public Member saveMember(@Validated @RequestBody SignUpDto user) {
+        return service.createMember(user);
     }
 
 }

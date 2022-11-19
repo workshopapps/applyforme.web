@@ -12,23 +12,23 @@ import javax.validation.constraints.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateAccountDto {
+public class SignUpDto {
 
-    @NotEmpty(message = "{firstName.field.notEmpty}")
+    @NotEmpty(message = "member.firstName.notEmpty")
     private String firstName;
 
-    @NotEmpty(message = "{lastName.field.notEmpty}")
+    @NotEmpty(message = "member.lastName.notEmpty")
     private String lastName;
 
-    @NotBlank(message = "{email.field.notBlank}")
-    @Email(message = "{email.field.valid}")
+    @NotBlank(message = "member.email.notBlank")
+    @Email(message = "member.email.valid")
     private String emailAddress;
 
-    @NotBlank(message = "{phoneNumber.field.notBlank}")
+    @NotBlank(message = "member.phoneNumber.notBlank")
     @PhoneNumberConstraint
     private String phoneNumber;
 
-    @NotBlank(message = "{password.field.notBlank}")
-    @Size(min = 8, message = "{password.field.size}")
+    @NotBlank(message = "member.password.notBlank")
+    @Size(min = 8, message = "member.password.size")
     private String password;
 }

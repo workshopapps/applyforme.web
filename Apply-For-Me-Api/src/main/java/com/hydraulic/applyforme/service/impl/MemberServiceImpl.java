@@ -1,10 +1,10 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.dto.CreateAccountDto;
-import com.hydraulic.applyforme.model.exception.SignUpEmailExistsException;
-import com.hydraulic.applyforme.repository.jpa.MemberJaRepository;
-import com.hydraulic.applyforme.service.SignUpService;
+import com.hydraulic.applyforme.model.dto.SignUpDto;
+import com.hydraulic.applyforme.model.exception.EmailExistsException;
+import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
+import com.hydraulic.applyforme.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,28 +14,28 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
-public class SignUpServiceImpl implements SignUpService {
+public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private ModelMapper modelMapper;
 
-    private MemberJaRepository repository;
+    private final MemberJpaRepository repository;
 
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    public SignUpServiceImpl(MemberJaRepository repository, PasswordEncoder passwordEncoder) {
+    public MemberServiceImpl(MemberJpaRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     @Transactional
-    public Member signUp(CreateAccountDto body) {
+    public Member createMember(SignUpDto body) {
         boolean existingMember = repository.existsByEmailAddress(body.getEmailAddress());
         if (existingMember) {
-            throw new SignUpEmailExistsException(body.getEmailAddress());
+            throw new EmailExistsException();
         }
-        Member member = new Member();
+        Member member;
         member = modelMapper.map(body, Member.class);
         member.setPassword(passwordEncoder.encode(body.getPassword()));
         return repository.save(member);
