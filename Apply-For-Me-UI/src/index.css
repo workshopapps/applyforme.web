@@ -38,3 +38,21 @@ h1 {
     --primary-gray-bg: #f7f7f8;
     --primary-text-btn: rgba(196, 213, 238, 0.2);
 }
+
+@import url('./styles/Navbar.css');
+@import url('./styles/Header.css');
+@import url('./styles/Who.css');
+@import url('./styles/MidContent.css');
+@import url('./styles/What.css');
+@import url('./styles/Footer.css');
+@import url('./styles/Copy.css');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+  font-family: 'Outfit', sans-serif;
+}
