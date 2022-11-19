@@ -1,4 +1,4 @@
-package com.hydraulic.applyforme.model.dto;
+package com.hydraulic.applyforme.model.dto.applyforme;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
