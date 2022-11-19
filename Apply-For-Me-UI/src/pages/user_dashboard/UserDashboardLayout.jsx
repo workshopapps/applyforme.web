@@ -1,13 +1,10 @@
-import React from "react";
-import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
-import { Outlet } from "react-router-dom";
-import classes from "./UserDashboardLayout.module.css";
+
+import { DashboardContent } from "../../components/admin_dashboard/dashboard_content/dashboard_content";
 const UserDashboardLayout = () => {
     return (
-        <section className={classes.dashboard_container}>
-            <DashboardSidebar />
-            <Outlet />
-        </section>
+        <>
+            <DashboardContent/>
+        </>
     );
 };
 
