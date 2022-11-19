@@ -1,19 +1,16 @@
-package com.hydraulic.applyforme.superadmin.repository.impl;
+package com.hydraulic.applyforme.repository.impl;
 
-import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.domain.Submission;
-import com.hydraulic.applyforme.superadmin.repository.SuperAdminStatsRepository;
+import com.hydraulic.applyforme.repository.SuperAdminStatRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.List;
 
 @Slf4j
 @Repository
-public class SuperAdminStatsRepositoryImpl implements SuperAdminStatsRepository {
+public class SuperAdminStatRepositoryImpl implements SuperAdminStatRepository {
 
     @PersistenceContext
     private EntityManager entityManager;

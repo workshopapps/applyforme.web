@@ -1,9 +1,7 @@
-package com.hydraulic.applyforme.superadmin.controller;
+package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.superadmin.service.SuperAdminStatsService;
-import lombok.RequiredArgsConstructor;
+import com.hydraulic.applyforme.service.RoleService;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
         value = "statistic",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
-public class SuperAdminStatsController {
+public class SuperAdminStatController {
 
-    private final SuperAdminStatsService service;
+    private final RoleService.SuperAdminStatsService service;
 
-    public SuperAdminStatsController(SuperAdminStatsService service) {
+    public SuperAdminStatController(RoleService.SuperAdminStatsService service) {
         this.service = service;
     }
 
