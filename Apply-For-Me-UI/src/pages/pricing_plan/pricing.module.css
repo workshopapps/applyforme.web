@@ -1,0 +1,255 @@
+/*STYLING OF THE PRICING PAGE*/
+.section__head {
+  margin-block: 2rem 3rem;
+}
+
+.headingWrapper {
+  width: min(88%, 61.56rem);
+  margin-inline: auto;
+}
+
+.mainheading {
+  margin-bottom: 0.625rem;
+  font-size: 1.25rem;
+  text-align: center;
+  color: #202065;
+  font-weight: 500;
+}
+
+.primaryText {
+  color: #52515b; /*Variables be better, but you don't want to set what another has on their branch*/
+  text-align: center;
+  max-width: 44ch;
+  line-height: 1.4;
+  margin: 0 auto;
+}
+
+.toggle {
+  display: none;
+}
+
+.majorPlan {
+  width: min(90%, 85rem);
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+.majorPlan > .card:nth-child(2) {
+  background-color: #2e3192;
+  color: #ffffff;
+  position: relative;
+}
+
+.card:nth-child(2) > * {
+  color: #ffffff;
+}
+
+.card:nth-child(2) > button {
+  background-color: #2e3192;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.card:nth-child(2) > .choice {
+  background-color: #b7b9e6;
+  border-radius: 0.5rem;
+  color: #52515b;
+  padding: 0.5rem;
+  position: absolute;
+  top: -1rem;
+  left: 2rem;
+  z-index: 5;
+}
+
+.card {
+  border: 2px solid #5052a5;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 4rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__heading {
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  color: #140f31;
+}
+
+.card__price {
+  margin-bottom: 0.5rem;
+  color: #2e3192;
+  font-size: 2rem;
+}
+
+.card__duration {
+  margin-bottom: 0.5rem;
+  color: #140f31;
+  font-weight: 500;
+}
+
+.statusWrapper {
+  padding-top: 1rem;
+  border-top: 1px solid #cccccc;
+  margin-top: 0.6rem;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.875rem;
+}
+
+.status__text {
+  font-size: 0.75rem;
+}
+
+.subHead {
+  background-color: #ddeafc;
+  margin-bottom: 2.5rem;
+}
+
+.secondaryHeadWrapper {
+  width: min(90%, 58.87rem);
+  padding-block: 1.5rem;
+  margin: 0 auto;
+}
+
+.secondaryHeading {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #52515b;
+  font-weight: 500;
+}
+
+.secondaryText {
+  text-align: center;
+  color: #52515b;
+  font-weight: 300;
+  max-width: 49ch;
+  margin-inline: auto;
+}
+
+/*FAQ SECTION*/
+.faqWrapper {
+  width: min(90%, 85rem);
+  margin-inline: auto;
+}
+
+.faqmain {
+  margin-bottom: 2.5rem;
+}
+
+.faqheading {
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  color: #202065;
+}
+
+.faqText {
+  margin-bottom: 1rem;
+  font-size: 0.87rem;
+  color: #1b1b1b;
+  font-weight: 300;
+}
+
+.content__box {
+  /*border: 2px solid red;*/
+
+  border-bottom: 1px solid #9194a1;
+  cursor: pointer;
+  padding: 1rem 0 0.5rem;
+  width: 100%;
+}
+
+.contentbox__question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.minheading {
+  color: #52515b;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.faqicon {
+  margin-top: -0.4rem;
+  transition: all 0.2s ease-in;
+}
+
+.faqicon__active {
+  transform: rotate(-180deg);
+}
+
+/*BreakPoints*/
+@media only screen and (min-width: 900px) {
+  .section__head {
+    margin-block: 4rem 2rem;
+  }
+
+  .mainheading {
+    margin-bottom: 1.625rem;
+    font-size: 2.5vmax;
+  }
+
+  .primaryText {
+    font-size: 2vmax;
+  }
+
+  .majorPlan {
+    display: grid;
+    grid-template-columns: 0.9fr 0.7fr 0.9fr;
+    gap: 3vmax;
+    padding: 7rem 0;
+    /*grid-template-rows: auto;*/
+    /*justify-content: space-between;*/
+  }
+
+  .majorPlan > .card:nth-child(2) {
+    z-index: 10;
+    transform: scale(1.1, 1.25);
+  }
+
+  .majorPlan > .card:not(:nth-child(2)) .statusWrapper {
+    margin-bottom: 2rem;
+  }
+
+  .status {
+    gap: 0.5rem;
+  }
+
+  .status__text {
+    font-size: 1vmax;
+  }
+
+  .secondaryHeading {
+    font-size: 2vmax;
+  }
+
+  .secondaryText {
+    font-size: 1.5vmax;
+  }
+
+  .faqWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.5vmax;
+  }
+
+  .faqText {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    max-width: 35ch;
+  }
+
+  .faqheading {
+    font-size: 2.3vmax;
+    max-width: 15ch;
+  }
+}

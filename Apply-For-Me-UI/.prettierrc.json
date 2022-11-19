@@ -1,20 +1,20 @@
 {
-    "tabWidth": 2,
-    "printWidth": 80,
-    "endOfLine": "auto",
-    "arrowParens": "avoid",
-    "trailingComma": "none",
-    "semi": true,
-    "useTabs": false,
-    "singleQuote": false,
-    "bracketSpacing": true,
-    "quoteProps": "preserve",
-    "overrides": [
-        {
-            "files": "*.{jsx,js,tsx,ts,scss,css,json,html}",
-            "options": {
-                "tabWidth": 4
-            }
-        }
-    ]
+  "tabWidth": 2,
+  "printWidth": 80,
+  "endOfLine": "auto",
+  "arrowParens": "avoid",
+  "trailingComma": "none",
+  "semi": true,
+  "useTabs": false,
+  "singleQuote": false,
+  "bracketSpacing": true,
+  "quoteProps": "preserve",
+  "overrides": [
+    {
+      "files": "*.{jsx,js,tsx,ts,scss,css,json,html}",
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
 }

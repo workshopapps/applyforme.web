@@ -1,0 +1,89 @@
+.mainCheckout {
+  background-color: #e9eef7;
+  min-height: 100vh;
+}
+
+.checkout {
+  width: min(88%, 44.125rem);
+  margin-inline: auto;
+}
+
+.goback {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.subheading {
+  color: #171746;
+  font-size: 3vmax;
+  margin-bottom: 2rem;
+}
+
+.Inputwrapper {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input__number,
+.input__text {
+  display: block;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 2px solid #52515b;
+  font-family: inherit;
+}
+
+.secure {
+  display: flex;
+  gap: 4vw;
+  margin-bottom: 3rem;
+}
+
+.secureDate {
+  margin-bottom: 0.6rem;
+}
+
+.expirationlabel {
+  margin-right: 0.5rem;
+}
+
+.warning {
+  width: 0.8rem;
+}
+
+.validity {
+  width: 6rem;
+  border: 2px solid #52515b;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 1rem 2rem;
+}
+
+.expirationWrapper {
+  display: flex;
+}
+
+.cvv {
+  display: flex;
+  flex-direction: column;
+}
+
+.label,
+.expirationlabel {
+  margin-bottom: 0.5rem;
+}
+
+.submit {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #2e3192;
+  color: white;
+  border-radius: 0.5rem;
+  border: none;
+  margin-bottom: 2rem;
+  font-family: inherit;
+}
