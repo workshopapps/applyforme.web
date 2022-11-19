@@ -11,7 +11,9 @@ const SettingsTopNav = () => {
         <h2>Account Settings</h2>
 
         <div>
-          <img src={person} alt="" className='person' />
+          <div className='nav-image'>
+            <img src={person} alt="" className='person' />
+          </div>
           <img src={bell} alt="" />
         </div>
       </div>

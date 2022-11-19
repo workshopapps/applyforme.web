@@ -28,14 +28,7 @@ function App() {
                 <Route exact path="/pricing" element={<PricingPlan />} />
                 <Route exact path="/user-page" element={<Dashboard />} />
                 <Route exact path="/blog/:id" element={<Blog />} />
-                <Route path="dashboard" element={<Layout />}>
-                    <Route path="/dashboard/" element={<AdminDashboard />} />
-                    <Route path="profile" element={<AdminProfile />} />
-                    <Route path="application" element={<AdminApplication />} />
-                    <Route path="users" element={<AdminUsers />} />
-                    <Route path="messages" element={<AdminMessage />} />
-                    <Route path="help" element={<AdminHelp />} />
-                </Route>
+                <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="*" element={<Error />} />
             </Routes>
         </>
