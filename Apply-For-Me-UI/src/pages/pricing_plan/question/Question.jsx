@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import styles from "pages/pricing_plan/pricing.module.css";
 
+//Component that manages it's own state onclick
 const Question = ({ subQuestion, answer, subIcon }) => {
   const [text, setText] = useState(false);
   return (

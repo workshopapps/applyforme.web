@@ -1,10 +1,14 @@
 import warning from "assets/images/warning.png";
 import backwards from "assets/images/goback.png";
+import defaultImg from "assets/images/profile.png";
+import logo from "assets/images/Framelogo.png";
 
 export const formData = {
   goBack: "Back to all plans",
   warning: warning,
   backwards: backwards,
+  defaultImg: defaultImg,
+  checkoutLogo: logo,
   heading: "Please add your payment information to continue",
   pinDetails: {
     label: "Card number",

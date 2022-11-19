@@ -1,6 +1,39 @@
+/*HEADER SECTION*/
+.checkoutheader {
+  background-color: #f9f9ff;
+}
+
+.headerwrapper {
+  width: min(88%, 75rem);
+  padding-block: 2.5rem;
+  margin-inline: auto;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  width: max(5vw, 4rem);
+}
+
+.profileImg {
+  width: max(1.5vw, 1rem);
+}
+
+.names {
+  font-size: 3.5vmin;
+}
+
+.profilewrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/*MAIN SECTION*/
 .mainCheckout {
   background-color: #e9eef7;
-  min-height: 100vh;
+  padding-block: 2rem;
 }
 
 .checkout {
@@ -8,6 +41,7 @@
   margin-inline: auto;
 }
 
+/*To move back to pricing page*/
 .goback {
   display: flex;
   gap: 0.5rem;
@@ -27,6 +61,7 @@
   flex-direction: column;
 }
 
+/*Styling Forms*/
 .input__number,
 .input__text {
   display: block;
@@ -50,7 +85,7 @@
   outline: none;
 }
 
-/* Chrome, Safari, Edge, Opera */
+/* Chrome, Safari, Edge, Opera. Code for removing arrows from number inputs */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   appearance: none;
@@ -62,6 +97,7 @@ input[type="number"] {
   appearance: textfield;
 }
 
+/*Small input boxes*/
 .secure {
   display: flex;
   gap: 12vmax;
@@ -85,7 +121,6 @@ input[type="number"] {
   border: 2px solid #52515b;
   border-radius: 0.5rem;
   margin-right: 0.5rem;
-  /*padding: 1rem 2rem;*/
   padding-block: 1rem;
   text-align: center;
 }
@@ -95,13 +130,11 @@ input[type="number"] {
   margin-top: 0.7rem;
 }
 
-.labelcvv {
-  margin-bottom: 0.7rem;
-}
-
-.cvv {
+.cvvlabelwrapper {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 1.5vw;
+  margin-bottom: 0.5rem;
 }
 
 .label,
@@ -135,11 +168,12 @@ input[type="number"] {
   line-height: 1.1;
 }
 
+/*When the form has been touched and it's empty*/
 .inputEmpty {
   border: 1px solid red;
-  /*box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px red;*/
 }
 
+/*Error text*/
 .hint {
   color: red;
 }
