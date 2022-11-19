@@ -9,14 +9,18 @@ import Cookies from "./pages/cookies/Cookies";
 import Career from "./pages/career/Career";
 import Blog from "./pages/blog/Blog";
 import PricingPlan from "./pages/pricing_plan/PricingPlan";
-import Layout from "./pages/dashboard_layout/Layout";
-import AdminDashboard from "./pages/admin_dashboard/AdminDashboard";
-import AdminProfile from "./pages/admin_profile/AdminProfile";
 import Error from "./pages/error/Error";
-import AdminApplication from "./pages/admin_application/AdminApplication";
-import AdminUsers from "./pages/admin_users/AdminUsers";
-import AdminHelp from "./pages/admin_help/AdminHelp";
-import AdminMessage from "./pages/admin_messages/AdminMessage";
+import Dashboard from "./pages/dashboard/Dashboard";
+import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
+import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
+import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
+import Skills from "./pages/blog/pages/skills/Skills";
+import Cover from "./pages/blog/pages/cover/Cover";
+import Work from "./pages/blog/pages/work/Work";
+import Signs from "./pages/blog/pages/signs/Signs";
+import Resume from "./pages/blog/pages/resume/Resume";
+import Brand from "./pages/blog/pages/brand/Brand";
+import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
 
 function App() {
     return (
@@ -31,15 +35,25 @@ function App() {
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
                 <Route exact path="/pricing" element={<PricingPlan />} />
-                <Route exact path="/blog/:id" element={<Blog />} />
-                <Route path="dashboard" element={<Layout />}>
-                    <Route path="/dashboard/" element={<AdminDashboard />} />
-                    <Route path="profile" element={<AdminProfile />} />
-                    <Route path="application" element={<AdminApplication />} />
-                    <Route path="users" element={<AdminUsers />} />
-                    <Route path="messages" element={<AdminMessage />} />
-                    <Route path="help" element={<AdminHelp />} />
+                <Route exact path="/user-page" element={<Dashboard />} />
+                <Route exact path="blog" element={<Blog />} />
+                <Route
+                    exact
+                    path="/blog/questions"
+                    element={<BestQuestions />}
+                />
+                <Route exact path="/blog/skills" element={<Skills />} />
+                <Route exact path="blog/cover" element={<Cover />} />
+                <Route exact path="blog/work" element={<Work />} />
+                <Route exact path="blog/signs" element={<Signs />} />
+                <Route exact path="blog/cover" element={<Cover />} />
+                <Route exact path="blog/resume" element={<Resume />} />
+                <Route exact path="blog/brand" element={<Brand />} />
+                <Route exact path="blog/endorsment" element={<Endorsment />} />
+                <Route path="dashboard" element={<UserDashboardLayout />}>
+                    <Route path="/dashboard/" element={<DashboardNothing />} />
                 </Route>
+
                 <Route path="*" element={<Error />} />
             </Routes>
         </>
