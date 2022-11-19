@@ -4,6 +4,7 @@ import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.dto.country.CountryDto;
 import com.hydraulic.applyforme.model.dto.country.DeleteManyCountryDto;
 import com.hydraulic.applyforme.service.CountryService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.List;
         produces = { MediaType.APPLICATION_JSON_VALUE },
         consumes = { MediaType.APPLICATION_JSON_VALUE }
 )
+@Tag(name = "Country")
 public class CountryController {
 
     private CountryService service;
