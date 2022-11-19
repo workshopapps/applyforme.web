@@ -62,6 +62,9 @@ const Footer = () => {
                     <li>
                         <Link to="/t&c">Terms and conditions</Link>
                     </li>
+                    <li>
+                        <Link to="/help">Help and supports</Link>
+                    </li>
                 </ul>
 
                 <ul className={classes.links}>

@@ -1,0 +1,74 @@
+.help_container{ 
+    width:90%; 
+    max-width: 1400px;
+    margin:0 auto;
+}
+.help_header__wrap{ 
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    padding:.7rem;
+    margin-bottom:1.8rem;
+}
+.help_header{ 
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 60px;
+    color: #202065;
+}
+.help_subhead{
+    font-weight: 300;
+    font-size: 1.31rem;
+    line-height: 150%;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #0D081B;
+}
+
+.card_wrap{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:1rem;
+    margin-bottom:2.5rem;
+}
+
+.contactus_wrap{ 
+    display:flex; 
+    align-items: center;
+    flex-direction: column;
+    margin-bottom:5rem;
+    gap:1rem;
+}
+.contactus_header{
+    font-weight: 400;
+    font-size: 1.87rem;
+    line-height: 150%;
+    color: #0D081B;
+}
+.contactus_para{ 
+    font-weight: 300;
+    font-size: 1.31rem;
+    line-height: 150%;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #0D081B;    
+}
+
+
+
+
+/* media queries */
+
+@media screen and (max-width: 480px){
+    .help_header{ 
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .card_wrap{ 
+        grid-template-columns:1fr;
+    }
+    .contactus_header{ 
+        font-size:1.5rem;
+    }
+}
