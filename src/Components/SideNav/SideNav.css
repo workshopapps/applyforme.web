@@ -1,0 +1,43 @@
+.sideNav{
+    background: #2E3192;
+    height: 100vh;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 150px;
+    color: #BFBFBF;
+    text-align: center;
+    padding-bottom: 6em;
+}
+.sideNav .whiteLogo{
+    width: 4rem;
+}
+.sideNav p{
+    cursor: pointer;
+}
+.sideNav p:hover{
+    color: white;
+    text-decoration: underline;
+}
+.sideNav img {
+    color: white;
+    margin-top: 1em;
+}
+.sideNav img:hover {
+    color: white;
+}
+@media (min-width:1024px) {
+.sideNav .whiteLogo {
+    flex-direction: column;
+}
+.sideNav{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 3em;
+}
+.sideNav .signout{
+    padding-bottom: 12em;
+}
+}

@@ -1,0 +1,137 @@
+.notifications{
+    margin-top: 3em;
+}
+
+.notifications .header {
+    display: flex;
+    justify-content: space-between;
+}
+.notifications .header h2{
+    color: #2E3192;
+    margin-left: 1.5em;
+}
+.notifications .alert{
+    background-color: #F8FDFF;
+    margin: 2em 2em 0 2em;
+    padding: 1em 0 2em 0;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    color: #444444;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} 
+#read{
+    background-color: white
+}
+
+.notifications .alert p{
+    margin: 0.7em;
+}
+.notifications .cancel{
+    display: flex;
+    justify-content: flex-start;
+    width: fit-content;
+    align-self: flex-end;
+    margin-right: 1em;
+}
+.notifications .message{
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    font-size: larger;
+    color: black
+}
+.notifications .line {
+    border: 0.5px solid;
+    border-color: rgb(189, 187, 187);
+    width: 90%;
+    margin: auto;
+}
+.notifications .message img{
+    margin-right: 0.5em;
+}
+
+.notifications .alert .unread{
+    color: #D44E4E;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: none;
+}
+.backEng{
+    color: black;
+    font-weight: 700;
+}
+.xytech{
+    font-weight: 600;
+}
+.notifications .alert button{
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(196, 213, 238, 0.2);
+    color: #2E3192;
+    font-weight: 600;
+    width: fit-content;
+    padding: 0.5em 3em;
+    justify-items: center;
+}
+.notifications .alert button img{
+    padding-left: 1em;
+}
+.notifications .alert button p{
+    font-size: larger;
+}
+.notifications .manage{
+    display: none;
+}
+@media (min-width:1024px) {
+.notifications .header {
+        display: none;
+        }
+}
+@media (min-width:768px) {
+.notifications .header .settings {
+        display: none;
+    }
+.notifications .manage {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    padding: 1em 2em;
+    background-color: white;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 2em 2em 0 2em;
+}
+.notifications .line {
+    width: 100%;
+}
+.notifications .manage .seeSettings{
+     color: #2E3192;
+}
+.notifications .alert {
+    padding: 1em 2em 2em 2em;
+}
+.notifications .alert .unread {
+    font-size: small;
+}
+.notifications .alert {
+    align-items: flex-start;
+}
+.notifications .alert .mainMessage{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.notifications .alert .goToMessage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+}

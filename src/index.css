@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+#notifications {
+  font-family: 'Outfit', sans-serif;
+  padding: 30px 10px;
+}
+
+.App {
+  display: flex;
+}
+
+@media (min-width:1024px) {
+  #notifications {
+    padding-top: 2em;
+    padding-right: 3em;
+    padding-left: 11em;
+  }
+}
