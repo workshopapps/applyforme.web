@@ -382,6 +382,12 @@
         display: block;
     }
 
+    .search_logo {
+        width: 35px;
+        margin-top: 5px;
+        margin-right: -20px;
+    }
+
     .swap_nav form,
     .notice_logo {
         display: none;
