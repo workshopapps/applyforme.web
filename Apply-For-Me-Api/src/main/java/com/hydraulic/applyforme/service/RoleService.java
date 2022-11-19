@@ -33,12 +33,5 @@ public interface RoleService {
     @Transactional
     boolean deleteAll();
 
-    interface SuperAdminStatsService {
 
-        Long getTotalApplications();
-
-        Long getTotalUsers();
-
-
-    }
 }

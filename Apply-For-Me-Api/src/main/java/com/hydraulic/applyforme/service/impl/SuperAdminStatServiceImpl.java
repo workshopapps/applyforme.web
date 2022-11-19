@@ -1,13 +1,13 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.repository.SuperAdminStatRepository;
-import com.hydraulic.applyforme.service.RoleService;
+import com.hydraulic.applyforme.service.SuperAdminStatService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class SuperAdminStatServiceImpl implements RoleService.SuperAdminStatsService {
+public class SuperAdminStatServiceImpl implements SuperAdminStatService {
 
 
     private final SuperAdminStatRepository repository;
