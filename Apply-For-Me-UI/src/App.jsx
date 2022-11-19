@@ -17,6 +17,7 @@ import AdminApplication from "./pages/admin_application/AdminApplication";
 import AdminUsers from "./pages/admin_users/AdminUsers";
 import AdminHelp from "./pages/admin_help/AdminHelp";
 import AdminMessage from "./pages/admin_messages/AdminMessage";
+import AccountSettings from "./pages/account_settings/AccountSettings";
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                 <Route exact path="/career" element={<Career />} />
                 <Route exact path="/pricing" element={<PricingPlan />} />
                 <Route exact path="/blog/:id" element={<Blog />} />
+                <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="dashboard" element={<Layout />}>
                     <Route path="/dashboard/" element={<AdminDashboard />} />
                     <Route path="profile" element={<AdminProfile />} />
