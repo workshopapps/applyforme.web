@@ -93,7 +93,7 @@ const Appss = () => {
                         </div>
                         <h5 className="one">1</h5>
                     </div>
-                    <div className="Support">
+                    <div className="Support" onClick={Handle}>
                         <img src={PropF} alt="" />
                         <div className="suPP">
                             <h2>Suporte ADMIN</h2>
@@ -104,35 +104,35 @@ const Appss = () => {
                         </div>
                         <h5 className="one">1</h5>
                     </div>
-                    <div className="Supportt">
+                    <div className="Supportt" onClick={Handle}>
                         <img src={PropF} alt="" />
                         <div className="suPPP">
                             <h2>Suporte ADMIN</h2>
                             <p>Opened </p>
                         </div>
                     </div>
-                    <div className="Supportt">
+                    <div className="Supportt" onClick={Handle}>
                         <img src={PropF} alt="" />
                         <div className="suPPP">
                             <h2>Suporte ADMIN</h2>
                             <p>Opened </p>
                         </div>
                     </div>
-                    <div className="Supportt">
+                    <div className="Supportt" onClick={Handle}>
                         <img src={PropF} alt="" />
                         <div className="suPPP">
                             <h2>Suporte ADMIN</h2>
                             <p>Opened </p>
                         </div>
                     </div>
-                    <div className="Supportt">
+                    <div className="Supportt" onClick={Handle}>
                         <img src={PropF} alt="" />
                         <div className="suPPP">
                             <h2>Suporte ADMIN</h2>
                             <p>Opened </p>
                         </div>
                     </div>
-                    <div className="Supportt">
+                    <div className="Supportt" onClick={Handle}>
                         <img src={PropF} alt="" />
                         <div className="suPPP">
                             <h2>Suporte ADMIN</h2>

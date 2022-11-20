@@ -108,6 +108,13 @@
     margin-top: 8px;
     cursor: pointer;
 }
+.Supports:hover {
+    border: 1px solid #dfe0eb;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 0 12px;
+    transition: 0.2s;
+}
 .Support:hover {
     border: 1px solid #dfe0eb;
     border-radius: 10px;
@@ -119,7 +126,7 @@
     border: 1px solid #dfe0eb;
     border-radius: 10px;
     box-sizing: border-box;
-    padding: 5px 12px;
+    padding: 0px 12px;
     transition: 0.2s;
 }
 .suPP > h2 {
