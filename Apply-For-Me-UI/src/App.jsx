@@ -53,7 +53,7 @@ function App() {
                 <Route exact path="blog/endorsment" element={<Endorsment />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
                     <Route path="/dashboard/" element={<DashboardNothing />} />
-                    <Route path="/dashboard/profile" element={<ProfileScreen />} />
+                    <Route path="/dashboard/profile" element={<ProfileScreen />}/>
                 </Route>
 
                 <Route path="*" element={<Error />} />
