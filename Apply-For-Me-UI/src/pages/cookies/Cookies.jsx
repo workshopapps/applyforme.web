@@ -6,17 +6,18 @@ import React from "react";
 const Cookies = () => {
     return (
     
-        <div>
+        <div className="root" >
             <Nav />
+            <div className="root-ish">
             <div className="container">
-                <div>
+                <div className="headerD divs">
                 
                     <h2 className="heading">
                         Cookies and Similar Technologies Policy
                     </h2>
                     <p className='headSub'>This Cookie Policy takes effect on Dec 3, 2022. Last updated on Dec 3, 2022</p>
                 </div>
-                <div>
+                <div className="divs">
                     <h3 className='smheadings'>
                         Information About Our Use of Cookies and Similar Technologies
                     </h3>
@@ -24,7 +25,7 @@ const Cookies = () => {
                         Applyforme (the “Applyforme Group,” “we,” “our,” or “us”) wants to make sure you understand how cookies and other similar technologies are used by us on our websites applyforme.com and any subdomains thereof (which we may refer to as the “Sites”) and by our partners. These technologies have several purposes (including third-party advertising). Our Sites use cookies and similar technologies to distinguish you from other users of our Sites. This helps us to provide you with a good experience when you browse our Sites and also allows us to improve our Sites. By continuing to browse any of our Sites, you are agreeing to our use of cookies and similar technologies as described in this Policy.
                     </p>
                 </div>
-                <div className="techAll">
+                <div className="divs">
                     <h3 className="smheadings">
                         Types of Technologies That We Use
                     </h3>
@@ -42,11 +43,11 @@ const Cookies = () => {
                             </li>
                         </ul>
                     
-                        You can reset your web browser to refuse all cookies or to indicate when a cookie is being sent. However, some features of our service may not function properly if the ability to accept cookies is disabled. For more information about cookies, you may visit http://www.allaboutcookies.org.
+                        You can reset your web browser to refuse all cookies or to indicate when a cookie is being sent. However, some features of our service may not function properly if the ability to accept cookies is disabled. For more information about cookies, you may visit <span>http://www.allaboutcookies.org</span>.
                     </p>
 
                 </div>
-                <div>
+                <div className="divs">
                     <h3 className="smheadings">
                         Why We Use Cookies and Similar Technologies
                     </h3>
@@ -64,7 +65,7 @@ const Cookies = () => {
                                 Analytical/performance. They allow us to recognize and count the number of visitors and to see how visitors move around our Sites when they are using the Sites. This helps us to improve the way our Sites work, for example, by ensuring that users are finding what they are looking for easily.
                                     <ul>
                                         <li>
-                                            Google Analytics: The Site also uses Google Analytics to help understand how our Service is used by its community. For some of the advertising features listed below, like retargeting, data from Google Analytics may be combined with our first-party data and third-party cookies (like Google’s advertising cookies). See here for how Google uses data when you use our Service and how you may opt out (www.google.com/policies/privacy/partners/).
+                                            Google Analytics: The Site also uses Google Analytics to help understand how our Service is used by its community. For some of the advertising features listed below, like retargeting, data from Google Analytics may be combined with our first-party data and third-party cookies (like Google’s advertising cookies). See here for how Google uses data when you use our Service and how you may opt out (<span>www.google.com/policies/privacy/partners/</span>).
                                         </li>
                                         <li>
                                             Other Analytics Providers. We also use other third-party analytics services, including LinkedIn Analytics, Sift, and Segment. We use these analytics providers to help understand use of the Sites. These analytics services collect the information sent by your browser as part of a web page request, including cookies and your IP address, and their use of this information is governed by their privacy policies. You can find links to their privacy policies below, in the “Managing Cookies Technologies” section.
@@ -101,7 +102,7 @@ const Cookies = () => {
                                     You can find links to their privacy policies below in the “Managing Cookies Technologies” section.
                     </p>
                 </div>
-                <div>
+                <div className="divs">
                     <h3 className="smheadings">
                         Consent, Contract, and Legitimate Interests in Processing
                     </h3>
@@ -110,7 +111,7 @@ const Cookies = () => {
                     By choosing to use our Sites after having been notified of our use of Cookie Technologies in the ways described in this Policy, and, in applicable jurisdictions, through notice and unambiguous acknowledgement of your consent, you agree to such use.
                     </p>
                 </div>
-                <div>
+                <div className="divs">
                     <h3 className="smheadings">
                         Managing Cookie Technologies
                     </h3>
@@ -127,7 +128,7 @@ const Cookies = () => {
 
                     </p>
                 </div>
-                <div>
+                <div className="divs">
                     <h3 className="smheadings">
                         Third-Party Tools
                     </h3>
@@ -135,7 +136,7 @@ const Cookies = () => {
                         Various third parties provide browser plug-ins and apps that can help provide you information on, and limit or block, third-party cookies, web beacons, and some Javascript-based technologies. We cannot vouch for the efficacy of a particular third-party product, but popular products that provide these privacy enhancements include Ghostery and AdBlock Plus.
                     </p>
                 </div>
-                <div>
+                <div className="divs">
                     <h3 className="smheadings">
                         Contact Us
                     </h3>
@@ -144,7 +145,7 @@ const Cookies = () => {
                     </p>
                 </div>
             </div>
-            
+            </div>
             <Footer />
         </div>
     );
