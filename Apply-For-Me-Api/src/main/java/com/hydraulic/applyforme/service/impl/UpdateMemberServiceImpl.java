@@ -28,8 +28,6 @@ public class UpdateMemberServiceImpl implements UpdateMemberService {
         getMember.setPassword(member.getPassword());
         getMember.setAvatar(member.getAvatar());
         getMember.setActive(member.getActive());
-
-
         Member updateMember = memberRepository.save(getMember);
         return ResponseEntity.ok().body(updateMember);
     }
