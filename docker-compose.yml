@@ -12,8 +12,5 @@ services:
     backend:
         image: demarauder/apply-for-me-backend:latest
         container_name: backend
-        # command: uvicorn api:app --host 0.0.0.0 --port 8000
         ports:
             - 8080:8080
-        # environment:
-        #     MONGODB_URL: {{ secrets.MONGO_URL }}
