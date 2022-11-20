@@ -50,14 +50,16 @@ public class CountryServiceImpl implements CountryService {
 
         try {
             for (Country country : countriesList) {
-               Optional<Country> countryExists = jpaRepository.findByTitleAndAbbreviation(country.getTitle(), country.getAbbreviation());
+                if (false) {
+                    Optional<Country> countryExists = jpaRepository.findByTitleAndAbbreviation(country.getTitle(), country.getAbbreviation());
 
-                if (countryExists.isPresent()) {
-                    continue;
+                    if (countryExists.isPresent()) {
+                        continue;
+                    }
+
+                    country.setId(null);
+                    repository.saveOne(country);
                 }
-
-                country.setId(null);
-                repository.saveOne(country);
             }
         }
         catch (CountryDuplicateEntityException exception) {
