@@ -1,16 +1,16 @@
 import React from "react";
-import "./landing.css";
-import Nav from "../../components/nav/Nav";
-import Footer from "../../components/footer/Footer";
-import upload from "../../assets/landing-page-imgs/upload.png";
-import heroImg from "../../assets/landing-page-imgs/hero-img.png";
-import check from "../../assets/landing-page-imgs/check-icon.png";
-import arrow from "../../assets/landing-page-imgs/arrow.png";
-import starfull from "../../assets/landing-page-imgs/star-full.png";
-import starhalf from "../../assets/landing-page-imgs/star-half.png";
-import starnull from "../../assets/landing-page-imgs/star-null.png";
-import user from "../../assets/landing-page-imgs/user.png";
-import dropdown from "../../assets/landing-page-imgs/dropdown.png";
+// import "./landing.css";
+// import Nav from "../../components/nav/Nav";
+// import Footer from "../../components/footer/Footer";
+// import upload from "../../assets/landing-page-imgs/upload.png";
+// import heroImg from "../../assets/landing-page-imgs/hero-img.png";
+// import check from "../../assets/landing-page-imgs/check-icon.png";
+// import arrow from "../../assets/landing-page-imgs/arrow.png";
+// import starfull from "../../assets/landing-page-imgs/star-full.png";
+// import starhalf from "../../assets/landing-page-imgs/star-half.png";
+// import starnull from "../../assets/landing-page-imgs/star-null.png";
+// import user from "../../assets/landing-page-imgs/user.png";
+// import dropdown from "../../assets/landing-page-imgs/dropdown.png";
 
 // const LandingPage = () => {
 //     return (
@@ -339,27 +339,29 @@ import dropdown from "../../assets/landing-page-imgs/dropdown.png";
 //             <Footer />
 //         </div>
 //     );
-import Nav from "../../components/nav/Nav"
+import Nav from "../../components/nav/Nav";
 import Hero from "./Hero";
-import classes from "./Hero.module.css"
+import classes from "./Hero.module.css";
 import Service from "./Service";
-import Footer from "../../components/footer/Footer"
+import Footer from "../../components/footer/Footer";
 import LearnMore from "./LearnMore";
 import Pricing from "./Pricing";
 import Reviews from "./Reviews";
 import FAQ from "./FAQ";
 
 const LandingPage = () => {
-    return <div className={classes.general_container}>
-        <Nav/>
-        <Hero/>
-        <Service/>
-        <LearnMore/>
-        <Pricing/>
-        <Reviews/>
-        <FAQ/>
-        <Footer/>
-    </div>;
+    return (
+        <div className={classes.general_container}>
+            <Nav />
+            <Hero />
+            <Service />
+            <LearnMore />
+            <Pricing />
+            <Reviews />
+            <FAQ />
+            <Footer />
+        </div>
+    );
 };
 
 export default LandingPage;
