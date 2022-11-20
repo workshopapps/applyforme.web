@@ -2,26 +2,26 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
-import com.hydraulic.applyforme.repository.jpa.SuperAdminRepository;
+import com.hydraulic.applyforme.repository.SuperAdminRepository;
+import com.hydraulic.applyforme.repository.jpa.SuperAdminJpaRepository;
 import com.hydraulic.applyforme.service.SuperAdminService;
-import org.springframework.data.domain.Example;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class SuperAdminServiceImpl implements SuperAdminService {
 
-    SuperAdminRepository repository;
+    SuperAdminJpaRepository jpaRepository;
+    SuperAdminRepository adminRepo;
 
-    public SuperAdminServiceImpl(SuperAdminRepository repository) {
-        this.repository = repository;
+    public SuperAdminServiceImpl(SuperAdminJpaRepository jpaRepository, SuperAdminRepository adminRepo) {
+        this.jpaRepository = jpaRepository;
+        this.adminRepo = adminRepo;
     }
 
     public Member getDetailsById(Long id) {
-        Optional<Member> member = repository.findById(id);
+        Optional<Member> member = jpaRepository.findById(id);
         if(member.isPresent()){
             return member.get();
         }

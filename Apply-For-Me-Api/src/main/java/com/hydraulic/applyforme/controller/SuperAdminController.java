@@ -23,8 +23,8 @@ public class SuperAdminController {
         this.service = service;
     }
 
-    @GetMapping("/details/{id}")
-    public Member getDetailsById(@PathVariable(value="id") Long id) {
+    @GetMapping("/detail/{id}")
+    public Member findOne(@PathVariable(value="id") Long id) {
         return service.getDetailsById(id);
     }
 }
