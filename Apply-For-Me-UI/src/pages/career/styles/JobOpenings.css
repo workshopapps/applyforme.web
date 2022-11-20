@@ -1,4 +1,5 @@
 .job-openings-wrapper {
+    background: #fefeff;
     color: #52515b;
     padding-top: 2rem;
 }
@@ -18,6 +19,11 @@
     font-size: 1.5rem;
     padding: 1.25rem;
     text-align: center;
+}
+
+.last-line {
+    font-size: 1.25rem;
+    font-weight: 500;
 }
 
 .job-openings-wrapper h3 {

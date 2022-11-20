@@ -4,6 +4,7 @@ import JobOpenings from "./components/JobOpenings";
 
 import Nav from "./components/Nav";
 import Principles from "./components/Principles";
+import Testimonials from "./styles/Testimonials";
 
 const CareerPage = () => {
     return (
@@ -12,6 +13,7 @@ const CareerPage = () => {
             <HeroSection />
             <Principles />
             <JobOpenings />
+            <Testimonials />
         </React.Fragment>
     );
 };
