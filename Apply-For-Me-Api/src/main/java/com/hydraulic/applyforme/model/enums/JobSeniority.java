@@ -11,15 +11,19 @@ public enum JobSeniority {
     MID_LEVEL("Mid-Level"),
     SENIOR("Senior");
 
-    private final String value;
+    private String value;
 
     JobSeniority(String value) {
         this.value = value;
     }
 
+    public String getValue() {
+        return this.value;
+    }
+
     @Override
     public String toString() {
-        return this.value;
+        return this.getValue();
     }
 
 }

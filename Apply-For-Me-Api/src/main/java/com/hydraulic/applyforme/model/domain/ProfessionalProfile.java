@@ -1,6 +1,5 @@
 package com.hydraulic.applyforme.model.domain;
 
-import com.hydraulic.applyforme.model.enums.EmploymentType;
 import com.hydraulic.applyforme.model.enums.JobLocationType;
 import com.hydraulic.applyforme.model.enums.JobSeniority;
 import lombok.AllArgsConstructor;
@@ -42,37 +41,28 @@ public class ProfessionalProfile {
      * If this profile is set as the main profile, anytime a new profile is about to be created; the details or data in the profile record set as
      * main will be used to prepopulate the fields to be used for the new profile to be persisted or saved or created.
      */
-    @Column(name = "main_profile")
+    @Column(name = "main_profile", nullable = false)
     private Boolean mainProfile = false;
 
-    @Column(name ="passport_link")
+    @Column(name ="passport_link", nullable = false)
     private String passportLink;
 
-    @Column(name ="resume_link")
+    @Column(name ="resume_link", nullable = false)
     private String resumeLink;
 
-    @Column(name ="cover_letter")
-    private String cover_letter;
+    @Column(name ="cover_letter_link", nullable = false)
+    private String coverLetterLink;
 
-    @Column(name = "salary_range")
+    @Column(name = "salary_range", nullable = false)
     private String salaryRange = "0";
 
-    @Column(name = "employment_type")
-    @Enumerated(EnumType.STRING)
-    private EmploymentType employmentType = EmploymentType.FULL_TIME;
-
-    @Column(name ="job_location")
-    private String jobLocation;
-
     @Column(name ="preferred_job_location_type", nullable = false)
-    @Enumerated(EnumType.STRING)
     private JobLocationType preferredJobLocationType = JobLocationType.ONSITE;
 
     @Column(name ="job_seniority", nullable = false)
-    @Enumerated(EnumType.STRING)
     private JobSeniority jobSeniority = JobSeniority.TRAINEE;
 
-    @Column(name ="desired_job_title")
+    @Column(name ="desired_job_title", nullable = false)
     private String desiredJobTitle;
 
     @Column(name ="industry")
@@ -86,9 +76,6 @@ public class ProfessionalProfile {
 
     @Column(name ="other_comment")
     private String otherComment;
-
-    @Column(name ="included_keywords")
-    private String includedKeywords;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name ="professional_id")

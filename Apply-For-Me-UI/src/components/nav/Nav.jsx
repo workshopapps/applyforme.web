@@ -30,7 +30,7 @@ const Nav = () => {
                     </li>
 
                     <li>
-                        <Link to="/blog">Blog</Link>
+                        <Link to="/blog/2">Blog</Link>
                     </li>
                     <li>
                         <Link to="/faqs">FAQs</Link>

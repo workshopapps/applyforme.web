@@ -59,41 +59,32 @@ public class Member {
      * in the system
      */
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "nationality_id")
+    @JoinColumn(name = "nationality_id", nullable = false)
     private Country nationality;
 
     /**
      * This column stores a reference to the country where the actor presently resides.
      */
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "country_of_residence_id")
+    @JoinColumn(name = "country_of_residence_id", nullable = false)
     private Country countryOfResidence;
 
     @Temporal(TemporalType.DATE)
-    @Column(name ="date_of_birth")
+    @Column(name ="date_of_birth", nullable = false, updatable = false)
     private Date dateOfBirth;
 
     /**
      * This identifies the current professional or working job title of the member of the system irrespective of the role
      * they would identify with or be assigned to in the system.
      */
-    @Column(name ="current_job_title")
+    @Column(name ="current_job_title", nullable = false)
     private String currentJobTitle;
 
     @Column(name = "email_address", nullable = false)
     private String emailAddress;
 
-    @Column(name = "username")
-    private String username;
-
-    @Column(name ="phone_number")
+    @Column(name ="phone_number", nullable = false)
     private String phoneNumber;
-
-    @Column(name ="city")
-    private String city;
-
-    @Column(name ="state")
-    private String state;
 
     @Column(name ="password", nullable = false)
     private String password;

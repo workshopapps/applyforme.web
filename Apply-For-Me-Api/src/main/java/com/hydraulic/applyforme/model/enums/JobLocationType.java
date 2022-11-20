@@ -15,8 +15,13 @@ public enum JobLocationType {
         this.value = value;
     }
 
-    @Override
-    public String toString() {
+    public String getValue() {
         return this.value;
     }
+
+    @Override
+    public String toString() {
+        return this.getValue();
+    }
+
 }

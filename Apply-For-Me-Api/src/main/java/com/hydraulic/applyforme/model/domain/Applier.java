@@ -29,6 +29,10 @@ public class Applier {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "applier")
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name ="professional_id")
+    private Professional professional;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "professional")
     private Set<Submission> submissions = new HashSet<>();
 }
