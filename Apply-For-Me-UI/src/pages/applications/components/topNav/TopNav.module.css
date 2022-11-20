@@ -59,6 +59,15 @@
     }
 }
 
+@media (min-width: 481px) and (max-width: 768px) {
+    .applications_top_nav {
+        height: 101px;
+        padding: 24px 60px;
+        display: flex;
+        width: 80%;
+    }
+}
+
 @media (max-width: 347px) {
     .applications_page_title h2 {
         display: none;
