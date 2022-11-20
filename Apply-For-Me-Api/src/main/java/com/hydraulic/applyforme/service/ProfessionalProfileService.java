@@ -5,5 +5,5 @@ import com.hydraulic.applyforme.model.dto.professionalProfile.ProfessionalProfil
 
 public interface ProfessionalProfileService {
 
-    ProfessionalProfile createProfile(ProfessionalProfileDto body);
+    ProfessionalProfile createProfessionalProfile(ProfessionalProfileDto body);
 }

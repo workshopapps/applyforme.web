@@ -3,6 +3,9 @@ package com.hydraulic.applyforme.service.impl;
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.dto.professionalProfile.ProfessionalProfileDto;
+import com.hydraulic.applyforme.model.enums.EmploymentType;
+import com.hydraulic.applyforme.repository.ProfessionalRepository;
+import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalProfileJpaRepository;
 import com.hydraulic.applyforme.service.ProfessionalProfileService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,29 +19,26 @@ import javax.transaction.Transactional;
 @Service
 public class ProfessionalProfileServiceImpl implements ProfessionalProfileService {
 
+    MemberJpaRepository memberJpaRepository;
+
     @Autowired
     private ModelMapper modelMapper;
 
-    private final ProfessionalProfileJpaRepository repository;
+    @Autowired
+    private ProfessionalRepository professionalRepository;
 
+    ProfessionalProfile professionalProfile;
+    ProfessionalProfileJpaRepository professionalProfileJpaRepository;
 
-    public ProfessionalProfileServiceImpl(ProfessionalProfileJpaRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     @Transactional
-    public ProfessionalProfile createProfile(ProfessionalProfileDto body) {
+    public ProfessionalProfile createProfessionalProfile(ProfessionalProfileDto body) {
 
-        ProfessionalProfile professionalProfile = new ProfessionalProfile();
-        Professional professional = new Professional();
+        professionalProfile = modelMapper.map(body, ProfessionalProfile.class); //model maps everything to entity except id
+        //need to find a way to map professional_id in Professional entity to ProfessionalProfile professional_id
 
-        professionalProfile = modelMapper.map(body, ProfessionalProfile.class);
+        return professionalProfileJpaRepository.save(professionalProfile);
 
-        professionalProfile.setProfessional(professional);
-
-        return repository.save(professionalProfile);
-
-        professionalProfile.setProfessional(professionalRepository.getByEmail());
     }
 }
