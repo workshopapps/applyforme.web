@@ -1,0 +1,94 @@
+.profile_container {
+    background-color: #F7F7F8;
+    width: 100%;
+}
+
+.profile_header {
+    background-color: white;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+    margin-top: 1em;
+    border-radius: 8px;
+}
+
+.profile_header h1 {
+    font-weight: 700;
+    font-size: 40px;
+    color: #2E3192;
+}
+
+.profile_notif {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.profile_body {
+    width: 95%;
+    padding: 2em;
+    margin-top: 3.5em;
+    background: #FFFFFF;
+    border-radius: 8px;
+}
+
+.profile_body img {
+    width: 10.6em;
+    height: 10.6em;
+    margin-left: 10px;
+    border-radius: 10.6em;
+    object-fit: cover;
+}
+
+.profile_body hr {
+    margin-top: 10px;
+    opacity: 0.8;
+    border: 1px solid #B7B9E6;
+    margin-bottom: 1.5em;
+}
+
+.profile_info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4em;
+    margin: 10px;
+
+}
+
+.profile_info_item {
+    display: flex;
+    gap: 0.5em;
+}
+
+.item_title {
+    width: 8.6em;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 0.01em;
+    color: #52515B;
+}
+
+.item_detail {
+    font-weight: 300;
+    font-size: 20px;
+    letter-spacing: 0.01em;
+    color: #52515B;
+}
+
+.profile_footer {
+    margin-top: 2.6em;
+}
+
+.profile_footer_item {
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
+    font-style: normal;
+}
+
+.profile_footer_item button {
+    font-weight: 600;
+    font-size: 16px;
+    padding: 10px;
+}
