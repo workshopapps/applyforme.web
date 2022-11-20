@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./TopNav.module.css";
-import { HiOutlineBellAlert } from "react-icons/hi2";
+import { TbBellRinging } from "react-icons/tb";
 import { BsArrowLeft } from "react-icons/bs";
 import avatar from "../../assets/avatar.png";
 
@@ -12,7 +12,7 @@ const TopNav = ({ title }) => {
                 <h2>{title}</h2>
             </div>
             <div className={styles.application_user_menu}>
-                <HiOutlineBellAlert />
+                <TbBellRinging />
                 <img src={avatar} className={styles.application_nav_avatar} />
             </div>
         </div>

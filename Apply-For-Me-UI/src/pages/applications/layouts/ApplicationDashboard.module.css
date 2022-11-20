@@ -60,7 +60,7 @@ nav > a p {
 nav svg {
     height: 30px;
     width: 30px;
-    color: #9c9dc5;
+    color: #ffffff;
 }
 
 .__active {
@@ -93,6 +93,9 @@ nav svg {
 }
 
 @media (max-width: 480px) {
+    nav svg {
+        color: #9c9dc5;
+    }
     .layout_sidebar {
         display: none;
     }
