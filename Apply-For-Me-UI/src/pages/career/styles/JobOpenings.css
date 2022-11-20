@@ -23,7 +23,6 @@
 
 .last-line {
     font-size: 1.25rem;
-    font-weight: 500;
 }
 
 .job-openings-wrapper h3 {
@@ -91,6 +90,10 @@
         margin-top: 0.25rem;
         height: 1px;
         width: 100%;
+    }
+
+    .last-line {
+        font-weight: 500;
     }
 }
 

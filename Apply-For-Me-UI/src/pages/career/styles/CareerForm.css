@@ -1,0 +1,100 @@
+.career-form-wrapper {
+    background-color: #e9eef7;
+    padding: 3.25rem 1.25rem;
+    text-align: center;
+}
+
+.career-form-text h3 {
+    color: #2e3192;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.career-form-text p {
+    color: #52515b;
+    font-weight: 400;
+    margin: 0.5rem 0 1rem;
+    max-width: 21rem;
+}
+
+.career-form-wrapper::placeholder,
+.career-form-wrapper input {
+    font-family: inherit;
+    color: #999999;
+    font-size: 0.875rem;
+}
+
+.career-form-wrapper input {
+    background: #f7f7f8;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+    width: 100%;
+}
+
+.career-form-wrapper input:focus {
+    color: #666666;
+    outline: none;
+}
+
+.career-form-wrapper button {
+    background: #2e3192;
+    border: none;
+    border-radius: 8px;
+    color: #fbfbff;
+    font-family: inherit;
+    margin-top: 0.75rem;
+    padding: 1rem 2rem;
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .career-form {
+        margin: auto;
+        max-width: 38.5rem;
+    }
+
+    .career-form-text h3 {
+        font-size: 1.75rem;
+        font-weight: 500;
+    }
+
+    .career-form-text p {
+        font-size: 1.5rem;
+        margin: 0.75rem auto 1.75rem;
+        max-width: 36rem;
+    }
+
+    .career-input-section {
+        display: flex;
+    }
+
+    .career-input-section input {
+        width: 70%;
+    }
+
+    .career-input-section button {
+        margin-left: 0.75rem;
+        margin-top: 0;
+        width: 30%;
+    }
+
+    .career-form-wrapper::placeholder,
+    .career-form-wrapper input,
+    .career-form-wrapper button {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .career-form-wrapper {
+        padding: 5.25rem 1.25rem;
+    }
+    .career-form-text h3 {
+        font-size: 2rem;
+    }
+
+    .career-form-text p {
+        font-size: 1.5rem;
+    }
+}

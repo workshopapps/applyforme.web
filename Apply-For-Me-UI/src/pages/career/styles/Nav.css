@@ -5,7 +5,7 @@
 
 .career-nav-wrapper {
     align-items: center;
-    background-color: #ffffff;
+    background-color: #f7f7f8;
     display: flex;
     justify-content: space-between;
     padding: 1rem 7.25rem;
@@ -71,7 +71,7 @@
     }
 
     .career-nav-links {
-        background-color: #ffffff;
+        background-color: #f7f7f8;
         flex-direction: column;
         position: absolute;
         left: 0;
