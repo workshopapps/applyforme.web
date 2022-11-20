@@ -1,1 +1,66 @@
+/* utility for privacy */
+.privacy__container {
+    width: min(90%, 1400px);
+    margin: 0 auto;
+}
+
 /* hero privacy */
+
+.img-container {
+    position: relative;
+    display: flex;
+}
+
+.hero-privacy-img {
+    margin: 0 auto;
+    max-width: 100%;
+    /* opacity: .5; */
+    filter: brightness(30%);
+}
+
+.hero-privacy-content {
+
+    color: #fff;
+
+    position: absolute;
+    top: 20%;
+    right: 50%;
+    transform: translate(50%, 50%);
+}
+
+.hero-privacy-img-mobile {
+    display: none;
+}
+
+/* main content */
+
+.content {}
+
+/* end of main content */
+
+
+/* end of main content */
+
+
+@media (max-width: 786px) {
+    .hero-privacy-img {
+        display: none;
+    }
+
+    .hero-privacy-img-mobile {
+        display: flex;
+        margin: 0 auto;
+
+        filter: brightness(30%);
+    }
+
+    .hero-privacy-content {
+        width: 90%;
+
+        text-align: center;
+
+        top: 0%;
+        right: 50%;
+        transform: translate(50%, 50%);
+    }
+}

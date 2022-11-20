@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "../../components/nav/Nav";
 import Footer from "../../components/footer/Footer"
 import heroPrivacy from "../../assets/images/privacy_policy.svg"
+import heroPrivacyMobile from "../../assets/images/privacy_policy_mobile.svg"
 import "./privacy.css"
 
 const Privacy = () => {
@@ -9,11 +10,12 @@ const Privacy = () => {
         <Nav />
 
         <div className="privacy">
-            <div className="privacy__container-hero">
+            <div className="hero">
                 <div className="img-container">
-                    <img className="hero-privacy" src={heroPrivacy} alt="two people looking at laptop screen" />
+                    <img className="hero-privacy-img" src={heroPrivacy} alt="two people looking at laptop screen" />
+                    <img className="hero-privacy-img-mobile" src={heroPrivacyMobile} alt="two people looking at laptop screen" />
                 </div>
-                <div className="hero-privacy-content">
+                <div className="privacy__container hero-privacy-content">
 
                     <h1>Privacy Policy</h1>
                     <p>Last Updated: November 15, 2022</p>
@@ -21,7 +23,7 @@ const Privacy = () => {
                         We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the Free Privacy Policy Generator.</p>
                 </div>
             </div>
-            <div className="privacy__container-content">
+            <div className="privacy__container content">
                 <div className="content-table">
                     <ul>
                         <h3>Table of Content</h3>
