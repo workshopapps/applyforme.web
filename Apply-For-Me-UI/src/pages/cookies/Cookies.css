@@ -2,6 +2,8 @@
     width: 100%;
     background-color: white;
     margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
 
 }
 
@@ -12,10 +14,10 @@
 }
 
 .container {
-    width: 93vw;
+    width: fit-content;
     margin-top: 0;
     margin-bottom: 3rem;
-    margin-right: 10%;
+    margin-right: 5%;
     margin-left: 5%;
     display: flex;
     justify-content: center;
@@ -52,7 +54,7 @@
 }
 
 .divs {
-    width: 70%;
+    width: 95%;
     display: flex;
     flex-direction: column;
 }
