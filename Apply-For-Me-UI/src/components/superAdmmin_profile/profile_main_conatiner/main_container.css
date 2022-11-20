@@ -119,5 +119,9 @@
     .changePassword button {
         margin-left: 3rem;
     }
+    .profile_header {
+        padding: 0.5rem 0;
+        
+    }
    
 }
