@@ -1,6 +1,7 @@
 package com.hydraulic.applyforme.annotation;
 
-import com.hydraulic.applyforme.validations.PhoneNumberValidator;
+import com.hydraulic.applyforme.validator.PhoneNumberValidator;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;

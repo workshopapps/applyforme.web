@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
 import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
@@ -14,21 +15,24 @@ import java.util.Optional;
 public class JobSubmissionServiceImpl implements JobSubmissionService {
 
     private final ApplierRepository applierRepository;
-    private final JobSubmissionRepository jobSubmissionRepository;
+    private final JobSubmissionRepository repository;
 
-    public JobSubmissionServiceImpl(ApplierRepository applierRepository, JobSubmissionRepository jobSubmissionRepository) {
+    public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository) {
         this.applierRepository = applierRepository;
-        this.jobSubmissionRepository = jobSubmissionRepository;
+        this.repository = repository;
     }
 
     @Override
     public Long countAllSubmissions(Long id) {
         Optional<Applier> applier = Optional.ofNullable(applierRepository.getOne(id));
-        if(applier.isPresent())
-        {
-            return jobSubmissionRepository.countByApplier(id);
+
+        if (applier.isEmpty()) {
+            throw new ApplierNotFoundException(id);
+        }
+
+        if (applier.isPresent()) {
+            return repository.countByApplier(id);
         }
         return 0L;
-
     }
 }

@@ -1,15 +1,13 @@
 package com.hydraulic.applyforme.model.dto.signup;
 
 import com.hydraulic.applyforme.annotation.PhoneNumberConstraint;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.*;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class SignUpDto {
