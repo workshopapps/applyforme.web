@@ -1,4 +1,4 @@
-import  "./main_container.css";
+import  "./modal.css";
 
 export const Modal=()=>{
     return(
