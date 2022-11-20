@@ -25,9 +25,6 @@ import Resume from "./pages/blog/pages/resume/Resume";
 import Brand from "./pages/blog/pages/brand/Brand";
 import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
 
-import AdminProfile from "./pages/admin_profile/AdminProfile";
-
-
 import Welcome2 from "./pages/authentication-pages/Welcome2";
 import Registration from "./pages/authentication-pages/Registration";
 import Welcome1 from "./pages/authentication-pages/Welcome1";
@@ -35,7 +32,6 @@ import Verification from "./pages/authentication-pages/Verification";
 import Password from "./pages/authentication-pages/Password";
 import NewPass from "./pages/authentication-pages/NewPass";
 import Button from "./pages/authentication-pages/components/Elements/Button";
-
 
 import JobDescription from "./pages/job_decription/JobDescription";
 // import AdminDashboard from "./pages/admin_dashboard/AdminDashboard";
@@ -75,7 +71,6 @@ function App() {
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
-                    <Route path="profile" element={<AdminProfile />} />
                     <Route path="/dashboard/" element={<DashboardNothing />} />
                 </Route>
 
