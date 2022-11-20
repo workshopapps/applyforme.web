@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landing_page/LandingPage";
 import AboutUs from "./pages/about_us/AboutUs";
 import FAQs from "./pages/faqs/FAQs";
-import FaqsPage from "./pages/faqs/FaqsPage";
 import ContactUs from "./pages/contact_us/ContactUs";
 import TermsAndCondition from "./pages/terms_condition/TermsAndCondition";
 import Privacy from "./pages/privacy/Privacy";
@@ -22,6 +21,10 @@ import Signs from "./pages/blog/pages/signs/Signs";
 import Resume from "./pages/blog/pages/resume/Resume";
 import Brand from "./pages/blog/pages/brand/Brand";
 import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
+// import AdminDashboard from "./pages/admin_dashboard/AdminDashboard";
+import ApplicantDetails from "./pages/admin_dashboard/components/applicant_details/ApplicantDetails";
+import ApplicationForm from "./pages/admin_dashboard/components/application_form/ApplicationForm";
+import DashboardHome from "./pages/admin_dashboard/components/dashboard_home/DashboardHome";
 
 function App() {
     return (
@@ -30,7 +33,6 @@ function App() {
                 <Route exact path="/" element={<LandingPage />} />
                 <Route exact path="/about" element={<AboutUs />} />
                 <Route exact path="/faqs" element={<FAQs />} />
-                <Route exact path="/faqs/faqspage" element={<FaqsPage />} />
                 <Route exact path="/contact" element={<ContactUs />} />
                 <Route exact path="/t&c" element={<TermsAndCondition />} />
                 <Route exact path="/privacy" element={<Privacy />} />
@@ -50,6 +52,10 @@ function App() {
                 <Route exact path="blog/endorsment" element={<Endorsment />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
                     <Route path="/dashboard/" element={<DashboardNothing />} />
+                    <Route path="admin" element={<DashboardHome />}/>
+                    <Route path="admin/form" element={<ApplicationForm />}/>
+                    <Route path="admin/details" element={<ApplicantDetails />}/>
+                    {/* <Route path="user" element={<UserDashboard />} /> */}
                 </Route>
                 <Route path="*" element={<Error />} />
             </Routes>
