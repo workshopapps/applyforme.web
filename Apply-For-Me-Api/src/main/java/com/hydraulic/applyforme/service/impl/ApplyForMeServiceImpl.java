@@ -20,6 +20,8 @@ public class ApplyForMeServiceImpl implements ApplyForMeService {
     @Autowired
     private ModelMapper modelMapper;
     private final ApplyForMeRepository repository;
+
+
     public ApplyForMeServiceImpl(ApplyForMeRepository repository) {
         this.repository = repository;
     }

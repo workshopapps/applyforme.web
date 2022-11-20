@@ -71,7 +71,7 @@ public class Member {
 
     @Temporal(TemporalType.DATE)
     @Column(name ="date_of_birth")
-    private Date dateOfBirth;
+    private Date dateOfBirth = new Date();
 
     /**
      * This identifies the current professional or working job title of the member of the system irrespective of the role
@@ -149,5 +149,11 @@ public class Member {
     )
     private Set<Role> roles = new HashSet<>();
 
+    public void addRole(Role role) {
+        this.getRoles().add(role);
+    }
 
+    public void clearRoles() {
+        this.roles = new HashSet<>();
+    }
 }

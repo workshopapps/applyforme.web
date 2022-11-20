@@ -135,4 +135,15 @@ public class GlobalExceptionController {
         return errors;
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ApplierNotFoundException.class)
+    public Object notFound(ApplierNotFoundException ex) {
+        Map<String, String> errors = new HashMap<String, String>();
+        errors.put("entityName", ApplierNotFoundException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.NOT_FOUND.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
 }
