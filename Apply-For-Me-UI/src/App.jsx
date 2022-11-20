@@ -21,6 +21,7 @@ import Signs from "./pages/blog/pages/signs/Signs";
 import Resume from "./pages/blog/pages/resume/Resume";
 import Brand from "./pages/blog/pages/brand/Brand";
 import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
+import { ProfileScreen } from "./components/superAdmmin_profile/superAdmin_profileScreen";
 
 function App() {
     return (
@@ -52,6 +53,7 @@ function App() {
                 <Route exact path="blog/endorsment" element={<Endorsment />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
                     <Route path="/dashboard/" element={<DashboardNothing />} />
+                    <Route path="/dashboard/profile" element={<ProfileScreen />} />
                 </Route>
 
                 <Route path="*" element={<Error />} />
