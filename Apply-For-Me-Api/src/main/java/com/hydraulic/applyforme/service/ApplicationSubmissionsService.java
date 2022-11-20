@@ -1,10 +1,11 @@
 package com.hydraulic.applyforme.service;
 
-import com.hydraulic.applyforme.view.ApplicationSubmissionsResponse;
+import com.hydraulic.applyforme.model.domain.Submission;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface ApplicationSubmissionsService {
 
-    List<ApplicationSubmissionsResponse> getAllApplicationSubmissions(int offset, int pageSize);
+    Collection<Submission> getAllApplicationSubmissions();
+
 }
