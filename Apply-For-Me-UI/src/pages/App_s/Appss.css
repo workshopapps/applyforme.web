@@ -433,11 +433,14 @@
         bottom: -270px;
         position: fixed;
         display: flex;
-        padding: auto;
+        box-sizing: border-box;
         margin: auto;
         justify-content: space-between;
         gap: 35px;
         background-color: #ffffff;
+        border-top: 1px solid #000000;
+        padding-top: 30px;
+        padding-bottom: 120px;
     }
     .boaRD {
         padding-left: 70px;
