@@ -8,19 +8,19 @@ function Navbar() {
             <img src="../img/Frame.svg" alt="page logo" className="logo"/>
             <ul className="list" style={sidebar !== false ? {height: '100vh', left: 0} : {left: '-100%', overflow: 'hidden'}}>
                 <li>
-                    <Link to="" className="us">About us</Link>
+                    <Link to="/about" className="us">About us</Link>
                 </li>
                 <li>
-                    <Link to="">Pricing plan</Link>
+                    <Link to="/pricing">Pricing plan</Link>
                 </li>
                 <li>
-                    <Link to="">Blog</Link>
+                    <Link to="/blog">Blog</Link>
                 </li>
                 <li>
-                    <Link to="">FAQs</Link>
+                    <Link to="/faqs">FAQs</Link>
                 </li>
                 <li>
-                    <Link to="">Contact us</Link>
+                    <Link to="/contact">Contact us</Link>
                 </li>
                 <div className="btns">
                 <a href="" className="signin">Sign in</a>
