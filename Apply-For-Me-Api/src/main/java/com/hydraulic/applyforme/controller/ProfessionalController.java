@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(
-        value = "/applicant",
+        value = "applicant",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
 @RequiredArgsConstructor
