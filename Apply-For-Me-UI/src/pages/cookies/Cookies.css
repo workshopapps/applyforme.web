@@ -17,8 +17,8 @@
     width: fit-content;
     margin-top: 0;
     margin-bottom: 3rem;
-    margin-right: 5%;
-    margin-left: 5%;
+    margin-right: 3%;
+    margin-left: 3%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -67,6 +67,7 @@
     line-height: 150%;
     color: #2E3192;
     margin: 1rem 0;
+    margin-bottom: 0;
 }
 
 .paragraphs {
@@ -88,3 +89,14 @@ span {
     text-decoration: none;
     color: #6567b0;
    }
+
+ul {
+    list-style-position: inside;
+    margin: 1.2rem 0;
+}
+
+li {
+    list-style-type: disc;
+    padding-left: 3rem;
+    margin-bottom: 0.7rem;
+}
