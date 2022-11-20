@@ -1,6 +1,57 @@
-import style from './ApplicationList.module.css';
+import style from "./ApplicationList.module.css";
 
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
+
+const list = [
+    {
+        name: "Sharon Sunday",
+        jobTitle: "Product Design",
+        plan: "Premium",
+        salary: "$10,000 - $15,000",
+        type: "Remote",
+        details: "View"
+    },
+    {
+        name: "Sharon Sunday",
+        jobTitle: "Product Design",
+        plan: "Basic",
+        salary: "$10,000 - $15,000",
+        type: "Hybrid",
+        details: "View"
+    },
+    {
+        name: "Sharon Sunday",
+        jobTitle: "Product Design",
+        plan: "Standard",
+        salary: "$10,000 - $15,000",
+        type: "Remote",
+        details: "View"
+    },
+    {
+        name: "Michael Anu",
+        jobTitle: "Product Design",
+        plan: "Premium",
+        salary: "$10,000 - $15,000",
+        type: "On-site",
+        details: "View"
+    },
+    {
+        name: "Michael Anu",
+        jobTitle: "Product Design",
+        plan: "Basic",
+        salary: "$10,000 - $15,000",
+        type: "Remote",
+        details: "View"
+    },
+    {
+        name: "Michael Anu",
+        jobTitle: "Product Design",
+        plan: "Standard",
+        salary: "$10,000 - $15,000",
+        type: "Remote",
+        details: "View"
+    }
+];
 
 const ApplicationList = () => {
     return (
@@ -13,55 +64,20 @@ const ApplicationList = () => {
                 <li>Type</li>
                 <li>Details</li>
             </ul>
-            <ul>
-                <li>Sharon Sunday</li>
-                <li>Product Design</li>
-                <li>Premium</li>
-                <li>$10,000 - $15,000</li>
-                <li>Remote</li>
-                <li><Link to="/dashboard/details">View</Link></li>
-            </ul>
-
-            <ul>
-                <li>Sharon Sunday</li>
-                <li>Product Design</li>
-                <li>Basic</li>
-                <li>$10,000 - $15,000</li>
-                <li>Hybrid</li>
-                <li><Link to="/dashboard/details">View</Link></li>
-            </ul>
-            <ul>
-                <li>Sharon Sunday</li>
-                <li>Product Design</li>
-                <li>Standard</li>
-                <li>$10,000 - $15,000</li>
-                <li>Remote</li>
-                <li><Link to="/dashboard/details">View</Link></li>
-            </ul>
-            <ul>
-                <li>Michael Anu</li>
-                <li>Product Design</li>
-                <li>Premium</li>
-                <li>$10,000 - $15,000</li>
-                <li>On-site</li>
-                <li><Link to="/dashboard/details">View</Link></li>
-            </ul>
-            <ul>
-                <li>Michael Anu</li>
-                <li>Product Design</li>
-                <li>Basic</li>
-                <li>$10,000 - $15,000</li>
-                <li>Remote</li>
-                <li><Link to="/dashboard/details">View</Link></li>
-            </ul>
-            <ul>
-                <li>Michael Anu</li>
-                <li>Product Design</li>
-                <li>Standard</li>
-                <li>$10,000 - $15,000</li>
-                <li>Remote</li>
-                <li><Link to="/dashboard/details">View</Link></li>
-            </ul>
+            {list.map((entry, i) => {
+                return (
+                    <ul key={i}>
+                        <li>{entry.name}</li>
+                        <li>{entry.jobTitle}</li>
+                        <li>{entry.plan}</li>
+                        <li>{entry.salary}</li>
+                        <li>{entry.type}</li>
+                        <li>
+                            <Link to="/dashboard/details">{entry.details}</Link>
+                        </li>
+                    </ul>
+                );
+            })}
         </div>
     );
 };

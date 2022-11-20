@@ -1,9 +1,3 @@
-.list_header *:last-child
-{
-    color: var(--blue);
-    font-size: 16px;
-}
-
 .list_list
 {
     background: white;

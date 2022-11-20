@@ -73,7 +73,7 @@
 
 .list>*
 {
-    margin: var(--padding);
+    margin: 16px var(--padding);
 }
 
 .list_header
@@ -81,6 +81,16 @@
     display: flex;
     justify-content: space-between;
     font-size: var(--font-size-1);
+}
+
+.list_header p:first-child
+{
+    font-weight: 700;
+}
+
+.list_header *:last-child
+{
+    font-size: 16px;
 }
 
 @media only screen and (max-width: 1024px)
