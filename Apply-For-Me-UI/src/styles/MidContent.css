@@ -1,0 +1,50 @@
+.midcontent {
+    width: 100%;
+    height: 150px;
+    background: #E9EEF7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+}
+
+.users-record {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.users-record h1 {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 120%;
+    color: #171B1D;
+}
+
+@media screen and (max-width: 1023px) {
+    .midcontent {
+        height: 114px;
+    }
+    
+    .users-record h1 {
+        font-size: 40px;
+    } 
+}
+
+@media screen and (max-width: 767px) {
+    .midcontent {
+        gap: 50px;
+    }
+    
+    .users-record h1 {
+        font-size: 24px;
+    }
+
+    .users-record p {
+        font-weight: 300;
+        font-size: 14px;
+    }
+}
