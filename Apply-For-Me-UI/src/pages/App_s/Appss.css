@@ -59,7 +59,7 @@
     border: 1px solid #e1e2ff;
     border-radius: 20px;
     box-sizing: border-box;
-    padding: 0 20px;
+    padding: 10px 20px;
 }
 .Search {
     position: relative;
@@ -101,9 +101,7 @@
     gap: 20px;
     background: #ffffff;
     box-sizing: border-box;
-    padding: 0 12px;
-    border: 1px solid #dfe0eb;
-    border-radius: 10px;
+    padding: 15px 12px;
     width: 367px;
     margin-top: 8px;
     cursor: pointer;
