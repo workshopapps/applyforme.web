@@ -36,13 +36,21 @@ public class ApplicantDto {
     private Boolean active = true;
     private Set<Role> roles = new HashSet<>();
     private boolean availableForInterview = false;
+    @Size(min = 15, max = 300, message = "{professional.socialLink.size}")
     private String linkedinLink;
+    @Size(min = 15, max = 300, message = "{professional.socialLink.size}")
     private String facebookLink;
+    @Size(min = 15, max = 300, message = "{professional.socialLink.size}")
     private String twitterLink;
+    @Size(min = 15, max = 300, message = "{professional.socialLink.size}")
     private String instagramLink;
+    @Size(min = 3, max = 300, message = "{professional.hobby.size}")
     private String hobbies;
+    @Size(min = 15, max = 300, message = "{professional.socialLink.size}")
     private String otherLink1;
+    @Size(min = 15, max = 300, message = "{professional.socialLink.size}")
     private String otherLink2;
+    @Size(min = 15, max = 300, message = "{professional.socialLink.size}")
     private String otherLink3;
 
 }
