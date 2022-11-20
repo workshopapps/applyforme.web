@@ -80,7 +80,7 @@ const AccountSettings = () => {
                         </ul>
                     </div>
 
-                    <form>
+                    <form className="account-form">
                         <div id="profile_div" style={{ display: "block" }}>
                             <h3>Personal Information</h3>
                             <div className={classes.change_image}>

@@ -49,6 +49,7 @@ import Profile from "./pages/dashboard_profile/Profile/Profile";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
 
 import ReverseApp from './pages/App_s/Appss'
+import { ProfileScreen } from "./components/superAdmmin_profile/superAdmin_profileScreen";
 
 
 function App() {
@@ -64,7 +65,8 @@ function App() {
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
                 <Route exact path="/pricing" element={<PricingPlan />} />
-                <Route exact path="/user-page" element={<Dashboard />} />
+                <Route exact path="/dash-page" element={<Dashboard />} />
+                <Route exact path="/user-page" element={<ProfileScreen />} />
                 <Route exact path="blog" element={<Blog />} />
                 <Route
                     exact
