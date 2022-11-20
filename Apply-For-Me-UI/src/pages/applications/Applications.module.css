@@ -42,6 +42,8 @@
 .applications_table_header {
     height: 112px;
     display: flex;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
     align-items: center;
     justify-content: space-between;
     border-bottom: 0.5px #cccccc solid;
@@ -70,11 +72,17 @@ input[type="search"] {
     color: #bfbfbf;
 }
 
+.applications_table_container {
+    margin-bottom: 2rem;
+    min-height: 300px;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
 table {
-    border-collapse: collapse;
-    width: 95%;
-    padding: 0 80px;
-    border-spacing: 1em 0px;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    width: 100%;
 }
 
 tr {
@@ -89,6 +97,15 @@ td {
     padding-left: 0.5rem;
     text-align: start;
 }
+td:first-child,
+th:first-child {
+    border-radius: 8px 0 0 8px;
+}
+td:last-child,
+th:last-child {
+    border-radius: 0 8px 8px 0;
+}
+
 .applications_table_head_row {
     border-bottom: 0.5px #cccccc solid;
     height: 62px;
@@ -112,4 +129,116 @@ td {
 .applications_table_body_row:hover {
     background-color: #e9eef7;
     color: #2e3192;
+}
+
+.applications_footer {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+    padding-left: 3.5rem;
+    padding-right: 2.5rem;
+}
+.applications_footer svg {
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+}
+.applications_footer svg:first-child {
+    color: #bfbfbf;
+    cursor: unset;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #52515b;
+    background-color: transparent;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover,
+.dropbtn:focus {
+    color: #2e3192;
+    outline: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown_content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 10px;
+    display: none;
+    position: absolute;
+    background: #ffffff;
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown_content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown_content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown_item {
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+.dropdown_item:hover {
+    background: #e9eef7;
+    border-radius: 8px;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: flex;
+}
+
+.applications_list_card {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .applications_table_wrapper {
+        display: none;
+    }
+    .applications_list_card {
+        display: block;
+    }
+    /* … */
 }

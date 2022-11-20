@@ -1,13 +1,13 @@
 import styles from "./Applications.module.css";
+import ApplicationsListCard from "./components/ApplicationsListCard";
 import Table from "./components/Table";
-import TopNav from "./components/TopNav";
-
+import { applications } from "./applicationsMock";
 const Applications = () => {
     return (
         <div className={styles.applications_container}>
-            <TopNav />
             <section className={styles.application_main}>
-                <Table />
+                <Table applications={applications} />
+                <ApplicationsListCard applications={applications} />
             </section>
         </div>
     );
