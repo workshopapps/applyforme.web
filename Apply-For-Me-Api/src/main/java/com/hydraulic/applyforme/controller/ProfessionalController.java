@@ -22,7 +22,7 @@ public class ProfessionalController {
 
     public ProfessionalController(ProfessionalService service) {this.service = service;}
 
-    @GetMapping("/entries/appliers")
+    @GetMapping("/entries")
     public List<Professional> findAll(@RequestParam(required = false, defaultValue = "1", name = "page") Integer pageOffset) {
         return service.findAll(pageOffset);
     }
