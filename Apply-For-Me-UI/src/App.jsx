@@ -14,6 +14,8 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
 import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
+import ApplicationsDashboardLayout from "./pages/applications/layouts/ApplicationsDashboardLayout";
+import Applications from "./pages/applications/Applications";
 import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
 import Skills from "./pages/blog/pages/skills/Skills";
 import Cover from "./pages/blog/pages/cover/Cover";
@@ -22,6 +24,7 @@ import Signs from "./pages/blog/pages/signs/Signs";
 import Resume from "./pages/blog/pages/resume/Resume";
 import Brand from "./pages/blog/pages/brand/Brand";
 import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
+import JobDescription from "./pages/job_decription/JobDescription";
 // import AdminDashboard from "./pages/admin_dashboard/AdminDashboard";
 import ApplicantDetails from "./pages/admin_dashboard/components/applicant_details/ApplicantDetails";
 import ApplicationForm from "./pages/admin_dashboard/components/application_form/ApplicationForm";
@@ -42,7 +45,11 @@ function App() {
                 <Route exact path="/pricing" element={<PricingPlan />} />
                 <Route exact path="/user-page" element={<Dashboard />} />
                 <Route exact path="blog" element={<Blog />} />
-                <Route exact path="/blog/questions" element={<BestQuestions />} />
+                <Route
+                    exact
+                    path="/blog/questions"
+                    element={<BestQuestions />}
+                />
                 <Route exact path="/blog/skills" element={<Skills />} />
                 <Route exact path="blog/cover" element={<Cover />} />
                 <Route exact path="blog/work" element={<Work />} />
@@ -54,11 +61,22 @@ function App() {
                 <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
                     <Route path="/dashboard/" element={<DashboardNothing />} />
-                    <Route path="admin" element={<DashboardHome />}/>
-                    <Route path="admin/form" element={<ApplicationForm />}/>
-                    <Route path="admin/details" element={<ApplicantDetails />}/>
+                    <Route path="admin" element={<DashboardHome />} />
+                    <Route path="admin/form" element={<ApplicationForm />} />
+                    <Route
+                        path="admin/details"
+                        element={<ApplicantDetails />}
+                    />
                     {/* <Route path="user" element={<UserDashboard />} /> */}
                 </Route>
+                <Route
+                    path="/dashboard/applications"
+                    element={<ApplicationsDashboardLayout />}
+                >
+                    <Route index element={<Applications />} />
+                    <Route path=":jobId" element={<JobDescription />} />
+                </Route>
+
                 <Route path="*" element={<Error />} />
             </Routes>
         </>
