@@ -6,6 +6,7 @@ import com.hydraulic.applyforme.model.domain.Role;
 import com.hydraulic.applyforme.model.dto.professional.ApplicantDto;
 import com.hydraulic.applyforme.model.enums.RoleType;
 import com.hydraulic.applyforme.model.exception.ApplicantAlreadyExistException;
+import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
@@ -34,9 +35,12 @@ public class ProfessionalServiceImpl implements ProfessionalService {
         final String RESPONSE = "Applicant successfully saved";
         boolean exist = memberJpaRepository.existsByEmailAddress(body.getEmailAddress());
         Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.PROFESSIONAL.getValue());
-        if (exist)
+        if (exist) {
             throw new ApplicantAlreadyExistException();
-
+        }
+        if (existingRole.isEmpty()){
+            throw new RoleNotFoundException(RoleType.PROFESSIONAL.getValue());
+        }
         Member member = new Member();
         Professional professional = new Professional();
 
