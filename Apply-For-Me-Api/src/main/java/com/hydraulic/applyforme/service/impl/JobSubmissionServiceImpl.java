@@ -7,7 +7,6 @@ import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.ApplyForMeRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,15 +18,18 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+
 public class JobSubmissionServiceImpl implements JobSubmissionService {
 
     private final ApplierRepository applierRepository;
     private final JobSubmissionRepository jobSubmissionRepository;
 
-    private final ApplyForMeRepository applyForMeRepository;
 
-    private final ModelMapper modelMapper;
+
+    public JobSubmissionServiceImpl(ApplierRepository applierRepository, JobSubmissionRepository jobSubmissionRepository) {
+        this.applierRepository = applierRepository;
+        this.jobSubmissionRepository = jobSubmissionRepository;
+    }
 
 
     @Override
