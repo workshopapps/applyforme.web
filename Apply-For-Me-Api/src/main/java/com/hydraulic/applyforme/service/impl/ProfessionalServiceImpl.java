@@ -6,9 +6,11 @@ import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import com.hydraulic.applyforme.service.ProfessionalService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProfessionalServiceImpl implements ProfessionalService {
 
     @Autowired
