@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Afm from "./img/Logo.svg";
 import Bell from "./img/filled/social/notifications.svg";
 import Profile from "./img/profile.svg";
-import "./Reverse.css";
+import "./Appss.css";
 import Chat from "./img/chat.svg";
 import Help from "./img/help.svg";
 import Logout from "./img/logout.svg";

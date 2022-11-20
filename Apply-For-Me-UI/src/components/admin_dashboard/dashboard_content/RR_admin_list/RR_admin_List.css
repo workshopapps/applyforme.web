@@ -130,7 +130,7 @@ thead select{
         flex-direction: column;
         
     }
-    .mobileList .list{
+    .mobileList .RRlist{
         display: flex;
         align-items: center;
         justify-content: space-between;

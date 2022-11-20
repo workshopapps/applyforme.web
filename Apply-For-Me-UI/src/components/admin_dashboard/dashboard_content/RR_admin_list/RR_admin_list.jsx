@@ -91,7 +91,7 @@ export const RR_Admin_list=()=>{
                             const {name,work,img} = user;
                             if((index >= rangeStart) && (index <= rangeEnd) ){
                                 return(
-                                    <div className='list' key={index}>
+                                    <div className='RRlist' key={index}>
                                         <div className='img_rapper'>
                                             <img style={{width:'100%'}} src={img} alt="object not found"/>
                                         </div>
