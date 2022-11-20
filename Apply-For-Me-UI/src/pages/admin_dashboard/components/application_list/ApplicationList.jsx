@@ -73,7 +73,7 @@ const ApplicationList = () => {
                         <li>{entry.salary}</li>
                         <li>{entry.type}</li>
                         <li>
-                            <Link to="/dashboard/details">{entry.details}</Link>
+                            <Link to="/dashboard/admin/details">{entry.details}</Link>
                         </li>
                     </ul>
                 );

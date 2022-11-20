@@ -24,7 +24,7 @@ const DashboardHome = () => {
                         <br />
                         <p>Total Applications</p>
                     </p>
-                    <button><Link to="/dashboard/application-form">Job application form</Link></button>
+                    <button><Link to="/dashboard/admin/form">Job application form</Link></button>
                 </div>
             </div>
             <div className={style.list}>
