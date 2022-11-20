@@ -18,7 +18,7 @@ const AccountSettings = () => {
 
     return (
         <div className={classes.account_settings_container}>
-            <div >
+            <div className={classes.sidebar_container}>
                 <DashboardSidebar/>
             </div>
 

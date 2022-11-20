@@ -6,9 +6,9 @@
     font-family: "Outfit", sans-serif;
 }
 
-.sidebar_container {
+/* .sidebar_container {
     width: 10%;
-}
+} */
 
 .top_nav {
     width: 100%;
@@ -155,4 +155,22 @@ form .input_fields .row input {
 
 #preference{
     display: none;
+}
+
+@media (max-width: 650px) {
+    .sidebar_container{
+        display: none;
+    }
+
+    .body_container .second_sidenav{
+        display: none;
+    }
+
+    form{
+        width: 100%;
+    }
+
+    .input_fields button{
+        width: 100%;
+    }
 }

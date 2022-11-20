@@ -48,7 +48,7 @@ function App() {
                 <Route exact path="blog/cover" element={<Cover />} />
                 <Route exact path="blog/resume" element={<Resume />} />
                 <Route exact path="blog/brand" element={<Brand />} />
-                <Route exact path="blog/endorsment" element={<Endorsment />} />
+                <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
                     <Route path="/dashboard/" element={<DashboardNothing />} />
