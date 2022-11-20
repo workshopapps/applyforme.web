@@ -52,7 +52,6 @@ CREATE TABLE IF NOT EXISTS `professional_profile` (
 	PRIMARY KEY (`id`)
 );
 
-
 CREATE TABLE IF NOT EXISTS `member` (
 	`id` BIGINT AUTO_INCREMENT,
 	`first_name` VARCHAR(40) NOT NULL,

@@ -1,7 +1,4 @@
-import Nav from "../../components/nav/Nav";
-import Footer from "../../components/footer/Footer";
-import introImg from "../../assets/images/terms_condition_introImg.svg";
-import classes from "./TermsAndCondition.module.css";
+import React from "react";
 
 const TermsAndCondition = () => {
     return (

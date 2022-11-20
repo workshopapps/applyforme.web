@@ -1,0 +1,119 @@
+.ProfileMainContainer{
+    padding: 2rem 8rem 8rem 8rem;
+    
+}
+.notification_icon img{
+    width:30%;
+    margin-left:1rem;
+}
+.profile_content{
+    font-family: 'Montserrat', sans-serif;
+}
+.profile_content_btn{
+    background-color: white;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #52515B ;
+    border-radius: 5px;
+    border:1px solid grey;
+    padding: 0.3rem;
+}
+.proileInfoContainer{
+    padding-top: 2rem;
+}
+.profile_content_btn h4{
+    margin: 0 0.5rem;
+}
+.profile_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.2rem;
+    border-bottom:1px solid  gray;
+}
+.profile_header h1{
+    color:#2E3192 ;
+}
+.proileInfo{
+    display: flex;
+    justify-content: space-between;
+    overflow-wrap: break-word;
+    text-align: left;
+}
+.proileInfovalue{
+    font-weight: 400;
+    width:50%;
+}
+.changePassword{
+    display: flex;
+    align-items: center;
+    border-top: 1px solid  gray;
+    border-bottom: 1px solid  gray;
+}
+.changePassword h1{
+    font-size: 20px;
+}
+.changePassword button{
+    margin-left: 5rem;
+}
+.verticalNavPills_dashboard_link.footer{
+    margin-top: 3rem;
+}
+.mobile_info_top_view{
+    display:flex;
+    justify-content: space-between;
+}
+.mobile_info_top{
+    display: none;
+}
+@media only screen and (min-width: 320px)and (max-width: 667px){
+    .mobile_info_top{
+        display: flex;
+        flex-direction: column;
+        width:45%;
+    }
+    .mobile_info_top_view{
+        align-items: center;
+    }
+    .mobile_img_top img{
+        width:100%;
+    }
+    .mobile_img_top{
+        width:45%;
+    }
+    .desktop_info_top{
+        display: none;
+    }
+    .proileInfo{
+        flex-direction: column;
+    }
+    .proileInfovalue {
+        width: 100%;
+        margin-top:-0.8rem;
+        font-size: 17px;
+        overflow-wrap: anywhere;
+    }
+    .proileInfolabel{
+        font-size: 17px;
+    }
+    .profile_content{
+        width: 100%;
+    }
+    .profile_header h1, .changePassword h1{
+        font-size:18px;
+    }
+    .ProfileMainContainer{
+        padding: 1rem 1rem 5rem 1rem;
+        
+    }
+    .changePassword{
+        padding: 0.5rem 0;
+    }
+    .proileInfoContainer {
+        padding-top: 1rem;
+    }
+   
+}
