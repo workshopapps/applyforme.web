@@ -49,6 +49,7 @@
 
 .job_details ul {
     padding-left: 20px;
+    list-style: circle !important;
 }
 .job_header {
     border-bottom: 1px solid #ededed;
