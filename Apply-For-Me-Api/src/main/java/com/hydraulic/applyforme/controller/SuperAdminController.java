@@ -1,6 +1,7 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.service.SuperAdminService;
 import com.hydraulic.applyforme.service.impl.SuperAdminServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 )
 public class SuperAdminController {
 
-    SuperAdminServiceImpl service;
+    SuperAdminService service;
 
-    public SuperAdminController(SuperAdminServiceImpl service) {
+    public SuperAdminController(SuperAdminService service) {
         this.service = service;
     }
 
     @GetMapping("/detail/{id}")
-    public Member  getOneMember(@PathVariable(value="id") Long id) {
+    public Member getOneMember(@PathVariable(value="id") Long id) {
         return service.getDetailsById(id);
     }
 }

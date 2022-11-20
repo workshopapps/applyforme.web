@@ -11,15 +11,15 @@ import java.util.Optional;
 @Service
 public class SuperAdminServiceImpl implements SuperAdminService {
 
-    SuperAdminRepository adminRepo;
+    SuperAdminRepository repository;
 
-    public SuperAdminServiceImpl(SuperAdminRepository adminRepo) {
-        this.adminRepo = adminRepo;
+    public SuperAdminServiceImpl(SuperAdminRepository repository) {
+        this.repository = repository;
     }
 
     public Member getDetailsById(Long id) {
-        Member member = adminRepo.getOneMember(id);
-        if(member == null){
+        Member member = repository.getOneMember(id);
+        if (member == null) {
             throw new MemberNotFoundException(id);
         }
        return member;
