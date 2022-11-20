@@ -4,11 +4,9 @@ import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.pojo.SubmissionResponse;
 import com.hydraulic.applyforme.repository.ApplierRepository;
-import com.hydraulic.applyforme.repository.ApplyForMeRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
+import com.hydraulic.applyforme.repository.jpa.SubmissionRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,15 +18,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+
 public class JobSubmissionServiceImpl implements JobSubmissionService {
 
     private final ApplierRepository applierRepository;
     private final JobSubmissionRepository jobSubmissionRepository;
 
-    private final ApplyForMeRepository applyForMeRepository;
+    private final SubmissionRepository submissionRepository;
 
-    private final ModelMapper modelMapper;
+    public JobSubmissionServiceImpl(ApplierRepository applierRepository, JobSubmissionRepository jobSubmissionRepository, SubmissionRepository submissionRepository) {
+        this.applierRepository = applierRepository;
+        this.jobSubmissionRepository = jobSubmissionRepository;
+        this.submissionRepository = submissionRepository;
+    }
 
 
     @Override
@@ -61,5 +63,10 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     @Override
     public Optional<List<Submission>> getSubmissionsBySearch(String query) {
         return jobSubmissionRepository.findJobSubmissionBySearch(query);
+    }
+
+    @Override
+    public List<Submission> findAll(Integer pageOffset) {
+        return submissionRepository.getAll(pageOffset);
     }
 }

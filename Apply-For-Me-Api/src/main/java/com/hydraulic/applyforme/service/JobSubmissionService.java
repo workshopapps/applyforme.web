@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.service;
 
+import com.hydraulic.applyforme.model.domain.ApplyForMe;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.pojo.SubmissionResponse;
 
@@ -13,4 +14,6 @@ public interface JobSubmissionService {
     SubmissionResponse getAllJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir);
 
     Optional<List<Submission>> getSubmissionsBySearch(String query);
+
+     List<Submission> findAll(Integer pageOffset);
 }

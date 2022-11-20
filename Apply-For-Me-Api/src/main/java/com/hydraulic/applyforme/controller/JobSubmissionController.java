@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.controller;
 
+import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.pojo.SubmissionResponse;
 import com.hydraulic.applyforme.service.JobSubmissionService;
@@ -42,6 +43,11 @@ public class JobSubmissionController {
 
         return jobSubmissionService.getSubmissionsBySearch(q).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Job Not Found"));
 
+    }
+
+    @GetMapping("/entries/job_submission")
+    public List<Submission> findAll(@RequestParam(required = false, defaultValue = "1" , name = "page") Integer pageNumber) {
+        return jobSubmissionService.findAll(pageNumber);
     }
 
 
