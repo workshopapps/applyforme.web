@@ -22,6 +22,7 @@ import Signs from "./pages/blog/pages/signs/Signs";
 import Resume from "./pages/blog/pages/resume/Resume";
 import Brand from "./pages/blog/pages/brand/Brand";
 import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
+import Notifications from "./pages/Notifications/Notifications";
 
 function App() {
     return (
@@ -38,6 +39,7 @@ function App() {
                 <Route exact path="/career" element={<Career />} />
                 <Route exact path="/pricing" element={<PricingPlan />} />
                 <Route exact path="/user-page" element={<Dashboard />} />
+                <Route path="/notification" element={<Notifications />} />
                 <Route exact path="blog" element={<Blog />} />
                 <Route exact path="/blog/questions" element={<BestQuestions />} />
                 <Route exact path="/blog/skills" element={<Skills />} />
