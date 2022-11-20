@@ -52,14 +52,16 @@ public class SalaryRangeServiceImpl implements SalaryRangeService {
 
         try {
             for (SalaryRange salaryRange : salaryRangesList) {
-                Optional<SalaryRange> salaryRangeExists = jpaRepository.findBySalaryRange(salaryRange.getSalaryRange());
+                if (false) {
+                    Optional<SalaryRange> salaryRangeExists = jpaRepository.findBySalaryRange(salaryRange.getSalaryRange());
 
-                if (salaryRangeExists.isPresent()) {
-                    continue;
+                    if (salaryRangeExists.isPresent()) {
+                        continue;
+                    }
+
+                    salaryRange.setId(null);
+                    repository.saveOne(salaryRange);
                 }
-
-                salaryRange.setId(null);
-                repository.saveOne(salaryRange);
             }
         }
         catch (SalaryRangeDuplicateEntityException exception) {
