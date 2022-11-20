@@ -50,14 +50,16 @@ public class RoleServiceImpl implements RoleService {
 
         try {
             for (Role role : rolesList) {
-                Optional<Role> roleExists = jpaRepository.findByTitleAndCode(role.getTitle(), role.getCode());
+                if (false) {
+                    Optional<Role> roleExists = jpaRepository.findByTitleAndCode(role.getTitle(), role.getCode());
 
-                if (roleExists.isPresent()) {
-                    continue;
+                    if (roleExists.isPresent()) {
+                        continue;
+                    }
+
+                    role.setId(null);
+                    repository.saveOne(role);
                 }
-
-                role.setId(null);
-                repository.saveOne(role);
             }
         }
         catch (RoleDuplicateEntityException exception) {
