@@ -20,34 +20,21 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 	private EntityManager entityManager;
 
 	@Override
-	public List<Submission> getAllSubmissionsByPagination(Long pID, Integer pageOffset) {
+	public List<Submission> getAllSubmissionsByPagination(Long id, Integer pageOffset) {
 
-		String getAllSubmission = "SELECT sbm " + "FROM Submission sbm" + " WHERE sbm.professional = professional"
+		String getAllSubmission = "SELECT sbm " + "FROM Submission sbm" + " WHERE sbm.professional = 1"
 				+ " ORDER BY sbm.createdOn DESC";
 
-		TypedQuery<Submission> allProfessionalSubmissions = entityManager.createQuery(getAllSubmission,
+		TypedQuery<Submission> submissions = entityManager.createQuery(getAllSubmission,
 				Submission.class);
-		allProfessionalSubmissions.setParameter("professional", pID);
+		submissions.setParameter("professional", id);
 
-		allProfessionalSubmissions.setFirstResult(pageOffset - 1);
-		allProfessionalSubmissions.setMaxResults(DEFAULT_PAGE_SIZE);
+		submissions.setFirstResult(pageOffset - 1);
+		submissions.setMaxResults(DEFAULT_PAGE_SIZE);
 
-		return allProfessionalSubmissions.getResultList();
+		return submissions.getResultList();
 	}
 
-	@Override
-	public List<Submission> getallSubmissionsSortedByField(Long pId, Integer pageOffset, String field) {
-		String getAllSubmission = "SELECT sbm " + "FROM Submission sbm" + " WHERE sbm.professional = professional"
-				+ " ORDER BY sbm.jobTitle ASC";
-
-		TypedQuery<Submission> allProfessionalSubmissions = entityManager.createQuery(getAllSubmission,
-				Submission.class);
-		allProfessionalSubmissions.setParameter("professional", pId);
-
-		allProfessionalSubmissions.setFirstResult(pageOffset - 1 );
-		allProfessionalSubmissions.setMaxResults(DEFAULT_PAGE_SIZE);
-
-		return allProfessionalSubmissions.getResultList();
-	}
+	
 
 }

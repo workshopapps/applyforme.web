@@ -6,9 +6,7 @@ import com.hydraulic.applyforme.model.domain.Submission;
 
 public interface JobSubmissionService {
 	
-	List<Submission> getAllSubmissionsByPagination(Long pId, Integer pageOffset);
-
-	List<Submission> getallSubmissionsSortedByField(Long pId, Integer pageOffset, String field);
+	public List<Submission> getAllSubmissionsByPagination(Long id, Integer pageOffset);
 
     public Long countAllSubmissions(Long Id);
 }

@@ -1,58 +1,29 @@
 package com.hydraulic.applyforme.service.impl;
-
+	
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.hydraulic.applyforme.model.domain.Submission;
-import com.hydraulic.applyforme.repository.JobSubmissionRepository;
-import com.hydraulic.applyforme.service.JobSubmissionService;
-
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@Service
-public class JobSubmissionServiceImpl implements JobSubmissionService{
-	
-	private final JobSubmissionRepository repository;
-	
-	public JobSubmissionServiceImpl(JobSubmissionRepository jobSubmissionRepository) {
-		this.repository = jobSubmissionRepository;
-	}
-
-	@Override
-	public List<Submission> getAllSubmissionsByPagination(Long pId, Integer pageOffset) {
-				
-		return repository.getAllSubmissionsByPagination(pId, pageOffset);
-	}
-
-	@Override
-	public List<Submission> getallSubmissionsSortedByField(Long pId, Integer pageOffset, String field) {
-		
-		return repository.getallSubmissionsSortedByField(pId, pageOffset, field);
-	}
-	
-	
 import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
 import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class JobSubmissionServiceImpl implements JobSubmissionService {
 
     private final ApplierRepository applierRepository;
     private final JobSubmissionRepository repository;
+    private final com.hydraulic.applyforme.repository.JobSubmissionRepository repo;
 
-    public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository) {
+    public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository, 
+    		com.hydraulic.applyforme.repository.JobSubmissionRepository repo) {
         this.applierRepository = applierRepository;
         this.repository = repository;
+        this.repo = repo;
     }
 
     @Override
@@ -68,4 +39,10 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
         }
         return 0L;
     }
+
+	@Override
+	public List<Submission> getAllSubmissionsByPagination(Long id, Integer pageOffset) {
+		
+		return repo.getAllSubmissionsByPagination(id, pageOffset);
+	}
 }
