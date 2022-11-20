@@ -21,12 +21,19 @@ import Signs from "./pages/blog/pages/signs/Signs";
 import Resume from "./pages/blog/pages/resume/Resume";
 import Brand from "./pages/blog/pages/brand/Brand";
 import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
+import Welcome2 from "./pages/authentication-pages/Welcome2";
+import Registration from "./pages/authentication-pages/Registration";
+import Welcome1 from "./pages/authentication-pages/Welcome1";
+import Verification from "./pages/authentication-pages/Verification";
+import Password from "./pages/authentication-pages/Password";
+import NewPass from "./pages/authentication-pages/NewPass";
+import Button from "./pages/authentication-pages/components/Elements/Button";
 
 function App() {
     return (
         <>
             <Routes>
-                <Route exact path="/" element={<LandingPage />} />
+                <Route exact path="/b" element={<LandingPage />} />
                 <Route exact path="/about" element={<AboutUs />} />
                 <Route exact path="/faqs" element={<FAQs />} />
                 <Route exact path="/contact" element={<ContactUs />} />
@@ -54,7 +61,15 @@ function App() {
                     <Route path="/dashboard/" element={<DashboardNothing />} />
                 </Route>
 
-                <Route path="*" element={<Error />} />
+                <Route exact path='/' element={<Welcome1/>}/>
+                <Route exact path='/reg' element={<Registration/>}/>
+                <Route exact path='/wel2' element={<Welcome2/>}/>
+                <Route exact path='/pass' element={<Password/>}/>
+                <Route exact path='/veri' element={<Verification/>}/>     
+                <Route exact path='/nwpass' element={<NewPass/>}/> 
+                <Route exact path='/nwpass' element={<Button/>}/>   
+
+                <Route path="/b" element={<Error />} />
             </Routes>
         </>
     );
