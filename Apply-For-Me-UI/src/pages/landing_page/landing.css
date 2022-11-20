@@ -24,159 +24,405 @@ html {
     font-family: "Outfit", sans-serif;
 }
 
-h5 {
-    color: var(--dark-blue);
-}
-main {
-    width: 100vw;
-    padding-top: 1.7rem;
-    padding-bottom: 2rem;
-    border-top: 1px solid #140f31;
-}
-
-.hero_container_wrapper {
+.container {
     width: 90%;
     max-width: 1400px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    padding-top: 20px;
-    margin-bottom: 20px;
 }
 
-/* .grid_box {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin: auto;
-    padding-top: 64px;
-    justify-items: center;
-    column-gap: 32px;
-    max-width: 1280px;
-} */
+h1 {
+    font-size: 72px;
+    color: var(--secondary-color);
+}
 
-.hero_left_wrapper {
-    width: 100%;
+/* ==============Hero Section=============== */
+section {
+    border-top: 1px solid #140f31;
+    padding-top: 60px;
+    padding-bottom: 120px;
+}
+
+.hero-section .container {
     display: flex;
-    flex-direction: column;
-    justify-items: start;
-    padding: 32px 8px;
+    justify-content: space-between;
 }
 
 .text-box {
     width: 592px;
 }
-
-.hero_heading_text {
-    padding-top: 12px;
-    font-weight: 400;
-    line-height: 120%;
+.text-box h1 {
+    font-family: "Outfit";
     font-style: normal;
-    font-family: Outfit;
-    color: #202065;
+    font-weight: 400;
     font-size: 72px;
+    line-height: 120%;
+    color: #202065;
 }
 
-.hero_parag_text {
+.text-box p {
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 400;
     font-size: 16px;
-    margin-bottom: 56px;
+    line-height: 150%;
+
     color: #52515b;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .upload-box {
     width: 479px;
+    min-height: 171px;
+    display: flex;
+
+    justify-items: center;
+    align-items: center;
+    background: #ffffff;
+
     border: 1px solid #999999;
     border-radius: 8px;
-    display: flex;
+    margin-top: 50px;
+    text-align: center;
     flex-direction: column;
-    justify-content: center;
-    padding: 32px 37px;
-    gap: 10px;
-    background: #fff;
-    border-radius: 8px;
 }
 
+.upload-btn {
+    display: none;
+}
 .upload-box_img {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-top: 40px;
 }
 
-.hero-img-wrapper {
-    width: 585.65px;
+.span-text {
+    color: #2a73d5;
+    margin-left: 10px;
 }
 
-/* ==============================Features===section=============== */
+/* ==============================Features====Section================ */
 
-.features {
-    border-top: 1px solid #140f31;
-    padding-top: 1.7rem;
-    padding-bottom: 2rem;
-}
-
-.feature-section-container {
-    width: 90%;
-    max-width: 1400px;
-    margin: 0 auto;
-
-    padding-top: 20px;
-    margin-bottom: 20px;
-}
-
-.card-container {
+.grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 48px;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
 }
 
-.card-one {
-    display: flex;
-    flex-direction: column;
-}
-
-.check-wrapper {
+.checkbox {
     width: 40px;
     height: 40px;
+    border-radius: 100%;
 }
 
-.check-img {
+.checkbox img {
     width: 100%;
     height: 100%;
+    border-radius: 100%;
 }
 
-.card-one h5 {
+.card h5 {
+    font-weight: 500;
     font-size: 28px;
-    margin-top: 14px;
+    line-height: 120%;
+    color: #171646;
+    margin-top: 15px;
 }
 
-.card-one p {
+.card p {
+    font-style: normal;
+    font-weight: 400;
     font-size: 16px;
-    color: var(--color-gray);
-    margin-top: 16px;
+    line-height: 150%;
+
+    color: #52515b;
+    margin-top: 15px;
+}
+
+/* =============================Pricing=======Section====================== */
+
+.pricing-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-section_text-box p {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 125%;
+
+    color: #52515b;
+}
+
+.price-section_text-box h5 {
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 120%;
+
+    color: #202065;
+}
+
+.prices {
+    display: flex;
+    justify-content: space-between;
+}
+.view-all {
+    background: #2e3192;
+    border-radius: 8px;
+    padding: 16px 32px;
+    width: 240px;
+    height: 56px;
+    color: white;
+    margin-top: 20px;
+}
+.plans-wrapper {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.plans {
+    display: flex;
+    column-gap: 30px;
+    padding-top: 20px;
+}
+
+.plans img {
+    width: 20px;
+}
+
+.plans p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+
+    color: #020313;
+}
+
+.request {
+    width: 661px;
+}
+
+.plans h6 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 140%;
+
+    color: #171b1d;
+}
+
+.price-card {
+    width: 387px;
+    height: 548px;
+    border: 4px solid #5052a5;
+    border-radius: 8px;
+    padding: 40px;
+}
+
+.plans-price p {
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 120%;
+
+    text-align: center;
+
+    color: #140f31;
+}
+
+.plans-price {
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 120%;
+    color: #2e3192;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.plans-price .small {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 120%;
+    color: #140f31;
+}
+.start-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 32px;
+    gap: 8px;
+    color: white;
+    cursor: pointer;
+
+    background: #2e3192;
+    border-radius: 8px;
+    margin-top: 60px;
+}
+
+/* ==================================Testimonial==================================== */
+
+.testimonial-leading-box {
+    width: 560px;
+}
+
+.testimonial-leading-box p {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 125%;
+
+    color: #52515b;
+}
+
+.testimonial-leading-box h5 {
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 120%;
+
+    color: #202065;
+}
+
+.testimonial-card-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 90px;
+    gap: 40px;
+}
+
+.card p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+
+    color: #1b1b1b;
+}
+
+.user-box {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+}
+.user-img-box {
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+}
+
+.user-img-box img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.user-info small {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+
+    letter-spacing: 0.03em;
+
+    color: #7b7b7b;
+}
+
+.user-info p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+
+    color: #b4b4b4;
+}
+
+/* =================================Faq========================== */
+.faq-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.faq-leading-box {
+    width: 500px;
+}
+
+.faq-leading-box h2 {
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 120%;
+
+    color: #202065;
+    margin-bottom: 30px;
+}
+.contact-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 32px;
+    gap: 8px;
+
+    width: 200px;
+    height: 48px;
+    color: white;
+    outline: none;
+    border: none;
+
+    background: #2e3192;
+    border-radius: 8px;
+}
+
+.faq-leading-box p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    margin-bottom: 25px;
+
+    color: #1b1b1b;
+}
+
+.answer {
+    display: flex;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #1b1b1b;
+    align-items: center;
+    padding: 20px 0px;
+    gap: 12px;
+
+    width: 620px;
+    height: 72px;
+}
+
+.answer-one {
+    border-top: 1px solid #1b1b1b;
+}
+
+.answer p {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+
+    letter-spacing: 0.03em;
+
+    color: #52515b;
 }
 
 @media screen and (max-width: 768px) {
-    .hero_container_wrapper {
+    .hero-section .container {
         flex-direction: column;
-        justify-content: center;
+        align-items: center;
     }
 
     .text-box {
-        width: 100%;
+        width: 314px;
+        text-align: start;
     }
-
-    .hero_heading_text {
-        padding-top: 12px;
+    .text-box h1 {
         font-weight: 400;
-        line-height: 48px;
-        font-style: normal;
-        font-family: Outfit;
-        color: #202065;
         font-size: 40px;
+        line-height: 48px;
     }
-
-    .hero_parag_text {
+    .text-box p {
         font-size: 14px;
-
         line-height: 21px;
     }
 
@@ -184,53 +430,330 @@ main {
         display: none;
     }
 
-    .hero-img-wrapper {
-        width: 318px;
+    .hero-img {
+        width: 326.75px;
+        margin-top: 30px;
     }
 
-    .hero-img {
+    .hero-img img {
         width: 100%;
     }
 
-    /* -=======================Features===Section=================== */
-    .feature-section-container {
-        width: 90%;
-        max-width: 1400px;
-        margin: 0 auto;
-
-        padding-top: 20px;
-        margin-bottom: 20px;
+    .upload-btn {
+        padding: 16px 32px;
+        background: #2e3192;
+        border-radius: 8px;
+        display: block;
+        color: white;
     }
 
-    .card-container {
+    /* ==============================Features====Section================ */
+
+    .grid-wrapper {
         display: grid;
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-        gap: 48px;
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: 30px;
     }
 
-    .card-one {
-        display: flex;
+    .checkbox {
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+    }
+
+    .checkbox img {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+    }
+
+    .card h5 {
+        font-size: 20px;
+        line-height: 150%;
+    }
+
+    .card p {
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 150%;
+    }
+
+    /* ========================Pricing Section======================== */
+    .prices {
+        display: block;
         flex-direction: column;
     }
 
-    .check-wrapper {
-        width: 20px;
-        height: 20px;
+    .price-section_text-box p {
+        font-weight: 400;
+        font-size: 9px;
+        line-height: 125%;
     }
 
-    .check-img {
-        width: 100%;
-        height: 100%;
+    .price-section_text-box h5 {
+        font-size: 32px;
+        line-height: 150%;
     }
 
-    .card-one h5 {
-        font-size: 20px;
-        margin-top: 14px;
+    .view-all {
+        width: 115px;
+        height: 37px;
+        padding: 16px 32px;
+        gap: 8px;
+        font-size: 12px;
+        line-height: 150%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
 
-    .card-one p {
+    .plans p {
+        font-weight: 400;
         font-size: 14px;
-        color: var(--color-gray);
-        margin-top: 16px;
+        line-height: 21px;
+
+        color: #020313;
+    }
+
+    .request {
+        width: 661px;
+    }
+
+    .plans h6 {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+
+        color: #171b1d;
+    }
+
+    .plans-price p {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 120%;
+
+        text-align: center;
+
+        color: #140f31;
+    }
+
+    .plans-price {
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 120%;
+        color: #2e3192;
+        border-bottom: 1px solid #cccccc;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .plans-price .small {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 120%;
+        color: #140f31;
+    }
+
+    .price-card {
+        width: 319px;
+        margin-top: 50px;
+    }
+
+    /* =========================Testimonial Section==================== */
+
+    /* =================================Faq========================== */
+    .faq-flex {
+        flex-direction: column;
+    }
+
+    .faq-leading-box {
+        width: 328px;
+        margin-bottom: 30px;
+    }
+
+    .faq-leading-box h2 {
+        font-size: 24px;
+        line-height: 150%;
+    }
+    .contact-btn {
+        padding: 16px 32px;
+        gap: 8px;
+
+        width: 160px;
+        height: 37px;
+
+        background: rgba(196, 213, 238, 0.2);
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 150%;
+
+        color: #2e3192;
+    }
+
+    .faq-leading-box p {
+        font-size: 14px;
+        line-height: 150%;
+    }
+
+    .answer {
+        width: 328px;
+        height: 65px;
+    }
+
+    .answer-one {
+        border-top: 1px solid #1b1b1b;
+    }
+
+    .answer p {
+        font-size: 14px;
+        line-height: 150%;
+    }
+
+    .answer img {
+        width: 12px;
     }
 }
+
+@media screen and (max-width: 583px) {
+    .hero-section .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text-box {
+        width: 314px;
+        text-align: start;
+    }
+    .text-box h1 {
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 48px;
+    }
+    .text-box p {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .upload-box {
+        display: none;
+    }
+
+    .hero-img {
+        width: 326.75px;
+        margin-top: 30px;
+    }
+
+    .hero-img img {
+        width: 100%;
+    }
+
+    .upload-btn {
+        padding: 16px 32px;
+        background: #2e3192;
+        border-radius: 8px;
+        display: block;
+        color: white;
+    }
+
+    .testimonial-leading-box {
+        width: 256px;
+    }
+
+    .testimonial-leading-box p {
+        font-size: 14px;
+        line-height: 150%;
+    }
+
+    .testimonial-leading-box h5 {
+        font-size: 24px;
+        line-height: 120%;
+    }
+
+    .testimonial-card-box {
+        flex-direction: column;
+        margin-top: 90px;
+        gap: 40px;
+    }
+
+    .card p {
+        font-size: 14px;
+        line-height: 150%;
+    }
+
+    .user-box {
+        display: flex;
+        column-gap: 10px;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .user-img-box {
+        width: 32px;
+        height: 32px;
+    }
+
+    .user-img-box img {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+    }
+
+    .user-info small {
+        font-size: 14px;
+    }
+
+    .user-info p {
+        font-size: 12px;
+    }
+}
+
+/* @media screen and (max-width: 768px) {
+    .text-box h1 {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 48px;
+    }
+
+    .hero-section .container {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .text-box {
+        width: 412px;
+        text-align: start;
+    }
+    .text-box h1 {
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 48px;
+    }
+    .text-box p {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .upload-box {
+        display: none;
+    }
+
+    .hero-img {
+        width: 326.75px;
+        margin-top: 30px;
+    }
+
+    .hero-img img {
+        width: 100%;
+    }
+
+    .upload-btn {
+        padding: 16px 32px;
+        background: #2e3192;
+        border-radius: 8px;
+        display: block;
+        color: white;
+    }
+
+    .upload-btn {
+        display: none;
+    }
+} */
