@@ -24,7 +24,7 @@ public class SuperAdminController {
     }
 
     @GetMapping("/detail/{id}")
-    public Member findOne(@PathVariable(value="id") Long id) {
+    public Member  getOneMember(@PathVariable(value="id") Long id) {
         return service.getDetailsById(id);
     }
 }

@@ -15,7 +15,7 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
     private EntityManager entityManager;
 
     @Override
-    public Member getOne(Long id) {
+    public Member  getOneMember(Long id) {
         return entityManager.find(Member.class, id);
     }
 }
