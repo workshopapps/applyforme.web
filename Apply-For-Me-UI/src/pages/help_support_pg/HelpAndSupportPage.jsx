@@ -1,8 +1,10 @@
 import React from 'react'
+import { Route, Routes } from 'react-router'
 import BlueButton from '../../components/buttons/blue_background/BlueButton'
 import Card from '../../components/card/Card'
 import Footer from '../../components/footer/Footer'
 import Nav from '../../components/nav/Nav'
+import HowAfmWorks from '../afmworks/HowAfmWorks'
 import classes from './Help.module.css'
 
 const HelpAndSupportPage = () => {
@@ -29,7 +31,7 @@ const HelpAndSupportPage = () => {
                              a package that suits your needs.
                               Reach us to us @ applyforme@xxxxxxx.
                             "
-                            link="/howafmworks"
+                            link="/needHelp"
                     />
                     <Card header="Careers"
                             para=" Interested in working with us at ApplyForMe?
@@ -68,6 +70,10 @@ const HelpAndSupportPage = () => {
                 </div> 
             </div>
         <Footer /> 
+        <Routes> 
+        <Route path="/howafmworks" element={<HowAfmWorks />}/>
+                
+        </Routes>
     </>
   )
 }
