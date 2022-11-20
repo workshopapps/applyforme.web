@@ -67,6 +67,7 @@ public class MemberServiceImpl implements MemberService {
         return repository.save(member);
     }
 
+    
     //sign-in logic
     @Override
     public UserDetails loadMemberByUsername(String username) throws UsernameNotFoundException {
