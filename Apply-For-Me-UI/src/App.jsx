@@ -21,6 +21,7 @@ import Signs from "./pages/blog/pages/signs/Signs";
 import Resume from "./pages/blog/pages/resume/Resume";
 import Brand from "./pages/blog/pages/brand/Brand";
 import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
+import AdminProfile from "./pages/admin_profile/AdminProfile";
 
 function App() {
     return (
@@ -51,6 +52,7 @@ function App() {
                 <Route exact path="blog/brand" element={<Brand />} />
                 <Route exact path="blog/endorsment" element={<Endorsment />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
+                    <Route path="profile" element={<AdminProfile />} />
                     <Route path="/dashboard/" element={<DashboardNothing />} />
                 </Route>
 
