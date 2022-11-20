@@ -30,7 +30,6 @@ public class ProfessionalProfileController {
 
     @PostMapping("/add-professional-profile")
     public ProfessionalProfile saveProfile(@Validated @RequestBody ProfessionalProfileDto professionalProfileDto){
-        return service.createProfile(professionalProfileDto);
+        return service.createProfessionalProfile(professionalProfileDto);
     }
-
 }
