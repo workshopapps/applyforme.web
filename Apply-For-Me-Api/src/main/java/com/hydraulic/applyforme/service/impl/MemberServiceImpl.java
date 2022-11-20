@@ -10,13 +10,21 @@ import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
 import com.hydraulic.applyforme.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -57,5 +65,23 @@ public class MemberServiceImpl implements MemberService {
         member.setPassword(passwordEncoder.encode(body.getPassword()));
         member.addRole(existingRole.get());
         return repository.save(member);
+    }
+
+    //sign-in logic
+    @Override
+    public UserDetails loadMemberByUsername(String username) throws UsernameNotFoundException {
+
+        Member member = repository.findByEmail(username);   //retrieve member object
+        if(member == null){
+            throw new UsernameNotFoundException("Invalid email address or password.");
+        }
+
+        //use user class from spring security
+        return new org.springframework.security.core.userdetails.User(member.getEmailAddress(), member.getPassword(), mapRolesToAuthorities(member.getRoles()));
+    }
+
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getTitle())).collect(Collectors.toList());
+
     }
 }
