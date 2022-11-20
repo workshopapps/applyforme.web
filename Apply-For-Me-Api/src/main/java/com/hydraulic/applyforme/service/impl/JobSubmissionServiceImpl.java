@@ -55,7 +55,6 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
         submissionResponse.setTotalElements(submission.getTotalElements());
         submissionResponse.setTotalPages(submission.getTotalPages());
         submissionResponse.setLast(submission.isLast());
-
         return submissionResponse;
     }
 }
