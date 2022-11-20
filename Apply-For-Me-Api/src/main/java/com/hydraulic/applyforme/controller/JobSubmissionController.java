@@ -24,7 +24,7 @@ public class JobSubmissionController {
     }
 
     @GetMapping("/job_submission")
-    public SubmissionResponse getAllPosts(
+    public  SubmissionResponse getAllPosts(
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
             @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
