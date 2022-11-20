@@ -28,7 +28,7 @@ const DashboardSidebar = () => {
         <section className={classes.sidebar_container}>
             <ul>
                 <li>
-                    <img src={Logo} alt="Footer logo" />
+                    <img src={Logo} alt="Footer logo" className={classes.logo}/>
                 </li>
                 <li
                     className={activeLink.dashboard ? classes.__active : ""}
@@ -44,7 +44,7 @@ const DashboardSidebar = () => {
                     onClick={() => handleAciveLink("profile")}
                 >
                     {" "}
-                    <Link to="profile">
+                    <Link to="#">
                         <img src={ProfileIcon} alt="ProfileIcon icon" />
                         <p>Profile</p>
                     </Link>
@@ -54,7 +54,7 @@ const DashboardSidebar = () => {
                     onClick={() => handleAciveLink("application")}
                 >
                     {" "}
-                    <Link to="application">
+                    <Link to="#">
                         <img src={BriefCaseIcon} alt="BriefCase icon" />
                         <p>Applications</p>
                     </Link>
@@ -63,7 +63,7 @@ const DashboardSidebar = () => {
                     className={activeLink.users ? classes.__active : ""}
                     onClick={() => handleAciveLink("users")}
                 >
-                    <Link to="users">
+                    <Link to="#">
                         <img src={UsersIcon} alt="BriefCase icon" />
                         <p>Users</p>
                     </Link>
@@ -72,7 +72,7 @@ const DashboardSidebar = () => {
                     className={activeLink.messages ? classes.__active : ""}
                     onClick={() => handleAciveLink("messages")}
                 >
-                    <Link to="messages">
+                    <Link to="#">
                         <img src={MessageIcon} alt="Message icon" />
                         <p>Messages</p>
                     </Link>
@@ -84,7 +84,7 @@ const DashboardSidebar = () => {
                     className={activeLink.help ? classes.__active : ""}
                     onClick={() => handleAciveLink("help")}
                 >
-                    <Link to="help">
+                    <Link to="#">
                         <img src={HelpIcon} alt="Help icon" />
                         <p>Help</p>
                     </Link>
