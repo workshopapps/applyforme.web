@@ -12,14 +12,40 @@ const AccountSettings = () => {
         preference: false,
     });
 
-    const handleAciveLink = () => {
-        setActiveLink(() => document.getElementById("password"));
+    const handleAciveLink = (e) => {
+        e.preventDefault();
+        let profile = false;
+        let password = false;
+        let preference = false;
+        let profile_div = "none";
+        let password_div = "none";
+        let preference_div = "none";
+        let id = e.target.getAttribute('id');
+        console.log(id);
+        if (id == "profile_btn") {
+            profile = true;
+            profile_div = "block";
+        } else if (id == "password_btn") {
+            password = true;
+            password_div = "block";
+        } else if (id == "preference_btn") {
+            preference = true;
+            preference_div = "block";
+        } else {
+            profile = true;
+            profile_div = "block";
+        }
+
+        setActiveLink({ profile, password, preference });
+        document.getElementById("profile_div").style.display = profile_div
+        document.getElementById("password_div").style.display = password_div
+        document.getElementById("preference_div").style.display = preference_div
     };
 
     return (
         <div className={classes.account_settings_container}>
-            <div >
-                <DashboardSidebar/>
+            <div className={classes.sidebar_container}>
+                <DashboardSidebar />
             </div>
 
             <div className={classes.body_container}>
@@ -29,12 +55,15 @@ const AccountSettings = () => {
                     <div className={classes.second_sidenav}>
                         <ul>
                             <li
+                                id='profile_btn'
                                 className={activeLink.profile ? classes.active : ""}
                                 onClick={handleAciveLink}
                             >
                                 Profile
                             </li>
                             <li
+                                id='password_btn'
+                                onClick={handleAciveLink}
                                 className={activeLink.password ? classes.active : ""}
                             >
                                 Password
@@ -42,6 +71,8 @@ const AccountSettings = () => {
                             <li>Membership Status</li>
 
                             <li
+                                onClick={handleAciveLink}
+                                id='preference_btn'
                                 className={activeLink.preference ? classes.active : ""}
                             >
                                 Account Preference
@@ -50,7 +81,7 @@ const AccountSettings = () => {
                     </div>
 
                     <form>
-                        <div id={classes.profile}>
+                        <div id="profile_div" style={{ display: "block" }}>
                             <h3>Personal Information</h3>
                             <div className={classes.change_image}>
                                 <div className={classes.image}>
@@ -119,7 +150,7 @@ const AccountSettings = () => {
                             </div>
                         </div>
 
-                        <div id={classes.passwordContent}>
+                        <div id="password_div" style={{ display: "none" }}>
                             <h3>Password page</h3>
 
                             <div className={classes.input_fields}>
@@ -143,19 +174,18 @@ const AccountSettings = () => {
                                 </div>
                             </div>
                         </div>
+
+                        <div id="preference_div" style={{ display: "none" }}>
+                            <div>
+                                <h3>Notification</h3>
+                                <p>Manage the kind of notification you get about your activities,interest and recommendations</p>
+                            </div>
+
+                            <div>
+
+                            </div>
+                        </div>
                     </form>
-
-                    <div id={classes.preference}>
-                        <div>
-                            <h3>Notification</h3>
-                            <p>Manage the kind of notification you get about your activities,interest and recommendations</p>
-                        </div>
-
-                        <div>
-
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
