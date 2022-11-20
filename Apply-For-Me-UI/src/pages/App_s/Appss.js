@@ -23,6 +23,7 @@ import Edit from "./img/filled/editor/Vector.svg";
 const Appss = () => {
   return (
     <div className="Reverse">
+        {/* NAVBAR */}
     <div className="Nav-App">
       <div>
         <img src={Afm} alt="" />
@@ -32,6 +33,33 @@ const Appss = () => {
         <img src={Profile} alt="" />
       </div>
     </div>
+     {/* SIDE NAVBAR */}
+    <div className="leftBar">
+        <div className="lefT">
+          <img src={Dash} alt="" />
+          <h2>Dashboard</h2>
+        </div>
+        <div className="lefT">
+          <img src={Job} alt="" />
+          <h2>My Job Profile</h2>
+        </div>
+        <div className="lefT">
+          <img src={Apps} alt="" />
+          <h2>Applications</h2>
+        </div>
+        <div className="chatS" onClick={Handle}>
+          <img src={Chat} alt="" />
+          <h2>Chat</h2>
+        </div>
+        <div className="lefT" id="left">
+          <img src={Help} alt="" />
+          <h2>Help</h2>
+        </div>
+        <div className="lefT" id="left1">
+          <img src={Logout} alt="" />
+          <h2>Signout</h2>
+        </div>
+      </div>
     </div>
   )
 }
