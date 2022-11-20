@@ -1,0 +1,84 @@
+.container {
+    width: 90%;
+    margin: 1rem auto 0;
+    text-align: center;
+    position: relative;
+}
+
+.heading {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 120%;
+    /* or 77px */
+    position: relative;
+
+    color: #2E3192;
+}
+
+.heading3 {
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 150%;
+    /* or 36px */
+
+    text-align: center;
+    letter-spacing: 0.03em;
+
+    color: #433E3E;
+}
+
+.text {
+    font-weight: 400;
+    font-size: .75rem;
+    line-height: 1.5;
+    margin: 1rem 0;
+    color: #433E3E;
+}
+
+.link {
+    display: block;
+    margin-top: 1rem;
+    background-color: #2E3192;
+    border-radius: 8px;
+    width: 60%;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    gap: 0.5rem;
+    color: #FBFBFF;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+
+@media screen and (min-width:48rem) {
+    .heading {
+        font-size: 6rem;
+        line-height: 110%;
+    }
+
+    .heading3 {
+        margin-top: 1rem;
+    }
+
+    .link {
+        width: 40%;
+    }
+}
+
+
+@media screen and (min-width:64rem) {
+    .container {
+        margin-top: 1.5rem;
+    }
+
+    .heading {
+        font-size: 16rem;
+
+    }
+
+    .link {
+        width: 15%;
+    }
+}

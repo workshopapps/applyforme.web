@@ -1,0 +1,65 @@
+.heading {
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 150%;
+    /* identical to box height, or 1.5rem */
+
+    letter-spacing: 0.03em;
+
+    color: #FFFFFF;
+}
+
+.paragraph {
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 125%;
+    padding-top: 1rem;
+    color: #FFFFFF;
+}
+
+.link {
+    text-decoration: none;
+    color: #171646;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+
+}
+
+.accept {
+    background-color: #171646;
+    color: #FBFBFF;
+    width: 40%;
+    padding: 16px 48px;
+    border-radius: .3125rem;
+}
+
+@media screen and (min-width:768px) {
+
+    .wrapper {
+        flex-direction: row;
+        justify-content: flex-end;
+        padding-right: 2rem;
+    }
+}
+
+@media screen and (min-width:64rem) {
+    .heading {
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    .paragraph {
+        font-size: 1rem;
+        line-height: 180%;
+    }
+
+    .pageContent {
+        padding: 0.2rem 5rem 0;
+    }
+}
