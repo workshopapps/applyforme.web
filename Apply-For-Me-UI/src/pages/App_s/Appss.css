@@ -1,0 +1,19 @@
+.Reverse {
+    position: relative;
+  }
+  .Liner {
+    display: none;
+  }
+  .Nav-App {
+    background-color: #2e3192;
+    box-shadow: 0px 4px 4px rgba(241, 120, 182, 0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 27px 47px;
+  }
+  .BellP {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }

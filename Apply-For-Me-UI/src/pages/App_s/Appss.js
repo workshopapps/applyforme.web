@@ -22,7 +22,17 @@ import Edit from "./img/filled/editor/Vector.svg";
 
 const Appss = () => {
   return (
-    <div>Appss</div>
+    <div className="Reverse">
+    <div className="Nav-App">
+      <div>
+        <img src={Afm} alt="" />
+      </div>
+      <div className="BellP">
+        <img src={Bell} alt="" />
+        <img src={Profile} alt="" />
+      </div>
+    </div>
+    </div>
   )
 }
 
