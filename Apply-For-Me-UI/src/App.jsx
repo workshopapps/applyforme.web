@@ -33,7 +33,7 @@ function App() {
     return (
         <>
             <Routes>
-                <Route exact path="/b" element={<LandingPage />} />
+                <Route exact path="/" element={<LandingPage />} />
                 <Route exact path="/about" element={<AboutUs />} />
                 <Route exact path="/faqs" element={<FAQs />} />
                 <Route exact path="/contact" element={<ContactUs />} />
@@ -61,7 +61,7 @@ function App() {
                     <Route path="/dashboard/" element={<DashboardNothing />} />
                 </Route>
 
-                <Route exact path='/' element={<Welcome1/>}/>
+                <Route exact path='/wel1' element={<Welcome1/>}/>
                 <Route exact path='/reg' element={<Registration/>}/>
                 <Route exact path='/wel2' element={<Welcome2/>}/>
                 <Route exact path='/pass' element={<Password/>}/>
@@ -69,7 +69,7 @@ function App() {
                 <Route exact path='/nwpass' element={<NewPass/>}/> 
                 <Route exact path='/nwpass' element={<Button/>}/>   
 
-                <Route path="/b" element={<Error />} />
+                <Route path="*" element={<Error />} />
             </Routes>
         </>
     );
