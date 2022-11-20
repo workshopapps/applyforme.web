@@ -6,9 +6,11 @@ const LearnMore = () => {
     return (
         <div className={classes.learn_container}>
             <div className={classes.learn_content}>
-                <h2>With just these few steps, we put you out there</h2>
-
-                <button>Learn More</button>
+                <div className={classes.top}>
+                    <span className={classes.subheading}>How it works</span>
+                    <h2>With just these few steps, we put you out there</h2>
+                    <button>Learn More</button>
+                </div>
 
                 <img src={content} alt="" />
 

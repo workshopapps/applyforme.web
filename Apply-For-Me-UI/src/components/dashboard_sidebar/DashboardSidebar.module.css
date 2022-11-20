@@ -1,12 +1,13 @@
 .sidebar_container {
     background: #2e3192;
     border-right: 0.5px solid #2e3192;
-    padding: 3rem 1.8rem;
+    padding: 3rem 1.2rem;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 9rem;
+    height: 100%;
 }
 
 .sidebar_container ul {
@@ -24,6 +25,7 @@
     font-weight: 300;
     cursor: pointer;
     display: flex;
+    font-size: .9rem;
     flex-direction: column;
     align-items: center;
     gap: 0.4rem;
