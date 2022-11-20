@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="apply_for_me@team-hydraulic-db-instance.cgdork8k663r.us-east-1.rds.amazonaws.com" uuid="27eea4cb-1588-4988-a074-0f4ab807cf45">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://team-hydraulic-db-instance.cgdork8k663r.us-east-1.rds.amazonaws.com:3306/apply_for_me</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
