@@ -21,7 +21,7 @@ const Welcome2 = () => {
                 <Inputbox type="password" name="pass" id="pass" place="Password"/>
                 <Link to='/pass' className='forgot'>Forgot Password</Link>
             </div>
-            <Link to='/' className='lg'> <Button child="Sign In"/></Link>
+            <Link to='/wel1' className='lg'> <Button child="Sign In"/></Link>
             <span className='ques'>Don't have an account? <Link to='/' className='special'> Sign Up</Link></span>
             <Footer/>
         </div>
