@@ -58,7 +58,8 @@
 .body_container .second_sidenav {
     width: 20%;
     border-right: 0.5px solid #c6bdbd;
-    height: inherit;
+    height: 100%;
+    min-height: 100vh;
 }
 
 .second_sidenav ul {
@@ -153,9 +154,6 @@ form .input_fields .row input {
     cursor: pointer;
 }
 
-#preference{
-    display: none;
-}
 
 @media (max-width: 650px) {
     .sidebar_container{
