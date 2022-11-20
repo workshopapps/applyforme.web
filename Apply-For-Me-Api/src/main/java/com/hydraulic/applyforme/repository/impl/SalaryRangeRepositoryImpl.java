@@ -1,7 +1,6 @@
 package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.SalaryRange;
-import com.hydraulic.applyforme.model.domain.SalaryRange;
 import com.hydraulic.applyforme.model.exception.SalaryRangeDuplicateEntityException;
 import com.hydraulic.applyforme.repository.SalaryRangeRepository;
 import org.springframework.stereotype.Repository;
@@ -43,8 +42,7 @@ public class SalaryRangeRepositoryImpl implements SalaryRangeRepository {
         try {
             entityManager.persist(body);
             return body;
-        }
-        catch (EntityExistsException ex) {
+        } catch (EntityExistsException ex) {
             throw new SalaryRangeDuplicateEntityException();
         }
     }
@@ -60,8 +58,7 @@ public class SalaryRangeRepositoryImpl implements SalaryRangeRepository {
             SalaryRange applyForMe = entityManager.getReference(SalaryRange.class, id);
             entityManager.remove(applyForMe);
             return true;
-        }
-        catch (EntityNotFoundException ex) {
+        } catch (EntityNotFoundException ex) {
             return false;
         }
     }
@@ -72,8 +69,7 @@ public class SalaryRangeRepositoryImpl implements SalaryRangeRepository {
         query.setParameter("ids", ids);
         if (query.executeUpdate() > 0) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -83,9 +79,9 @@ public class SalaryRangeRepositoryImpl implements SalaryRangeRepository {
         Query query = entityManager.createQuery("delete from SalaryRange");
         if (query.executeUpdate() > 0) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 }
+
