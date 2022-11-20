@@ -1,0 +1,129 @@
+.career-nav-fixed {
+    position: fixed;
+    width: 100%;
+}
+
+.career-nav-wrapper {
+    align-items: center;
+    background-color: #f7f7f8;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 7.25rem;
+    position: relative;
+}
+
+.career-logo > img {
+    width: 80%;
+}
+
+.career-nav-wrapper ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.career-nav-wrapper li {
+    padding: 1.25rem;
+}
+
+.career-nav-links {
+    display: flex;
+}
+
+.career-nav-wrapper a {
+    color: #52515b;
+    text-decoration: none;
+}
+
+.career-buttons.mobile {
+    display: none;
+}
+
+.career-buttons > button {
+    border: none;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    margin: 0 0.75rem;
+    padding: 1rem 1.7rem;
+}
+
+.career-signin-button {
+    background-color: rgba(196, 213, 238, 0.2);
+    color: #2e3192;
+}
+
+.career-buttons .career-get-started-button {
+    background-color: #2e3192;
+    color: #fbfbff;
+    margin-right: 0;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media screen and (max-width: 1108px) {
+    .career-nav-wrapper {
+        padding: 1.25rem 2.5rem;
+    }
+
+    .career-logo > img {
+        width: 65%;
+    }
+
+    .career-nav-links {
+        background-color: #f7f7f8;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        top: 5rem;
+        width: 100%;
+    }
+
+    .career-nav-wrapper ul {
+        flex-direction: column;
+        margin: 2.25rem 2.5rem;
+        width: 100%;
+    }
+
+    .career-nav-wrapper li {
+        padding: 1rem 0;
+        border-bottom: 0.5px solid #b5b5b5;
+    }
+
+    .career-buttons.desktop {
+        display: none;
+    }
+
+    .career-buttons > button {
+        margin: 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .career-buttons.mobile {
+        display: flex;
+        flex-direction: column;
+        margin: 4rem 2.5rem 2rem;
+        row-gap: 1.7rem;
+    }
+
+    .display-none {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .career-nav-wrapper {
+        padding: 1.25rem 1.25rem;
+    }
+
+    .career-nav-wrapper ul {
+        margin: 2.25rem 1.25rem;
+    }
+
+    .career-buttons.mobile {
+        margin: 4rem 1.25rem 2rem;
+    }
+}
