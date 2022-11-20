@@ -1,29 +1,11 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"); */
-
-/* NORMALIZATION */
-html {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-size: calc(16px + 0.0396vw);
-}
-
-*,
-*::before,
-*::after {
-    padding: 0;
-    box-sizing: inherit;
-}
-
-body {
-    font-family: "Outfit", sans-serif;
-    box-sizing: inherit;
-}
-
-p,
-h1 {
-    margin: 0;
-}
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("./styles/Navbar.css");
+/*@import url("./styles/Header.css");*/
+@import url("./styles/Who.css");
+@import url("./styles/MidContent.css");
+@import url("./styles/What.css");
+@import url("./styles/Footer.css");
+@import url("./styles/Copy.css");
 
 :root {
     --primary-white: #fff;
@@ -36,4 +18,19 @@ h1 {
     --secondary-blue: #171646;
     --primary-gray-bg: #f7f7f8;
     --primary-text-btn: rgba(196, 213, 238, 0.2);
+}
+
+/* NORMALIZATION */
+html {
+    box-sizing: border-box;
+    font-size: calc(16px + 0.0396vw);
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
