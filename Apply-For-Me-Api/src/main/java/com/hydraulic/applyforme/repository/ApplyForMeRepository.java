@@ -1,6 +1,9 @@
 package com.hydraulic.applyforme.repository;
 
 import com.hydraulic.applyforme.model.domain.ApplyForMe;
+import com.hydraulic.applyforme.model.domain.Submission;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 

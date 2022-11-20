@@ -50,7 +50,7 @@ public class Submission {
 
     @Column(name ="job_location_type")
     @Enumerated(EnumType.STRING)
-    private JobLocationType jobLocationType = JobLocationType.REMOTE;
+    private JobLocationType jobLocationType ;
 
     /**
      * Summary or description or details of the job the applier or reverse recruiter submitted on behalf of the developer.

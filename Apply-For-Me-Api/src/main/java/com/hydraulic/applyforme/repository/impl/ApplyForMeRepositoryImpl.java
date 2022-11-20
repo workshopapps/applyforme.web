@@ -1,9 +1,12 @@
 package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.ApplyForMe;
+import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.exception.ApplyForMeDuplicateEntityException;
 import com.hydraulic.applyforme.repository.ApplyForMeRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
@@ -69,6 +72,7 @@ public class ApplyForMeRepositoryImpl implements ApplyForMeRepository {
             return false;
         }
     }
+
 
     @Override
     public boolean removeAll() {

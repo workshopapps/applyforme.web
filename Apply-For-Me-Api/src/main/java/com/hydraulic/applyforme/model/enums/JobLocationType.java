@@ -9,7 +9,7 @@ public enum JobLocationType {
     ONSITE("Onsite"),
     HYBRID("Hybrid");
 
-    private String value;
+    private final String value;
 
     JobLocationType(String value) {
         this.value = value;
