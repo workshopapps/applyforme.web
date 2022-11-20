@@ -18,6 +18,9 @@
     align-items: center;
     flex-wrap: wrap;
 }
+.applications_page_title h2 {
+    font-size: 30px;
+}
 .applications_page_title svg {
     display: none;
     height: 30px;
