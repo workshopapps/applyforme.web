@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,5 +56,10 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
         submissionResponse.setTotalPages(submission.getTotalPages());
         submissionResponse.setLast(submission.isLast());
         return submissionResponse;
+    }
+
+    @Override
+    public Optional<List<Submission>> getSubmissionsBySearch(String query) {
+        return jobSubmissionRepository.findJobSubmissionBySearch(query);
     }
 }

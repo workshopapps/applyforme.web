@@ -4,10 +4,13 @@ import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.pojo.SubmissionResponse;
 import com.hydraulic.applyforme.service.JobSubmissionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
+import java.util.List;
 
 import static com.hydraulic.applyforme.constants.AppConstants.*;
 
@@ -25,13 +28,20 @@ public class JobSubmissionController {
     }
 
     @GetMapping("/job_submission")
-    public ResponseEntity<SubmissionResponse> getAllPosts(
+    public SubmissionResponse getAllPosts(
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
             @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir){
 
-        return ResponseEntity.ok(jobSubmissionService.getAllJobSubmission(pageNo, pageSize, sortBy, sortDir));
+        return jobSubmissionService.getAllJobSubmission(pageNo, pageSize, sortBy, sortDir);
+    }
+
+    @GetMapping("/job_submission/search")
+    public List<Submission> getAllPosts(@RequestParam String q) {
+
+        return jobSubmissionService.getSubmissionsBySearch(q).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Job Not Found"));
+
     }
 
 
