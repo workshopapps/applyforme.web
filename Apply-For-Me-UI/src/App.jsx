@@ -26,6 +26,10 @@ import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
 import ApplicantDetails from "./pages/admin_dashboard/components/applicant_details/ApplicantDetails";
 import ApplicationForm from "./pages/admin_dashboard/components/application_form/ApplicationForm";
 import DashboardHome from "./pages/admin_dashboard/components/dashboard_home/DashboardHome";
+import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
+import Success from "./pages/dashboard_profile/Success/Success";
+import Profile from "./pages/dashboard_profile/Profile/Profile";
+import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
 
 function App() {
     return (
@@ -42,7 +46,11 @@ function App() {
                 <Route exact path="/pricing" element={<PricingPlan />} />
                 <Route exact path="/user-page" element={<Dashboard />} />
                 <Route exact path="blog" element={<Blog />} />
-                <Route exact path="/blog/questions" element={<BestQuestions />} />
+                <Route
+                    exact
+                    path="/blog/questions"
+                    element={<BestQuestions />}
+                />
                 <Route exact path="/blog/skills" element={<Skills />} />
                 <Route exact path="blog/cover" element={<Cover />} />
                 <Route exact path="blog/work" element={<Work />} />
@@ -54,10 +62,19 @@ function App() {
                 <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
                     <Route path="/dashboard/" element={<DashboardNothing />} />
-                    <Route path="admin" element={<DashboardHome />}/>
-                    <Route path="admin/form" element={<ApplicationForm />}/>
-                    <Route path="admin/details" element={<ApplicantDetails />}/>
-                    {/* <Route path="user" element={<UserDashboard />} /> */}
+                    <Route path="admin" element={<DashboardHome />} />
+                    <Route path="admin/form" element={<ApplicationForm />} />
+                    <Route
+                        path="admin/details"
+                        element={<ApplicantDetails />}
+                    />
+                    <Route path="user/" element={<NoProfile />} />
+                    <Route
+                        path="user/create-profile"
+                        element={<CreateProfile />}
+                    />
+                    <Route path="user/success" element={<Success />} />
+                    <Route path="user/profile-list" element={<Profile />} />
                 </Route>
                 <Route path="*" element={<Error />} />
             </Routes>
