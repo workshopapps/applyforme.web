@@ -1,0 +1,117 @@
+
+.Registration{
+    padding: 2rem 6%;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+.reg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.rbdy{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: 2rem;
+}
+.rbdy .form{
+  padding-bottom: 5rem;
+}
+.register-select{
+  width: 100%;
+  height: 100%;
+  border: 1px solid #BDBDBD;
+  border-radius: 8px;
+  padding: 2%;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* SVG background image */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  background-size: .6em;
+  background-position: calc(100% - 1.3em) center;
+  background-repeat: no-repeat;
+  line-height: normal;
+  font-size: .8rem;
+}
+.select-wrapper{
+    height: 3rem;
+    position: relative;	
+    font-size: .8rem;
+}
+
+@media only screen and (max-width: 1073px){
+  .Ref{
+      width: 70%;
+  }
+}
+@media only screen and (max-width: 768px){
+  .w1bdy{
+      padding-top: 2rem;
+  }
+}
+@media only screen and (max-width: 668px){
+  .form{
+      width: 80%;
+  }
+}
+
+@media only screen and (max-width: 568px){
+  .menu{
+      display: block;
+  }
+  .prt1{
+      padding: 2rem 6% 4rem 6%;
+      height: 60rem;
+      justify-content: flex-start;
+  }
+  .socials{
+      width: 30%;
+  }
+  .cpy{
+      width: 7%;
+  }
+  .prt22{
+      font-size: 1.1rem;
+  }
+  .prt21{
+      font-size: 1.3rem;
+  }
+  .prt23{
+      font-size: 1.2rem;
+  }
+  .prt2{
+      justify-content: flex-start;
+      gap: 5rem;
+      height: 3.9rem;
+  }
+}
+
+@media only screen and (max-width: 468px){
+  .form{
+      width: 90%;
+  }
+  .checkl{
+      align-items: flex-start;
+  }
+}
+
+@media only screen and (max-width: 376px){
+  .w1bdy{
+      padding-top: 1.5rem;
+  }
+  .form{
+      width: 100%;
+  }
+}
+  
