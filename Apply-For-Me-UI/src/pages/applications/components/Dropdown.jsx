@@ -1,5 +1,7 @@
 import React from "react";
 import { HiChevronDown } from "react-icons/hi2";
+import { IoFilterOutline } from "react-icons/io5";
+
 import styles from "../Applications.module.css";
 
 const Dropdown = () => {
@@ -9,6 +11,7 @@ const Dropdown = () => {
 
     return (
         <div className={styles.dropdown}>
+            <IoFilterOutline />
             <button onClick={toggleOpen} className={styles.dropbtn}>
                 <span>{active}</span> <HiChevronDown />
             </button>

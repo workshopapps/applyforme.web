@@ -4,11 +4,14 @@ a {
 }
 .layout_container {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .layout_sidebar {
     width: 135px;
+    height: 100vh;
+    overflow-y: hidden;
     padding-top: 2rem;
     position: relative;
     background-color: #2e3192;
@@ -54,6 +57,11 @@ nav > a p {
     line-height: 24px;
     color: #9c9dc5;
 }
+nav svg {
+    height: 30px;
+    width: 30px;
+    color: #9c9dc5;
+}
 
 .__active {
     color: #f7f7f8;
@@ -66,6 +74,21 @@ nav > a p {
     width: 100vw;
     position: fixed;
     bottom: 0;
+}
+.layout_bottom_navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    color: #0d081b;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 125%;
+}
+.layout_bottom_navigation img {
+    fill: #2e3192;
+    color: #2e3192;
     background-color: #2e3192;
 }
 
@@ -80,5 +103,6 @@ nav > a p {
     .bottom_nav {
         display: block;
     }
+
     /* … */
 }

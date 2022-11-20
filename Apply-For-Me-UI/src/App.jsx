@@ -23,6 +23,7 @@ import Signs from "./pages/blog/pages/signs/Signs";
 import Resume from "./pages/blog/pages/resume/Resume";
 import Brand from "./pages/blog/pages/brand/Brand";
 import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
+import JobDescription from "./pages/job_decription/JobDescription";
 
 function App() {
     return (
@@ -60,6 +61,7 @@ function App() {
                     element={<ApplicationsDashboardLayout />}
                 >
                     <Route index element={<Applications />} />
+                    <Route path=":jobId" element={<JobDescription />} />
                 </Route>
 
                 <Route path="*" element={<Error />} />
