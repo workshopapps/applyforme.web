@@ -4,6 +4,7 @@ import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.dto.professionalProfile.ProfessionalProfileDto;
 
 import com.hydraulic.applyforme.service.ProfessionalProfileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;

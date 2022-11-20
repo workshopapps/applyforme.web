@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.service.impl;
 
+import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.dto.professionalProfile.ProfessionalProfileDto;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalProfileJpaRepository;
@@ -29,9 +30,15 @@ public class ProfessionalProfileServiceImpl implements ProfessionalProfileServic
     @Transactional
     public ProfessionalProfile createProfile(ProfessionalProfileDto body) {
 
-        ProfessionalProfile professionalProfile;
+        ProfessionalProfile professionalProfile = new ProfessionalProfile();
+        Professional professional = new Professional();
+
         professionalProfile = modelMapper.map(body, ProfessionalProfile.class);
 
+        professionalProfile.setProfessional(professional);
+
         return repository.save(professionalProfile);
+
+        professionalProfile.setProfessional(professionalRepository.getByEmail());
     }
 }
