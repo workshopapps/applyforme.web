@@ -6,6 +6,12 @@
 
 /* hero privacy */
 
+.hero {
+    margin-bottom: 1em;
+
+    font-size: .9rem;
+}
+
 .img-container {
     position: relative;
     display: flex;
@@ -32,9 +38,69 @@
     display: none;
 }
 
+/* end of hero in privacy policy */
+
 /* main content */
 
-.content {}
+.content {
+    font-size: .9rem;
+}
+
+
+/* content table */
+
+.content-table {
+    background: #2E3192;
+    color: #fff;
+    width: 80vw;
+    margin: 0 auto 1em auto;
+
+    padding: 1em;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+.content-table-list {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.content-table-list li {
+    list-style-type: decimal;
+}
+
+.content-table-list li+li {
+    margin-bottom: 1em;
+}
+
+.content-table-list li>a {
+    color: #fff;
+    display: flex;
+}
+
+.content-table-list li>a+a {
+    margin: 1em 0;
+}
+
+/* interpretations and definitions */
+
+.interpretations-definitions {
+    margin: 2em 1em;
+}
+
+.interpretations-definitions h2,
+h3 {
+    margin: 1em 0;
+}
+
+.privacy__container-collecting__data ul>li {
+    list-style: url("../../assets/images/Polygon\ arrow.svg");
+    margin-left: 1em;
+    margin-bottom: 0.75em;
+
+    padding-left: 1em;
+    font-weight: 500;
+}
 
 /* end of main content */
 
@@ -62,5 +128,31 @@
         top: 0%;
         right: 50%;
         transform: translate(50%, 50%);
+    }
+}
+
+/* beyond 1050px as per the navbar design */
+
+@media (min-width: 1050px) {
+    .content {
+        /* background-color: lime; */
+
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .content-table {
+        justify-self: center;
+        order: 2;
+        margin-left: .5em;
+    }
+
+    .interpretations-definitions br {
+        margin-bottom: 1em;
+        /* flex-grow: ; */
+    }
+
+    .interpretations-definitions p {
+        width: 90%;
     }
 }

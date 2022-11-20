@@ -25,7 +25,7 @@ const Privacy = () => {
             </div>
             <div className="privacy__container content">
                 <div className="content-table">
-                    <ul>
+                    <ul className="content-table-list">
                         <h3>Table of Content</h3>
                         <li>Interpretation and Definitions
                             <a href="#">Interpretation</a>
@@ -104,6 +104,7 @@ const Privacy = () => {
                     <div className="privacy__container-childrens-privacy">
                         <h2>Children's Privacy</h2>
                         <p>Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 13 without verification of parental consent, We take steps to remove that information from Our servers.
+                            <br />
                             If We need to rely on consent as a legal basis for processing Your information and Your country requires consent from a parent, We may require Your parent's consent before We collect and use that information.</p>
                     </div>
                     <div className="privacy__container-links">
