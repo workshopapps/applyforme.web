@@ -1,7 +1,17 @@
 import React from "react";
+import HeroSection from "./components/HeroSection";
 
-const Career = () => {
-    return <div>Career Page</div>;
+import Nav from "./components/Nav";
+import Principles from "./components/Principles";
+
+const CareerPage = () => {
+    return (
+        <React.Fragment>
+            <Nav />
+            <HeroSection />
+            <Principles />
+        </React.Fragment>
+    );
 };
 
-export default Career;
+export default CareerPage;
