@@ -2,6 +2,15 @@
     width: 100%;
 }
 
+span {
+    color: #2E3192;
+}
+
+a {
+    text-decoration: none;
+    color: #2E3192;
+}
+
 .text_area {
     display: flex;
     flex-direction: column;
