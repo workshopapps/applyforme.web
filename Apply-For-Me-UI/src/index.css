@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("./styles/Navbar.css");
-@import url("./styles/Header.css");
+/*@import url("./styles/Header.css");*/
 @import url("./styles/Who.css");
 @import url("./styles/MidContent.css");
 @import url("./styles/What.css");
@@ -27,12 +27,16 @@
 }
 
 /* NORMALIZATION */
-* {
+html {
     box-sizing: border-box;
+    font-size: calc(16px + 0.0396vw);
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
     scroll-behavior: smooth;
-    text-decoration: none;
     margin: 0;
     padding: 0;
-    font-size: calc(16px + 0.0396vw);
-    list-style-type: none;
 }
