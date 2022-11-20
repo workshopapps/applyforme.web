@@ -1,6 +1,6 @@
 .header {
     position: relative;
-    background-image: url("/public/img/unsplash_rg1y72eKw6o.jpg");
+    background-image: url('/public/img/unsplash_rg1y72eKw6o.jpg');
     width: 100%;
     height: 540px;
     background-repeat: no-repeat;
@@ -22,13 +22,13 @@
 .header-text {
     width: 756px;
     height: 180px;
-    font-family: "Outfit";
+    font-family: 'Outfit';
     font-style: normal;
     font-weight: 700;
     font-size: 40px;
     line-height: 150%;
     text-align: center;
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
 @media screen and (max-width: 1023px) {
