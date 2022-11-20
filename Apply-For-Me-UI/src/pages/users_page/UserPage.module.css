@@ -1,6 +1,5 @@
 .main_container {
     padding-top: 2rem;
-    padding-bottom: 5rem;
     width: 90%;
     max-width: 1400px;
     margin: 0 auto;
@@ -10,8 +9,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
 }
 
 .user_header p {
@@ -37,74 +34,17 @@
     color: #2e3192;
 }
 
-.applicant .table {
+.table {
     width: 100%;
     margin-top: 5rem;
 }
 
-.table tr td,
-.table tr th {
-    text-align: left;
-    border-bottom: 2px solid rgb(228, 227, 227);
+.table .lines {
+    opacity: 0.4;
 }
 
-.table tr th {
-    padding-bottom: 15px;
-}
-
-.table tr td {
-    padding: 2rem 0;
-}
-
-.pagination {
-    margin-top: 3rem;
+.table tr {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    background-color: #eeefff;
-    background: #eeefff;
-    width: 158px;
-    border-radius: 4px;
-    padding: 0.7rem;
-}
-
-.pagination__inc_dec {
-    display: flex;
-    align-items: center;
-    margin-top: 2px;
-    gap: 1rem;
-}
-
-.mobile_button {
-    display: none;
-}
-
-/* Tablet */
-@media screen and (max-width: 914px) {
-    .desktop_button {
-        display: none;
-    }
-
-    .mobile_button {
-        display: block;
-        color: #2e3192;
-    }
-}
-
-/* Mobile Screen */
-@media screen and (max-width: 700px) {
-    .hide_on_mobile {
-        display: none;
-    }
-
-    .user_header p {
-        font-size: 0.7rem;
-    }
-}
-
-@media screen and (max-width: 370px) {
-    .applicant .table tr td,
-    .applicant .table tr th {
-        font-size: 0.9rem;
-    }
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
