@@ -71,7 +71,6 @@ function App() {
                     <Route index element={<Applications />} />
                     <Route path=":jobId" element={<JobDescription />} />
                 </Route>
-
                 <Route path="*" element={<Error />} />
             </Routes>
         </>

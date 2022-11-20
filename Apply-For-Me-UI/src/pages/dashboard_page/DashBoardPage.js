@@ -1,7 +1,12 @@
 import React from "react";
+import { DashboardContent } from "../../components/admin_dashboard/dashboard_content/dashboard_content";
 
 const DashBoardPage = () => {
-    return <div>Dashboard page</div>;
+    return (
+        <>
+            <DashboardContent/>
+        </>
+    )
 };
 
 export default DashBoardPage;

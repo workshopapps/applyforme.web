@@ -6,5 +6,4 @@ const LandingPage = () => {
         <Nav/>
     </div>;
 };
-
 export default LandingPage;
