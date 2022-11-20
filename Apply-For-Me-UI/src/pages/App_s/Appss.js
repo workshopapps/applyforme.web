@@ -60,6 +60,151 @@ const Appss = () => {
           <h2>Signout</h2>
         </div>
       </div>
+
+     
+      {/* DISPLAY CHAT AND CONVO */}
+      <div className="boaRD">
+        {/* DISPLAY CHAT */}
+        <div className={!click ? "boa" : "boa boa-NX"}>
+          <h1 className="Mess">Messages</h1>
+          <div className="SearchChat">
+            <div className="Search">
+              <img src={Search} alt="" />
+              <input type="text" placeholder="Pesquisar chat" />
+            </div>
+            <div className="CHAT">
+              <h3>CHAT</h3>
+              <p>+</p>
+            </div>
+          </div>
+
+          <div className="Supports" onClick={Handle}>
+            <img src={propP} alt="" />
+            <div className="suPP">
+              <h2>Suporte ADMIN</h2>
+              <p>
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the{" "}
+              </p>
+            </div>
+            <h5 className="one">1</h5>
+          </div>
+          <div className="Support">
+            <img src={PropF} alt="" />
+            <div className="suPP">
+              <h2>Suporte ADMIN</h2>
+              <p>
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the{" "}
+              </p>
+            </div>
+            <h5 className="one">1</h5>
+          </div>
+          <div className="Supportt">
+            <img src={PropF} alt="" />
+            <div className="suPPP">
+              <h2>Suporte ADMIN</h2>
+              <p>Opened </p>
+            </div>
+          </div>
+          <div className="Supportt">
+            <img src={PropF} alt="" />
+            <div className="suPPP">
+              <h2>Suporte ADMIN</h2>
+              <p>Opened </p>
+            </div>
+          </div>
+          <div className="Supportt">
+            <img src={PropF} alt="" />
+            <div className="suPPP">
+              <h2>Suporte ADMIN</h2>
+              <p>Opened </p>
+            </div>
+          </div>
+          <div className="Supportt">
+            <img src={PropF} alt="" />
+            <div className="suPPP">
+              <h2>Suporte ADMIN</h2>
+              <p>Opened </p>
+            </div>
+          </div>
+          <div className="Supportt">
+            <img src={PropF} alt="" />
+            <div className="suPPP">
+              <h2>Suporte ADMIN</h2>
+              <p>Opened </p>
+            </div>
+          </div>
+        </div>
+         {/* DISPLAY CONVO */}
+        <div className={click ? "bOA" : "bOA bOA-NX"}>
+          <div className="sNav">
+            <img src={PropF} alt="" />
+            <div>
+              <img src={Call} alt="" />
+              <img src={Video} alt="" />
+              <img src={Inc} alt="" />
+            </div>
+          </div>
+          <hr className="lines" />
+          <div className="opContain">
+            <div className="opOp">
+              <img src={Op} alt="" />
+              <div className="opOp1">
+                <p>
+                  Lorem Ipsum has been the industry's standard dummy text ever
+                  since the 1500s,
+                </p>
+                <h6>8:00 PM</h6>
+              </div>
+            </div>
+            <div className="opop">
+              <img src={Op} alt="" />
+              <div className="opop1">
+                <p>
+                  Lorem Ipsum has been the industry's standard dummy text ever
+                  since the 1500s,
+                </p>
+                <h6>8:00 PM</h6>
+              </div>
+            </div>
+            <div className="opOp">
+              <img src={Op} alt="" />
+              <div className="opOp1">
+                <p>
+                  Lorem Ipsum has been the industry's standard dummy text ever
+                  since the 1500s,
+                </p>
+                <h6>8:00 PM</h6>
+              </div>
+            </div>
+            <div className="opop">
+              <img src={Op} alt="" />
+              <div className="opop1">
+                <p>
+                  Lorem Ipsum has been the industry's standard dummy text ever
+                  since the 1500s,
+                </p>
+                <h6>8:00 PM</h6>
+              </div>
+            </div>
+            <div className="Dot">
+              <h1>...</h1>
+              <img src={Op} alt="" />
+            </div>
+            <div className="IconS">
+              <div className="IconS1">
+                <img src={Edit} alt="" className="imgg1"/>
+                <img src={Navi} alt="" className="imgg2"/>
+                <img src={Sender} alt="" className="imgg3"/>
+              </div>
+              <input type="text" placeholder="Digite a mensagem" />
+            </div>
+          </div>
+        </div>
+
+
+      </div>
     </div>
   )
 }
