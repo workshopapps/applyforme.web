@@ -42,14 +42,7 @@ import JobDescription from "./pages/job_decription/JobDescription";
 import ApplicantDetails from "./pages/admin_dashboard/components/applicant_details/ApplicantDetails";
 import ApplicationForm from "./pages/admin_dashboard/components/application_form/ApplicationForm";
 import DashboardHome from "./pages/admin_dashboard/components/dashboard_home/DashboardHome";
-
-import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
-import Success from "./pages/dashboard_profile/Success/Success";
-import Profile from "./pages/dashboard_profile/Profile/Profile";
-import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
-
 import ReverseApp from './pages/App_s/Appss'
-
 
 function App() {
     return (
@@ -84,21 +77,6 @@ function App() {
                 <Route path="dashboard" element={<UserDashboardLayout />}>
                     <Route path="profile" element={<AdminProfile />} />
                     <Route path="/dashboard/" element={<DashboardNothing />} />
-
-                    <Route path="admin" element={<DashboardHome />} />
-                    <Route path="admin/form" element={<ApplicationForm />} />
-                    <Route
-                        path="admin/details"
-                        element={<ApplicantDetails />}
-                    />
-                    <Route path="user/" element={<NoProfile />} />
-                    <Route
-                        path="user/create-profile"
-                        element={<CreateProfile />}
-                    />
-                    <Route path="user/success" element={<Success />} />
-                    <Route path="user/profile-list" element={<Profile />} />
-
                 </Route>
 
 
@@ -116,7 +94,6 @@ function App() {
                 >
                     <Route index element={<Applications />} />
                     <Route path=":jobId" element={<JobDescription />} />
-
                 </Route>
                 <Route path="*" element={<Error />} />
             </Routes>
