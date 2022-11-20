@@ -1,5 +1,5 @@
 .container {
-    width: 97%;
+    width: 93vw;
     margin: 0;
     margin-bottom: 15%;
     display: block;
@@ -34,7 +34,7 @@
     margin: 0;
     }
     
-    .informationH {
+    .smheadings {
     font-family: 'Outfit';
     font-style: normal;
     font-weight: 700;
@@ -43,7 +43,7 @@
     color: #2E3192;
     }
 
-    .information {
+    .paragraphs {
     font-family: 'Outfit';
     font-style: normal;
     font-weight: 400;
@@ -52,29 +52,11 @@
     letter-spacing: 0.01em;
     }
 
-    .technologiesH {
-    font-family: 'Outfit';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 150%;
-    letter-spacing: 0.03em;
-    color: #2E3192;
-    }
+   span {
+    color: #6567b0;
+   }
 
-    .technologies {
-    font-family: 'Outfit';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 150%;
-    letter-spacing: 0.01em;
-    }
-
-    .lis {
-        margin: 0;
-    }
-
-   .techAll {
-    width: 93%;
-   } 
+   a {
+    text-decoration: none;
+    color: #6567b0;
+   }
