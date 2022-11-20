@@ -46,13 +46,8 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
         Pageable pageable = PageRequest.of(pageNo, pageSize);
-
         Page<Submission> submission = jobSubmissionRepository.findAll(pageable);
-
-
-
         Collection<Submission> submissions = submission.getContent();
-
         SubmissionResponse submissionResponse = new SubmissionResponse();
         submissionResponse.setContent(submissions);
         submissionResponse.setPageNo(submission.getNumber());
