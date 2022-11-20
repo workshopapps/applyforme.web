@@ -1,0 +1,30 @@
+.keywords {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.1rem;
+}
+.each_keyword {
+    display: flex;
+    gap: 1rem;
+    border: 1px solid #2e3192;
+    border-radius: 3.25rem;
+    padding: 1rem 2rem;
+}
+.each_keyword p {
+    color: #2e3192;
+    font-size: 1rem;
+}
+.each_keyword img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.cover_letter {
+    margin-top: 1rem;
+}
+.settings p {
+    margin-top: 1rem;
+    font-weight: 300;
+    font-size: 1.25rem;
+    letter-spacing: 0.01em;
+    color: #737373;
+}

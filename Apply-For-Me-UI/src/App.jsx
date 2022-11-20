@@ -24,12 +24,32 @@ import Signs from "./pages/blog/pages/signs/Signs";
 import Resume from "./pages/blog/pages/resume/Resume";
 import Brand from "./pages/blog/pages/brand/Brand";
 import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
+
+import AdminProfile from "./pages/admin_profile/AdminProfile";
+
+
+import Welcome2 from "./pages/authentication-pages/Welcome2";
+import Registration from "./pages/authentication-pages/Registration";
+import Welcome1 from "./pages/authentication-pages/Welcome1";
+import Verification from "./pages/authentication-pages/Verification";
+import Password from "./pages/authentication-pages/Password";
+import NewPass from "./pages/authentication-pages/NewPass";
+import Button from "./pages/authentication-pages/components/Elements/Button";
+
+
 import JobDescription from "./pages/job_decription/JobDescription";
 // import AdminDashboard from "./pages/admin_dashboard/AdminDashboard";
 import ApplicantDetails from "./pages/admin_dashboard/components/applicant_details/ApplicantDetails";
 import ApplicationForm from "./pages/admin_dashboard/components/application_form/ApplicationForm";
 import DashboardHome from "./pages/admin_dashboard/components/dashboard_home/DashboardHome";
+
+import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
+import Success from "./pages/dashboard_profile/Success/Success";
+import Profile from "./pages/dashboard_profile/Profile/Profile";
+import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
+
 import ReverseApp from './pages/App_s/Appss'
+
 
 function App() {
     return (
@@ -62,14 +82,41 @@ function App() {
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
+                    <Route path="profile" element={<AdminProfile />} />
                     <Route path="/dashboard/" element={<DashboardNothing />} />
+
+                    <Route path="admin" element={<DashboardHome />} />
+                    <Route path="admin/form" element={<ApplicationForm />} />
+                    <Route
+                        path="admin/details"
+                        element={<ApplicantDetails />}
+                    />
+                    <Route path="user/" element={<NoProfile />} />
+                    <Route
+                        path="user/create-profile"
+                        element={<CreateProfile />}
+                    />
+                    <Route path="user/success" element={<Success />} />
+                    <Route path="user/profile-list" element={<Profile />} />
+
                 </Route>
+
+
+                <Route exact path='/wel1' element={<Welcome1/>}/>
+                <Route exact path='/reg' element={<Registration/>}/>
+                <Route exact path='/wel2' element={<Welcome2/>}/>
+                <Route exact path='/pass' element={<Password/>}/>
+                <Route exact path='/veri' element={<Verification/>}/>     
+                <Route exact path='/nwpass' element={<NewPass/>}/> 
+                <Route exact path='/nwpass' element={<Button/>}/>   
+
                 <Route
                     path="/dashboard/applications"
                     element={<ApplicationsDashboardLayout />}
                 >
                     <Route index element={<Applications />} />
                     <Route path=":jobId" element={<JobDescription />} />
+
                 </Route>
                 <Route path="*" element={<Error />} />
             </Routes>
