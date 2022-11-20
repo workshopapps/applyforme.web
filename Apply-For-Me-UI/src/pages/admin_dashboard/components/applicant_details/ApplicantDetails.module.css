@@ -1,0 +1,116 @@
+.container
+{
+    background-color: #FFFFFF;
+    color: rgba(82, 81, 91, 1);
+}
+
+.container>*
+{
+    margin: 0 72px;
+    padding: 40px 0;
+}
+
+.header
+{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 40px 0;
+    border-bottom: 1px solid #E6E6E9;
+}
+
+.header>span
+{
+    padding: 40px;
+    border-radius: 50%;
+    background-color: #52515B;
+    color: white;
+    font-size: 33px;
+}
+
+.header div
+{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.header div span:first-child
+{
+    font-weight: 700;
+}
+
+.job_information h2
+{
+    margin-bottom: 16px;
+    font-size: 24px;
+}
+
+.job_information>div
+{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 35px;
+}
+
+.info_field
+{
+    min-width: calc(100%/6);
+}
+
+.info_field h4
+{
+    padding: 8px 0;
+    font-size: 1rem;
+}
+
+.info_field p
+{
+    align-items: center;
+    display: flex;
+    gap: 8px;
+}
+
+@media only screen and (max-width: 1024px)
+{
+    .container>*
+    {
+        margin: 0 24px;
+        padding: 21px 0;
+    }
+
+    .header>span
+    {
+        padding: 26px 30px;
+    }
+
+    .job_information>div
+    {
+        gap: 27px;
+    }
+    
+}
+
+@media only screen and (max-width: 480px)
+{
+    .container>*
+    {
+        margin: 0 16px;
+        padding: 16px 0;
+    }
+
+    .header>span
+    {
+        padding: 20px;
+        font-size: 30px;
+    }
+    
+    .info_field
+    {
+        min-width: 35%;
+    }
+
+    .job_information>div
+    {
+        justify-content: space-between;
+    }
+}
