@@ -59,32 +59,41 @@ public class Member {
      * in the system
      */
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "nationality_id", nullable = false)
+    @JoinColumn(name = "nationality_id")
     private Country nationality;
 
     /**
      * This column stores a reference to the country where the actor presently resides.
      */
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "country_of_residence_id", nullable = false)
+    @JoinColumn(name = "country_of_residence_id")
     private Country countryOfResidence;
 
     @Temporal(TemporalType.DATE)
-    @Column(name ="date_of_birth", nullable = false, updatable = false)
-    private Date dateOfBirth;
+    @Column(name ="date_of_birth")
+    private Date dateOfBirth = new Date();
 
     /**
      * This identifies the current professional or working job title of the member of the system irrespective of the role
      * they would identify with or be assigned to in the system.
      */
-    @Column(name ="current_job_title", nullable = false)
+    @Column(name ="current_job_title")
     private String currentJobTitle;
 
     @Column(name = "email_address", nullable = false)
     private String emailAddress;
 
-    @Column(name ="phone_number", nullable = false)
+    @Column(name = "username")
+    private String username;
+
+    @Column(name ="phone_number")
     private String phoneNumber;
+
+    @Column(name ="city")
+    private String city;
+
+    @Column(name ="state")
+    private String state;
 
     @Column(name ="password", nullable = false)
     private String password;
@@ -140,5 +149,11 @@ public class Member {
     )
     private Set<Role> roles = new HashSet<>();
 
+    public void addRole(Role role) {
+        this.getRoles().add(role);
+    }
 
+    public void clearRoles() {
+        this.roles = new HashSet<>();
+    }
 }

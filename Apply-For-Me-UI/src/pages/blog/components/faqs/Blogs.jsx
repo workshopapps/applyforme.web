@@ -1,9 +1,9 @@
 import React from "react";
-import "./Faqs.css";
+import "./blogs.css";
 
-const Faqs = () => {
+const Blogs = () => {
     return (
-        <div className="faqs">
+        <div className="blogs">
             <div className="content">
                 <p>
                     Get the latest career resource tips delivered to your email!{" "}
@@ -19,4 +19,4 @@ const Faqs = () => {
     );
 };
 
-export default Faqs;
+export default Blogs;

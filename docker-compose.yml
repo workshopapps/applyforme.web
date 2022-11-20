@@ -1,0 +1,16 @@
+version: "3"
+   
+services:
+    frontend:
+        image: applyforme/frontend:latest
+        container_name: frontend
+        ports:
+          -  3000:3000
+        depends_on: 
+          - backend  
+
+    backend:
+        image: applyforme/backend:latest
+        container_name: backend
+        ports:
+            - 8080:8080
