@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.repository.JobSubmissionRepository;
 
@@ -20,21 +23,20 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 	private EntityManager entityManager;
 
 	@Override
-	public List<Submission> getAllSubmissionsByPagination(Long id, Integer pageOffset) {
+	public List<Submission> getAllSubmissionsByPagination(Long professionalId, Integer pageOffset) {
 
-		String getAllSubmission = "SELECT sbm " + "FROM Submission sbm" + " WHERE sbm.professional = 1"
-				+ " ORDER BY sbm.createdOn DESC";
+		String queryString = "SELECT sbm FROM Submission sbm WHERE sbm.professional.id = :professional "
+				+ "ORDER BY sbm.createdOn DESC";
 
-		TypedQuery<Submission> submissions = entityManager.createQuery(getAllSubmission,
+		TypedQuery<Submission> professionalSubmissions = entityManager.createQuery(queryString,
 				Submission.class);
-		submissions.setParameter("professional", id);
+		professionalSubmissions.setParameter("professional", professionalId);
 
-		submissions.setFirstResult(pageOffset - 1);
-		submissions.setMaxResults(DEFAULT_PAGE_SIZE);
+		professionalSubmissions.setFirstResult((pageOffset - 1)*DEFAULT_PAGE_SIZE);
+		professionalSubmissions.setMaxResults(DEFAULT_PAGE_SIZE);
 
-		return submissions.getResultList();
+		List<Submission> resultList = professionalSubmissions.getResultList();
+		return resultList;
 	}
-
-	
 
 }

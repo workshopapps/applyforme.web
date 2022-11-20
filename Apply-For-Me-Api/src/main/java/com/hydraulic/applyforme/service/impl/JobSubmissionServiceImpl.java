@@ -41,8 +41,8 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     }
 
 	@Override
-	public List<Submission> getAllSubmissionsByPagination(Long id, Integer pageOffset) {
+	public List<Submission> getAllSubmissionsByPagination(Long professionalId, Integer pageOffset) {
 		
-		return repo.getAllSubmissionsByPagination(id, pageOffset);
+		return repo.getAllSubmissionsByPagination(professionalId, pageOffset);
 	}
 }

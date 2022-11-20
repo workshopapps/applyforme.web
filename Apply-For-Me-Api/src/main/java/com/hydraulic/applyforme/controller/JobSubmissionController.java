@@ -34,12 +34,11 @@ public class JobSubmissionController {
         return service.countAllSubmissions(id);
     }
         
-    @GetMapping(value = "/{id}/submissions")
-	public ResponseEntity<List<Submission>> getAllSubmission(@PathVariable("id") Long id,
+    @GetMapping(value = "/{id}/professional")
+	public ResponseEntity<List<Submission>> getAllSubmission(@PathVariable("id") Long professionalId,
 			@RequestParam(defaultValue = "1", name = "page", required = false) Integer pageOffset) {
 
-    	System.out.println("hey there i'm working");
-		List<Submission> allSubmissions = service.getAllSubmissionsByPagination(id, pageOffset);
+		List<Submission> allSubmissions = service.getAllSubmissionsByPagination(professionalId, pageOffset);
 
 		return new ResponseEntity<List<Submission>>(allSubmissions, HttpStatus.OK);
 	}
