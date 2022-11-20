@@ -2,7 +2,7 @@ version: "3"
    
 services:
     frontend:
-        image: demarauder/apply-for-me-frontend:latest
+        image: applyforme/frontend:latest
         container_name: frontend
         ports:
           -  3000:3000
@@ -10,7 +10,7 @@ services:
           - backend  
 
     backend:
-        image: demarauder/apply-for-me-backend:latest
+        image: applyforme/backend:latest
         container_name: backend
         ports:
             - 8080:8080
