@@ -123,4 +123,140 @@ li {
     .paragraphs {
         font-size: 20px;
     }
-  }
+}
+
+
+{/** Making Small/Mobile screens responsive */}
+
+@media only screen and (max-width: 767px) {
+    .heading {
+        font-family: 'Outfit';
+        font-size: 20px;
+    }
+
+    .headSub {
+        font-size: 14px;
+    }
+
+    .smheadings {
+        font-size: 16px;
+    }
+
+    .paragraphs {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .heading {
+        font-family: 'Outfit';
+        font-size: 16px;
+    }
+
+    .headSub {
+        font-size: 11px;
+    }
+
+    .smheadings {
+        font-size: 12px;
+    }
+
+    .paragraphs {
+        font-size: 11px;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .heading {
+        font-family: 'Outfit';
+        font-size: 14px;
+    }
+
+    .headSub {
+        font-size: 10px;
+    }
+
+    .smheadings {
+        font-size: 11px;
+    }
+
+    .paragraphs {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .heading {
+        font-family: 'Outfit';
+        font-size: 11px;
+    }
+
+    .headSub {
+        font-size: 8px;
+    }
+
+    .smheadings {
+        font-size: 9px;
+    }
+
+    .paragraphs {
+        font-size: 8px;
+    }
+}
+
+@media only screen and (max-width: 240px) {
+    .heading {
+        font-family: 'Outfit';
+        font-size: 9px;
+    }
+
+    .headSub {
+        font-size: 6px;
+    }
+
+    .smheadings {
+        font-size: 7px;
+    }
+
+    .paragraphs {
+        font-size: 6px;
+    }
+}
+
+@media only screen and (max-width: 200px) {
+    .heading {
+        font-family: 'Outfit';
+        font-size: 7px;
+    }
+
+    .headSub {
+        font-size: 4px;
+    }
+
+    .smheadings {
+        font-size: 5px;
+    }
+
+    .paragraphs {
+        font-size: 4px;
+    }
+}
+
+@media only screen and (max-width: 153px) {
+    .heading {
+        font-family: 'Outfit';
+        font-size: 1rem;
+    }
+
+    .headSub {
+        font-size: 0.5rem;
+    }
+
+    .smheadings {
+        font-size: 0.6rem;
+    }
+
+    .paragraphs {
+        font-size: 3px;
+    }
+}
