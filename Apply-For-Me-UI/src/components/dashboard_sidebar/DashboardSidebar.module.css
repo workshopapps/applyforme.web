@@ -1,7 +1,7 @@
 .sidebar_container {
     background: #2e3192;
     border-right: 0.5px solid #2e3192;
-    padding: 3rem 2.3rem;
+    padding: 3rem 1.8rem;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -13,6 +13,10 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
+}
+
+.sidebar_container .logo{
+    scale: .8;
 }
 
 .sidebar_container ul li {
@@ -33,9 +37,13 @@
     color: #fff;
     line-height: 2rem;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     letter-spacing: 0.01em;
 }
 .sidebar_container ul .__active {
     font-weight: 700;
+}
+
+@media screen {
+    
 }

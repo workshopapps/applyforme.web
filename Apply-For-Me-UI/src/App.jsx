@@ -12,6 +12,7 @@ import Blog from "./pages/blog/Blog";
 import PricingPlan from "./pages/pricing_plan/PricingPlan";
 import Error from "./pages/error/Error";
 import Dashboard from "./pages/dashboard/Dashboard";
+import AccountSettings from "./pages/account_settings/AccountSettings";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
 import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
 import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
@@ -48,6 +49,7 @@ function App() {
                 <Route exact path="blog/resume" element={<Resume />} />
                 <Route exact path="blog/brand" element={<Brand />} />
                 <Route exact path="blog/endorsment" element={<Endorsment />} />
+                <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
                     <Route path="/dashboard/" element={<DashboardNothing />} />
                 </Route>
