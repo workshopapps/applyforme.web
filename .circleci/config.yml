@@ -32,7 +32,6 @@ jobs:
             cd Apply-For-Me-Api
             mvn install
             cp target/Apply-For-Me-0.0.1-SNAPSHOT.jar Apply-For-Me-Api.jar
-            java -jar Apply-For-Me-Api.jar
 
   test-frontend:
     docker:
