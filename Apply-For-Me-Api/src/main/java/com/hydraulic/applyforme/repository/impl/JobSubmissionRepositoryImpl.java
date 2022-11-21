@@ -4,13 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.repository.JobSubmissionRepository;
 
@@ -32,7 +29,7 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 				Submission.class);
 		professionalSubmissions.setParameter("professional", professionalId);
 
-		professionalSubmissions.setFirstResult((pageOffset - 1)*DEFAULT_PAGE_SIZE);
+		professionalSubmissions.setFirstResult((pageOffset - 1) * DEFAULT_PAGE_SIZE);
 		professionalSubmissions.setMaxResults(DEFAULT_PAGE_SIZE);
 
 		List<Submission> resultList = professionalSubmissions.getResultList();
