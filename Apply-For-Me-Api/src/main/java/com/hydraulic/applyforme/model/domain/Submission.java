@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.hydraulic.applyforme.model.enums.JobLocationType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +28,7 @@ public class Submission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "professional_id")
     private Professional professional;

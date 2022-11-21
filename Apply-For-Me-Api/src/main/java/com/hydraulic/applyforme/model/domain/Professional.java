@@ -1,5 +1,7 @@
 package com.hydraulic.applyforme.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +26,7 @@ public class Professional {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @JsonIgnore
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -56,9 +58,11 @@ public class Professional {
     @Column(name ="other_link_3")
     private String otherLink3;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "professional")
     private Set<ProfessionalProfile> professionalProfile = new HashSet<>();
-
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "professional")
     private Set<Submission> submissions = new HashSet<>();
 }

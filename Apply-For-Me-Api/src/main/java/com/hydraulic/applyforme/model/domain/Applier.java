@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,11 +25,11 @@ public class Applier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @JsonIgnore
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
     private Member member;
-
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "applier")
     private Set<Submission> submissions = new HashSet<>();
 }
