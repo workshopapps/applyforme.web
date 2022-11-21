@@ -1,0 +1,215 @@
+.footer {
+    width: 100%;
+    height: 396px;
+    background: #2E3192;
+    padding: 100px;
+    display: flex;   
+    align-items: center;
+    justify-content: center;
+}
+
+.ads {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.typo {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: left;
+    width: 280px;
+    height: 100%;
+}
+
+.typo img {
+    width: 104px;
+    height: 54px;
+}
+
+.typo p {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
+}
+
+.social {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 30px;
+    width: 280px;
+    height: 100%;
+    align-items: center;
+}
+
+.foot-details {
+    display: flex;
+}
+
+.company,
+.help {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+    width: 280px;
+    height: 100%;
+}
+
+.company p,
+.help p {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
+}
+
+.company p:first-child,
+.help p:first-child {
+    font-weight: 700;
+}
+
+@media screen and (max-width: 1023px) {
+    .footer {
+        height: auto;
+        padding: 50px;
+    }
+
+    .ads {
+        flex-direction: column;
+    }
+    
+    .typo {
+        gap: 40px;
+        width: auto;
+    }
+    
+    .typo img {
+        width: 95px;
+        height: 45px;
+    }
+    
+    .typo p {
+        font-size: 16px;
+        width: 249px;
+    }
+
+    .google {
+        display: none;
+    }
+    
+    .social {
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        justify-content: start;
+        margin-top: 50px;
+    }
+    
+    .company,
+    .help {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 24px;
+        width: 280px;
+        height: 100%;
+    }
+    
+    .company p,
+    .help p {
+        font-family: 'Outfit';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        letter-spacing: 0.01em;
+        color: #FFFFFF;
+    }
+    
+    .company p:first-child,
+    .help p:first-child {
+        font-weight: 700;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .footer {
+        height: 550px;
+        flex-direction: column;
+        padding: 0px 30px;
+    }
+
+    .ads {
+        width: 100%;
+    }
+    
+    .typo {
+        gap: 30px;
+        width: 100%;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    
+    .typo img {
+        width: 78px;
+        height: auto;
+    }
+    
+    .typo p {
+        font-weight: 300;
+        font-size: 14px;
+        width: 188px;
+    }
+    
+    .social {
+        gap: 30px;
+        width: 100%;
+        height: 40px;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .social img {
+        width: 18px;
+    }
+
+    .foot-details {
+        display: flex;
+        width: 100%;
+    }
+    
+    .company,
+    .help {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 25px;
+        width: 45%;
+        height: 150px;
+        margin-top: 40px;
+        margin-right: 15px;
+    }
+    
+    .company p,
+    .help p {
+        font-size: 14px;
+    }
+    
+    .company p:first-child,
+    .help p:first-child {
+        font-weight: 700;
+    }
+}
