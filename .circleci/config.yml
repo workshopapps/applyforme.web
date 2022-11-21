@@ -1,0 +1,167 @@
+version: 2.1
+
+jobs:
+  build-frontend:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [frontend-build]
+      - run:
+          name: Build front-end
+          command: |
+            cd Apply-For-Me-UI
+            # rm package-lock.json
+            npm install
+            npm run build
+      - save_cache:
+          paths: [Apply-For-Me-UI/node_modules]
+          key: frontend-build
+
+  build-backend:
+    docker:
+      - image: cimg/openjdk:19.0.1
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [frontend-build]
+      - run:
+          name: Build front-end
+          command: |
+            cd Apply-For-Me-API
+            mvn install
+            cp target/Apply-For-Me-Api.jar Apply-For-Me-Api.jar
+            java -jar Apply-For-Me-Api.jar
+
+
+  test-frontend:
+    docker:
+      # Docker image here
+      - image: circleci/node:13.8.0
+    steps:
+      # Checkout code from git
+      - checkout
+      # Restore from cache
+      - restore_cache:
+          keys: [frontend-client]
+      # Your job code here
+      - run:
+          name: Test Frontend
+          command: |
+            cd Apply-For-Me-UI
+            npm install
+            npm run test
+
+  build-frontend-docker-image:
+    docker:
+      # Docker image that supports docker
+      - image: docker:17.05.0-ce-git
+    steps:
+      # Checkout code from git
+      - checkout
+
+      - setup_remote_docker
+
+      - run:
+          name: Build application Docker image
+          command: |
+            cd Apply-For-Me-UI/
+            docker build -t app .
+
+      - run:
+          name: Push Image to docker hub
+          command: |
+            docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+            docker tag app applyforme/frontend
+            docker push applyforme/frontend
+
+  build-backend-docker-image:
+    docker:
+      # Docker image that supports docker
+      - image: docker:17.05.0-ce-git
+    steps:
+      # Checkout code from git
+      - checkout
+
+      - setup_remote_docker
+
+      - run:
+          name: Build application Docker image
+          command: |
+            cd Apply-For-Me-Api
+            docker build -t app-be .
+
+      - run:
+          name: Push Image to docker hub
+          command: |
+            docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+            docker tag app-be applyforme/backend
+            docker push applyforme/backend
+
+  deploy-frontend-images-using-ssh:
+    docker:
+      # Docker image that supports docker
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: ["09:86:cf:93:4e:a9:6f:70:4a:20:c2:63:f5:e2:48:6c"]
+      - run:
+          name: Deploy
+          command: |
+
+            # SSH to the server to deploy
+            EC2_USERNAME=ubuntu
+
+            EC2_PUBLIC_DNS=44.203.211.6
+            ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "/home/ubuntu/run.sh"
+
+
+  deploy-backend-images-using-ssh:
+    docker:
+      # Docker image that supports docker
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: ["09:86:cf:93:4e:a9:6f:70:4a:20:c2:63:f5:e2:48:6c"]
+      - run:
+          name: Deploy
+          command: |
+
+            # SSH to the server to deploy
+            EC2_USERNAME=ubuntu
+
+            EC2_PUBLIC_DNS=44.203.211.6
+            ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "/home/ubuntu/run.sh"
+
+
+workflows:
+  default:
+    # testing
+    jobs:
+      - build-frontend-client
+        # - build-frontend-admin
+      - build-backend
+      # - test-frontend-client
+      # - test-frontend-admin
+      # - test-backend
+      - build-frontend-client-docker-image:
+          requires: [build-frontend-client] #remember to channge to test
+          filters:
+            branches:
+              only: [merge-dev]
+
+      - build-backend-docker-image:
+          requires: [build-backend] #remember to channge to test
+          filters:
+            branches:
+              only: [merge-dev]
+
+      - deploy-images-using-ssh:
+          requires:
+            [
+              build-frontend-client-docker-image,
+              build-frontend-client-docker-image,
+            ]
