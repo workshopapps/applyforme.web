@@ -57,5 +57,5 @@ jobs:
           cd /home/apply-for-me
           sudo docker compose pull
           sudo docker compose up -d --build frontend
-          sudo docker system prune -af && exit
+          sudo docker system prune -af && exit'
 
