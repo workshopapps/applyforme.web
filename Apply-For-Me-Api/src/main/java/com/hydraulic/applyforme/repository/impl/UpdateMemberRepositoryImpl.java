@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 @Repository
 public class UpdateMemberRepositoryImpl implements UpdateMemberRepository {
 
+
     @PersistenceContext
     private EntityManager entityManager;
 

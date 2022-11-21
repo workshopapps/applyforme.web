@@ -1,13 +1,10 @@
 package com.hydraulic.applyforme.service.impl;
 
-import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.dto.country.CountryDto;
 import com.hydraulic.applyforme.model.dto.member.UpdateMemberDto;
-import com.hydraulic.applyforme.model.exception.CountryNotFoundException;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.repository.UpdateMemberRepository;
-import com.hydraulic.applyforme.repository.jpa.UpdateMemberJpaRepository;
+import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.service.UpdateMemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -15,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -23,11 +21,10 @@ public class UpdateMemberServiceImpl implements UpdateMemberService {
     @Autowired
     private ModelMapper modelMapper;
 
-
     private final UpdateMemberRepository repository;
-    private final UpdateMemberJpaRepository jpaRepository;
+    private final MemberJpaRepository jpaRepository;
 
-    public UpdateMemberServiceImpl(UpdateMemberRepository repository, UpdateMemberJpaRepository jpaRepository) {
+    public UpdateMemberServiceImpl(UpdateMemberRepository repository, MemberJpaRepository jpaRepository) {
         this.repository = repository;
         this.jpaRepository = jpaRepository;
     }
@@ -36,7 +33,8 @@ public class UpdateMemberServiceImpl implements UpdateMemberService {
     @Transactional
     public Member update(Long id, UpdateMemberDto body) {
 
-        Member existingMember = repository.getOne(id);
+
+        Optional<Member> existingMember = jpaRepository.findById(id);
 
         if (existingMember == null) {
             throw new MemberNotFoundException(id);
@@ -45,7 +43,11 @@ public class UpdateMemberServiceImpl implements UpdateMemberService {
         Member member = new Member();
         member = modelMapper.map(body, Member.class);
         member.setId(id);
+        member.setNationality(body.getNationality());
+        member.setCountryOfResidence(body.getCountryOfResidence());
+
         return repository.updateOne(member);
+
     }
 
 }

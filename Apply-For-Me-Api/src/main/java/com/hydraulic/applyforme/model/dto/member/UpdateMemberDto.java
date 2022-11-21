@@ -1,5 +1,7 @@
 package com.hydraulic.applyforme.model.dto.member;
 
+import com.hydraulic.applyforme.annotation.PhoneNumberConstraint;
+import com.hydraulic.applyforme.model.domain.Country;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,9 @@ public class UpdateMemberDto {
     @NotNull(message = "{member.last_name.notNull}")
     private String lastName;
 
+    private Country nationality;
+    private Country countryOfResidence;
+
     private Date dateOfBirth;
     private String currentJobTitle;
 
@@ -29,6 +34,7 @@ public class UpdateMemberDto {
     private String username;
 
     @NotNull(message = "{member.phone_number.notNull}")
+    @PhoneNumberConstraint
     private String phoneNumber;
 
     private String city;
@@ -36,6 +42,4 @@ public class UpdateMemberDto {
     private String password;
     private String avatar;
     private Boolean active;
-
-
 }
