@@ -40,11 +40,12 @@ public class SuperAdminStatServiceImpl implements SuperAdminStatService {
 
         List<ApplierStatsDto> applierStatsDtos;
         List<Member> appliers = repository.getFiniteAppliers(pageOffset);
-        if (appliers.isEmpty())
+        if (appliers.isEmpty()) {
             return List.of();
-        else
+        } else {
             applierStatsDtos = appliers.stream().map(applier -> mapper.map(applier, ApplierStatsDto.class))
                     .collect(Collectors.toList());
+        }
         return applierStatsDtos;
     }
 
