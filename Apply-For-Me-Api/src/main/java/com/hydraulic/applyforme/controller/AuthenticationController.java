@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.signup.SignUpDto;
+import com.hydraulic.applyforme.service.EmailService;
 import com.hydraulic.applyforme.service.MemberService;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -18,13 +19,21 @@ public class AuthenticationController {
 
     private final MemberService service;
 
-    public AuthenticationController(MemberService service) {
+    public final EmailService emailService;
+
+    public AuthenticationController(MemberService service, EmailService emailService) {
         this.service = service;
+        this.emailService = emailService;
     }
 
     @PostMapping("/sign-up")
     public Member saveMember(@Validated @RequestBody SignUpDto user) {
-        return service.save(user);
+        Member newMember = service.save(user);
+        if (newMember != null) {
+            emailService.sendWelcomeMessage(user.getEmailAddress());
+        }
+        //return service.save(user);
+        return newMember;
     }
 
 }
