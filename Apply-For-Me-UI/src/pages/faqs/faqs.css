@@ -90,7 +90,6 @@
 /* for the  linked pages */
 .faqses {
     width: 100%;
-    height: 1160px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
