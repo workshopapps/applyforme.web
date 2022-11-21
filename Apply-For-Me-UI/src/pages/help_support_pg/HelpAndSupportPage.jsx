@@ -37,7 +37,7 @@ const HelpAndSupportPage = () => {
                             para=" Interested in working with us at ApplyForMe?
                              Click here to see current opening & stay up 
                              to date about jobs."
-                            link="/howafmworks"
+                            link="/career"
                     />
                     <Card header="Tips"
                             para=" Looking to onboard? 
