@@ -5,6 +5,8 @@ import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.service.EmailService;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -19,16 +21,21 @@ import java.io.UnsupportedEncodingException;
 
 @Service
 public class EmailServiceImpl implements EmailService {
-    @Autowired
-    MemberJpaRepository memberJpaRepository;
-    @Autowired
+
+
+    private MemberJpaRepository memberJpaRepository;
+
     private JavaMailSender javaMailSender;
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    private String email_token = "";
-    private String email_address = "";
+    private String savedEmailToken = "";
+    private String savedEmailAddress = "";
+
+    public EmailServiceImpl(MemberJpaRepository memberJpaRepository) {
+        this.memberJpaRepository = memberJpaRepository;
+    }
 
     @Async
     @Override
@@ -120,14 +127,14 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public String getEmailAddress(){
-        return email_address;
+        return savedEmailAddress;
     }
 
     @Async
     @Override
     public void sendResetPasswordMail(String recipientEmail, String link) throws MessagingException, UnsupportedEncodingException {
 
-        email_address = recipientEmail;
+        savedEmailAddress = recipientEmail;
         String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
@@ -169,30 +176,16 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public String createResetPasswordToken(){
-        String emailpwd_token = RandomString.make(30);
-        email_token = emailpwd_token;
-        return emailpwd_token;
+        String emailPwdToken = RandomString.make(30);
+        savedEmailToken = emailPwdToken;
+        return emailPwdToken;
     }
 
     @Override
     public String getResetPasswordToken(){
-        return email_token;
+        return savedEmailToken;
     }
 
-    @Override
-    public void updatePassword(String emailAddress, String newpassword){
-        String queryString = "SELECT m FROM Member m WHERE m.emailAddress = : emailAddress";
-        Query query ;
-        Member member = null;
-        try{
-            query = entityManager.createQuery(queryString);
-            query.setParameter("email_address", emailAddress);
-            member = (Member) query.getSingleResult();
-            member.setPassword(newpassword);
-            entityManager.merge(member);
-        } catch (Exception ex) {
 
-        }
-    }
 }
 

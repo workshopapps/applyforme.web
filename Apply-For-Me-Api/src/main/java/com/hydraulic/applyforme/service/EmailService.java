@@ -11,5 +11,5 @@ public interface EmailService {
     public String createResetPasswordToken();
     public String getResetPasswordToken();
     public void sendSignUpVerificationCode(String verificationCode, String emailAddress);
-    public void updatePassword(String emailAddress, String newpassword);
+
 }

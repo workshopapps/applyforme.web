@@ -1,69 +1,65 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.email.ResetPasswordDto;
-import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
+import com.hydraulic.applyforme.model.exception.ResetPasswordInvalidTokenException;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.service.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.mail.javamail.JavaMailSender;
-//import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequestMapping(
         value = "email",
-        produces = { MediaType.APPLICATION_JSON_VALUE },
-        consumes = { MediaType.APPLICATION_JSON_VALUE }
+        produces = { MediaType.APPLICATION_JSON_VALUE }
 )
 public class EmailController {
-    @Autowired
-    private JavaMailSender mailSender;
 
-    @Autowired
-    private EmailService emailService;
-    @Autowired
-    private MemberJpaRepository memberJpaRepository;
+    private final EmailService emailService;
+    private final MemberJpaRepository memberJpaRepository;
+
+    public EmailController(EmailService emailService, MemberJpaRepository memberJpaRepository) {
+        this.emailService = emailService;
+        this.memberJpaRepository = memberJpaRepository;
+    }
 
     @GetMapping("/forgot_password")
     public String showForgotPasswordForm() {
-        return "forgot_password_form";
+        return "show forgot password form";
     }
 
     @PostMapping("/forgot_password")
     public String processForgotPassword(HttpServletRequest request, @RequestParam ("email") final String emailAddress) throws MessagingException, UnsupportedEncodingException {
         String token = emailService.createResetPasswordToken();
-        String siteURL = request.getRequestURL().toString();
-        String formattedURL = siteURL.replace(request.getServletPath(), "");
-        String resetPasswordLink = formattedURL + "/reset_password?token=" + token;
+        String siteUrl = request.getRequestURL().toString();
+        String formattedUrl = siteUrl.replace(request.getServletPath(), "");
+        String resetPasswordLink = formattedUrl + "/reset_password?token=" + token;
         emailService.sendResetPasswordMail(emailAddress, resetPasswordLink);
-        return "forgot_password_form";
+        return "show forgot password form";
     }
 
     @GetMapping("/reset_password")
     public String showResetPasswordForm(){
-        return "reset_password_form";
+        return "show reset password form";
     }
 
     @PostMapping("/reset_password")
-    public String processResetPassword(@Valid final ResetPasswordDto resetPasswordDto) {
+    public String processResetPassword(@Validated @RequestBody final ResetPasswordDto resetPasswordDto) {
         String token = resetPasswordDto.getToken();
-        String newpassword = resetPasswordDto.getPassword();
+        String newPassword = resetPasswordDto.getPassword();
 
-        String savedpwdtoken = emailService.getResetPasswordToken();
-        String savedemailaddress = emailService.getEmailAddress();
+        String savedPwdToken = emailService.getResetPasswordToken();
+        String savedEmailAddress = emailService.getEmailAddress();
 
-        if (savedpwdtoken.trim().equals(token.trim())){
-            emailService.updatePassword(savedemailaddress, newpassword);
+        if (savedPwdToken.trim().equals(token.trim())){
+            memberJpaRepository.updatePassword(savedEmailAddress, newPassword);
             return "You have successfully changed your password.";
         } else {
-            return "Invalid Token";
+            throw  new ResetPasswordInvalidTokenException();
         }
     }
 }
