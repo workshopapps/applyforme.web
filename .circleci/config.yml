@@ -139,7 +139,7 @@ workflows:
     # testing
     jobs:
       - build-frontend
-        # - build-frontend-admin
+      # - build-frontend-admin
       - build-backend
       # - test-frontend
       - build-frontend-docker-image:
@@ -155,15 +155,7 @@ workflows:
               only: [devops]
 
       - deploy-frontend-images-using-ssh:
-          requires:
-            [
-              build-frontend-client-docker-image,
-              build-frontend-client-docker-image,
-            ]
+          requires: [build-frontend-docker-image]
 
       - deploy-backend-images-using-ssh:
-          requires:
-            [
-              build-frontend-client-docker-image,
-              build-frontend-client-docker-image,
-            ]
+          requires: [build-backend-docker-image]
