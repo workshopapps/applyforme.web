@@ -1,10 +1,14 @@
 package com.hydraulic.applyforme.service;
 
+import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
-import org.springframework.http.ResponseEntity;
+import com.hydraulic.applyforme.model.dto.country.CountryDto;
+import com.hydraulic.applyforme.model.dto.member.UpdateMemberDto;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface UpdateMemberService {
 
-   ResponseEntity<Member> getMember(long id, Member member);
+   @Transactional
+  Member update(Long id, UpdateMemberDto body);
 
 }
