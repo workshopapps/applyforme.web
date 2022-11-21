@@ -26,8 +26,8 @@ import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
 
 const DashboardHeader = ({ func }) => {
     const [dashboardActive, setDashboardActive] = useState({
-        dashboard: true,
-        user: false
+        dashboard: false,
+        user: true
     });
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);

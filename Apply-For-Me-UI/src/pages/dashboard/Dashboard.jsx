@@ -6,8 +6,8 @@ import { getActivePage } from "./service/DashbaordService";
 
 const Dashboard = () => {
     const [page, setPage] = useState({
-        dashboardPage: true,
-        userPage: false
+        dashboardPage: false,
+        userPage: true
     });
 
     const handlePageSwitch = data => {
