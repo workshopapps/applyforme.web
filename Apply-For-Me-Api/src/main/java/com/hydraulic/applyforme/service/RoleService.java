@@ -32,4 +32,6 @@ public interface RoleService {
 
     @Transactional
     boolean deleteAll();
+
+
 }
