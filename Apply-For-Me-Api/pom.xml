@@ -85,6 +85,7 @@
 
 
 	<build>
+	<finalName>Apply-For-Me-0.0.1-SNAPSHOT</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
