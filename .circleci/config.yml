@@ -34,7 +34,6 @@ jobs:
             cp target/Apply-For-Me-Api.jar Apply-For-Me-Api.jar
             java -jar Apply-For-Me-Api.jar
 
-
   test-frontend:
     docker:
       # Docker image here
@@ -106,7 +105,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["09:86:cf:93:4e:a9:6f:70:4a:20:c2:63:f5:e2:48:6c"]
+          fingerprints: [""]
       - run:
           name: Deploy
           command: |
@@ -114,9 +113,8 @@ jobs:
             # SSH to the server to deploy
             EC2_USERNAME=ubuntu
 
-            EC2_PUBLIC_DNS=44.203.211.6
+            EC2_PUBLIC_DNS=
             ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "/home/ubuntu/run.sh"
-
 
   deploy-backend-images-using-ssh:
     docker:
@@ -125,7 +123,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["09:86:cf:93:4e:a9:6f:70:4a:20:c2:63:f5:e2:48:6c"]
+          fingerprints: [""]
       - run:
           name: Deploy
           command: |
@@ -133,33 +131,37 @@ jobs:
             # SSH to the server to deploy
             EC2_USERNAME=ubuntu
 
-            EC2_PUBLIC_DNS=44.203.211.6
+            EC2_PUBLIC_DNS=
             ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "/home/ubuntu/run.sh"
-
 
 workflows:
   default:
     # testing
     jobs:
-      - build-frontend-client
+      - build-frontend
         # - build-frontend-admin
       - build-backend
-      # - test-frontend-client
-      # - test-frontend-admin
-      # - test-backend
-      - build-frontend-client-docker-image:
-          requires: [build-frontend-client] #remember to channge to test
+      # - test-frontend
+      - build-frontend-docker-image:
+          requires: [build-frontend] #remember to channge to test
           filters:
             branches:
-              only: [merge-dev]
+              only: [devops]
 
       - build-backend-docker-image:
           requires: [build-backend] #remember to channge to test
           filters:
             branches:
-              only: [merge-dev]
+              only: [devops]
 
-      - deploy-images-using-ssh:
+      - deploy-frontend-images-using-ssh:
+          requires:
+            [
+              build-frontend-client-docker-image,
+              build-frontend-client-docker-image,
+            ]
+
+      - deploy-backend-images-using-ssh:
           requires:
             [
               build-frontend-client-docker-image,
