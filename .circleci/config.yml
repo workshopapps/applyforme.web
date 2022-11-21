@@ -27,9 +27,9 @@ jobs:
       - restore_cache:
           keys: [frontend-build]
       - run:
-          name: Build front-end
+          name: Build back-end
           command: |
-            cd Apply-For-Me-API
+            cd Apply-For-Me-Api
             mvn install
             cp target/Apply-For-Me-Api.jar Apply-For-Me-Api.jar
             java -jar Apply-For-Me-Api.jar
