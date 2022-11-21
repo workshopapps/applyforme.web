@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping(value = "applier")
 public class ApplierController {
 
-
     private final ApplierService applierService;
 
     public ApplierController(ApplierService applierService) {

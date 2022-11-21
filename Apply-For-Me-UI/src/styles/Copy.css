@@ -1,0 +1,68 @@
+.copy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 100px;
+    gap: 8px;
+    width: 100%;
+    height: 48px;
+    left: 0px;
+    bottom: 0px;
+    background: #171646;
+}
+
+.copy p {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.03em;
+    color: #E1E1E1;
+}
+
+.cookie {
+    display: flex;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+}
+
+.cookie p {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 1023px) {
+    .copy {
+        padding: 0px 50px;
+    }
+    
+    .copy p {
+        font-size: 14px;
+    }
+    .cookie p {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .copy {
+        padding: 15px 30px;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        height: 60px;
+    }
+    
+    .copy p {
+        font-size: 10px;
+    }
+    
+    .cookie p {
+        font-weight: 300;
+        font-size: 10px;
+    }
+}
