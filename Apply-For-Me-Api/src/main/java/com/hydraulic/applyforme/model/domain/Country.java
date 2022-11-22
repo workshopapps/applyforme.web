@@ -39,4 +39,11 @@ public class Country {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_on", nullable = false)
     private Date updatedOn;
+
+    public Country(String nationality, String countryAbbreviation) {
+        this.title = nationality;
+        this.abbreviation = countryAbbreviation;
+        this.createdOn = new Date();
+        this.updatedOn = new Date();
+    }
 }
