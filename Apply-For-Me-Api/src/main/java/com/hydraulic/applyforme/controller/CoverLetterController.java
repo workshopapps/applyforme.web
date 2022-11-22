@@ -1,5 +1,7 @@
 package com.hydraulic.applyforme.controller;
 
+import com.hydraulic.applyforme.model.domain.Country;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(
         value = "cover-letter",
-        produces = { MediaType.APPLICATION_JSON_VALUE },
-        consumes = { MediaType.APPLICATION_JSON_VALUE }
+        produces = { MediaType.APPLICATION_JSON_VALUE }
 )
 public class CoverLetterController {
 

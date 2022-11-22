@@ -10,8 +10,8 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name ="salary_range")
 public class SalaryRange {
@@ -33,4 +33,5 @@ public class SalaryRange {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_on", nullable = false)
     private Date updatedOn;
+
 }

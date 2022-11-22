@@ -48,18 +48,20 @@ public class SalaryRangeServiceImpl implements SalaryRangeService {
         ObjectMapper mapper = new ObjectMapper();
 
         SalaryRange[] countriesArray = mapper.readValue(salaryRangeJsonAsString, SalaryRange[].class);
-        List<SalaryRange> countriesList = Arrays.asList(countriesArray);
+        List<SalaryRange> salaryRangesList = Arrays.asList(countriesArray);
 
         try {
-            for (SalaryRange salaryRange : countriesList) {
-                Optional<SalaryRange> salaryRangeExists = jpaRepository.findBySalaryRange(salaryRange.getSalaryRange());
+            for (SalaryRange salaryRange : salaryRangesList) {
+                if (false) {
+                    Optional<SalaryRange> salaryRangeExists = jpaRepository.findBySalaryRange(salaryRange.getSalaryRange());
 
-                if (salaryRangeExists.isPresent()) {
-                    continue;
+                    if (salaryRangeExists.isPresent()) {
+                        continue;
+                    }
+
+                    salaryRange.setId(null);
+                    repository.saveOne(salaryRange);
                 }
-
-                salaryRange.setId(null);
-                repository.saveOne(salaryRange);
             }
         }
         catch (SalaryRangeDuplicateEntityException exception) {
