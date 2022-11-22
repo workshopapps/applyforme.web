@@ -1,76 +1,97 @@
 package com.hydraulic.applyforme.repository.impl;
 
+import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.exception.CountryDuplicateEntityException;
+import com.hydraulic.applyforme.model.exception.MemberDuplicateEntityException;
+import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Repository
-public class MemberRepositoryImpl implements MemberJpaRepository {
+public class MemberRepositoryImpl implements MemberRepository {
+
     private static final int DEFAULT_PAGE_SIZE = 11;
     @PersistenceContext
     private EntityManager entityManager;
 
-
     @Override
-    public Member findByEmailAddress(String emailAddress){
-        String queryString = "SELECT m FROM Member m WHERE m.emailAddress = : emailAddress";
-        Query query ;
-        Member member = null;
-        try{
-
-            query = entityManager.createQuery(queryString);
-            query.setParameter("emailAddress", emailAddress);
-            member = (Member) query.getSingleResult();
-        } catch (Exception ex) {
-
-        }
-        return  member;
+    public List<Member> getAll() {
+        String queryText = "select m from Member m order by m.updatedOn desc";
+        TypedQuery<Member> applyForMeQuery = entityManager.createQuery(queryText, Member.class);
+        return applyForMeQuery.getResultList();
     }
 
     @Override
-    public void save(Member member) {
-        entityManager.persist(member);
-    }
+    public List<Member> getAll(Integer pageOffset) {
+        String queryText = "select m from Member m order by m.updatedOn desc";
+        TypedQuery<Member> applyForMeQuery = entityManager.createQuery(queryText, Member.class);
 
-    public boolean existsByEmailAddress(String emailAddress) {
-        String queryString = "SELECT m FROM Member m WHERE m.emailAddress = : emailAddress";
-        Query query ;
-        Member member = null;
-        boolean memberExists = false;
-        try{
-
-            query = entityManager.createQuery(queryString);
-            query.setParameter("emailAddress", emailAddress);
-            member = (Member) query.getSingleResult();
-            if (member != null) {
-                memberExists = true;
-            }
-        } catch (Exception ex) {
-        }
-        return memberExists;
+        applyForMeQuery.setFirstResult((pageOffset - 1) * DEFAULT_PAGE_SIZE);
+        applyForMeQuery.setMaxResults(DEFAULT_PAGE_SIZE);
+        return applyForMeQuery.getResultList();
     }
 
     @Override
-    public void updatePassword(String emailAddress, String newPassword){
-        String queryString = "SELECT m FROM Member m WHERE m.emailAddress = : emailAddress";
-        Query query ;
-        Member member = null;
-        try{
-            query = entityManager.createQuery(queryString);
-            query.setParameter("email_address", emailAddress);
-            member = (Member) query.getSingleResult();
-            member.setPassword(newPassword);
-            entityManager.merge(member);
-        } catch (Exception ex) {
+    public Member getOne(Long id) {
+        return entityManager.find(Member.class, id);
+    }
 
+
+    @Override
+    public Member saveOne(Member body) {
+        try {
+            entityManager.persist(body);
+            return body;
+        }
+        catch (EntityExistsException ex) {
+            throw new MemberDuplicateEntityException();
         }
     }
 
+    @Override
+    public Member updateOne(Member body) {
+        return entityManager.merge(body);
+    }
+
+    @Override
+    public boolean remove(Long id) {
+        try {
+            Member member = entityManager.getReference(Member.class, id);
+            entityManager.remove(member);
+            return true;
+        }
+        catch (EntityNotFoundException ex) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removeMany(List<Long> ids) {
+        Query query = entityManager.createQuery("delete from Member m where m.id in (:ids)");
+        query.setParameter("ids", ids);
+        if (query.executeUpdate() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removeAll() {
+        Query query = entityManager.createQuery("delete from Member");
+        if (query.executeUpdate() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 }
 
