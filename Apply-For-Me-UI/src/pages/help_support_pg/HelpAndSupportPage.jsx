@@ -17,7 +17,7 @@ const HelpAndSupportPage = () => {
                     <h5 className={classes.help_subhead}>Welcome to our Help and Support Center</h5>
                 </div>
                 <div className={classes.card_wrap}>
-                    <Card header="how afm works"
+                    <Card header="How afm works"
                             para=" ApplyForMe is a marketplace that connects 
                             job seekers with their dream jobs.
                             Here, job seekers like you sign up, letting professionals 
