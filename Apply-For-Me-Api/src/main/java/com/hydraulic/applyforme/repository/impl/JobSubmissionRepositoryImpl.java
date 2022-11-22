@@ -6,10 +6,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.dto.ProfessionalJobSubmissionDTO;
 import com.hydraulic.applyforme.repository.JobSubmissionRepository;
+import com.hydraulic.applyforme.repository.jpa.ProfessionalRepository;
 
 @Repository
 public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
@@ -18,12 +22,19 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	@Autowired
+	private ProfessionalRepository professionalRepository;
 
 	@Override
-	public List<Submission> getAllSubmissionsByPagination(Long professionalId, Integer pageOffset) {
+	public ProfessionalJobSubmissionDTO getAllSubmissionsByPagination(Long professionalId, Integer pageOffset) {
 
 		String queryString = "SELECT sbm FROM Submission sbm WHERE sbm.professional.id = :professional "
 				+ "ORDER BY sbm.createdOn DESC";
+		Professional professional = professionalRepository.getById(professionalId);
+		
+		ProfessionalJobSubmissionDTO professionalSubmissionDTO = new ProfessionalJobSubmissionDTO();
+		professionalSubmissionDTO.setProfessional(professional);
 
 		TypedQuery<Submission> professionalSubmissions = entityManager.createQuery(queryString,
 				Submission.class);
@@ -33,7 +44,9 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 		professionalSubmissions.setMaxResults(DEFAULT_PAGE_SIZE);
 
 		List<Submission> resultList = professionalSubmissions.getResultList();
-		return resultList;
+		professionalSubmissionDTO.setSubmissions(resultList);
+		
+		return professionalSubmissionDTO;
 	}
 
 }
