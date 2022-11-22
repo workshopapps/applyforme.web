@@ -1,12 +1,11 @@
 package com.hydraulic.applyforme.service.impl;
 	
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.hydraulic.applyforme.model.domain.Applier;
-import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.dto.ProfessionalJobSubmissionDTO;
 import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
 import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
@@ -41,7 +40,7 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     }
 
 	@Override
-	public List<Submission> getAllSubmissionsByPagination(Long professionalId, Integer pageOffset) {
+	public ProfessionalJobSubmissionDTO getAllSubmissionsByPagination(Long professionalId, Integer pageOffset) {
 		
 		return repo.getAllSubmissionsByPagination(professionalId, pageOffset);
 	}
