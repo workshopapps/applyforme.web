@@ -90,7 +90,6 @@
 /* for the  linked pages */
 .faqses {
     width: 100%;
-    height: 1160px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -173,7 +172,6 @@
 @media (max-width: 500px) {
     .faq {
         width: 100%;
-        height: 2749px;
     }
     .faqs__section {
         padding: 20px 20px 0;

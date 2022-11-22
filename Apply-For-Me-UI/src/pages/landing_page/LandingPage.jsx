@@ -1,10 +1,9 @@
 import React from "react";
-import "./landing.css";
 import Nav from "../../components/nav/Nav";
-import Footer from "../../components/footer/Footer";
 import Hero from "./Hero";
 import classes from "./Hero.module.css";
 import Service from "./Service";
+import Footer from "../../components/footer/Footer";
 import LearnMore from "./LearnMore";
 import Pricing from "./Pricing";
 import Reviews from "./Reviews";

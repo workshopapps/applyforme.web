@@ -57,7 +57,8 @@ const Reviews = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    </div>
+  )
+}
 
-export default Reviews;
+export default Reviews
