@@ -2,6 +2,7 @@ name: Build Images
 on:
   push:
     branches:
+      - LatestMain
       - main
 jobs:
   build:
