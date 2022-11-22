@@ -160,4 +160,26 @@ public class GlobalExceptionController {
 
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(EmailDeliveryException.class)
+    public Object emailDelivery(EmailDeliveryException ex) {
+        Map<String, String> errors = new HashMap<String, String>();
+        errors.put("entityName", EmailDeliveryException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidResetTokenException.class)
+    public Object invalidResetPasswordToken(InvalidResetTokenException ex) {
+        Map<String, String> errors = new HashMap<String, String>();
+        errors.put("entityName", InvalidResetTokenException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface CountryRepository {
 
     List<Country> getAll();
-    List<Country> getAll(Integer pageOffSet);
+    List<Country> getAll(Integer pageOffset);
 
     Country getOne(Long id);
 

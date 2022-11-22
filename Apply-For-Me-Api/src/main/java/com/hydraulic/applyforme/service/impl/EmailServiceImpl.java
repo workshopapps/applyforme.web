@@ -1,12 +1,13 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.domain.MemberSecretCode;
+import com.hydraulic.applyforme.model.exception.EmailDeliveryException;
+import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
+import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
 import com.hydraulic.applyforme.service.EmailService;
 import net.bytebuddy.utility.RandomString;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -14,34 +15,22 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import java.io.UnsupportedEncodingException;
 
 @Service
 public class EmailServiceImpl implements EmailService {
-
-
     private MemberJpaRepository memberJpaRepository;
-
+    private MemberSecretJpaRepository memberSecretJpaRepository;
     private JavaMailSender javaMailSender;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    private String savedEmailToken = "";
-    private String savedEmailAddress = "";
-
-    public EmailServiceImpl(MemberJpaRepository memberJpaRepository) {
+    public EmailServiceImpl(MemberJpaRepository memberJpaRepository, MemberSecretJpaRepository memberSecretJpaRepository) {
         this.memberJpaRepository = memberJpaRepository;
+        this.memberSecretJpaRepository = memberSecretJpaRepository;
     }
 
     @Async
     @Override
     public void sendWelcomeMessage(String emailAddress) {
         Member member = memberJpaRepository.findByEmailAddress(emailAddress);
-
         String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
@@ -62,17 +51,12 @@ public class EmailServiceImpl implements EmailService {
         String subject = "Welcome to ApplyForMe";
 
         try {
-
-
             MimeMessage msg = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-
             helper.setTo(member.getEmailAddress());
             helper.setSubject(subject);
-
             helper.setText(messageSource, true);
             javaMailSender.send(msg);
-
         } catch (MessagingException ex2) {
             System.out.println("sendWelcomeMessage: " + ex2.getMessage());
         }
@@ -80,8 +64,8 @@ public class EmailServiceImpl implements EmailService {
 
     @Async
     @Override
-    public void sendSignUpVerificationCode(String verificationCode, String emailAddress){
-        Member member = memberJpaRepository.findByEmailAddress(emailAddress);
+    public void signupVerification(String emailAddress) {
+        String token = createVerificationToken();
 
         String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
@@ -90,51 +74,39 @@ public class EmailServiceImpl implements EmailService {
                 "<p>ApplyForMe</p>" +
                 "</div>" +
                 "<p style=\"font-size:1.1em\">" +
-                "<b>Hey " + member.getFirstName() + ",</b>" + "<br>" +
-                "Your sign-up verification code is " + verificationCode +
+                "Your sign up verification code is " + token +
                 " <hr style=\"border:none;border-top:1px solid #eee\" />" +
                 "<div style=\"margin-top: 20px;padding:8px 0;color:#aaa;font-size:1.0em;line-height:1;font-weight:300\">" +
                 " <p>© 2022 ApplyForMe, All rights reserved.</p>" +
                 " </div>" +
                 "</div>" +
                 "</div>";
-
-        String subject = "Sign-up verification";
+        String subject = "Sign up verification";
 
         try {
             MimeMessage msg = javaMailSender.createMimeMessage();
-
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-
             helper.setTo(emailAddress);
-
             helper.setSubject(subject);
-
             helper.setText(messageSource, true);
             javaMailSender.send(msg);
-
-        } catch (MessagingException ex2) {
-            System.out.println("sendSignUpVerificationCode: " + ex2.getMessage());
+        } catch (Exception exception) {
+            throw new EmailDeliveryException();
         }
     }
-
 
     @Override
     public String getByResetPasswordToken(String token) {
         return null;
     }
 
-
-    @Override
-    public String getEmailAddress(){
-        return savedEmailAddress;
-    }
-
     @Async
     @Override
-    public void sendResetPasswordMail(String recipientEmail, String link) throws MessagingException, UnsupportedEncodingException {
+    public void sendResetPasswordMail(String recipientEmail, String baseUrl) {
+        String link = baseUrl + "/reset-password?token=";
+        String token = createVerificationToken();
+        link += token;
 
-        savedEmailAddress = recipientEmail;
         String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
@@ -154,38 +126,21 @@ public class EmailServiceImpl implements EmailService {
                 "</div>" +
                 "</div>";
 
-        String subject = "Here's the link to reset your password";
-
+        String subject = "Reset Password Link";
         try {
             MimeMessage msg = javaMailSender.createMimeMessage();
-
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-
             helper.setTo(recipientEmail);
-
             helper.setSubject(subject);
-
             helper.setText(messageSource, true);
             javaMailSender.send(msg);
-
-        } catch (MessagingException ex2) {
-            System.out.println("sendResetPasswordMail: " + ex2.getMessage());
+        } catch (Exception exception) {
+            throw new EmailDeliveryException();
         }
     }
 
-
     @Override
-    public String createResetPasswordToken(){
-        String emailPwdToken = RandomString.make(30);
-        savedEmailToken = emailPwdToken;
-        return emailPwdToken;
+    public String createVerificationToken() {
+        return RandomString.make(30);
     }
-
-    @Override
-    public String getResetPasswordToken(){
-        return savedEmailToken;
-    }
-
-
 }
-
