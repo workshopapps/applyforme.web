@@ -1,6 +1,5 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.service.RoleService;
 import com.hydraulic.applyforme.service.SuperAdminStatService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
         value = "statistic",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
-public class SuperAdminStatController {
+public class SuperAdminStatisticController {
 
     private final SuperAdminStatService service;
 
-    public SuperAdminStatController(SuperAdminStatService service) {
+    public SuperAdminStatisticController(SuperAdminStatService service) {
         this.service = service;
     }
 

@@ -19,12 +19,10 @@ public class ApplierServiceImpl implements ApplierService {
     private ModelMapper modelMapper;
 
     public List<ApplierDto> getAllAppliers() {
-
         List<Applier> appliers =this.repository.findAll();
 
         List<ApplierDto> applierDto = appliers.stream()
                 .map(user->this.applierToDto(user)).collect(Collectors.toList());
-
         return applierDto;
     }
     private ApplierDto applierToDto(Applier applier) {
