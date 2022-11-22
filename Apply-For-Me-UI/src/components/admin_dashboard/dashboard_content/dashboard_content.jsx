@@ -7,7 +7,7 @@ export const DashboardContent=()=>{
             <h2 className='profile_name'>Hello John Cooper</h2>
             <div className="statisticsContainer">
                 <h2>Statistical</h2>
-                <select name="statistic_sorter" id="statistic_sorter">
+                <select style={{background:"whitesmoke"}} name="statistic_sorter" id="statistic_sorter">
                     <option value="oldest">Today, 16th Nov. 2022</option>
                     <option value="newest">Today, 16th Nov. 2021</option>
                 </select>

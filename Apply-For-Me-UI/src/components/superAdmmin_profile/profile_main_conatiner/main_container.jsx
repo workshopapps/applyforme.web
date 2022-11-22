@@ -1,11 +1,19 @@
+import { useState } from "react";
+import { PasswordContent } from "../../modals/editpersonalinfo/editPassword/editPassword";
+import { EditInfoContainer } from "../../modals/editpersonalinfo/editpersonalInfo";
+import { EditInfoContent } from "../../modals/editpersonalinfo/editProfileInformation/editProfileInformation";
 import  "./main_container.css";
 export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
+    const [showEditModal, setEditModal] = useState(false);
+    const [showPasswordModal, setPasswordModal] = useState(false);
+
+    
     return(
         <>
             <div  className="ProfileMainContainer">
                 <div className="profile_header">
                     <h1>Profile</h1>
-                    <button className="profile_content_btn">
+                    <button className="profile_content_btn" onClick={()=>setEditModal(true)}>
                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1668865249/pencil-edit_g9boq4.png" alt="object not found"/>
                         <h4>Edit</h4> 
                     </button>
@@ -52,12 +60,14 @@ export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
                 </div>
                 <div className="changePassword">
                     <h1>Password</h1>
-                    <button className="profile_content_btn">
+                    <button className="profile_content_btn" onClick={()=>setPasswordModal(true)}>
                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1668865249/pencil-edit_g9boq4.png" alt="object not found"/>
                         <h4>Change</h4> 
                     </button>
                 </div>
             </div>
+           {showEditModal ? <EditInfoContainer content={<EditInfoContent/>}/>:null}
+           {showPasswordModal ? <EditInfoContainer content={<PasswordContent/>}/>:null}
         </>
     )
 }

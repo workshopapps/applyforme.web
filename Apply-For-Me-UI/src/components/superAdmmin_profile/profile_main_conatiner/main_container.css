@@ -2,10 +2,6 @@
     padding: 2rem 8rem 8rem 8rem;
     
 }
-.notification_icon img{
-    width:30%;
-    margin-left:1rem;
-}
 .profile_content{
     font-family: 'Montserrat', sans-serif;
 }
@@ -31,7 +27,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 0.2rem;
+    padding: 0.5rem 0;
     border-bottom:1px solid  gray;
 }
 .profile_header h1{
@@ -53,6 +49,7 @@
     align-items: center;
     border-top: 1px solid  gray;
     border-bottom: 1px solid  gray;
+    padding: 0.5rem 0;
 }
 .changePassword h1{
     font-size: 20px;

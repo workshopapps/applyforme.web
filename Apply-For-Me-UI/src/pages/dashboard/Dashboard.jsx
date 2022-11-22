@@ -6,8 +6,8 @@ import { getActivePage } from "./service/DashbaordService";
 
 const Dashboard = () => {
     const [page, setPage] = useState({
-        dashboardPage: false,
-        userPage: true
+        dashboardPage: true,
+        userPage: false
     });
     
     const handlePageSwitch = data => {
@@ -16,7 +16,7 @@ const Dashboard = () => {
     return (
         <div>
             <DashboardHeader func={handlePageSwitch} />
-            {page.userPage ? <UsersPage /> : <DashBoardPage />}
+            {page.dashboardPage ? <DashBoardPage />: <UsersPage /> }
         </div>
     );
 };

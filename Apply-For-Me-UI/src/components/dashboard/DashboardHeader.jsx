@@ -18,8 +18,8 @@ import { getActiveLink } from "./service/DashboardSidebarService";
 
 const DashboardHeader = ({ func }) => {
     const [dashboardActive, setDashboardActive] = useState({
-        dashboard: false,
-        user: true
+        dashboard: true,
+        user: false
     });
 
     const [showMenu, setShowMenu] = useState(false);
