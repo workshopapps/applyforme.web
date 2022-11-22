@@ -1,9 +1,6 @@
 package com.hydraulic.applyforme.model.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,6 +10,7 @@ import java.util.Set;
  * This is a user who is seeking for greener pastures or new job opportunities aside
  * his or her current role or position at work.
  */
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
