@@ -1,9 +1,6 @@
 package com.hydraulic.applyforme.model.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -21,7 +18,7 @@ import java.util.Set;
  * Only attributes or properties that is peculiar to each individual is added within their own schema.
  * A Member can be termed or interchanged with a User or Participant or Actor in this context.
  */
-
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -71,8 +68,7 @@ public class Member {
 
     @Temporal(TemporalType.DATE)
     @Column(name ="date_of_birth")
-    private Date dateOfBirth = new Date();
-
+    private Date dateOfBirth ;
     /**
      * This identifies the current professional or working job title of the member of the system irrespective of the role
      * they would identify with or be assigned to in the system.
