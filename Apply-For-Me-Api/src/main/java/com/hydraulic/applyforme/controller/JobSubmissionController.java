@@ -31,7 +31,7 @@ public class JobSubmissionController {
     }
     
     @GetMapping("/applier/count/{applierId}")
-    public Long countApplierSubmission(@PathVariable(name = "applierId") Long id){
+    public Long totalApplierEntry(@PathVariable(name = "applierId") Long id){
         return service.countAllSubmissions(id);
     }
         
