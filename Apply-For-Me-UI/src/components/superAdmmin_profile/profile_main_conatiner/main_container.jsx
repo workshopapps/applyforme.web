@@ -57,7 +57,7 @@ export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
                         <h2 className="proileInfovalue">{dob}</h2>
                     </div>
                 </div>
-                <div className="changePassword">
+                <div className="changePassword" style={{marginTop:"0.5rem"}}>
                     <h1>Password</h1>
                     <button className="profile_content_btn" onClick={()=>setPasswordModal((prevState)=>!prevState)}>
                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1668865249/pencil-edit_g9boq4.png" alt="object not found"/>
@@ -71,7 +71,7 @@ export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
                         <div className='modal_closal' style={{marginBottom:"2rem"}}>
                             <img src="https://res.cloudinary.com/hamskid/image/upload/v1669067698/Vector_rc9avy.png" alt="object not found" onClick={()=> setEditModal((prevState)=>!prevState)}/>
                         </div>
-                    <PasswordContent/>
+                        <EditInfoContent/>
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@ export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
                         <div className='modal_closal' style={{marginBottom:"2rem"}}>
                             <img src="https://res.cloudinary.com/hamskid/image/upload/v1669067698/Vector_rc9avy.png" alt="object not found" onClick={()=>setPasswordModal((prevState)=>!prevState)}/>
                         </div>
-                        <EditInfoContent/>
+                        <PasswordContent/>
                      </div>
                 </div>
            )}
