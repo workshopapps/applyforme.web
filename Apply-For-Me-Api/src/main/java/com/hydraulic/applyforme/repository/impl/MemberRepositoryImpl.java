@@ -1,7 +1,7 @@
 package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
+import com.hydraulic.applyforme.repository.MemberRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,7 +10,7 @@ import javax.persistence.Query;
 
 
 @Repository
-public class MemberRepositoryImpl implements MemberJpaRepository {
+public class MemberRepositoryImpl implements MemberRepository {
     private static final int DEFAULT_PAGE_SIZE = 11;
     @PersistenceContext
     private EntityManager entityManager;

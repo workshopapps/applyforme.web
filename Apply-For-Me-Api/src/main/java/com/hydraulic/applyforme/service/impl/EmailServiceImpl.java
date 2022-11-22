@@ -23,8 +23,9 @@ import java.io.UnsupportedEncodingException;
 public class EmailServiceImpl implements EmailService {
 
 
-    private MemberJpaRepository memberJpaRepository;
+//    private final MemberJpaRepository memberJpaRepository;
 
+    private MemberJpaRepository memberJpaRepository;
     private JavaMailSender javaMailSender;
 
     @PersistenceContext

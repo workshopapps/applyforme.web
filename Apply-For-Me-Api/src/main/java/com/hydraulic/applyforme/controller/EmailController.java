@@ -2,8 +2,9 @@ package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.dto.email.ResetPasswordDto;
 import com.hydraulic.applyforme.model.exception.ResetPasswordInvalidTokenException;
-import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
+import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.service.EmailService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +18,13 @@ import java.io.UnsupportedEncodingException;
         value = "email",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
+@RequiredArgsConstructor
 public class EmailController {
 
     private final EmailService emailService;
-    private final MemberJpaRepository memberJpaRepository;
+    private final MemberRepository memberRepository;
 
-    public EmailController(EmailService emailService, MemberJpaRepository memberJpaRepository) {
-        this.emailService = emailService;
-        this.memberJpaRepository = memberJpaRepository;
-    }
+
 
     @GetMapping("/forgot_password")
     public String showForgotPasswordForm() {
@@ -56,7 +55,7 @@ public class EmailController {
         String savedEmailAddress = emailService.getEmailAddress();
 
         if (savedPwdToken.trim().equals(token.trim())){
-            memberJpaRepository.updatePassword(savedEmailAddress, newPassword);
+            memberRepository.updatePassword(savedEmailAddress, newPassword);
             return "You have successfully changed your password.";
         } else {
             throw  new ResetPasswordInvalidTokenException();

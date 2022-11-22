@@ -9,11 +9,10 @@ import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
 import com.hydraulic.applyforme.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,27 +21,22 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private ModelMapper modelMapper;
-
-    private  MemberJpaRepository repository;
-
+    private final MemberJpaRepository memberJpaRepository;
     @Autowired
     private RoleJpaRepository roleJpaRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public MemberServiceImpl(MemberJpaRepository repository) {
-        this.repository = repository;
-    }
-
     @Override
     @Transactional
     public Member save(SignUpDto body) {
-        boolean existingMember = repository.existsByEmailAddress(body.getEmailAddress());
+        boolean existingMember = memberJpaRepository.existsByEmailAddress(body.getEmailAddress());
         if (existingMember) {
             throw new EmailAlreadyExistsException();
         }
@@ -57,7 +51,7 @@ public class MemberServiceImpl implements MemberService {
         member = modelMapper.map(body, Member.class);
         member.setPassword(passwordEncoder.encode(body.getPassword()));
         member.addRole(existingRole.get());
-        repository.save(member);
+        memberJpaRepository.save(member);
         return member;
     }
 }
