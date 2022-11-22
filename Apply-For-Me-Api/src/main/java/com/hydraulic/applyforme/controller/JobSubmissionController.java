@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.dto.ProfessionalJobSubmissionDTO;
 import com.hydraulic.applyforme.service.JobSubmissionService;
 
 @RestController
@@ -35,12 +36,12 @@ public class JobSubmissionController {
     }
         
     @GetMapping(value = "/{id}/professional")
-	public ResponseEntity<List<Submission>> getAllSubmission(@PathVariable("id") Long professionalId,
+	public ResponseEntity<ProfessionalJobSubmissionDTO> getAllSubmission(@PathVariable("id") Long professionalId,
 			@RequestParam(defaultValue = "1", name = "page", required = false) Integer pageOffset) {
 
-		List<Submission> allSubmissions = service.getAllSubmissionsByPagination(professionalId, pageOffset);
+	 ProfessionalJobSubmissionDTO allSubmissionsByPagination = service.getAllSubmissionsByPagination(professionalId, pageOffset);
 
-		return new ResponseEntity<List<Submission>>(allSubmissions, HttpStatus.OK);
+		return new ResponseEntity<ProfessionalJobSubmissionDTO>(allSubmissionsByPagination, HttpStatus.OK);
 	}
 
 }
