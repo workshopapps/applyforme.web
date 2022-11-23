@@ -72,7 +72,7 @@ public class GlobalExceptionController {
     @ExceptionHandler(RoleNotFoundException.class)
     public Object notFound(RoleNotFoundException ex) {
         Map<String, String> errors = new HashMap<String, String>();
-        errors.put("entityName", ApplyForMeNotFoundException.ENTITY_NAME);
+        errors.put("entityName", RoleNotFoundException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
         ex.setCode(HttpStatus.NOT_FOUND.value());
         errors.put("code", ex.getCode().toString());
@@ -125,6 +125,17 @@ public class GlobalExceptionController {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ResetPasswordInvalidTokenException.class)
+    public Object invalidToken(ResetPasswordInvalidTokenException ex) {
+        Map<String, String> errors = new HashMap<String, String>();
+        errors.put("entityName", ResetPasswordInvalidTokenException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(SalaryRangeDuplicateEntityException.class)
     public Object handleDuplicate(SalaryRangeDuplicateEntityException ex) {
         Map<String, String> errors = new HashMap<String, String>();
@@ -136,12 +147,37 @@ public class GlobalExceptionController {
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(ApplierNotFoundException.class)
-    public Object notFound(ApplierNotFoundException ex) {
+
+    @ExceptionHandler(MemberNotFoundException.class)
+    public Object notFound(MemberNotFoundException ex) {
         Map<String, String> errors = new HashMap<String, String>();
-        errors.put("entityName", ApplierNotFoundException.ENTITY_NAME);
+        errors.put("entityName", MemberNotFoundException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
         ex.setCode(HttpStatus.NOT_FOUND.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+
+
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(EmailDeliveryException.class)
+    public Object emailDelivery(EmailDeliveryException ex) {
+        Map<String, String> errors = new HashMap<String, String>();
+        errors.put("entityName", EmailDeliveryException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidResetTokenException.class)
+    public Object invalidResetPasswordToken(InvalidResetTokenException ex) {
+        Map<String, String> errors = new HashMap<String, String>();
+        errors.put("entityName", InvalidResetTokenException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.BAD_REQUEST.value());
         errors.put("code", ex.getCode().toString());
         return errors;
     }

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Landing.css";
 import Home from "./home/Home";
-import Faqs from "../components/faqs/Faqs";
+import Faqs from "../components/faqs/Blogs";
 import Nav from "../../../components/nav/Nav";
 import Footer from "../../../components/footer/Footer";
 
