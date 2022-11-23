@@ -42,11 +42,6 @@ public class ApplyForMeConfig implements WebMvcConfigurer {
         configurer.addPathPrefix(env.getProperty("api-base-path"), HandlerTypePredicate.forAnnotation(RestController.class));
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE").allowedHeaders("*");
-    }
-
     @Bean
     public JpaTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
