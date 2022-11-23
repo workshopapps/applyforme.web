@@ -52,6 +52,18 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
 
         Page<Submission> submission = repository.findAll(pageable);
 
+        return getSubmissionResponse(submission);
+    }
+
+    @Override
+    public SubmissionResponse filterJobSubmission(int pageNo, int pageSize, String q) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        Page<Submission> submission = repository.findJobSubmissionBySearch(pageable, q);
+
+        return getSubmissionResponse(submission);
+    }
+
+    private SubmissionResponse getSubmissionResponse(Page<Submission> submission) {
         Collection<SubmissionDto> submissions = submission.getContent().stream().map(x -> SubmissionDto.builder()
                 .id(x.getId())
                 .applierId(x.getApplier().getId())
