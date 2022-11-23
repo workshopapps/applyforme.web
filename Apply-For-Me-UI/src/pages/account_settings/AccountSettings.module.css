@@ -36,7 +36,7 @@
     gap: 2rem;
 }
 
-.nav_image img{
+.nav_image img {
     width: 45px;
 }
 
@@ -83,57 +83,57 @@
     color: #2e3192;
 }
 
-form {
+.form {
     width: 50%;
     padding: 1rem;
 }
 
-form h3 {
+.form h3 {
     color: #262728;
     font-size: 1.5rem;
 }
 
-form .change_image {
+.form .change_image {
     display: flex;
     align-items: baseline;
     gap: 2rem;
     margin: 1.5rem 0;
 }
 
-form .change_image .image {
+.form .change_image .image {
     border: 1px solid #c6bdbd;
     background-color: #e9eef7;
     padding: 0.5rem;
     border-radius: 50%;
 }
 
-form .change_image span a {
+.form .change_image span a {
     text-decoration: none;
     color: #2e3192;
 }
 
-form .input_fields {
+.form .input_fields {
     margin-top: 1rem;
 }
 
-form .input_fields .row {
+.form .input_fields .row {
     width: 100%;
     display: flex;
     gap: 1rem;
     margin-bottom: 0.5rem;
 }
 
-form .input_fields .row .form_control {
+.form .input_fields .row .form_control {
     width: 100%;
 }
 
-form .input_fields .row label {
+.form .input_fields .row label {
     font-size: 0.8rem;
     font-weight: 500;
     color: #262728;
 }
 
-form .input_fields .row input {
+.form .input_fields .row input {
     width: 100%;
     border: 1px solid #ebebeb;
     height: 40px;
@@ -154,21 +154,20 @@ form .input_fields .row input {
     cursor: pointer;
 }
 
-
 @media (max-width: 650px) {
-    .sidebar_container{
+    .sidebar_container {
         display: none;
     }
 
-    .body_container .second_sidenav{
+    .body_container .second_sidenav {
         display: none;
     }
 
-    form{
+    .form {
         width: 100%;
     }
 
-    .input_fields button{
+    .input_fields button {
         width: 100%;
     }
 }

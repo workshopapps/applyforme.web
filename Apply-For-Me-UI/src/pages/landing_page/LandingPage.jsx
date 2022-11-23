@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "../../components/nav/Nav";
+import Nav from "../../components/nav/Nav"
 import Hero from "./Hero";
 import classes from "./Hero.module.css";
 import Service from "./Service";

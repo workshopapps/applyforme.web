@@ -164,6 +164,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 1.5rem;
+    column-gap: ;
 }
 
 .learn_content .bottom .boxes .box {

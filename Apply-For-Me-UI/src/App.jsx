@@ -9,7 +9,7 @@ import Privacy from "./pages/privacy/Privacy";
 import Cookies from "./pages/cookies/Cookies";
 import Career from "./pages/career/Career";
 import Blog from "./pages/blog/Blog";
-import PricingPlan from "./pages/pricing_plan/PricingPlan";
+
 import Error from "./pages/error/Error";
 import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
@@ -30,6 +30,10 @@ import JobDescription from "./pages/job_decription/JobDescription";
 import ApplicantDetails from "./pages/admin_dashboard/components/applicant_details/ApplicantDetails";
 import ApplicationForm from "./pages/admin_dashboard/components/application_form/ApplicationForm";
 import DashboardHome from "./pages/admin_dashboard/components/dashboard_home/DashboardHome";
+import { pricingPage } from "pages/pricing_plan/pricingData";
+import { formData } from "pages/checkout/checkoutData";
+import Pricing from "./pages/pricing_plan/Pricing";
+import Checkout from "pages/checkout/Checkout";
 
 function App() {
     return (
@@ -44,7 +48,16 @@ function App() {
                 <Route exact path="/privacy" element={<Privacy />} />
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
-                <Route exact path="/pricing" element={<PricingPlan />} />
+                <Route
+                    exact
+                    path="/pricing"
+                    element={<Pricing {...pricingPage} />}
+                />
+                <Route
+                    exact
+                    path="/checkout"
+                    element={<Checkout {...formData} />}
+                />
                 <Route exact path="/user-page" element={<Dashboard />} />
                 <Route exact path="blog" element={<Blog />} />
                 <Route
