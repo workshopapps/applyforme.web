@@ -16,7 +16,7 @@ const Dashboard = () => {
     return (
         <div>
             <DashboardHeader func={handlePageSwitch} />
-            {page.userPage ? <UsersPage /> : <DashBoardPage />}
+            {page.dashboardPage ? <DashBoardPage />: <UsersPage /> }
         </div>
     );
 };

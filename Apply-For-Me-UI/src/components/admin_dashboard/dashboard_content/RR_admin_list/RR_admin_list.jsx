@@ -61,7 +61,7 @@ export const RR_Admin_list=()=>{
                                         <div className="viewContainer">
                                             <button>view Profile</button>
                                             <span className="dropdown">
-                                                <img className="icon" src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png" alt="object not found"/>
+                                                <img className="three_dot_icon" src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png" alt="object not found"/>
                                                 <div className="dropdownContent">
                                                          <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51367_mndagi.png"/>
                                                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51368_n4nns4.png"/>
@@ -101,7 +101,7 @@ export const RR_Admin_list=()=>{
                                         </div>
                                         <div className="view_mobile_Container">
                                             <span className="dropdown">
-                                                    <img className="icon" src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png" alt="object not found"/>
+                                                    <img className="three_dot_icon" src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png" alt="object not found"/>
                                                     <div className="dropdownContent">
                                                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51367_mndagi.png"/>
                                                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51368_n4nns4.png"/>

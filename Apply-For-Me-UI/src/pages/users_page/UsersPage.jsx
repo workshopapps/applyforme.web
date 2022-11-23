@@ -14,14 +14,16 @@ const UsersPage = () => {
 
             <section className={classes.applicant}>
                 <table className={classes.table}>
-                    <tr className={classes.table__head}>
-                        <th>Name</th>
-                        <th>Email Address</th>
-                        <th>Plan</th>
-                        <th>Application done</th>
-                        <th>Interviews</th>
-                        <th>Details</th>
-                    </tr>
+                    <thead>
+                        <tr className={classes.table__head}>
+                            <th>Name</th>
+                            <th>Email Address</th>
+                            <th>Plan</th>
+                            <th>Application done</th>
+                            <th>Interviews</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
                     <hr className={classes.lines} />
 
                     <tr>

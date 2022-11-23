@@ -26,6 +26,9 @@ thead th{
      display: flex;
      align-items: center;
  }
+ .pagination{
+    margin: 0 1rem 1rem;
+ }
  .pagination,.pagiantion_control{
      display: flex;
      align-items: center;
@@ -132,6 +135,7 @@ thead select{
     }
     .mobileList .RRlist{
         display: flex;
+        padding: 1rem;
         align-items: center;
         justify-content: space-between;
     }

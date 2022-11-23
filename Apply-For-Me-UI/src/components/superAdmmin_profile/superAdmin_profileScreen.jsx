@@ -1,4 +1,4 @@
-import { Modal } from "./modal/modal"
+
 import { MainContainer } from "./profile_main_conatiner/main_container"
 import { NotificationHead } from "./profile_page_notification/notification_head"
 

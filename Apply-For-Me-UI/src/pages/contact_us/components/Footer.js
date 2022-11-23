@@ -49,7 +49,7 @@ const Footer = () => {
         
         <div className="footer-third">
             <h3>Company</h3>
-            <ul>
+            <ul className='contact-ul'>
                 <li><a href="">About Us</a></li>
                 <li><a href="">Blog</a></li>
                 <li><a href="">Privacy Policy</a></li>
@@ -60,7 +60,7 @@ const Footer = () => {
 
         <div className="footer-fourth">
             <h3>Help</h3>
-            <ul>
+            <ul className='contact-ul'>
                 <li><a href="">Contact Us</a></li>
                 <li><a href="">FAQs</a></li>
                 <li><a href="">Pricing</a></li>
