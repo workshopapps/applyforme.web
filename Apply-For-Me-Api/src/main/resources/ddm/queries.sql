@@ -1,4 +1,4 @@
-INSERT INTO `professional` (linkedin_link, facebook_link, twitter_link, instagram_link, other_link_1, other_link_2, other_link_3, hobbies);
+# INSERT INTO `professional` (linkedin_link, facebook_link, twitter_link, instagram_link, other_link_1, other_link_2, other_link_3, hobbies);
 
 INSERT INTO `professional_profile`
 (profile_title, passport_link, resume_link, cover_letter, employment_type, salary_range, job_location, preferred_job_location_type,

@@ -17,4 +17,6 @@ public class CountryDto {
     @NotNull(message = "{country.abbreviation.notNull}")
     @Size(min = 3, max = 10, message = "{country.abbreviation.size}")
     private String abbreviation;
+
+    //abbreviationName
 }
