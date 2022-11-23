@@ -9,15 +9,14 @@ const Dashboard = () => {
         dashboardPage: true,
         userPage: false
     });
-
+    
     const handlePageSwitch = data => {
         setPage(getActivePage(data));
     };
     return (
         <div>
             <DashboardHeader func={handlePageSwitch} />
-
-            {page.userPage ? <UsersPage /> : <DashBoardPage />}
+            {page.dashboardPage ? <DashBoardPage />: <UsersPage /> }
         </div>
     );
 };
