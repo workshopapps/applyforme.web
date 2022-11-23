@@ -1,21 +1,19 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.ApplyForMe;
-import com.hydraulic.applyforme.model.dto.ApplyForMeDto;
-import com.hydraulic.applyforme.model.dto.DeleteManyApplyForMeDto;
+import com.hydraulic.applyforme.model.dto.applyforme.ApplyForMeDto;
+import com.hydraulic.applyforme.model.dto.applyforme.DeleteManyApplyForMeDto;
 import com.hydraulic.applyforme.service.ApplyForMeService;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping(
         value = "apply",
-        produces = { MediaType.APPLICATION_JSON_VALUE },
-        consumes = { MediaType.APPLICATION_JSON_VALUE }
+        produces = { MediaType.APPLICATION_JSON_VALUE }
 )
 public class ApplyForMeController {
 
@@ -51,8 +49,8 @@ public class ApplyForMeController {
     }
 
     @PutMapping("/remove/many")
-    public boolean deleteManyCustomer(@Validated @RequestBody DeleteManyApplyForMeDto applyForMeDto) {
-        return service.deleteMany(applyForMeDto);
+    public boolean deleteMany(@Validated @RequestBody DeleteManyApplyForMeDto body) {
+        return service.deleteMany(body);
     }
 
     @PutMapping("/remove/all")

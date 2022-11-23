@@ -23,8 +23,8 @@ public class CoverLetterTemplate {
     @Column(name ="title", nullable = false)
     private String title;
 
-    @Column(name ="template_text", nullable = false)
-    private String templateText;
+    @Column(name ="content", nullable = false)
+    private String content;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
