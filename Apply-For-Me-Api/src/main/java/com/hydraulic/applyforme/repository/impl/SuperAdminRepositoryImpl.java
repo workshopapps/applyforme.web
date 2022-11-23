@@ -21,7 +21,7 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
     }
 
     @Override
-    public Boolean removeById(Long id) {
+    public Boolean removeMemberById(Long id) {
         try{
             Member member = entityManager.getReference(Member.class, id);
             entityManager.remove(member);

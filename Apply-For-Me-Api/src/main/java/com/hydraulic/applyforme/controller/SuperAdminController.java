@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(
-        value = "member",
+        value = "admin",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
 public class SuperAdminController {
@@ -25,6 +25,6 @@ public class SuperAdminController {
 
     @DeleteMapping("/remove/{id}")
     public boolean delete(@PathVariable(value = "id") Long id){
-        return service.deleteById(id);
+        return service.deleteMemberById(id);
     }
 }

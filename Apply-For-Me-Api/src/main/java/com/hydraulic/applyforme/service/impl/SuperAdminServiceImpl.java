@@ -28,9 +28,9 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 
     @Override
     @Transactional
-    public boolean deleteById(Long id) {
-        boolean removeI = repository.removeById(id);
-        if(removeI){
+    public boolean deleteMemberById(Long id) {
+        boolean removed = repository.removeMemberById(id);
+        if(removed){
             return true;
         }
         else {
