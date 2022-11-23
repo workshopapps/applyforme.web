@@ -16,10 +16,7 @@ const ContactUs = () => {
     
     
     
-          <div className="contact-mid">
             <div className="form">
-              <Form/>
-            </div>
             <div className="form-details">
                <LeftDetails/>
             </div>
