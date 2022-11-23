@@ -37,8 +37,10 @@ public class JobSubmissionController {
     public SubmissionResponse getAllSubmissionBySearch(
             @RequestParam String q,
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
-            @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize){
-        return service.filterJobSubmission(pageNo, pageSize, q);
+            @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir){
+        return service.filterJobSubmission(pageNo, pageSize, sortBy, sortDir, q);
     }
 
 

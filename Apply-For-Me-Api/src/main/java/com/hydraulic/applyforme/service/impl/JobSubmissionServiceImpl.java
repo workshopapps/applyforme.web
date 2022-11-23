@@ -8,6 +8,7 @@ import com.hydraulic.applyforme.model.pojo.SubmissionResponse;
 import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +16,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -25,9 +25,12 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     private final ApplierRepository applierRepository;
     private final JobSubmissionRepository repository;
 
-    public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository) {
+    private final ModelMapper modelMapper;
+
+    public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository, ModelMapper modelMapper) {
         this.applierRepository = applierRepository;
         this.repository = repository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -56,7 +59,10 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     }
 
     @Override
-    public SubmissionResponse filterJobSubmission(int pageNo, int pageSize, String q) {
+    public SubmissionResponse filterJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir, String q) {
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
         Pageable pageable = PageRequest.of(pageNo, pageSize);
         Page<Submission> submission = repository.findJobSubmissionBySearch(pageable, q);
 
@@ -64,21 +70,8 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     }
 
     private SubmissionResponse getSubmissionResponse(Page<Submission> submission) {
-        Collection<SubmissionDto> submissions = submission.getContent().stream().map(x -> SubmissionDto.builder()
-                .id(x.getId())
-                .applierId(x.getApplier().getId())
-                .professionalId(x.getProfessional().getId())
-                .jobLink(x.getJobLink())
-                .jobLocation(x.getJobLocation())
-                .jobCompany(x.getJobCompany())
-                .jobTitle(x.getJobTitle())
-                .jobLocationType(x.getJobLocationType())
-                .summary(x.getSummary())
-                .summary(x.getSummary())
-                .otherComment(x.getOtherComment())
-                .createdOn(x.getCreatedOn())
-                .updatedOn(x.getUpdatedOn())
-                .build()).collect(Collectors.toList());
+        Collection<SubmissionDto> submissions = submission.getContent().stream().map(x ->
+                modelMapper.map(x, SubmissionDto.class)).collect(Collectors.toList());
         SubmissionResponse submissionResponse = new SubmissionResponse();
         submissionResponse.setContent(submissions);
         submissionResponse.setPageNo(submission.getNumber());
