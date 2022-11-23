@@ -37,7 +37,7 @@ const DashboardSidebar = () => {
             title: "Dashboard"
         },
         {
-            path: "#",
+            path: "/dashboard/user",
             img: {
                 web: ProfileIcon,
                 mobile: mobileProfilesIcon
@@ -87,7 +87,11 @@ const DashboardSidebar = () => {
                         })}
                 </ul>
             </section>
-            <section className={[classes.sidebar_container, classes.mobile].join(" ")}>
+            <section
+                className={[classes.sidebar_container, classes.mobile].join(
+                    " "
+                )}
+            >
                 <ul>
                     {userRole === "user" &&
                         links.map((link, i) => {

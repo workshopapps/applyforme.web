@@ -35,6 +35,12 @@ import { formData } from "pages/checkout/checkoutData";
 import Pricing from "./pages/pricing_plan/Pricing";
 import Checkout from "pages/checkout/Checkout";
 
+//UserDashboard
+import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
+import Success from "./pages/dashboard_profile/Success/Success";
+import Profile from "./pages/dashboard_profile/Profile/Profile";
+import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
+
 function App() {
     return (
         <>
@@ -76,12 +82,20 @@ function App() {
                 <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
                     <Route path="/dashboard/" element={<DashboardNothing />} />
+
                     <Route path="admin" element={<DashboardHome />} />
                     <Route path="admin/form" element={<ApplicationForm />} />
                     <Route
                         path="admin/details"
                         element={<ApplicantDetails />}
                     />
+                    <Route path="user/" element={<NoProfile />} />
+                    <Route
+                        path="user/create-profile"
+                        element={<CreateProfile />}
+                    />
+                    <Route path="user/success" element={<Success />} />
+                    <Route path="user/profile-list" element={<Profile />} />
                     {/* <Route path="user" element={<UserDashboard />} /> */}
                 </Route>
                 <Route

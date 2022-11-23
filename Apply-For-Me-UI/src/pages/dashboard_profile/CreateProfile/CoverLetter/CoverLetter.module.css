@@ -1,0 +1,28 @@
+.cover_letter input {
+    width: 90%;
+    height: 1rem;
+    border: 1px solid #6d6e71;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    padding-block: 1rem;
+    padding-inline: 2rem;
+}
+.cover_letter {
+    margin-block: 1rem;
+}
+.cl_textarea {
+    width: 90%;
+    resize: none;
+    height: 2rem;
+    border: 1px solid #6d6e71;
+    height: 17rem;
+    margin-top: 0.5rem;
+    padding: 1rem;
+}
+.cl_textarea::placeholder {
+    text-align: left;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    color: #6d6e71;
+}
