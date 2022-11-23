@@ -2,14 +2,22 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
 import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
+import com.hydraulic.applyforme.model.pojo.SubmissionResponse;
 import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class JobSubmissionServiceImpl implements JobSubmissionService {
@@ -34,5 +42,38 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
             return repository.countByApplier(id);
         }
         return 0L;
+    }
+
+    @Override
+    public SubmissionResponse getAllJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir) {
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+
+        Page<Submission> submission = repository.findAll(pageable);
+
+        Collection<SubmissionDto> submissions = submission.getContent().stream().map(x -> SubmissionDto.builder()
+                .id(x.getId())
+                .applierId(x.getApplier().getId())
+                .professionalId(x.getProfessional().getId())
+                .jobLink(x.getJobLink())
+                .jobLocation(x.getJobLocation())
+                .jobCompany(x.getJobCompany())
+                .jobTitle(x.getJobTitle())
+                .jobLocationType(x.getJobLocationType())
+                .summary(x.getSummary())
+                .summary(x.getSummary())
+                .otherComment(x.getOtherComment())
+                .createdOn(x.getCreatedOn())
+                .updatedOn(x.getUpdatedOn())
+                .build()).collect(Collectors.toList());
+        SubmissionResponse submissionResponse = new SubmissionResponse();
+        submissionResponse.setContent(submissions);
+        submissionResponse.setPageNo(submission.getNumber());
+        submissionResponse.setPageSize(submission.getSize());
+        submissionResponse.setTotalElements(submission.getTotalElements());
+        submissionResponse.setTotalPages(submission.getTotalPages());
+        submissionResponse.setLast(submission.isLast());
+        return submissionResponse;
     }
 }
