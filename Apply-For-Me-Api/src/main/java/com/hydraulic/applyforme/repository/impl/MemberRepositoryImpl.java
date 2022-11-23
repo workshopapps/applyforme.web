@@ -2,10 +2,14 @@ package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
+<<<<<<< HEAD
 import com.hydraulic.applyforme.model.exception.CountryDuplicateEntityException;
 import com.hydraulic.applyforme.model.exception.MemberDuplicateEntityException;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
+=======
+import com.hydraulic.applyforme.repository.MemberRepository;
+>>>>>>> origin/feat/BE-22-add-applicant-revision
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
@@ -14,7 +18,10 @@ import java.util.List;
 
 @Repository
 public class MemberRepositoryImpl implements MemberRepository {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/feat/BE-22-add-applicant-revision
     private static final int DEFAULT_PAGE_SIZE = 11;
     @PersistenceContext
     private EntityManager entityManager;

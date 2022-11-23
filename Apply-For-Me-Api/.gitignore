@@ -19,7 +19,10 @@ target/
 *.iml
 *.ipr
 .DS_Store.
+<<<<<<< HEAD
 .DS_Store
+=======
+>>>>>>> origin/feat/BE-22-add-applicant-revision
 
 ### NetBeans ###
 /nbproject/private/

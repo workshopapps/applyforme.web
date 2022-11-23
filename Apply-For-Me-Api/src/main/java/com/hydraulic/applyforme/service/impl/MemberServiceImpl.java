@@ -11,6 +11,7 @@ import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
 import com.hydraulic.applyforme.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +23,27 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private ModelMapper modelMapper;
+<<<<<<< HEAD
 
     private MemberRepository repository;
 
     private MemberJpaRepository jpaRepository;
 
+=======
+    private final MemberJpaRepository memberJpaRepository;
+>>>>>>> origin/feat/BE-22-add-applicant-revision
     @Autowired
     private RoleJpaRepository roleJpaRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+<<<<<<< HEAD
     public MemberServiceImpl(MemberRepository repository, MemberJpaRepository jpaRepository) {
         this.repository = repository;
         this.jpaRepository = jpaRepository;
@@ -56,6 +63,12 @@ public class MemberServiceImpl implements MemberService {
     public Member save(SignupDto body) {
         boolean existingMember = jpaRepository.existsByEmailAddress(body.getEmailAddress());
 
+=======
+    @Override
+    @Transactional
+    public Member save(SignUpDto body) {
+        boolean existingMember = memberJpaRepository.existsByEmailAddress(body.getEmailAddress());
+>>>>>>> origin/feat/BE-22-add-applicant-revision
         if (existingMember) {
             throw new EmailAlreadyExistsException();
         }
@@ -70,9 +83,13 @@ public class MemberServiceImpl implements MemberService {
         member = modelMapper.map(body, Member.class);
 
         member.addRole(existingRole.get());
+<<<<<<< HEAD
         member.setPassword(passwordEncoder.encode(body.getPassword()));
 
         repository.saveOne(member);
+=======
+        memberJpaRepository.save(member);
+>>>>>>> origin/feat/BE-22-add-applicant-revision
         return member;
     }
 }

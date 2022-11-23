@@ -18,8 +18,16 @@ import javax.mail.internet.MimeMessage;
 
 @Service
 public class EmailServiceImpl implements EmailService {
+<<<<<<< HEAD
     private MemberJpaRepository memberJpaRepository;
     private MemberSecretJpaRepository memberSecretJpaRepository;
+=======
+
+
+//    private final MemberJpaRepository memberJpaRepository;
+
+    private MemberJpaRepository memberJpaRepository;
+>>>>>>> origin/feat/BE-22-add-applicant-revision
     private JavaMailSender javaMailSender;
 
     public EmailServiceImpl(MemberJpaRepository memberJpaRepository, MemberSecretJpaRepository memberSecretJpaRepository) {
