@@ -2,24 +2,45 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landing_page/LandingPage";
 import AboutUs from "./pages/about_us/AboutUs";
 import FAQs from "./pages/faqs/FAQs";
+import FaqsPage from "./pages/faqs/FaqsPage";
 import ContactUs from "./pages/contact_us/ContactUs";
 import TermsAndCondition from "./pages/terms_condition/TermsAndCondition";
 import Privacy from "./pages/privacy/Privacy";
 import Cookies from "./pages/cookies/Cookies";
 import Career from "./pages/career/Career";
 import Blog from "./pages/blog/Blog";
-import PricingPlan from "./pages/pricing_plan/PricingPlan";
-import Layout from "./pages/dashboard_layout/Layout";
-import AdminDashboard from "./pages/admin_dashboard/AdminDashboard";
-import AdminProfile from "./pages/admin_profile/AdminProfile";
+
 import Error from "./pages/error/Error";
-import AdminApplication from "./pages/admin_application/AdminApplication";
-import AdminUsers from "./pages/admin_users/AdminUsers";
-import AdminHelp from "./pages/admin_help/AdminHelp";
-import AdminMessage from "./pages/admin_messages/AdminMessage";
-import HelpAndSupportPage from "./pages/help_support_pg/HelpAndSupportPage";
-import HowAfmWorks from "./pages/afmworks/HowAfmWorks";
-import NeedHelp  from "./pages/need_help/NeedHelp";
+import Dashboard from "./pages/dashboard/Dashboard";
+import AccountSettings from "./pages/account_settings/AccountSettings";
+import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
+import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
+import ApplicationsDashboardLayout from "./pages/applications/layouts/ApplicationsDashboardLayout";
+import Applications from "./pages/applications/Applications";
+import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
+import Skills from "./pages/blog/pages/skills/Skills";
+import Cover from "./pages/blog/pages/cover/Cover";
+import Work from "./pages/blog/pages/work/Work";
+import Signs from "./pages/blog/pages/signs/Signs";
+import Resume from "./pages/blog/pages/resume/Resume";
+import Brand from "./pages/blog/pages/brand/Brand";
+import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
+import JobDescription from "./pages/job_decription/JobDescription";
+// import AdminDashboard from "./pages/admin_dashboard/AdminDashboard";
+import ApplicantDetails from "./pages/admin_dashboard/components/applicant_details/ApplicantDetails";
+import ApplicationForm from "./pages/admin_dashboard/components/application_form/ApplicationForm";
+import DashboardHome from "./pages/admin_dashboard/components/dashboard_home/DashboardHome";
+import { pricingPage } from "pages/pricing_plan/pricingData";
+import { formData } from "pages/checkout/checkoutData";
+import Pricing from "./pages/pricing_plan/Pricing";
+import Checkout from "pages/checkout/Checkout";
+
+//UserDashboard
+import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
+import Success from "./pages/dashboard_profile/Success/Success";
+import Profile from "./pages/dashboard_profile/Profile/Profile";
+import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
+
 function App() {
     return (
         <>
@@ -27,25 +48,64 @@ function App() {
                 <Route exact path="/" element={<LandingPage />} />
                 <Route exact path="/about" element={<AboutUs />} />
                 <Route exact path="/faqs" element={<FAQs />} />
+                <Route exact path="/faqs/faqspage" element={<FaqsPage />} />
                 <Route exact path="/contact" element={<ContactUs />} />
                 <Route exact path="/t&c" element={<TermsAndCondition />} />
                 <Route exact path="/privacy" element={<Privacy />} />
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
-                <Route exact path="/pricing" element={<PricingPlan />} />
-                <Route exact path="/blog/:id" element={<Blog />} />
-                <Route exact path="/help" element={<HelpAndSupportPage/>}/>
-                <Route exact path="/howafmworks" element={<HowAfmWorks/>}/>
-                <Route exact path="/needHelp" element={<NeedHelp/>}/>
-            
-                <Route path="dashboard" element={<Layout />}>
-                    <Route path="/dashboard/" element={<AdminDashboard />} />
-                    <Route path="profile" element={<AdminProfile />} />
-                    <Route path="application" element={<AdminApplication />} />
-                    <Route path="users" element={<AdminUsers />} />
-                    <Route path="messages" element={<AdminMessage />} />
-                    <Route path="help" element={<AdminHelp />} />
+                <Route
+                    exact
+                    path="/pricing"
+                    element={<Pricing {...pricingPage} />}
+                />
+                <Route
+                    exact
+                    path="/checkout"
+                    element={<Checkout {...formData} />}
+                />
+                <Route exact path="/user-page" element={<Dashboard />} />
+                <Route exact path="blog" element={<Blog />} />
+                <Route
+                    exact
+                    path="/blog/questions"
+                    element={<BestQuestions />}
+                />
+                <Route exact path="/blog/skills" element={<Skills />} />
+                <Route exact path="blog/cover" element={<Cover />} />
+                <Route exact path="blog/work" element={<Work />} />
+                <Route exact path="blog/signs" element={<Signs />} />
+                <Route exact path="blog/cover" element={<Cover />} />
+                <Route exact path="blog/resume" element={<Resume />} />
+                <Route exact path="blog/brand" element={<Brand />} />
+                <Route exact path="blog/endorsement" element={<Endorsment />} />
+                <Route exact path="/settings" element={<AccountSettings />} />
+                <Route path="dashboard" element={<UserDashboardLayout />}>
+                    <Route path="/dashboard/" element={<DashboardNothing />} />
+
+                    <Route path="admin" element={<DashboardHome />} />
+                    <Route path="admin/form" element={<ApplicationForm />} />
+                    <Route
+                        path="admin/details"
+                        element={<ApplicantDetails />}
+                    />
+                    <Route path="user/" element={<NoProfile />} />
+                    <Route
+                        path="user/create-profile"
+                        element={<CreateProfile />}
+                    />
+                    <Route path="user/success" element={<Success />} />
+                    <Route path="user/profile-list" element={<Profile />} />
+                    {/* <Route path="user" element={<UserDashboard />} /> */}
                 </Route>
+                <Route
+                    path="/dashboard/applications"
+                    element={<ApplicationsDashboardLayout />}
+                >
+                    <Route index element={<Applications />} />
+                    <Route path=":jobId" element={<JobDescription />} />
+                </Route>
+
                 <Route path="*" element={<Error />} />
             </Routes>
         </>

@@ -1,6 +1,6 @@
 .footer {
     background: #2e3192;
-    width: 100vw;
+    width: 100%;
 }
 
 .footer__wrapper {
@@ -77,7 +77,7 @@
 }
 
 .sub_footer {
-    width: 100vw;
+    width: 100%;
     background: #171646;
     padding-top: 12px;
     padding-bottom: 16px;
