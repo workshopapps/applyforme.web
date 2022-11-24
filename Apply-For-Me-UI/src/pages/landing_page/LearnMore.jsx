@@ -1,6 +1,7 @@
-import React from 'react'
-import classes from "./Hero.module.css"
-import content from "../../assets/images/Content.png"
+import React from "react";
+import classes from "./Hero.module.css";
+import content from "../../assets/images/Content.png";
+import elipse from "../../assets/landing-page-imgs/elipse.png";
 
 const LearnMore = () => {
     return (
@@ -16,11 +17,23 @@ const LearnMore = () => {
 
                 <div className={classes.bottom}>
                     <div className={classes.left}>
-                        <h3>This is what we’ve built so far, be one of our success stories</h3>
+                        <h3>
+                            This is what we’ve built so far, be one of our
+                            success stories
+                        </h3>
+                        <div className={classes.elipse}>
+                            <img src={elipse} alt="" />
+                        </div>
                     </div>
 
                     <div className={classes.right}>
-                        <p>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.</p>
+                        <p>
+                            We believe career is life, life is once, it is
+                            therefore worth enjoying.Study, work, travel, tour,
+                            worship, keep working and keep exploring.... It
+                            begins with you. We believe career is life, life is
+                            once, it is therefore worth enjoying.
+                        </p>
 
                         <div className={classes.boxes}>
                             <div className={classes.box}>
@@ -44,7 +57,7 @@ const LearnMore = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default LearnMore
+export default LearnMore;

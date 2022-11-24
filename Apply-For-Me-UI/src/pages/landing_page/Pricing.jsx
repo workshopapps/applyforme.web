@@ -1,15 +1,23 @@
-import React from 'react'
-import tick from "../../assets/images/tick.png"
-import classes from "./Hero.module.css"
+import React from "react";
+import { Link } from "react-router-dom";
+import tick from "../../assets/images/tick.png";
+import classes from "./Hero.module.css";
 
 const Pricing = () => {
     return (
         <div className={classes.pricing_container}>
             <div className={classes.pricing_content}>
                 <div className={classes.top}>
-                    <span className={classes.sub_heading}>Payment services</span>
+                    <span className={classes.sub_heading}>
+                        Payment services
+                    </span>
                     <h3>Our pricing plan</h3>
-                    <button>View All</button>
+
+                    <Link to="/pricing">
+                        <button className={classes.view_all_btn}>
+                            View All
+                        </button>
+                    </Link>
                 </div>
 
                 <div className={classes.bottom}>
@@ -18,21 +26,36 @@ const Pricing = () => {
                             <img src={tick} alt="" />
                             <div>
                                 <h4>Applications</h4>
-                                <span>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring</span>
+                                <span>
+                                    We believe career is life, life is once, it
+                                    is therefore worth enjoying.Study, work,
+                                    travel, tour, worship, keep working and keep
+                                    exploring
+                                </span>
                             </div>
                         </div>
                         <div className={classes.list}>
                             <img src={tick} alt="" />
                             <div>
                                 <h4>Applications</h4>
-                                <span>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring</span>
+                                <span>
+                                    We believe career is life, life is once, it
+                                    is therefore worth enjoying.Study, work,
+                                    travel, tour, worship, keep working and keep
+                                    exploring
+                                </span>
                             </div>
                         </div>
                         <div className={classes.list}>
                             <img src={tick} alt="" />
                             <div>
                                 <h4>Applications</h4>
-                                <span>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring</span>
+                                <span>
+                                    We believe career is life, life is once, it
+                                    is therefore worth enjoying.Study, work,
+                                    travel, tour, worship, keep working and keep
+                                    exploring
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -59,14 +82,14 @@ const Pricing = () => {
                             </span>
                         </div>
 
-                        <div className={classes.btn_area}>
+                        <Link to="/pricing" className={classes.btn_area}>
                             <button>Get Started</button>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Pricing
+export default Pricing;
