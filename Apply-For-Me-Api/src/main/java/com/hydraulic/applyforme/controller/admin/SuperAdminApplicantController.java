@@ -1,5 +1,7 @@
 package com.hydraulic.applyforme.controller.admin;
 
+import com.hydraulic.applyforme.model.domain.Country;
+import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.professional.DeleteManyProfessionalDto;
 import com.hydraulic.applyforme.service.superadmin.SuperAdminApplicantService;
 import org.springframework.http.MediaType;
@@ -17,6 +19,11 @@ public class SuperAdminApplicantController {
 
     public SuperAdminApplicantController(SuperAdminApplicantService service) {
         this.service = service;
+    }
+
+    @GetMapping("/detail/{id}")
+    public Professional findOne(@PathVariable(name ="id") Long id) {
+        return service.findOne(id);
     }
 
     @DeleteMapping("/delete/{id}")
