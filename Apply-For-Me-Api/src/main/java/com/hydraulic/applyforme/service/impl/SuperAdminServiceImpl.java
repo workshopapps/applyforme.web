@@ -7,7 +7,6 @@ import com.hydraulic.applyforme.service.SuperAdminService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Service
 public class SuperAdminServiceImpl implements SuperAdminService {
@@ -36,6 +35,15 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         else {
             throw new MemberNotFoundException(id);
         }
+    }
+
+    @Override
+    public Member getAdmin(Long id) {
+        Member find = repository.viewAdminDetails(id);
+        if(find == null){
+            throw new MemberNotFoundException(id);
+        }
+        return find;
     }
 
 }
