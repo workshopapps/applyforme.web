@@ -26,10 +26,8 @@ public class SecurityConfiguration {
 
     @Autowired
     private JwtAuthEntryPoint authEntryPoint;
-
     @Autowired
     private UserDetailsService userDetailsService;
-
     @Autowired
     private JwtTokenFilter tokenFilter;
 

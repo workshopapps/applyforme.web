@@ -139,7 +139,7 @@ public class Member {
      * For Reference on a Junction table
      * @see <a href="https://learn.microsoft.com/en-us/sql/ssms/visual-db-tools/map-many-to-many-relationships-visual-database-tools?view=sql-server-ver16">Map Many-to-Many Relationships</a>
      */
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "member_roles",
             joinColumns = @JoinColumn(
