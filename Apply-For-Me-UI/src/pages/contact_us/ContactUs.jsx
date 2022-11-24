@@ -1,5 +1,4 @@
 import React from "react";
-import Form  from "./components/Form";
 import LeftDetails from "./components/LeftDetails";
 import Footer from "../../components/footer/Footer";
 import Nav from "components/nav/Nav";
