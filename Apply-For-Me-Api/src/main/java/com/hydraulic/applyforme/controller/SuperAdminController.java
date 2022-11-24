@@ -26,7 +26,7 @@ public class SuperAdminController {
     }
 
     @GetMapping("/profile/{id}")
-    public Optional<Member> viewAdmin(@PathVariable(value = "id") Long id){
+    public Member viewAdmin(@PathVariable(value = "id") Long id){
         return service.getAdmin(id);
     }
 
