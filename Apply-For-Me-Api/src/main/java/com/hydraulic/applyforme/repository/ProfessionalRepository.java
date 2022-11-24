@@ -14,4 +14,5 @@ public interface ProfessionalRepository {
     Professional saveOne(Professional body);
 
     Professional updateOne(Professional body);
+
 }

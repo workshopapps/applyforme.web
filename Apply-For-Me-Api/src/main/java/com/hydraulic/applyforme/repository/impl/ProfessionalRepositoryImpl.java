@@ -6,11 +6,14 @@ import com.hydraulic.applyforme.model.exception.ProffesionalDuplicateEntityExcep
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 
 import javax.persistence.EntityExistsException;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Repository
 public class ProfessionalRepositoryImpl implements ProfessionalRepository {
 
     private static final int DEFAULT_PAGE_SIZE = 11;
