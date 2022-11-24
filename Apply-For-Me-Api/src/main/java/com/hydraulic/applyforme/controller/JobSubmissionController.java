@@ -1,5 +1,8 @@
 package com.hydraulic.applyforme.controller;
 
+import com.hydraulic.applyforme.model.domain.Applier;
+import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
 import com.hydraulic.applyforme.model.pojo.SubmissionResponse;
 import com.hydraulic.applyforme.service.JobSubmissionService;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +44,10 @@ public class JobSubmissionController {
             @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir){
         return service.filterJobSubmission(pageNo, pageSize, sortBy, sortDir, q);
+    }
+    @GetMapping("/view_submission/{submissionId}")
+    public SubmissionDto viewSubmissionDetails(@PathVariable Long professionalId, @PathVariable("submissionId") Long submissionId){
+        return service.getSubmissionDetails(professionalId,submissionId);
     }
 
 
