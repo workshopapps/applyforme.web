@@ -1,6 +1,5 @@
 package com.hydraulic.applyforme.repository;
 
-import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Professional;
 
 import java.util.List;
