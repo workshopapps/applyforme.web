@@ -33,7 +33,7 @@ public class SuperAdminController {
     	
     	service.updatePasswordById(id, passwordDTO);   	
     	
-    	return ResponseEntity.ok("successful");
+    	return ResponseEntity.accepted().body("successful");
     }
     
 }
