@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,10 +31,9 @@ public class SuperAdminController {
         return service.getDetailsById(id);
     }
     
-    public ResponseEntity<?> changePassword(Long id, UpdatePasswordDTO passwordDTO) {
-    	
+    @PostMapping("/{id}/change-password")
+    public ResponseEntity<?> changePassword(@PathVariable("id") Long id, UpdatePasswordDTO passwordDTO) {
     	service.updatePasswordById(id, passwordDTO);   	
-    	
     	return ResponseEntity.accepted().body("successful");
     }
     
