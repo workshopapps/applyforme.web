@@ -28,4 +28,13 @@ public class SuperAdminController {
     public Member getOneMember(@PathVariable(value="id") Long id) {
         return service.getDetailsById(id);
     }
+    
+    public ResponseEntity<Member> changePassword(Long id) {
+    	
+    	service.updatePasswordById();   	
+    	
+    	return new ResponseEntity<Member>(HttpStatus.ACCEPTED);
+    }
+    
+    
 }
