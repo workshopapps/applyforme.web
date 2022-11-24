@@ -9,6 +9,7 @@ import Privacy from "./pages/privacy/Privacy";
 import Cookies from "./pages/cookies/Cookies";
 import Career from "./pages/career/Career";
 import Blog from "./pages/blog/Blog";
+import HelpSupport from "pages/help_support_page/HelpSupport";
 
 import Error from "./pages/error/Error";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -107,6 +108,7 @@ function App() {
                 </Route>
 
                 <Route path="*" element={<Error />} />
+                <Route path="/help-support" element={<HelpSupport />} />
             </Routes>
         </>
     );
