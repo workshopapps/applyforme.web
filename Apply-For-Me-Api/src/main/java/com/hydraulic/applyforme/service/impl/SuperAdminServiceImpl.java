@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class SuperAdminServiceImpl implements SuperAdminService {
 
-    SuperAdminRepository repository;
+    private SuperAdminRepository repository;
 
     public SuperAdminServiceImpl(SuperAdminRepository repository) {
         this.repository = repository;
@@ -30,7 +30,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     @Transactional
     public boolean deleteMemberById(Long id) {
         boolean removed = repository.removeMemberById(id);
-        if(removed){
+        if (removed) {
             return true;
         }
         else {

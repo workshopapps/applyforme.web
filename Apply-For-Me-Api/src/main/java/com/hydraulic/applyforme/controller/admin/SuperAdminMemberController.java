@@ -1,4 +1,4 @@
-package com.hydraulic.applyforme.controller;
+package com.hydraulic.applyforme.controller.admin;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.service.SuperAdminService;
@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(
-        value = "admin",
+        value = "admin/member",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
-public class SuperAdminController {
+public class SuperAdminMemberController {
 
-    SuperAdminService service;
+    private SuperAdminService service;
 
-    public SuperAdminController(SuperAdminService service) {
+    public SuperAdminMemberController(SuperAdminService service) {
         this.service = service;
     }
 
