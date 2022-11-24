@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.model.domain;
 
+import com.hydraulic.applyforme.model.enums.JobLocationType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,8 +39,24 @@ public class Submission {
     @Column(name = "job_title", nullable = false)
     private String jobTitle;
 
-    @Column(name = "job_link", nullable = false)
+    @Column(name = "job_link")
     private String jobLink;
+
+    @Column(name = "job_location")
+    private String jobLocation;
+
+    @Column(name = "job_company")
+    private String jobCompany;
+
+    @Column(name ="job_location_type")
+    @Enumerated(EnumType.STRING)
+    private JobLocationType jobLocationType = JobLocationType.REMOTE;
+
+    /**
+     * Summary or description or details of the job the applier or reverse recruiter submitted on behalf of the developer.
+     */
+    @Column(name ="summary")
+    private String summary;
 
     @Column(name = "other_comment", nullable = true)
     private String otherComment;

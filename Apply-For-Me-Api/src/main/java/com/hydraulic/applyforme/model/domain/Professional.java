@@ -29,14 +29,20 @@ public class Professional {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToOne(mappedBy = "professional")
-    private Applier applier;
-
     @Column(name = "available_for_interview" , nullable = false)
     private boolean availableForInterview = false;
 
     @Column(name ="linkedin_link")
     private String linkedinLink;
+
+    @Column(name ="facebook_link")
+    private String facebookLink;
+
+    @Column(name ="twitter_link")
+    private String twitterLink;
+
+    @Column(name ="instagram_link")
+    private String instagramLink;
 
     @Column(name = "hobbies")
     private String hobbies;
