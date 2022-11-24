@@ -9,5 +9,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ViewSubmissionJpaRepository extends JpaRepository<Submission, Long> {
-    List<Submission> findAllByDate(String date);
+//    List<Submission> findAllByDate(String date);
 }

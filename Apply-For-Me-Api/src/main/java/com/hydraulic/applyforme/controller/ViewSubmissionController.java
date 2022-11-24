@@ -13,16 +13,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.List;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping(
-        value = "submission",
+        value = "application-submission",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
 public class ViewSubmissionController {
 
     private final ViewSubmissionService viewSubmissionService;
 
+    public ViewSubmissionController(ViewSubmissionService viewSubmissionService) {
+        this.viewSubmissionService = viewSubmissionService;
+    }
 
     @GetMapping("/entries")
     public List<Submission> findAll(@RequestParam(required = false, defaultValue = "1", name = "page") Integer pageNumber){
