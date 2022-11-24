@@ -1,14 +1,14 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.dto.FileDto;
-import com.hydraulic.applyforme.model.pojo.SubmissionResponse;
+import com.hydraulic.applyforme.model.response.SubmissionResponse;
 import com.hydraulic.applyforme.service.FileService;
 import com.hydraulic.applyforme.service.JobSubmissionService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import static com.hydraulic.applyforme.constants.AppConstants.*;
+import static com.hydraulic.applyforme.constants.PagingConstants.*;
 
 @RestController
 @RequestMapping(
