@@ -1,15 +1,15 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.service.SuperAdminService;
-import com.hydraulic.applyforme.service.impl.SuperAdminServiceImpl;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.dto.UpdatePasswordDTO;
+import com.hydraulic.applyforme.service.SuperAdminService;
 
 @RestController
 @RequestMapping(
@@ -29,12 +29,11 @@ public class SuperAdminController {
         return service.getDetailsById(id);
     }
     
-    public ResponseEntity<Member> changePassword(Long id) {
+    public ResponseEntity<?> changePassword(Long id, UpdatePasswordDTO passwordDTO) {
     	
-    	service.updatePasswordById();   	
+    	service.updatePasswordById(id, passwordDTO);   	
     	
-    	return new ResponseEntity<Member>(HttpStatus.ACCEPTED);
+    	return ResponseEntity.ok("successful");
     }
-    
     
 }
