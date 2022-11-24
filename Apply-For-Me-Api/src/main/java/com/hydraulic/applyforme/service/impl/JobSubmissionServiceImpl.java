@@ -30,18 +30,15 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     private final ApplierRepository applierRepository;
     private final JobSubmissionRepository repository;
     private final com.hydraulic.applyforme.repository.JobSubmissionRepository repo;
+    private final ModelMapper modelMapper;
 
     public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository, 
-    		com.hydraulic.applyforme.repository.JobSubmissionRepository repo) {
+    		com.hydraulic.applyforme.repository.JobSubmissionRepository repo, ModelMapper modelMapper) {
         this.applierRepository = applierRepository;
         this.repository = repository;
         this.repo = repo;
-    private final ModelMapper modelMapper;
-
-    public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository, ModelMapper modelMapper) {
-        this.applierRepository = applierRepository;
-        this.repository = repository;
         this.modelMapper = modelMapper;
+        
     }
 
     @Override
