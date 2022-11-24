@@ -1,4 +1,4 @@
-package com.hydraulic.applyforme.model.view;
+package com.hydraulic.applyforme.model.response;
 
 
 import lombok.*;
