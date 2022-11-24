@@ -13,24 +13,21 @@ import java.util.stream.Collectors;
 
 @Service
 public class ApplierServiceImpl implements ApplierService {
-
     @Autowired
-    private ApplierRepo applierRepo;
+    private ApplierRepo repository;
     @Autowired
     private ModelMapper modelMapper;
 
     public List<ApplierDto> getAllAppliers() {
+        List<Applier> appliers =this.repository.findAll();
 
-        List<Applier> appliers =this.applierRepo.findAll();
-        List<ApplierDto>applierDtos = appliers.stream()
+        List<ApplierDto> applierDto = appliers.stream()
                 .map(user->this.applierToDto(user)).collect(Collectors.toList());
-
-        return applierDtos;
+        return applierDto;
     }
     private ApplierDto applierToDto(Applier applier) {
 
         ApplierDto applierDto = this.modelMapper.map(applier, ApplierDto.class);
-
         return applierDto;
     }
 }

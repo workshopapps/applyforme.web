@@ -1,31 +1,35 @@
 package com.hydraulic.applyforme.repository.impl;
 
-import com.hydraulic.applyforme.model.domain.Country;;
+import com.hydraulic.applyforme.model.domain.Country;
+import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.exception.CountryDuplicateEntityException;
-import com.hydraulic.applyforme.repository.CountryRepository;
+import com.hydraulic.applyforme.model.exception.MemberDuplicateEntityException;
+import com.hydraulic.applyforme.repository.MemberRepository;
+import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.List;
 
+
 @Repository
-public class CountryRepositoryImpl implements CountryRepository {
+public class MemberRepositoryImpl implements MemberRepository {
 
     private static final int DEFAULT_PAGE_SIZE = 11;
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public List<Country> getAll() {
-        String queryText = "select c from Country c order by c.updatedOn desc";
-        TypedQuery<Country> applyForMeQuery = entityManager.createQuery(queryText, Country.class);
+    public List<Member> getAll() {
+        String queryText = "select m from Member m order by m.updatedOn desc";
+        TypedQuery<Member> applyForMeQuery = entityManager.createQuery(queryText, Member.class);
         return applyForMeQuery.getResultList();
     }
 
     @Override
-    public List<Country> getAll(Integer pageOffset) {
-        String queryText = "select c from Country c order by c.updatedOn desc";
-        TypedQuery<Country> applyForMeQuery = entityManager.createQuery(queryText, Country.class);
+    public List<Member> getAll(Integer pageOffset) {
+        String queryText = "select m from Member m order by m.updatedOn desc";
+        TypedQuery<Member> applyForMeQuery = entityManager.createQuery(queryText, Member.class);
 
         applyForMeQuery.setFirstResult((pageOffset - 1) * DEFAULT_PAGE_SIZE);
         applyForMeQuery.setMaxResults(DEFAULT_PAGE_SIZE);
@@ -33,31 +37,32 @@ public class CountryRepositoryImpl implements CountryRepository {
     }
 
     @Override
-    public Country getOne(Long id) {
-        return entityManager.find(Country.class, id);
+    public Member getOne(Long id) {
+        return entityManager.find(Member.class, id);
     }
 
+
     @Override
-    public Country saveOne(Country body) {
+    public Member saveOne(Member body) {
         try {
             entityManager.persist(body);
             return body;
         }
         catch (EntityExistsException ex) {
-            throw new CountryDuplicateEntityException();
+            throw new MemberDuplicateEntityException();
         }
     }
 
     @Override
-    public Country updateOne(Country body) {
+    public Member updateOne(Member body) {
         return entityManager.merge(body);
     }
 
     @Override
     public boolean remove(Long id) {
         try {
-            Country country = entityManager.getReference(Country.class, id);
-            entityManager.remove(country);
+            Member member = entityManager.getReference(Member.class, id);
+            entityManager.remove(member);
             return true;
         }
         catch (EntityNotFoundException ex) {
@@ -67,7 +72,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 
     @Override
     public boolean removeMany(List<Long> ids) {
-        Query query = entityManager.createQuery("delete from Country c where c.id in (:ids)");
+        Query query = entityManager.createQuery("delete from Member m where m.id in (:ids)");
         query.setParameter("ids", ids);
         if (query.executeUpdate() > 0) {
             return true;
@@ -79,7 +84,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 
     @Override
     public boolean removeAll() {
-        Query query = entityManager.createQuery("delete from Country");
+        Query query = entityManager.createQuery("delete from Member");
         if (query.executeUpdate() > 0) {
             return true;
         }
@@ -87,4 +92,6 @@ public class CountryRepositoryImpl implements CountryRepository {
             return false;
         }
     }
+
 }
+
