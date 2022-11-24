@@ -36,7 +36,7 @@ const Nav = () => {
                     </li>
 
                     <li>
-                        <Link to="/blog/2">Blog</Link>
+                        <Link to="/blog">Blog</Link>
                     </li>
                     <li>
                         <Link to="/faqs">FAQs</Link>
@@ -47,8 +47,8 @@ const Nav = () => {
                 </ul>
 
                 <div className={classes.btn_container}>
-                    <LightButton text="Sign in" width="127" />
-                    <BlueButton text="Get started" width="156" />
+                    <Link to = "/wel2"><LightButton text="Sign in" width="127" /></Link>
+                    <Link to = "/wel1"><BlueButton text="Get started" width="156" /></Link>
                 </div>
 
                 <FiMenu onClick={toggleMenu} className={classes.menu} />
