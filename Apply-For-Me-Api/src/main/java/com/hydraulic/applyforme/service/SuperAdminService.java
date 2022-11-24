@@ -7,6 +7,6 @@ public interface SuperAdminService {
 
     Member getDetailsById(Long id);
 
-	public void updatePasswordById(Long id, UpdatePasswordDTO updatePasswordDTO);
+	public Member updatePasswordById(Long id, UpdatePasswordDTO updatePasswordDTO);
     boolean deleteMemberById(Long id);
 }

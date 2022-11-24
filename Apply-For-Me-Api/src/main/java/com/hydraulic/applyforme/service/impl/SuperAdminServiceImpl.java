@@ -34,18 +34,15 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     }
 
 	@Override
-	public void updatePasswordById(Long id, UpdatePasswordDTO updatePasswordDTO) throws PasswordMismatchException {
-		
+	public Member updatePasswordById(Long id, UpdatePasswordDTO updatePasswordDTO) throws PasswordMismatchException {
 		Member member = getDetailsById(id);
-		
 		boolean matches = encoder.matches(updatePasswordDTO.getInitialPassword(), member.getPassword());
-		
 		if(!matches) {
 			throw new PasswordMismatchException();
 		}
-		
-		repository.updatePassword(id, updatePasswordDTO.getNewPassword());		
+		return repository.updatePassword(id, updatePasswordDTO.getNewPassword());		
 	}
+	
     @Override
     @Transactional
     public boolean deleteMemberById(Long id) {
