@@ -5,7 +5,7 @@ import JobOpenings from "./components/JobOpenings";
 
 import Nav from "./components/Nav";
 import Principles from "./components/Principles";
-import Testimonials from "./styles/Testimonials";
+import Testimonials from "./components/Testimonials";
 
 const CareerPage = () => {
     return (
