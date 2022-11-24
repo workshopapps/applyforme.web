@@ -28,12 +28,10 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
 
 	@Override
 	public Member updatePassword(Long id, String newPassword) {
-		
 		String query = "UPDATE Member m SET m.password = :newPassword WHERE m.id = :memberId";
 		TypedQuery<Member> updatedMember = entityManager.createQuery(query, Member.class);
 		updatedMember.setParameter("newPassword", newPassword);
 		updatedMember.setParameter("memberId", id);
-		
 		return updatedMember.getSingleResult();
 	}
     
