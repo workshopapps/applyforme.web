@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import classes from "./Nav.module.css";
 import Logo from "../../assets/images/nav_logo.svg";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import LightButton from "../buttons/light_button/LightButton";
+import DropdownMenu from "./DropdownMenu";
 
 const Nav = () => {
+    const [menuopen, setMenuopen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuopen(!menuopen);
+    };
     return (
         <section className={classes.nav_container}>
             <nav className={classes.nav_container__wrapper}>
@@ -30,7 +36,7 @@ const Nav = () => {
                     </li>
 
                     <li>
-                        <Link to="/blog">Blog</Link>
+                        <Link to="/blog/2">Blog</Link>
                     </li>
                     <li>
                         <Link to="/faqs">FAQs</Link>
@@ -45,7 +51,8 @@ const Nav = () => {
                     <BlueButton text="Get started" width="156" />
                 </div>
 
-                <FiMenu className={classes.menu} />
+                <FiMenu onClick={toggleMenu} className={classes.menu} />
+                {menuopen ? <DropdownMenu /> : <></>}
             </nav>
         </section>
     );
