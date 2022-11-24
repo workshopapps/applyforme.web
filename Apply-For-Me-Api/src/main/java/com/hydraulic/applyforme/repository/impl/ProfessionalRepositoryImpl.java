@@ -1,7 +1,5 @@
 package com.hydraulic.applyforme.repository.impl;
 
-
-import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +21,7 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
         String queryString = "select p from Professional p order by p.member.updatedOn desc";
         TypedQuery<Professional> professionalQuery = entityManager.createQuery(queryString, Professional.class);
 
-        professionalQuery.setFirstResult((pageOffset-1) * DEFAULT_PAGE_SIZE);
+        professionalQuery.setFirstResult((pageOffset - 1) * DEFAULT_PAGE_SIZE);
         professionalQuery.setMaxResults(DEFAULT_PAGE_SIZE);
         return professionalQuery.getResultList();
     }
