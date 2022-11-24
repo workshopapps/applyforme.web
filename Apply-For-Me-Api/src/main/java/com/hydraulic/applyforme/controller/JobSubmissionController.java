@@ -1,10 +1,14 @@
 package com.hydraulic.applyforme.controller;
 
+import com.hydraulic.applyforme.model.dto.FileDto;
 import com.hydraulic.applyforme.model.pojo.SubmissionResponse;
+import com.hydraulic.applyforme.service.FileService;
 import com.hydraulic.applyforme.service.JobSubmissionService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.concurrent.ExecutionException;
 
 import static com.hydraulic.applyforme.constants.AppConstants.*;
 
@@ -17,8 +21,19 @@ public class JobSubmissionController {
 
     private final JobSubmissionService service;
 
-    public JobSubmissionController(JobSubmissionService service) {
+    private final FileService fileService;
+
+
+
+
+    public JobSubmissionController(JobSubmissionService service, FileService fileService) {
         this.service = service;
+        this.fileService = fileService;
+    }
+
+    @PostMapping("/upload")
+    public FileDto uploadResume(@RequestParam("doc") MultipartFile file) {
+        return fileService.saveMemberPictures(file.getContentType());
     }
     @GetMapping("/applier/count/{applierId}")
     public Long totalApplierEntry(@PathVariable(name = "applierId") Long id){
