@@ -1,11 +1,9 @@
 package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.Applier;
-import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.response.ApplierJobSubmissionStatistics;
 import com.hydraulic.applyforme.model.response.ApplierJobSubmissionTotalResponse;
 import com.hydraulic.applyforme.repository.ApplierRepository;
-import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.SuperAdminStatRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -20,6 +18,8 @@ import java.util.List;
 @Slf4j
 @Repository
 public class SuperAdminStatRepositoryImpl implements SuperAdminStatRepository {
+
+    private static final int DEFAULT_PAGE_SIZE = 6;
     @PersistenceContext
     private EntityManager entityManager;
 

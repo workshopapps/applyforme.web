@@ -7,18 +7,31 @@ import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 @Slf4j
 @Repository
 public class ProfessionalRepositoryImpl implements ProfessionalRepository {
 
+    private static final int DEFAULT_PAGE_SIZE = 11;
+
     @PersistenceContext
     private EntityManager entityManager;
+
+    public List<Professional> getAll(Integer pageOffset) {
+        String queryString = "select p from Professional p order by p.member.updatedOn desc";
+        TypedQuery<Professional> professionalQuery = entityManager.createQuery(queryString, Professional.class);
+
+        professionalQuery.setFirstResult((pageOffset-1) * DEFAULT_PAGE_SIZE);
+        professionalQuery.setMaxResults(DEFAULT_PAGE_SIZE);
+        return professionalQuery.getResultList();
+    }
+
+    @Override
+    public Professional getOne(Long id) {
+        return entityManager.find(Professional.class, id);
+    }
 
     @Override
     public boolean remove(Long id) {
@@ -49,9 +62,9 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
         Query query = entityManager.createQuery("delete from Professional");
         if (query.executeUpdate() > 0) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
+
 }

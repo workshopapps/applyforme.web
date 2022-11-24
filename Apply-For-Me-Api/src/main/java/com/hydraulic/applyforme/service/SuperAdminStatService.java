@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface SuperAdminStatService {
     AdminDashboardStatisticsOne getStatistics();
-
     List<ApplierJobSubmissionStatistics> getAppliersTotalSubmissions();
 }

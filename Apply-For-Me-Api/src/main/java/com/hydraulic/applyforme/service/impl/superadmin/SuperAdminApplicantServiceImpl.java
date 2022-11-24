@@ -1,8 +1,7 @@
 package com.hydraulic.applyforme.service.impl.superadmin;
 
-import com.hydraulic.applyforme.model.dto.country.DeleteManyCountryDto;
+import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.professional.DeleteManyProfessionalDto;
-import com.hydraulic.applyforme.model.exception.CountryNotFoundException;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import com.hydraulic.applyforme.service.superadmin.SuperAdminApplicantService;
@@ -17,6 +16,17 @@ public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantServic
 
     public SuperAdminApplicantServiceImpl(ProfessionalRepository repository) {
         this.repository = repository;
+    }
+
+    @Override
+    public Professional findOne(Long id) {
+        Professional professional = repository.getOne(id);
+        if (professional == null) {
+            throw new ProfessionalNotFoundException(id);
+        }
+        professional.setSubmissions(null);
+        professional.setProfessionalProfiles(null);
+        return professional;
     }
 
     @Override
