@@ -56,8 +56,8 @@ public class CountryRepositoryImpl implements CountryRepository {
     @Override
     public boolean remove(Long id) {
         try {
-            Country applyForMe = entityManager.getReference(Country.class, id);
-            entityManager.remove(applyForMe);
+            Country country = entityManager.getReference(Country.class, id);
+            entityManager.remove(country);
             return true;
         }
         catch (EntityNotFoundException ex) {

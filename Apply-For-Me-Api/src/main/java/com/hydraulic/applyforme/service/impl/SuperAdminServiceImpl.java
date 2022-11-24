@@ -6,6 +6,7 @@ import com.hydraulic.applyforme.repository.SuperAdminRepository;
 import com.hydraulic.applyforme.service.SuperAdminService;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,18 @@ public class SuperAdminServiceImpl implements SuperAdminService {
             throw new MemberNotFoundException(id);
         }
        return member;
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteMemberById(Long id) {
+        boolean removed = repository.removeMemberById(id);
+        if(removed){
+            return true;
+        }
+        else {
+            throw new MemberNotFoundException(id);
+        }
     }
 
 }
