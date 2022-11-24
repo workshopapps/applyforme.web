@@ -30,4 +30,12 @@ public class MemberSecretCodeRepositoryImpl implements MemberSecretCodeRepositor
         }
         return memberSecretCode;
     }
+
+    @Override
+    public void saveSecretCode(String secretCode){
+
+        MemberSecretCode memberSecretCode = new MemberSecretCode();
+
+
+    };
 }
