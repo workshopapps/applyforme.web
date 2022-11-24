@@ -22,7 +22,7 @@ public class ApplierController {
         this.applierService = applierService;
     }
 
-    @GetMapping("/appliers")
+    @GetMapping("/entries")
     public List<ApplierDto> getAllAppliers(){
         return applierService.getAllAppliers();
     }
