@@ -62,9 +62,8 @@ public class MemberServiceImpl implements MemberService {
 
         Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.RECRUITER.getValue());
 
-        if (existingRole.isEmpty()) {
-            throw new RoleNotFoundException(RoleType.RECRUITER.getValue());
-        }
+       existingRole.orElseThrow(()->new RoleNotFoundException(RoleType.RECRUITER.getValue()));
+
 
         Member member = new Member();
         member = modelMapper.map(body, Member.class);

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,15 +37,8 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     @Override
     public Long countAllSubmissions(Long id) {
         Optional<Applier> applier = Optional.ofNullable(applierRepository.getOne(id));
-
-        if (applier.isEmpty()) {
-            throw new ApplierNotFoundException(id);
-        }
-
-        if (applier.isPresent()) {
+        applier.orElseThrow(()->new ApplierNotFoundException(id));
             return repository.countByApplier(id);
-        }
-        return 0L;
     }
 
     @Override
@@ -67,6 +61,17 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
         Page<Submission> submission = repository.findJobSubmissionBySearch(pageable, q);
 
         return getSubmissionResponse(submission);
+    }
+
+    @Override
+    public SubmissionDto getSubmissionDetails(Applier applier, Long submissionId) {
+        Set<Submission> submissions = applier.getSubmissions();
+        Optional<Submission> optionalSubmission = submissions.stream().filter(submission -> submission.getId().equals(submissionId)).findFirst();
+        SubmissionDto submissionToView = new SubmissionDto();
+        if(optionalSubmission.isPresent()) {
+            modelMapper.map(optionalSubmission,submissionToView) ;
+        }
+        return submissionToView;
     }
 
     private SubmissionResponse getSubmissionResponse(Page<Submission> submission) {
