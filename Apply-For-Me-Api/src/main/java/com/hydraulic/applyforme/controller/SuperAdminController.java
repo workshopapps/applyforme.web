@@ -5,6 +5,8 @@ import com.hydraulic.applyforme.service.SuperAdminService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(
         value = "admin",
@@ -21,6 +23,11 @@ public class SuperAdminController {
     @GetMapping("/detail/{id}")
     public Member getOneMember(@PathVariable(value="id") Long id) {
         return service.getDetailsById(id);
+    }
+
+    @GetMapping("/profile/{id}")
+    public Optional<Member> viewAdmin(@PathVariable(value = "id") Long id){
+        return service.getAdmin(id);
     }
 
     @DeleteMapping("/remove/{id}")
