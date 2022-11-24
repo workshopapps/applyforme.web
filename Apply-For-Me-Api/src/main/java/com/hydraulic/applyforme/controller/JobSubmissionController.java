@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.hydraulic.applyforme.model.pojo.SubmissionResponse;
+import com.hydraulic.applyforme.service.JobSubmissionService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import static com.hydraulic.applyforme.constants.AppConstants.*;
 
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.ProfessionalJobSubmissionDTO;
@@ -43,5 +50,24 @@ public class JobSubmissionController {
 
 		return new ResponseEntity<ProfessionalJobSubmissionDTO>(allSubmissionsByPagination, HttpStatus.OK);
 	}
+
+    @GetMapping("/entries")
+    public SubmissionResponse getAllSubmission(
+            @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir){
+        return service.getAllJobSubmission(pageNo, pageSize, sortBy, sortDir);
+    }
+    @GetMapping("/entries/search")
+    public SubmissionResponse getAllSubmissionBySearch(
+            @RequestParam String q,
+            @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir){
+        return service.filterJobSubmission(pageNo, pageSize, sortBy, sortDir, q);
+    }
+
 
 }

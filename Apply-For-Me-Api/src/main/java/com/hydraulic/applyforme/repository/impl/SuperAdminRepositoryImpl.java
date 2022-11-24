@@ -1,6 +1,7 @@
 package com.hydraulic.applyforme.repository.impl;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -32,4 +33,15 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
 		return updatedMember.getSingleResult();
 	}
     
+    @Override
+    public Boolean removeMemberById(Long id) {
+        try{
+            Member member = entityManager.getReference(Member.class, id);
+            entityManager.remove(member);
+            return true;
+        }
+        catch (EntityNotFoundException en){
+            return false;
+        }
+    }
 }

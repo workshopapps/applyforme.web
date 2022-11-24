@@ -10,6 +10,8 @@ import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.model.exception.PasswordMismatchException;
 import com.hydraulic.applyforme.repository.SuperAdminRepository;
 import com.hydraulic.applyforme.service.SuperAdminService;
+import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 public class SuperAdminServiceImpl implements SuperAdminService {
@@ -44,5 +46,16 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 		
 		repository.updatePassword(id, updatePasswordDTO.getNewPassword());		
 	}
+    @Override
+    @Transactional
+    public boolean deleteMemberById(Long id) {
+        boolean removed = repository.removeMemberById(id);
+        if(removed){
+            return true;
+        }
+        else {
+            throw new MemberNotFoundException(id);
+        }
+    }
 
 }
