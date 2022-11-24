@@ -5,6 +5,9 @@ import com.hydraulic.applyforme.model.dto.applyforme.ApplyForMeDto;
 import com.hydraulic.applyforme.model.dto.applyforme.DeleteManyApplyForMeDto;
 import com.hydraulic.applyforme.service.ApplyForMeService;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,5 +59,16 @@ public class ApplyForMeController {
     @PutMapping("/remove/all")
     public boolean deleteAll() {
         return service.deleteAll();
+    }
+
+    public Object dummy() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        Object principal = context.getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            return (UserDetails) context.getAuthentication().getPrincipal();
+        }
+        else {
+            return null;
+        }
     }
 }

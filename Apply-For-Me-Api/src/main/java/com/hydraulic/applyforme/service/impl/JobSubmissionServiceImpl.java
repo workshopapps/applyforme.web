@@ -4,7 +4,7 @@ import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
 import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
-import com.hydraulic.applyforme.model.pojo.SubmissionResponse;
+import com.hydraulic.applyforme.model.response.SubmissionResponse;
 import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
@@ -15,7 +15,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 

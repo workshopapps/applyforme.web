@@ -1,8 +1,7 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.pojo.SubmissionResponse;
+import com.hydraulic.applyforme.model.response.SubmissionResponse;
 import com.hydraulic.applyforme.service.JobSubmissionService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

@@ -83,7 +83,7 @@ public class Member {
     @Column(name = "email_address", nullable = false)
     private String emailAddress;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name ="phone_number")

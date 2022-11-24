@@ -24,6 +24,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    public AuthenticationServiceImpl() {
+
+    }
+
     public AuthenticationServiceImpl(MemberSecretJpaRepository secretJpaRepository, MemberJpaRepository memberJpaRepository, MemberRepository memberRepository) {
         this.secretJpaRepository = secretJpaRepository;
         this.memberJpaRepository = memberJpaRepository;
@@ -43,12 +47,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         memberRepository.updateOne(member);
     }
 
-    @Override
-    public void updatePassword() {
-
-    }
-
     public void setPassword(Member member) {
         member.setPassword(passwordEncoder.encode(member.getPassword()));
     }
+
 }
