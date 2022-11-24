@@ -24,6 +24,6 @@ public class ProfessionalController {
         return service.findAll(pageOffset);
     }
 
-    @GetMapping("/entries/{id}")
+    @GetMapping("/detail/{id}")
     public Professional findOne(@PathVariable(name = "id") Long id) {return service.findOne(id);}
 }
