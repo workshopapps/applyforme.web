@@ -83,7 +83,9 @@
   color: #2e3192;
   font-size: 2rem;
 }
-
+link.btn {
+  border: 1px solid white !important;
+}
 .card__duration {
   margin-bottom: 0.5rem;
   color: #140f31;
