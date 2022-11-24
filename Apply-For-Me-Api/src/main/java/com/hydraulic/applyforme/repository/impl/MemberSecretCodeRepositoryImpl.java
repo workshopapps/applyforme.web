@@ -35,7 +35,8 @@ public class MemberSecretCodeRepositoryImpl implements MemberSecretCodeRepositor
     public void saveSecretCode(String secretCode){
 
         MemberSecretCode memberSecretCode = new MemberSecretCode();
-
+        memberSecretCode.setSignUpVerificationCode(secretCode);
+        entityManager.persist(memberSecretCode);
 
     };
 }

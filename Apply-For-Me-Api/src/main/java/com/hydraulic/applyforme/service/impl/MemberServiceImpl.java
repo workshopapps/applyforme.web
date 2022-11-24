@@ -78,7 +78,7 @@ public class MemberServiceImpl implements MemberService {
 
         repository.saveOne(member);
         String generatedSecretCode = generateSignUpCode();
-
+        memberSecretCodeRepository.saveSecretCode(generatedSecretCode);
 
         return member;
     }

@@ -4,6 +4,7 @@ import com.hydraulic.applyforme.model.domain.MemberSecretCode;
 import com.hydraulic.applyforme.model.dto.secretCode.MemberSecretCodeDto;
 import com.hydraulic.applyforme.repository.MemberSecretCodeRepository;
 import com.hydraulic.applyforme.service.MemberSecretCodeService;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class MemberSecretCodeServiceImpl implements MemberSecretCodeService {
@@ -11,17 +12,6 @@ public class MemberSecretCodeServiceImpl implements MemberSecretCodeService {
     @Autowired
     private MemberSecretCodeRepository memberSecretCodeRepository;
 
-
-    @Override
-    public String generateSignUpCode(){
-        int[] numbers = new int[4];
-
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = (int) (Math.random() * 9);
-        }
-        String code = "" + numbers[0] + numbers[1] + numbers[2] + numbers[3] + "";
-        return  code;
-    }
 
     @Override
     public String matchVerificationCodes(MemberSecretCodeDto memberSecretCodeDto){
@@ -34,13 +24,23 @@ public class MemberSecretCodeServiceImpl implements MemberSecretCodeService {
         MemberSecretCode memberSecretCode = memberSecretCodeRepository.findBySignUpVerificationCode(secretCode);
 
         if(memberSecretCode != null) {
-            return "valid_verification_code";
+            return "valid verification code";
         }
         else{
-            return  "invalid_verification_code";
+            return  "invalid verification code";
         }
     }
 
+    @Override
+    public String createResetPasswordCode() {
+        int[] numbers = new int[4];
+
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = (int) (Math.random() * 9);
+        }
+        String code = "" + numbers[0] + numbers[1] + numbers[2] + numbers[3] + "";
+        return  code;
+    }
 
 
 
