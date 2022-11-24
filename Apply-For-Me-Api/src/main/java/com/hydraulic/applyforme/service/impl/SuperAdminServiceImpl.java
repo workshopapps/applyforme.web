@@ -11,7 +11,6 @@ import com.hydraulic.applyforme.model.exception.PasswordMismatchException;
 import com.hydraulic.applyforme.repository.SuperAdminRepository;
 import com.hydraulic.applyforme.service.SuperAdminService;
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Service
 public class SuperAdminServiceImpl implements SuperAdminService {
@@ -20,6 +19,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 	private PasswordEncoder encoder;
 	
     SuperAdminRepository repository;
+    private SuperAdminRepository repository;
 
     public SuperAdminServiceImpl(SuperAdminRepository repository) {
         this.repository = repository;
@@ -47,12 +47,21 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     @Transactional
     public boolean deleteMemberById(Long id) {
         boolean removed = repository.removeMemberById(id);
-        if(removed){
+        if (removed) {
             return true;
         }
         else {
             throw new MemberNotFoundException(id);
         }
+    }
+
+    @Override
+    public Member getAdmin(Long id) {
+        Member find = repository.viewAdminDetails(id);
+        if(find == null){
+            throw new MemberNotFoundException(id);
+        }
+        return find;
     }
 
 }

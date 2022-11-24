@@ -9,7 +9,7 @@ import com.hydraulic.applyforme.model.dto.ProfessionalJobSubmissionDTO;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
 import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
-import com.hydraulic.applyforme.model.pojo.SubmissionResponse;
+import com.hydraulic.applyforme.model.response.SubmissionResponse;
 import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
@@ -42,17 +42,13 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     }
 
     @Override
-    public Long countAllSubmissions(Long id) {
-        Optional<Applier> applier = Optional.ofNullable(applierRepository.getOne(id));
+    public Long countAllApplierSubmissions(Long id) {
+        Applier applier = applierRepository.getOne(id);
 
-        if (applier.isEmpty()) {
+        if (applier == null) {
             throw new ApplierNotFoundException(id);
         }
-
-        if (applier.isPresent()) {
-            return repository.countByApplier(id);
-        }
-        return 0L;
+        return repository.countByApplier(id);
     }
 
 	@Override
@@ -62,29 +58,25 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
 	}
     @Override
     public SubmissionResponse getAllJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir) {
-        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
-                : Sort.by(sortBy).descending();
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
-
-        Page<Submission> submission = repository.findAll(pageable);
-
+        Page<Submission> submission = repository.findAll(createPageable(pageNo, pageSize, sortBy, sortDir));
         return getSubmissionResponse(submission);
     }
 
     @Override
     public SubmissionResponse filterJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir, String q) {
-        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
-                : Sort.by(sortBy).descending();
-
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
-        Page<Submission> submission = repository.findJobSubmissionBySearch(pageable, q);
-
+        Page<Submission> submission = repository.findJobSubmissionBySearch(createPageable(pageNo, pageSize, sortBy, sortDir), q);
         return getSubmissionResponse(submission);
     }
 
     private SubmissionResponse getSubmissionResponse(Page<Submission> submission) {
-        Collection<SubmissionDto> submissions = submission.getContent().stream().map(x ->
-                modelMapper.map(x, SubmissionDto.class)).collect(Collectors.toList());
+        Collection<SubmissionDto> submissions = submission
+                .getContent()
+                .stream()
+                .map(x -> {
+                    return modelMapper.map(x, SubmissionDto.class);
+                })
+                .collect(Collectors.toList());
+
         SubmissionResponse submissionResponse = new SubmissionResponse();
         submissionResponse.setContent(submissions);
         submissionResponse.setPageNo(submission.getNumber());
@@ -93,5 +85,11 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
         submissionResponse.setTotalPages(submission.getTotalPages());
         submissionResponse.setLast(submission.isLast());
         return submissionResponse;
+    }
+
+    private Pageable createPageable(int pageNo, int pageSize, String sortBy, String sortDir) {
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+        return PageRequest.of(pageNo, pageSize);
     }
 }

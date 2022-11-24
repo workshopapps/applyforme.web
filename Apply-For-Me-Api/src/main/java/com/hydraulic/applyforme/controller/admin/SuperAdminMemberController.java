@@ -1,4 +1,4 @@
-package com.hydraulic.applyforme.controller;
+package com.hydraulic.applyforme.controller.admin;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +13,18 @@ import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.UpdatePasswordDTO;
 import com.hydraulic.applyforme.service.SuperAdminService;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(
-        value = "admin",
+        value = "admin/member",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
-public class SuperAdminController {
+public class SuperAdminMemberController {
 
-    SuperAdminService service;
+    private SuperAdminService service;
 
-    public SuperAdminController(SuperAdminService service) {
+    public SuperAdminMemberController(SuperAdminService service) {
         this.service = service;
     }
 
@@ -37,6 +39,11 @@ public class SuperAdminController {
     	return ResponseEntity.accepted().body("successful");
     }
     
+
+    @GetMapping("/profile/{id}")
+    public Member viewAdmin(@PathVariable(value = "id") Long id){
+        return service.getAdmin(id);
+    }
 
     @DeleteMapping("/remove/{id}")
     public boolean delete(@PathVariable(value = "id") Long id){
