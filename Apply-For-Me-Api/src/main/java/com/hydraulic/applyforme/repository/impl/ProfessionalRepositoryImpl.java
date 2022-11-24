@@ -25,4 +25,8 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
         professionalQuery.setMaxResults(DEFAULT_PAGE_SIZE);
         return professionalQuery.getResultList();
     }
+
+    @Override
+    public Professional getOne(Long id) {return entityManager.find(Professional.class, id);
+    }
 }

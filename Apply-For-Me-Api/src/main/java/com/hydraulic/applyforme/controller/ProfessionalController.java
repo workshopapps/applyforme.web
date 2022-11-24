@@ -4,10 +4,7 @@ import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.service.ProfessionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,4 +23,7 @@ public class ProfessionalController {
     public List<Professional> findAll(@RequestParam(required = false, defaultValue = "1", name = "page") Integer pageOffset) {
         return service.findAll(pageOffset);
     }
+
+    @GetMapping("/entries/{id}")
+    public Professional findOne(@PathVariable(name = "id") Long id) {return service.findOne(id);}
 }

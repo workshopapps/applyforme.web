@@ -21,4 +21,8 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 
     @Override
     public List<Professional> findAll(Integer pageOffset) { return repository.getAll(pageOffset);}
+
+    @Override
+    public Professional findOne(Long id) {return repository.getOne(id);
+    }
 }
