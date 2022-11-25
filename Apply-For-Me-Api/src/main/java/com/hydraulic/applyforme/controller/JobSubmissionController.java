@@ -1,13 +1,7 @@
 package com.hydraulic.applyforme.controller;
 
-<<<<<<< HEAD
-import com.hydraulic.applyforme.model.domain.Applier;
-import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
-import com.hydraulic.applyforme.model.pojo.SubmissionResponse;
-=======
 import com.hydraulic.applyforme.model.response.SubmissionResponse;
->>>>>>> 832aac9cc504b87bcff33b458e6a5201fb05ff21
 import com.hydraulic.applyforme.service.JobSubmissionService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -46,13 +40,8 @@ public class JobSubmissionController {
             @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
         return service.filterJobSubmission(pageNo, pageSize, sortBy, sortDir, q);
     }
-<<<<<<< HEAD
     @GetMapping("/view_submission/{submissionId}")
     public SubmissionDto viewSubmissionDetails(@PathVariable Long professionalId, @PathVariable("submissionId") Long submissionId){
         return service.getSubmissionDetails(professionalId,submissionId);
     }
-
-
-=======
->>>>>>> 832aac9cc504b87bcff33b458e6a5201fb05ff21
 }

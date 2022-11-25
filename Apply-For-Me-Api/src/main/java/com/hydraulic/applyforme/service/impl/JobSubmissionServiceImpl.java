@@ -39,12 +39,6 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     }
 
     @Override
-<<<<<<< HEAD
-    public Long countAllSubmissions(Long id) {
-        Optional<Applier> applier = Optional.ofNullable(applierRepository.getOne(id));
-        applier.orElseThrow(()->new ApplierNotFoundException(id));
-            return repository.countByApplier(id);
-=======
     public Long countAllApplierSubmissions(Long id) {
         Applier applier = applierRepository.getOne(id);
 
@@ -52,7 +46,6 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
             throw new ApplierNotFoundException(id);
         }
         return repository.countByApplier(id);
->>>>>>> 832aac9cc504b87bcff33b458e6a5201fb05ff21
     }
 
     @Override

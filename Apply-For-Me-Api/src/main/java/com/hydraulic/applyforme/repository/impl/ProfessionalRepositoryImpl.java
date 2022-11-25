@@ -2,7 +2,7 @@ package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.Professional;
 
-import com.hydraulic.applyforme.model.exception.ProffesionalDuplicateEntityException;
+import com.hydraulic.applyforme.model.exception.ProfessionalDuplicateEntityException;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 
 import javax.persistence.EntityExistsException;
@@ -51,7 +51,7 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
             return body;
         }
         catch (EntityExistsException ex) {
-            throw new ProffesionalDuplicateEntityException();
+            throw new ProfessionalDuplicateEntityException();
         }
     }
 
