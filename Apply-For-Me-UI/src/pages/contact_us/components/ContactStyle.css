@@ -217,7 +217,7 @@ label{
 }
 textarea{
     
-    font-size: 1.5em;
+    font-size: 1em;
     background-color: white;
     resize:none;
     
@@ -454,4 +454,14 @@ h3{
 
 .top-tier img{
     margin-bottom: 40px;
+}
+
+
+.details p{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+h1{
+    font-size: 1.5em;
+    color: #141662;
 }

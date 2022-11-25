@@ -21,7 +21,7 @@ const LeftDetails = () => {
 
             </p>
 
-            <a href="email:info@afm.com"><img src={mail} className="img-icon"/><span>info@afm.com</span></a>
+            <a href="https://www.info@afm.com"><img src={mail} className="img-icon"/><span>info@afm.com</span></a>
 
         </div>
       
