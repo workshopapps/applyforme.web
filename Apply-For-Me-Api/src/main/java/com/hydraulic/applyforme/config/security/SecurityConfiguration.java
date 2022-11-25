@@ -31,6 +31,9 @@ public class SecurityConfiguration {
     @Autowired
     private JwtTokenFilter tokenFilter;
 
+    @Autowired
+    private JwtAuthenticationProvider authenticationProvider;
+
     @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -75,6 +78,7 @@ public class SecurityConfiguration {
     public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        authenticationManagerBuilder.authenticationProvider(authenticationProvider);
         return authenticationManagerBuilder.build();
     }
 
