@@ -1,4 +1,4 @@
-package com.hydraulic.applyforme.model.pojo;
+package com.hydraulic.applyforme.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

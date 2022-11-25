@@ -15,4 +15,10 @@ public interface ProfessionalRepository {
 
     Professional updateOne(Professional body);
 
+    boolean remove(Long id);
+
+    boolean removeMany(List<Long> ids);
+
+    boolean removeAll();
+
 }

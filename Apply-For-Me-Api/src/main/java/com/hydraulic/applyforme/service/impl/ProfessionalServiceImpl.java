@@ -1,10 +1,9 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.repository.ApplyForMeRepository;
+import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import com.hydraulic.applyforme.service.ProfessionalService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +19,16 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     }
 
     @Override
-    public List<Professional> findAll(Integer pageOffset) { return repository.getAll(pageOffset);}
+    public List<Professional> findAll(Integer pageOffset) { return repository.getAll(pageOffset); }
+    @Override
+    public Professional findOne(Long id) {
+        Professional professional = repository.getOne(id);
+        if (professional == null) {
+            throw new ProfessionalNotFoundException(id);
+        }
+        professional.setSubmissions(null);
+        professional.setProfessionalProfiles(null);
+        return professional;
+    }
+
 }

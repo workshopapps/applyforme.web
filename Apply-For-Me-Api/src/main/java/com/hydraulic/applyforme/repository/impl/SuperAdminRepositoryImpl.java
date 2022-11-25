@@ -1,12 +1,11 @@
 package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.domain.Role;
 import com.hydraulic.applyforme.repository.SuperAdminRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
 
 @Repository
 public class SuperAdminRepositoryImpl implements SuperAdminRepository {
@@ -30,5 +29,13 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
         catch (EntityNotFoundException en){
             return false;
         }
+    }
+
+    @Override
+    public Member viewAdminDetails(Long id) {
+        return entityManager.find(Member.class, id);
+//        Query query = entityManager.createQuery("select m from Member m where m.id in (:ids)");
+//        query.setParameter("ids", id);
+//        return query.executeUpdate() > 0;
     }
 }
