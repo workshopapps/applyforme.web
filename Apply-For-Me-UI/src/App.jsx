@@ -40,6 +40,7 @@ import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
 import Profile from "./pages/dashboard_profile/Profile/Profile";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
+import { ProfileScreen } from "components/superAdmmin_profile/superAdmin_profileScreen";
 
 function App() {
     return (
@@ -65,6 +66,7 @@ function App() {
                     element={<Checkout {...formData} />}
                 />
                 <Route exact path="/user-page" element={<Dashboard />} />
+                <Route path="/superAdminProfile" element={<ProfileScreen />}></Route>
                 <Route exact path="blog" element={<Blog />} />
                 <Route
                     exact

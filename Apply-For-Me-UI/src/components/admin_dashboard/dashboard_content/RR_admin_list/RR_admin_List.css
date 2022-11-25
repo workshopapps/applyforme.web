@@ -28,6 +28,11 @@ thead th{
  }
  .pagination{
     margin: 0 1rem 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #eeefff;
+    border-radius: 6px;
+    font-weight: 400;
+    width:fit-content;
  }
  .pagination,.pagiantion_control{
      display: flex;

@@ -2,14 +2,19 @@ import { useState } from "react";
 import { PasswordContent } from "../../modals/editpersonalinfo/editPassword/editPassword";
 import { EditInfoContent } from "../../modals/editpersonalinfo/editProfileInformation/editProfileInformation";
 import  "./main_container.css";
+import { useNavigate } from "react-router-dom";
 export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
     const [showEditModal, setEditModal] = useState(false);
     const [showPasswordModal, setPasswordModal] = useState(false);
+    const navigate = useNavigate()
 
     
     return(
         <>
             <div  className="ProfileMainContainer">
+                <div onClick={()=>navigate("/user-page")}>
+                    <img src="https://res.cloudinary.com/hamskid/image/upload/v1669298685/Frame_51450_hkzsj8.png" alt="object not found"/>
+                </div>
                 <div className="profile_header">
                     <h1>Profile</h1>
                     <button className="profile_content_btn" onClick={()=>setEditModal((prevState)=>!prevState)}>
@@ -67,7 +72,7 @@ export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
             </div>
            {showEditModal &&(
                 <div className="editContainer">
-                    <div className="passwword-edit">
+                    <div className="editContent">
                         <div className='modal_closal' style={{marginBottom:"2rem"}}>
                             <img src="https://res.cloudinary.com/hamskid/image/upload/v1669067698/Vector_rc9avy.png" alt="object not found" onClick={()=> setEditModal((prevState)=>!prevState)}/>
                         </div>

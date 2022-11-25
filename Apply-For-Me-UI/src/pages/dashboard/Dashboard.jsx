@@ -6,17 +6,20 @@ import { getActivePage } from "./service/DashbaordService";
 
 const Dashboard = () => {
     const [page, setPage] = useState({
-        dashboardPage: true,
-        userPage: false
+        dashboardPage: false,
+        userPage: true
     });
     
     const handlePageSwitch = data => {
         setPage(getActivePage(data));
     };
+
+    const [dashboardsearchParams, dashboardSetSearchParams] = useState('');
+
     return (
         <div>
-            <DashboardHeader func={handlePageSwitch} />
-            {page.dashboardPage ? <DashBoardPage />: <UsersPage /> }
+            <DashboardHeader func={handlePageSwitch} setInputSearchValue={dashboardSetSearchParams} />
+            {page.dashboardPage ? <DashBoardPage inputSearchValue={dashboardsearchParams} />: <UsersPage/> }
         </div>
     );
 };
