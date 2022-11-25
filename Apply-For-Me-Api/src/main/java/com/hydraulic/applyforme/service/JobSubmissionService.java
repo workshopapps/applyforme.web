@@ -1,11 +1,9 @@
 package com.hydraulic.applyforme.service;
 
-import com.hydraulic.applyforme.model.pojo.SubmissionResponse;
+import com.hydraulic.applyforme.model.response.SubmissionResponse;
 
 public interface JobSubmissionService {
-    public Long countAllSubmissions(Long Id);
-
+    Long countAllApplierSubmissions(Long Id);
     SubmissionResponse getAllJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir);
-
     SubmissionResponse filterJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir, String q);
 }

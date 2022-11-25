@@ -1,6 +1,6 @@
 package com.hydraulic.applyforme.constants;
 
-public class AppConstants {
+public class PagingConstants {
 
     public static final String DEFAULT_PAGE_NUMBER = "0";
 
