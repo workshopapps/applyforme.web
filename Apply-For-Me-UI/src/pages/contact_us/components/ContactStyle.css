@@ -170,10 +170,11 @@ textarea:focus{
 }
 .contact-mid .form{
     flex: 1;
+    margin-right: 20px;
 }
 .contact-mid .form-details{
     flex: 1;
-    margin-left: 100px;
+
 }
  .contact-mid{
     padding-left: 100px;
@@ -251,7 +252,7 @@ textarea:focus{
 
    .leftdetail{
     margin-left: 20px;
-    display: none;
+
     
    }
    .contact-mid{
@@ -259,8 +260,19 @@ textarea:focus{
     padding-right: 20px;
    }
    .form-details{
-    margin-left: 0;
-    display: none;
+    flex: 1;
+    margin-top: 50px;
+    margin-right: 20px;
+    
    }
- 
+   .contact-mid{
+    flex-wrap: wrap;
+   }
+   .img-first{
+    min-width: 250px;
+   }
+   .img-wrapper{
+    display: flex;
+    justify-content: center;
+   }
 }
