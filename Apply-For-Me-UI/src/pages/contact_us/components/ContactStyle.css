@@ -101,6 +101,9 @@ textarea:focus{
     .form-body{
         margin-left: 0;
     }
+    .form-details{
+        margin-: 20px;
+    }
 }
 @media screen and (max-width:768px) {
 
@@ -242,4 +245,22 @@ textarea:focus{
 
 .top-tier img{
     margin-bottom: 40px;
+}
+
+@media screen and (max-width:1100px) and (min-width:760px) {
+
+   .leftdetail{
+    margin-left: 20px;
+    display: none;
+    
+   }
+   .contact-mid{
+    padding-left: 20px;
+    padding-right: 20px;
+   }
+   .form-details{
+    margin-left: 0;
+    display: none;
+   }
+ 
 }
