@@ -97,7 +97,7 @@ textarea:focus {
         margin-left: 0;
     }
     .form-details {
-        margin-: 20px;
+        margin: 20px;
     }
 }
 @media screen and (max-width: 768px) {
