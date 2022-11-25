@@ -76,6 +76,22 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     }
 
 
+    @Override
+    public List<Member> sortAndPaginateAdmin(Optional<Role> role, int pageNo, int pageSize, String sortBy, String sortDir) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.RECRUITER.getValue());
+        Page<Member> allAdminPagedContent = jpaRepository.findMemberByRoles(paging,existingRole);
+        if(allAdminPagedContent.hasContent()){
+            return allAdminPagedContent.getContent();
+        }
+        else {
+            return new ArrayList<Member>();
+        }
+
+    }
+
+
+
 
 
 

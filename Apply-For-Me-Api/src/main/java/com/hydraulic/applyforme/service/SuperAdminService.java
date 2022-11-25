@@ -14,6 +14,6 @@ public interface SuperAdminService {
     boolean deleteMemberById(Long id);
     Member getAdmin(Long id);
     Member addAdmin(MemberDto memberDto);
-
+    List<Member> sortAndPaginateAdmin(Optional<Role> role, int pageNo, int pageSize, String sortBy, String sortDir);
 
 }
