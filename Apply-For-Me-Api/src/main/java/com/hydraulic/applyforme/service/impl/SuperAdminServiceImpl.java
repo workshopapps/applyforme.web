@@ -24,7 +24,12 @@ import java.util.Optional;
 public class SuperAdminServiceImpl implements SuperAdminService {
 
     private SuperAdminRepository repository;
+    @Autowired
     private SuperAdminJpaRepository jpaRepository;
+
+    @Autowired
+    private  ModelMapper mapper;
+
     @Autowired
     private RoleJpaRepository roleJpaRepository;
 
@@ -61,9 +66,11 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         return find;
     }
 
+
+
     @Override
     public Member createRecruiter(MemberDto memberDto) {
-        ModelMapper mapper = new ModelMapper();
+
         Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.RECRUITER.getValue());
 
         Member member = jpaRepository.findMemberByRoles(existingRole);
