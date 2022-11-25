@@ -13,7 +13,7 @@ public interface SuperAdminService {
     Member getDetailsById(Long id);
     boolean deleteMemberById(Long id);
     Member getAdmin(Long id);
-    Member addAdmin(MemberDto memberDto);
+    Member createRecruiter(MemberDto memberDto);
 
 
 }

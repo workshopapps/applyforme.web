@@ -62,7 +62,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     }
 
     @Override
-    public Member addAdmin(MemberDto memberDto) {
+    public Member createRecruiter(MemberDto memberDto) {
         ModelMapper mapper = new ModelMapper();
         Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.RECRUITER.getValue());
 
@@ -72,7 +72,6 @@ public class SuperAdminServiceImpl implements SuperAdminService {
             return repository.saveOne(newMember);
         }
         throw new MemberDuplicateEntityException();
-
     }
 
 
