@@ -1,7 +1,7 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.dto.ApplierDto;
-import com.hydraulic.applyforme.model.response.SubmissionResponse;
+import com.hydraulic.applyforme.model.response.Response;
 import com.hydraulic.applyforme.service.ApplierService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,9 +33,9 @@ public class ApplierController {
     }
 
     @GetMapping("/appliers/search")
-    public SubmissionResponse getAllAppliers(@RequestParam String q,
-                                             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
-                                             @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize){
+    public Response getAllAppliers(@RequestParam String q,
+                                   @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+                                   @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize){
         return applierService.getApplicants(pageNo, pageSize, q);
     }
 

@@ -11,7 +11,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class SubmissionResponse {
+public class Response {
 
     private Collection<?> content;
 

@@ -4,7 +4,7 @@ import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
 import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
-import com.hydraulic.applyforme.model.response.SubmissionResponse;
+import com.hydraulic.applyforme.model.response.Response;
 import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
@@ -16,7 +16,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,18 +43,18 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     }
 
     @Override
-    public SubmissionResponse getAllJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir) {
+    public Response getAllJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir) {
         Page<Submission> submission = repository.findAll(createPageable(pageNo, pageSize, sortBy, sortDir));
         return getSubmissionResponse(submission);
     }
 
     @Override
-    public SubmissionResponse filterJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir, String q) {
+    public Response filterJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir, String q) {
         Page<Submission> submission = repository.findJobSubmissionBySearch(createPageable(pageNo, pageSize, sortBy, sortDir), q);
         return getSubmissionResponse(submission);
     }
 
-    private SubmissionResponse getSubmissionResponse(Page<Submission> submission) {
+    private Response getSubmissionResponse(Page<Submission> submission) {
         Collection<SubmissionDto> submissions = submission
                 .getContent()
                 .stream()
@@ -64,7 +63,7 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
                 })
                 .collect(Collectors.toList());
 
-        SubmissionResponse submissionResponse = new SubmissionResponse();
+        Response submissionResponse = new Response();
         submissionResponse.setContent(submissions);
         submissionResponse.setPageNo(submission.getNumber());
         submissionResponse.setPageSize(submission.getSize());

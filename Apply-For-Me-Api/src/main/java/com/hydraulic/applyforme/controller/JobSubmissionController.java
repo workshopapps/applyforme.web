@@ -1,6 +1,6 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.response.SubmissionResponse;
+import com.hydraulic.applyforme.model.response.Response;
 import com.hydraulic.applyforme.service.JobSubmissionService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public class JobSubmissionController {
     }
 
     @GetMapping("/entries")
-    public SubmissionResponse getAllSubmission(
+    public Response getAllSubmission(
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
             @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
@@ -31,7 +31,7 @@ public class JobSubmissionController {
         return service.getAllJobSubmission(pageNo, pageSize, sortBy, sortDir);
     }
     @GetMapping("/entries/search")
-    public SubmissionResponse getAllSubmissionBySearch(
+    public Response getAllSubmissionBySearch(
             @RequestParam String q,
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,

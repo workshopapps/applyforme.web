@@ -2,7 +2,7 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.dto.ApplierDto;
-import com.hydraulic.applyforme.model.response.SubmissionResponse;
+import com.hydraulic.applyforme.model.response.Response;
 import com.hydraulic.applyforme.repository.jpa.ApplierRepo;
 import com.hydraulic.applyforme.service.ApplierService;
 import org.modelmapper.ModelMapper;
@@ -31,10 +31,10 @@ public class ApplierServiceImpl implements ApplierService {
     }
 
     @Override
-    public SubmissionResponse getApplicants(int pageNo, int pageSize, String q) {
+    public Response getApplicants(int pageNo, int pageSize, String q) {
         Pageable pageable = PageRequest.of(pageNo, pageSize);
         Page<Applier> submission =  repository.getStuffs(pageable,q);
-        SubmissionResponse submissionResponse = new SubmissionResponse();
+        Response submissionResponse = new Response();
         submissionResponse.setContent(submission.getContent());
         submissionResponse.setPageNo(submission.getNumber());
         submissionResponse.setPageSize(submission.getSize());
