@@ -8,43 +8,35 @@ import Search from "../../assets/images/search.svg";
 import SearchBlue from "../../assets/images/search_blue.svg";
 import Menu from "../../assets/images/menu.svg";
 import CloseMenu from "../../assets/images/close_menu.svg";
-import DashboardActiveIcon from "../../assets/images/dashboard_active_logo.svg";
-import DashboardDisabledIcon from "../../assets/images/dashboard_disabled_logo.svg";
-import UserDisabledIcon from "../../assets/images/users_disabled_logo.svg";
-import UserActiveIcon from "../../assets/images/users_active_logo.svg";
+import NotificationDark from "../../assets/images/notification_dark.svg";
 import Signout from "../../assets/images/signout.svg";
 import ProgressBar from "../../assets/images/progress_bar.svg";
 import { MobileNav } from "./mobileNav";
 import { useNavigate } from "react-router-dom";
+
 import ProfilePiture from "../../assets/images/profile_picture.svg";
+
 import ProfileIcon from "../../assets/images/profile-circle.svg";
+import Help from "../../assets/images/help_outline.svg";
 import { getActiveLink } from "./service/DashboardSidebarService";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
+import { Navigate } from "react-router-dom";
 
-const DashboardHeader = ({ func, setInputSearchValue }) => {
-    const [dashboardActive, setDashboardActive] = useState({
-        dashboard: true,
-        user:false
-    });
+const RR_admin_Profile = ({  setInputSearchValue }) => {
+
     const navigate  = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    const handleActive = data => {
-        setDashboardActive(getActiveLink(data));
-    };
+    
     const handleSubmit = event => {
-        event.preventDefault();
-        setShowModal(false);
-        // Quota submission code goes here
-    };
-    const handleDashboardSubmit = event => {
         event.preventDefault();
         setInputSearchValue(event.target.search.value)
         event.target.search.value="";
-       
+        setShowModal(false);
+        // Quota submission code goes here
     };
 
     const handleModalShow = () => {
@@ -109,7 +101,8 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                                 alt="Profile logo"
                                             />
                                             <p>Profile</p>
-                                        </li>                                           
+                                        </li>
+
                                         <li
                                             onClick={() =>
                                                 setShowMenuProfile(false)
@@ -125,26 +118,9 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 </div>
                             )}
                         </div>
-                        {/*form for searching for reverse recruiter admin  */}
-                        {dashboardActive.dashboard && <form
-                            className={classes.search}
-                            onSubmit={event => handleDashboardSubmit(event)}
-                        >
-                            <input
-                               
-                                type="search"
-                                name="search"
-                                placeholder="Search for Users and Reverse Recruiter"
-                               
-                            />
-                            <button type="submit">
-                                {" "}
-                                <img src={Search} alt="Apply for me logo" />
-                            </button>
-                        </form>}
                         
                          {/*form for searching for users and reverse recruiter */}
-                        {!dashboardActive.dashboard && <form
+                        <form
                             className={classes.search}
                             onSubmit={event => handleSubmit(event)}
                         >
@@ -159,7 +135,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 {" "}
                                 <img src={Search} alt="Apply for me logo" />
                             </button>
-                        </form>}
+                        </form>
                     </section>
                 </nav>
 
@@ -167,15 +143,13 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                 {showMenu && <MobileNav setShowMenu={setShowMenu}/>}
             </section>
 
-            {showProfileDetails ? (
+           
                 <section className={classes.user_profile}>
                     <div className={classes.user_profile__header}>
                         <div className={classes.user_profile__header__text}>
                             <FiChevronLeft />
                             <p
-                                onClick={() => {
-                                    setShowProfileDetails(false);
-                                }}
+                                onClick={() => navigate("/user-page")}
                             >
                                 Go Back
                             </p>
@@ -255,68 +229,6 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                         </div>
                     </div>
                 </section>
-            ) : (
-                <section className={classes.toggle_user}>
-                    <ul>
-                        <li
-                            onClick={() => {
-                                handleActive("dashboard");
-                                func("dashboardPage");
-                            }}
-                        >
-                            {dashboardActive.dashboard ? (
-                                <img
-                                    src={DashboardActiveIcon}
-                                    alt="Dashboard logo"
-                                />
-                            ) : (
-                                <img
-                                    src={DashboardDisabledIcon}
-                                    alt="Dashboard logo"
-                                />
-                            )}
-                            <p
-                                className={
-                                    dashboardActive.dashboard
-                                        ? classes.__active_toggle
-                                        : ""
-                                }
-                            >
-                                Dashboard
-                            </p>
-                        </li>
-
-                        <li
-                            onClick={() => {
-                                handleActive("user");
-                                func("userPage");
-                            }}
-                        >
-                            {dashboardActive.user ? (
-                                <img
-                                    src={UserActiveIcon}
-                                    alt="Disabled User logo"
-                                />
-                            ) : (
-                                <img
-                                    src={UserDisabledIcon}
-                                    alt="Disabled User logo"
-                                />
-                            )}
-                            <p
-                                className={
-                                    dashboardActive.user
-                                        ? classes.__active_toggle
-                                        : ""
-                                }
-                            >
-                                User
-                            </p>
-                        </li>
-                    </ul>
-                </section>
-            )}
-
             {showModal && (
                 <section className={classes.modal_container}>
                     <div className={classes.modal_wrapper}>
@@ -363,4 +275,4 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
     );
 };
 
-export default DashboardHeader;
+export default RR_admin_Profile;

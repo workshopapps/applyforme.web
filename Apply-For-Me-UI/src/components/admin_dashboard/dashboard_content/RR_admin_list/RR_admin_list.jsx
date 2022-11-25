@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './RR_admin_List.css';
 import { List } from './RR_smaple_list';
 export const RR_Admin_list=({inputSearchValue})=>{
     
+    const navigate = useNavigate();
     const [rangeEnd, setRangeEnd]= useState(4);
     const [rangeStart, setRangeStart]= useState(0);
     const [counter, setCounter]= useState(1);
@@ -44,7 +46,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     {
                     
                     counter <= filterdRRList.length? filterdRRList.map((user, index)=>{
-                        const {name,work,date,img} = user;
+                        const {name,work,date,img,id} = user;
                         if((index >= rangeStart) && (index <= rangeEnd) ){
                             return(
                                 <tr key={index}>
@@ -60,7 +62,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                                     <td><h3 style={{fontWeight:"400"}}>{date}</h3></td>
                                     <td>
                                         <div className="viewContainer">
-                                            <button>view Profile</button>
+                                            <button onClick={()=>navigate(`/reverseRecruiterAdmin/${id}`)}>view Profile</button>
                                             <span className="dropdown">
                                                 <img className="three_dot_icon" src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png" alt="object not found"/>
                                                 <div className="dropdownContent">
@@ -91,7 +93,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                 
                     {
                         counter <= filterdRRList.length? filterdRRList.map((user, index)=>{
-                            const {name,work,img} = user;
+                            const {name,work,img,id} = user;
                             if((index >= rangeStart) && (index <= rangeEnd) ){
                                 return(
                                     <div className='RRlist' key={index}>
@@ -110,7 +112,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                                                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51368_oevqxr.png"/>
                                                     </div>
                                                 </span>
-                                            <button>view</button>
+                                            <button onClick={()=>navigate(`/reverseRecruiterAdmin/${id}`)}>view</button>
                                         </div>
                                     </div>
                                 )

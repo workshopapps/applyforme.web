@@ -72,7 +72,7 @@ export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
             </div>
            {showEditModal &&(
                 <div className="editContainer">
-                    <div className="editContent">
+                    <div className="editContent" style={{width:'fitContent'}}>
                         <div className='modal_closal' style={{marginBottom:"2rem"}}>
                             <img src="https://res.cloudinary.com/hamskid/image/upload/v1669067698/Vector_rc9avy.png" alt="object not found" onClick={()=> setEditModal((prevState)=>!prevState)}/>
                         </div>

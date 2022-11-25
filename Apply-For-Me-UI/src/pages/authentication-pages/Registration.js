@@ -18,7 +18,7 @@ const Registration = () => {
                 <Text2 child="Complete your registration"/>
                 <div className='form'>
                 <div className='select-wrapper'>
-                    <select name="cars" id="cars">
+                    <select className='registration_select' name="cars" id="cars">
                         <option value="" disabled selected hidden>Nationality</option>
                         <option value="volvo">Option1</option>
                         <option value="saab">Option2</option>
@@ -27,7 +27,7 @@ const Registration = () => {
                     </select>
                 </div>
                 <div className='select-wrapper'>
-                    <select name="cars" id="cars">
+                    <select className='registration_select'  name="cars" id="cars">
                         <option value="" disabled selected hidden>Country of residence</option>
                         <option value="volvo">Option1</option>
                         <option value="saab">Option2</option>
@@ -43,7 +43,7 @@ const Registration = () => {
                     />
                 </label>
                 <div className='select-wrapper'>
-                    <select name="cars" id="cars">
+                    <select className='registration_select' name="cars" id="cars">
                         <option value="" disabled selected hidden>Job title</option>
                         <option value="volvo">Option1</option>
                         <option value="saab">Option2</option>

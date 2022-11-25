@@ -11,8 +11,10 @@ export const EditInfoContent=()=>{
     return(
         <div>
             <form className="edit_passwordContent" onSubmit={handleSubmit}>
-                <label htmlFor='profilePics'>ProfilePics</label>
-                <input type="file" name="profilePics" value={formField.profilePics} onChange={(e)=>setFormField({...formField, profilePics:e.target.value})}/>
+                <label htmlFor='profilePics'>
+                    Proifile:<input type="file" name="profilePics" value={formField.profilePics} onChange={(e)=>setFormField({...formField, profilePics:e.target.value})}/>
+                </label>
+                
                 <input type="text" name="FirstName" value={formField.FirstName} onChange={(e)=>setFormField({...formField, FirstName:e.target.value})} placeholder="First Name" required />
                 <input type="text" name="LastName" value={formField.LastName} onChange={(e)=>setFormField({...formField, LastName:e.target.value})} placeholder="Last Name"  required/>
                 <input type="date" name="date" value={formField.date} onChange={(e)=>setFormField({...formField, date:e.target.value})} placeholder="DD/MM/YYYY"  required/>

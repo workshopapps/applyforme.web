@@ -36,10 +36,7 @@
     .notification_icon{
          padding: 2rem 0 1rem;
      }
-    
-}
-@media only screen and (min-width: 320px)and (max-width: 767px){
-    .not_burger{
+     .not_burger{
         display: block;
     }
     .head_barge{
