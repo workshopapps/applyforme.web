@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import './App.css';
 import LandingPage from "./pages/landing_page/LandingPage";
 import AboutUs from "./pages/about_us/AboutUs";
 import FAQs from "./pages/faqs/FAQs";
@@ -15,7 +14,7 @@ import Error from "./pages/error/Error";
 import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
-import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
+import DashboardPage from "./pages/dashboard_noting/DashboardPage";
 import ApplicationsDashboardLayout from "./pages/applications/layouts/ApplicationsDashboardLayout";
 import Applications from "./pages/applications/Applications";
 import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
@@ -82,7 +81,7 @@ function App() {
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
-                    <Route path="/dashboard/" element={<DashboardNothing />} />
+                    <Route path="/dashboard/" element={<DashboardPage />} />
 
                     <Route path="admin" element={<DashboardHome />} />
                     <Route path="admin/form" element={<ApplicationForm />} />
