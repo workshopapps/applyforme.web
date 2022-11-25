@@ -15,15 +15,32 @@ const CreateProfile = () => {
     const FormSteps = ["JobSearch", "CoverLetter", "Settings", "Review"];
     const FormDisplay = () => {
         if (step === 0) {
-            return <JobSearch />;
+            return <JobSearch formData={formData} setFormData={setFormData} />;
         } else if (step === 1) {
-            return <CoverLetter />;
+            return (
+                <CoverLetter formData={formData} setFormData={setFormData} />
+            );
         } else if (step === 2) {
-            return <Settings />;
+            return <Settings formData={formData} setFormData={setFormData} />;
         } else if (step === 3) {
-            return <Review />;
+            return <Review formData={formData} setFormData={setFormData} />;
         }
     };
+    const [formData, setFormData] = useState({
+        job_title: "",
+        location: "",
+        isRemote: true,
+        experience: "",
+        employment_type: "",
+        salary_expectation: "",
+        cv_file: [],
+        coverletter_subject: "",
+        coverletter_temp: "",
+        coverletter_body: "",
+        keyword: ""
+    });
+    // console.log(formData);
+
     return (
         <div className={styles.createprofile}>
             <TopBar />

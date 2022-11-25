@@ -1,9 +1,21 @@
 import styles from "./Dropdown.module.css";
 
-const Dropdown = () => {
+const Dropdown = ({ id, value, onChange, name, options }) => {
     return (
-        <div className={styles.input}>
-            <input type="text" placeholder="dropdown" />
+        <div className={styles.dropdown}>
+            <select
+                id={id}
+                value={value}
+                onChange={onChange}
+                name={name}
+                // options={options}
+            >
+                {options?.map(option => (
+                    <option key={option.value} value={option.value}>
+                        {option.label}
+                    </option>
+                ))}
+            </select>
         </div>
     );
 };

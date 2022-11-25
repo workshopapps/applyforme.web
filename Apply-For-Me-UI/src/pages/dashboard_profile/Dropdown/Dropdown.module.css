@@ -1,4 +1,9 @@
-.input input {
-    height: 2rem;
+.dropdown select {
+    border: 1px solid #6d6e71;
+    border-radius: 4px;
+    height: 3rem;
+    padding-inline: 1rem;
+    color: #6d6e71;
     width: 90%;
+    position: bottom;
 }

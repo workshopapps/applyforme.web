@@ -3,12 +3,7 @@ import classes from "./CoverLetter.module.css";
 // import Dropdown from "../../Dropdown/Dropdown";
 // import BlueBorderButton from "../../../../components/buttons/blue_border_button/BlueBorderButton";
 import Input from "../../InputField/InputField";
-import { useState } from "react";
-const CoverLetter = () => {
-    const [coverlettersubject, setCoverLetterSubject] = useState("");
-    function handleCLInputChange(e) {
-        setCoverLetterSubject(e.target.value);
-    }
+const CoverLetter = ({ formData, setFormData }) => {
     return (
         <form className={styles.form_body}>
             <h3>Create a cover letter template for this profile</h3>
@@ -16,10 +11,15 @@ const CoverLetter = () => {
                 <h5>Template name</h5>
                 <Input
                     type="text"
-                    value={coverlettersubject}
-                    name="name"
+                    value={formData.coverletter_temp}
+                    name="coverletter_temp"
                     width={90}
-                    onChange={handleCLInputChange}
+                    onChange={e => {
+                        setFormData({
+                            ...formData,
+                            coverletter_temp: e.target.value
+                        });
+                    }}
                 />
             </div>
             <div className={classes.cover_letter}>
@@ -28,10 +28,15 @@ const CoverLetter = () => {
                 </label>
                 <Input
                     type="text"
-                    value={coverlettersubject}
-                    name="name"
+                    value={formData.coverletter_subject}
+                    name="coverletter_subject"
                     width={90}
-                    onChange={handleCLInputChange}
+                    onChange={e => {
+                        setFormData({
+                            ...formData,
+                            coverletter_subject: e.target.value
+                        });
+                    }}
                 />
             </div>
             <div>
@@ -45,6 +50,14 @@ I checked your website and social profiles recently and I came across your job p
 I would love to talk to you in more detail. Let me know your availability in the coming weeks.
 Thanks,
 Enwono Ikono"
+                    value={formData.coverletter_body}
+                    name="coverletter_body"
+                    onChange={e => {
+                        setFormData({
+                            ...formData,
+                            coverletter_body: e.target.value
+                        });
+                    }}
                 />
             </div>
             {/* <BlueBorderButton text={"Save"} width={120} /> */}
