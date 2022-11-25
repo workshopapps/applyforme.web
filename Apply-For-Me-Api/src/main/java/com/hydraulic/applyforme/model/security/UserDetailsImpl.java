@@ -1,6 +1,7 @@
 package com.hydraulic.applyforme.model.security;
 
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.domain.Role;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
@@ -23,6 +25,7 @@ public class UserDetailsImpl implements UserDetails {
 
     private String emailAddress;
     private String password;
+    private Set<Role> plainRoles;
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsImpl(Long id, String emailAddress, String password, Collection<? extends GrantedAuthority> authorities) {
@@ -38,7 +41,9 @@ public class UserDetailsImpl implements UserDetails {
                 .map(role -> new SimpleGrantedAuthority(role.getCode()))
                 .collect(Collectors.toList());
 
-        return new UserDetailsImpl(member.getId(), member.getEmailAddress(), member.getPassword(), authorities);
+        var details = new UserDetailsImpl(member.getId(), member.getEmailAddress(), member.getPassword(), authorities);
+        details.setPlainRoles(member.getRoles());
+        return details;
     }
 
     @Override

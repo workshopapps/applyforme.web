@@ -1,5 +1,7 @@
 package com.hydraulic.applyforme.util;
 
+import com.hydraulic.applyforme.model.domain.Role;
+import com.hydraulic.applyforme.model.security.UserDetailsImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -11,9 +13,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Slf4j
@@ -52,6 +52,13 @@ public class JwtUtil {
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
+        UserDetailsImpl userDetails1 = (UserDetailsImpl) userDetails;
+        List<String> rolesArr = new ArrayList<>();
+            for (Role role : userDetails1.getPlainRoles()) {
+                rolesArr.add(role.getCode());
+            }
+        claims.put("memberId", userDetails1.getId());
+        claims.put("roles", rolesArr.toArray(String[]::new));
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
