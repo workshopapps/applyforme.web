@@ -3,7 +3,7 @@
     padding: 0;
     scroll-behavior: smooth;
     text-decoration: none;
-    font-family: var(--font-family);
+    font-family: var(--font-family) !important;
     
 }
 .faq {
