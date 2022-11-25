@@ -1,4 +1,4 @@
-.Welcome2{
+.Welcome2 {
     padding: 2rem 6%;
     display: flex;
     flex-direction: column;
@@ -7,19 +7,20 @@
     width: 100%;
     box-sizing: border-box;
 }
-.w2bdy{
+.w2bdy {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
-.forgot{
-    font-size: .8rem;
+.forgot {
+    font-size: 0.8rem;
     font-weight: 400;
     color: #111416;
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 4rem;
 }
 .w2bdy .form {
     padding-bottom: 5rem;

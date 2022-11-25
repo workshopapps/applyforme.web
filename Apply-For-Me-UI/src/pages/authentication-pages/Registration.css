@@ -49,6 +49,10 @@
     font-size: 0.8rem;
 }
 
+.form .lg {
+    margin-top: 3rem;
+}
+
 @media only screen and (max-width: 1073px) {
     .Ref {
         width: 70%;
