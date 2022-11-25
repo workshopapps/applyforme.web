@@ -8,7 +8,7 @@ import Search from "../../assets/images/search.svg";
 import SearchBlue from "../../assets/images/search_blue.svg";
 import Menu from "../../assets/images/menu.svg";
 import CloseMenu from "../../assets/images/close_menu.svg";
-import NotificationDark from "../../assets/images/notification_dark.svg";
+// import NotificationDark from "../../assets/images/notification_dark.svg";
 import Signout from "../../assets/images/signout.svg";
 import ProgressBar from "../../assets/images/progress_bar.svg";
 import { MobileNav } from "./mobileNav";
@@ -17,24 +17,23 @@ import { useNavigate } from "react-router-dom";
 import ProfilePiture from "../../assets/images/profile_picture.svg";
 
 import ProfileIcon from "../../assets/images/profile-circle.svg";
-import Help from "../../assets/images/help_outline.svg";
-import { getActiveLink } from "./service/DashboardSidebarService";
+// import Help from "../../assets/images/help_outline.svg";
+// import { getActiveLink } from "./service/DashboardSidebarService";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 
-const RR_admin_Profile = ({  setInputSearchValue }) => {
-
-    const navigate  = useNavigate();
+const RR_admin_Profile = ({ setInputSearchValue }) => {
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
-    const [showProfileDetails, setShowProfileDetails] = useState(false);
+    // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    
+
     const handleSubmit = event => {
         event.preventDefault();
-        setInputSearchValue(event.target.search.value)
-        event.target.search.value="";
+        setInputSearchValue(event.target.search.value);
+        event.target.search.value = "";
         setShowModal(false);
         // Quota submission code goes here
     };
@@ -118,18 +117,16 @@ const RR_admin_Profile = ({  setInputSearchValue }) => {
                                 </div>
                             )}
                         </div>
-                        
-                         {/*form for searching for users and reverse recruiter */}
+
+                        {/*form for searching for users and reverse recruiter */}
                         <form
                             className={classes.search}
                             onSubmit={event => handleSubmit(event)}
                         >
                             <input
-                               
                                 type="search"
                                 name="search"
                                 placeholder="Search for Users and Reverse Recruiter"
-                               
                             />
                             <button type="submit">
                                 {" "}
@@ -140,95 +137,83 @@ const RR_admin_Profile = ({  setInputSearchValue }) => {
                 </nav>
 
                 {/* Mobile nav */}
-                {showMenu && <MobileNav setShowMenu={setShowMenu}/>}
+                {showMenu && <MobileNav setShowMenu={setShowMenu} />}
             </section>
 
-           
-                <section className={classes.user_profile}>
-                    <div className={classes.user_profile__header}>
-                        <div className={classes.user_profile__header__text}>
-                            <FiChevronLeft />
-                            <p
-                                onClick={() => navigate("/user-page")}
-                            >
-                                Go Back
-                            </p>
+            <section className={classes.user_profile}>
+                <div className={classes.user_profile__header}>
+                    <div className={classes.user_profile__header__text}>
+                        <FiChevronLeft />
+                        <p onClick={() => navigate("/user-page")}>Go Back</p>
+                    </div>
+
+                    <div className={classes.user_action}>
+                        <div className={classes.user_action__btn__mobile}>
+                            <FiPause className={classes.pause} />
+
+                            <p>Suspend</p>
                         </div>
+                        <div className={classes.user_action__btn__mobile}>
+                            <FiTrash className={classes.trash} />
 
-                        <div className={classes.user_action}>
-                            <div className={classes.user_action__btn__mobile}>
-                                <FiPause className={classes.pause} />
-
-                                <p>Suspend</p>
-                            </div>
-                            <div className={classes.user_action__btn__mobile}>
-                                <FiTrash className={classes.trash} />
-
-                                <p>Delete</p>
-                            </div>
+                            <p>Delete</p>
                         </div>
                     </div>
-                    <div className={classes.user_profile__content}>
-                        <div className={classes.profile_details}>
-                            <div className={classes.img_details}>
-                                <div className={classes.img_wrapper}>
-                                    <img
-                                        src={ProfilePiture}
-                                        alt="profile picture"
-                                    />
-                                </div>
-
-                                <div className={classes.img_text_details}>
-                                    <p>Monthly Quota</p>
-                                    <div
-                                        className={
-                                            classes.img_text_details__img_container
-                                        }
-                                    >
-                                        <img
-                                            src={ProgressBar}
-                                            alt="Progress bar"
-                                        />
-                                    </div>
-                                    <p>951/1300</p>
-                                </div>
-                            </div>
-
-                            <div
-                                className={
-                                    classes.profile_details__text_content
-                                }
-                            >
-                                <h3>Regina Griffin</h3>
-                                <p>Reverse recruiter</p>
-                                <p>ReginaGriffin505@gmail.com</p>
-
-                                <p>+2348012345678</p>
-
-                                <p>Female</p>
-
-                                <BlueButton
-                                    text="Assign Quota"
-                                    width="214"
-                                    func={handleModalShow}
+                </div>
+                <div className={classes.user_profile__content}>
+                    <div className={classes.profile_details}>
+                        <div className={classes.img_details}>
+                            <div className={classes.img_wrapper}>
+                                <img
+                                    src={ProfilePiture}
+                                    alt="profile picture"
                                 />
                             </div>
+
+                            <div className={classes.img_text_details}>
+                                <p>Monthly Quota</p>
+                                <div
+                                    className={
+                                        classes.img_text_details__img_container
+                                    }
+                                >
+                                    <img src={ProgressBar} alt="Progress bar" />
+                                </div>
+                                <p>951/1300</p>
+                            </div>
                         </div>
 
-                        <div className={classes.user_action}>
-                            <div className={classes.user_action__btn}>
-                                <FiPause className={classes.pause} />
+                        <div className={classes.profile_details__text_content}>
+                            <h3>Regina Griffin</h3>
+                            <p>Reverse recruiter</p>
+                            <p>ReginaGriffin505@gmail.com</p>
 
-                                <p>Suspend</p>
-                            </div>
-                            <div className={classes.user_action__btn}>
-                                <FiTrash className={classes.trash} />
+                            <p>+2348012345678</p>
 
-                                <p>Delete</p>
-                            </div>
+                            <p>Female</p>
+
+                            <BlueButton
+                                text="Assign Quota"
+                                width="214"
+                                func={handleModalShow}
+                            />
                         </div>
                     </div>
-                </section>
+
+                    <div className={classes.user_action}>
+                        <div className={classes.user_action__btn}>
+                            <FiPause className={classes.pause} />
+
+                            <p>Suspend</p>
+                        </div>
+                        <div className={classes.user_action__btn}>
+                            <FiTrash className={classes.trash} />
+
+                            <p>Delete</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
             {showModal && (
                 <section className={classes.modal_container}>
                     <div className={classes.modal_wrapper}>
