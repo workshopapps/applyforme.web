@@ -62,6 +62,10 @@
     color: #000;
 }
 
+.nav_container__wrapper__mobile {
+    display: none;
+}
+
 @media screen and (max-width: 1050px) {
     .nav_container {
         position: relative;
@@ -89,6 +93,7 @@
     }
 
     .nav_container__wrapper__mobile {
+        display: block;
         position: fixed;
         left: 0;
         right: 0;
@@ -97,6 +102,7 @@
         flex-direction: column;
         gap: 1.8rem;
         padding: 1rem 0;
+        z-index: 6;
     }
 
     .nav_container__wrapper__mobile .logo__mobile {
@@ -137,6 +143,7 @@
         gap: 2rem;
         display: flex;
         align-items: center;
+        padding: 0 0.8rem;
     }
 
     .btn_container__mobile button {
