@@ -42,6 +42,15 @@ import Success from "./pages/dashboard_profile/Success/Success";
 import Profile from "./pages/dashboard_profile/Profile/Profile";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
 
+//Authentication
+import Welcome1 from "pages/authentication-pages/Welcome1";
+import Welcome2 from "pages/authentication-pages/Welcome2";
+import Verification from "pages/authentication-pages/Verification";
+import Password from "pages/authentication-pages/Password";
+import NewPass from "pages/authentication-pages/NewPass";
+import Registration from "pages/authentication-pages/Registration";
+
+
 function App() {
     return (
         <>
@@ -106,6 +115,12 @@ function App() {
                     <Route index element={<Applications />} />
                     <Route path=":jobId" element={<JobDescription />} />
                 </Route>
+                <Route exact path='/wel1' element={<Welcome1/>}/>
+                <Route exact path='/reg' element={<Registration/>}/>
+                <Route exact path='/wel2' element={<Welcome2/>}/>
+                <Route exact path='/pass' element={<Password/>}/>
+                <Route exact path='/veri' element={<Verification/>}/>     
+                <Route exact path='/nwpass' element={<NewPass/>}/> 
 
                 <Route path="*" element={<Error />} />
                 <Route path="/help-support" element={<HelpSupport />} />
