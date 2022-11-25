@@ -1,6 +1,6 @@
 import React from 'react';
-import operator from "../img/operator.png";
-import mail from "../img/mail.png";
+import operator from "../operator.png";
+import mail from "../mail.png";
 import "./ContactStyle.css";
 
 const LeftDetails = () => {
