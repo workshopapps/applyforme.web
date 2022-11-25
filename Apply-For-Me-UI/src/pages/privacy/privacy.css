@@ -1,0 +1,259 @@
+/* utility for privacy */
+.privacy__container {
+    width: min(90%, 1400px);
+    margin: 0 auto;
+}
+
+/* hero privacy */
+
+.hero {
+    margin-bottom: 1em;
+
+    font-size: .9rem;
+}
+
+.img-container {
+    position: relative;
+    display: flex;
+}
+
+.hero-privacy-img {
+    margin: 0 auto;
+    max-width: 100%;
+    /* opacity: .5; */
+    filter: brightness(30%);
+}
+
+.hero-privacy-content {
+
+    color: #fff;
+
+    position: absolute;
+    top: 20%;
+    right: 50%;
+    transform: translate(50%, 50%);
+}
+
+.hero-privacy-content p+p {
+    text-align: left;
+    line-height: 1.5;
+}
+
+.hero-privacy-img-mobile {
+    display: none;
+}
+
+/* end of hero in privacy policy */
+
+/* main content */
+
+.content {
+    font-size: .9rem;
+}
+
+
+/* content table */
+
+.content-table {
+    background: #2E3192;
+    color: #fff;
+    width: 80vw;
+    margin: 0 auto 1em auto;
+
+    padding: 1em;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+.content-table-list {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.content-table-list li {
+    list-style-type: decimal;
+}
+
+.content-table-list li+li {
+    margin-bottom: 1em;
+}
+
+.content-table-list li>a {
+    color: #fff;
+    display: flex;
+}
+
+.content-table-list li>a+a {
+    margin: 1em 0;
+}
+
+/* interpretations and definitions */
+
+.interpretations-definitions {
+    margin: 2em 1em;
+}
+
+.interpretations-definitions h2,
+h3 {
+    margin: 1em 0;
+}
+
+.privacy__container-collecting__data ul>li {
+    list-style: url("../../assets/images/Polygon\ arrow.svg");
+    margin-left: 1em;
+    margin-bottom: 0.75em;
+
+    padding-left: 1em;
+    font-weight: 500;
+}
+
+/* end of main content */
+
+
+/* end of main content */
+
+
+
+
+@media (max-width: 500px) {
+    .hero-privacy-img {
+        display: none;
+    }
+
+    .hero-privacy-img-mobile {
+        display: flex;
+        margin: 0 auto;
+
+        filter: brightness(30%);
+    }
+
+    .hero-privacy-content {
+        width: min(75%, 80vmin);
+
+        text-align: center;
+        font-size: clamp(0.875rem, 1rem, 2vmin);
+
+        top: calc(2vmax - 2%);
+        right: 50%;
+        transform: translate(50%, 40%);
+    }
+
+    .hero-privacy-content p {
+        margin-bottom: 1em;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 820px) {
+    .hero-privacy-content {
+        width: min(90%, 80vmin);
+        text-align: center;
+        font-size: 0.75rem;
+
+
+        top: calc(10vmax - 2%);
+        right: 50%;
+        transform: translate(50%, 25%);
+    }
+
+    .hero-privacy-content p {
+        margin-bottom: 1em;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        overflow: hidden;
+    }
+}
+
+@media (min-width: 820px) and (max-width: 1050px) {
+    .hero-privacy-content {
+        width: min(90%, 80vmin);
+        text-align: center;
+        font-size: 0.9rem;
+
+
+        top: calc(10vmax - 2%);
+        right: 50%;
+        transform: translate(50%, 50%);
+    }
+
+    .hero-privacy-content p {
+        margin-bottom: 1em;
+    }
+}
+
+/* beyond 1050px as per the navbar design */
+
+@media (min-width: 1050px) {
+    .content {
+
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .content-table {
+        justify-self: center;
+        order: 2;
+        margin-left: .5em;
+    }
+
+    .interpretations-definitions br {
+        margin-bottom: 1em;
+        /* flex-grow: ; */
+    }
+
+    .interpretations-definitions p {
+        width: 90%;
+    }
+
+    /* hero section content */
+    .hero-privacy-content {
+        width: 60%;
+    }
+
+    .hero-privacy-content p {
+        font-size: clamp(0.9rem, 1.125rem, calc(3vh - 20%));
+    }
+}
+
+/* breakpoint for hero image */
+@media (min-width: 1050px) {
+    .hero-privacy-content {
+        width: min(80%, calc(100vmin + 10%));
+        text-align: center;
+        font-size: 0.9rem;
+
+
+        top: calc(10vmax - 2%);
+        right: 50%;
+        transform: translate(50%, 50%);
+    }
+
+    .hero-privacy-content p {
+        margin-bottom: 1em;
+        line-height: 1.6;
+        /* letter-spacing: 2px; */
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-privacy-content {
+        width: min(90%, 80vmin);
+        text-align: center;
+        font-size: 0.9rem;
+
+
+        top: 10%;
+        right: 50%;
+        transform: translate(50%, 40%);
+    }
+
+    .hero-privacy-content p {
+        margin-bottom: .5em;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 6;
+        overflow: hidden;
+    }
+}
