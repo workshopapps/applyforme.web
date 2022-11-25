@@ -10,13 +10,16 @@ import Footer from "./Footer";
 import { Link } from "react-router-dom";
 
 const Welcome2 = () => {
+    const handleSubmit = event => {
+        console.log(event);
+    };
     return (
         <div className="Welcome2">
             <Navbar />
             <div className="w2bdy">
                 <Text child="Welcome Back !!" />
                 <Text2 child="Login to ApplyForMe " />
-                <div className="form">
+                <form className="form" onSubmit={e => handleSubmit(e)}>
                     <Inputbox
                         type="email"
                         name="email"
@@ -32,7 +35,7 @@ const Welcome2 = () => {
                     <Link to="/pass" className="forgot">
                         Forgot Password
                     </Link>
-                </div>
+                </form>
                 <Link to="/dashboard" className="lg">
                     {" "}
                     <Button child="Sign In" />
