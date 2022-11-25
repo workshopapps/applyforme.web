@@ -263,6 +263,7 @@ h3 {
 /* back to top button */
 
 .back-top {
+    display: none;
     padding: 1em 2em;
     background-color: #2E3192;
     color: #fff;
@@ -271,10 +272,22 @@ h3 {
 
     position: absolute;
     /* top: 0%; */
-    top: 120%;
+    top: 110%;
     cursor: pointer;
+
+    left: 50%;
 }
 
 .back-top a {
     color: #fff;
+}
+
+
+/* in mobile return the back to top button */
+
+@media (min-width:1050px) {
+    .back-top {
+        display: flex;
+    }
+
 }
