@@ -10,7 +10,7 @@ const Privacy = () => {
             <Nav />
 
             <div className="privacy">
-                <div className="hero">
+                <div className="hero" id="hero">
                     <div className="img-container">
                         <img className="hero-privacy-img" src={heroPrivacy} alt="two people looking at laptop screen" />
                         <img className="hero-privacy-img-mobile" src={heroPrivacyMobile} alt="two people looking at laptop screen" />
@@ -49,7 +49,7 @@ const Privacy = () => {
                             <li>Changes to this Privacy Policy</li>
                             <li>Contact Us</li>
                         </ul>
-                        <button>Go Back to Top</button>
+                        <button className="back-top"><a href="#hero">Go Back to Top</a></button>
                     </div>
                     <div className="interpretations-definitions">
                         <h2>Interpretations and Definitions</h2>

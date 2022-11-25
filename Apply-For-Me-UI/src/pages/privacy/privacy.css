@@ -63,6 +63,7 @@
     padding: 1em;
     font-size: 1rem;
     border-radius: 8px;
+    position: relative;
 }
 
 .content-table-list {
@@ -256,4 +257,24 @@ h3 {
         -webkit-line-clamp: 6;
         overflow: hidden;
     }
+}
+
+
+/* back to top button */
+
+.back-top {
+    padding: 1em 2em;
+    background-color: #2E3192;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+
+    position: absolute;
+    /* top: 0%; */
+    top: 120%;
+    cursor: pointer;
+}
+
+.back-top a {
+    color: #fff;
 }
