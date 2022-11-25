@@ -1,9 +1,9 @@
 import React from "react";
 import Form  from "./components/Form";
 import LeftDetails from "./components/LeftDetails";
-import Footer from "../../components/footer/Footer";
-import Nav from "components/nav/Nav";
 import "./components/ContactStyle.css";
+import Nav from "../../components/nav/Nav";
+import Footer from "../../components/footer/Footer";
 
 
 const ContactUs = () => {
@@ -11,12 +11,14 @@ const ContactUs = () => {
         <div className="contact">
           <div className="contact-nav-wrapper">
             <Nav/>
-            {/* <Nav/> */}
           </div>
     
     
     
+          <div className="contact-mid">
             <div className="form">
+              <Form/>
+            </div>
             <div className="form-details">
                <LeftDetails/>
             </div>
