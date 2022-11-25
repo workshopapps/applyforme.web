@@ -1,5 +1,5 @@
 import React from "react";
-import Form  from "./components/Form";
+import ContactUsForm from "./components/ContactUsForm";
 import LeftDetails from "./components/LeftDetails";
 import "./components/ContactStyle.css";
 import Nav from "../../components/nav/Nav";
@@ -17,7 +17,7 @@ const ContactUs = () => {
     
           <div className="contact-mid">
             <div className="form">
-              <Form/>
+              <ContactUsForm/>
             </div>
             <div className="form-details">
                <LeftDetails/>
