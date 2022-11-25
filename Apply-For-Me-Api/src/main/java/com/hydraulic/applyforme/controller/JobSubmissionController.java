@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.controller;
 
+import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
 import com.hydraulic.applyforme.model.response.SubmissionResponse;
 import com.hydraulic.applyforme.service.JobSubmissionService;
 import org.springframework.http.MediaType;
@@ -38,5 +39,10 @@ public class JobSubmissionController {
             @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
         return service.filterJobSubmission(pageNo, pageSize, sortBy, sortDir, q);
+    }
+    @GetMapping("/view_submission/{professionalId}/{submissionId}")
+    public SubmissionDto viewSubmissionDetails(@PathVariable(name ="professionalId") Long professionalId,
+                                               @PathVariable(name ="submissionId") Long submissionId){
+        return service.getSubmissionDetails(professionalId,submissionId);
     }
 }

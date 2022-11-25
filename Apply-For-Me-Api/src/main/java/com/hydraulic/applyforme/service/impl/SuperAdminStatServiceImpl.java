@@ -5,6 +5,7 @@ import com.hydraulic.applyforme.model.response.ApplierJobSubmissionStatistics;
 import com.hydraulic.applyforme.repository.SuperAdminStatRepository;
 import com.hydraulic.applyforme.service.SuperAdminStatService;
 import lombok.extern.slf4j.Slf4j;
+import lombok.var;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

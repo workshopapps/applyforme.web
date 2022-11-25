@@ -1,7 +1,11 @@
 package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+
+import com.hydraulic.applyforme.model.exception.ProfessionalDuplicateEntityException;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
+
+import javax.persistence.EntityExistsException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
@@ -17,18 +21,43 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<Professional> getAll(Integer pageOffset) {
-        String queryString = "select p from Professional p order by p.member.updatedOn desc";
-        TypedQuery<Professional> professionalQuery = entityManager.createQuery(queryString, Professional.class);
+    @Override
+    public List<Professional> getAll() {
+        String queryText = "select * from professional";
+        TypedQuery<Professional> applyForMeQuery = entityManager.createQuery(queryText, Professional.class);
+        return applyForMeQuery.getResultList();
+    }
 
-        professionalQuery.setFirstResult((pageOffset - 1) * DEFAULT_PAGE_SIZE);
-        professionalQuery.setMaxResults(DEFAULT_PAGE_SIZE);
-        return professionalQuery.getResultList();
+    @Override
+    public List<Professional> getAll(Integer pageOffset) {
+        String queryText = "select * from professional";
+        TypedQuery<Professional> applyForMeQuery = entityManager.createQuery(queryText, Professional.class);
+
+        applyForMeQuery.setFirstResult((int) ((pageOffset - 1) * DEFAULT_PAGE_SIZE));
+        applyForMeQuery.setMaxResults(DEFAULT_PAGE_SIZE);
+        return applyForMeQuery.getResultList();
+
     }
 
     @Override
     public Professional getOne(Long id) {
         return entityManager.find(Professional.class, id);
+    }
+
+    @Override
+    public Professional saveOne(Professional body) {
+        try {
+            entityManager.persist(body);
+            return body;
+        }
+        catch (EntityExistsException ex) {
+            throw new ProfessionalDuplicateEntityException();
+        }
+    }
+
+    @Override
+    public Professional updateOne(Professional body) {
+        return entityManager.merge(body);
     }
 
     @Override
