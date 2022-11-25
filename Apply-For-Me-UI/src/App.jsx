@@ -54,6 +54,8 @@ import Verification from "pages/authentication-pages/Verification";
 import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
+import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
+import { useEffect, useState } from "react";
 
 function App() {
     const dispatch = useDispatch();
@@ -133,13 +135,6 @@ function App() {
                         <Route path=":jobId" element={<JobDescription />} />
                     </Route>
                     {/* <Route path="user" element={<UserDashboard />} /> */}
-                </Route>
-                <Route
-                    path="/dashboard/applications"
-                    element={<ApplicationsDashboardLayout />}
-                >
-                    <Route index element={<Applications />} />
-                    <Route path=":jobId" element={<JobDescription />} />
                 </Route>
                 <Route exact path="/wel1" element={<Welcome1 />} />
                 <Route exact path="/reg" element={<Registration />} />
