@@ -14,7 +14,7 @@ import Error from "./pages/error/Error";
 import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
-import DashboardPage from "./pages/dashboard_noting/DashboardPage";
+import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
 import ApplicationsDashboardLayout from "./pages/applications/layouts/ApplicationsDashboardLayout";
 import Applications from "./pages/applications/Applications";
 import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
@@ -80,8 +80,8 @@ function App() {
                 <Route exact path="blog/brand" element={<Brand />} />
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
-                <Route path="dashboard" element={<UserDashboardLayout />}>
-                    <Route path="/dashboard/" element={<DashboardPage />} />
+                <Route path="/dashboard" element={<UserDashboardLayout />}>
+                    <Route path="/dashboard/" element={<DashboardNothing />} />
 
                     <Route path="admin" element={<DashboardHome />} />
                     <Route path="admin/form" element={<ApplicationForm />} />

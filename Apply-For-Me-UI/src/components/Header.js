@@ -1,15 +1,13 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
 
 function Header() {
-  const params = useParams()
   return (
-    <div className='header'>
+    <div className='dashboard-index-header'>
       <div>
         <h1>Good evening Enwono, </h1>
-        <p>{params?.newuser === 'newuser' ? 'Let’s get started ' : 'Here’s an overview for you'}</p>
+        <p>Here’s an overview for you</p>
       </div>
-      <div className='header-profile'>
+      <div className='dashboard-index-header__header-profile'>
         <img src="../images/bell-icon.svg" alt="" />
         <img src="../images/profile.svg" alt="" />
       </div>

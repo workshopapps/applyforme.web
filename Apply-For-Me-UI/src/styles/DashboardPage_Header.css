@@ -1,0 +1,95 @@
+.dashboard-index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid #d8d2d2;
+    border-radius: 0px;
+    padding: 20px 81px 15px;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1000;
+}
+
+.dashboard-index-header h1 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 15px;
+    color: #2E3192;
+}
+
+.dashboard-index-header p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 15px;
+    color: #5E5D73;
+}
+
+.dashboard-index-header__header-profile {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-index-header__header-profile img:first-child {
+    margin-right: 30px;
+}
+
+@media screen and (max-width: 1023px) {
+    .dashboard-index-header {
+        padding: 20px 45px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard-index-header {
+        padding: 10px 30px !important;
+    }
+    .dashboard-index-header h1 {
+        font-size: 25px;
+        line-height: 30px;
+    }
+    .dashboard-index-header p {
+        font-size: 14px;
+        line-height: 25px;
+        margin: 0;
+    }
+    .dashboard-index-header__header-profile {
+        display: flex;
+        align-items: center;
+    }
+    .dashboard-index-header__header-profile img:first-child {
+        margin-right: 20px;
+        width: 15px;
+    }
+    .dashboard-index-header__header-profile img:last-child {
+        width: 45px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dashboard-index-header {
+        padding: 15px 20px !important;
+        border-bottom: 0.5px solid #f1ecec;
+    }
+    .dashboard-index-header h1 {
+        font-size: 18px;
+        line-height: 15px;
+        margin-right: 20px;
+    }
+    .dashboard-index-header p {
+        font-size: 13px;
+        line-height: 25px;
+        margin: 0;
+    }
+    .dashboard-index-header__header-profile {
+        display: flex;
+        align-items: center;
+    }
+    .dashboard-index-header__header-profile img:first-child {
+        display: none;
+    }
+    .dashboard-index-header__header-profile img:last-child {
+        width: 45px;
+    }
+}

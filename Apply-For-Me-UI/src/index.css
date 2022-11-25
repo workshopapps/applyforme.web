@@ -9,6 +9,7 @@
 @import url('./styles/header.css');
 @import url('./styles/overview.css');
 @import url('./styles/myapplication.css');
+@import url('./styles/DashboardPage_Header.css');
 
 :root {
     --font-family: "Outfit", sans-serif;
