@@ -3,6 +3,8 @@ package com.hydraulic.applyforme.controller.exception;
 import com.hydraulic.applyforme.model.exception.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -193,6 +194,17 @@ public class GlobalExceptionController {
         errors.put("code", ex.getCode().toString());
         return errors;
     }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(value = {AccessDeniedException.class})
+    public Object forbidden(AccessDeniedException ex, HttpServletRequest request) {
+        final Map<String, Object> body = new HashMap<>();
+        body.put("error", "Forbidden");
+        body.put("path", request.getServletPath());
+        body.put("message", "You are not allowed to access this resource");
+        return body;
+    }
+
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(AuthenticationException.class)

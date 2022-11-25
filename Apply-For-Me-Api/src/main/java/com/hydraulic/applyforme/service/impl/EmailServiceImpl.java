@@ -20,11 +20,12 @@ import javax.mail.internet.MimeMessage;
 public class EmailServiceImpl implements EmailService {
     private MemberJpaRepository memberJpaRepository;
     private MemberSecretJpaRepository memberSecretJpaRepository;
-    private JavaMailSender javaMailSender;
+    private JavaMailSender mailSender;
 
-    public EmailServiceImpl(MemberJpaRepository memberJpaRepository, MemberSecretJpaRepository memberSecretJpaRepository) {
+    public EmailServiceImpl(MemberJpaRepository memberJpaRepository, MemberSecretJpaRepository memberSecretJpaRepository, JavaMailSender mailSender) {
         this.memberJpaRepository = memberJpaRepository;
         this.memberSecretJpaRepository = memberSecretJpaRepository;
+        this.mailSender = mailSender;
     }
 
     @Async
@@ -51,14 +52,14 @@ public class EmailServiceImpl implements EmailService {
         String subject = "Welcome to ApplyForMe";
 
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
+            MimeMessage msg = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
             helper.setTo(member.getEmailAddress());
             helper.setSubject(subject);
             helper.setText(messageSource, true);
-            javaMailSender.send(msg);
-        } catch (MessagingException ex2) {
-            System.out.println("sendWelcomeMessage: " + ex2.getMessage());
+            mailSender.send(msg);
+        } catch (Exception ex) {
+            System.out.println("sendWelcomeMessage: " + ex.getMessage());
         }
     }
 
@@ -84,12 +85,12 @@ public class EmailServiceImpl implements EmailService {
         String subject = "Sign up verification";
 
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
+            MimeMessage msg = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
             helper.setTo(emailAddress);
             helper.setSubject(subject);
             helper.setText(messageSource, true);
-            javaMailSender.send(msg);
+            mailSender.send(msg);
         } catch (Exception exception) {
             throw new EmailDeliveryException();
         }
@@ -128,12 +129,12 @@ public class EmailServiceImpl implements EmailService {
 
         String subject = "Reset Password Link";
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
+            MimeMessage msg = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
             helper.setTo(recipientEmail);
             helper.setSubject(subject);
             helper.setText(messageSource, true);
-            javaMailSender.send(msg);
+            mailSender.send(msg);
         } catch (Exception exception) {
             throw new EmailDeliveryException();
         }

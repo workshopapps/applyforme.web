@@ -6,4 +6,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface AuthenticationService {
 
     void resetPassword(ResetPasswordDto resetPasswordDto);
+
+    void authenticate(String username, String password) throws Exception;
 }
