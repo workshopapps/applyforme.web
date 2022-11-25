@@ -1,14 +1,15 @@
 import styles from "../Applications.module.css";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-import { BsPlusLg } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
-import ApplicationsListHeader from "./ApplicationsListHeader";
-const ApplicationCard = ({ application }) => {
+import { useNavigate } from "react-router-dom";
+import { renderDate } from "../utils";
+
+const ApplicationCard = ({ application, onClick }) => {
     return (
-        <div className={styles.applications_card}>
+        <div className={styles.applications_card} onClick={onClick}>
             <div className={styles.applications_card_title}>
                 <span>{application.jobTitle}</span>
-                <span>{application.date}</span>
+                <span>{renderDate(application.date)}</span>
             </div>
             <div className={styles.applications_card_lo}>
                 <HiOutlineBuildingOffice2 />
@@ -33,20 +34,23 @@ const ApplicationCard = ({ application }) => {
     );
 };
 const ApplicationsListCard = ({ applications }) => {
+    const navigate = useNavigate();
+
     return (
         <div className={styles.applications_list_wrapper}>
-            <ApplicationsListHeader />
             <div className={styles.applications_list_card}>
                 {applications.map((application, index) => (
                     <ApplicationCard
                         key={`${application.company}-${index}`}
                         application={application}
+                        onClick={() =>
+                            navigate(
+                                `/dashboard/applications/${application.id}`
+                            )
+                        }
                     />
                 ))}
             </div>
-            <button className={styles.applications_sort}>
-                <BsPlusLg />
-            </button>
         </div>
     );
 };

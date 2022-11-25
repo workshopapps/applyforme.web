@@ -1,5 +1,6 @@
 .application_main {
     padding-top: 120px;
+    width: 100%;
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
@@ -11,7 +12,8 @@
 
 .application_main > h4 {
     font-weight: 500;
-    font-size: 28px;
+    font-size: 40px;
+
     line-height: 120%;
     color: #140f31;
 }
@@ -23,6 +25,10 @@
     letter-spacing: 0.03em;
     color: #140f31;
     margin-bottom: 20px;
+}
+
+.applications_page_title svg {
+    display: block !important;
 }
 
 .job_details {
@@ -48,12 +54,23 @@
 }
 
 .job_details ul {
-    padding-left: 20px;
     list-style: circle !important;
+    list-style-type: circle !important;
+}
+.job_details ul li > svg {
+    height: 10px;
+    width: 10px;
+    margin-right: 0.5rem;
 }
 .job_header {
     border-bottom: 1px solid #ededed;
     padding-bottom: 24px;
+}
+.job_header h4 {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 120%;
+    margin-bottom: 20px;
 }
 .job_header_wrapper {
     display: flex;
@@ -83,9 +100,40 @@
     height: 20px;
 }
 
-@media (max-width: 480px) {
+.applications_sort {
+    position: fixed;
+    bottom: 150px;
+    right: 50px;
+    z-index: 50;
+    display: none;
+    background-color: #2e3192;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    border: none;
+}
+
+.applications_sort svg {
+    color: #e9eef7;
+    width: 40px;
+    height: 40px;
+}
+.applications_sort a {
+    text-decoration: none;
+    width: 100%;
+}
+.applications_sort:active {
+    text-decoration: none;
+}
+
+@media (max-width: 520px) {
+    .applications_sort {
+        display: block;
+    }
     .application_main {
-        padding-bottom: 80px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 40px;
     }
     .job_header_wrapper {
         flex-direction: column;

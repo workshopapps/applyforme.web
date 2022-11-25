@@ -2,6 +2,7 @@ input[type="search"] {
     width: 100%;
     color: #bfbfbf;
     border: 1px #bfbfbf solid;
+    padding-right: 1rem;
     border-radius: 8px;
     outline: none;
     text-indent: 50px;
@@ -9,23 +10,29 @@ input[type="search"] {
 }
 .applications_search_form {
     position: relative;
-    max-width: 500px;
-    min-width: 200px;
+    width: 70%;
+    padding-left: 0;
 }
 
 .applications_search_form > svg {
     position: absolute;
     right: auto;
-    top: 30px;
-    left: 30px;
+    top: 17px !important;
+    left: 20px !important;
     width: 1.5em;
     height: 1.5em;
     color: #bfbfbf;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
     .applications_search_form {
         width: 90%;
     }
     /* … */
+}
+
+@media (min-width: 521px) and (max-width: 980px) {
+    .applications_search_form {
+        width: 70%;
+    }
 }

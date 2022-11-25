@@ -45,7 +45,7 @@ const DashboardSidebar = () => {
             title: "Profile"
         },
         {
-            path: "#",
+            path: "/dashboard/applications",
             img: {
                 web: BriefCaseIcon,
                 mobile: mobileApplicationsIcon

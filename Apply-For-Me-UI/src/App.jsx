@@ -15,7 +15,6 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
 import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
-import ApplicationsDashboardLayout from "./pages/applications/layouts/ApplicationsDashboardLayout";
 import Applications from "./pages/applications/Applications";
 import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
 import Skills from "./pages/blog/pages/skills/Skills";
@@ -48,7 +47,6 @@ import Verification from "pages/authentication-pages/Verification";
 import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
-
 
 function App() {
     return (
@@ -105,21 +103,19 @@ function App() {
                     />
                     <Route path="user/success" element={<Success />} />
                     <Route path="user/profile-list" element={<Profile />} />
+                    <Route path="applications">
+                        <Route index element={<Applications />} />
+                        <Route path=":jobId" element={<JobDescription />} />
+                    </Route>
                     {/* <Route path="user" element={<UserDashboard />} /> */}
                 </Route>
-                <Route
-                    path="/dashboard/applications"
-                    element={<ApplicationsDashboardLayout />}
-                >
-                    <Route index element={<Applications />} />
-                    <Route path=":jobId" element={<JobDescription />} />
-                </Route>
-                <Route exact path='/wel1' element={<Welcome1/>}/>
-                <Route exact path='/reg' element={<Registration/>}/>
-                <Route exact path='/wel2' element={<Welcome2/>}/>
-                <Route exact path='/pass' element={<Password/>}/>
-                <Route exact path='/veri' element={<Verification/>}/>     
-                <Route exact path='/nwpass' element={<NewPass/>}/> 
+
+                <Route exact path="/wel1" element={<Welcome1 />} />
+                <Route exact path="/reg" element={<Registration />} />
+                <Route exact path="/wel2" element={<Welcome2 />} />
+                <Route exact path="/pass" element={<Password />} />
+                <Route exact path="/veri" element={<Verification />} />
+                <Route exact path="/nwpass" element={<NewPass />} />
 
                 <Route path="*" element={<Error />} />
             </Routes>

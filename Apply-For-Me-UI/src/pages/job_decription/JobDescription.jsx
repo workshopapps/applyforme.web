@@ -1,9 +1,12 @@
 import React from "react";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-import { AiOutlineClockCircle } from "react-icons/ai";
+import { MdOutlineAccessTime } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
+import { GoPrimitiveDot } from "react-icons/go";
+import { useParams } from "react-router-dom";
 import TopNav from "../applications/components/topNav/TopNav";
 import styles from "./JobDecription.module.css";
+import { applications } from "../applications/applicationsMock";
 
 const job = {
     jobTitle: "UX Researcher",
@@ -15,7 +18,7 @@ const job = {
 
 In order to strengthen our forces, we are looking for a UX/UI Designer.`,
     reponsibilities: [
-        ` Gather and evaluate user requirements in collaboration with product managers and engineers`,
+        `Gather and evaluate user requirements in collaboration with product managers and engineers`,
         `Illustrate design ideas using storyboards, user journeys, process flows, and sitemaps`,
         `Design graphic user interface elements, like menus, tabs, and widgets`,
         `Develop UI mockups and prototypes that clearly illustrate how sites function and look like`,
@@ -33,40 +36,54 @@ In order to strengthen our forces, we are looking for a UX/UI Designer.`,
 };
 
 const JobDescription = () => {
+    const { jobId } = useParams();
+    let jobdetail = applications.find(
+        application => application.id === parseInt(jobId)
+    );
+    if (!jobdetail) {
+        jobdetail = job;
+    }
+
     return (
         <div>
-            <TopNav title="Job Description" />
+            <TopNav
+                title="Job Description"
+                homeUrl={"/dashboard/applications"}
+            />
             <div className={styles.application_main}>
                 <div className={styles.job_header}>
-                    <h4>{job.jobTitle}</h4>
+                    <h4>{jobdetail.jobTitle}</h4>
                     <div className={styles.job_header_wrapper}>
                         <span className={styles.job_header_icons}>
                             <HiOutlineBuildingOffice2 />
-                            {job.company}
+                            {jobdetail.company}
                         </span>
                         <span className={styles.job_header_icons}>
                             <CiLocationOn />
-                            {job.location}
+                            {jobdetail.location}
                         </span>
                         <span className={styles.job_header_icons}>
-                            <AiOutlineClockCircle />
-                            {job.date}
+                            <MdOutlineAccessTime />
+                            {jobdetail.date}
                         </span>
                     </div>
                     <div className={styles.job_header_salary}>
-                        {job.salaryRange}
+                        {jobdetail.salaryRange}
                     </div>
                 </div>
                 <div className={styles.job_details}>
                     <div>
                         <h5>Job Summary</h5>
-                        <p>{job.jobSummary}</p>
+                        <p>{jobdetail.jobSummary}</p>
                     </div>
                     <div>
                         <h5>Responsibilities</h5>
                         <ul>
                             {job.reponsibilities.map(responsibility => (
-                                <li key={responsibility}>{responsibility}</li>
+                                <li key={responsibility}>
+                                    <GoPrimitiveDot />
+                                    {responsibility}
+                                </li>
                             ))}
                         </ul>
                     </div>
@@ -74,7 +91,10 @@ const JobDescription = () => {
                         <h5>Skills and Experience</h5>
                         <ul>
                             {job.skills.map(skill => (
-                                <li key={skill}>{skill}</li>
+                                <li key={skill}>
+                                    <GoPrimitiveDot />
+                                    {skill}
+                                </li>
                             ))}
                         </ul>
                     </div>
