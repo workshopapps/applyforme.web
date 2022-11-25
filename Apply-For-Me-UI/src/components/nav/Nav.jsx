@@ -47,8 +47,12 @@ const Nav = () => {
                 </ul>
 
                 <div className={classes.btn_container}>
-                    <LightButton text="Sign in" width="127" />
-                    <BlueButton text="Get started" width="156" />
+                    <Link to="/wel2">
+                        <LightButton text="Sign in" width="127" />
+                    </Link>
+                    <Link to="/wel1">
+                        <BlueButton text="Get started" width="156" />
+                    </Link>
                 </div>
             </nav>
 
