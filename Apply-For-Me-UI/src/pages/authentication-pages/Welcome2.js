@@ -13,7 +13,6 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
-import { SpinnerCircular } from "spinners-react";
 
 const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-in";
 
