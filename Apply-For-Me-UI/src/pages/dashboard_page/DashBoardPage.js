@@ -1,10 +1,10 @@
 import React from "react";
 import { DashboardContent } from "../../components/admin_dashboard/dashboard_content/dashboard_content";
 
-const DashBoardPage = () => {
+const DashBoardPage = ({inputSearchValue}) => {
     return (
         <>
-            <DashboardContent/>
+            <DashboardContent inputSearchValue={inputSearchValue}/>
         </>
     )
 };

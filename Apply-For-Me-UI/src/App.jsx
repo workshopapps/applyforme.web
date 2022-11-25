@@ -40,6 +40,7 @@ import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
 import Profile from "./pages/dashboard_profile/Profile/Profile";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
+import { ProfileScreen } from "components/superAdmmin_profile/superAdmin_profileScreen";
 
 //Authentication
 import Welcome1 from "pages/authentication-pages/Welcome1";
@@ -48,6 +49,7 @@ import Verification from "pages/authentication-pages/Verification";
 import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
+import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
 
 
 function App() {
@@ -74,6 +76,8 @@ function App() {
                     element={<Checkout {...formData} />}
                 />
                 <Route exact path="/user-page" element={<Dashboard />} />
+                <Route path="/superAdminProfile" element={<ProfileScreen />}></Route>
+                <Route exact path="/reverseRecruiterAdmin/:id" element={<RR_admin_profile />} />
                 <Route exact path="blog" element={<Blog />} />
                 <Route
                     exact

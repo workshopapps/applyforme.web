@@ -24,7 +24,7 @@
 .rbdy .form{
   padding-bottom: 5rem;
 }
-select{
+.registration_select{
   width: 100%;
   height: 100%;
   border: 1px solid #BDBDBD;
