@@ -23,31 +23,8 @@ const Welcome1 = () => {
 
     const handleSignup = async event => {
         event.preventDefault();
-        const formData = {
-            "first_name": event.target.fname.value,
-            "last_name": event.target.lname.value,
-            "email_address": event.target.email.value,
-            "phone_number": event.target.num.value,
-            "password": event.target.pass.value
-        };
-        console.log(formData);
-        let result = await axios
-            .post(`${BaseUrl}`, formData)
-            .then(res => res.data)
-            .catch(err => {
-                console.log(err);
-            });
-
-        if (result?.token) {
-            let decoded = jwt_decode(result.token);
-            let tokenKey = "tokenHngKey";
-            localStorage.setItem(tokenKey, result.token);
-            dispatch(userInfo(decoded));
-            navigate("/reg");
-        } else {
-            console.log("eer");
-        }
     };
+
     return (
         <div className="Welcome1">
             <Navbar />

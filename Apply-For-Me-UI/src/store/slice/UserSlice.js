@@ -5,7 +5,7 @@ import axios from "axios";
 const BaseUrl = "";
 
 const initialState = {
-    user: {},
+    user: "",
     isLoading: false
 };
 
