@@ -9,9 +9,9 @@ import Footer from "../../components/footer/Footer";
 const ContactUs = () => {
     return (
         <div className="contact">
-          <div className="contact-nav-wrapper">
+          
             <Nav/>
-          </div>
+        
     
     
     
@@ -25,9 +25,9 @@ const ContactUs = () => {
           </div>
     
     
-         <div>
+         
           <Footer/>
-         </div>
+         
     
          {/* <div className="copyright">
             <p>2022 ApplyForMe. All rights reserved</p>

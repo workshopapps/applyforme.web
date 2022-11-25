@@ -8,7 +8,7 @@ const ContactUsForm = () => {
     }
 
   return (
-    <div className="form">
+    <div className="form-body">
         <form onSubmit={formSubmit}>
 
         
