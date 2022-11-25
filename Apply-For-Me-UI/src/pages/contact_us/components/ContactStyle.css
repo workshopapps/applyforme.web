@@ -42,6 +42,9 @@
     
     
 }
+.first-line-2{
+    margin-left: 10px;
+}
 .first-line-1 ,.first-line-2{
     flex: 1;
 
@@ -272,6 +275,7 @@ h1{
 @media screen and (max-width:1078px) and (min-width:790px) {
   .form-details{
     margin-left: 0;
+
   }
   .contact-mid{
     padding-left: 50px;
