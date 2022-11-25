@@ -28,7 +28,7 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
     }
 
     @Override
-    public List<Professional> getAll(Long pageOffset) {
+    public List<Professional> getAll(Integer pageOffset) {
         String queryText = "select * from professional";
         TypedQuery<Professional> applyForMeQuery = entityManager.createQuery(queryText, Professional.class);
 

@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProfessionalRepository {
     List<Professional> getAll();
 
-    List<Professional> getAll(Long pageOffset);
+    List<Professional> getAll(Integer pageOffset);
 
     Professional getOne(Long id);
 
