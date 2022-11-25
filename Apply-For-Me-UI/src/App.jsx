@@ -26,6 +26,10 @@ import Resume from "./pages/blog/pages/resume/Resume";
 import Brand from "./pages/blog/pages/brand/Brand";
 import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
 import JobDescription from "./pages/job_decription/JobDescription";
+import HelpAndSupportPage from "./pages/help_support_pg/HelpAndSupportPage";
+import HowAfmWorks from "./pages/afmworks/HowAfmWorks";
+import NeedHelp  from "./pages/need_help/NeedHelp";
+
 // import AdminDashboard from "./pages/admin_dashboard/AdminDashboard";
 import ApplicantDetails from "./pages/admin_dashboard/components/applicant_details/ApplicantDetails";
 import ApplicationForm from "./pages/admin_dashboard/components/application_form/ApplicationForm";
@@ -63,6 +67,10 @@ function App() {
                 <Route exact path="/privacy" element={<Privacy />} />
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
+                <Route exact path="/help" element={<HelpAndSupportPage/>}/>
+                <Route exact path="/howafmworks" element={<HowAfmWorks/>}/>
+                <Route exact path="/needHelp" element={<NeedHelp/>}/>
+            
                 <Route
                     exact
                     path="/pricing"
