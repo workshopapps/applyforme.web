@@ -18,7 +18,6 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 	@Autowired
 	private PasswordEncoder encoder;
 	
-    SuperAdminRepository repository;
     private SuperAdminRepository repository;
 
     public SuperAdminServiceImpl(SuperAdminRepository repository) {

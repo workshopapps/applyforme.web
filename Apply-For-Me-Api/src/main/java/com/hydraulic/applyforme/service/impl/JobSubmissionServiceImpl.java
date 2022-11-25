@@ -1,18 +1,8 @@
 package com.hydraulic.applyforme.service.impl;
 	
-import java.util.Optional;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Service;
-
-import com.hydraulic.applyforme.model.domain.Applier;
-import com.hydraulic.applyforme.model.dto.ProfessionalJobSubmissionDTO;
-import com.hydraulic.applyforme.model.domain.Submission;
-import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
-import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
-import com.hydraulic.applyforme.model.response.SubmissionResponse;
-import com.hydraulic.applyforme.repository.ApplierRepository;
-import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
-import com.hydraulic.applyforme.service.JobSubmissionService;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,9 +10,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import com.hydraulic.applyforme.model.domain.Applier;
+import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.dto.ProfessionalJobSubmissionDTO;
+import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
+import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
+import com.hydraulic.applyforme.model.response.SubmissionResponse;
+import com.hydraulic.applyforme.repository.ApplierRepository;
+import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
+import com.hydraulic.applyforme.service.JobSubmissionService;
 
 @Service
 public class JobSubmissionServiceImpl implements JobSubmissionService {
@@ -51,11 +47,7 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
         return repository.countByApplier(id);
     }
 
-	@Override
-	public ProfessionalJobSubmissionDTO getAllSubmissionsByPagination(Long professionalId, Integer pageOffset) {
-		
-		return repo.getAllSubmissionsByPagination(professionalId, pageOffset);
-	}
+
     @Override
     public SubmissionResponse getAllJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir) {
         Page<Submission> submission = repository.findAll(createPageable(pageNo, pageSize, sortBy, sortDir));
