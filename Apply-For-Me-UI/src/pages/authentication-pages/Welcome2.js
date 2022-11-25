@@ -40,7 +40,7 @@ const Welcome2 = () => {
             let tokenKey = "tokenHngKey";
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
-            navigate("/");
+            navigate("/dashboard");
         } else {
             console.log("eer");
         }
