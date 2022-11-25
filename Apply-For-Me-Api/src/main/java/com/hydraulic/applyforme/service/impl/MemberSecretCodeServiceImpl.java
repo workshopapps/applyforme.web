@@ -13,6 +13,17 @@ public class MemberSecretCodeServiceImpl implements MemberSecretCodeService {
     private MemberSecretCodeRepository memberSecretCodeRepository;
 
 
+    /*
+    * This method is required when the user has entered the four digits
+    *  codes in four different boxes(as seen in the figma design for password reset code. They are yet to add
+    * the design for entering of sign up verification code. They implemented use of four different boxes
+    * to enter the codes. So, I implemented the same for sign-up verification code). But, if we are to enter
+    * all the digits in one box, then we will need to update this method.
+    * This method collects the codes(numbers submitted) in the boxes and
+    *  concatinates them before comparing them with the sign-up verification code stored in the database(which
+    * was stored at sign-up . Take a look at this method: public Member save(SignupDto body)
+    * */
+
     @Override
     public String matchVerificationCodes(MemberSecretCodeDto memberSecretCodeDto){
         String secretCode1 = memberSecretCodeDto.getFirstCode();
@@ -30,6 +41,12 @@ public class MemberSecretCodeServiceImpl implements MemberSecretCodeService {
             return  "invalid verification code";
         }
     }
+
+    /*
+    * Although we already implemented use of link for password reset,I created this method
+    * in-case we want to revert to use of password code, which is already included in the
+    * member secret code table.
+    * */
 
     @Override
     public String createResetPasswordCode() {

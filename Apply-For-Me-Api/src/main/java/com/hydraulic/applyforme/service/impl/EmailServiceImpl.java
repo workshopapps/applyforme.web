@@ -182,6 +182,11 @@ public class EmailServiceImpl implements EmailService {
 
     }
 
+    /*
+    * @ Yusuf check line 228
+    * helper.setTo(" Enter apply for me email here @Yusuf");
+    * */
+
     @Override
     public void sendContactUsMessageDetails(ContactUsDto contactUsDto) {
 
@@ -221,7 +226,7 @@ public class EmailServiceImpl implements EmailService {
 
         try {
             helper.setFrom(senderEmailAddress, "sender");
-            helper.setTo(" Enter apply for me email here @Yusuf");
+            helper.setTo(" ");
             helper.setSubject(subject);
             helper.setText(content, true);
             javaMailSender.send(message);
@@ -229,6 +234,10 @@ public class EmailServiceImpl implements EmailService {
             throw new EmailDeliveryException();
         }
     }
+
+    /*
+    * This is an alternative mail for password reset
+    * */
 
     @Async
     @Override

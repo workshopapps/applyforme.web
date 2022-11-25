@@ -83,6 +83,13 @@ public class MemberServiceImpl implements MemberService {
         return member;
     }
 
+    /*
+    * This method helps to generate sign-up verification and was used in the method above
+    * to save the sign-up verification code into the DB as shown below.
+    * String generatedSecretCode = generateSignUpCode();
+       memberSecretCodeRepository.saveSecretCode(generatedSecretCode);
+    *
+    **/
     private String generateSignUpCode(){
         int[] numbers = new int[4];
 
