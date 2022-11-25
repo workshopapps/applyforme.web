@@ -182,10 +182,6 @@ public class EmailServiceImpl implements EmailService {
 
     }
 
-    /*
-    * @ Yusuf check line 228
-    * helper.setTo(" Enter apply for me email here @Yusuf");
-    * */
 
     @Override
     public void sendContactUsMessageDetails(ContactUsDto contactUsDto) {
@@ -226,7 +222,7 @@ public class EmailServiceImpl implements EmailService {
 
         try {
             helper.setFrom(senderEmailAddress, "sender");
-            helper.setTo(" ");
+            helper.setTo("hngteamhydraulic@gmail.com");
             helper.setSubject(subject);
             helper.setText(content, true);
             javaMailSender.send(message);
