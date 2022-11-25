@@ -1,13 +1,12 @@
 .ProfileMainContainer{
     padding: 2rem 8rem 8rem 8rem;
-    background-color: #eeefff;
     
 }
 .profile_content{
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 .profile_content_btn{
-    background-color: #eeefff;
+    background-color: white;
     width: fit-content;
     display: flex;
     flex-direction: row;
@@ -22,7 +21,6 @@
 }
 .profile_content_btn h4{
     margin: 0 0.5rem;
-    font-size: 13px;
 }
 .profile_header{
     display: flex;
@@ -83,12 +81,12 @@
 .editContent{
     padding:2rem;
     position: absolute;
-    top: 15%;
+    top: 5%;
     overflow: auto;
     z-index: 1;
     left: 20px;
     right: 20px;
-    height:70vh;
+    height:90vh;
     margin: 0 auto;
     width: fit-content;
     background-color: white;
@@ -99,7 +97,33 @@
     display: flex;
     justify-content: flex-end;
 }
+.passwword-edit{
+    padding:2rem;
+    position: absolute;
+    top: 5%;
+    overflow: auto;
+    z-index: 1;
+    left: 20px;
+    right: 20px;
+    height:90vh;
+    margin: 0 auto;
+    width: fit-content;
+    background-color: white;
+    transform: (translate(-50%, -50%));
+    transition-duration: 3s;
+    border-radius: 8px;
+}
+@media only screen and (min-width:768px){
+    .editContent{
+        top: 10%;
+        height: 80vh;
+    }
+    .passwword-edit{
+        top: 20%;
+        height: fit-content;
+    }
 
+}
 @media only screen and (min-width: 320px)and (max-width: 667px){
     .mobile_info_top{
         display: flex;

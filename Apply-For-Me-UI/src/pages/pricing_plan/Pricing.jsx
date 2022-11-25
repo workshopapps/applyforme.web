@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "pages/pricing_plan/pricing.module.css";
-import { Link } from "react-router-dom";
-
 
 //Importing bluebutton component
 import BlueBorderButton from "components/buttons/blue_border_button/BlueBorderButton";
@@ -68,7 +66,7 @@ const Pricing = ({
                         })}
                       </div>
 
-                      <Link to ="/wel2"><BlueButton width={200} text={btnText}/> </Link> 
+                      <BlueButton width={200} text={btnText} />
                     </div>
                   );
                 }

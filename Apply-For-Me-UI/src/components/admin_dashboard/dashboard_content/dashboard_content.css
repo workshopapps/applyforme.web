@@ -1,5 +1,5 @@
 *{
-  font-family: 'Outfit', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 .applicantsContainer{
     padding: 1.5rem 2rem;
@@ -12,9 +12,6 @@
     align-items: center;
     justify-content: space-between;
     margin: 1.5rem;
-}
-.statisticsContainer h2{
-   font-size: 20px;
 }
 .statisticsContainer select{
 font-size: 15px;
@@ -35,8 +32,6 @@ font-weight: bold;
     border-radius: 5px;
     padding: 0.8rem;
     width:30%;
-    height: 7rem;
-    text-align: center;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -47,16 +42,12 @@ font-weight: bold;
 }
 .applicants h1{
     margin-bottom: 0;
-    font-weight: 400;
-    font-size: 27px;
 }
 .users_recruiter_text h1{
-    color:#2E3192;
-    font-weight: 400;
+    color:#2E3192
 }
 .users_recruiter_text h4{
-    color:grey;
-    font-weight: 400;
+    color:grey
 }
 .profile_name{
     display: none;
@@ -80,8 +71,11 @@ font-weight: bold;
 }
 }
 @media only screen and (min-width:320px) and (max-width:767px){
-    .statisticsContainer {
-        margin: 1.5rem 0;
+    .statisticsContainer h2{
+        font-size: 15px;
+    }
+    .statisticsContainer select, .statisticsContainer select option{
+        font-size: 10px;
     }
     .applicantsContainer {
         padding: 0 0.5rem; 
@@ -101,8 +95,11 @@ font-weight: bold;
         text-align: center;
     }
     h3{
-        font-size: 15px;
+        font-size: 13px;
         font-weight: 400;
+    }
+    h1{
+        font-size: 15px;
     }
     
 }

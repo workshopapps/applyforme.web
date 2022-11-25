@@ -19,21 +19,18 @@ const UsersPage = () => {
 
             <section className={classes.applicant}>
                 <table className={classes.table}>
-                    <thead>
-                        <tr className={classes.table__head}>
-                            <th>Name</th>
-                            <th className={classes.hide_on_mobile}>
-                                Email Address
-                            </th>
-                            <th>Plan</th>
-                            <th className={classes.hide_on_mobile}>
-                                Application done
-                            </th>
-                            <th className={classes.hide_on_mobile}>Interviews</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    <tr className={classes.table__head}>
+                        <th>Name</th>
+                        <th className={classes.hide_on_mobile}>
+                            Email Address
+                        </th>
+                        <th>Plan</th>
+                        <th className={classes.hide_on_mobile}>
+                            Application done
+                        </th>
+                        <th className={classes.hide_on_mobile}>Interviews</th>
+                        <th>Details</th>
+                    </tr>
 
                     {Users.map(
                         ({
@@ -71,7 +68,6 @@ const UsersPage = () => {
                             </tr>
                         )
                     )}
-                    </tbody>
                 </table>
 
                 <section className={classes.pagination}>

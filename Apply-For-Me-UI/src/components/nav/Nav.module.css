@@ -4,16 +4,12 @@
     padding-bottom: 2rem;
 }
 
-.hide__desktop {
-    display: none;
-}
-
 .nav_container__wrapper {
     width: 90%;
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 2rem;
     justify-content: space-between;
 }
@@ -21,7 +17,6 @@
 .logo {
     width: 95px;
     height: 45px;
-    z-index: 3;
 }
 
 .logo__img {
@@ -59,95 +54,15 @@
     width: 35px;
     height: 35px;
     cursor: pointer;
-    color: #000;
-}
-
-.nav_container__wrapper__mobile {
-    display: none;
 }
 
 @media screen and (max-width: 1050px) {
-    .nav_container {
-        position: relative;
-    }
-
-    .hide__desktop {
+    .menu {
         display: block;
     }
 
     .nav_links,
-    .btn_container,
-    .hide_mobile {
+    .btn_container {
         display: none;
-    }
-
-    .menu__mobile {
-        color: #000;
-    }
-
-    /* Nav path Mobile */
-
-    .nav_container {
-        padding-top: 0;
-        margin-bottom: 4rem;
-    }
-
-    .nav_container__wrapper__mobile {
-        display: block;
-        position: fixed;
-        left: 0;
-        right: 0;
-        background-color: #fff;
-        display: flex;
-        flex-direction: column;
-        gap: 1.8rem;
-        padding: 1rem 0;
-        z-index: 100;
-    }
-
-    .nav_container__wrapper__mobile .logo__mobile {
-        width: 90%;
-        max-width: 1400px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .nav_links__mobile {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-        width: 90%;
-        max-width: 1400px;
-        margin: 0 auto;
-        position: relative;
-    }
-
-    .nav_links__mobile li {
-        border-bottom: 2px solid #d0d0d0;
-        padding-bottom: 0.7rem;
-    }
-
-    .nav_links__mobile li a {
-        font-weight: 300;
-        font-size: 1.2rem;
-        line-height: 150%;
-        letter-spacing: 0.03em;
-        color: #52515b;
-    }
-
-    .btn_container__mobile {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        display: flex;
-        align-items: center;
-        padding: 0 0.8rem;
-    }
-
-    .btn_container__mobile button {
-        max-width: 500px !important;
-        width: 100% !important;
     }
 }

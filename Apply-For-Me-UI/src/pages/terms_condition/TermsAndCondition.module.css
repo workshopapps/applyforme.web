@@ -2,20 +2,11 @@
     width: 100%;
 }
 
-.colored_span {
-    color: #2E3192;
-}
-
-.colored_href {
-    text-decoration: none;
-    color: #2E3192;
-}
-
 .text_area {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding: 1em 1em 6em 1em;
+    padding: 1em 1em 4em 1em;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;

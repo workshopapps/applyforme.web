@@ -1,5 +1,7 @@
 import React from "react";
-import Footer from "../../components/footer/Footer";
+//import Navbar from "./Navbar";
+import Copy from "./Copy";
+import Footer from "./Footer";
 import Header from "./Header";
 import MidContent from "./MidContent";
 import What from "./What";
@@ -15,6 +17,7 @@ const AboutUs = () => {
             <MidContent />
             <What />
             <Footer />
+            <Copy />
         </>
     );
 };

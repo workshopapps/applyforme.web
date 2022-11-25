@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "../../components/nav/Nav";
+import Nav from "../../components/nav/Nav"
 import Hero from "./Hero";
 import classes from "./Hero.module.css";
 import Service from "./Service";
@@ -8,7 +8,6 @@ import LearnMore from "./LearnMore";
 import Pricing from "./Pricing";
 import Reviews from "./Reviews";
 import FAQ from "./FAQ";
-import Cookies from "../../components/modals/cookieModal/CookieModal";
 
 const LandingPage = () => {
     return (
@@ -21,7 +20,6 @@ const LandingPage = () => {
             <Reviews />
             <FAQ />
             <Footer />
-            <Cookies />
         </div>
     );
 };

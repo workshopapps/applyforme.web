@@ -12,26 +12,28 @@ import DashboardActiveIcon from "../../assets/images/dashboard_active_logo.svg";
 import DashboardDisabledIcon from "../../assets/images/dashboard_disabled_logo.svg";
 import UserDisabledIcon from "../../assets/images/users_disabled_logo.svg";
 import UserActiveIcon from "../../assets/images/users_active_logo.svg";
+import NotificationDark from "../../assets/images/notification_dark.svg";
 import Signout from "../../assets/images/signout.svg";
 import ProgressBar from "../../assets/images/progress_bar.svg";
-import { MobileNav } from "./mobileNav";
-import { useNavigate } from "react-router-dom";
+
 import ProfilePiture from "../../assets/images/profile_picture.svg";
+
 import ProfileIcon from "../../assets/images/profile-circle.svg";
+import Help from "../../assets/images/help_outline.svg";
 import { getActiveLink } from "./service/DashboardSidebarService";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
 
-const DashboardHeader = ({ func, setInputSearchValue }) => {
+const DashboardHeader = ({ func }) => {
     const [dashboardActive, setDashboardActive] = useState({
         dashboard: true,
-        user:false
+        user: false
     });
-    const navigate  = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
+
     const handleActive = data => {
         setDashboardActive(getActiveLink(data));
     };
@@ -39,12 +41,6 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
         event.preventDefault();
         setShowModal(false);
         // Quota submission code goes here
-    };
-    const handleDashboardSubmit = event => {
-        event.preventDefault();
-        setInputSearchValue(event.target.search.value)
-        event.target.search.value="";
-       
     };
 
     const handleModalShow = () => {
@@ -101,7 +97,8 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                         <li
                                             type="button"
                                             onClick={() => {
-                                                navigate("/superAdminProfile");
+                                                setShowMenuProfile(false);
+                                                setShowProfileDetails(true);
                                             }}
                                         >
                                             <img
@@ -109,7 +106,8 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                                 alt="Profile logo"
                                             />
                                             <p>Profile</p>
-                                        </li>                                           
+                                        </li>
+
                                         <li
                                             onClick={() =>
                                                 setShowMenuProfile(false)
@@ -125,46 +123,77 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 </div>
                             )}
                         </div>
-                        {/*form for searching for reverse recruiter admin  */}
-                        {dashboardActive.dashboard && <form
+
+                        <form
                             className={classes.search}
-                            onSubmit={event => handleDashboardSubmit(event)}
+                            onSubmit={e => handleSubmit(e)}
                         >
                             <input
-                               
                                 type="search"
                                 name="search"
                                 placeholder="Search for Users and Reverse Recruiter"
-                               
                             />
                             <button type="submit">
                                 {" "}
                                 <img src={Search} alt="Apply for me logo" />
                             </button>
-                        </form>}
-                        
-                         {/*form for searching for users and reverse recruiter */}
-                        {!dashboardActive.dashboard && <form
-                            className={classes.search}
-                            onSubmit={event => handleSubmit(event)}
-                        >
-                            <input
-                               
-                                type="search"
-                                name="search"
-                                placeholder="Search for Users and Reverse Recruiter"
-                               
-                            />
-                            <button type="submit">
-                                {" "}
-                                <img src={Search} alt="Apply for me logo" />
-                            </button>
-                        </form>}
+                        </form>
                     </section>
                 </nav>
 
                 {/* Mobile nav */}
-                {showMenu && <MobileNav setShowMenu={setShowMenu}/>}
+                {showMenu && (
+                    <section
+                        className={classes.mobile_menu_wrapper}
+                        onClick={() => setShowMenu(false)}
+                    >
+                        <nav className={classes.mobile_menu}>
+                            <section
+                                className={[
+                                    classes.mobile_section,
+                                    classes.pads
+                                ].join(" ")}
+                            >
+                                <div className={classes.close_menu}>
+                                    <p>Menu</p>
+                                    <img
+                                        src={CloseMenu}
+                                        alt="Close Menu logo"
+                                        className={classes.menu}
+                                        onClick={() => setShowMenu(false)}
+                                    />
+                                </div>
+                            </section>
+
+                            <section
+                                className={[
+                                    classes.mobile_section,
+                                    classes.pads
+                                ].join(" ")}
+                            >
+                                <div className={classes.notification}>
+                                    <img
+                                        src={NotificationDark}
+                                        alt="Notification logo"
+                                    />
+                                    <p>Notifications</p>
+                                </div>
+                            </section>
+
+                            <ul className={[classes.pads].join(" ")}>
+                                <li onClick={() => setShowMenu(false)}>
+                                    <img src={Help} alt="Help Icon" />
+                                    Help
+                                </li>
+
+                                <li onClick={() => setShowMenu(false)}>
+                                    <img src={Signout} alt="Help Icon" />
+                                    <p>Sign Out</p>
+                                </li>
+                            </ul>
+                        </nav>
+                    </section>
+                )}
             </section>
 
             {showProfileDetails ? (

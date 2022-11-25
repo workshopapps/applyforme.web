@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './RR_admin_List.css';
 import { List } from './RR_smaple_list';
-export const RR_Admin_list=({inputSearchValue})=>{
+export const RR_Admin_list=()=>{
     
-    const navigate = useNavigate();
     const [rangeEnd, setRangeEnd]= useState(4);
     const [rangeStart, setRangeStart]= useState(0);
     const [counter, setCounter]= useState(1);
@@ -19,8 +17,6 @@ export const RR_Admin_list=({inputSearchValue})=>{
         setRangeStart((prevState)=>prevState-5);
         setCounter((prevState)=>prevState-5);  
     }
-    const filterdRRList = List.filter((list)=>list.name.toLowerCase().includes(inputSearchValue))
-
     return(
         <>
             <div className="sort_header">
@@ -38,6 +34,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                         <th> <label htmlFor="applicants">Sort By: </label>
                             <select name="applicants" id="applicants">
                                 <option value="oldest">Most Active</option>
+                                <option value="newest">newest</option>
                             </select>
                         </th>
                     </tr>
@@ -45,12 +42,12 @@ export const RR_Admin_list=({inputSearchValue})=>{
                 <tbody>
                     {
                     
-                    counter <= filterdRRList.length? filterdRRList.map((user, index)=>{
-                        const {name,work,date,img,id} = user;
+                    counter <=  List.length? List.map((user, index)=>{
+                        const {name,work,date,img} = user;
                         if((index >= rangeStart) && (index <= rangeEnd) ){
                             return(
                                 <tr key={index}>
-                                    <td>
+                                    <td style={{paddingBottom:"1rem"}}>
                                         <div className="name_table_data">
                                             <span style={{width:"15%"}}>
                                                 <img style={{width:"100%"}}  src={img} alt="object not found"/>
@@ -62,12 +59,12 @@ export const RR_Admin_list=({inputSearchValue})=>{
                                     <td><h3 style={{fontWeight:"400"}}>{date}</h3></td>
                                     <td>
                                         <div className="viewContainer">
-                                            <button onClick={()=>navigate(`/reverseRecruiterAdmin/${id}`)}>view Profile</button>
+                                            <button>view Profile</button>
                                             <span className="dropdown">
                                                 <img className="three_dot_icon" src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png" alt="object not found"/>
                                                 <div className="dropdownContent">
-                                                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51367_phrq53.png" style={{marginBottom:"0.7rem"}}/>
-                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51368_oevqxr.png"/>
+                                                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51367_mndagi.png"/>
+                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51368_n4nns4.png"/>
                                                 </div>
                                             </span>
                                         </div>
@@ -77,11 +74,9 @@ export const RR_Admin_list=({inputSearchValue})=>{
 
                         }
                     }):null}
+                    
                 </tbody> 
             </table>
-
-
-            {/* mobile view for RR Admin List*/ }
             <div className='mobileList'>
                 <div>
                     <label htmlFor="applicants">Sort By: </label>
@@ -92,8 +87,8 @@ export const RR_Admin_list=({inputSearchValue})=>{
                 </div>
                 
                     {
-                        counter <= filterdRRList.length? filterdRRList.map((user, index)=>{
-                            const {name,work,img,id} = user;
+                        List.map((user, index)=>{
+                            const {name,work,img} = user;
                             if((index >= rangeStart) && (index <= rangeEnd) ){
                                 return(
                                     <div className='RRlist' key={index}>
@@ -108,17 +103,17 @@ export const RR_Admin_list=({inputSearchValue})=>{
                                             <span className="dropdown">
                                                     <img className="three_dot_icon" src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png" alt="object not found"/>
                                                     <div className="dropdownContent">
-                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51367_phrq53.png" style={{marginBottom:"0.7rem"}}/>
-                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51368_oevqxr.png"/>
+                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51367_mndagi.png"/>
+                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Frame_51368_n4nns4.png"/>
                                                     </div>
                                                 </span>
-                                            <button onClick={()=>navigate(`/reverseRecruiterAdmin/${id}`)}>view</button>
+                                            <button>view</button>
                                         </div>
                                     </div>
                                 )
 
                             }
-                        }):null
+                        })
                     }
               
             </div>

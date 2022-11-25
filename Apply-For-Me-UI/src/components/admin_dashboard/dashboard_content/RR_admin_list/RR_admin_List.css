@@ -8,9 +8,6 @@ thead th{
  .tableContainer td,.tableContainer th{
      text-align: left;
  }
- .three_dot_icon{
-    width:70%;
- }
  .name_table_data{
      display: flex;
      align-items: center;
@@ -31,11 +28,6 @@ thead th{
  }
  .pagination{
     margin: 0 1rem 1rem;
-    padding: 0.5rem 1rem;
-    background-color: #eeefff;
-    border-radius: 6px;
-    font-weight: 400;
-    width:fit-content;
  }
  .pagination,.pagiantion_control{
      display: flex;
@@ -49,7 +41,7 @@ thead th{
      font-size: 15px;
      width: 90%;
      background: #2E3192;
-     padding: 0.4rem;
+     padding: 0.7rem;
      border: 1px solid white;
      color: white;
      margin-right: 0.3rem;

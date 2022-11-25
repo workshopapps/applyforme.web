@@ -4,7 +4,7 @@
 }
 
 .sub_heading {
-    font-size: 12px;
+    font-size: 0.7rem;
 }
 
 /*======= Hero section =======*/
@@ -31,13 +31,6 @@
     display: flex;
     flex-direction: column;
     padding-top: 2.5rem;
-    position: relative;
-}
-
-.hero_content .left .elipse {
-    position: absolute;
-    top: -15%;
-    right: 0;
 }
 
 .hero_content .left .browse {
@@ -151,17 +144,10 @@
 
 .learn_content .bottom {
     display: flex;
-    position: relative;
 }
 
 .learn_content .bottom .left {
     flex: 1;
-}
-
-.learn_content .bottom .left .elipse {
-    position: absolute;
-    top: -50%;
-    left: 10%;
 }
 
 .learn_content .bottom h3 {
@@ -178,6 +164,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 1.5rem;
+    column-gap: ;
 }
 
 .learn_content .bottom .boxes .box {
@@ -210,13 +197,7 @@
 .pricing_content .top h3 {
     font-size: 2.5rem;
     color: #202065;
-    margin: 20px 0;
 }
-
-/* .view_all_btn {
-    cursor: pointer;
-    padding: 16px 32px;
-} */
 
 .pricing_content .top button {
     border: none;
@@ -225,10 +206,7 @@
     padding: 0.5rem;
     border-radius: 5px;
     margin: 1rem 0;
-    /* width: 9rem; */
-    cursor: pointer;
-    width: 200px;
-    padding: 16px 32px;
+    width: 9rem;
 }
 
 .pricing_content .bottom {
@@ -309,10 +287,9 @@
     margin: 1.5rem auto;
     background-color: #202065;
     color: #ffffff;
-    width: 200px;
-    padding: 16px 32px;
+    width: 50%;
+    padding: 0.3rem;
     border-radius: 5px;
-    cursor: pointer;
 }
 
 .price_card .btn_area {
@@ -328,7 +305,6 @@
     border-top: 1px solid #202065;
     border-bottom: 1px solid #202065;
     padding-bottom: 4.5rem;
-    position: relative;
 }
 
 .reviews_content {
@@ -336,11 +312,6 @@
     margin: auto;
 }
 
-.reviews_content .elipse {
-    position: absolute;
-    top: -5%;
-    left: 20%;
-}
 .reviews_content .top {
     margin-bottom: 4rem;
 }
@@ -416,7 +387,6 @@
     color: #ffffff;
     padding: 0.4rem 2.5rem;
     border-radius: 5px;
-    cursor: pointer;
 }
 
 .FAQ_content div .text {
@@ -438,31 +408,10 @@
     list-style: none;
     padding: 1rem;
     width: 100%;
-
-    border-bottom: 1px solid #202065;
-    position: relative;
-}
-
-.FAQ_content div ul li .faq1 {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
-}
-
-.faq_one {
-    /* position: absolute;
-    top: 50%;
-    left: 0; */
-    display: block;
-    width: 100%;
-
-    padding: 15px 5px;
-    transition: ease all 1s;
-}
-
-.faq_one h5 {
-    margin: 10px 0px;
+    border-bottom: 1px solid #202065;
 }
 
 .FAQ_content div ul li:first-child {
@@ -484,13 +433,6 @@
         display: none;
     }
 
-    .hero_content .left .elipse {
-        display: none;
-    }
-
-    .services_container {
-        margin-top: 10rem;
-    }
     .services_content {
         width: 95%;
     }
@@ -555,9 +497,6 @@
         height: fit-content;
         row-gap: 40px;
     }
-    .hero_content .left .elipse {
-        display: none;
-    }
 
     .hero_content .left .heading {
         font-weight: 400;
@@ -610,9 +549,6 @@
 
     .learn_content .bottom h3 {
         font-size: 1.8rem;
-    }
-    .learn_content .bottom .left .elipse {
-        display: none;
     }
 
     .learn_content .bottom .boxes {
@@ -675,10 +611,6 @@
     .reviews_content .bottom {
         flex-direction: column;
         gap: 3rem;
-    }
-
-    .reviews_content .elipse {
-        display: none;
     }
 
     .FAQ_container {
