@@ -2,10 +2,14 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.dto.ApplierDto;
+import com.hydraulic.applyforme.model.response.SubmissionResponse;
 import com.hydraulic.applyforme.repository.jpa.ApplierRepo;
 import com.hydraulic.applyforme.service.ApplierService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +29,21 @@ public class ApplierServiceImpl implements ApplierService {
                 .map(user->this.applierToDto(user)).collect(Collectors.toList());
         return applierDto;
     }
+
+    @Override
+    public SubmissionResponse getApplicants(int pageNo, int pageSize, String q) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        Page<Applier> submission =  repository.getStuffs(pageable,q);
+        SubmissionResponse submissionResponse = new SubmissionResponse();
+        submissionResponse.setContent(submission.getContent());
+        submissionResponse.setPageNo(submission.getNumber());
+        submissionResponse.setPageSize(submission.getSize());
+        submissionResponse.setTotalElements(submission.getTotalElements());
+        submissionResponse.setTotalPages(submission.getTotalPages());
+        submissionResponse.setLast(submission.isLast());
+        return submissionResponse;
+    }
+
     private ApplierDto applierToDto(Applier applier) {
 
         ApplierDto applierDto = this.modelMapper.map(applier, ApplierDto.class);
