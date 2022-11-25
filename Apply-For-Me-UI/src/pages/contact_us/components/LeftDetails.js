@@ -1,6 +1,6 @@
 import React from 'react';
-import operator from "../operator.png";
-import mail from "../mail.png";
+import operator from "../img/operator.png";
+import mail from "../img/mail.png";
 import "./ContactStyle.css";
 
 const LeftDetails = () => {
@@ -21,7 +21,7 @@ const LeftDetails = () => {
 
             </p>
 
-            <a href="https://www.info@afm.com"><img src={mail} className="img-icon"/><span>info@afm.com</span></a>
+            <a href="email:info@afm.com"><img src={mail} className="img-icon"/><span>info@afm.com</span></a>
 
         </div>
       

@@ -7,18 +7,14 @@
     margin-right: 10px;
 }
 
-
-.buttons{
-    margin-top: 200px;
+h1{
+    font-size: 1.5em;
+    color: #141662;
 }
-.icon{
-    width: 15px;
-    height: 15px;
+p{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-
-
-
-   
 
 /* form styling */
 
@@ -33,31 +29,23 @@
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 10px;
-    
 }
 
 .form-first-line{
     display: flex;
-    flex-wrap: wrap;
     
-    
-}
-.first-line-2{
-    margin-left: 10px;
 }
 .first-line-1 ,.first-line-2{
     flex: 1;
 
 
 }
-
 .first-line-2{
     margin-left: 20px;
 }
 .form-fifth-line{
     margin-bottom: 20px;
     margin-top: 20px;
-    width: 100%;
 }
 
 .privacy{
@@ -84,7 +72,7 @@ label{
 }
 textarea{
     
-    font-size: 1em;
+    font-size: 1.5em;
     background-color: white;
     resize:none;
     
@@ -107,8 +95,15 @@ textarea:focus{
 }
 .contact-mid{
     width: 100%;
+    display: flex;
+}
+@media screen and (max-width:1100px) and (min-width:760px) {
+    .form-body{
+        margin-left: 0;
+    }
 }
 @media screen and (max-width:768px) {
+
     .first-line-2{
         margin-left: 0;
     }
@@ -117,9 +112,6 @@ textarea:focus{
         flex-wrap: wrap;
         
         
-    }
-    .form-second-line,.form-third-line, .form-fourth-line, .form-fifth-line{
-        flex: 1;
     }
     
 }
@@ -162,18 +154,8 @@ textarea:focus{
     }
     
 }
-
-
-
-h3{
-    margin: 0;
-}
-
-
-@media screen and (max-width:481px) {
-
     
-}
+
 /* contact page general styling */
 
 .contact .contact-mid{
@@ -261,47 +243,3 @@ h3{
 .top-tier img{
     margin-bottom: 40px;
 }
-
-
-.details p{
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-h1{
-    font-size: 1.5em;
-    color: #141662;
-}
-
-@media screen and (max-width:1078px) and (min-width:790px) {
-  .form-details{
-    margin-left: 0;
-
-  }
-  .contact-mid{
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  .first-line-2{
-    margin-left: 0;
-  }
-}
-@media screen and (max-width: 1378px){
-    .first-line-2{
-        margin-left:0;
-    }
-}
-@media screen and (max-width:550px) and (min-width:480px) {
-    .first-line-2{
-        margin-left: 10px;
-    }
-}
-@media screen and (max-width:900px) and (min-width:750px) {
-    .form{
-        margin-right: 0;
-    }
-    .contact-mid{
-        padding: 40px;
-    }
-}
-
-/*  */
