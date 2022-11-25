@@ -1,19 +1,17 @@
 import React from "react";
+import ContactUsForm from "./components/ContactUsForm";
 import LeftDetails from "./components/LeftDetails";
-
-
 import "./components/ContactStyle.css";
 import Nav from "../../components/nav/Nav";
 import Footer from "../../components/footer/Footer";
-import ContactUsForm from "./components/ContactUsForm";
 
 
 const ContactUs = () => {
     return (
         <div className="contact">
-        
-            <Nav/>
           
+            <Nav/>
+        
     
     
     
@@ -31,6 +29,14 @@ const ContactUs = () => {
           <Footer/>
          
     
+         {/* <div className="copyright">
+            <p>2022 ApplyForMe. All rights reserved</p>
+    
+            <p>Cookie Policy</p>
+            <p>Terms of Service</p>
+            <p>Cookie Setting</p>
+    
+         </div> */}
     
     
     
