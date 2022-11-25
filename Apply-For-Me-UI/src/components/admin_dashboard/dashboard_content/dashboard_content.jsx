@@ -1,6 +1,6 @@
 import './dashboard_content.css';
 import { RR_Admin_list } from './RR_admin_list/RR_admin_list';
-export const DashboardContent=()=>{
+export const DashboardContent=({inputSearchValue})=>{
     return(
         <>
         <div className="applicantsContainer">
@@ -9,7 +9,7 @@ export const DashboardContent=()=>{
                 <h2>Statistical</h2>
                 <select style={{background:"whitesmoke"}} name="statistic_sorter" id="statistic_sorter">
                     <option value="oldest">Today, 16th Nov. 2022</option>
-                    <option value="newest">Today, 16th Nov. 2021</option>
+                    <option value="newest">Today, 17th Nov. 2021</option>
                 </select>
             </div>
             <div className='overflow' >
@@ -28,7 +28,7 @@ export const DashboardContent=()=>{
                     </div>
                 </div>
             </div>
-            <RR_Admin_list/>
+            <RR_Admin_list inputSearchValue={inputSearchValue}/>
             </div>
         </>
     )

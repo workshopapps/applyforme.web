@@ -3,7 +3,7 @@ import "./Button.css"
 
 const Button = (props) => {
     return (
-        <label>
+        <label className='button_label'>
             <input type="submit" name="submit" value={props.child} className="btn"/>
         </label>
         )

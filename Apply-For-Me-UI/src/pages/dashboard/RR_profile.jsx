@@ -5,21 +5,15 @@ import UsersPage from "../users_page/UsersPage";
 import { getActivePage } from "./service/DashbaordService";
 
 const Dashboard = () => {
-    const [page, setPage] = useState({
-        dashboardPage: true,
-        userPage: false
-    });
     
     const handlePageSwitch = data => {
         setPage(getActivePage(data));
     };
 
-    const [dashboardsearchParams, dashboardSetSearchParams] = useState('');
-
     return (
         <div>
-            <DashboardHeader func={handlePageSwitch} setInputSearchValue={dashboardSetSearchParams} />
-            {page.dashboardPage ? <DashBoardPage inputSearchValue={dashboardsearchParams} />: <UsersPage/> }
+            <RR func={handlePageSwitch} setInputSearchValue={dashboardSetSearchParams} />
+            <UsersPage/>
         </div>
     );
 };
