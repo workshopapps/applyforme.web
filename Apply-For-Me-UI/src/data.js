@@ -1,7 +1,7 @@
 const myApplicationData = [
     {
         id: 1,
-        image: './images/figma-logo.svg',
+        image: '../images/figma-logo.svg',
         title: 'Front-end Dev',
         description: 'Figma',
         type: 'Remote',
@@ -9,7 +9,7 @@ const myApplicationData = [
     },
     {
         id: 2,
-        image: './images/instagram-logo.svg',
+        image: '../images/instagram-logo.svg',
         title: 'UI/UX Designer',
         description: 'Instagram',
         type: 'Full-Time',
@@ -17,7 +17,7 @@ const myApplicationData = [
     },
     {
         id: 3,
-        image: './images/web.svg',
+        image: '../images/web.svg',
         title: 'Web Designer',
         description: 'Globex',
         type: 'Remote',
@@ -25,7 +25,7 @@ const myApplicationData = [
     },
     {
         id: 4,
-        image: './images/pinterest-logo.svg',
+        image: '../images/pinterest-logo.svg',
         title: 'Visual Designer',
         description: 'Pinterest',
         type: 'Full-Time',
@@ -33,7 +33,7 @@ const myApplicationData = [
     },
     {
         id: 5,
-        image: './images/google-logo.svg',
+        image: '../images/google-logo.svg',
         title: 'Product Designer',
         description: 'Google',
         type: 'Full-Time',
@@ -41,7 +41,7 @@ const myApplicationData = [
     },
     {
         id: 6,
-        image: './images/google-logo.svg',
+        image: '../images/google-logo.svg',
         title: 'Product Designer',
         description: 'Google',
         type: 'Full-Time',
@@ -49,7 +49,7 @@ const myApplicationData = [
     },
     {
         id: 7,
-        image: './images/google-logo.svg',
+        image: '../images/google-logo.svg',
         title: 'Product Designer',
         description: 'Google',
         type: 'Full-Time',
@@ -57,7 +57,7 @@ const myApplicationData = [
     },
     {
         id: 8,
-        image: './images/google-logo.svg',
+        image: '../images/google-logo.svg',
         title: 'Product Designer',
         description: 'Google',
         type: 'Full-Time',
@@ -65,7 +65,7 @@ const myApplicationData = [
     },
     {
         id: 9,
-        image: './images/google-logo.svg',
+        image: '../images/google-logo.svg',
         title: 'Product Designer',
         description: 'Google',
         type: 'Full-Time',

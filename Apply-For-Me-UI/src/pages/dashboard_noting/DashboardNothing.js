@@ -1,7 +1,12 @@
+import Body from "components/Body";
 import React from "react";
 
 const DashboardNothing = () => {
-    return <div>Nothinhg to see here</div>;
+    return (
+    <div className='dashboard'>
+        <Body />
+      </div>
+    );
 };
 
 export default DashboardNothing;

@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import './App.css';
 import LandingPage from "./pages/landing_page/LandingPage";
 import AboutUs from "./pages/about_us/AboutUs";
 import FAQs from "./pages/faqs/FAQs";

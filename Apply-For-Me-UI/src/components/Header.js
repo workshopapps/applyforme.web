@@ -10,8 +10,8 @@ function Header() {
         <p>{params?.newuser === 'newuser' ? 'Let’s get started ' : 'Here’s an overview for you'}</p>
       </div>
       <div className='header-profile'>
-        <img src="./images/bell-icon.svg" alt="" />
-        <img src="./images/profile-img.svg" alt="" />
+        <img src="../images/bell-icon.svg" alt="" />
+        <img src="../images/profile.svg" alt="" />
       </div>
     </div>
   )
