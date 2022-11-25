@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 
 const Registration = () => {
     const ref = useRef();
+    const handleNation = event => {
+        event.preventDefault();
+    };
     return (
         <div className="Registration">
             <div className="reg">
@@ -19,7 +22,7 @@ const Registration = () => {
                         child="Please fill in this necessary information"
                     />
                     <Text2 child="Complete your registration" />
-                    <div className="form">
+                    <form className="form" onSubmit={e => handleNation(e)}>
                         <div className="select-wrapper">
                             <select
                                 className="registration_select"
@@ -29,10 +32,10 @@ const Registration = () => {
                                 <option value="" disabled selected hidden>
                                     Nationality
                                 </option>
-                                <option value="volvo">Option1</option>
-                                <option value="saab">Option2</option>
-                                <option value="opel">Option3</option>
-                                <option value="audi">Option4</option>
+                                <option value="ng">Nigeria</option>
+                                <option value="tg">Togo</option>
+                                <option value="cd">Chad</option>
+                                <option value="br">Brazil</option>
                             </select>
                         </div>
                         <div className="select-wrapper">
@@ -44,10 +47,10 @@ const Registration = () => {
                                 <option value="" disabled selected hidden>
                                     Country of residence
                                 </option>
-                                <option value="volvo">Option1</option>
-                                <option value="saab">Option2</option>
-                                <option value="opel">Option3</option>
-                                <option value="audi">Option4</option>
+                                <option value="ng">Nigeria</option>
+                                <option value="tg">Togo</option>
+                                <option value="cd">Chad</option>
+                                <option value="br">Brazil</option>
                             </select>
                         </div>
                         <label>
@@ -72,16 +75,18 @@ const Registration = () => {
                                 <option value="" disabled selected hidden>
                                     Job title
                                 </option>
-                                <option value="volvo">Option1</option>
-                                <option value="saab">Option2</option>
-                                <option value="opel">Option3</option>
-                                <option value="audi">Option4</option>
+                                <option value="volvo">
+                                    FrontEnd Software Engineer
+                                </option>
+                                <option value="saab">Audict Analyst</option>
+                                <option value="opel">Data Scienctist</option>
+                                <option value="audi">Ui/Ux Design</option>
                             </select>
                         </div>
-                    </div>
-                    <Link to="/wel2" className="lg">
-                        <Button child="Continue" />
-                    </Link>
+                        <Link to="/wel2" className="lg">
+                            <Button child="Continue" />
+                        </Link>
+                    </form>
                 </div>
             </div>
         </div>
