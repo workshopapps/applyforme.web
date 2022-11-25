@@ -1,38 +1,56 @@
 import styles from "../CreateProfile.module.css";
 import classes from "./JobSearch.module.css";
-import file from "../../assets/file.png";
-import Input from "../../InputField/InputField";
-import { useState } from "react";
-const JobSearch = () => {
-    const [jobtitle, setJobTitle] = useState("");
-    const [city, setCity] = useState("");
-    function handleJobInputChange(e) {
-        setJobTitle(e.target.value);
-    }
-    function handleCityInputChange(e) {
-        setCity(e.target.value);
-    }
+// import file from "../../assets/file.png";
+// import Input from "../../InputField/InputField";
+import Dropdown from "../../Dropdown/Dropdown";
+import { useState, useEffect } from "react";
+
+const JobSearch = ({ formData, setFormData }) => {
+    // eslint-disable-next-line no-unused-vars
+    const [countries, setCountries] = useState();
+    const countrynames = countries?.map(onecountry => ({
+        label: onecountry.title,
+        value: onecountry.title
+    }));
+    const countryNames = countrynames?.reverse();
+    console.log(countryNames);
+    useEffect(() => {
+        fetch(
+            "https://official-volunux.uc.r.appspot.com/api/v1/country/entries/all"
+        )
+            .then(response => response.json())
+            .then(data => setCountries(data));
+    }, []);
+
+    // const countryOptions = [{ label: "Job Title", value: "" }];
+
     return (
         <form className={styles.form_body}>
             <h3>Complete your desired job info and location</h3>
             <div className={classes.dropdownbox}>
-                <Input
-                    type="text"
-                    value={jobtitle}
-                    name="name"
-                    width={90}
-                    onChange={handleJobInputChange}
+                <Dropdown
+                    options={[{ label: "Job Title", value: "" }]}
+                    value={formData.job_title}
+                    onChange={e => {
+                        setFormData({
+                            ...formData,
+                            job_title: e.target.value
+                        });
+                    }}
                 />
 
                 <h5>This job title will be used to find jobs around the web</h5>
             </div>
             <div className={classes.dropdownbox}>
-                <Input
-                    type="text"
-                    value={city}
-                    name="name"
-                    width={90}
-                    onChange={handleCityInputChange}
+                <Dropdown
+                    options={countryNames}
+                    value={formData.location}
+                    onChange={e => {
+                        setFormData({
+                            ...formData,
+                            location: e.target.value
+                        });
+                    }}
                 />
 
                 <h5>Type a city or country</h5>
@@ -41,34 +59,108 @@ const JobSearch = () => {
             <div className={classes.remotecheckbox}>
                 <input
                     type="checkbox"
-                    id="isFriendly"
-                    // checked={}
+                    id="isRemote"
+                    checked={formData.isRemote}
+                    name="isRemote"
+                    onChange={e => {
+                        setFormData({
+                            ...formData,
+                            isRemote: e.target.checked
+                        });
+                    }}
                 />
-                <label htmlFor="isFriendly">I want only remote jobs</label>
+                <label htmlFor="isRemote">I want only remote jobs</label>
             </div>
             <div className={classes.detailsdropdown_box}>
                 <div>
                     <p>Experience</p>
-                    <Input type="text" name="name" width={70} />
+                    <Dropdown
+                        options={[
+                            { label: "", value: "" },
+                            { label: "No experience", value: "No experience" },
+                            { label: "Entry Level", value: "Entry level" },
+                            { label: "Mid-Level", value: "Mid-Level" },
+                            { label: "Senior Level", value: "Senior Level" }
+                        ]}
+                        value={formData.experience}
+                        onChange={e => {
+                            setFormData({
+                                ...formData,
+                                experience: e.target.value
+                            });
+                        }}
+                    />
                 </div>
                 <div>
                     <p>Employment Type</p>
-                    <Input type="text" name="name" width={70} />
+                    <Dropdown
+                        options={[
+                            { label: "", value: "" },
+                            { label: "Contract", value: "Contract" },
+                            { label: "Full-time", value: "Full-time" },
+                            { label: "Part-Time", value: "Part-time" }
+                        ]}
+                        value={formData.employment_type}
+                        onChange={e => {
+                            setFormData({
+                                ...formData,
+                                employment_type: e.target.value
+                            });
+                        }}
+                    />
                 </div>
                 <div>
                     <p>Salary Expectation</p>
-                    <Input type="text" name="name" width={70} />
+                    <Dropdown
+                        options={[
+                            { label: "", value: "" },
+                            { label: "$3,000-$5,000", value: "salary1" },
+                            { label: "$5,000-$10,000", value: "salary2" },
+                            { label: "$10,000-$15,000", value: "salary3" },
+                            { label: "$15,000-$25,000", value: "salary4" }
+                        ]}
+                        value={formData.salary_expectation}
+                        onChange={e => {
+                            setFormData({
+                                ...formData,
+                                salary_expectation: e.target.value
+                            });
+                        }}
+                    />
                 </div>
             </div>
             <div className={classes.uploadcv_box}>
                 <p>Upload your CV</p>
                 <div className={classes.draghere}>
-                    <img src={file} alt="drag" />
-                    <h6>Drag n Drop here</h6>
-                    <h6>Or</h6>
-                    <h5>Browse</h5>
+                    {/* <label htmlFor="inputTag">
+                        <img src={file} alt="drag" />
+                        <h6>Choose File To Upload</h6>
+                        <input
+                            id="inputTag"
+                            type="file"
+                            onChange={e => {
+                                setFormData({
+                                    ...formData,
+                                    cv_file: e.target.files[0]
+                                });
+                            }}
+                        />
+                    </label> */}
+                    <label htmlFor="cvUpload" className={styles.drop_container}>
+                        <input
+                            id="inputTag"
+                            type="file"
+                            onChange={e => {
+                                setFormData({
+                                    ...formData,
+                                    cv_file: e.target.files[0]
+                                });
+                            }}
+                        />
+                    </label>
                 </div>
             </div>
+            {/* <DragDropFile /> */}
         </form>
     );
 };

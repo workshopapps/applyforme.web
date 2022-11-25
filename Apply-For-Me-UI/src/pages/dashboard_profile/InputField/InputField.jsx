@@ -13,6 +13,7 @@ const InputField = ({
     <div className={styles.form_group}>
         {label && <label htmlFor="input-field">{label}</label>}
         <input
+            required
             style={{ width: `${width}%` }}
             type={type}
             value={value}
