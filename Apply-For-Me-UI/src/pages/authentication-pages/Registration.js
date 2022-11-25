@@ -21,7 +21,11 @@ const Registration = () => {
                     <Text2 child="Complete your registration" />
                     <div className="form">
                         <div className="select-wrapper">
-                            <select name="cars" id="cars">
+                            <select
+                                className="registration_select"
+                                name="cars"
+                                id="cars"
+                            >
                                 <option value="" disabled selected hidden>
                                     Nationality
                                 </option>
@@ -32,7 +36,11 @@ const Registration = () => {
                             </select>
                         </div>
                         <div className="select-wrapper">
-                            <select name="cars" id="cars">
+                            <select
+                                className="registration_select"
+                                name="cars"
+                                id="cars"
+                            >
                                 <option value="" disabled selected hidden>
                                     Country of residence
                                 </option>
@@ -56,7 +64,11 @@ const Registration = () => {
                             />
                         </label>
                         <div className="select-wrapper">
-                            <select name="cars" id="cars">
+                            <select
+                                className="registration_select"
+                                name="cars"
+                                id="cars"
+                            >
                                 <option value="" disabled selected hidden>
                                     Job title
                                 </option>
@@ -67,10 +79,10 @@ const Registration = () => {
                             </select>
                         </div>
                     </div>
+                    <Link to="/wel2" className="lg">
+                        <Button child="Continue" />
+                    </Link>
                 </div>
-                <Link to="/wel2" className="lg">
-                    <Button child="Continue" />
-                </Link>
             </div>
         </div>
     );
