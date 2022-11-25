@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landing_page/LandingPage";
 import AboutUs from "./pages/about_us/AboutUs";
@@ -42,6 +43,11 @@ import Profile from "./pages/dashboard_profile/Profile/Profile";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
 import { ProfileScreen } from "components/superAdmmin_profile/superAdmin_profileScreen";
 
+// Auth Logic
+import jwt_decode from "jwt-decode";
+import { useDispatch, useSelector } from "react-redux";
+import { userInfo } from "store/slice/UserSlice";
+
 //Authentication
 import Welcome1 from "pages/authentication-pages/Welcome1";
 import Welcome2 from "pages/authentication-pages/Welcome2";
@@ -50,8 +56,18 @@ import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
+import { useEffect, useState } from "react";
 
 function App() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (localStorage?.getItem("tokenHngKey")) {
+            let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
+            dispatch(userInfo(decoded));
+        }
+    }, []);
+
     return (
         <>
             <Routes>

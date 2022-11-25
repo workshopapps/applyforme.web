@@ -1,13 +1,25 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import classes from "./Nav.module.css";
 import Logo from "../../assets/images/nav_logo.svg";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import LightButton from "../buttons/light_button/LightButton";
+import { useDispatch, useSelector } from "react-redux";
+import { userInfo } from "store/slice/UserSlice";
 
 const Nav = () => {
     const [dropDown, setDropDown] = useState(false);
+    const { user } = useSelector(state => state.user);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem("tokenHngKey");
+        dispatch(userInfo(""));
+        navigate("/");
+    };
     return (
         <section className={classes.nav_container}>
             <nav
@@ -47,12 +59,22 @@ const Nav = () => {
                 </ul>
 
                 <div className={classes.btn_container}>
-                    <Link to="/wel2">
-                        <LightButton text="Sign in" width="127" />
-                    </Link>
-                    <Link to="/wel1">
-                        <BlueButton text="Get started" width="156" />
-                    </Link>
+                    {!user ? (
+                        <>
+                            <Link to="/wel2">
+                                <LightButton text="Sign in" width="127" />
+                            </Link>
+                            <Link to="/wel1">
+                                <BlueButton text="Get started" width="156" />
+                            </Link>
+                        </>
+                    ) : (
+                        <BlueButton
+                            text="Logout"
+                            width="156"
+                            func={handleLogout}
+                        />
+                    )}
                 </div>
             </nav>
 
@@ -113,20 +135,30 @@ const Nav = () => {
                         className={classes.btn_container__mobile}
                         style={{ display: dropDown ? "flex" : "none" }}
                     >
-                        <Link to="/wel2">
-                            <LightButton
-                                text="Sign in"
-                                width="127"
-                                func={() => setDropDown(false)}
-                            />
-                        </Link>
-                        <Link to="/wel1">
+                        {!user ? (
+                            <>
+                                <Link to="/wel2">
+                                    <LightButton
+                                        text="Sign in"
+                                        width="127"
+                                        func={() => setDropDown(false)}
+                                    />
+                                </Link>
+                                <Link to="/wel1">
+                                    <BlueButton
+                                        text="Get started"
+                                        width="156"
+                                        func={() => setDropDown(false)}
+                                    />
+                                </Link>
+                            </>
+                        ) : (
                             <BlueButton
-                                text="Get started"
+                                text="Logout"
                                 width="156"
-                                func={() => setDropDown(false)}
+                                func={handleLogout}
                             />
-                        </Link>
+                        )}
                     </div>
                 </nav>
             </div>
