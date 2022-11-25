@@ -57,12 +57,18 @@ export const removeManySalary = createAsyncThunk(
 export const updateSalaryRange = createAsyncThunk(
     "salary-range/update",
     async({values})=>{
-       const response = await axios.get(`${BAseUrl}/api/v1/salary-range/update/${values.id}`,
+        try{
+            const response = await axios.get(`${BAseUrl}/api/v1/salary-range/update/${values.id}`,
             {
             "salary_range": values.salary_range
-          }
-       );
-       return response?.data;
+        }
+        );
+        return response?.data;
+
+       
+    }catch(error){
+        console.log(error)
+    }
     }
 )
 const initialState = {
@@ -83,4 +89,4 @@ const salarySlice = createSlice({
 
 });
 export const salaryActions = salarySlice.actions;
-export default students_Slice;
+export default salarySlice;
