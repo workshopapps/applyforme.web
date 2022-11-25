@@ -113,16 +113,20 @@ const Nav = () => {
                         className={classes.btn_container__mobile}
                         style={{ display: dropDown ? "flex" : "none" }}
                     >
-                        <LightButton
-                            text="Sign in"
-                            width="127"
-                            func={() => setDropDown(false)}
-                        />
-                        <BlueButton
-                            text="Get started"
-                            width="156"
-                            func={() => setDropDown(false)}
-                        />
+                        <Link to="/wel2">
+                            <LightButton
+                                text="Sign in"
+                                width="127"
+                                func={() => setDropDown(false)}
+                            />
+                        </Link>
+                        <Link to="/wel1">
+                            <BlueButton
+                                text="Get started"
+                                width="156"
+                                func={() => setDropDown(false)}
+                            />
+                        </Link>
                     </div>
                 </nav>
             </div>
