@@ -8,7 +8,6 @@ public interface CountryRepository {
 
     List<Country> getAll();
     List<Country> getAll(Integer pageOffset);
-
     Country getOne(Long id);
 
     Country saveOne(Country country);

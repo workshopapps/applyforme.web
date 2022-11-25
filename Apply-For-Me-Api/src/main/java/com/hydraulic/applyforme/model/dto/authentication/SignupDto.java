@@ -4,13 +4,16 @@ import com.hydraulic.applyforme.annotation.PhoneNumberConstraint;
 import lombok.*;
 
 import javax.validation.constraints.*;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignupDto {
+public class SignupDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @NotNull(message = "{member.firstName.notNull}")
     private String firstName;
