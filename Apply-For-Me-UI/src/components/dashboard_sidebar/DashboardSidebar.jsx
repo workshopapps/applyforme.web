@@ -11,7 +11,7 @@ import mobileApplicationsIcon from "../../assets/images/bottomnav-applications-i
 import { useGlobalContext } from "../../hooks/context";
 
 import { getActiveLink } from "./service/DashboardSidebarService";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const DashboardSidebar = () => {
     const [activeLink, setActiveLink] = useState({
@@ -22,7 +22,7 @@ const DashboardSidebar = () => {
         messages: false,
         help: false
     });
-
+    const navigate = useNavigate();
     const handleAciveLink = link => {
         setActiveLink(() => getActiveLink(link));
     };
@@ -60,7 +60,7 @@ const DashboardSidebar = () => {
         <>
             <section className={classes.sidebar_container}>
                 <ul>
-                    <li>
+                    <li onClick={() => navigate("/")}>
                         <img src={Logo} alt="Footer logo" />
                     </li>
                     {userRole === "user" &&
