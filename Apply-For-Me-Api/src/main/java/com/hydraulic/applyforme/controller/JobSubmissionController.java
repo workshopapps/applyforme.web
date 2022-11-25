@@ -40,8 +40,9 @@ public class JobSubmissionController {
             @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
         return service.filterJobSubmission(pageNo, pageSize, sortBy, sortDir, q);
     }
-    @GetMapping("/view_submission/{submissionId}")
-    public SubmissionDto viewSubmissionDetails(@PathVariable Long professionalId, @PathVariable("submissionId") Long submissionId){
+    @GetMapping("/view_submission/{professionalId}/{submissionId}")
+    public SubmissionDto viewSubmissionDetails(@PathVariable(name ="professionalId") Long professionalId,
+                                               @PathVariable(name ="submissionId") Long submissionId){
         return service.getSubmissionDetails(professionalId,submissionId);
     }
 }
