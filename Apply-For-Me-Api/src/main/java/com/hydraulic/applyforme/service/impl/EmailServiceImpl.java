@@ -22,6 +22,7 @@ import java.io.UnsupportedEncodingException;
 @Service
 public class EmailServiceImpl implements EmailService {
     private MemberJpaRepository memberJpaRepository;
+
     private MemberSecretJpaRepository memberSecretJpaRepository;
 
     @Autowired
@@ -36,7 +37,7 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendWelcomeMessage(String emailAddress) {
         Member member = memberJpaRepository.findByEmailAddress(emailAddress);
-        String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
                 " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"/\" /></a>" +
@@ -54,17 +55,19 @@ public class EmailServiceImpl implements EmailService {
                 "</div>";
 
         String subject = "Welcome to ApplyForMe";
-
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-            helper.setTo(member.getEmailAddress());
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom("hngteamhydraulic@gmail.com");
+            helper.setTo(emailAddress);
             helper.setSubject(subject);
-            helper.setText(messageSource, true);
-            javaMailSender.send(msg);
-        } catch (MessagingException ex2) {
-            System.out.println("sendWelcomeMessage: " + ex2.getMessage());
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            throw new EmailDeliveryException();
         }
+
+
     }
 
     @Async
@@ -72,7 +75,7 @@ public class EmailServiceImpl implements EmailService {
     public void signupVerification(String emailAddress) {
         String token = createVerificationToken();
 
-        String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
                 " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"\" /></a>" +
@@ -87,17 +90,19 @@ public class EmailServiceImpl implements EmailService {
                 "</div>" +
                 "</div>";
         String subject = "Sign up verification";
-
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom("hngteamhydraulic@gmail.com");
             helper.setTo(emailAddress);
             helper.setSubject(subject);
-            helper.setText(messageSource, true);
-            javaMailSender.send(msg);
-        } catch (Exception exception) {
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
             throw new EmailDeliveryException();
         }
+
+
     }
 
     @Override
@@ -112,7 +117,11 @@ public class EmailServiceImpl implements EmailService {
         String token = createVerificationToken();
         link += token;
 
-        String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+
+
+        String subject = "Reset Password";
+
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
                 " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"\" /></a>" +
@@ -131,17 +140,18 @@ public class EmailServiceImpl implements EmailService {
                 "</div>" +
                 "</div>";
 
-        String subject = "Reset Password Link";
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            helper.setFrom("hngteamhydraulic@gmail.com");
             helper.setTo(recipientEmail);
             helper.setSubject(subject);
-            helper.setText(messageSource, true);
-            javaMailSender.send(msg);
-        } catch (Exception exception) {
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
             throw new EmailDeliveryException();
         }
+
     }
 
     @Override
@@ -152,7 +162,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void sendSignUpVerificationEmail(String emailAddress, String memberCode){
-        String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
                 " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"\" /></a>" +
@@ -170,15 +180,17 @@ public class EmailServiceImpl implements EmailService {
 
         String subject = "Sign Up Verification Code";
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            helper.setFrom("hngteamhydraulic@gmail.com");
             helper.setTo(emailAddress);
             helper.setSubject(subject);
-            helper.setText(messageSource, true);
-            javaMailSender.send(msg);
-        } catch (Exception exception) {
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
             throw new EmailDeliveryException();
         }
+
 
     }
 
@@ -195,8 +207,6 @@ public class EmailServiceImpl implements EmailService {
         else {
             readPrivacyPolicyStatus = "Privacy policy not read";
         }
-        MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
 
         String subject = "Contact Us Message Details";
 
@@ -221,12 +231,15 @@ public class EmailServiceImpl implements EmailService {
                 "</div>";
 
         try {
-            helper.setFrom(senderEmailAddress, "sender");
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+
+            helper.setFrom(senderEmailAddress);
             helper.setTo("hngteamhydraulic@gmail.com");
             helper.setSubject(subject);
             helper.setText(content, true);
             javaMailSender.send(message);
-        } catch (MessagingException | UnsupportedEncodingException e) {
+        } catch (MessagingException e) {
             throw new EmailDeliveryException();
         }
     }
@@ -239,7 +252,7 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendResetPasswordCode(String recipientEmail, String code) {
 
-        String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
                 " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"\" /></a>" +
@@ -260,15 +273,17 @@ public class EmailServiceImpl implements EmailService {
 
         String subject = "Reset Password Code";
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            helper.setFrom("hngteamhydraulic@gmail.com");
             helper.setTo(recipientEmail);
             helper.setSubject(subject);
-            helper.setText(messageSource, true);
-            javaMailSender.send(msg);
-        } catch (Exception exception) {
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
             throw new EmailDeliveryException();
         }
+
     }
 
 }
