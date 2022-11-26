@@ -12,10 +12,9 @@
 }
 
 .dashboard-index-header h1 {
-    margin-bottom: 20px;
     font-weight: 700;
     font-size: 32px;
-    line-height: 15px;
+    line-height: 40px;
     color: #2E3192;
 }
 
@@ -74,7 +73,7 @@
     }
     .dashboard-index-header h1 {
         font-size: 18px;
-        line-height: 15px;
+        line-height: 20px;
         margin-right: 20px;
     }
     .dashboard-index-header p {
@@ -85,9 +84,6 @@
     .dashboard-index-header__header-profile {
         display: flex;
         align-items: center;
-    }
-    .dashboard-index-header__header-profile img:first-child {
-        display: none;
     }
     .dashboard-index-header__header-profile img:last-child {
         width: 45px;

@@ -1,27 +1,38 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useRef, useState } from 'react'
 import myApplicationData from '../data'
 
 function MyApplications() {
-  const data = myApplicationData
-  const params = useParams()
-  if (params?.newuser === 'newuser') {
+  const messagesEndRef = useRef(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  const [seeMore, setSeeMore] = useState(false)
+  const [dataToShow, setDataToShow] = useState(myApplicationData.slice(0, 5))
+
+  const handleClick = () => {
+    if (!seeMore) {
+      setSeeMore(true)
+      setDataToShow(myApplicationData)
+      scrollToBottom()
+    } else {
+      setSeeMore(false)
+      setDataToShow(myApplicationData.slice(0, 5))
+      scrollToBottom()
+    }
+  }
+
     return (
-      <div className='newuser'>
-        <p>Nothing to see here <button>Create a job profile <img src="./images/plus-icon.svg" alt="" /></button> to get started </p>
-      </div>
-    )
-  } else {
-    return (
-      <div className='container'>
+      <div className='dashboard__container' ref={messagesEndRef}>
         <div className='myapplication'>
           <div className="myapplication-head">
           <p>My Applications</p>
-          <p>See all</p>
+          <p onClick={handleClick}>{!seeMore ? 'See all' : 'See less'}</p>
           </div>
           <div className='applications'>
           {
-            data?.map((item, i) => <div className={item?.id > 5 ? 'hide application' : 'application'} key={i}>
+            dataToShow?.map((item, i) => <div className='application' key={i}>
               <div className='application-title'>
                 <div className="img-div"><img src={item?.image} alt="" /></div>
                 <div>
@@ -40,6 +51,5 @@ function MyApplications() {
       </div>
     )
   }
-}
 
 export default MyApplications
