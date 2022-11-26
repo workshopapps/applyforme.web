@@ -2,11 +2,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BaseUrl = "";
+const BaseUrl = "https://official-volunux.uc.r.appspot.com";
+
 
 const initialState = {
-    user: "",
-    isLoading: false
+
+    
+
+    user: '',
+
+isLoading: false
 };
 
 const UserSlice = createSlice({
@@ -21,14 +26,14 @@ const UserSlice = createSlice({
     extraReducers(builder) {
         builder
             .addCase(postUserAuth.pending, (state, { payload }) => {
-                state.loading = true;
+                state.isLoading = true;
             })
             .addCase(postUserAuth.fulfilled, (state, { payload }) => {
                 state.user = payload;
-                state.loading = false;
+                state.isLoading = false;
             })
             .addCase(postUserAuth.rejected, (state, { payload }) => {
-                state.loading = false;
+                state.isLoading = false;
                 state.error = payload;
             });
     }
@@ -45,6 +50,20 @@ export const postUserAuth = createAsyncThunk(
         }
     }
 );
+
+export const ForgetPassword = createAsyncThunk(
+    "post/password",
+    async(values)=>{
+        try{
+            const response = await axios.get(`${BaseUrl}/api/v1/auth/forgot-password,`,{
+                "email_address": values.email
+          });
+           return response?.data;
+        }catch(error){
+        console.log(error)
+    }
+    }
+)
 
 export const { userInfo } = UserSlice.actions;
 export default UserSlice.reducer;
