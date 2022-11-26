@@ -1,7 +1,9 @@
 import React from "react";
+
 import CareerForm from "./components/CareerForm";
 import HeroSection from "./components/HeroSection";
 import JobOpenings from "./components/JobOpenings";
+import Footer from "./components/Footer";
 
 import Nav from "./components/Nav";
 import Principles from "./components/Principles";
@@ -16,6 +18,7 @@ const CareerPage = () => {
             <JobOpenings />
             <Testimonials />
             <CareerForm />
+            <Footer />
         </React.Fragment>
     );
 };
