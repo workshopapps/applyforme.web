@@ -21,5 +21,5 @@ public class UpdateMemberRepositoryImpl implements UpdateMemberRepository {
 
     public Member updateOne(Member body) {
         return entityManager.merge(body);
+        }
     }
-}

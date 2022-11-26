@@ -31,6 +31,9 @@ public class SecurityConfiguration {
     @Autowired
     private JwtTokenFilter tokenFilter;
 
+    @Autowired
+    private JwtAuthenticationProvider authenticationProvider;
+
     @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -41,12 +44,8 @@ public class SecurityConfiguration {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/v1/sign-in").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/v1/sign-up").permitAll()
-                .antMatchers(HttpMethod.GET).anonymous()
-                .antMatchers(HttpMethod.POST).anonymous()
-                .antMatchers(HttpMethod.PUT).anonymous()
-                .antMatchers(HttpMethod.DELETE).anonymous()
+                .antMatchers(HttpMethod.POST, "/api/v1/auth/sign-in").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/auth/sign-up").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
@@ -74,7 +73,7 @@ public class SecurityConfiguration {
     @Bean
     public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        authenticationManagerBuilder.authenticationProvider(authenticationProvider);
         return authenticationManagerBuilder.build();
     }
 
