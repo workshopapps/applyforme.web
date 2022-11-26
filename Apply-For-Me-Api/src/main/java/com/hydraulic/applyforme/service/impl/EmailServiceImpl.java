@@ -28,9 +28,11 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public EmailServiceImpl(MemberJpaRepository memberJpaRepository, MemberSecretJpaRepository memberSecretJpaRepository) {
+
+    public EmailServiceImpl(MemberJpaRepository memberJpaRepository, MemberSecretJpaRepository memberSecretJpaRepository, JavaMailSender mailSender) {
         this.memberJpaRepository = memberJpaRepository;
         this.memberSecretJpaRepository = memberSecretJpaRepository;
+        this.javaMailSender = mailSender;
     }
 
     @Async
@@ -281,6 +283,7 @@ public class EmailServiceImpl implements EmailService {
             helper.setText(content, true);
             javaMailSender.send(message);
         } catch (MessagingException e) {
+
             throw new EmailDeliveryException();
         }
 
