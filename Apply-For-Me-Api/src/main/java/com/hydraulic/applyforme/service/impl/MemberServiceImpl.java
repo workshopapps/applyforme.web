@@ -70,7 +70,7 @@ public class MemberServiceImpl implements MemberService {
         member = modelMapper.map(body, Member.class);
 
         member.addRole(existingRole.get());
-        member.setPassword(passwordEncoder.encode(body.getPassword()));
+        member.setPassword(body.getPassword());
 
         repository.saveOne(member);
         return member;
