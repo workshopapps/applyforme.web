@@ -2,7 +2,7 @@ package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.member.UpdateMemberDto;
-import com.hydraulic.applyforme.service.UpdateMemberService;
+import com.hydraulic.applyforme.service.MemberService;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -12,17 +12,16 @@ import org.springframework.web.bind.annotation.*;
         value = "member",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
-public class UpdateMemberController {
+public class MemberController {
 
-    private UpdateMemberService service;
+    private MemberService service;
 
-    public UpdateMemberController(UpdateMemberService memberService) {
-        this.service = memberService;
+    public MemberController(MemberService service) {
+        this.service = service;
     }
 
     @PutMapping("/update/{id}")
-    public Member update(@Validated @RequestBody UpdateMemberDto body, @PathVariable(name = "id") Long id){
+    public Member update(@PathVariable(name = "id") Long id, @Validated @RequestBody UpdateMemberDto body) {
         return service.update(id, body);
     }
 }
-

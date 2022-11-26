@@ -1,4 +1,4 @@
-package com.hydraulic.applyforme.model.response;
+package com.hydraulic.applyforme.model.response.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,22 +7,14 @@ import lombok.Setter;
 
 import java.util.Collection;
 
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Getter
 @Setter
-public class SubmissionResponse {
+public class ApplyForMeResponse {
 
     private Collection<?> content;
-
     private int pageNo;
-
     private int pageSize;
-
     private long totalElements;
-
     private int totalPages;
-
     private boolean last;
 }
-
