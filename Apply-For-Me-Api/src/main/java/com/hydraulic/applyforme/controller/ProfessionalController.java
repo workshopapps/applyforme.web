@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.service.ProfessionalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,5 @@ public class ProfessionalController {
     }
 
     @GetMapping("/detail/{id}")
-    public Professional findOne(@PathVariable(name ="id") Long id) {
-        return service.findOne(id);
-    }
+    public Professional findOne(@PathVariable(name = "id") Long id) {return service.findOne(id);}
 }
