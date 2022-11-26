@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landing_page/LandingPage";
 import AboutUs from "./pages/about_us/AboutUs";
@@ -40,8 +41,33 @@ import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
 import Profile from "./pages/dashboard_profile/Profile/Profile";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
+import { ProfileScreen } from "components/superAdmmin_profile/superAdmin_profileScreen";
+
+// Auth Logic
+import jwt_decode from "jwt-decode";
+import { useDispatch, useSelector } from "react-redux";
+import { userInfo } from "store/slice/UserSlice";
+
+//Authentication
+import Welcome1 from "pages/authentication-pages/Welcome1";
+import Welcome2 from "pages/authentication-pages/Welcome2";
+import Verification from "pages/authentication-pages/Verification";
+import Password from "pages/authentication-pages/Password";
+import NewPass from "pages/authentication-pages/NewPass";
+import Registration from "pages/authentication-pages/Registration";
+import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
+import { useEffect, useState } from "react";
 
 function App() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (localStorage?.getItem("tokenHngKey")) {
+            let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
+            dispatch(userInfo(decoded));
+        }
+    }, []);
+
     return (
         <>
             <Routes>
@@ -65,6 +91,15 @@ function App() {
                     element={<Checkout {...formData} />}
                 />
                 <Route exact path="/user-page" element={<Dashboard />} />
+                <Route
+                    path="/superAdminProfile"
+                    element={<ProfileScreen />}
+                ></Route>
+                <Route
+                    exact
+                    path="/reverseRecruiterAdmin/:id"
+                    element={<RR_admin_profile />}
+                />
                 <Route exact path="blog" element={<Blog />} />
                 <Route
                     exact
@@ -105,6 +140,12 @@ function App() {
                     <Route index element={<Applications />} />
                     <Route path=":jobId" element={<JobDescription />} />
                 </Route>
+                <Route exact path="/wel1" element={<Welcome1 />} />
+                <Route exact path="/reg" element={<Registration />} />
+                <Route exact path="/wel2" element={<Welcome2 />} />
+                <Route exact path="/pass" element={<Password />} />
+                <Route exact path="/veri" element={<Verification />} />
+                <Route exact path="/nwpass" element={<NewPass />} />
 
                 <Route path="*" element={<Error />} />
             </Routes>
