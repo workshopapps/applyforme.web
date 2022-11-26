@@ -23,19 +23,19 @@ const Nav = () => {
                         >
                             <ul>
                                 <li>
-                                    <a href="/">About us</a>
+                                    <a href="/about">About us</a>
                                 </li>
                                 <li>
-                                    <a href="/">Pricing plan</a>
+                                    <a href="/pricing">Pricing plan</a>
                                 </li>
                                 <li>
-                                    <a href="/">Blog</a>
+                                    <a href="/blog/2">Blog</a>
                                 </li>
                                 <li>
-                                    <a href="/">FAQs</a>
+                                    <a href="/faqs">FAQs</a>
                                 </li>
                                 <li>
-                                    <a href="/">Contact us</a>
+                                    <a href="/contact">Contact us</a>
                                 </li>
                             </ul>
                             {/* display only on mobile */}

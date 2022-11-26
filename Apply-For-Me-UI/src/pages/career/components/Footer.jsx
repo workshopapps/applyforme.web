@@ -8,7 +8,6 @@ import Instagram from "../../../assets/images/footer_instagram_logo.svg";
 import Twitter from "../../../assets/images/footer_twitter_logo.svg";
 import Youtube from "../../../assets/images/footer_youtube_logo.svg";
 import GoogleDownload from "../../../assets/images/google_play_download.svg";
-import "../../../";
 
 const Footer = () => {
     return (
