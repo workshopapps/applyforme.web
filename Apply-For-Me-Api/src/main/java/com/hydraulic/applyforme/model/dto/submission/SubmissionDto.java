@@ -8,8 +8,8 @@ import java.util.Date;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Builder
 public class SubmissionDto {
 

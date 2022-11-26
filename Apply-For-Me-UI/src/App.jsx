@@ -37,7 +37,8 @@ function App() {
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
                 <Route exact path="/pricing" element={<PricingPlan />} />
-                <Route exact path="/user-page" element={<Dashboard />} />
+                <Route exact path="/adminDashboard-page" element={<Dashboard />} />
+                <Route exact path="/adminProfile-page" element={<ProfileScreen />} />
                 <Route exact path="blog" element={<Blog />} />
                 <Route exact path="/blog/questions" element={<BestQuestions />} />
                 <Route exact path="/blog/skills" element={<Skills />} />
