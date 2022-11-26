@@ -70,7 +70,7 @@ const myApplicationData = [
         description: 'Google',
         type: 'Full-Time',
         time: '2 weeks ago'
-    }
+    },
 ]
 
 export default myApplicationData
