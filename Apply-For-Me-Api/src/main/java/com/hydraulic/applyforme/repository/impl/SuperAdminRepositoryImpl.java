@@ -2,6 +2,8 @@ package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.exception.ApplyForMeDuplicateEntityException;
+import com.hydraulic.applyforme.model.domain.Role;
+import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.repository.SuperAdminRepository;
 import org.springframework.stereotype.Repository;
 
@@ -44,9 +46,11 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
 
     @Override
     public Member viewAdminDetails(Long id) {
-        return entityManager.find(Member.class, id);
-//        Query query = entityManager.createQuery("select m from Member m where m.id in (:ids)");
-//        query.setParameter("ids", id);
-//        return query.executeUpdate() > 0;
+        Member member = entityManager.find(Member.class, id);
+
+        if (member == null) {
+            throw new MemberNotFoundException(id);
+        }
+        return member;
     }
 }

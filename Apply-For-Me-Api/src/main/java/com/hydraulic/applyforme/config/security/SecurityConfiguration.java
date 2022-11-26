@@ -31,6 +31,9 @@ public class SecurityConfiguration {
     @Autowired
     private JwtTokenFilter tokenFilter;
 
+    @Autowired
+    private JwtAuthenticationProvider authenticationProvider;
+
     @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -41,13 +44,9 @@ public class SecurityConfiguration {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/v1/sign-in").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/v1/sign-up").permitAll()
-                .antMatchers(HttpMethod.GET).anonymous()
-                .antMatchers(HttpMethod.POST).anonymous()
-                .antMatchers(HttpMethod.PUT).anonymous()
-                .antMatchers(HttpMethod.DELETE).anonymous()
-                .anyRequest().authenticated()
+                .antMatchers(HttpMethod.POST, "/api/v1/auth/sign-in").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/auth/sign-up").permitAll()
+                .anyRequest().anonymous()
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(authEntryPoint)
@@ -68,13 +67,24 @@ public class SecurityConfiguration {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web
                 .ignoring()
-                .antMatchers("/api/v1/swagger-ui.html", "/api/v1/swagger-ui/**", "/api/v1/swagger-resources/");
+                .antMatchers("/swagger-ui.html", "/swagger-ui/**",
+                                        "/swagger-resources/**", "swagger-ui.html/**",
+                                        "/v2/api-docs", "/v3/api-docs", "/v1/api-docs",
+                                        "/v3/api-docs/**", "/v2/api-docs/**", "/v1/api-docs/**",
+                                        "/configuration/ui", "/configuration/**",
+                                        "/webjars/**",
+                                        "/api/v1/swagger-ui.html", "/api/v1/swagger-ui/**", "/api/v1/swagger-resources/**",
+                                        "/api/v1swagger-ui.html/**", "/api/v1/v2/api-docs", "/api/v1/v3/api-docs",
+                                        "/api/v1/v1/api-docs", "/api/v1/v3/api-docs/**", "/api/v1/v2/api-docs/**",
+                                        "/api/v1/v1/api-docs/**", "/api/v1/configuration/ui", "/api/v1/configuration/**",
+                                        "/api/v1/webjars/**");
     }
 
     @Bean
     public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        authenticationManagerBuilder.authenticationProvider(authenticationProvider);
         return authenticationManagerBuilder.build();
     }
 
