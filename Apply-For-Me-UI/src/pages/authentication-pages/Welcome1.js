@@ -48,6 +48,7 @@ const Welcome1 = () => {
             console.log("eer");
         }
     };
+
     return (
         <div className="Welcome1">
             <Navbar />

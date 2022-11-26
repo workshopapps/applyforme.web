@@ -6,8 +6,12 @@ const BaseUrl = "https://official-volunux.uc.r.appspot.com";
 
 
 const initialState = {
+
+    
+
     user: '',
-    isLoading: false
+
+isLoading: false
 };
 
 const UserSlice = createSlice({

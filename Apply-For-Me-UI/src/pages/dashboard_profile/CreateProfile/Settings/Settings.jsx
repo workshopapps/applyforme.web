@@ -3,32 +3,33 @@ import classes from "./Settings.module.css";
 // import closecircle from "../../assets/close-circle.png";
 import Input from "../../InputField/InputField";
 
-const Settings = () => {
-    function handleInputChange() {
-        //
-    }
+const Settings = ({ formData, setFormData }) => {
     return (
         <div className={classes.settings}>
             <div className={styles.form_body}>
                 <h3>
-                    Select the keywords that should be present in the job
-                    posting
+                    Select the keyword that should be present in the job posting
                 </h3>
                 <p>
-                    Here you have the opportunity to write the specific keyword
+                    Here you have the opportunity to write a specific keyword
                     your perfect job description would have.
                 </p>
                 <div className={classes.cover_letter}>
-                    <h5>Included keywords</h5>
+                    <h5>Included keyword</h5>
                     <Input
                         type="text"
-                        placeholder="Fintech"
-                        value={name}
-                        name="name"
+                        value={formData.keyword}
+                        name="keyword"
                         width={90}
-                        onChange={handleInputChange}
+                        onChange={e => {
+                            setFormData({
+                                ...formData,
+                                keyword: e.target.value
+                            });
+                        }}
                     />
-                    <h5>Type keywords and press enter</h5>
+                    <h5>Type keyword</h5>
+
                     {/* <div className={classes.keywords}>
                         <span className={classes.each_keyword}>
                             <p>UI/UX Design</p>
