@@ -1,8 +1,10 @@
 package com.hydraulic.applyforme.service.impl;
 
+import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Role;
 import com.hydraulic.applyforme.model.dto.authentication.SignupDto;
+import com.hydraulic.applyforme.model.dto.member.UpdateMemberDto;
 import com.hydraulic.applyforme.model.enums.RoleType;
 import com.hydraulic.applyforme.model.exception.EmailAlreadyExistsException;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
@@ -74,5 +76,24 @@ public class MemberServiceImpl implements MemberService {
 
         repository.saveOne(member);
         return member;
+    }
+
+    @Override
+    @Transactional
+    public Member update(Long id, UpdateMemberDto body) {
+
+        Member existingMember = repository.getOne(id);
+
+        if (existingMember == null) {
+            throw new MemberNotFoundException(id);
+        }
+
+        Member member = new Member();
+        member = modelMapper.map(body, Member.class);
+        member.setId(id);
+        member.setNationality(Country.builder().id(body.getNationality()).build());
+        member.setCountryOfResidence(Country.builder().id(body.getCountryOfResidence()).build());
+
+        return repository.updateOne(member);
     }
 }
