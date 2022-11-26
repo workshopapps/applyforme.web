@@ -83,7 +83,6 @@ public class SecurityConfiguration {
     @Bean
     public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
         authenticationManagerBuilder.authenticationProvider(authenticationProvider);
         return authenticationManagerBuilder.build();
     }

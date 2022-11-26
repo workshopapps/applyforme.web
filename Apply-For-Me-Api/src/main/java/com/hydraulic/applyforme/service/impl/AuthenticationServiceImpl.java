@@ -40,7 +40,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.memberJpaRepository = memberJpaRepository;
         this.memberRepository = memberRepository;
     }
-
     public void resetPassword(ResetPasswordDto dto) {
         MemberSecretCode secretCodeExists = secretJpaRepository.findByForgotPasswordCode(dto.getToken());
 

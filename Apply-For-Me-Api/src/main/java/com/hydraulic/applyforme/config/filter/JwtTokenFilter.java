@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.config.filter;
 
+
 import com.hydraulic.applyforme.model.security.UserDetailsImpl;
 import com.hydraulic.applyforme.service.impl.UserDetailsServiceImpl;
 import com.hydraulic.applyforme.util.JwtUtil;
@@ -47,6 +48,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             return;
         }
 
+
         System.out.println("header " + header);
 
         final String token = header.substring(7);
@@ -54,7 +56,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         try {
             emailAddress = jwtUtil.getUsernameFromToken(token);
+
             System.out.println("Email Address " + emailAddress);
+
         } catch (IllegalArgumentException e) {
             System.out.println("Unable to get JWT Token");
         } catch (ExpiredJwtException e) {
