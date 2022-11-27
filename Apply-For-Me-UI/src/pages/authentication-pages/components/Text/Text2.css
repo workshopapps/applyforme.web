@@ -1,0 +1,25 @@
+.text2{
+    color: #171B1D;
+    font-size: 1.3rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    margin:  0;
+}
+@media only screen and (max-width: 768px){
+    .text2{
+        font-size: 1.2rem;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 468px){
+    .text2{
+        font-size: 1.1rem;
+    }
+}
+
+@media only screen and (max-width: 376px){
+    .text2{
+        font-size: 1rem;
+    }
+}

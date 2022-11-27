@@ -1,0 +1,154 @@
+.remotecheckbox {
+    display: flex;
+    gap: 1rem;
+}
+.remotecheckbox input {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.remotecheckbox label {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #737373;
+}
+.dropdownbox {
+    display: block;
+    margin-top: 0.6rem;
+}
+
+@media screen and (min-width: 850px) {
+    .detailsdropdown_box {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+}
+@media screen and (max-width: 850px) {
+    .detailsdropdown_box {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+}
+.detailsdropdown_box p {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #999999;
+}
+.uploadcv_box {
+    margin-top: 2rem;
+    width: 90%;
+    padding: 1.5rem;
+    border: 1px solid #bfbfbf;
+    border-radius: 3px;
+}
+.uploadcv_box p {
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    color: #52515b;
+    margin-bottom: 1rem;
+}
+
+.draghere {
+    border: 1px dashed #bfbfbf;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-block: 2.2rem;
+}
+.draghere h6 {
+    font-weight: 300;
+    font-size: 0.875rem;
+    color: #737373;
+    margin-top: 0.8rem;
+}
+.draghere h5 {
+    font-weight: 500;
+    font-size: 14px;
+    color: #092c4c;
+    margin-top: 0.8rem;
+}
+/* .draghere img {
+    width: 1.9rem;
+    height: 2.3rem;
+}
+
+.draghere label {
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+} */
+
+.drop_container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed #555;
+    color: #444;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+.drop_container:hover {
+    background: #eee;
+    border-color: #111;
+}
+
+.drop_container:hover .drop-title {
+    color: #222;
+}
+
+.drop_title {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color 0.2s ease-in-out;
+}
+
+@media screen and (min-width: 770px) {
+    input[type="file"] {
+        width: 350px;
+        max-width: 90%;
+        color: #444;
+        padding: 5px;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid #555;
+    }
+}
+@media screen and (max-width: 770px) {
+    input[type="file"] {
+        width: 12rem;
+        max-width: 90%;
+        color: #444;
+        padding: 5px;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid #555;
+    }
+}
+
+input[type="file"]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #2e3192;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: #2e3192;
+}

@@ -3,25 +3,28 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@reduxjs/toolkit": "^1.9.0",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
         "hamburger-react": "^2.5.0",
+        "axios": "^1.2.0",
+        "jwt-decode": "^3.1.2",
         "react": "^18.2.0",
+        "react-cookie-consent": "^8.0.1",
         "react-dom": "^18.2.0",
         "react-icons": "^4.6.0",
+        "react-redux": "^8.0.5",
         "react-router-dom": "^6.4.3",
         "react-scripts": "5.0.1",
+        "spinners-react": "^1.0.7",
         "web-vitals": "^2.1.4"
     },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "prepare": "cd .. && husky install Apply-For-Me-UI/.husky",
-        "lint": "eslint . --fix --max-warnings=0",
-        "format": "prettier . --write"
+        "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": [
@@ -52,7 +55,7 @@
         "eslint-plugin-cypress": "^2.12.1",
         "eslint-plugin-jsx-a11y": "^6.6.1",
         "eslint-plugin-prettier": "^4.2.1",
-        "eslint-plugin-react": "^7.31.10",
+        "eslint-plugin-react": "^7.31.11",
         "eslint-plugin-react-hooks": "^4.6.0",
         "husky": "^8.0.2",
         "lint-staged": "^13.0.3",

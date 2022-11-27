@@ -1,0 +1,48 @@
+@media screen and (max-width: 960px) {
+    .review_box {
+        margin-top: 1.5rem;
+    }
+}
+@media screen and (min-width: 960px) {
+    .review_box {
+        display: flex;
+        gap: 3rem;
+        margin-top: 1.5rem;
+        margin-right: 10%;
+    }
+}
+.review_box p {
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+    color: #52515b;
+}
+.review_box_left div {
+    margin-bottom: 1rem;
+}
+.review_buttons button {
+    margin-bottom: 1rem;
+}
+.coverletter_body {
+    margin-top: 1rem;
+}
+.review_textarea {
+    width: 80%;
+    /* height: 22rem; */
+    resize: none;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+    color: #6d6e71;
+    text-align: left;
+}
+.review_jobtitle {
+    margin-top: 1rem;
+}

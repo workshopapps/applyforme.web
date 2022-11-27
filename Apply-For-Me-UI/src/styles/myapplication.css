@@ -1,0 +1,229 @@
+.container {
+    padding: 15px 81px 30px;
+}
+
+.myapplication {
+    background: #F5F6FE;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.myapplication p {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #8F90A7;
+    margin: 0;
+}
+
+.myapplication p:last-child {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #7C7BA8;
+}
+
+.myapplication-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px 0 0;
+}
+
+.applications {
+    padding: 30px 30px 10px;
+}
+
+.application {
+    display: flex;
+    justify-content: space-between;
+    background: #FBFBFB;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 20px 20px 20px 60px;
+}
+
+.application-title {
+    display: flex;
+}
+
+.application h1 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 20px;
+    color: #171646;
+}
+
+.application p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #7C7BA8;
+}
+
+.img-div {
+    background: #F5F6FE;
+    border-radius: 10px;
+    height: 43px;
+    width: 43px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hide {
+    display: none;
+}
+
+.newuser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 97.8px - 260px);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
+    color: #171B1D;
+    padding: 0 30px;
+    text-align: center;
+}
+
+.newuser button {
+    padding: 0px;
+    gap: 24px;
+    width: 240px;
+    height: 48px;
+    background: #2E3192;
+    border-radius: 8px;
+    font-family: 'Outfit';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FBFBFF;
+    border: none;
+}
+
+.newuser button img {
+    margin-left: 5px;
+}
+
+@media screen and (max-width: 1023px) {
+    .container {
+        padding: 30px 45px 30px;
+    }
+    .applications {
+        padding: 20px 0px 0px;
+    }
+    .myapplication-head {
+        padding: 0;
+    }
+    .myapplication {
+        padding: 20px 20px 10px;
+    }
+    .application {
+        margin-bottom: 20px;
+        padding: 20px 30px 20px 30px;
+    }
+    .hide {
+        display: flex;
+    }
+    .newuser {
+        height: calc(100vh - 75.8px - 380px - 99px);
+    }
+    .newuser button {
+        margin: 10px 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 30px;
+    }
+    .applications {
+        padding: 20px 0px 0px;
+    }
+    .myapplication-head {
+        padding: 0;
+    }
+    .myapplication {
+        padding: 20px 20px 10px;
+    }
+    .application {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+    .hide {
+        display: flex;
+    }
+    .application h1 {
+        font-size: 18px;
+    }
+    .application p {
+        font-size: 15px;
+    }
+    .newuser {
+        height: calc(100vh - 75.8px - 380px - 99px);
+    }
+    .newuser button {
+        margin: 10px 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px 20px;
+    }
+    .applications {
+        padding: 15px 0px 0px;
+    }
+    .myapplication-head {
+        padding: 0;
+    }
+    .myapplication {
+        padding: 10px;
+        align-items: center;
+    }
+    .application {
+        margin-bottom: 13px;
+        padding: 15px 10px;
+        align-items: flex-start;
+    }
+    .application:last-child {
+        margin-bottom: 0px;
+    }
+    .hide {
+        display: flex;
+    }
+    .application h1 {
+        font-size: 13px;
+    }
+    .myapplication p {
+        font-size: 16px;
+    }
+    .application p {
+        font-size: 11px;
+        line-height: 20px;
+    }
+    .img-div {
+        height: 24px;
+        width: 24px;
+        border-radius: 7px;
+        margin-right: 3px;
+    }
+    .img-div img {
+        width: 13px;
+        height: 18px;
+    }
+    .newuser {
+        height: calc(100vh - 75.8px - 329px - 72px);
+        font-size: 16px;
+        padding: 20px;
+    }
+    .newuser button {
+        margin: 10px 0;
+        width: 170px;
+        font-size: 14px;
+    }
+}
