@@ -1,9 +1,14 @@
 package com.hydraulic.applyforme.repository;
 
+import com.hydraulic.applyforme.model.domain.ApplyForMe;
 import com.hydraulic.applyforme.model.domain.Member;
+import org.springframework.mail.MailMessage;
 
 public interface SuperAdminRepository {
-    Member  getOneMember(Long id);
+
+    Member saveOne(Member body);
+
+    Member getOneMember(Long id);
     Boolean removeMemberById(Long id);
 
 /*
@@ -15,4 +20,7 @@ public interface SuperAdminRepository {
  * SERVICE INTERFACE:
  * List<Member> viewRecruiters();
  */
+
+    Member viewAdminDetails(Long id);
+
 }

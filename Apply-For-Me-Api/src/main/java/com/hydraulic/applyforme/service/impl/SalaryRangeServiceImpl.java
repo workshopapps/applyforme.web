@@ -47,8 +47,8 @@ public class SalaryRangeServiceImpl implements SalaryRangeService {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        SalaryRange[] countriesArray = mapper.readValue(salaryRangeJsonAsString, SalaryRange[].class);
-        List<SalaryRange> salaryRangesList = Arrays.asList(countriesArray);
+        SalaryRange[] salariesArray = mapper.readValue(salaryRangeJsonAsString, SalaryRange[].class);
+        List<SalaryRange> salaryRangesList = Arrays.asList(salariesArray);
 
         try {
             for (SalaryRange salaryRange : salaryRangesList) {

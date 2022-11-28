@@ -10,10 +10,9 @@ public class PhoneNumberValidator implements ConstraintValidator<PhoneNumberCons
     public void initialize(PhoneNumberConstraint phoneNumber) {
 
     }
-
     @Override
-    public boolean isValid(String contactField, ConstraintValidatorContext context) {
-        return contactField != null && contactField.matches("[0-9]+")
-                && (contactField.length() > 10) && (contactField.length() < 15);
+    public boolean isValid(String phoneNumber, ConstraintValidatorContext context) {
+        return phoneNumber != null && phoneNumber.matches("[0-9]+")
+                && phoneNumber.length() > 10 && phoneNumber.length() < 15;
     }
 }
