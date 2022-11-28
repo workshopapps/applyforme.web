@@ -66,6 +66,10 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         return find;
     }
 
+    @Override
+    public List<Member> viewAllRecruiters() {
+        return repository.getAllMembers();
+    }
 
 
     @Override

@@ -8,6 +8,7 @@ import com.hydraulic.applyforme.repository.SuperAdminRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Repository
 public class SuperAdminRepositoryImpl implements SuperAdminRepository {
@@ -52,5 +53,12 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
             throw new MemberNotFoundException(id);
         }
         return member;
+    }
+
+    @Override
+    public List<Member> getAllMembers() {
+        String queryText = "select m from Member m order by c.updatedOn desc";
+        TypedQuery<Member> applyForMeQuery = entityManager.createQuery(queryText, Member.class);
+        return applyForMeQuery.getResultList();
     }
 }

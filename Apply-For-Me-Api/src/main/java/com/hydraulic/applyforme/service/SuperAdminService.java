@@ -13,6 +13,7 @@ public interface SuperAdminService {
     Member getDetailsById(Long id);
     boolean deleteMemberById(Long id);
     Member getAdmin(Long id);
+    List<Member> viewAllRecruiters();
     Member createRecruiter(MemberDto memberDto);
 
 

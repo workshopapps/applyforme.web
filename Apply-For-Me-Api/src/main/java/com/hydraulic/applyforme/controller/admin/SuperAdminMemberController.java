@@ -21,11 +21,11 @@ public class SuperAdminMemberController {
         this.service = service;
     }
 
-    @PostMapping("/create-admin")
-    public Member createAdmin(@RequestBody MemberDto memberDto){
-        return service.addAdmin(memberDto);
-
-    }
+//    @PostMapping("/create-admin")
+//    public Member createAdmin(@RequestBody MemberDto memberDto){
+//        return service.addAdmin(memberDto);
+//
+//    }
     @GetMapping("/detail/{id}")
     public Member getOneMember(@PathVariable(value="id") Long id) {
         return service.getDetailsById(id);
@@ -34,6 +34,11 @@ public class SuperAdminMemberController {
     @GetMapping("/profile/{id}")
     public Member viewAdmin(@PathVariable(value = "id") Long id){
         return service.getAdmin(id);
+    }
+
+    @GetMapping("/list/member")
+    public Member getAllMember(){
+        return (Member) service.viewAllRecruiters();
     }
 
     @DeleteMapping("/remove/{id}")
