@@ -1,5 +1,12 @@
 package com.hydraulic.applyforme.repository.impl;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.repository.SuperAdminRepository;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.exception.ApplyForMeDuplicateEntityException;
 import com.hydraulic.applyforme.model.domain.Role;
@@ -32,6 +39,15 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
         return entityManager.find(Member.class, id);
     }
 
+	@Override
+	public Member updatePassword(Long id, String newPassword) {
+		String query = "UPDATE Member m SET m.password = :newPassword WHERE m.id = :memberId";
+		TypedQuery<Member> updatedMember = entityManager.createQuery(query, Member.class);
+		updatedMember.setParameter("newPassword", newPassword);
+		updatedMember.setParameter("memberId", id);
+		return updatedMember.getSingleResult();
+	}
+    
     @Override
     public Boolean removeMemberById(Long id) {
         try{

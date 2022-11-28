@@ -1,8 +1,7 @@
-package com.hydraulic.applyforme.controller.admin;
+package com.hydraulic.applyforme.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,14 +14,14 @@ import com.hydraulic.applyforme.service.SuperAdminService;
 
 @RestController
 @RequestMapping(
-        value = "admin/member",
+        value = "member",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
-public class SuperAdminMemberController {
+public class SuperAdminController {
 
-    private SuperAdminService service;
+    SuperAdminService service;
 
-    public SuperAdminMemberController(SuperAdminService service) {
+    public SuperAdminController(SuperAdminService service) {
         this.service = service;
     }
 
@@ -34,17 +33,7 @@ public class SuperAdminMemberController {
     @PostMapping("/{id}/change-password")
     public ResponseEntity<?> changePassword(@PathVariable("id") Long id, UpdatePasswordDTO passwordDTO) {
     	service.updatePasswordById(id, passwordDTO);   	
+
     	return ResponseEntity.accepted().body("successful");
-    }
-    
-
-    @GetMapping("/profile/{id}")
-    public Member viewAdmin(@PathVariable(value = "id") Long id){
-        return service.getAdmin(id);
-    }
-
-    @DeleteMapping("/remove/{id}")
-    public boolean delete(@PathVariable(value = "id") Long id){
-        return service.deleteMemberById(id);
     }
 }

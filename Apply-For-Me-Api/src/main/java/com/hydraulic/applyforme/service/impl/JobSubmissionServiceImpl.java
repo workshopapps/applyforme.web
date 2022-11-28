@@ -1,4 +1,7 @@
 package com.hydraulic.applyforme.service.impl;
+	
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Submission;
@@ -12,6 +15,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import com.hydraulic.applyforme.model.domain.Applier;
+import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.dto.ProfessionalJobSubmissionDTO;
+import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
+import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
+import com.hydraulic.applyforme.model.response.SubmissionResponse;
+import com.hydraulic.applyforme.repository.ApplierRepository;
+import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
+import com.hydraulic.applyforme.service.JobSubmissionService;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -22,12 +34,16 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
 
     private final ApplierRepository applierRepository;
     private final JobSubmissionRepository repository;
+    private final com.hydraulic.applyforme.repository.JobSubmissionRepository repo;
     private final ModelMapper modelMapper;
 
-    public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository, ModelMapper modelMapper) {
+    public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository, 
+    		com.hydraulic.applyforme.repository.JobSubmissionRepository repo, ModelMapper modelMapper) {
         this.applierRepository = applierRepository;
         this.repository = repository;
+        this.repo = repo;
         this.modelMapper = modelMapper;
+        
     }
 
     @Override
@@ -39,6 +55,7 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
         }
         return repository.countByApplier(id);
     }
+
 
     @Override
     public SubmissionEntriesResponse getAllJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir) {

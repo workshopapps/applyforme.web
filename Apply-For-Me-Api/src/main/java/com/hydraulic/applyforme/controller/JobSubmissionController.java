@@ -7,21 +7,27 @@ import org.springframework.web.bind.annotation.*;
 
 import static com.hydraulic.applyforme.constants.PagingConstants.*;
 
+import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.dto.ProfessionalJobSubmissionDTO;
+import com.hydraulic.applyforme.service.JobSubmissionService;
+
 @RestController
 @RequestMapping(
         value = "submission",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
+@CrossOrigin("*")
 public class JobSubmissionController {
     private final JobSubmissionService service;
     public JobSubmissionController(JobSubmissionService service) {
         this.service = service;
     }
+    
     @GetMapping("/applier/count/{applierId}")
     public Long totalApplierEntry(@PathVariable(name = "applierId") Long id) {
         return service.countAllApplierSubmissions(id);
     }
-
+    
     @GetMapping("/entries")
     public SubmissionEntriesResponse getAllSubmission(
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
