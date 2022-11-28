@@ -1,17 +1,28 @@
 package com.hydraulic.applyforme.service.impl.superadmin;
 
+import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.domain.Role;
 import com.hydraulic.applyforme.model.dto.member.MemberDto;
+import com.hydraulic.applyforme.model.dto.member.RecruiterCreateDto;
+import com.hydraulic.applyforme.model.enums.RoleType;
+import com.hydraulic.applyforme.model.exception.EmailAlreadyExistsException;
+import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
+import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.SuperAdminApplierJpaRepository;
+import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
+import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
 import com.hydraulic.applyforme.service.superadmin.SuperAdminApplierService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
@@ -20,12 +31,23 @@ import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
 public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
 
     private SuperAdminApplierJpaRepository jpaRepository;
-    
+    private RoleJpaRepository roleJpaRepository;
+
+    private MemberRepository memberRepository;
+    private MemberJpaRepository memberJpaRepository;
+
     @Autowired
     private ModelMapper mapper;
 
-    public SuperAdminApplierServiceImpl(SuperAdminApplierJpaRepository jpaRepository) {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public SuperAdminApplierServiceImpl(SuperAdminApplierJpaRepository jpaRepository, RoleJpaRepository roleJpaRepository,
+                                        MemberRepository memberRepository, MemberJpaRepository memberJpaRepository) {
         this.jpaRepository = jpaRepository;
+        this.roleJpaRepository = roleJpaRepository;
+        this.memberRepository = memberRepository;
+        this.memberJpaRepository = memberJpaRepository;
     }
 
     @Override
@@ -46,6 +68,27 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
         }
         return getApplierResponse(members);
     }
+
+    @Override
+    public Member saveRecruiter(RecruiterCreateDto dto) {
+        boolean existingMember = memberJpaRepository.existsByEmailAddress(dto.getEmailAddress());
+        if (existingMember) {
+            throw new EmailAlreadyExistsException();
+        }
+
+        Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.RECRUITER.getValue());
+        if (existingRole.isEmpty()) {
+            throw new RoleNotFoundException(RoleType.RECRUITER.getValue());
+        }
+
+        Member member = mapper.map(dto, Member.class);
+        member.setPassword(dto.getPassword());
+        member.getRoles().add(existingRole.get());
+        member.setNationality(Country.builder().id(dto.getNationality()).build());
+        member.setNationality(Country.builder().id(dto.getCountryOfResidence()).build());
+        return memberRepository.saveOne(member);
+    }
+
     private ApplyForMeResponse getApplierResponse(Page<Member> members) {
         Collection<MemberDto> results = members
                 .getContent()

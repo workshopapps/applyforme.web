@@ -1,12 +1,10 @@
 package com.hydraulic.applyforme.service;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.domain.Role;
-import com.hydraulic.applyforme.model.dto.superadmin.MemberDto;
-import org.springframework.data.domain.Page;
+import com.hydraulic.applyforme.model.dto.member.MemberDto;
+import com.hydraulic.applyforme.model.dto.member.RecruiterCreateDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface SuperAdminService {
 
@@ -15,6 +13,4 @@ public interface SuperAdminService {
     Member getAdmin(Long id);
     List<Member> viewAllRecruiters();
     Member createRecruiter(MemberDto memberDto);
-
-
 }

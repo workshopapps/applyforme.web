@@ -1,12 +1,9 @@
 package com.hydraulic.applyforme.controller.admin;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.dto.superadmin.MemberDto;
 import com.hydraulic.applyforme.service.SuperAdminService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping(
@@ -26,6 +23,7 @@ public class SuperAdminMemberController {
 //        return service.addAdmin(memberDto);
 //
 //    }
+
     @GetMapping("/detail/{id}")
     public Member getOneMember(@PathVariable(value="id") Long id) {
         return service.getDetailsById(id);
