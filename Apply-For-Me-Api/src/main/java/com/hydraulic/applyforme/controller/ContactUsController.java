@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(
-        value = "contactUs",
+        value = "contact-us",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
 public class ContactUsController {
@@ -22,8 +22,8 @@ public class ContactUsController {
         this.emailService = emailService;
     }
 
-    @PostMapping("/contact-us")
-    public void contactUsMessage(@Validated @RequestBody ContactUsDto contactUsDto){
-        emailService.sendContactUsMessageDetails(contactUsDto);
+    @PostMapping
+    public void contact(@Validated @RequestBody ContactUsDto body){
+        emailService.contactUs(body);
     }
 }

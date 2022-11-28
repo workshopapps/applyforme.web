@@ -93,14 +93,15 @@ public class MemberServiceImpl implements MemberService {
        memberSecretCodeRepository.saveSecretCode(generatedSecretCode);
     *
     **/
-    private String generateSignUpCode(){
+    private String generateSignUpCode() {
         int[] numbers = new int[4];
 
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = (int) (Math.random() * 9);
         }
         String code = "" + numbers[0] + numbers[1] + numbers[2] + numbers[3] + "";
-        return  code;
+        return code;
+    }
 
     @Override
     @Transactional

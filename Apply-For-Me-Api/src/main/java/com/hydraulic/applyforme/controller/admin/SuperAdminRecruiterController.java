@@ -1,15 +1,14 @@
 package com.hydraulic.applyforme.controller.admin;
 
-import com.hydraulic.applyforme.model.response.SubmissionEntriesResponse;
+import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.dto.member.RecruiterCreateDto;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
-import com.hydraulic.applyforme.service.impl.superadmin.SuperAdminApplierServiceImpl;
+import com.hydraulic.applyforme.service.EmailService;
 import com.hydraulic.applyforme.service.superadmin.SuperAdminApplierService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -21,12 +20,14 @@ import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DI
         value = "admin/recruiter",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
-public class SuperAdminApplierController {
+public class SuperAdminRecruiterController {
 
     private SuperAdminApplierService service;
+    private EmailService emailService;
 
-    public SuperAdminApplierController(SuperAdminApplierService service) {
+    public SuperAdminRecruiterController(SuperAdminApplierService service, EmailService emailService) {
         this.service = service;
+        this.emailService = emailService;
     }
 
     @GetMapping("/entries")
@@ -40,4 +41,12 @@ public class SuperAdminApplierController {
             @RequestParam(value = "q", required = false) String q) {
         return service.getEntries(pageNo, pageSize, sortBy, sortDir, q, from, to);
     }
+
+    @PostMapping("/save")
+    public Member saveRecruiter(@Validated @RequestBody RecruiterCreateDto dto) {
+        Member member = service.saveRecruiter(dto);
+        emailService.recruiterDetails(dto);
+        return member;
+    }
+
 }

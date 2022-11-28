@@ -215,11 +215,22 @@ public class GlobalExceptionController {
         return body;
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ProfessionalNotFoundException.class)
     public Object notFound(ProfessionalNotFoundException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
         errors.put("entityName", ProfessionalNotFoundException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.NOT_FOUND.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(PrivacyPolicyException.class)
+    public Object notFound(PrivacyPolicyException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "Apply For Me");
         errors.put("message", ex.getMessage());
         ex.setCode(HttpStatus.BAD_REQUEST.value());
         errors.put("code", ex.getCode().toString());
