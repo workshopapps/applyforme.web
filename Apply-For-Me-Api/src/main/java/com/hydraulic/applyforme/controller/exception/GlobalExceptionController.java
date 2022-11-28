@@ -3,6 +3,8 @@ package com.hydraulic.applyforme.controller.exception;
 import com.hydraulic.applyforme.model.exception.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -150,7 +151,6 @@ public class GlobalExceptionController {
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-
     @ExceptionHandler(MemberNotFoundException.class)
     public Object notFound(MemberNotFoundException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
@@ -194,6 +194,17 @@ public class GlobalExceptionController {
         return errors;
     }
 
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(value = {AccessDeniedException.class})
+    public Object forbidden(AccessDeniedException ex, HttpServletRequest request) {
+        final Map<String, Object> body = new HashMap<>();
+        body.put("error", "Forbidden");
+        body.put("path", request.getServletPath());
+        body.put("message", "You are not allowed to access this resource");
+        return body;
+    }
+
+
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(AuthenticationException.class)
     public Object unauthorized(AuthenticationException ex, HttpServletRequest request) {
@@ -204,11 +215,22 @@ public class GlobalExceptionController {
         return body;
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ProfessionalNotFoundException.class)
     public Object notFound(ProfessionalNotFoundException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
         errors.put("entityName", ProfessionalNotFoundException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.NOT_FOUND.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(PrivacyPolicyException.class)
+    public Object notFound(PrivacyPolicyException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "Apply For Me");
         errors.put("message", ex.getMessage());
         ex.setCode(HttpStatus.BAD_REQUEST.value());
         errors.put("code", ex.getCode().toString());

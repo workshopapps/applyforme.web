@@ -1,5 +1,9 @@
 package com.hydraulic.applyforme.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hydraulic.applyforme.model.domain.Role;
+import com.hydraulic.applyforme.model.dto.authentication.JwtTokenDetails;
+import com.hydraulic.applyforme.model.security.UserDetailsImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -11,9 +15,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Slf4j
@@ -45,6 +47,16 @@ public class JwtUtil {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
+    public Map<String, Object> getTokenDetails(String token) {
+        return new HashMap<>(getAllClaimsFromToken(token));
+    }
+
+    public JwtTokenDetails getDetails(String token) {
+        ObjectMapper mapper = new ObjectMapper();
+        JwtTokenDetails details = mapper.convertValue(getTokenDetails(token), JwtTokenDetails.class);
+        return details;
+    }
+
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
@@ -52,6 +64,14 @@ public class JwtUtil {
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
+        UserDetailsImpl userDetails1 = (UserDetailsImpl) userDetails;
+//        setMemberType(userDetails, claims);
+        List<String> rolesArr = new ArrayList<>();
+            for (Role role : userDetails1.getPlainRoles()) {
+                rolesArr.add(role.getCode());
+            }
+        claims.put("memberId", userDetails1.getId());
+        claims.put("roles", rolesArr.toArray(String[]::new));
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
@@ -68,6 +88,30 @@ public class JwtUtil {
     public Boolean validateToken(String token, UserDetails details) {
         final String username = getUsernameFromToken(token);
         return (username.equals(details.getUsername()) && !isTokenExpired(token));
+    }
+
+    private void setMemberType(UserDetails userDetails, Map<String, Object> claimsMap) {
+        UserDetailsImpl details = (UserDetailsImpl) userDetails;
+        String memberType = null;
+        for (Role role : details.getPlainRoles()) {
+            if (role.getCode().equals("SuperAdministrator")) {
+                memberType = role.getCode();
+                break;
+            }
+            else if (role.getCode().equals("Administrator")) {
+                memberType = role.getCode();
+                break;
+            }
+            else if (role.getCode().equals("Recruiter")) {
+                memberType = role.getCode();
+                break;
+            }
+            else if (role.getCode().equals("Professional")) {
+                memberType = role.getCode();
+                break;
+            }
+        }
+        claimsMap.put("memberType", memberType);
     }
 
 }

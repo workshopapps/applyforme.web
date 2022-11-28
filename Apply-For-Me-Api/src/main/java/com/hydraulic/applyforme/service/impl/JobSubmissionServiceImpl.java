@@ -3,11 +3,16 @@ package com.hydraulic.applyforme.service.impl;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import com.hydraulic.applyforme.model.domain.Applier;
+import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
+import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
+import com.hydraulic.applyforme.model.response.SubmissionEntriesResponse;
+import com.hydraulic.applyforme.repository.ApplierRepository;
+import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
+import com.hydraulic.applyforme.service.JobSubmissionService;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.hydraulic.applyforme.model.domain.Applier;
@@ -19,6 +24,10 @@ import com.hydraulic.applyforme.model.response.SubmissionResponse;
 import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
 
 @Service
 public class JobSubmissionServiceImpl implements JobSubmissionService {
@@ -49,18 +58,18 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
 
 
     @Override
-    public SubmissionResponse getAllJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir) {
+    public SubmissionEntriesResponse getAllJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir) {
         Page<Submission> submission = repository.findAll(createPageable(pageNo, pageSize, sortBy, sortDir));
         return getSubmissionResponse(submission);
     }
 
     @Override
-    public SubmissionResponse filterJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir, String q) {
+    public SubmissionEntriesResponse filterJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir, String q) {
         Page<Submission> submission = repository.findJobSubmissionBySearch(createPageable(pageNo, pageSize, sortBy, sortDir), q);
         return getSubmissionResponse(submission);
     }
 
-    private SubmissionResponse getSubmissionResponse(Page<Submission> submission) {
+    private SubmissionEntriesResponse getSubmissionResponse(Page<Submission> submission) {
         Collection<SubmissionDto> submissions = submission
                 .getContent()
                 .stream()
@@ -69,19 +78,13 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
                 })
                 .collect(Collectors.toList());
 
-        SubmissionResponse submissionResponse = new SubmissionResponse();
-        submissionResponse.setContent(submissions);
-        submissionResponse.setPageNo(submission.getNumber());
-        submissionResponse.setPageSize(submission.getSize());
-        submissionResponse.setTotalElements(submission.getTotalElements());
-        submissionResponse.setTotalPages(submission.getTotalPages());
-        submissionResponse.setLast(submission.isLast());
-        return submissionResponse;
-    }
-
-    private Pageable createPageable(int pageNo, int pageSize, String sortBy, String sortDir) {
-        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
-                : Sort.by(sortBy).descending();
-        return PageRequest.of(pageNo, pageSize);
+        SubmissionEntriesResponse entryResponse = new SubmissionEntriesResponse();
+        entryResponse.setContent(submissions);
+        entryResponse.setPageNo(submission.getNumber());
+        entryResponse.setPageSize(submission.getSize());
+        entryResponse.setTotalElements(submission.getTotalElements());
+        entryResponse.setTotalPages(submission.getTotalPages());
+        entryResponse.setLast(submission.isLast());
+        return entryResponse;
     }
 }

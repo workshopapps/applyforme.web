@@ -5,6 +5,7 @@ import com.hydraulic.applyforme.model.dto.UpdatePasswordDTO;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
+import com.hydraulic.applyforme.model.dto.member.RecruiterCreateDto;
 
 public interface SuperAdminService {
 

@@ -13,8 +13,6 @@ import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.UpdatePasswordDTO;
 import com.hydraulic.applyforme.service.SuperAdminService;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping(
         value = "admin/member",
