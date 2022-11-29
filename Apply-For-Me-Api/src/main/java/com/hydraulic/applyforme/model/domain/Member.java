@@ -1,11 +1,13 @@
 package com.hydraulic.applyforme.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -71,6 +73,8 @@ public class Member {
 
     @Temporal(TemporalType.DATE)
     @Column(name ="date_of_birth")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date dateOfBirth = new Date();
 
     /**
@@ -83,7 +87,7 @@ public class Member {
     @Column(name = "email_address", nullable = false)
     private String emailAddress;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name ="phone_number")
@@ -139,7 +143,7 @@ public class Member {
      * For Reference on a Junction table
      * @see <a href="https://learn.microsoft.com/en-us/sql/ssms/visual-db-tools/map-many-to-many-relationships-visual-database-tools?view=sql-server-ver16">Map Many-to-Many Relationships</a>
      */
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "member_roles",
             joinColumns = @JoinColumn(

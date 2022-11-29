@@ -15,4 +15,14 @@ public class HomeController {
     public ApplyForMe home() {
         return new ApplyForMe();
     }
+
+    @GetMapping("user")
+    public String helloUser() {
+        return "Hello User";
+    }
+
+    @GetMapping("admin")
+    public String helloAdmin() {
+        return "Hello Admin";
+    }
 }
