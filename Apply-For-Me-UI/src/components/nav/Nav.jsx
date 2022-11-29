@@ -10,8 +10,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
 
 const Nav = () => {
+    const initState = {
+        "about": false,
+        "price": false,
+        "blog": false,
+        "contact": false
+    };
     const [dropDown, setDropDown] = useState(false);
     const { user } = useSelector(state => state.user);
+    const [active, setActiveLink] = useState({ ...initState });
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -20,6 +27,32 @@ const Nav = () => {
         dispatch(userInfo(""));
         navigate("/");
     };
+
+    const handleActiveLink = linkValue => {
+        setActiveLink({ ...initState });
+        switch (linkValue) {
+            case "price":
+                console.log("Active price");
+                setActiveLink({ price: true });
+                break;
+            case "blog":
+                console.log("hello");
+                setActiveLink({ blog: true });
+                break;
+            case "contact":
+                setActiveLink({ contact: true });
+                break;
+            case "faq":
+                setActiveLink({ faq: true });
+                break;
+            case "about":
+                setActiveLink({ about: true });
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
         <section className={classes.nav_container}>
             <nav
@@ -39,7 +72,7 @@ const Nav = () => {
                 </div>
 
                 <ul className={classes.nav_links}>
-                    <li>
+                    <li className="active">
                         <Link to="/about">About us</Link>
                     </li>
 
