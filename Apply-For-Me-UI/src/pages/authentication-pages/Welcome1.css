@@ -39,7 +39,7 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: 8px;
     padding: 0.7rem 0 1.4rem 0;
 }
 .dvdr {
