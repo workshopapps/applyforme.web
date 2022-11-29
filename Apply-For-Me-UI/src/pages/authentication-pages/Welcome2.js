@@ -35,6 +35,7 @@ const Welcome2 = () => {
             });
 
         if (result?.token) {
+            console.log("res", result.token);
             let decoded = jwt_decode(result.token);
             let tokenKey = "tokenHngKey";
             localStorage.setItem(tokenKey, result.token);
