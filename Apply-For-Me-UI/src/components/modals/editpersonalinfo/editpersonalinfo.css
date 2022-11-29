@@ -1,0 +1,27 @@
+.editContainer{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(49, 49, 49,0.8);
+}
+.editContent{
+    padding:2rem;
+    position: absolute;
+    top: 5%;
+    height: 90%;
+    overflow: auto;
+    z-index: 1;
+    left: 20px;
+    right: 20px;
+    background-color: white;
+    transform: (translate(-50%, -50%));
+    border-radius: 8px;
+}
+.modal_closal{
+    display: flex;
+    justify-content: flex-end;
+}

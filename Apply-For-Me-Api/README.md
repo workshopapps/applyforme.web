@@ -34,6 +34,8 @@ You work at a remote company and you earn $1k a month. You are very happy. But y
 - Staging
 - Main
 
+**NB:** All collaborator or member push will be made to a new branch related to the tasks they are working on and if approved, will be merged to the development and if all tests has passed, to be merged with the production branch
+
 #### Branch Naming Style Guide
 
 **Feature**
@@ -41,7 +43,7 @@ You work at a remote company and you earn $1k a month. You are very happy. But y
 - branch name :- feat/branch-name or feature/branch-name
 
 **Revision**
-- commit message :- revision:summary-of-task or revision/summary-of-task
+- commit message :- revision:summary-of-revision or revision/summary-of-revision
 - branch name :- revision/branch-name
 
 **Bug Fix**
@@ -51,7 +53,7 @@ You work at a remote company and you earn $1k a month. You are very happy. But y
 
 **Code Cleanup**
 
-- commit message :- chore:summary
+- commit message :- chore:summary-of-cleanup 
 - branch name:- chore/branch-name
 
 **Reference**
@@ -109,3 +111,29 @@ You work at a remote company and you earn $1k a month. You are very happy. But y
 **Tutorials**
 - [Getting started with Git: a comprehensive guide for newbies](https://codegym.cc/groups/posts/379-getting-started-with-git-a-comprehensive-guide-for-newbies "Getting started with Git: a comprehensive guide for newbies")
 - [Building a RESTful service on Spring Boot](https://codegym.cc/groups/posts/295-overview-of-rest-part-3-building-a-restful-service-on-spring-boot "Building a RESTful service on Spring Boot")
+
+**Updates**
+- JSON payload parameters or properties must be in lowercase and compound words should be separated by underscore.
+- When sending a json payload like
+```
+    {
+       "email_address": "info@applyforme.com"
+       "date_of_birth": "2002-10-20"
+    }
+```
+
+You can map this to a Java class using
+
+```
+    @Getter
+    @Setter
+    public class ContactMe {
+        
+        @JsonProperty("email_address")
+        private String emailAddress;
+        
+        @JsonProperty("date_of_birth")
+        private String date_of_birth;
+    } 
+```
+
