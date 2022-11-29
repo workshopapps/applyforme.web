@@ -12,6 +12,7 @@ import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.MemberSecretCodeRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
+import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
 import com.hydraulic.applyforme.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,16 +27,9 @@ import java.util.Optional;
 @Slf4j
 @Service
 public class MemberServiceImpl implements MemberService {
-
-    @Autowired
-    private ModelMapper modelMapper;
-
-    private MemberRepository repository;
-
-    private MemberJpaRepository jpaRepository;
-
-    @Autowired
-    private MemberSecretCodeRepository memberSecretCodeRepository;
+    private final MemberRepository repository;
+    private final MemberJpaRepository jpaRepository;
+    private final MemberSecretCodeRepository memberSecretCodeRepository;
 
     @Autowired
     private RoleJpaRepository roleJpaRepository;
@@ -43,12 +37,19 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public MemberServiceImpl(MemberRepository repository, MemberJpaRepository jpaRepository) {
+    @Autowired
+    private ModelMapper modelMapper;
+
+    public MemberServiceImpl(MemberRepository repository,
+                             MemberJpaRepository jpaRepository,
+                             MemberSecretCodeRepository memberSecretJpaRepository) {
         this.repository = repository;
         this.jpaRepository = jpaRepository;
+        this.memberSecretCodeRepository = memberSecretJpaRepository;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Member findOne(Long id) {
         Member member = repository.getOne(id);
         if (member == null) {

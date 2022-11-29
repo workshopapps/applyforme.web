@@ -6,8 +6,7 @@ import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import com.hydraulic.applyforme.service.superadmin.SuperAdminApplicantService;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantService {
@@ -19,6 +18,7 @@ public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantServic
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Professional findOne(Long id) {
         Professional professional = repository.getOne(id);
         if (professional == null) {

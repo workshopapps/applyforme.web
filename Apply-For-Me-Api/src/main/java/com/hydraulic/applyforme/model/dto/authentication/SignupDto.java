@@ -1,7 +1,7 @@
 package com.hydraulic.applyforme.model.dto.authentication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hydraulic.applyforme.annotation.PhoneNumberConstraint;
+import com.hydraulic.applyforme.annotation.PhoneNumber;
 import lombok.*;
 
 import javax.validation.constraints.*;
@@ -31,7 +31,7 @@ public class SignupDto implements Serializable {
     private String emailAddress;
 
     @NotNull(message = "{member.phoneNumber.notNull}")
-    @PhoneNumberConstraint
+    @PhoneNumber
     @JsonProperty("phone_number")
     private String phoneNumber;
 
