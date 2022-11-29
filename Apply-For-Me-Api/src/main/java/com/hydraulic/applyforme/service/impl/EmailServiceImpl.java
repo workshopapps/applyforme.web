@@ -2,7 +2,7 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.contactUs.ContactUsDto;
-import com.hydraulic.applyforme.model.dto.member.RecruiterCreateDto;
+import com.hydraulic.applyforme.model.dto.member.CreateRecruiterDto;
 import com.hydraulic.applyforme.model.exception.EmailDeliveryException;
 import com.hydraulic.applyforme.model.exception.PrivacyPolicyException;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
@@ -14,7 +14,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -39,7 +38,6 @@ public class EmailServiceImpl implements EmailService {
         this.javaMailSender = mailSender;
     }
 
-    @Async
     @Override
     public void sendWelcomeMessage(String emailAddress) {
         Member member = memberJpaRepository.findByEmailAddress(emailAddress);
@@ -72,11 +70,8 @@ public class EmailServiceImpl implements EmailService {
         } catch (MessagingException e) {
             throw new EmailDeliveryException();
         }
-
-
     }
 
-    @Async
     @Override
     public void signupVerification(String emailAddress) {
         String token = createVerificationToken();
@@ -116,7 +111,6 @@ public class EmailServiceImpl implements EmailService {
         return null;
     }
 
-    @Async
     @Override
     public void sendResetPasswordMail(String recipientEmail, String baseUrl) {
         String link = baseUrl + "/reset-password?token=";
@@ -248,7 +242,6 @@ public class EmailServiceImpl implements EmailService {
     * This is an alternative mail for password reset
     * */
 
-    @Async
     @Override
     public void sendResetPasswordCode(String recipientEmail, String code) {
 
@@ -286,9 +279,9 @@ public class EmailServiceImpl implements EmailService {
 
     }
 
-    @Async
+
     @Override
-    public void recruiterDetails(RecruiterCreateDto member) {
+    public void confirmRecruiter(CreateRecruiterDto member) {
         String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +

@@ -1,11 +1,8 @@
 package com.hydraulic.applyforme.repository.impl;
 
-import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.exception.CountryDuplicateEntityException;
 import com.hydraulic.applyforme.model.exception.MemberDuplicateEntityException;
 import com.hydraulic.applyforme.repository.MemberRepository;
-import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
@@ -41,6 +38,15 @@ public class MemberRepositoryImpl implements MemberRepository {
         return entityManager.find(Member.class, id);
     }
 
+    @Override
+    public Member getRef(Long id) {
+        try {
+            return entityManager.getReference(Member.class, id);
+        }
+        catch (EntityNotFoundException ex) {
+            return null;
+        }
+    }
 
     @Override
     public Member saveOne(Member body) {

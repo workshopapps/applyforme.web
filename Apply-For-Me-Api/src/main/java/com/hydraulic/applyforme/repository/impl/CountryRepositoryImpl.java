@@ -38,6 +38,16 @@ public class CountryRepositoryImpl implements CountryRepository {
     }
 
     @Override
+    public Country getRef(Long id) {
+        try {
+            return entityManager.getReference(Country.class, id);
+        }
+        catch (EntityNotFoundException ex) {
+            return null;
+        }
+    }
+
+    @Override
     public Country saveOne(Country body) {
         try {
             entityManager.persist(body);

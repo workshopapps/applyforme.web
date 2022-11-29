@@ -1,13 +1,9 @@
 package com.hydraulic.applyforme.model.exception;
 
-public class EmailAlreadyExistsException extends ApplyForMeException{
+public class EmailAlreadyExistsException extends ApplyForMeException {
 
     private static final long serialVersionUID = 1L;
-
-    public static final String ENTITY_NAME = "Email Address";
-
-    public EmailAlreadyExistsException() {
-    }
+    public static final String ENTITY_NAME = "Member";
 
     @Override
     public String getMessage() {

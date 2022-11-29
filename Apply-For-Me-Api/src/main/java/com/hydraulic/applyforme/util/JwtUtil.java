@@ -24,7 +24,6 @@ import java.util.function.Function;
 @Setter
 @PropertySource("classpath:application.properties")
 public class JwtUtil {
-
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
     @Value("${applyforme.jwt.secret}")
@@ -65,13 +64,14 @@ public class JwtUtil {
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         UserDetailsImpl userDetails1 = (UserDetailsImpl) userDetails;
-//        setMemberType(userDetails, claims);
-        List<String> rolesArr = new ArrayList<>();
-            for (Role role : userDetails1.getPlainRoles()) {
-                rolesArr.add(role.getCode());
-            }
+
+        String[] roles = userDetails1.getPlainRoles()
+                    .stream()
+                    .map(Role::getCode)
+                    .toArray(String[]::new);
+
         claims.put("memberId", userDetails1.getId());
-        claims.put("roles", rolesArr.toArray(String[]::new));
+        claims.put("roles", roles);
         return doGenerateToken(claims, userDetails.getUsername());
     }
 

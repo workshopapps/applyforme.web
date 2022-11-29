@@ -1,6 +1,7 @@
-package com.hydraulic.applyforme.repository;
+package com.hydraulic.applyforme.service;
 
-public interface InMemoryRepository {
+public interface InMemoryCacheService {
+
     public void set(String key, Object value);
 
     Object get(String key);
