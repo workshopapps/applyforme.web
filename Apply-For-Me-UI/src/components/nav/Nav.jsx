@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, NavLink, Navigate, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import classes from "./Nav.module.css";
 import Logo from "../../assets/images/nav_logo.svg";
@@ -28,29 +28,11 @@ const Nav = () => {
         navigate("/");
     };
 
-    const handleActiveLink = linkValue => {
-        setActiveLink({ ...initState });
-        switch (linkValue) {
-            case "price":
-                console.log("Active price");
-                setActiveLink({ price: true });
-                break;
-            case "blog":
-                console.log("hello");
-                setActiveLink({ blog: true });
-                break;
-            case "contact":
-                setActiveLink({ contact: true });
-                break;
-            case "faq":
-                setActiveLink({ faq: true });
-                break;
-            case "about":
-                setActiveLink({ about: true });
-                break;
-            default:
-                break;
-        }
+    const handleActiveLink = ({ isActive }) => {
+        return {
+            color: isActive ? "#2E3192" : "",
+            fontWeight: isActive ? "500" : ""
+        };
     };
 
     return (
@@ -73,21 +55,31 @@ const Nav = () => {
 
                 <ul className={classes.nav_links}>
                     <li className="active">
-                        <Link to="/about">About us</Link>
+                        <NavLink to="/about" style={handleActiveLink}>
+                            About us
+                        </NavLink>
                     </li>
 
                     <li>
-                        <Link to="/pricing">Pricing plan</Link>
+                        <NavLink to="/pricing" style={handleActiveLink}>
+                            Pricing plan
+                        </NavLink>
                     </li>
 
                     <li>
-                        <Link to="/blog">Blog</Link>
+                        <NavLink to="/blog" style={handleActiveLink}>
+                            Blog
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to="/faqs">FAQs</Link>
+                        <NavLink to="/faqs" style={handleActiveLink}>
+                            FAQs
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to="/contact">Contact us</Link>
+                        <NavLink to="/contact" style={handleActiveLink}>
+                            Contact us
+                        </NavLink>
                     </li>
                 </ul>
 
