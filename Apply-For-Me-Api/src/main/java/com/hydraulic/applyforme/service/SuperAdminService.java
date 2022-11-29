@@ -1,17 +1,9 @@
 package com.hydraulic.applyforme.service;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.dto.UpdatePasswordDTO;
-
-import javax.transaction.Transactional;
-import java.util.Optional;
-import com.hydraulic.applyforme.model.dto.member.RecruiterCreateDto;
+import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 
 public interface SuperAdminService {
-
-    Member getDetailsById(Long id);
-
-	public Member updatePasswordById(Long id, UpdatePasswordDTO updatePasswordDTO);
-    boolean deleteMemberById(Long id);
-    Member getAdmin(Long id);
+    Member updatePassword(Long id, UpdatePasswordDto dto);
+    Member getDetails(Long id);
 }

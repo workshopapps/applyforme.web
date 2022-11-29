@@ -8,10 +8,8 @@ import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class MemberSecretCodeServiceImpl implements MemberSecretCodeService {
-
     @Autowired
     private MemberSecretCodeRepository memberSecretCodeRepository;
-
 
     /*
     * This method is required when the user has entered the four digits
@@ -20,7 +18,7 @@ public class MemberSecretCodeServiceImpl implements MemberSecretCodeService {
     * to enter the codes. So, I implemented the same for sign-up verification code). But, if we are to enter
     * all the digits in one box, then we will need to update this method.
     * This method collects the codes(numbers submitted) in the boxes and
-    *  concatinates them before comparing them with the sign-up verification code stored in the database(which
+    *  concatenates them before comparing them with the sign-up verification code stored in the database(which
     * was stored at sign-up . Take a look at this method: public Member save(SignupDto body)
     * */
 
@@ -58,7 +56,4 @@ public class MemberSecretCodeServiceImpl implements MemberSecretCodeService {
         String code = "" + numbers[0] + numbers[1] + numbers[2] + numbers[3] + "";
         return  code;
     }
-
-
-
 }

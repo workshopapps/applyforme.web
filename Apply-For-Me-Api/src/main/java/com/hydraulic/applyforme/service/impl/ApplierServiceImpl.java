@@ -7,6 +7,7 @@ import com.hydraulic.applyforme.service.ApplierService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ public class ApplierServiceImpl implements ApplierService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Transactional(readOnly = true)
     public List<ApplierDto> getAllAppliers() {
         List<Applier> appliers =this.repository.findAll();
 

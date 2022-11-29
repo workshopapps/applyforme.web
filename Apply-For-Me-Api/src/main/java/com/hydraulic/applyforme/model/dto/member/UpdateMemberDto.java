@@ -2,8 +2,7 @@ package com.hydraulic.applyforme.model.dto.member;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hydraulic.applyforme.annotation.PhoneNumberConstraint;
-import com.hydraulic.applyforme.model.domain.Country;
+import com.hydraulic.applyforme.annotation.PhoneNumber;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -52,7 +51,7 @@ public class UpdateMemberDto {
     private String username;
 
     @NotNull(message = "{member.phoneNumber.notNull}")
-    @PhoneNumberConstraint
+    @PhoneNumber
     @JsonProperty("phone_number")
     private String phoneNumber;
 

@@ -15,25 +15,18 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private MemberSecretJpaRepository secretJpaRepository;
-
     private MemberJpaRepository memberJpaRepository;
-
     private MemberRepository memberRepository;
-
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    public AuthenticationServiceImpl() {
-
-    }
 
     public AuthenticationServiceImpl(MemberSecretJpaRepository secretJpaRepository, MemberJpaRepository memberJpaRepository, MemberRepository memberRepository) {
         this.secretJpaRepository = secretJpaRepository;
@@ -41,6 +34,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.memberRepository = memberRepository;
     }
 
+    @Transactional
     public void resetPassword(ResetPasswordDto dto) {
         MemberSecretCode secretCodeExists = secretJpaRepository.findByForgotPasswordCode(dto.getToken());
 

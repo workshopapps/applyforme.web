@@ -1,13 +1,13 @@
 package com.hydraulic.applyforme.validator;
 
-import com.hydraulic.applyforme.annotation.PhoneNumberConstraint;
+import com.hydraulic.applyforme.annotation.PhoneNumber;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class PhoneNumberValidator implements ConstraintValidator<PhoneNumberConstraint, String> {
+public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, String> {
     @Override
-    public void initialize(PhoneNumberConstraint phoneNumber) {
+    public void initialize(PhoneNumber phoneNumber) {
 
     }
     @Override
