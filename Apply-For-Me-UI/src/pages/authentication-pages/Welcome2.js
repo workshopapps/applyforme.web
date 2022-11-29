@@ -13,6 +13,9 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
+// Toaster
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-in";
 
@@ -40,16 +43,19 @@ const Welcome2 = () => {
             let tokenKey = "tokenHngKey";
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
-            navigate("/dashboard");
+            toast("Login Successfully");
+            setTimeout(() => {
+                navigate("/dashboard");
+            }, 3000);
         } else {
-            console.log("eer");
+            toast("Wrong credentials");
         }
     };
 
     return (
         <div className="Welcome2">
             <Navbar />
-
+            <ToastContainer />
             <div className="w2bdy">
                 <Text child="Welcome Back !!" />
                 <Text2 child="Login to ApplyForMe " />
