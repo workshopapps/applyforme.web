@@ -38,6 +38,16 @@ public class RoleRepositoryImpl implements RoleRepository {
     }
 
     @Override
+    public Role getRef(Long id) {
+        try {
+            return entityManager.getReference(Role.class, id);
+        }
+        catch (EntityNotFoundException ex) {
+            return null;
+        }
+    }
+
+    @Override
     public Role saveOne(Role body) {
         try {
             entityManager.persist(body);

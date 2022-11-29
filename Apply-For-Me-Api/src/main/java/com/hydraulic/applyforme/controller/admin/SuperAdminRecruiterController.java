@@ -1,7 +1,7 @@
 package com.hydraulic.applyforme.controller.admin;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.dto.member.RecruiterCreateDto;
+import com.hydraulic.applyforme.model.dto.member.CreateRecruiterDto;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.EmailService;
 import com.hydraulic.applyforme.service.superadmin.SuperAdminApplierService;
@@ -17,7 +17,7 @@ import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DI
 
 @RestController
 @RequestMapping(
-        value = "admin/recruiter",
+        value = "super-admin/recruiter",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
 public class SuperAdminRecruiterController {
@@ -36,16 +36,16 @@ public class SuperAdminRecruiterController {
             @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
             @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir,
-            @RequestParam(value = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date from,
-            @RequestParam(value = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date to,
+            @RequestParam(value = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fromDate,
+            @RequestParam(value = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date toDate,
             @RequestParam(value = "q", required = false) String q) {
-        return service.getEntries(pageNo, pageSize, sortBy, sortDir, q, from, to);
+        return service.getEntries(pageNo, pageSize, sortBy, sortDir, q, fromDate, toDate);
     }
 
     @PostMapping("/save")
-    public Member saveRecruiter(@Validated @RequestBody RecruiterCreateDto dto) {
+    public Member save(@Validated @RequestBody CreateRecruiterDto dto) {
         Member member = service.saveRecruiter(dto);
-        emailService.recruiterDetails(dto);
+        emailService.confirmRecruiter(dto);
         return member;
     }
 

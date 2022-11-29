@@ -4,11 +4,13 @@ import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Role;
 import com.hydraulic.applyforme.model.dto.member.MemberDto;
-import com.hydraulic.applyforme.model.dto.member.RecruiterCreateDto;
+import com.hydraulic.applyforme.model.dto.member.CreateRecruiterDto;
 import com.hydraulic.applyforme.model.enums.RoleType;
+import com.hydraulic.applyforme.model.exception.CountryNotFoundException;
 import com.hydraulic.applyforme.model.exception.EmailAlreadyExistsException;
 import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
+import com.hydraulic.applyforme.repository.CountryRepository;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.SuperAdminApplierJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
@@ -36,18 +38,24 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
     private final MemberRepository memberRepository;
     private final MemberJpaRepository memberJpaRepository;
 
+    private final CountryRepository countryRepository;
+
     @Autowired
     private ModelMapper mapper;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public SuperAdminApplierServiceImpl(SuperAdminApplierJpaRepository jpaRepository, RoleJpaRepository roleJpaRepository,
-                                        MemberRepository memberRepository, MemberJpaRepository memberJpaRepository) {
+    public SuperAdminApplierServiceImpl(SuperAdminApplierJpaRepository jpaRepository,
+                                        RoleJpaRepository roleJpaRepository,
+                                        MemberRepository memberRepository,
+                                        MemberJpaRepository memberJpaRepository,
+                                        CountryRepository countryRepository) {
         this.jpaRepository = jpaRepository;
         this.roleJpaRepository = roleJpaRepository;
         this.memberRepository = memberRepository;
         this.memberJpaRepository = memberJpaRepository;
+        this.countryRepository = countryRepository;
     }
 
     @Override
@@ -72,7 +80,7 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
 
     @Override
     @Transactional
-    public Member saveRecruiter(RecruiterCreateDto dto) {
+    public Member saveRecruiter(CreateRecruiterDto dto) {
         boolean existingMember = memberJpaRepository.existsByEmailAddress(dto.getEmailAddress());
         if (existingMember) {
             throw new EmailAlreadyExistsException();
@@ -83,11 +91,21 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
             throw new RoleNotFoundException(RoleType.RECRUITER.getValue());
         }
 
+        Country nationality = countryRepository.getOne(dto.getNationality());
+        if (nationality == null) {
+            throw new CountryNotFoundException(dto.getNationality());
+        }
+
+        Country countryOfResidence = countryRepository.getOne(dto.getCountryOfResidence());
+        if (countryOfResidence == null) {
+            throw new CountryNotFoundException(dto.getCountryOfResidence());
+        }
+
         Member member = mapper.map(dto, Member.class);
         member.setPassword(dto.getPassword());
         member.getRoles().add(existingRole.get());
-        member.setNationality(Country.builder().id(dto.getNationality()).build());
-        member.setNationality(Country.builder().id(dto.getCountryOfResidence()).build());
+        member.setNationality(nationality);
+        member.setCountryOfResidence(countryOfResidence);
         return memberRepository.saveOne(member);
     }
 

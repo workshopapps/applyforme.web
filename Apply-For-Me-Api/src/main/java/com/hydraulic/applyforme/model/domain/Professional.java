@@ -61,8 +61,4 @@ public class Professional {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "professional")
     private Set<Submission> submissions = new HashSet<>();
-
-
-    
-    
 }

@@ -5,7 +5,13 @@ import com.hydraulic.applyforme.model.dto.applyforme.ApplyForMeDto;
 import com.hydraulic.applyforme.model.dto.applyforme.DeleteManyApplyForMeDto;
 import com.hydraulic.applyforme.model.response.ApplierJobSubmissionTotalResponse;
 import com.hydraulic.applyforme.service.ApplyForMeService;
+import com.hydraulic.applyforme.service.InMemoryCacheService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisKeyValueTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContext;
@@ -28,10 +34,12 @@ import java.util.List;
 )
 public class ApplyForMeController {
 
-    private ApplyForMeService service;
+    private final ApplyForMeService service;
+    private final InMemoryCacheService cacheService;
 
-    public ApplyForMeController(ApplyForMeService service) {
+    public ApplyForMeController(ApplyForMeService service, InMemoryCacheService cacheService) {
         this.service = service;
+        this.cacheService = cacheService;
     }
 
     @GetMapping("/entries")
@@ -71,8 +79,14 @@ public class ApplyForMeController {
     }
 
     @GetMapping("/dummy")
-    public void dummy() {
+    public Object dummy() {
         var currentUser = CurrentUserUtil.getCurrentUser();
         System.out.println(currentUser);
+
+        String key = "greeting";
+        if (!cacheService.exists(key)) {
+            cacheService.set(key, "Hello World!");
+        }
+        return cacheService.get(key);
     }
 }

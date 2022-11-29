@@ -15,7 +15,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RecruiterCreateDto {
+@ToString
+public class CreateRecruiterDto {
 
     @NotNull(message = "{member.firstName.notNull}")
     @JsonProperty("first_name")

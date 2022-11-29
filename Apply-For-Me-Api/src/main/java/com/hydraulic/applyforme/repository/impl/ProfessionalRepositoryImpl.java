@@ -32,6 +32,16 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
     }
 
     @Override
+    public Professional getRef(Long id) {
+        try {
+            return entityManager.getReference(Professional.class, id);
+        }
+        catch (EntityNotFoundException ex) {
+            return null;
+        }
+    }
+
+    @Override
     public boolean remove(Long id) {
         try {
             Professional entity = entityManager.getReference(Professional.class, id);
