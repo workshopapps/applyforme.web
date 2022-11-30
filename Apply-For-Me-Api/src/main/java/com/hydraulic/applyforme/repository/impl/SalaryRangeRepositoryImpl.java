@@ -38,6 +38,16 @@ public class SalaryRangeRepositoryImpl implements SalaryRangeRepository {
     }
 
     @Override
+    public SalaryRange getRef(Long id) {
+        try {
+            return entityManager.getReference(SalaryRange.class, id);
+        }
+        catch (EntityNotFoundException ex) {
+            return null;
+        }
+    }
+
+    @Override
     public SalaryRange saveOne(SalaryRange body) {
         try {
             entityManager.persist(body);

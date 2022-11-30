@@ -1,6 +1,11 @@
 package com.hydraulic.applyforme.repository;
 
 public interface InMemoryRepository {
+    public void set(String key, Object value);
 
-    public void saveEmailVerificationCode(String email, String verificationCode);
+    Object get(String key);
+
+    boolean exists(String key);
+
+    boolean remove(String key);
 }

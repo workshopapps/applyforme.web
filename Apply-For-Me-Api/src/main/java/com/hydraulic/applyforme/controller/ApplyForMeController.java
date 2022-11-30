@@ -5,7 +5,15 @@ import com.hydraulic.applyforme.model.dto.applyforme.ApplyForMeDto;
 import com.hydraulic.applyforme.model.dto.applyforme.DeleteManyApplyForMeDto;
 import com.hydraulic.applyforme.model.response.ApplierJobSubmissionTotalResponse;
 import com.hydraulic.applyforme.service.ApplyForMeService;
+import com.hydraulic.applyforme.service.InMemoryCacheService;
+import com.hydraulic.applyforme.util.CurrentUserUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisKeyValueTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,16 +34,16 @@ import java.util.List;
 )
 public class ApplyForMeController {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private final ApplyForMeService service;
+    private final InMemoryCacheService cacheService;
 
-    private ApplyForMeService service;
-
-    public ApplyForMeController(ApplyForMeService service) {
+    public ApplyForMeController(ApplyForMeService service, InMemoryCacheService cacheService) {
         this.service = service;
+        this.cacheService = cacheService;
     }
 
     @GetMapping("/entries")
+    @PreAuthorize("hasAnyRole('Recruiter')")
     public List<ApplyForMe> findAll(@RequestParam(required = false, defaultValue = "1" , name = "page") Integer pageNumber) {
         return service.findAll(pageNumber);
     }
@@ -70,14 +78,15 @@ public class ApplyForMeController {
         return service.deleteAll();
     }
 
+    @GetMapping("/dummy")
     public Object dummy() {
-        SecurityContext context = SecurityContextHolder.getContext();
-        Object principal = context.getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            return (UserDetails) context.getAuthentication().getPrincipal();
+        var currentUser = CurrentUserUtil.getCurrentUser();
+        System.out.println(currentUser);
+
+        String key = "greeting";
+        if (!cacheService.exists(key)) {
+            cacheService.set(key, "Hello World!");
         }
-        else {
-            return null;
-        }
+        return cacheService.get(key);
     }
 }

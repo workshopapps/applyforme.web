@@ -3,6 +3,8 @@ package com.hydraulic.applyforme.controller;
 import com.hydraulic.applyforme.model.dto.FileDto;
 import com.hydraulic.applyforme.model.response.SubmissionResponse;
 import com.hydraulic.applyforme.service.FileService;
+import com.hydraulic.applyforme.model.response.SubmissionEntriesResponse;
+import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.JobSubmissionService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +12,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import static com.hydraulic.applyforme.constants.PagingConstants.*;
 
+import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.dto.ProfessionalJobSubmissionDTO;
+import com.hydraulic.applyforme.service.JobSubmissionService;
+
 @RestController
 @RequestMapping(
         value = "submission",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
+@CrossOrigin("*")
 public class JobSubmissionController {
 
     private final JobSubmissionService service;
@@ -33,13 +40,14 @@ public class JobSubmissionController {
     public FileDto uploadResume(@RequestParam("doc") MultipartFile file) {
         return fileService.saveMemberPictures(file.getContentType());
     }
+    
     @GetMapping("/applier/count/{applierId}")
     public Long totalApplierEntry(@PathVariable(name = "applierId") Long id) {
         return service.countAllApplierSubmissions(id);
     }
-
+    
     @GetMapping("/entries")
-    public SubmissionResponse getAllSubmission(
+    public ApplyForMeResponse getAllSubmission(
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
             @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
@@ -47,7 +55,7 @@ public class JobSubmissionController {
         return service.getAllJobSubmission(pageNo, pageSize, sortBy, sortDir);
     }
     @GetMapping("/entries/search")
-    public SubmissionResponse getAllSubmissionBySearch(
+    public ApplyForMeResponse getAllSubmissionBySearch(
             @RequestParam String q,
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,

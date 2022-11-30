@@ -7,6 +7,7 @@ import com.hydraulic.applyforme.service.SuperAdminStatService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class SuperAdminStatServiceImpl implements SuperAdminStatService {
         this.mapper = mapper;
     }
     @Override
+    @Transactional(readOnly = true)
     public AdminDashboardStatisticsOne getStatistics() {
 
         Long totalApplications = repository.getAllSubmissions();
@@ -33,6 +35,7 @@ public class SuperAdminStatServiceImpl implements SuperAdminStatService {
         return statistics;
     }
 
+    @Transactional(readOnly = true)
     public List<ApplierJobSubmissionStatistics> getAppliersTotalSubmissions() {
         return repository.getAppliersTotalSubmissions();
     }

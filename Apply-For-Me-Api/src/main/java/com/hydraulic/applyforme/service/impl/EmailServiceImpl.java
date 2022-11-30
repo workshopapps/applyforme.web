@@ -1,46 +1,56 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.domain.MemberSecretCode;
+import com.hydraulic.applyforme.model.dto.contactUs.ContactUsDto;
+import com.hydraulic.applyforme.model.dto.member.CreateRecruiterDto;
 import com.hydraulic.applyforme.model.exception.EmailDeliveryException;
-import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
+import com.hydraulic.applyforme.model.exception.PrivacyPolicyException;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
 import com.hydraulic.applyforme.service.EmailService;
 import net.bytebuddy.utility.RandomString;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Service
+@PropertySource(value = "classpath:application.properties")
 public class EmailServiceImpl implements EmailService {
     private MemberJpaRepository memberJpaRepository;
+
     private MemberSecretJpaRepository memberSecretJpaRepository;
+
+    @Autowired
     private JavaMailSender javaMailSender;
 
-    public EmailServiceImpl(MemberJpaRepository memberJpaRepository, MemberSecretJpaRepository memberSecretJpaRepository) {
+    @Autowired
+    private Environment env;
+
+    public EmailServiceImpl(MemberJpaRepository memberJpaRepository, MemberSecretJpaRepository memberSecretJpaRepository, JavaMailSender mailSender) {
         this.memberJpaRepository = memberJpaRepository;
         this.memberSecretJpaRepository = memberSecretJpaRepository;
+        this.javaMailSender = mailSender;
     }
 
-    @Async
     @Override
     public void sendWelcomeMessage(String emailAddress) {
         Member member = memberJpaRepository.findByEmailAddress(emailAddress);
-        String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
-                " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\" https://firebasestorage.googleapis.com/v0/b/distro-55bdd.appspot.com/o/Distro%20Logo-05.png?alt=media&token=3e7f3e5b-471c-4565-b0b9-6bd0e0a5529d\" /></a>" +
+                " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"/\" /></a>" +
                 "<p>ApplyForMe</p>" +
                 "</div>" +
                 "<p style=\"font-size:1.1em\">" +
                 "<b>Hey " + member.getFirstName() + ",</b>" + "<br>" +
-                "<p>Welcome to ApplyForMe. We are thrilled to have you here!</p><br>" +
-                "<p>ApplyForMe is a service where you tell us your skills and what you are looking for, and people apply for you for 100s of jobs. All you need to do is attend interviews.</p>" +
+                "Welcome to ApplyForMe. We are thrilled to have you here!" + "<br>" +
+                "ApplyForMe is a service where you tell us your skills and what you are looking for, and people apply for you for 100s of jobs. All you need to do is attend interviews.</p>" +
                 " <hr style=\"border:none;border-top:1px solid #eee\" />" +
                 "<div style=\"margin-top: 20px;padding:8px 0;color:#aaa;font-size:1.0em;line-height:1;font-weight:300\">" +
                 " <p>© 2022 ApplyForMe, All rights reserved.</p>" +
@@ -49,25 +59,24 @@ public class EmailServiceImpl implements EmailService {
                 "</div>";
 
         String subject = "Welcome to ApplyForMe";
-
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-            helper.setTo(member.getEmailAddress());
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom(env.getProperty("applyforme.email"));
+            helper.setTo(emailAddress);
             helper.setSubject(subject);
-            helper.setText(messageSource, true);
-            javaMailSender.send(msg);
-        } catch (MessagingException ex2) {
-            System.out.println("sendWelcomeMessage: " + ex2.getMessage());
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            throw new EmailDeliveryException();
         }
     }
 
-    @Async
     @Override
     public void signupVerification(String emailAddress) {
         String token = createVerificationToken();
 
-        String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
                 " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"\" /></a>" +
@@ -82,17 +91,19 @@ public class EmailServiceImpl implements EmailService {
                 "</div>" +
                 "</div>";
         String subject = "Sign up verification";
-
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom("hngteamhydraulic@gmail.com");
             helper.setTo(emailAddress);
             helper.setSubject(subject);
-            helper.setText(messageSource, true);
-            javaMailSender.send(msg);
-        } catch (Exception exception) {
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
             throw new EmailDeliveryException();
         }
+
+
     }
 
     @Override
@@ -100,14 +111,141 @@ public class EmailServiceImpl implements EmailService {
         return null;
     }
 
-    @Async
     @Override
     public void sendResetPasswordMail(String recipientEmail, String baseUrl) {
         String link = baseUrl + "/reset-password?token=";
         String token = createVerificationToken();
         link += token;
 
-        String messageSource = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+        String subject = "Reset Password";
+
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+                " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
+                "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
+                " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"\" /></a>" +
+                "<p>ApplyForMe</p>" +
+                "</div>" +
+                "<p style=\"font-size:1.1em\">" +
+                "You have requested to reset your password." +
+                "<p>Copy the code below to reset your password:</p>" + "<br>" +
+                "<a href=\"" + link + "\">Change my password</a>" + "<br>" +
+                "Ignore this email if you do remember your password, " +
+                "or you have not made the request.</p>"+
+                " <hr style=\"border:none;border-top:1px solid #eee\" />" +
+                "<div style=\"margin-top: 20px;padding:8px 0;color:#aaa;font-size:1.0em;line-height:1;font-weight:300\">" +
+                " <p>© 2022 ApplyForMe, All rights reserved.</p>" +
+                " </div>" +
+                "</div>" +
+                "</div>";
+
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            helper.setFrom(env.getProperty("applyforme.email"));
+            helper.setTo(recipientEmail);
+            helper.setSubject(subject);
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            throw new EmailDeliveryException();
+        }
+
+    }
+
+    @Override
+    public String createVerificationToken() {
+        return RandomString.make(30);
+    }
+
+
+    @Override
+    public void sendSignUpVerificationEmail(String emailAddress, String memberCode){
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+                " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
+                "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
+                " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"\" /></a>" +
+                "<p>ApplyForMe</p>" +
+                "</div>" +
+                "<p style=\"font-size:1.1em\">" +
+                "Your sign up verification code is " + memberCode +
+                "</p>"+
+                " <hr style=\"border:none;border-top:1px solid #eee\" />" +
+                "<div style=\"margin-top: 20px;padding:8px 0;color:#aaa;font-size:1.0em;line-height:1;font-weight:300\">" +
+                " <p>© 2022 ApplyForMe, All rights reserved.</p>" +
+                " </div>" +
+                "</div>" +
+                "</div>";
+
+        String subject = "Sign Up Verification Code";
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            helper.setFrom(env.getProperty("applyforme.email"));
+            helper.setTo(emailAddress);
+            helper.setSubject(subject);
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            throw new EmailDeliveryException();
+        }
+
+
+    }
+
+
+    @Override
+    public void contactUs(ContactUsDto dto) {
+        String senderEmail = dto.getEmailAddress();
+        boolean privacyPolicyStatus = dto.getPrivacyPolicy();
+
+        if (!privacyPolicyStatus) {
+            throw new PrivacyPolicyException();
+        }
+
+        String subject = "Contact Us Message Details";
+
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+                " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
+                "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
+                " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"\" /></a>" +
+                "<p>ApplyForMe</p>" +
+                "</div>" +
+                "<p style=\"font-size:1.1em\">"
+                + "Sender's firstname: " + dto.getFirstName() + "<br>"
+                + "Sender's lastname: " + dto.getLastName() + "<br>"
+                + "Sender's email: " + dto.getEmailAddress() + "<br>"
+                + "Message: " + dto.getMessage() + "<br>"
+                + "Privacy policy status: " + dto.getPrivacyPolicy()
+                + "</p>"+
+                " <hr style=\"border:none;border-top:1px solid #eee\" />" +
+                "<div style=\"margin-top: 20px;padding:8px 0;color:#aaa;font-size:1.0em;line-height:1;font-weight:300\">" +
+                " <p>© 2022 ApplyForMe, All rights reserved.</p>" +
+                " </div>" +
+                "</div>" +
+                "</div>";
+
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+
+            helper.setFrom(senderEmail);
+            helper.setTo("hngteamhydraulic@gmail.com");
+            helper.setSubject(subject);
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            throw new EmailDeliveryException();
+        }
+    }
+
+    /*
+    * This is an alternative mail for password reset
+    * */
+
+    @Override
+    public void sendResetPasswordCode(String recipientEmail, String code) {
+
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
                 "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
                 " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"\" /></a>" +
@@ -115,8 +253,8 @@ public class EmailServiceImpl implements EmailService {
                 "</div>" +
                 "<p style=\"font-size:1.1em\">" +
                 "<p>You have requested to reset your password.</p>" +
-                "<p>Click the link below to change your password:</p>" +
-                "<p><a href=\"" + link + "\">Change my password</a></p>" + "<br>" +
+                "<p>Copy the code below to reset your password:</p>" +
+                "<p>Your password reset code is: </p>" + code + "<br>" +
                 "<p>Ignore this email if you do remember your password, " +
                 "or you have not made the request.</p>"+
                 " <hr style=\"border:none;border-top:1px solid #eee\" />" +
@@ -126,21 +264,58 @@ public class EmailServiceImpl implements EmailService {
                 "</div>" +
                 "</div>";
 
-        String subject = "Reset Password Link";
+        String subject = "Reset Password Code";
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            helper.setFrom("hngteamhydraulic@gmail.com");
             helper.setTo(recipientEmail);
             helper.setSubject(subject);
-            helper.setText(messageSource, true);
-            javaMailSender.send(msg);
-        } catch (Exception exception) {
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
             throw new EmailDeliveryException();
         }
+
     }
 
+
     @Override
-    public String createVerificationToken() {
-        return RandomString.make(30);
+    public void confirmRecruiter(CreateRecruiterDto member) {
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+                " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
+                "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
+                " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"/\" /></a>" +
+                "<p>ApplyForMe</p>" +
+                "</div>" +
+                "<p style=\"font-size:1.1em\">" +
+                "<b>Hey " + member.getFirstName() + member.getLastName() + ",</b>" + "<br>" +
+                "Welcome to ApplyForMe. We are thrilled to have you here!" + "<br>" +
+                "ApplyForMe is a service where you tell us your skills and what you are looking for, and people apply for you for 100s of jobs. All you need to do is attend interviews.</p>" +
+                " <hr style=\"border:none;border-top:1px solid #eee\" />" +
+                "<div style=\"margin-top: 20px;padding:8px 0;color:#aaa;font-size:1.0em;line-height:1;font-weight:300\">" +
+                "<p>You are a now a recruiter and your email address is " + member.getEmailAddress() + " and your password is " + member.getPassword() + ".</p>" +
+                " <hr style=\"border:none;border-top:1px solid #eee\" />" +
+                "<div style=\"margin-top: 20px;padding:8px 0;color:#aaa;font-size:1.0em;line-height:1;font-weight:300\">" +
+                " <p>© 2022 ApplyForMe, All rights reserved.</p>" +
+                " </div>" +
+                "</div>" +
+                "</div>";
+
+        String subject = "Welcome to ApplyForMe";
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom(env.getProperty("applyforme.email"));
+            helper.setTo(member.getEmailAddress());
+            helper.setSubject(subject);
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            throw new EmailDeliveryException();
+        }
+
+
     }
+
 }
