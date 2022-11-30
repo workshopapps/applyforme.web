@@ -3,7 +3,7 @@ import styles from "../CreateProfile.module.css";
 import classes from "./Review.module.css";
 import BlueButton from "../../../../components/buttons/blue_background/BlueButton";
 import LightButton from "../../../../components/buttons/light_button/LightButton";
-const Review = ({ formData }) => {
+const Review = ({ formData, keywords }) => {
     function handleSubmit() {
         if (formData.job_title === "") {
             return alert("Please enter a job title");
@@ -32,12 +32,16 @@ const Review = ({ formData }) => {
                         <h5>Experience</h5>
                     </div>
                     <div>
-                        <p>xtyyf</p>
+                        <section className={classes.review_keywords}>
+                            {keywords?.map((k, index) => (
+                                <p key={`${k.k}+${index}`}>{k}</p>
+                            ))}
+                        </section>
                         <h5>Keywords</h5>
                     </div>
                     <h6>Personal Info</h6>
                     <div>
-                        <p>enwono CV.pdf</p>
+                        <p>{formData.cv_file.name}</p>
                         <h5>Uploaded CV</h5>
                     </div>
                     <div>

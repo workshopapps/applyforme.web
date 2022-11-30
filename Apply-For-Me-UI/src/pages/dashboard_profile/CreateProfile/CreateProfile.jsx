@@ -32,7 +32,14 @@ const CreateProfile = () => {
                 />
             );
         } else if (step === 3) {
-            return <Review formData={formData} setFormData={setFormData} />;
+            return (
+                <Review
+                    formData={formData}
+                    setFormData={setFormData}
+                    keywords={keywords}
+                    setKeywords={setKeywords}
+                />
+            );
         }
     };
     const [formData, setFormData] = useState({
