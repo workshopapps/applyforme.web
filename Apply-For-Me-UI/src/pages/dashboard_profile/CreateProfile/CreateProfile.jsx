@@ -4,7 +4,7 @@ import JobSearch from "./JobSearch/JobSearch";
 import Review from "./Review/Review";
 import Settings from "./Settings/Settings";
 import styles from "./CreateProfile.module.css";
-import TopBar from "../TopBar/TopBar";
+import TopBar from "../components/TopBar/TopBar";
 import BlueButton from "../../../components/buttons/blue_background/BlueButton";
 import BlueBorderButton from "../../../components/buttons/blue_border_button/BlueBorderButton";
 import LightButton from "../../../components/buttons/light_button/LightButton";

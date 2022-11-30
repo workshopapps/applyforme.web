@@ -1,8 +1,8 @@
 import styles from "../CreateProfile.module.css";
 import classes from "./CoverLetter.module.css";
-import Dropdown from "../../Dropdown/Dropdown";
+import Dropdown from "../../components/Dropdown/Dropdown";
 // import BlueBorderButton from "../../../../components/buttons/blue_border_button/BlueBorderButton";
-import Input from "../../InputField/InputField";
+import Input from "../../components/InputField/InputField";
 const CoverLetter = ({ formData, setFormData }) => {
     return (
         <form className={styles.form_body}>

@@ -1,8 +1,8 @@
 import styles from "../CreateProfile.module.css";
 import classes from "./JobSearch.module.css";
 import pdf from "../../assets/pdf.png";
-import Dropdown from "../../Dropdown/Dropdown";
-import DragDropFile from "pages/dashboard_profile/DragDropFile/DragDropFile";
+import Dropdown from "../../components/Dropdown/Dropdown";
+import DragDropFile from "pages/dashboard_profile/components/DragDropFile/DragDropFile";
 import { useState, useEffect } from "react";
 
 const JobSearch = ({ formData, setFormData }) => {

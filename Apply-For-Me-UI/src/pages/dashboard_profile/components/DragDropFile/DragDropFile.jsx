@@ -1,5 +1,5 @@
 import styles from "./DragDropFile.module.css";
-import file from ".././assets/file.png";
+import file from "../../assets/file.png";
 
 const DragDropFile = ({ onChange }) => {
     return (

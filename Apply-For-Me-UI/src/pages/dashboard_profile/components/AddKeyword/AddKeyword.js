@@ -1,6 +1,6 @@
 import styles from "./AddKeyWord.module.css";
 // import { useState } from "react";
-import Input from "../../InputField/InputField.jsx";
+import Input from "../InputField/InputField.jsx";
 
 const AddKeyword = ({ keywords, setKeywords }) => {
     function handleKeyDown(e) {
