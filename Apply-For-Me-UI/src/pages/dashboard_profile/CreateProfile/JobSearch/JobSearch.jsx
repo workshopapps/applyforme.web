@@ -7,13 +7,17 @@ import { useState, useEffect } from "react";
 
 const JobSearch = ({ formData, setFormData }) => {
     const [countries, setCountries] = useState();
-    // eslint-disable-next-line no-unused-vars
-    const [uploaded, setUploaded] = useState(true);
     const countrynames = countries?.map(onecountry => ({
         label: onecountry.title,
         value: onecountry.title
     }));
     const countryNames = countrynames?.reverse();
+
+    countryNames?.splice(1, 0, {
+        label: "Job Location",
+        value: ""
+    });
+
     useEffect(() => {
         fetch(
             "https://official-volunux.uc.r.appspot.com/api/v1/country/entries/all"
@@ -86,6 +90,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Experience</p>
                     <Dropdown
                         options={[
+                            { label: "Experience", value: "" },
                             { label: "No experience", value: "No experience" },
                             { label: "Entry Level", value: "Entry level" },
                             { label: "Mid-Level", value: "Mid-Level" },
@@ -104,6 +109,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Employment Type</p>
                     <Dropdown
                         options={[
+                            { label: "Employment Type", value: "" },
                             { label: "Contract", value: "Contract" },
                             { label: "Full-time", value: "Full-time" },
                             { label: "Part-Time", value: "Part-time" }
@@ -121,6 +127,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Salary Expectation</p>
                     <Dropdown
                         options={[
+                            { label: "Salary", value: "" },
                             { label: "$3,000-$5,000", value: "salary1" },
                             { label: "$5,000-$10,000", value: "salary2" },
                             { label: "$10,000-$15,000", value: "salary3" },
