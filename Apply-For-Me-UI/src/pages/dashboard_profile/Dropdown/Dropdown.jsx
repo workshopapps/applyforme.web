@@ -1,12 +1,13 @@
 import styles from "./Dropdown.module.css";
 
-const Dropdown = ({ id, value, onChange, name, options }) => {
+const Dropdown = ({ id, value, onChange, name, options, width }) => {
     return (
         <div className={styles.dropdown}>
             <select
                 id={id}
                 value={value}
                 onChange={onChange}
+                style={{ width: `${width}%` }}
                 name={name}
                 // options={options}
             >

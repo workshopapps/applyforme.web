@@ -1,3 +1,6 @@
+p {
+    margin: 0;
+}
 .remotecheckbox {
     display: flex;
     gap: 1rem;
@@ -18,9 +21,10 @@
 
 @media screen and (min-width: 850px) {
     .detailsdropdown_box {
-        display: flex;
-        gap: 1.5rem;
-        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(3, 29%);
+        gap: 1rem;
+        margin-top: 0.75rem;
     }
 }
 @media screen and (max-width: 850px) {
@@ -28,13 +32,18 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        margin-top: 2rem;
+        margin-top: 0.75rem;
     }
 }
 .detailsdropdown_box p {
     font-weight: 400;
     font-size: 1rem;
     color: #999999;
+}
+.detailsdropdown_box div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 .uploadcv_box {
     margin-top: 2rem;

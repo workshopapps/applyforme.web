@@ -13,7 +13,6 @@ const JobSearch = ({ formData, setFormData }) => {
         value: onecountry.title
     }));
     const countryNames = countrynames?.reverse();
-    console.log(countryNames);
     useEffect(() => {
         fetch(
             "https://official-volunux.uc.r.appspot.com/api/v1/country/entries/all"
@@ -22,14 +21,24 @@ const JobSearch = ({ formData, setFormData }) => {
             .then(data => setCountries(data));
     }, []);
 
-    // const countryOptions = [{ label: "Job Title", value: "" }];
-
     return (
         <form className={styles.form_body}>
             <h3>Complete your desired job info and location</h3>
             <div className={classes.dropdownbox}>
                 <Dropdown
-                    options={[{ label: "Job Title", value: "" }]}
+                    options={[
+                        { label: "Job Title", value: "" },
+                        { label: "Designer", value: "Designer" },
+                        {
+                            label: "Front-end Developer",
+                            value: "Front-end Developer"
+                        },
+                        {
+                            label: "Back-end Developer",
+                            value: "Back-end Developer"
+                        }
+                    ]}
+                    width={90}
                     value={formData.job_title}
                     onChange={e => {
                         setFormData({
@@ -45,6 +54,7 @@ const JobSearch = ({ formData, setFormData }) => {
                 <Dropdown
                     options={countryNames}
                     value={formData.location}
+                    width={90}
                     onChange={e => {
                         setFormData({
                             ...formData,
@@ -76,7 +86,6 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Experience</p>
                     <Dropdown
                         options={[
-                            { label: "", value: "" },
                             { label: "No experience", value: "No experience" },
                             { label: "Entry Level", value: "Entry level" },
                             { label: "Mid-Level", value: "Mid-Level" },
@@ -95,7 +104,6 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Employment Type</p>
                     <Dropdown
                         options={[
-                            { label: "", value: "" },
                             { label: "Contract", value: "Contract" },
                             { label: "Full-time", value: "Full-time" },
                             { label: "Part-Time", value: "Part-time" }
@@ -113,7 +121,6 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Salary Expectation</p>
                     <Dropdown
                         options={[
-                            { label: "", value: "" },
                             { label: "$3,000-$5,000", value: "salary1" },
                             { label: "$5,000-$10,000", value: "salary2" },
                             { label: "$10,000-$15,000", value: "salary3" },

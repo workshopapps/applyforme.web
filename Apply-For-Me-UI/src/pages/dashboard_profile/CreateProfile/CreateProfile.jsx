@@ -29,7 +29,7 @@ const CreateProfile = () => {
     const [formData, setFormData] = useState({
         job_title: "",
         location: "",
-        isRemote: true,
+        isRemote: false,
         experience: "",
         employment_type: "",
         salary_expectation: "",
