@@ -1,6 +1,6 @@
 import styles from "../CreateProfile.module.css";
 import classes from "./CoverLetter.module.css";
-// import Dropdown from "../../Dropdown/Dropdown";
+import Dropdown from "../../Dropdown/Dropdown";
 // import BlueBorderButton from "../../../../components/buttons/blue_border_button/BlueBorderButton";
 import Input from "../../InputField/InputField";
 const CoverLetter = ({ formData, setFormData }) => {
@@ -9,17 +9,9 @@ const CoverLetter = ({ formData, setFormData }) => {
             <h3>Create a cover letter template for this profile</h3>
             <div className={styles.dropdownbox}>
                 <h5>Template name</h5>
-                <Input
-                    type="text"
-                    value={formData.coverletter_temp}
-                    name="coverletter_temp"
+                <Dropdown
+                    options={[{ label: "Browse Templates", value: "" }]}
                     width={90}
-                    onChange={e => {
-                        setFormData({
-                            ...formData,
-                            coverletter_temp: e.target.value
-                        });
-                    }}
                 />
             </div>
             <div className={classes.cover_letter}>

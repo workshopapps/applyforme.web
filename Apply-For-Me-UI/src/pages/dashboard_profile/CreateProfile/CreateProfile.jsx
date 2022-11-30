@@ -35,7 +35,6 @@ const CreateProfile = () => {
         salary_expectation: "",
         cv_file: [],
         coverletter_subject: "",
-        coverletter_temp: "",
         coverletter_body: "",
         keyword: ""
     });
