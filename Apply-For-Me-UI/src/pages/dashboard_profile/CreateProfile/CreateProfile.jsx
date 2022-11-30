@@ -4,13 +4,15 @@ import JobSearch from "./JobSearch/JobSearch";
 import Review from "./Review/Review";
 import Settings from "./Settings/Settings";
 import styles from "./CreateProfile.module.css";
-import TopBar from "../TopBar/TopBar";
+import TopBar from "../components/TopBar/TopBar";
 import BlueButton from "../../../components/buttons/blue_background/BlueButton";
 import BlueBorderButton from "../../../components/buttons/blue_border_button/BlueBorderButton";
 import LightButton from "../../../components/buttons/light_button/LightButton";
 
 const CreateProfile = () => {
     const [step, setStep] = useState(0);
+
+    const [keywords, setKeywords] = useState([]);
 
     const FormSteps = ["JobSearch", "CoverLetter", "Settings", "Review"];
     const FormDisplay = () => {
@@ -21,23 +23,36 @@ const CreateProfile = () => {
                 <CoverLetter formData={formData} setFormData={setFormData} />
             );
         } else if (step === 2) {
-            return <Settings formData={formData} setFormData={setFormData} />;
+            return (
+                <Settings
+                    formData={formData}
+                    setFormData={setFormData}
+                    keywords={keywords}
+                    setKeywords={setKeywords}
+                />
+            );
         } else if (step === 3) {
-            return <Review formData={formData} setFormData={setFormData} />;
+            return (
+                <Review
+                    formData={formData}
+                    setFormData={setFormData}
+                    keywords={keywords}
+                    setKeywords={setKeywords}
+                />
+            );
         }
     };
     const [formData, setFormData] = useState({
         job_title: "",
         location: "",
-        isRemote: true,
+        isRemote: false,
         experience: "",
         employment_type: "",
         salary_expectation: "",
         cv_file: [],
         coverletter_subject: "",
-        coverletter_temp: "",
         coverletter_body: "",
-        keyword: ""
+        keywords: ""
     });
     // console.log(formData);
 

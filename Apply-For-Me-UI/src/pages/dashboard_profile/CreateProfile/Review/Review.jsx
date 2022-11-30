@@ -1,15 +1,28 @@
 import { NavLink } from "react-router-dom";
 import styles from "../CreateProfile.module.css";
 import classes from "./Review.module.css";
+import { useNavigate } from "react-router-dom";
 import BlueButton from "../../../../components/buttons/blue_background/BlueButton";
 import LightButton from "../../../../components/buttons/light_button/LightButton";
-const Review = ({ formData }) => {
+const Review = ({ formData, keywords }) => {
+    const navigate = useNavigate();
     function handleSubmit() {
         if (formData.job_title === "") {
             return alert("Please enter a job title");
         } else if (formData.location === "") {
             return alert("Please select your location");
+        } else if (formData.experience === "") {
+            return alert("Please select your experience");
+        } else if (formData.employment_type === "") {
+            return alert("Please select your employment type");
+        } else if (formData.salary_expectation === "") {
+            return alert("Please select your salary expectation");
+        } else if (formData.coverletter_subject === "") {
+            return alert("Please enter a cover letter subject");
+        } else if (formData.coverletter_body === "") {
+            return alert("Please enter a cover letter body");
         }
+        navigate("/dashboard/user/success");
     }
     return (
         <div className={styles.form_body}>
@@ -32,18 +45,22 @@ const Review = ({ formData }) => {
                         <h5>Experience</h5>
                     </div>
                     <div>
-                        <p>{formData.keyword}</p>
-                        <h5>Keyword</h5>
+                        <section className={classes.review_keywords}>
+                            {keywords?.map((k, index) => (
+                                <p key={`${k.k}+${index}`}>{k}</p>
+                            ))}
+                        </section>
+                        <h5>Keywords</h5>
                     </div>
-                    {/* <h6>Personal Info</h6>
+                    <h6>Personal Info</h6>
                     <div>
-                        <p>enwono CV.pdf</p>
+                        <p>{formData.cv_file.name}</p>
                         <h5>Uploaded CV</h5>
-                    </div> */}
-                    {/* <div>
+                    </div>
+                    <div>
                         <p>enwono_id@yahoo.com</p>
                         <h5>Personal email</h5>
-                    </div> */}
+                    </div>
                 </div>
                 <hr className={styles.hr_one} />
                 <div className={classes.cl_template}>
@@ -59,15 +76,10 @@ const Review = ({ formData }) => {
                                 {formData.coverletter_body}
                             </div>
                             <div className={classes.review_buttons}>
-                                {/* <NavLink
-                                    to="/dashboard/user/success"
-                                    style={{ textDecoration: "none" }}
-                                > */}
                                 <BlueButton
                                     func={handleSubmit}
                                     text={"Send profile for searching"}
                                 />
-                                {/* </NavLink> */}
                                 <NavLink
                                     to="/dashboard/user/create-profile"
                                     style={{ textDecoration: "none" }}

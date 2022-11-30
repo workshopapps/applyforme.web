@@ -1,19 +1,23 @@
 import styles from "../CreateProfile.module.css";
 import classes from "./JobSearch.module.css";
-// import file from "../../assets/file.png";
-// import Input from "../../InputField/InputField";
-import Dropdown from "../../Dropdown/Dropdown";
+import pdf from "../../assets/pdf.png";
+import Dropdown from "../../components/Dropdown/Dropdown";
+import DragDropFile from "pages/dashboard_profile/components/DragDropFile/DragDropFile";
 import { useState, useEffect } from "react";
 
 const JobSearch = ({ formData, setFormData }) => {
-    // eslint-disable-next-line no-unused-vars
     const [countries, setCountries] = useState();
     const countrynames = countries?.map(onecountry => ({
         label: onecountry.title,
         value: onecountry.title
     }));
     const countryNames = countrynames?.reverse();
-    console.log(countryNames);
+
+    countryNames?.splice(1, 0, {
+        label: "Job Location",
+        value: ""
+    });
+
     useEffect(() => {
         fetch(
             "https://official-volunux.uc.r.appspot.com/api/v1/country/entries/all"
@@ -21,15 +25,24 @@ const JobSearch = ({ formData, setFormData }) => {
             .then(response => response.json())
             .then(data => setCountries(data));
     }, []);
-
-    // const countryOptions = [{ label: "Job Title", value: "" }];
-
     return (
         <form className={styles.form_body}>
             <h3>Complete your desired job info and location</h3>
             <div className={classes.dropdownbox}>
                 <Dropdown
-                    options={[{ label: "Job Title", value: "" }]}
+                    options={[
+                        { label: "Job Title", value: "" },
+                        { label: "Designer", value: "Designer" },
+                        {
+                            label: "Front-end Developer",
+                            value: "Front-end Developer"
+                        },
+                        {
+                            label: "Back-end Developer",
+                            value: "Back-end Developer"
+                        }
+                    ]}
+                    width={90}
                     value={formData.job_title}
                     onChange={e => {
                         setFormData({
@@ -45,6 +58,7 @@ const JobSearch = ({ formData, setFormData }) => {
                 <Dropdown
                     options={countryNames}
                     value={formData.location}
+                    width={90}
                     onChange={e => {
                         setFormData({
                             ...formData,
@@ -76,7 +90,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Experience</p>
                     <Dropdown
                         options={[
-                            { label: "", value: "" },
+                            { label: "Experience", value: "" },
                             { label: "No experience", value: "No experience" },
                             { label: "Entry Level", value: "Entry level" },
                             { label: "Mid-Level", value: "Mid-Level" },
@@ -95,7 +109,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Employment Type</p>
                     <Dropdown
                         options={[
-                            { label: "", value: "" },
+                            { label: "Employment Type", value: "" },
                             { label: "Contract", value: "Contract" },
                             { label: "Full-time", value: "Full-time" },
                             { label: "Part-Time", value: "Part-time" }
@@ -113,7 +127,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Salary Expectation</p>
                     <Dropdown
                         options={[
-                            { label: "", value: "" },
+                            { label: "Salary", value: "" },
                             { label: "$3,000-$5,000", value: "salary1" },
                             { label: "$5,000-$10,000", value: "salary2" },
                             { label: "$10,000-$15,000", value: "salary3" },
@@ -129,38 +143,33 @@ const JobSearch = ({ formData, setFormData }) => {
                     />
                 </div>
             </div>
+            {formData.cv_file.name && (
+                <div className={classes.uploaded_file}>
+                    <img src={pdf} alt="pdf" />
+                    <p>{formData.cv_file.name}</p>
+                    <button
+                        onClick={() => {
+                            setFormData({
+                                ...formData,
+                                cv_file: false
+                            });
+                        }}
+                    >
+                        x
+                    </button>
+                </div>
+            )}
             <div className={classes.uploadcv_box}>
                 <p>Upload your CV</p>
-                <div className={classes.draghere}>
-                    {/* <label htmlFor="inputTag">
-                        <img src={file} alt="drag" />
-                        <h6>Choose File To Upload</h6>
-                        <input
-                            id="inputTag"
-                            type="file"
-                            onChange={e => {
-                                setFormData({
-                                    ...formData,
-                                    cv_file: e.target.files[0]
-                                });
-                            }}
-                        />
-                    </label> */}
-                    <label htmlFor="cvUpload" className={styles.drop_container}>
-                        <input
-                            id="inputTag"
-                            type="file"
-                            onChange={e => {
-                                setFormData({
-                                    ...formData,
-                                    cv_file: e.target.files[0]
-                                });
-                            }}
-                        />
-                    </label>
-                </div>
+                <DragDropFile
+                    onChange={e => {
+                        setFormData({
+                            ...formData,
+                            cv_file: e.target.files[0]
+                        });
+                    }}
+                />
             </div>
-            {/* <DragDropFile /> */}
         </form>
     );
 };
