@@ -12,6 +12,8 @@ import LightButton from "../../../components/buttons/light_button/LightButton";
 const CreateProfile = () => {
     const [step, setStep] = useState(0);
 
+    const [keywords, setKeywords] = useState([]);
+
     const FormSteps = ["JobSearch", "CoverLetter", "Settings", "Review"];
     const FormDisplay = () => {
         if (step === 0) {
@@ -21,7 +23,14 @@ const CreateProfile = () => {
                 <CoverLetter formData={formData} setFormData={setFormData} />
             );
         } else if (step === 2) {
-            return <Settings formData={formData} setFormData={setFormData} />;
+            return (
+                <Settings
+                    formData={formData}
+                    setFormData={setFormData}
+                    keywords={keywords}
+                    setKeywords={setKeywords}
+                />
+            );
         } else if (step === 3) {
             return <Review formData={formData} setFormData={setFormData} />;
         }
@@ -36,7 +45,7 @@ const CreateProfile = () => {
         cv_file: [],
         coverletter_subject: "",
         coverletter_body: "",
-        keyword: ""
+        keywords: ""
     });
     // console.log(formData);
 

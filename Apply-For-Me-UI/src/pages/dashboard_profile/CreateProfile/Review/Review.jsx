@@ -32,18 +32,18 @@ const Review = ({ formData }) => {
                         <h5>Experience</h5>
                     </div>
                     <div>
-                        <p>{formData.keyword}</p>
-                        <h5>Keyword</h5>
+                        <p>xtyyf</p>
+                        <h5>Keywords</h5>
                     </div>
-                    {/* <h6>Personal Info</h6>
+                    <h6>Personal Info</h6>
                     <div>
                         <p>enwono CV.pdf</p>
                         <h5>Uploaded CV</h5>
-                    </div> */}
-                    {/* <div>
+                    </div>
+                    <div>
                         <p>enwono_id@yahoo.com</p>
                         <h5>Personal email</h5>
-                    </div> */}
+                    </div>
                 </div>
                 <hr className={styles.hr_one} />
                 <div className={classes.cl_template}>

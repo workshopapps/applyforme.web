@@ -1,9 +1,10 @@
 import styles from "./AddKeyWord.module.css";
-import { useState } from "react";
+// import { useState } from "react";
 import Input from "../../InputField/InputField.jsx";
 
-const AddKeyword = () => {
-    const [keywords, setKeywords] = useState([]);
+const AddKeyword = ({ keywords, setKeywords }) => {
+    console.log(keywords);
+
     function handleKeyDown(e) {
         if (e.key !== "Enter") return;
         const value = e.target.value;
