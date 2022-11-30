@@ -1,13 +1,14 @@
 import styles from "../CreateProfile.module.css";
 import classes from "./JobSearch.module.css";
-// import file from "../../assets/file.png";
-// import Input from "../../InputField/InputField";
+import pdf from "../../assets/pdf.png";
 import Dropdown from "../../Dropdown/Dropdown";
+import DragDropFile from "pages/dashboard_profile/DragDropFile/DragDropFile";
 import { useState, useEffect } from "react";
 
 const JobSearch = ({ formData, setFormData }) => {
-    // eslint-disable-next-line no-unused-vars
     const [countries, setCountries] = useState();
+    // eslint-disable-next-line no-unused-vars
+    const [uploaded, setUploaded] = useState(true);
     const countrynames = countries?.map(onecountry => ({
         label: onecountry.title,
         value: onecountry.title
@@ -20,7 +21,6 @@ const JobSearch = ({ formData, setFormData }) => {
             .then(response => response.json())
             .then(data => setCountries(data));
     }, []);
-
     return (
         <form className={styles.form_body}>
             <h3>Complete your desired job info and location</h3>
@@ -136,38 +136,33 @@ const JobSearch = ({ formData, setFormData }) => {
                     />
                 </div>
             </div>
+            {formData.cv_file.name && (
+                <div className={classes.uploaded_file}>
+                    <img src={pdf} alt="pdf" />
+                    <p>{formData.cv_file.name}</p>
+                    <button
+                        onClick={() => {
+                            setFormData({
+                                ...formData,
+                                cv_file: false
+                            });
+                        }}
+                    >
+                        x
+                    </button>
+                </div>
+            )}
             <div className={classes.uploadcv_box}>
                 <p>Upload your CV</p>
-                <div className={classes.draghere}>
-                    {/* <label htmlFor="inputTag">
-                        <img src={file} alt="drag" />
-                        <h6>Choose File To Upload</h6>
-                        <input
-                            id="inputTag"
-                            type="file"
-                            onChange={e => {
-                                setFormData({
-                                    ...formData,
-                                    cv_file: e.target.files[0]
-                                });
-                            }}
-                        />
-                    </label> */}
-                    <label htmlFor="cvUpload" className={styles.drop_container}>
-                        <input
-                            id="inputTag"
-                            type="file"
-                            onChange={e => {
-                                setFormData({
-                                    ...formData,
-                                    cv_file: e.target.files[0]
-                                });
-                            }}
-                        />
-                    </label>
-                </div>
+                <DragDropFile
+                    onChange={e => {
+                        setFormData({
+                            ...formData,
+                            cv_file: e.target.files[0]
+                        });
+                    }}
+                />
             </div>
-            {/* <DragDropFile /> */}
         </form>
     );
 };
