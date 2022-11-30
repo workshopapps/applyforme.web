@@ -1,10 +1,14 @@
 package com.hydraulic.applyforme.controller;
 
+import com.hydraulic.applyforme.model.dto.FileDto;
+import com.hydraulic.applyforme.model.response.SubmissionResponse;
+import com.hydraulic.applyforme.service.FileService;
 import com.hydraulic.applyforme.model.response.SubmissionEntriesResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.JobSubmissionService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import static com.hydraulic.applyforme.constants.PagingConstants.*;
 
@@ -19,9 +23,22 @@ import com.hydraulic.applyforme.service.JobSubmissionService;
 )
 @CrossOrigin("*")
 public class JobSubmissionController {
+
     private final JobSubmissionService service;
-    public JobSubmissionController(JobSubmissionService service) {
+
+    private final FileService fileService;
+
+
+
+
+    public JobSubmissionController(JobSubmissionService service, FileService fileService) {
         this.service = service;
+        this.fileService = fileService;
+    }
+
+    @PostMapping("/upload")
+    public FileDto uploadResume(@RequestParam("doc") MultipartFile file) {
+        return fileService.saveMemberPictures(file.getContentType());
     }
     
     @GetMapping("/applier/count/{applierId}")
