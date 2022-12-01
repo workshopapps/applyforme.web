@@ -4,6 +4,7 @@ import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.member.MemberDto;
 import com.hydraulic.applyforme.model.dto.professional.DeleteManyProfessionalDto;
+import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.model.response.ApplicantDetailsResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
@@ -115,6 +116,32 @@ public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantServic
         response.setTotalElements(members.getTotalElements());
         response.setTotalPages(members.getTotalPages());
         response.setLast(members.isLast());
+        return response;
+    }
+
+    @Override
+    public ApplicantDetailsResponse getOne(Long id) {
+        Member member = memberRepository.getOne(id);
+
+        if (member == null) {
+            throw new MemberNotFoundException(id);
+        }
+
+        Professional professional = professionalJpaRepository.getProfessional(id);
+        professional.setMember(null);
+        professional.setSubmissions(null);
+        professional.setProfessionalProfiles(null);
+
+        long totalSubmissions = jobSubmissionRepository.countByProfessional(professional.getId());
+        long totalProfiles = professionalProfileJpaRepository.countByProfessional(professional.getId());
+
+        ApplicantDetailsResponse response = ApplicantDetailsResponse.builder()
+                .membership(member)
+                .professional(professional)
+                .totalSubmissions(totalSubmissions)
+                .totalProfessionalProfile(totalProfiles)
+                .build();
+
         return response;
     }
 }

@@ -21,4 +21,6 @@ public interface SuperAdminApplicantService {
     boolean deleteAll();
 
     ApplyForMeResponse getEntries(int pageNo, int pageSize, String sortBy, String sortDir, String q, Date from, Date to);
+
+    ApplicantDetailsResponse getOne(Long id);
 }
