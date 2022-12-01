@@ -65,7 +65,8 @@
 }
 
 .hero_content .left .heading {
-    font-size: 3rem;
+    font-size: 4rem;
+    font-weight: 400;
     width: 100%;
     color: #202065;
     margin-bottom: 1.3rem;

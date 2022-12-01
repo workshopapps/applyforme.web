@@ -1,6 +1,7 @@
-import React from "react";
+import React,{ useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from 'axios';
 
 const onSubmit = (values, actions) => {
     console.log(values, actions);
@@ -19,6 +20,7 @@ const ContactUsForm = () => {
                 phoneNumber: ""
             },
 
+<<<<<<< HEAD
             //   form validation
             validationSchema: Yup.object().shape({
                 firstName: Yup.string()
@@ -42,12 +44,43 @@ const ContactUsForm = () => {
 
             onSubmit
         });
+=======
+    const initialValues = { first_name: "", last_name: "",  phone_number: "", 'message': "" , privacy_policy: "true" };
+    const [formValues, setFormValues] = useState(initialValues);
+
+    
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+      };
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post('https://official-volunux.uc.r.appspot.com/api/v1/contact-us', formValues )
+    
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+        alert('Your message has been sent sent. Thank You!')
+
+      };
+
+
+  return (
+    <div className="form-body">
+        <form onSubmit={handleSubmit}>
+>>>>>>> edd3271319c7e284bb1fcdf144f544d70299a639
 
     return (
         <div className="form-body">
             <form onSubmit={handleSubmit}>
                 <div className="form-first-line">
                     <div className="form-group first-line-1">
+<<<<<<< HEAD
                         <label htmlFor="first_name">First Name</label>
                         <input
                             type="text"
@@ -90,12 +123,24 @@ const ContactUsForm = () => {
                                 {errors.lastName}
                             </small>
                         )}
+=======
+                        <label>First Name</label>
+                        <input type="text" name='first_name' required value={formValues.first_name} onChange={handleChange}/>
+                       
+                    </div>
+
+                    <div className="form-group first-line-2">
+                        <label>Last Name</label>
+                        <input type="text" name='last_name' required value={formValues.last_name} onChange={handleChange}></input>
+                      
+>>>>>>> edd3271319c7e284bb1fcdf144f544d70299a639
                     </div>
                 </div>
 
                 <div className="form-second-line">
                     <div className="form-group">
                         <label>Email</label>
+<<<<<<< HEAD
                         <input
                             type="email"
                             id="email"
@@ -110,6 +155,11 @@ const ContactUsForm = () => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
+=======
+                        <input type="email" name='email_address' required value={formValues.email_address} onChange={handleChange}></input>
+                       
+                    </div>
+>>>>>>> edd3271319c7e284bb1fcdf144f544d70299a639
 
                         {touched.email && errors.email && (
                             <small style={{ color: "red" }}>
@@ -122,6 +172,7 @@ const ContactUsForm = () => {
                 <div className="form-third-line">
                     <div className="form-group">
                         <label>Phone Number</label>
+<<<<<<< HEAD
                         <input
                             type="tel"
                             id="phoneNumber"
@@ -141,12 +192,16 @@ const ContactUsForm = () => {
                                 {errors.phoneNumber}
                             </small>
                         )}
+=======
+                        <input type="text" name='phone_number' required value={formValues.phone_number} onChange={handleChange}></input>
+>>>>>>> edd3271319c7e284bb1fcdf144f544d70299a639
                     </div>
                 </div>
 
                 <div className="form-fourth-line">
                     <div className="form-group">
                         <label>Message</label>
+<<<<<<< HEAD
                         <div>
                             <textarea
                                 id="message"
@@ -168,12 +223,18 @@ const ContactUsForm = () => {
                                     {errors.message}
                                 </small>
                             )}
+=======
+                        <div className="textarea">
+                           <textarea  name='message' required value={formValues.message} onChange={handleChange}></textarea>
+                          
+>>>>>>> edd3271319c7e284bb1fcdf144f544d70299a639
                         </div>
                     </div>
                 </div>
 
                 <div className="form-fifth-line">
                     <div className="radio-group">
+<<<<<<< HEAD
                         <input
                             type="checkbox"
                             id="check"
@@ -187,16 +248,30 @@ const ContactUsForm = () => {
                             {" "}
                             I have read the afm privacy
                         </label>
+=======
+                        <input type="radio" value={formValues.privacy_policy} onChange={handleChange}></input>
+                        <label className="privacy"> I have read the afm privacy</label>
+>>>>>>> edd3271319c7e284bb1fcdf144f544d70299a639
                     </div>
                     {touched.check && errors.check && (
                         <small style={{ color: "red" }}>{errors.check}</small>
                     )}
                 </div>
 
+<<<<<<< HEAD
                 <button type="submit">Send Message</button>
             </form>
         </div>
     );
 };
+=======
+                <button value='submit' >Send Message</button>
+
+        </form>
+      
+    </div>
+  );
+}
+>>>>>>> edd3271319c7e284bb1fcdf144f544d70299a639
 
 export default ContactUsForm;
