@@ -27,14 +27,17 @@
     line-height: 38px;
     text-align: left;
     font-weight: 500;
+    margin: 0;
     width: 85%;
+    margin-left: 1rem;
+
     color: var(--secondary-blue);
 }
 
 .home .left p {
     width: 80%;
-    margin: 0 auto;
     color: var(--secondary-blue);
+    margin-left: 1rem;
 }
 
 .home .main {
@@ -67,16 +70,16 @@
 .home .left button {
     width: fit-content;
     outline: none;
+    cursor: pointer;
     border: none;
-    padding: 15px 32px;
-    background: var(--primary-blue);
-    color: var(--primary-white);
-    border-radius: 8px;
+    border-bottom: 0.25rem solid var(--primary-blue);
+    padding: 0.5rem 0;
+    margin-left: 1rem;
+    color: var(--primary-blue);
+    font-weight: 500;
+    font-size: 1.25rem;
+    background-color: transparent;
     transition: background 0.7s ease;
-}
-
-.home .left button:hover {
-    background: var(--secondary-blue);
 }
 
 /* Right */
@@ -163,6 +166,8 @@
     .home .left .item .bold {
         font-size: 20px;
         line-height: 30px;
+        margin: 0;
+        margin-left: 1rem;
         text-align: left;
         width: 88%;
     }

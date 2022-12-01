@@ -40,6 +40,7 @@
 }
 
 .blogs button {
+    cursor: pointer;
     width: 30%;
     outline: none;
     border: none;
