@@ -29,48 +29,49 @@ const UsersPage = () => {
                             <th className={classes.hide_on_mobile}>
                                 Application done
                             </th>
-                            <th className={classes.hide_on_mobile}>Interviews</th>
+                            <th className={classes.hide_on_mobile}>
+                                Interviews
+                            </th>
                             <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {Users.map(
+                            ({
+                                id,
+                                name,
+                                interviews,
+                                plan,
+                                applicationDone,
+                                email
+                            }) => (
+                                <tr className={classes.user_details} key={id}>
+                                    <td>{name}</td>
+                                    <td className={classes.hide_on_mobile}>
+                                        {" "}
+                                        {email}
+                                    </td>
+                                    <td>{plan}</td>
+                                    <td className={classes.hide_on_mobile}>
+                                        {applicationDone}
+                                    </td>
+                                    <td className={classes.hide_on_mobile}>
+                                        {interviews}
+                                    </td>
+                                    <td className={classes.desktop_button}>
+                                        <BlueButton text="view" width="70" />
+                                    </td>
 
-                    {Users.map(
-                        ({
-                            id,
-                            name,
-                            interviews,
-                            plan,
-                            applicationDone,
-                            email
-                        }) => (
-                            <tr className={classes.user_details} key={id}>
-                                <td>{name}</td>
-                                <td className={classes.hide_on_mobile}>
-                                    {" "}
-                                    {email}
-                                </td>
-                                <td>{plan}</td>
-                                <td className={classes.hide_on_mobile}>
-                                    {applicationDone}
-                                </td>
-                                <td className={classes.hide_on_mobile}>
-                                    {interviews}
-                                </td>
-                                <td className={classes.desktop_button}>
-                                    <BlueButton text="view" width="70" />
-                                </td>
-
-                                <td
-                                    type="button"
-                                    className={classes.mobile_button}
-                                    onClick={() => handleApplicantView(id)}
-                                >
-                                    View
-                                </td>
-                            </tr>
-                        )
-                    )}
+                                    <td
+                                        type="button"
+                                        className={classes.mobile_button}
+                                        onClick={() => handleApplicantView(id)}
+                                    >
+                                        View
+                                    </td>
+                                </tr>
+                            )
+                        )}
                     </tbody>
                 </table>
 

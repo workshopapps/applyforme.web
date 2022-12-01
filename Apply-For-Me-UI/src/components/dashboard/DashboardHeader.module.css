@@ -310,6 +310,10 @@
     color: #52515b;
 }
 
+.profile_details__text_content button {
+    height: 56px;
+}
+
 .user_action {
     display: flex;
     align-items: flex-start;
@@ -322,14 +326,15 @@
 
 .user_action__btn,
 .user_action__btn__mobile {
-    background: #e9eef7;
-    padding: 0.7rem 1rem;
+    background: #ede9f7;
+    padding: 0.7rem;
     cursor: pointer;
     border: 1px solid #cccccc;
     border-radius: 4px;
-    width: 130px;
+    width: 120px;
+    height: 40px;
     display: flex;
-    gap: 4px;
+    gap: 10px;
     align-items: center;
 }
 
