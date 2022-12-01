@@ -164,17 +164,6 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="right col-md-4">
-                        <div className="inner">
-                            <p>
-                                Get the latest career resource tips delivered to
-                                your email!
-                                <br /> Subscribe to our Newsletter below
-                            </p>
-                            <input type="text" placeholder="Email address" />
-                            <button>Subscribe</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </>
