@@ -1,13 +1,15 @@
 package com.hydraulic.applyforme.service.superadmin;
 
+import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.professional.DeleteManyProfessionalDto;
+import com.hydraulic.applyforme.model.response.ApplicantDetailsResponse;
+import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 
 public interface SuperAdminApplicantService {
-
-    Professional findOne(Long id);
 
     @Transactional
     boolean delete(Long id);
@@ -17,4 +19,6 @@ public interface SuperAdminApplicantService {
 
     @Transactional
     boolean deleteAll();
+
+    ApplyForMeResponse getEntries(int pageNo, int pageSize, String sortBy, String sortDir, String q, Date from, Date to);
 }

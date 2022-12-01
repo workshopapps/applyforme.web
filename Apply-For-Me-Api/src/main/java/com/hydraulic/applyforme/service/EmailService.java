@@ -14,4 +14,6 @@ public interface EmailService {
     public  void contactUs(ContactUsDto dto);
     public void sendResetPasswordCode(String recipientEmail, String code);
     void confirmRecruiter(CreateRecruiterDto dto);
+    @Async
+    void dummy();
 }

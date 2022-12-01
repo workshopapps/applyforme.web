@@ -17,4 +17,6 @@ public interface JobSubmissionRepository extends JpaRepository<Submission,Long> 
      Long countByApplier(Long id);
      @Query(value = "SELECT * FROM job_submission where (job_title like %:q% or created_on like %:q% or job_location_type like %:q% or job_company like %:q%)", nativeQuery = true)
      Page<Submission> findJobSubmissionBySearch(Pageable pageable, String q);
+     @Query("SELECT count(jb) FROM Submission jb where jb.professional.id = ?1")
+     Long countByProfessional(Long id);
 }
