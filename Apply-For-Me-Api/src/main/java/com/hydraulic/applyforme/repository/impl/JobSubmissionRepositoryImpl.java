@@ -13,7 +13,7 @@ import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.ProfessionalJobSubmissionDTO;
 import com.hydraulic.applyforme.repository.JobSubmissionRepository;
-import com.hydraulic.applyforme.repository.jpa.ProfessionalRepository;
+import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 
 @Repository
 public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
@@ -24,14 +24,14 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 	private EntityManager entityManager;
 	
 	@Autowired
-	private ProfessionalRepository professionalRepository;
+	private ProfessionalJpaRepository professionalJpaRepository;
 
 	@Override
 	public ProfessionalJobSubmissionDTO getAllSubmissionsByPagination(Long professionalId, Integer pageOffset) {
 
 		String queryString = "SELECT sbm FROM Submission sbm WHERE sbm.professional.id = :professional "
 				+ "ORDER BY sbm.createdOn DESC";
-		Professional professional = professionalRepository.getById(professionalId);
+		Professional professional = professionalJpaRepository.getById(professionalId);
 		
 		ProfessionalJobSubmissionDTO professionalSubmissionDTO = new ProfessionalJobSubmissionDTO();
 		professionalSubmissionDTO.setProfessional(professional);

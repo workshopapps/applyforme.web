@@ -19,6 +19,11 @@ public class InMemoryCacheServiceImpl implements InMemoryCacheService {
     }
 
     @Override
+    public void set(String key, Object value, long seconds) {
+        repository.set(key, value, seconds);
+    }
+
+    @Override
     public Object get(String key) {
         return repository.get(key);
     }

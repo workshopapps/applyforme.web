@@ -5,6 +5,7 @@ import com.hydraulic.applyforme.model.dto.applyforme.ApplyForMeDto;
 import com.hydraulic.applyforme.model.dto.applyforme.DeleteManyApplyForMeDto;
 import com.hydraulic.applyforme.model.response.ApplierJobSubmissionTotalResponse;
 import com.hydraulic.applyforme.service.ApplyForMeService;
+import com.hydraulic.applyforme.service.EmailService;
 import com.hydraulic.applyforme.service.InMemoryCacheService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class ApplyForMeController {
 
     private final ApplyForMeService service;
     private final InMemoryCacheService cacheService;
+
+    @Autowired
+    private EmailService emailService;
 
     public ApplyForMeController(ApplyForMeService service, InMemoryCacheService cacheService) {
         this.service = service;
@@ -83,6 +87,7 @@ public class ApplyForMeController {
         var currentUser = CurrentUserUtil.getCurrentUser();
         System.out.println(currentUser);
 
+        emailService.dummy();
         String key = "greeting";
         if (!cacheService.exists(key)) {
             cacheService.set(key, "Hello World!");
