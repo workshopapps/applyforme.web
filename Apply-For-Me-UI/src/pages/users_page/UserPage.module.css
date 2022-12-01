@@ -44,8 +44,9 @@
 
 .table tr td,
 .table tr th {
-    text-align: left;
+    text-align: center;
     border-bottom: 2px solid rgb(228, 227, 227);
+    border-radius: 0;
 }
 
 .table tr th {

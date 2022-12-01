@@ -105,7 +105,7 @@
 }
 
 .swap_nav form {
-    height: 48px;
+    height: 58px;
     width: 60%;
     max-width: 650px;
     border: 2px solid #2e3192;
@@ -121,8 +121,6 @@
     height: 100%;
     border: none;
     font-weight: 400;
-    font-size: 1rem;
-    line-height: 2rem;
     color: #737373;
     padding: 15px;
 }

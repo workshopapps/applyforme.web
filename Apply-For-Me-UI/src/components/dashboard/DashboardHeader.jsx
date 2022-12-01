@@ -157,7 +157,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 />
                                 <button type="submit">
                                     {" "}
-                                    <img src={Search} alt="Apply for me logo" />
+                                    <img src={Search} alt="Search Logo" />
                                 </button>
                             </form>
                         )}
