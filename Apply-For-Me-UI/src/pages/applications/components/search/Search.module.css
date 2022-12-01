@@ -7,6 +7,7 @@ input[type="search"] {
     text-indent: 50px;
     height: 56px;
 }
+
 .applications_search_form {
     position: relative;
     max-width: 500px;
