@@ -25,16 +25,23 @@
 .month_year {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    justify-content: space-between;
+    gap: 1rem;
     background-color: #eeefff;
     border-radius: 4px;
     padding: 0.6rem;
+    width: 220px;
+    height: 43px;
 }
 
 .month_year p {
     font-weight: 400;
     font-size: 1rem;
     color: #2e3192;
+}
+
+.month_year svg {
+    font-size: 1.5rem;
 }
 
 .applicant .table {
