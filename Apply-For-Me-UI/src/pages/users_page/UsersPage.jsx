@@ -1,12 +1,8 @@
 import React from "react";
 import { FiChevronDown, FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import BlueButton from "../../components/buttons/blue_background/BlueButton";
 import classes from "./UserPage.module.css";
 import { Users } from "./user_page_service/UserPageService";
 const UsersPage = () => {
-    const handleApplicantView = id => {
-        console.log(id);
-    };
     return (
         <div className={classes.main_container}>
             <section className={classes.user_header}>
@@ -29,10 +25,12 @@ const UsersPage = () => {
                             <th className={classes.hide_on_mobile}>
                                 Application done
                             </th>
+                            <th className={classes.hide_header_desktop}>
+                                Stat
+                            </th>
                             <th className={classes.hide_on_mobile}>
                                 Interviews
                             </th>
-                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,22 +50,9 @@ const UsersPage = () => {
                                         {email}
                                     </td>
                                     <td>{plan}</td>
-                                    <td className={classes.hide_on_mobile}>
-                                        {applicationDone}
-                                    </td>
+                                    <td>{applicationDone}</td>
                                     <td className={classes.hide_on_mobile}>
                                         {interviews}
-                                    </td>
-                                    <td className={classes.desktop_button}>
-                                        <BlueButton text="view" width="70" />
-                                    </td>
-
-                                    <td
-                                        type="button"
-                                        className={classes.mobile_button}
-                                        onClick={() => handleApplicantView(id)}
-                                    >
-                                        View
                                     </td>
                                 </tr>
                             )

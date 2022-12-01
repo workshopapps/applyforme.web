@@ -578,6 +578,10 @@
     .profile_details__text_content p {
         font-size: 1rem;
     }
+
+    .profile_details__text_content button {
+        width: 100% !important;
+    }
 }
 
 @media screen and (max-width: 399px) {

@@ -79,6 +79,10 @@
     display: none;
 }
 
+.hide_header_desktop {
+    display: none;
+}
+
 /* Tablet */
 @media screen and (max-width: 914px) {
     .desktop_button {
@@ -95,6 +99,10 @@
 @media screen and (max-width: 700px) {
     .hide_on_mobile {
         display: none;
+    }
+
+    .table .hide_header_desktop {
+        display: block;
     }
 
     .user_header p {
