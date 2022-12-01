@@ -20,15 +20,6 @@ const ContactUs = () => {
             </div>
 
             <Footer />
-
-            {/* <div className="copyright">
-            <p>2022 ApplyForMe. All rights reserved</p>
-    
-            <p>Cookie Policy</p>
-            <p>Terms of Service</p>
-            <p>Cookie Setting</p>
-    
-         </div> */}
         </div>
     );
 };

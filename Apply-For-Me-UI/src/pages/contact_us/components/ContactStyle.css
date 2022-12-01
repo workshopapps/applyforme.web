@@ -27,9 +27,11 @@ p {
 
 .form-group input {
     margin-top: .3125rem;
+    font-size: 1rem;
     border: .0625rem solid lightgray;
     border-radius: .3125rem;
     padding: .625rem;
+    color: #414244;
 }
 
 .form-group input:focus {
@@ -68,7 +70,7 @@ input.radio {
     padding: .3125rem;
 }
 
-.form button {
+.form .submit-button {
     padding: .625rem;
     text-align: center;
     border-radius: .3125rem;
@@ -78,13 +80,15 @@ input.radio {
     border: none;
 }
 
-label {
-    font-weight: 600;
+.form-group label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #262728;
 
 }
 
-.textarea {
-    font-size: 1.5em;
+.form-group textarea {
+    font-size: 1rem;
     background-color: white;
     padding: .625rem;
     border: .0625rem solid lightgray;
@@ -92,21 +96,24 @@ label {
     background-color: white;
     margin-top: .3125rem;
     width: 100%;
+    color: #414244;
 }
 
-.textarea:focus {
+.form-group textarea:focus {
     outline: none;
+    border: .0625rem solid lightgray;
 }
 
 .textarea-error {
-    font-size: 1.5em;
+    font-size: 1rem;
     background-color: white;
     padding: .625rem;
-    border: .0625rem solid red;
+    border: .0625rem solid #EB5757;
     border-radius: .3125rem;
     background-color: white;
     margin-top: .3125rem;
     width: 100%;
+    color: #414244;
 }
 
 .contact-mid {
@@ -115,7 +122,7 @@ label {
 }
 
 .input-error {
-    border: .0625rem solid red !important;
+    border: .0625rem solid #EB5757 !important;
 }
 
 @media screen and (max-width: 68.75rem) and (min-width: 47.5rem) {
