@@ -1,3 +1,62 @@
 .dashboardnothing{
-    padding: 100px;
+    
+    width: 90vw;
+    
+}
+.top-dashboard-stripe{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: #2E3192;
+    
+}
+.top-dashboard-stripe h2{
+    margin: 0;
+}
+.top-dashboard-stripe p{
+    margin: 10px 0;
+}
+.top-dashboard-right{
+    display: flex;
+    align-items: center;
+}
+.top-dashboard-right img{
+    object-fit: cover;
+}
+
+
+/* dashboard overview styling */
+
+.dashboard-overview{
+    padding: 50px 20px;
+    width: 100%;
+    
+}
+
+.overview-cards-wrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.overview-card{
+   
+    background-color: #E9F3F7;
+    text-align: center;
+    padding: 30px;
+}
+.overview-card p{
+    margin: 0;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.overview-card-wrapper{
+    padding: 0 20px;
+    width: 100%;
+}
+
+.overview-card-wrapper:nth-child(2){
+    border-left:  1px solid blue;
+    border-right: 1px solid blue;
 }
