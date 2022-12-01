@@ -161,13 +161,21 @@ link.btn {
     padding-top: 1rem;
     border-top: 1px solid #cccccc;
     margin-top: 0.6rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.7rem;
 }
 
 .status {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 0.875rem;
+}
+
+.status img {
+    width: 20px;
+    height: 20px;
 }
 
 .status__text {
