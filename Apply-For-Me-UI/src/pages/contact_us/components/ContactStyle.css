@@ -12,6 +12,7 @@ h1 {
 }
 p {
     margin-top: 20px;
+    line-height: 30px;
     margin-bottom: 20px;
 }
 
@@ -245,5 +246,10 @@ textarea:focus {
     .img-wrapper {
         display: flex;
         justify-content: center;
+    }
+}
+@media only screen and (max-width:420px){
+    p {
+        font-size: 12px;
     }
 }

@@ -87,7 +87,6 @@ function App() {
                 <Route exact path="/help" element={<HelpAndSupportPage/>}/>
                 <Route exact path="/howafmworks" element={<HowAfmWorks/>}/>
                 <Route exact path="/needHelp" element={<NeedHelp/>}/>
-            
                 <Route
                     exact
                     path="/pricing"

@@ -116,7 +116,7 @@
 }
 
 @media screen and (min-width: 770px) {
-    input[type="file"] {
+    .cvUpload{
         width: 350px;
         max-width: 90%;
         color: #444;
@@ -127,7 +127,7 @@
     }
 }
 @media screen and (max-width: 770px) {
-    input[type="file"] {
+    .cvUpload{
         width: 12rem;
         max-width: 90%;
         color: #444;

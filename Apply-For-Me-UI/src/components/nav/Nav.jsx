@@ -46,7 +46,7 @@ const Nav = () => {
                 <div className={classes.logo}>
                     <Link to="/">
                         <img
-                            src={Logo}
+                            src="https://res.cloudinary.com/hamskid/image/upload/v1669820968/Frame_jtxgrt.png"
                             alt="Apply for me Logo"
                             className={classes.logo__img}
                         />

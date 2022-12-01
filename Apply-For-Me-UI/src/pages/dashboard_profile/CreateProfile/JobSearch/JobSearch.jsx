@@ -150,6 +150,7 @@ const JobSearch = ({ formData, setFormData }) => {
                         <input
                             id="inputTag"
                             type="file"
+                            className="cvUpload"
                             onChange={e => {
                                 setFormData({
                                     ...formData,

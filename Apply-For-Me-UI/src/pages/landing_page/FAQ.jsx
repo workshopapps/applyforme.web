@@ -29,17 +29,6 @@ const FAQ = () => {
             imgUrl: "../../assets/images/arrow-down.png"
         },
         {
-            id: 3,
-            question: "  Is there a limit to number of applications",
-            answer: `A reverse recruiting platform puts your
-            cv and profile ahead of other job
-            applicants all you have to do is attend
-            your interview`,
-            month: "4 months ago",
-            linkText: "learn more",
-            imgUrl: "../../assets/images/arrow-down.png"
-        },
-        {
             id: 4,
             question: "Can you help with my cv",
             answer: `A reverse recruiting platform puts your
@@ -64,17 +53,6 @@ const FAQ = () => {
         {
             id: 6,
             question: "Is there a refund policy",
-            answer: `A reverse recruiting platform puts your
-            cv and profile ahead of other job
-            applicants all you have to do is attend
-            your interview`,
-            month: "4 months ago",
-            linkText: "learn more",
-            imgUrl: "../../assets/images/arrow-down.png"
-        },
-        {
-            id: 7,
-            question: " How do i know if im invited for an interview",
             answer: `A reverse recruiting platform puts your
             cv and profile ahead of other job
             applicants all you have to do is attend
