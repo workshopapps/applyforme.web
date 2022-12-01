@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.service.impl;
 
+import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Role;
 import com.hydraulic.applyforme.model.dto.member.MemberDto;
@@ -65,7 +66,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     }
 
     @Override
-    public List<Member> viewAllRecruiters() {
+    public List<Applier> viewAllRecruiters() {
         return repository.getAllMembers();
     }
 

@@ -1,9 +1,12 @@
 package com.hydraulic.applyforme.controller.admin;
 
+import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.service.SuperAdminService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(
@@ -34,9 +37,9 @@ public class SuperAdminMemberController {
         return service.getAdmin(id);
     }
 
-    @GetMapping("/list/member")
-    public Member getAllMember(){
-        return (Member) service.viewAllRecruiters();
+    @GetMapping("/recruiter/all")
+    public List<Applier> getAllMember(){
+        return service.viewAllRecruiters();
     }
 
     @DeleteMapping("/remove/{id}")

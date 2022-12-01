@@ -1,5 +1,7 @@
 package com.hydraulic.applyforme.repository.impl;
 
+import com.hydraulic.applyforme.model.domain.Applier;
+import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.exception.ApplyForMeDuplicateEntityException;
 import com.hydraulic.applyforme.model.domain.Role;
@@ -56,9 +58,11 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
     }
 
     @Override
-    public List<Member> getAllMembers() {
-        String queryText = "select m from Member m order by c.updatedOn desc";
-        TypedQuery<Member> applyForMeQuery = entityManager.createQuery(queryText, Member.class);
+    public List<Applier> getAllMembers() {
+        String queryText = "select a from Applier a";
+        TypedQuery<Applier> applyForMeQuery = entityManager.createQuery(queryText, Applier.class);
         return applyForMeQuery.getResultList();
     }
+
+
 }

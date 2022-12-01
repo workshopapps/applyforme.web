@@ -1,7 +1,9 @@
 package com.hydraulic.applyforme.repository;
 
+import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.ApplyForMe;
 import com.hydraulic.applyforme.model.domain.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.mail.MailMessage;
 
 import java.util.List;
@@ -12,5 +14,6 @@ public interface SuperAdminRepository {
     Member getOneMember(Long id);
     Boolean removeMemberById(Long id);
     Member viewAdminDetails(Long id);
-    List<Member> getAllMembers();
+    List<Applier> getAllMembers();
+
 }

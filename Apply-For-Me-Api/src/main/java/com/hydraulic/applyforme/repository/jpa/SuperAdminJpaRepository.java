@@ -17,4 +17,5 @@ public interface SuperAdminJpaRepository extends JpaRepository<Member, Long> {
 
     @Override
     List<Member> findAll();
+
 }
