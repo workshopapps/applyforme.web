@@ -25,6 +25,7 @@
 .home .left .item .bold {
     font-size: 30px;
     line-height: 38px;
+    text-align: left;
     font-weight: 500;
     width: 85%;
     color: var(--secondary-blue);
@@ -162,7 +163,7 @@
     .home .left .item .bold {
         font-size: 20px;
         line-height: 30px;
-        text-align: center;
+        text-align: left;
         width: 88%;
     }
 
