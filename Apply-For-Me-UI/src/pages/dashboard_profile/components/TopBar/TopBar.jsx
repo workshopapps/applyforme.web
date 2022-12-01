@@ -1,6 +1,6 @@
 import styles from "./TopBar.module.css";
-import profilepic from "../assets/profilepic.png";
-import notif from "../assets/notif.png";
+import profilepic from "../../assets/profilepic.png";
+import notif from "../../assets/notif.png";
 
 const TopBar = () => {
     return (

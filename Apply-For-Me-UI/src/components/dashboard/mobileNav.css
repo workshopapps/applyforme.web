@@ -1,0 +1,34 @@
+.profile_mobile_nav{
+    position:fixed;
+    top:0px;
+    left:0px;
+    width: 100vw;
+    right: 0px;
+    padding:2rem;
+    bottom: 0px;
+    z-index: 1;
+    background-color: white;
+    height: 100vh;
+}
+.menu-Header{
+    display: flex;
+    justify-content: space-between;
+}
+.section_menu_sect{
+    display: flex;
+    flex-direction: column;
+    line-height: 50px;
+    margin: 2rem 0 4rem;
+}
+.second_menu_sect{
+    margin: 2rem 0 4rem;
+    border-top: 1px solid gainsboro;
+    padding-top: 4rem;
+}
+.third_menu_sect{
+    display: flex;
+    flex-direction: column;
+    line-height: 50px;
+    padding: 2rem 0 1rem;
+    border-top: 1px solid gainsboro;
+}

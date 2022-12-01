@@ -5,7 +5,7 @@ export const List=[
         email:"first@gmail.com",
         date:"02, jan 2021",
         work:"Financial Recruiter Tech",
-        id:new Date().getTime()
+        id:1
     },
     {
         name:"Second user",
@@ -13,7 +13,7 @@ export const List=[
         email:"second@gmail.com",
         date:"03, jan 2021",
         work:"Business Recruiter Tech",
-        id:new Date().getTime()
+        id:2
     },
     {
         name:"Third user",
@@ -21,7 +21,7 @@ export const List=[
         email:"third@gmail.com",
         work:"Financial Recruiter Tech",
         date:"01, jan 2021",
-        id:new Date().getTime()
+        id:3
     },
     {
         name:"Forth User",
@@ -29,7 +29,7 @@ export const List=[
         email:"forth@gmail.com",
         work:"Financial Recruiter Tech",
         date:"08, jan 2021",
-        id:new Date().getTime()
+        id:4
     },
     {
         name:"Fifth User",
@@ -37,7 +37,7 @@ export const List=[
         email:"fifth@gmail.com",
         date:"08,jan 2021",
         work:"Financial Recruiter Tech",
-        id:new Date().getTime()
+        id:5
     },
      {
         name:"Sixth User",
@@ -45,7 +45,7 @@ export const List=[
         email:"Six@gmail.com",
         work:"Fine Tech",
         date:"08, jan 2021",
-        id:new Date().getTime()
+        id:6
     },
     {
         name:"Seventh User",
@@ -53,7 +53,7 @@ export const List=[
         email:"fifth@gmail.com",
         date:"08,jan 2021",
         work:"Financial Recruiter Tech",
-        id:new Date().getTime()
+        id:7
     },
     {
         name:"Eight User",
@@ -61,7 +61,7 @@ export const List=[
         email:"forth@gmail.com",
         work:"Financial Recruiter Tech",
         date:"08, jan 2021",
-        id:new Date().getTime()
+        id:8
     },
     {
         name:"Night User",
@@ -69,7 +69,7 @@ export const List=[
         email:"fifth@gmail.com",
         date:"08,jan 2021",
         work:"Financial Recruiter Tech",
-        id:new Date().getTime()
+        id:9
     },
     
 ]
