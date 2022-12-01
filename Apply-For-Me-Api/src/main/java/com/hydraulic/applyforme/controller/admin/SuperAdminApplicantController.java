@@ -44,6 +44,12 @@ public class SuperAdminApplicantController {
         return service.getEntries(pageNo, pageSize, sortBy, sortDir, q, fromDate, toDate);
     }
 
+    @PreAuthorize("hasAnyRole('SuperAdministrator')")
+    @GetMapping("/detail/{id}")
+    public ApplicantDetailsResponse getOne(@PathVariable Long id) {
+        return service.getOne(id);
+    }
+
     @DeleteMapping("/delete/{id}")
     public boolean delete(@PathVariable Long id) {
         return service.delete(id);
