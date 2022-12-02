@@ -25,8 +25,7 @@ public class UpdateSuperAdminProfileController {
 
     @GetMapping("/get")
     public Long get() {
-
-        Long id = CurrentUserUtil.getCurrentUser().
+        
         return service.getCurrentUser();
     }
 }
