@@ -14,6 +14,8 @@ public interface ApplierRepository {
 
     Applier getOne(Long id);
 
+    Applier getRef(Long id);
+
     Applier saveOne(Applier body);
 
     Applier updateOne(ApplyForMe body);

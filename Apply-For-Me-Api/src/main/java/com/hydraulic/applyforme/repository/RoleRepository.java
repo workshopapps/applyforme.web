@@ -12,6 +12,8 @@ public interface RoleRepository {
 
     Role getOne(Long id);
 
+    Role getRef(Long id);
+
     Role saveOne(Role country);
 
     Role updateOne(Role country);

@@ -1,13 +1,17 @@
 package com.hydraulic.applyforme.model.security;
 
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.domain.Role;
+import com.hydraulic.applyforme.model.dto.authentication.JwtTokenDetails;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
@@ -15,6 +19,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@ToString
 public class UserDetailsImpl implements UserDetails {
 
     private static final long serialVersionUID = 1L;
@@ -23,6 +28,7 @@ public class UserDetailsImpl implements UserDetails {
 
     private String emailAddress;
     private String password;
+    private Set<Role> plainRoles;
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsImpl(Long id, String emailAddress, String password, Collection<? extends GrantedAuthority> authorities) {
@@ -35,10 +41,28 @@ public class UserDetailsImpl implements UserDetails {
     public static UserDetailsImpl build(Member member) {
         List<GrantedAuthority> authorities = member.getRoles()
                 .stream()
-                .map(role -> new SimpleGrantedAuthority(role.getCode()))
+                .map(role -> new SimpleGrantedAuthority("ROLE_".concat(role.getCode())))
                 .collect(Collectors.toList());
 
-        return new UserDetailsImpl(member.getId(), member.getEmailAddress(), member.getPassword(), authorities);
+        var details = new UserDetailsImpl(member.getId(), member.getEmailAddress(), member.getPassword(), authorities);
+        details.setPlainRoles(member.getRoles());
+        return details;
+    }
+
+    public static UserDetailsImpl buildFromTokenDetails(JwtTokenDetails tokenDetails) {
+        List<GrantedAuthority> authorities = Arrays.asList(tokenDetails.getRoles())
+                .stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_".concat(role)))
+                .collect(Collectors.toList());
+
+        var details = new UserDetailsImpl(Long.valueOf((Integer) tokenDetails.getMemberId()), tokenDetails.getSub(), null, authorities);
+        var rolesSet = Arrays.asList(tokenDetails.getRoles())
+                        .stream()
+                        .map((role) -> Role.builder().code(role).build())
+                        .collect(Collectors.toSet());
+
+        details.setPlainRoles(rolesSet);
+        return details;
     }
 
     @Override

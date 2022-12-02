@@ -1,10 +1,12 @@
 package com.hydraulic.applyforme.config.filter;
 
+import com.hydraulic.applyforme.model.security.UserDetailsImpl;
 import com.hydraulic.applyforme.service.impl.UserDetailsServiceImpl;
 import com.hydraulic.applyforme.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,6 +30,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     private JwtUtil jwtUtil;
 
     @Autowired
+    private ModelMapper mapper;
+
+    @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
     @Override
@@ -42,25 +47,29 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             return;
         }
 
+        System.out.println("header " + header);
+
         final String token = header.substring(7);
         String emailAddress = null;
 
         try {
             emailAddress = jwtUtil.getUsernameFromToken(token);
+            System.out.println("Email Address " + emailAddress);
         } catch (IllegalArgumentException e) {
             System.out.println("Unable to get JWT Token");
         } catch (ExpiredJwtException e) {
             System.out.println("JWT Token has expired");
         }
 
-        if (StringUtils.isNoneEmpty(emailAddress)) {
+        if (!StringUtils.isNotEmpty(emailAddress)) {
             filterChain.doFilter(request, response);
             return;
         }
 
         try {
+            System.out.println(SecurityContextHolder.getContext().getAuthentication());
             if (SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = userDetailsService.loadUserByUsername(emailAddress);
+                UserDetails userDetails = UserDetailsImpl.buildFromTokenDetails(jwtUtil.getDetails(token));
 
                 if (jwtUtil.validateToken(token, userDetails)) {
                     UsernamePasswordAuthenticationToken authentication =

@@ -7,6 +7,6 @@ public class EmailDeliveryException extends ApplyForMeException {
 
     @Override
     public String getMessage() {
-        return String.format("%s message delivery failed and error has occured.", ENTITY_NAME);
+        return String.format("%s message delivery failed and error has occurred.", ENTITY_NAME);
     }
 }

@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -21,6 +22,7 @@ public class SalaryRange {
     private Long id;
 
     @Column(name ="salary_range", nullable = false)
+    @JsonProperty("salary_range")
     private String salaryRange;
 
 
