@@ -6,4 +6,5 @@ import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 public interface SuperAdminService {
     Member updatePassword(Long id, UpdatePasswordDto dto);
     Member getDetails(Long id);
+    boolean deleteMemberById(Long id);
 }

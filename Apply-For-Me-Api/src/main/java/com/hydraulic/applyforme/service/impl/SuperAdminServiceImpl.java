@@ -50,4 +50,17 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         return member;
     }
 
+    @Override
+    @Transactional
+    public boolean deleteMemberById(Long id) {
+        boolean removed = repository.remove(id);
+        if(removed){
+            return true;
+        }
+        else {
+            throw new MemberNotFoundException(id);
+        }
+    }
+
+    
 }
