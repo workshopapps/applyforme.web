@@ -39,14 +39,14 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 		return repository.updateOne(member);		
 	}
     
-    @Override
+//    @Override
     @Transactional(readOnly = true)
-    public Member getDetails(Long id) {
+    public Member getProfileDetails(Long id) {
         Member member = repository.getOne(id);
 
-        if (member == null) {
-            throw new MemberNotFoundException(id);
-        }
+//        if (member == null) {
+//            throw new MemberNotFoundException(id);
+//        }
         return member;
     }
 

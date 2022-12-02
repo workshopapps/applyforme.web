@@ -5,10 +5,7 @@ import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.service.SuperAdminService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(
@@ -22,10 +19,12 @@ public class SuperAdminController {
     }
 
     @GetMapping("/profile")
-    public Member getDetails() {
+    public Member getProfileDetails() {
         var currentUser = CurrentUserUtil.getCurrentUser();
-        return service.getDetails(currentUser.getId());
+        return service.getProfileDetails(currentUser.getId());
+
     }
+
     @PostMapping("/{id}/change-password")
     public String updatePassword(UpdatePasswordDto body) {
         var currentUser = CurrentUserUtil.getCurrentUser();

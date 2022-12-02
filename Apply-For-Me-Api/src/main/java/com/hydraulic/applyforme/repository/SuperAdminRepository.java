@@ -6,4 +6,6 @@ import org.springframework.mail.MailMessage;
 
 public interface SuperAdminRepository {
     Member updatePassword(Long id, String newPassword);
+
+    Member viewProfileDetails (Long id);
 }
