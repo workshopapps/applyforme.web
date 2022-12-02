@@ -1,8 +1,4 @@
-/* PLease make this for your component alone
-It is currenly affecting other people search input styles
-*/
-
-/* input[type="search"] {
+input[type="search"] {
     width: 100%;
     color: #bfbfbf;
     border: 1px #bfbfbf solid;
@@ -10,7 +6,8 @@ It is currenly affecting other people search input styles
     outline: none;
     text-indent: 50px;
     height: 56px;
-} */
+}
+
 .applications_search_form {
     position: relative;
     max-width: 500px;
@@ -31,5 +28,4 @@ It is currenly affecting other people search input styles
     .applications_search_form {
         width: 90%;
     }
-    /* … */
 }

@@ -86,9 +86,9 @@ function App() {
                 <Route exact path="/privacy" element={<Privacy />} />
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
-                <Route exact path="/help" element={<HelpAndSupportPage />} />
-                <Route exact path="/howafmworks" element={<HowAfmWorks />} />
-                <Route exact path="/needHelp" element={<NeedHelp />} />
+                <Route exact path="/help" element={<HelpAndSupportPage/>}/>
+                <Route exact path="/howafmworks" element={<HowAfmWorks/>}/>
+                <Route exact path="/needHelp" element={<NeedHelp/>}/>
                 <Route
                     exact
                     path="/pricing"

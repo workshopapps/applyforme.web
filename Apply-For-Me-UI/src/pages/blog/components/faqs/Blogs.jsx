@@ -6,7 +6,7 @@ const Blogs = () => {
         <div className="blogs">
             <div className="content">
                 <p>
-                    Get the latest career resource tips delivered to your email!{" "}
+                    Get the latest career resource tips delivered to your email!
                     <br />
                     Subscribe to our Newsletter below
                 </p>
