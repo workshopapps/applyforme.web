@@ -104,16 +104,8 @@ input.radio {
     border: .0625rem solid lightgray;
 }
 
-.textarea-error {
-    font-size: 1rem;
-    background-color: white;
-    padding: .625rem;
+.form-group .textarea-error {
     border: .0625rem solid #EB5757;
-    border-radius: .3125rem;
-    background-color: white;
-    margin-top: .3125rem;
-    width: 100%;
-    color: #414244;
 }
 
 .contact-mid {
