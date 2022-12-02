@@ -22,7 +22,6 @@ public class AwsConfig {
     private String s3RegionName;
 
     @Bean
-    @Primary
     public AmazonS3 getS3Client() {
         final BasicAWSCredentials basicAwsCredentials = new BasicAWSCredentials(accessKeyId, accessKeySecret);
         return AmazonS3ClientBuilder
