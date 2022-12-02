@@ -1,11 +1,19 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.service.ProfessionalService;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
+import com.hydraulic.applyforme.model.security.UserDetailsImpl;
+import com.hydraulic.applyforme.service.ProfessionalService;
+import com.hydraulic.applyforme.util.CurrentUserUtil;
 
 @RestController
 @RequestMapping(
@@ -26,5 +34,10 @@ public class ProfessionalController {
     @GetMapping("/detail/{id}")
     public Professional findOne(@PathVariable(name ="id") Long id) {
         return service.findOne(id);
+    }
+
+    public List<ProfessionalProfile> getAllJobProfiles(){
+    	UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
+    	return service.findAllJobProfile(currentUser.getId());
     }
 }
