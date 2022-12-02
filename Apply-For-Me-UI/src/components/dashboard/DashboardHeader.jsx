@@ -75,7 +75,11 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                             />
                         )}
 
-                        <img src={Logo} alt="Apply for me logo" />
+                        <img
+                            src={Logo}
+                            alt="Apply for me logo"
+                            onClick={() => navigate("/")}
+                        />
                     </div>
 
                     <section className={classes.swap_nav}>

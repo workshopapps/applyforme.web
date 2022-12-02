@@ -3,9 +3,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-const ProtectedRoute = ({ user, children, allowedRoles }) => {
+const ProtectedRoute = ({ children, allowedRoles }) => {
     const location = useLocation();
-
+    const { user } = useSelector(state => state.user);
+    console.log(allowedRoles);
     return user?.roles?.find(role => allowedRoles?.includes(role)) ? (
         <Outlet />
     ) : user ? (

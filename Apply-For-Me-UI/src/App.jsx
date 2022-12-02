@@ -65,7 +65,7 @@ import { useEffect, useState } from "react";
 function App() {
     const dispatch = useDispatch();
     const { user } = useSelector(state => state.user);
-
+    console.log("App her", user);
     useEffect(() => {
         if (localStorage?.getItem("tokenHngKey")) {
             let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
@@ -124,10 +124,7 @@ function App() {
                 {/*  PROTECTED ROUTE*/}
                 <Route
                     element={
-                        <ProtectedRoute
-                            user={user}
-                            allowedRoles={["SuperAdministrator"]}
-                        />
+                        <ProtectedRoute allowedRoles={["SuperAdministrator"]} />
                     }
                 >
                     {/* SUPER ADMIN ROUTE*/}
@@ -146,7 +143,6 @@ function App() {
                 <Route
                     element={
                         <ProtectedRoute
-                            user={user}
                             allowedRoles={["Professional", "Recruiter"]}
                         />
                     }
