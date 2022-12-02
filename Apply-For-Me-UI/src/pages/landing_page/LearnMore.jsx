@@ -1,6 +1,5 @@
 import React from 'react'
-import classes from "./Hero.module.css"
-import content from "../../assets/images/Content.png"
+import classes from "./Hero.module.css";
 
 const LearnMore = () => {
     return (
@@ -12,7 +11,8 @@ const LearnMore = () => {
                     <button>Learn More &#8594;</button>
                 </div>
 
-                <img src="https://res.cloudinary.com/hamskid/image/upload/v1669932064/Content_1_phcred.png" alt="object not found" />
+                <img src="https://res.cloudinary.com/hamskid/image/upload/v1669932064/Content_1_phcred.png" className={classes.learnImg} alt="object not found" />
+                <img src="https://res.cloudinary.com/hamskid/image/upload/v1669970593/Content_2_hymyp2.png" className={classes.learnImg2} alt="object not found" />
 
                 <div className={classes.bottom}>
                     <div className={classes.left}>
@@ -20,7 +20,7 @@ const LearnMore = () => {
                     </div>
 
                     <div className={classes.right}>
-                        <p style={{fontSize:"20px"}}>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.</p>
+                        <p className={classes.believe}>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.</p>
 
                         <div className={classes.boxes} >
                             <div className={classes.box} style={{background:"none"}}>
