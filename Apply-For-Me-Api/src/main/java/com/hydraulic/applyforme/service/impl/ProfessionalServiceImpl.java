@@ -1,6 +1,7 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import com.hydraulic.applyforme.service.ProfessionalService;
@@ -32,5 +33,10 @@ public class ProfessionalServiceImpl implements ProfessionalService {
         professional.setProfessionalProfiles(null);
         return professional;
     }
+
+	@Override
+	public List<ProfessionalProfile> findAllJobProfile(Long id) {
+		return repository.getAllJobProfile(id);
+	}
 
 }
