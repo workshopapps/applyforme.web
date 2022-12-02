@@ -4,6 +4,14 @@ import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 
 public interface SuperAdminService {
-    Member updatePassword(Long id, UpdatePasswordDto dto);
-    Member getDetails(Long id);
+
+	Member getDetailsById(Long id);
+
+	boolean deleteMemberById(Long id);
+
+	Member getAdmin(Long id);
+
+	Member updatePassword(Long id, UpdatePasswordDto dto);
+
+	Member getDetails(Long id);
 }
