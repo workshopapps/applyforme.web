@@ -1,5 +1,13 @@
 package com.hydraulic.applyforme.service.impl;
 
+
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
@@ -9,16 +17,12 @@ import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.SuperAdminJpaRepository;
 import com.hydraulic.applyforme.service.SuperAdminService;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SuperAdminServiceImpl implements SuperAdminService {
     
     private MemberRepository repository;
+
     @Autowired
     private ModelMapper mapper;
     @Autowired
@@ -50,16 +54,15 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         member.setPassword(passwordEncoder.encode(dto.getNewPassword()));
 		return repository.updateOne(member);		
 	}
-    
-    @Override
-    @Transactional(readOnly = true)
-    public Member getDetails(Long id) {
-        Member member = repository.getOne(id);
 
-        if (member == null) {
-            throw new MemberNotFoundException(id);
-        }
-        return member;
+    @Override
+    public Member getDetails(Long id) {
+        return null;
+    }
+
+    @Override
+    public Member getDetailsById(Long id) {
+        return null;
     }
 
     @Override
@@ -72,14 +75,13 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     	memberJpaReposiroty.delete(member);
     	
     	return true;
-//        boolean removed = repository.remove(id);
-//        if(removed){
-//            return true;
-//        }
-//        else {
-//            throw new MemberNotFoundException(id);
-//        }
     }
 
-    
+    @Override
+    public Member getAdmin(Long id) {
+        return null;
+    }
+
+
+
 }
