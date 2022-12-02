@@ -1,35 +1,31 @@
-package com.hydraulic.applyforme.controller.admin;
+package com.hydraulic.applyforme.controller.recruiter;
 
-import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.dto.member.CreateRecruiterDto;
+import com.hydraulic.applyforme.model.response.ApplicantDetailsResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
-import com.hydraulic.applyforme.service.EmailService;
-import com.hydraulic.applyforme.service.superadmin.SuperAdminApplierService;
+import com.hydraulic.applyforme.service.RecruiterApplicantService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
 import static com.hydraulic.applyforme.constants.PagingConstants.*;
-import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DIRECTION;
 
 @RestController
 @RequestMapping(
-        value = "super-admin/recruiter",
+        value = "recruiter/applicant",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
-public class SuperAdminRecruiterController {
+public class RecruiterApplicantController {
 
-    private SuperAdminApplierService service;
-    private EmailService emailService;
+    private RecruiterApplicantService service;
 
-    public SuperAdminRecruiterController(SuperAdminApplierService service, EmailService emailService) {
+    public RecruiterApplicantController(RecruiterApplicantService service) {
         this.service = service;
-        this.emailService = emailService;
     }
 
+    @PreAuthorize("hasAnyRole('Recruiter')")
     @GetMapping("/entries")
     public ApplyForMeResponse findEntries(
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
@@ -42,11 +38,9 @@ public class SuperAdminRecruiterController {
         return service.getEntries(pageNo, pageSize, sortBy, sortDir, q, fromDate, toDate);
     }
 
-    @PostMapping("/save")
-    public Member save(@Validated @RequestBody CreateRecruiterDto dto) {
-        Member member = service.saveRecruiter(dto);
-//        emailService.confirmRecruiter(dto);
-        return member;
+    @PreAuthorize("hasAnyRole('Recruiter')")
+    @GetMapping("/detail/{id}")
+    public ApplicantDetailsResponse getOne(@PathVariable Long id) {
+        return service.getOne(id);
     }
-
 }
