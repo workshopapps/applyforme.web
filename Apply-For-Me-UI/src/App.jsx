@@ -116,12 +116,16 @@ function App() {
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
                 {/*AUTH ROUTE */}
-                <Route exact path="/wel1" element={<Welcome1 />} />
-                <Route exact path="/reg" element={<Registration />} />
-                <Route exact path="/wel2" element={<Welcome2 />} />
+                {!user && (
+                    <>
+                        <Route exact path="/wel1" element={<Welcome1 />} />
+                        <Route exact path="/wel2" element={<Welcome2 />} />
+                        <Route exact path="/reg" element={<Registration />} />
+                    </>
+                )}
                 <Route exact path="/pass" element={<Password />} />
-                <Route exact path="/veri" element={<Verification />} />
                 <Route exact path="/nwpass" element={<NewPass />} />
+                <Route exact path="/veri" element={<Verification />} />
                 {/* SUPER ADMIN PROTECTED ROUTE */}
                 <Route element={<ProtectedRoute user={user} />}>
                     <Route exact path="/user-page/" element={<Dashboard />} />
