@@ -88,6 +88,13 @@ const NewUserDashboard = () => {
 
                    </div>
 
+                   
+                    <div className='mobile-create'>
+                            <span> Welcome, you have no job profile yet Tap  </span>
+                         <span>   <button> + </button> </span>  
+                            <span>to create a new job profile</span> 
+                    </div>
+
                   
                 </div>
 
@@ -101,13 +108,11 @@ const NewUserDashboard = () => {
                     Nothing to see here <button>Create a Job Profile +</button> to get started
                 </div>
 
-                <div className='mobile-create'>
-                    <span> Welcome, you have no job profile yet Tap  </span>
-                    <button> + </button>
-                    <span>to create a new job profile</span> 
-                </div>
+               
 
              </section>
+
+
       
     </div>
   );

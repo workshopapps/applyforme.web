@@ -106,7 +106,9 @@
 
 
 .nothing-to-see-here{
-    text-align: center;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nothing-to-see-here button{
@@ -115,15 +117,15 @@
     padding: 10px;
     border: none;
 
+
+}
+.nothing-to-see-here button:hover{
+    background-color: #1d2080;
 }
 .normal-create button{
     border-radius: 5px;
 }
-.mobile-create button{
-    border-radius: 50%;
-    padding: 10px 15px;
-    
-}
+
 .mobile-create{
     display: none;
 }
@@ -240,8 +242,20 @@
     display: none;
 }
 .mobile-create{
-
     display: block;
+    margin-bottom: 40px;
+    text-align: center;
+
 }
+.mobile-create button{
+    border-radius: 50%;
+    padding: 5px 10px;
+    background-color: #1d2080;
+    color: white;
+    border: none;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 
 }
