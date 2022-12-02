@@ -17,8 +17,8 @@ const LearnMore = () => {
                     </h2>
                     <button>Learn More &#8594;</button>
                 </div>
-                <img src="https://res.cloudinary.com/hamskid/image/upload/v1669932064/Content_1_phcred.png" className={classes.learnImg} alt="object not found" />
-                <img src="https://res.cloudinary.com/hamskid/image/upload/v1669970593/Content_2_hymyp2.png" className={classes.learnImg2} alt="object not found" />
+                <img src="https://res.cloudinary.com/hamskid/image/upload/v1670013377/Content_1_ovmknu.svg" className={classes.learnImg} alt="object not found" />
+                <img src="https://res.cloudinary.com/hamskid/image/upload/v1670013058/Content_eyjw1o.svg" className={classes.learnImg2} alt="object not found" />
                 <div className={classes.bottom}>
                     <div className={classes.left}>
                         <h3>
