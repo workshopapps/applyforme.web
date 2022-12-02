@@ -107,7 +107,9 @@ const Home = () => {
                                         transfer, you really don’t want to start
                                         off on the wrong foot. If you have...
                                     </p>
-                                    <button>Read More</button>
+                                    <Link to="/blog/work">
+                                        <button>Read More</button>
+                                    </Link>
                                 </div>
 
                                 <div className="item">
@@ -122,7 +124,9 @@ const Home = () => {
                                         deadline. Each time your manager
                                         approached your...
                                     </p>
-                                    <button>Read More</button>
+                                    <Link to="/blog/cover">
+                                        <button>Read More</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +145,7 @@ const Home = () => {
                                         when it comes to your job search. Here’s
                                         how to get more...
                                     </p>
-                                    <Link to="/blog/endorsment">
+                                    <Link to="/blog/endorsement">
                                         <button>Read More</button>
                                     </Link>
                                 </div>
