@@ -8,7 +8,7 @@ const Card = (props) => {
             <h3 className={classes.article_header}>
                {props.header}
             </h3>
-            <p className={classes.article_para}>
+            <p className={classes.article_para} style={{marginTop:"0",marginBottom:"0"}}>
                 {props.para}
             </p>
             <Link to= {`${props.link}`} className={classes.article_link}> 
