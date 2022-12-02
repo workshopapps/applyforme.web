@@ -5,6 +5,7 @@ import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.model.exception.PasswordMismatchException;
 import com.hydraulic.applyforme.repository.MemberRepository;
+import com.hydraulic.applyforme.repository.jpa.SuperAdminJpaRepository;
 import com.hydraulic.applyforme.service.SuperAdminService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
+    @Autowired
+    private SuperAdminJpaRepository jpaRepository;
+    
     public SuperAdminServiceImpl(MemberRepository repository) {
         this.repository = repository;
     }
@@ -28,7 +32,8 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 	@Override
     @Transactional
 	public Member updatePassword(Long id, UpdatePasswordDto dto) throws PasswordMismatchException {
-		Member member = repository.getOne(id);
+		Member member = jpaRepository.getById(id);
+		System.out.println(member);
 		boolean matches = passwordEncoder.matches(dto.getExistingPassword(), member.getPassword());
 		
         if (!matches) {
