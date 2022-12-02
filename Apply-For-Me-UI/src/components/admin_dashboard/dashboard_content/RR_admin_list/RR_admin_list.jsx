@@ -57,11 +57,11 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     {
                         search.length !==0? (
                             counter <= search.length? search.map((user, index)=>{
-                                const {first_name,current_job_title,id} = user;
+                                const {first_name,current_job_title,id,created_on} = user;
                                 if((index >= rangeStart) && (index <= rangeEnd) ){
                                     return(
                                         <tr key={index}>
-                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} />
+                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} created_on={created_on}  />
                                         </tr>
                                        
                                     )
@@ -70,11 +70,11 @@ export const RR_Admin_list=({inputSearchValue})=>{
                             }):null):
                         (RR_recruiter.loadingStatus === "success" &&
                             counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
-                                const {first_name,current_job_title,id} = user;
+                                const {first_name,current_job_title,id,created_on} = user;
                                 if((index >= rangeStart) && (index <= rangeEnd)){
                                     return(
                                         <tr key={index}>
-                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} />
+                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} created_on={created_on}/>
                                         </tr>
                                     )
 
