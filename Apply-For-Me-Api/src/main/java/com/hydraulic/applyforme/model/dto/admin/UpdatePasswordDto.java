@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualPassword(initialField = "newPassword", matchField = "confirmationPassword")
 public class UpdatePasswordDto {
 
 	@NotNull(message = "{superAdmin.password.notNull}")
