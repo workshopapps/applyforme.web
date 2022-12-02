@@ -1,2 +1,4 @@
-package com.hydraulic.applyforme.repository;public interface SuperAdminCustomRepository {
+package com.hydraulic.applyforme.repository;
+
+public interface SuperAdminCustomRepository {
 }
