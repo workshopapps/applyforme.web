@@ -49,13 +49,19 @@
 }
 
 .active_link {
-    border-bottom: 2px solid #2E3192;
+    border-bottom: 2px solid #2e3192;
 }
 
 .btn_container {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+}
+
+.auth__user_btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .menu {
@@ -87,6 +93,12 @@
 
     .menu__mobile {
         color: #000;
+    }
+
+    .auth__user_btn {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
     /* Nav path Mobile */
