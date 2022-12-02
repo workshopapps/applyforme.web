@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./NoProfile.module.css";
 import add from "../assets/add.png";
 import blueadd from "../assets/blue-add.png";
-import TopBar from "../TopBar/TopBar";
+import TopBar from "../components/TopBar/TopBar";
 
 const NoProfile = () => {
     return (

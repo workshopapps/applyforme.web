@@ -8,7 +8,8 @@ const InputField = ({
     name,
     placeholder,
     type,
-    onChange
+    onChange,
+    onKeyDown
 }) => (
     <div className={styles.form_group}>
         {label && <label htmlFor="input-field">{label}</label>}
@@ -20,6 +21,7 @@ const InputField = ({
             name={name}
             placeholder={placeholder}
             onChange={onChange}
+            onKeyDown={onKeyDown}
         />
     </div>
 );

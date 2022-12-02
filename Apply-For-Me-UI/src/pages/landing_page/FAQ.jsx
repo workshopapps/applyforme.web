@@ -71,7 +71,7 @@ const FAQ = () => {
     }
 
     const faqList = faQuestions.map((faq, i) => (
-        <li key={i} onClick={() => onToggle(faq.id)}>
+        <li key={i} onClick={() => onToggle(faq.id)} >
             <div className={classes.faq1}>
                 <p>{faq.question}</p>
                 <img src={arrowdown} alt="" />
@@ -79,8 +79,8 @@ const FAQ = () => {
 
             {toggle && faqId === faq.id ? (
                 <div className={classes.faq_one} id={faq.id}>
-                    <p>{faq.answer}</p>
-                    <h5>{faq.month}</h5>
+                    <p className="faqlist">{faq.answer}</p>
+                    <h5 className="faqlist">{faq.month}</h5>
                     <Link to="/faqs/faqspage">Learn more</Link>
                 </div>
             ) : (
@@ -96,9 +96,7 @@ const FAQ = () => {
                     <div className={classes.text}>
                         <h3>Frequently asked questions</h3>
                         <p>
-                            "We believe career is life, life is once, it is
-                            therefore worth enjoying.Study, work, travel, tour,
-                            worship, keep working and keep
+                        Our recruiters are highly experienced, and they know exactly what to look for when they're recruiting.
                         </p>
 
                         <Link to="/contact">

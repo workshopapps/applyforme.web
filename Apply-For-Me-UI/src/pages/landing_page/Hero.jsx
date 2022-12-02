@@ -19,8 +19,8 @@ const Hero = () => {
                     </span>
 
                     <div className={classes.browse}>
-                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1669821504/upload_file_mfnnqc.png" alt="object not found" />
-                        <span style={{color:" #52515B", background:"#FBFBFB"}}>
+                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1669932063/Vector_9_musiqa.png" alt="object not found" />
+                        <span style={{color:" #52515B", background:"white",margin:"0.5rem 0"}}>
                             Drop your CV here to get the best matches or{" "}
                             <label htmlFor="file" style={{color:"#2A73D5"}}>browse</label>
                         </span>
@@ -34,7 +34,7 @@ const Hero = () => {
                 </div>
 
                 <div className={classes.right}>
-                    <img src={heroimg} alt="" />
+                    <img src="https://res.cloudinary.com/hamskid/image/upload/v1669936036/Mask_group_afrsbg.png" alt="" />
                 </div>
             </div>
         </div>

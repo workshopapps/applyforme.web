@@ -8,11 +8,11 @@ const LearnMore = () => {
             <div className={classes.learn_content}>
                 <div className={classes.top}>
                     <span className={classes.subheading} style={{color:"#171B1D"}}>How it works</span>
-                    <h2>With just these few steps, we put you out there</h2>
-                    <button>Learn More</button>
+                    <h2 style={{color:"#2E3192"}}>With just these few steps, we put you out there</h2>
+                    <button>Learn More &#8594;</button>
                 </div>
 
-                <img src="https://res.cloudinary.com/hamskid/image/upload/v1669822581/Content_c7ugi0.png" alt="object not found" />
+                <img src="https://res.cloudinary.com/hamskid/image/upload/v1669932064/Content_1_phcred.png" alt="object not found" />
 
                 <div className={classes.bottom}>
                     <div className={classes.left}>
@@ -20,22 +20,22 @@ const LearnMore = () => {
                     </div>
 
                     <div className={classes.right}>
-                        <p style={{fontSize:"16px"}}>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.</p>
+                        <p style={{fontSize:"20px"}}>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.</p>
 
-                        <div className={classes.boxes}>
-                            <div className={classes.box}>
+                        <div className={classes.boxes} >
+                            <div className={classes.box} style={{background:"none"}}>
                                 <span className={classes.figure}>10x</span>
                                 <span style={{color:"#52515B"}}>Increase in productivity</span>
                             </div>
-                            <div className={classes.box}>
+                            <div className={classes.box} style={{background:"none"}}>
                                 <span className={classes.figure}>300%</span>
                                 <span style={{color:"#52515B"}}>Return on investment</span>
                             </div>
-                            <div className={classes.box}>
+                            <div className={classes.box} style={{background:"none"}}>
                                 <span className={classes.figure}>5k+</span>
                                 <span style={{color:"#52515B"}}>Happy customers</span>
                             </div>
-                            <div className={classes.box}>
+                            <div className={classes.box} style={{background:"none"}}>
                                 <span className={classes.figure}>100+</span>
                                 <span style={{color:"#52515B"}}>5-star reviews</span>
                             </div>

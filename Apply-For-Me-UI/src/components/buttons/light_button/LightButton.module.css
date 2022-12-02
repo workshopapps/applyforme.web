@@ -1,5 +1,4 @@
 .btn {
-    border: none;
-    background: rgba(196, 213, 238, 0.2);
-    color: #362065;
+    border: 1px solid #2E3192;
+    color: #2E3192;
 }

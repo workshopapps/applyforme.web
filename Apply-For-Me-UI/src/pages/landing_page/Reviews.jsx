@@ -17,7 +17,7 @@ const Reviews = () => {
             <div className={classes.bottom}>
                 <div>
                     <img src={stars} alt="" className={classes.stars}/>
-                    <p style={{fontSize:"16px"}}>"We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.."</p>
+                    <p style={{fontSize:"20px"}}>"We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.."</p>
 
                     <div className={classes.profile}>
                         <img src={Avatar} alt="" />
@@ -29,7 +29,7 @@ const Reviews = () => {
                 </div>
                 <div>
                     <img src={stars} alt="" className={classes.stars}/>
-                    <p style={{fontSize:"16px"}}>"We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.."</p>
+                    <p style={{fontSize:"20px"}}>"We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.."</p>
 
                     <div className={classes.profile}>
                         <img src={Avatar2} alt="" />

@@ -60,7 +60,7 @@ export const DashboardContent=({inputSearchValue})=>{
                 <div className="applicants">
                     <div style={{background:"#2E3192",color:"white"}}>
                         <h3 className="amount">Total Applications</h3>
-                        <h1 className="value">{statistics.applications}</h1>
+                        <h1 className="value" style={{color:"white"}}>{statistics.applications}</h1>
                     </div>
                     <div className='users_recruiter_text'>
                         <h3 className="amount">Total Users</h3>

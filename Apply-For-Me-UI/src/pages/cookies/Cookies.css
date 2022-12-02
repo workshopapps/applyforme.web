@@ -80,7 +80,7 @@
 span {
     color: #6567b0;
     line-height: 30px;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .root-ish a {
@@ -102,6 +102,9 @@ span {
 /** Making Medium/Tablet screens responsive */
 
 @media only screen and (max-width: 1024px) {
+    span {
+        font-size: 17px;
+    }
     .heading {
         font-family: "Outfit";
         font-size: 32px;

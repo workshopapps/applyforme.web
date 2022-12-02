@@ -3,13 +3,14 @@
 }
 
 .img-icon {
-    margin-right: 10px;
+    margin-right: .625rem;
 }
 
 h1 {
     font-size: 1.5em;
     color: #141662;
 }
+
 p {
     margin-top: 20px;
     line-height: 30px;
@@ -22,100 +23,136 @@ p {
     display: flex;
     flex-direction: column;
     width: inherit;
+    margin-bottom: 1.25rem;
 }
+
 .form-group input {
-    margin-top: 5px;
-    margin-bottom: 20px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    padding: 10px;
+    margin-top: .3125rem;
+    font-size: 1rem;
+    border: .0625rem solid lightgray;
+    border-radius: .3125rem;
+    padding: .625rem;
+    color: #414244;
+}
+
+.form-group input:focus {
+    outline: none;
+    border: .1875rem solid lightgray;
 }
 
 .form-first-line {
     display: flex;
 }
+
 .first-line-1,
 .first-line-2 {
     flex: 1;
 }
+
 .first-line-2 {
-    margin-left: 20px;
+    margin-left: 1.25rem;
 }
+
 .form-fifth-line {
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin-bottom: 1.25rem;
+    margin-top: 1.25rem;
 }
 
 .privacy {
-    margin-left: 5px;
+    margin-left: .3125rem;
 }
+
 .radio-group {
     display: flex;
 }
+
 input.radio {
     transform: scale(3);
-    padding: 5px;
+    padding: .3125rem;
 }
-.form button {
-    padding: 10px;
+
+.form .submit-button {
+    padding: .625rem;
     text-align: center;
-    border-radius: 5px;
+    border-radius: .3125rem;
     background-color: #2e3192;
     color: white;
     width: 100%;
     border: none;
 }
-label {
-    font-weight: 600;
-}
-textarea {
-    font-size: 1.5em;
-    background-color: white;
-    resize: none;
 
-    width: 100%;
-    border: none;
+.form-group label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #262728;
+
 }
-textarea:focus {
-    outline: none;
-}
-.textarea {
-    width: inherit;
-    font-family: montserrat-medium;
-    padding: 10px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
+
+.form-group textarea {
+    font-size: 1rem;
     background-color: white;
-    height: 300px;
-    margin-top: 5px;
+    padding: .625rem;
+    border: .0625rem solid lightgray;
+    border-radius: .3125rem;
+    background-color: white;
+    margin-top: .3125rem;
+    width: 100%;
+    color: #414244;
 }
+
+.form-group textarea:focus {
+    outline: none;
+    border: .0625rem solid lightgray;
+}
+
+.textarea-error {
+    font-size: 1rem;
+    background-color: white;
+    padding: .625rem;
+    border: .0625rem solid #EB5757;
+    border-radius: .3125rem;
+    background-color: white;
+    margin-top: .3125rem;
+    width: 100%;
+    color: #414244;
+}
+
 .contact-mid {
     width: 100%;
     display: flex;
 }
-@media screen and (max-width: 1100px) and (min-width: 760px) {
+
+.input-error {
+    border: .0625rem solid #EB5757 !important;
+}
+
+@media screen and (max-width: 68.75rem) and (min-width: 47.5rem) {
     .form-body {
         margin-left: 0;
     }
+
     .form-details {
-        margin: 20px;
+        margin: 1.25rem;
     }
 }
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 48rem) {
     .first-line-2 {
         margin-left: 0;
     }
+
     .form-first-line {
         display: flex;
         flex-wrap: wrap;
     }
 }
 
-@media screen and (max-width: 481px) {
+@media screen and (max-width: 30.0625rem) {
     .form-first-line {
         display: flex;
         flex-direction: column;
     }
+
     .first-line-2 {
         margin-left: 0;
     }
@@ -129,17 +166,20 @@ textarea:focus {
     display: flex;
     align-items: center;
 }
+
 .leftdetail .img-wrapper {
     display: flex;
 }
+
 .leftdetail {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 48rem) {
     .leftdetail .img-first {
-        width: 200px;
+        width: 12.5rem;
     }
 }
 
@@ -147,46 +187,57 @@ textarea:focus {
 
 .contact .contact-mid {
     display: flex;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 3.125rem;
+    margin-bottom: 3.125rem;
     width: auto;
 }
+
 .contact-mid .form {
     flex: 1;
-    margin-right: 20px;
+    margin-right: 1.25rem;
 }
+
 .contact-mid .form-details {
     flex: 1;
 }
+
 .contact-mid {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 6.25rem;
+    padding-right: 6.25rem;
 }
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 48rem) {
+
     .contact-nav-wrapper,
     .contact-mid {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
     }
+
     .contact-mid .form {
-        width: 200px;
+        width: 12.5rem;
     }
+
     .contact-mid .form-details {
-        margin-left: 20px;
+        margin-left: 1.25rem;
     }
 }
-@media screen and (max-width: 560px) {
+
+@media screen and (max-width: 35rem) {
     .contact-mid .form-details {
         display: none;
     }
+
     .contact-mid .form {
         width: 100%;
     }
 }
-@media screen and (max-width: 481px) {
+
+@media screen and (max-width: 30.0625rem) {
     .contact-mid .form-details {
         display: none;
     }
+
     .contact-mid .form {
         width: 100%;
     }
@@ -195,54 +246,62 @@ textarea:focus {
 .copyright {
     display: flex;
 
-    padding: 10px 100px;
+    padding: .625rem 6.25rem;
     background-color: #141662;
     color: white;
     justify-content: space-between;
 }
+
 .copyright p {
-    margin-right: 10px;
+    margin-right: .625rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
     .copyright {
-        padding: 10px 20px;
+        padding: .625rem 1.25rem;
         font-size: 0.7em;
     }
 }
-@media screen and (max-width: 481px) {
+
+@media screen and (max-width: 30.0625rem) {
     .copyright {
-        padding: 5px 10px;
+        padding: .3125rem .625rem;
         font-size: 0.5em;
     }
 }
+
 .contact {
     width: 100vw;
 }
 
 .top-tier img {
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
 }
 
-@media screen and (max-width: 1100px) and (min-width: 760px) {
+@media screen and (max-width: 68.75rem) and (min-width: 47.5rem) {
     .leftdetail {
-        margin-left: 20px;
+        margin-left: 1.25rem;
     }
+
     .contact-mid {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
     }
+
     .form-details {
         flex: 1;
-        margin-top: 50px;
-        margin-right: 20px;
+        margin-top: 3.125rem;
+        margin-right: 1.25rem;
     }
+
     .contact-mid {
         flex-wrap: wrap-reverse;
     }
+
     .img-first {
-        min-width: 250px;
+        min-width: 15.625rem;
     }
+
     .img-wrapper {
         display: flex;
         justify-content: center;
