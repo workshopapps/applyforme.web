@@ -46,7 +46,7 @@ const Nav = () => {
                 <div className={classes.logo}>
                     <Link to="/">
                         <img
-                            src={Logo}
+                            src="https://res.cloudinary.com/hamskid/image/upload/v1669935090/Frame_1_nfoiiz.png"
                             alt="Apply for me Logo"
                             className={classes.logo__img}
                         />
@@ -94,11 +94,24 @@ const Nav = () => {
                             </Link>
                         </>
                     ) : (
-                        <BlueButton
-                            text="Logout"
-                            width="156"
-                            func={handleLogout}
-                        />
+                        <div className={classes.auth__user_btn}>
+                            <BlueButton
+                                text="Dashboard"
+                                width="156"
+                                func={() =>
+                                    navigate(
+                                        user.roles[0] === "SuperAdministrator"
+                                            ? "/user-page"
+                                            : "/dashboard/"
+                                    )
+                                }
+                            />
+                            <BlueButton
+                                text="Logout"
+                                width="156"
+                                func={handleLogout}
+                            />
+                        </div>
                     )}
                 </div>
             </nav>
@@ -178,11 +191,25 @@ const Nav = () => {
                                 </Link>
                             </>
                         ) : (
-                            <BlueButton
-                                text="Logout"
-                                width="156"
-                                func={handleLogout}
-                            />
+                            <div className={classes.auth__user_btn}>
+                                <BlueButton
+                                    text="Dashboard"
+                                    width="156"
+                                    func={() =>
+                                        navigate(
+                                            user.roles[0] ===
+                                                "SuperAdministrator"
+                                                ? "/user-page"
+                                                : "/dashboard/"
+                                        )
+                                    }
+                                />
+                                <BlueButton
+                                    text="Logout"
+                                    width="156"
+                                    func={handleLogout}
+                                />
+                            </div>
                         )}
                     </div>
                 </nav>

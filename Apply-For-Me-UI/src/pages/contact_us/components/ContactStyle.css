@@ -12,8 +12,9 @@ h1 {
 }
 
 p {
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
+    margin-top: 20px;
+    line-height: 30px;
+    margin-bottom: 20px;
 }
 
 /* form styling */
@@ -304,5 +305,10 @@ input.radio {
     .img-wrapper {
         display: flex;
         justify-content: center;
+    }
+}
+@media only screen and (max-width:420px){
+    p {
+        font-size: 12px;
     }
 }

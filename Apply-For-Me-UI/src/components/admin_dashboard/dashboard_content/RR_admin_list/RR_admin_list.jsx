@@ -1,41 +1,52 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import { useState,useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './RR_admin_List.css';
-import { List } from './RR_smaple_list';
+import { Desktop_List } from './desktop_list_wrapper';
+import { Mobile_view_list } from './mobile_list_wrapper';
 export const RR_Admin_list=({inputSearchValue})=>{
     
-    const navigate = useNavigate();
+    const RR_recruiter = useSelector((state)=>state.RRadmin);
+    const [search, setSearch] = useState([]);
     const [rangeEnd, setRangeEnd]= useState(4);
     const [rangeStart, setRangeStart]= useState(0);
     const [counter, setCounter]= useState(1);
-    const forwardHandler=()=>{
-        setRangeEnd((prevState)=>prevState+5);
-        setRangeStart((prevState)=>prevState+5);
-        setCounter((prevState)=>prevState+5);
-       
-    }
-    const backwardHandler=()=>{
-        setRangeEnd((prevState)=>prevState-5);
-        setRangeStart((prevState)=>prevState-5);
-        setCounter((prevState)=>prevState-5);  
-    }
-    const filterdRRList = List.filter((list)=>list.name.toLowerCase().includes(inputSearchValue))
+    
+    useEffect(()=>{
+        const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list.content.length !==0) ? RR_recruiter.list.content.filter((item)=>item.first_name.toLowerCase().includes(inputSearchValue)):[]
+        setSearch(avilableList);
+    }, [inputSearchValue, RR_recruiter.list]);
 
-    return(
+    const forwardHandler = () => {
+        setRangeEnd(prevState => prevState + 5);
+        setRangeStart(prevState => prevState + 5);
+        setCounter(prevState => prevState + 5);
+    };
+    const backwardHandler = () => {
+        setRangeEnd(prevState => prevState - 5);
+        setRangeStart(prevState => prevState - 5);
+        setCounter(prevState => prevState - 5);
+    };
+
+    return (
         <>
             <div className="sort_header">
-                <h3 style={{color:"#2E3192",fontWeight:"bolder"}}>RR Admin List</h3>
+                <h2 style={{color:"#2E3192",fontWeight:"bolder"}}>RR Admin List</h2>
                 <div>
                     <button> + Add Admin</button>
                 </div>
             </div>
+
+            {/* desktop view for RR Admin List*/}
             <table className="tableContainer">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Category</th>
                         <th>Date registered</th>
-                        <th> <label htmlFor="applicants">Sort By: </label>
+                        <th>
+                            {" "}
+                            <label htmlFor="applicants">Sort By: </label>
                             <select name="applicants" id="applicants">
                                 <option value="oldest">Most Active</option>
                             </select>
@@ -44,92 +55,113 @@ export const RR_Admin_list=({inputSearchValue})=>{
                 </thead>
                 <tbody>
                     {
-                    
-                    counter <= filterdRRList.length? filterdRRList.map((user, index)=>{
-                        const {name,work,date,img,id} = user;
-                        if((index >= rangeStart) && (index <= rangeEnd) ){
-                            return(
-                                <tr key={index}>
-                                    <td>
-                                        <div className="name_table_data">
-                                            <span style={{width:"15%"}}>
-                                                <img style={{width:"100%"}}  src={img} alt="object not found"/>
-                                            </span>
-                                            <h3 style={{marginLeft:"0.4rem"}}>{name}</h3>
-                                        </div>
-                                    </td>
-                                    <td><h3 style={{fontWeight:"400"}}>{work}</h3></td>
-                                    <td><h3 style={{fontWeight:"400"}}>{date}</h3></td>
-                                    <td>
-                                        <div className="viewContainer">
-                                            <button onClick={()=>navigate(`/reverseRecruiterAdmin/${id}`)}>view Profile</button>
-                                            <span className="dropdown">
-                                                <img className="three_dot_icon" src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png" alt="object not found"/>
-                                                <div className="dropdownContent">
-                                                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51367_phrq53.png" style={{marginBottom:"0.7rem"}}/>
-                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51368_oevqxr.png"/>
-                                                </div>
-                                            </span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
+                        search.length !==0? (
+                            counter <= search.length? search.map((user, index)=>{
+                                const {first_name,current_job_title,id,created_on} = user;
+                                if((index >= rangeStart) && (index <= rangeEnd) ){
+                                    return(
+                                        <tr key={index}>
+                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} created_on={created_on}  />
+                                        </tr>
+                                       
+                                    )
+    
+                                }
+                            }):null):
+                        (RR_recruiter.loadingStatus === "success" &&
+                            counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
+                                const {first_name,current_job_title,id,created_on} = user;
+                                if((index >= rangeStart) && (index <= rangeEnd)){
+                                    return(
+                                        <tr key={index}>
+                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} created_on={created_on}/>
+                                        </tr>
+                                    )
 
-                        }
-                    }):null}
+                                }
+                            }):null
+                        )
+                    }
+                        
                 </tbody> 
             </table>
 
-
-            {/* mobile view for RR Admin List*/ }
-            <div className='mobileList'>
+            {/* mobile view for RR Admin List*/}
+            <div className="mobileList">
                 <div>
                     <label htmlFor="applicants">Sort By: </label>
                     <select name="applicants" id="applicants">
-                        <option value="oldest">Most Active</option>
-                        <option value="newest">newest</option>
+                        <option value="oldest" disabled>
+                            Most Active
+                        </option>
                     </select>
                 </div>
-                
                     {
-                        counter <= filterdRRList.length? filterdRRList.map((user, index)=>{
-                            const {name,work,img,id} = user;
+                        search.length !==0? (
+                        RR_recruiter.loadingStatus === "success" &&
+                        counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
+                           const {first_name,current_job_title,id} = user;
                             if((index >= rangeStart) && (index <= rangeEnd) ){
                                 return(
                                     <div className='RRlist' key={index}>
-                                        <div className='img_rapper'>
-                                            <img style={{width:'100%'}} src={img} alt="object not found"/>
-                                        </div>
-                                        <div>
-                                            <h3>{name}</h3>
-                                            <h3>{work}</h3>
-                                        </div>
-                                        <div className="view_mobile_Container">
-                                            <span className="dropdown">
-                                                    <img className="three_dot_icon" src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png" alt="object not found"/>
-                                                    <div className="dropdownContent">
-                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51367_phrq53.png" style={{marginBottom:"0.7rem"}}/>
-                                                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51368_oevqxr.png"/>
-                                                    </div>
-                                                </span>
-                                            <button onClick={()=>navigate(`/reverseRecruiterAdmin/${id}`)}>view</button>
-                                        </div>
+                                         <Mobile_view_list first_name={first_name} current_job_title={current_job_title} id={id} />
                                     </div>
+                                  
                                 )
-
                             }
                         }):null
+                        ):(
+                            RR_recruiter.loadingStatus === "success" &&
+                        counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
+                           const {first_name,current_job_title,id} = user;
+                            if((index >= rangeStart) && (index <= rangeEnd) ){
+                                return(
+                                    <div className='RRlist' key={index}>
+                                         <Mobile_view_list first_name={first_name} current_job_title={current_job_title} id={id} />
+                                    </div>
+                                  
+                                )
+                            }
+                        }):null
+                        )
                     }
-              
             </div>
+
+            {/* loading state handler */}
+            {RR_recruiter.loadingStatus === "pending" && (
+                <p style={{ textAlign: "center" }}>
+                    Please wait while we fetch the data...
+                </p>
+            )}
+
             <div className="pagination">
-                <h5>1-5 of {List.length}</h5>
+                <h5>
+                    1-5 of{" "}
+                    {RR_recruiter.loadingStatus === "success" &&
+                        RR_recruiter.list.content.length}
+                </h5>
                 <div className="pagiantion_control">
-                    {counter >= 4?<span onClick={backwardHandler}><img style={{width:'60%'}} src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/back-arrow_e22btd.png" alt="object not found"/></span>:null}
-                    {counter < List.length ?<span onClick={forwardHandler}><img style={{width:'60%'}} src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/arrow_back_ios_new_wskxof.png" alt="object not found"/></span>:null}
-                </div> 
+                    {counter >= 4 ? (
+                        <span onClick={backwardHandler}>
+                            <img
+                                style={{ width: "60%" }}
+                                src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/back-arrow_e22btd.png"
+                                alt="object not found"
+                            />
+                        </span>
+                    ) : null}
+                    {RR_recruiter.loadingStatus === "success" &&
+                        (counter < RR_recruiter.list.content.length ? (
+                            <span onClick={forwardHandler}>
+                                <img
+                                    style={{ width: "60%" }}
+                                    src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/arrow_back_ios_new_wskxof.png"
+                                    alt="object not found"
+                                />
+                            </span>
+                        ) : null)}
+                </div>
             </div>
-            
         </>
-    )
-}
+    );
+};

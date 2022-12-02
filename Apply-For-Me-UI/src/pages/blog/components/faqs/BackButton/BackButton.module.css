@@ -1,0 +1,19 @@
+.back_button {
+    margin-left: 5rem;
+    margin-top: -7rem;
+    margin-bottom: 7rem;
+}
+.back_button button span {
+    color: #141662;
+    font-size: 1.25rem;
+}
+.back_button button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #141662;
+    font-weight: 400;
+    display: flex;
+    gap: 0.5rem;
+}

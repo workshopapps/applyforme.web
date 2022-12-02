@@ -10,14 +10,14 @@ const Reviews = () => {
     <div className={classes.reviews_container}>
         <div className={classes.reviews_content}>
             <div className={classes.top}>
-                <span className={classes.sub_heading}>Testimonials</span>
+                <span className={classes.sub_heading} style={{color:"#020313"}}>Testimonials</span>
                 <h3>What they have to say about us</h3>
             </div>
 
             <div className={classes.bottom}>
                 <div>
                     <img src={stars} alt="" className={classes.stars}/>
-                    <p>"We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.."</p>
+                    <p className={classes.reviews}>"We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.."</p>
 
                     <div className={classes.profile}>
                         <img src={Avatar} alt="" />
@@ -29,7 +29,7 @@ const Reviews = () => {
                 </div>
                 <div>
                     <img src={stars} alt="" className={classes.stars}/>
-                    <p>"We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.."</p>
+                    <p className={classes.reviews}>"We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.."</p>
 
                     <div className={classes.profile}>
                         <img src={Avatar2} alt="" />
