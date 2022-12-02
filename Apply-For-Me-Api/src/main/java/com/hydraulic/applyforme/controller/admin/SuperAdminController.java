@@ -26,7 +26,7 @@ public class SuperAdminController {
         var currentUser = CurrentUserUtil.getCurrentUser();
         return service.getDetails(currentUser.getId());
     }
-    @PostMapping("/{id}/change-password")
+    @PostMapping("/change-password")
     public String updatePassword(UpdatePasswordDto body) {
         var currentUser = CurrentUserUtil.getCurrentUser();
     	service.updatePassword(currentUser.getId(), body);
