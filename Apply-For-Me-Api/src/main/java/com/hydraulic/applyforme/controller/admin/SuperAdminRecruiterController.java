@@ -45,7 +45,7 @@ public class SuperAdminRecruiterController {
     @PostMapping("/save")
     public Member save(@Validated @RequestBody CreateRecruiterDto dto) {
         Member member = service.saveRecruiter(dto);
-        emailService.confirmRecruiter(dto);
+//        emailService.confirmRecruiter(dto);
         return member;
     }
 
