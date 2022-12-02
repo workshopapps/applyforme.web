@@ -2,23 +2,23 @@ package com.hydraulic.applyforme.controller.admin;
 
 import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.SuperAdminService;
 import com.hydraulic.applyforme.service.impl.SuperAdminServiceImpl;
 import com.hydraulic.applyforme.service.superadmin.SuperAdminMemberService;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.service.SuperAdminService;
 
 import java.util.List;
+
+import static com.hydraulic.applyforme.constants.PagingConstants.*;
+import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DIRECTION;
 
 @RestController
 @RequestMapping(
@@ -47,8 +47,13 @@ public class SuperAdminMemberController {
     }
 
     @GetMapping("/recruiter/all")
-    public List<Applier> getAllMember(){
-        return adminService.viewAllRecruiters();
+    public ApplyForMeResponse getAllMember(
+            @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir
+    ){
+        return service.viewAllRecruiters(pageNo, pageSize, sortBy, sortDir);
     }
 
     @DeleteMapping("/remove/{id}")

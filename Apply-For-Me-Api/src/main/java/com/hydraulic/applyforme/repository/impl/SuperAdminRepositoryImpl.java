@@ -58,14 +58,6 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
     }
 
     @Override
-    public List<Applier> getAllMembers() {
-//        String queryText = "select a from Applier a";
-        String queryText = "SELECT DISTINCT r FROM Role r JOIN r.id m WHERE m.role_id = 1 AND r.id = 1";
-        TypedQuery<Applier> applyForMeQuery = entityManager.createQuery(queryText, Applier.class);
-        return applyForMeQuery.getResultList();
-    }
-
-    @Override
     public Member updatePassword(Long id, String newPassword) {
         return null;
     }

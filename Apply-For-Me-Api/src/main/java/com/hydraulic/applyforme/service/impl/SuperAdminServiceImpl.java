@@ -26,15 +26,13 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     
     private MemberRepository repository;
 
-    private SuperAdminRepository adminRepository;
     @Autowired
     private ModelMapper mapper;
     @Autowired
     private PasswordEncoder passwordEncoder;
     
-    public SuperAdminServiceImpl(MemberRepository repository, SuperAdminRepository adminRepository) {
+    public SuperAdminServiceImpl(MemberRepository repository) {
         this.repository = repository;
-        this.adminRepository = adminRepository;
     }
     
 	@Override
@@ -67,6 +65,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 //        return member;
 //    }
 
+
     @Override
     public Member getDetailsById(Long id) {
         return null;
@@ -82,28 +81,24 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         return null;
     }
 
-    @Override
-    public List<Applier> viewAllRecruiters() {
-        return adminRepository.getAllMembers();
-    }
 
-    @Override
-    public Member createRecruiter(MemberDto memberDto) {
-        return null;
-    }
+//    @Override
+//    public Member createRecruiter(MemberDto memberDto) {
+//        return null;
+//    }
 
-
-    @Override
-    public Member createRecruiter(MemberDto memberDto) {
-
-        Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.RECRUITER.getValue());
-
-        Member member = jpaRepository.findMemberByRoles(existingRole);
-        if(member==null){
-            Member newMember = mapper.map(memberDto,Member.class);
-            return repository.saveOne(newMember);
-        }
-        throw new MemberDuplicateEntityException();
-    }
+//
+//    @Override
+//    public Member createRecruiter(MemberDto memberDto) {
+//
+//        Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.RECRUITER.getValue());
+//
+//        Member member = jpaRepository.findMemberByRoles(existingRole);
+//        if(member==null){
+//            Member newMember = mapper.map(memberDto,Member.class);
+//            return repository.saveOne(newMember);
+//        }
+//        throw new MemberDuplicateEntityException();
+//    }
 
 }
