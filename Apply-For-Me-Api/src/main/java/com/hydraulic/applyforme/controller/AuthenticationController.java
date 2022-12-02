@@ -50,13 +50,13 @@ public class AuthenticationController {
     @PostMapping("/sign-up")
     public SignInResponse signUp(@Validated @RequestBody SignupDto body) {
         service.save(body);
-        emailService.sendWelcomeMessage(body.getEmailAddress());
+//        emailService.sendWelcomeMessage(body.getEmailAddress());
         return generateSignInToken(body.getEmailAddress());
     }
 
     @PostMapping("/sign-up-verification")
     public String signupVerificationCode(@Validated @RequestBody SignupVerificationDto verificationDto) {
-        emailService.signupVerification(verificationDto.getEmailAddress());
+//        emailService.signupVerification(verificationDto.getEmailAddress());
         return "Sign up verification code sent";
     }
 

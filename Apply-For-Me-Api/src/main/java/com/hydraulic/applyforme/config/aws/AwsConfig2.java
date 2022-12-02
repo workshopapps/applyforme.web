@@ -1,16 +1,16 @@
 package com.hydraulic.applyforme.config.aws;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
-public class AwsConfig {
+public class AwsConfig2 {
 
     @Value("${aws.access-key}")
     private String accessKeyId;
@@ -22,6 +22,7 @@ public class AwsConfig {
     private String s3RegionName;
 
     @Bean
+    @Primary
     public AmazonS3 getS3Client() {
         final BasicAWSCredentials basicAwsCredentials = new BasicAWSCredentials(accessKeyId, accessKeySecret);
         return AmazonS3ClientBuilder
