@@ -64,5 +64,10 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
         return applyForMeQuery.getResultList();
     }
 
+    @Override
+    public Member updatePassword(Long id, String newPassword) {
+        return null;
+    }
+
 
 }

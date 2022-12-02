@@ -46,7 +46,7 @@ public class SecurityConfiguration {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/v1/auth/sign-in").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/auth/sign-up").permitAll()
-                .anyRequest().anonymous()
+                .anyRequest().permitAll()
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(authEntryPoint)

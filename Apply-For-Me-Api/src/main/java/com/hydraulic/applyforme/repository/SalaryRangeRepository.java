@@ -12,6 +12,8 @@ public interface SalaryRangeRepository {
 
     SalaryRange getOne(Long id);
 
+    SalaryRange getRef(Long id);
+
     SalaryRange saveOne(SalaryRange country);
 
     SalaryRange updateOne(SalaryRange country);

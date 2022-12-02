@@ -1,7 +1,7 @@
 package com.hydraulic.applyforme.model.dto.contactUs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hydraulic.applyforme.annotation.PhoneNumberConstraint;
+import com.hydraulic.applyforme.annotation.PhoneNumber;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +30,7 @@ public class ContactUsDto {
     private String emailAddress;
 
     @NotNull(message = "{member.phoneNumber.notNull}")
-    @PhoneNumberConstraint
+    @PhoneNumber
     @JsonProperty("phone_number")
     private String phoneNumber;
 

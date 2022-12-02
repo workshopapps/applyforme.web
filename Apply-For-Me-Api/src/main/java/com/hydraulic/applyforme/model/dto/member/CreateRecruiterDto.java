@@ -1,9 +1,7 @@
 package com.hydraulic.applyforme.model.dto.member;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hydraulic.applyforme.annotation.PhoneNumberConstraint;
-import com.hydraulic.applyforme.model.domain.Country;
-import com.hydraulic.applyforme.model.domain.Role;
+import com.hydraulic.applyforme.annotation.PhoneNumber;
 import lombok.*;
 
 import javax.validation.constraints.Email;
@@ -11,14 +9,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RecruiterCreateDto {
+@ToString
+public class CreateRecruiterDto {
 
     @NotNull(message = "{member.firstName.notNull}")
     @JsonProperty("first_name")
@@ -56,7 +54,7 @@ public class RecruiterCreateDto {
     private String username;
 
     @NotNull(message = "{member.phoneNumber.notNull}")
-    @PhoneNumberConstraint
+    @PhoneNumber
     @JsonProperty("phone_number")
     private String phoneNumber;
 

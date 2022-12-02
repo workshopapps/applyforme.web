@@ -5,6 +5,14 @@ import com.hydraulic.applyforme.model.dto.applyforme.ApplyForMeDto;
 import com.hydraulic.applyforme.model.dto.applyforme.DeleteManyApplyForMeDto;
 import com.hydraulic.applyforme.model.response.ApplierJobSubmissionTotalResponse;
 import com.hydraulic.applyforme.service.ApplyForMeService;
+import com.hydraulic.applyforme.service.EmailService;
+import com.hydraulic.applyforme.service.InMemoryCacheService;
+import com.hydraulic.applyforme.util.CurrentUserUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisKeyValueTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContext;
@@ -27,13 +35,15 @@ import java.util.List;
 )
 public class ApplyForMeController {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private final ApplyForMeService service;
+    private final InMemoryCacheService cacheService;
 
-    private ApplyForMeService service;
+    @Autowired
+    private EmailService emailService;
 
-    public ApplyForMeController(ApplyForMeService service) {
+    public ApplyForMeController(ApplyForMeService service, InMemoryCacheService cacheService) {
         this.service = service;
+        this.cacheService = cacheService;
     }
 
     @GetMapping("/entries")
@@ -74,16 +84,14 @@ public class ApplyForMeController {
 
     @GetMapping("/dummy")
     public Object dummy() {
-        SecurityContext context = SecurityContextHolder.getContext();
-        Object principal = context.getAuthentication().getPrincipal();
-        System.out.println("Was I reached here");
-        System.out.println(principal);
-        if (principal instanceof UserDetails) {
-            System.out.println((UserDetails) context.getAuthentication().getPrincipal());
-            return (UserDetails) context.getAuthentication().getPrincipal();
+        var currentUser = CurrentUserUtil.getCurrentUser();
+        System.out.println(currentUser);
+
+        emailService.dummy();
+        String key = "greeting";
+        if (!cacheService.exists(key)) {
+            cacheService.set(key, "Hello World!");
         }
-        else {
-            return null;
-        }
+        return cacheService.get(key);
     }
 }

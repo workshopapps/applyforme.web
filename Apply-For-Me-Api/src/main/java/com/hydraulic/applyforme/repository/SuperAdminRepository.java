@@ -15,5 +15,6 @@ public interface SuperAdminRepository {
     Boolean removeMemberById(Long id);
     Member viewAdminDetails(Long id);
     List<Applier> getAllMembers();
+    Member updatePassword(Long id, String newPassword);
 
 }
