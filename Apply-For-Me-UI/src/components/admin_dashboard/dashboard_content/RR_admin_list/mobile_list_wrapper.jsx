@@ -1,13 +1,7 @@
 /* eslint-disable no-unused-vars */
 import "./RR_admin_List.css";
 import { useNavigate } from "react-router-dom";
-
-export const Mobile_view_list = ({
-    first_name,
-    current_job_title,
-    id,
-    avatar
-}) => {
+export const Mobile_view_list =({first_name,current_job_title,id})=>{
     const navigate = useNavigate();
     return (
         <>

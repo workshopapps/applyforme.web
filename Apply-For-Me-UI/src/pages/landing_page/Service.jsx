@@ -1,8 +1,5 @@
-/* eslint-disable no-unused-vars */
-import React from "react";
-import classes from "./Hero.module.css";
-import tick from "../../assets/images/tick.png";
-
+import React from 'react'
+import classes from "./Hero.module.css"
 const Service = () => {
     return (
         <div className={classes.services_container}>

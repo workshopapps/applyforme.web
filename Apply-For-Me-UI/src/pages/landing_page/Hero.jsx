@@ -1,9 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import classes from "./Hero.module.css";
-import heroimg from "../../assets/images/heroimg.png";
-import upload from "../../assets/images/upload_file.png";
-
 const Hero = () => {
     return (
         <div className={classes.hero_container}>

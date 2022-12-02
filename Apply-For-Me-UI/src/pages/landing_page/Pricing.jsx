@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import tick from "../../assets/images/tick.png";
 import classes from "./Hero.module.css";
 
 const Pricing = () => {

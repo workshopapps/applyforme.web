@@ -1,7 +1,8 @@
-import {useState} from 'react'
+import {useState} from 'react';
 import './dashboard_content.css';
 import { RR_Admin_list } from './RR_admin_list/RR_admin_list';
 export const DashboardContent=({inputSearchValue})=>{
+
     const [statistics, setStatisticsValue] = useState({
         applications:"5000",
         users:"10000",

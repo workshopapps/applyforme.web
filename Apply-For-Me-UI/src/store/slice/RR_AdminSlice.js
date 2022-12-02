@@ -41,19 +41,22 @@ const RR_Admin_Slice = createSlice({
         loadingStatus: "",
         errorStatus: ""
     },
-
+    reducers:{
+    },
+    extraReducers:{
+        [Fetch_RR_Admin.pending]:(state)=>{
+            state.loadingStatus = 'pending'
+        },
     reducers: {},
     extraReducers: {
         [Fetch_RR_Admin.pending]: (state, action) => {
             state.loadingStatus = "pending";
         },
-
         [Fetch_RR_Admin.fulfilled]: (state, action) => {
             state.list = action.payload;
             state.loadingStatus = "success";
             console.log(state.list);
         },
-
         [Fetch_RR_Admin.rejected]: (state, action) => {
             state.loadingStatus = "rejected";
         }
