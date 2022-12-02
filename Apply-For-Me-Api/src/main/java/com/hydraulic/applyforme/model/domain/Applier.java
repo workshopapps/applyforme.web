@@ -30,6 +30,7 @@ public class Applier {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
     private Member member;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "applier")
     private Set<Submission> submissions = new HashSet<>();
 }
