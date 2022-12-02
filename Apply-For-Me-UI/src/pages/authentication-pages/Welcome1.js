@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Navbar";
 import "./Welcome1.css";
 import Text from "./components/Text/Text";
@@ -22,6 +22,22 @@ const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-up";
 const Welcome1 = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { user } = useSelector(state => state.user);
+
+    useEffect(() => {
+        if (user) {
+            setTimeout(() => {
+                if (
+                    user?.roles[0] === "Professional" ||
+                    user?.roles[0] === "Recruiter"
+                ) {
+                    navigate("/dashboard");
+                } else if (user?.roles[0] === "SuperAdministrator") {
+                    navigate("/user-page");
+                }
+            }, 3000);
+        }
+    }, [user]);
 
     const handleSignup = async event => {
         event.preventDefault();
@@ -46,9 +62,6 @@ const Welcome1 = () => {
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
             toast("Signup Successfully");
-            setTimeout(() => {
-                navigate("/dashboard");
-            }, 3000);
         } else {
             toast("Error signin up, try again");
         }

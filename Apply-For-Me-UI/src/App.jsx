@@ -29,7 +29,7 @@ import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
 import JobDescription from "./pages/job_decription/JobDescription";
 import HelpAndSupportPage from "./pages/help_support_pg/HelpAndSupportPage";
 import HowAfmWorks from "./pages/afmworks/HowAfmWorks";
-import NeedHelp  from "./pages/need_help/NeedHelp";
+import NeedHelp from "./pages/need_help/NeedHelp";
 
 // import AdminDashboard from "./pages/admin_dashboard/AdminDashboard";
 import ApplicantDetails from "./pages/admin_dashboard/components/applicant_details/ApplicantDetails";
@@ -61,9 +61,11 @@ import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
 import { useEffect, useState } from "react";
+import ProtectedRoute from "ProtectedRoute";
 
 function App() {
     const dispatch = useDispatch();
+    const { user } = useSelector(state => state.user);
 
     useEffect(() => {
         if (localStorage?.getItem("tokenHngKey")) {
@@ -84,10 +86,9 @@ function App() {
                 <Route exact path="/privacy" element={<Privacy />} />
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
-                <Route exact path="/help" element={<HelpAndSupportPage/>}/>
-                <Route exact path="/howafmworks" element={<HowAfmWorks/>}/>
-                <Route exact path="/needHelp" element={<NeedHelp/>}/>
-            
+                <Route exact path="/help" element={<HelpAndSupportPage />} />
+                <Route exact path="/howafmworks" element={<HowAfmWorks />} />
+                <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route
                     exact
                     path="/pricing"
@@ -97,23 +98,14 @@ function App() {
                     exact
                     path="/checkout"
                     element={<Checkout {...formData} />}
-                />
-                <Route exact path="/user-page" element={<Dashboard />} />
-                <Route
-                    path="/superAdminProfile"
-                    element={<ProfileScreen />}
-                ></Route>
-                <Route
-                    exact
-                    path="/reverseRecruiterAdmin/:id"
-                    element={<RR_admin_profile />}
-                />
+                />{" "}
                 <Route exact path="blog" element={<Blog />} />
                 <Route
                     exact
                     path="/blog/questions"
                     element={<BestQuestions />}
                 />
+                {/* BLOG ROUTE */}
                 <Route exact path="/blog/skills" element={<Skills />} />
                 <Route exact path="blog/cover" element={<Cover />} />
                 <Route exact path="blog/work" element={<Work />} />
@@ -123,24 +115,53 @@ function App() {
                 <Route exact path="blog/brand" element={<Brand />} />
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
-                <Route path="dashboard" element={<UserDashboardLayout />}>
-                    <Route path="/dashboard/" element={<DashboardNothing />} />
-
-                    <Route path="admin" element={<DashboardHome />} />
-                    <Route path="admin/form" element={<ApplicationForm />} />
+                {/*AUTH ROUTE */}
+                <Route exact path="/wel1" element={<Welcome1 />} />
+                <Route exact path="/reg" element={<Registration />} />
+                <Route exact path="/wel2" element={<Welcome2 />} />
+                <Route exact path="/pass" element={<Password />} />
+                <Route exact path="/veri" element={<Verification />} />
+                <Route exact path="/nwpass" element={<NewPass />} />
+                {/* SUPER ADMIN PROTECTED ROUTE */}
+                <Route element={<ProtectedRoute user={user} />}>
+                    <Route exact path="/user-page/" element={<Dashboard />} />
                     <Route
-                        path="admin/details"
-                        element={<ApplicantDetails />}
-                    />
-                    <Route path="user/" element={<NoProfile />} />
+                        path="/superAdminProfile"
+                        element={<ProfileScreen />}
+                    ></Route>
                     <Route
-                        path="user/create-profile"
-                        element={<CreateProfile />}
+                        exact
+                        path="/reverseRecruiterAdmin/:id"
+                        element={<RR_admin_profile />}
                     />
-                    <Route path="user/success" element={<Success />} />
-                    <Route path="user/profile-list" element={<Profile />} />
-                    {/* <Route path="user" element={<UserDashboard />} /> */}
                 </Route>
+                {/* USER DASHBAORD */}
+                <Route path="dashboard" element={<UserDashboardLayout />}>
+                    <Route element={<ProtectedRoute user={user} />}>
+                        <Route
+                            path="/dashboard/"
+                            element={<DashboardNothing />}
+                        />
+                        <Route path="admin" element={<DashboardHome />} />
+                        <Route
+                            path="admin/form"
+                            element={<ApplicationForm />}
+                        />
+                        <Route
+                            path="admin/details"
+                            element={<ApplicantDetails />}
+                        />
+                        <Route path="user/" element={<NoProfile />} />
+                        <Route
+                            path="user/create-profile"
+                            element={<CreateProfile />}
+                        />
+                        <Route path="user/success" element={<Success />} />
+                        <Route path="user/profile-list" element={<Profile />} />
+                        {/* <Route path="user" element={<UserDashboard />} /> */}
+                    </Route>
+                </Route>
+                {/* APPLICATION DASHBAORD */}
                 <Route
                     path="/dashboard/applications"
                     element={<ApplicationsDashboardLayout />}
@@ -148,13 +169,6 @@ function App() {
                     <Route index element={<Applications />} />
                     <Route path=":jobId" element={<JobDescription />} />
                 </Route>
-                <Route exact path="/wel1" element={<Welcome1 />} />
-                <Route exact path="/reg" element={<Registration />} />
-                <Route exact path="/wel2" element={<Welcome2 />} />
-                <Route exact path="/pass" element={<Password />} />
-                <Route exact path="/veri" element={<Verification />} />
-                <Route exact path="/nwpass" element={<NewPass />} />
-
                 <Route path="*" element={<Error />} />
             </Routes>
         </>
