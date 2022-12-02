@@ -93,17 +93,17 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     }
 
 
-//    @Override
-//    public Member createRecruiter(MemberDto memberDto) {
-//
-//        Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.RECRUITER.getValue());
-//
-//        Member member = jpaRepository.findMemberByRoles(existingRole);
-//        if(member==null){
-//            Member newMember = mapper.map(memberDto,Member.class);
-//            return repository.saveOne(newMember);
-//        }
-//        throw new MemberDuplicateEntityException();
-//    }
+    @Override
+    public Member createRecruiter(MemberDto memberDto) {
+
+        Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.RECRUITER.getValue());
+
+        Member member = jpaRepository.findMemberByRoles(existingRole);
+        if(member==null){
+            Member newMember = mapper.map(memberDto,Member.class);
+            return repository.saveOne(newMember);
+        }
+        throw new MemberDuplicateEntityException();
+    }
 
 }
