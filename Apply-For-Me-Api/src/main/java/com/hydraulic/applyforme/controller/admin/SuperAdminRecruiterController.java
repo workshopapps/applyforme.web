@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 import static com.hydraulic.applyforme.constants.PagingConstants.*;
 import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DIRECTION;
@@ -47,6 +48,17 @@ public class SuperAdminRecruiterController {
         Member member = service.saveRecruiter(dto);
         emailService.confirmRecruiter(dto);
         return member;
+    }
+
+    @GetMapping("/sort-and-paginate")
+    public List<Member> sortAndPaginateRecruiter(
+            @RequestParam (value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false)int pageNo,
+            @RequestParam (value = "pageSize", defaultValue = DEFAULT_PAGE_NUMBER, required = false)int pageSize,
+            @RequestParam (value = "sortBy", defaultValue = DEFAULT_PAGE_NUMBER, required = false)String sortBy,
+            @RequestParam (value = "sortDir", defaultValue = DEFAULT_PAGE_NUMBER, required = false)String sortDir)
+    {
+        return service.sortAndPaginateRecruiter(pageNo,pageSize,sortBy,sortDir);
+
     }
 
 }
