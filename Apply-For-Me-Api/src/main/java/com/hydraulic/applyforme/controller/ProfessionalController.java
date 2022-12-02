@@ -16,28 +16,29 @@ import com.hydraulic.applyforme.service.ProfessionalService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
 
 @RestController
-@RequestMapping(
-        value = "professional",
-        produces = { MediaType.APPLICATION_JSON_VALUE }
-)
+@RequestMapping(value = "professional", produces = { MediaType.APPLICATION_JSON_VALUE })
 public class ProfessionalController {
 
-    private ProfessionalService service;
+	private ProfessionalService service;
 
-    public ProfessionalController(ProfessionalService service) {this.service = service;}
+	public ProfessionalController(ProfessionalService service) {
+		this.service = service;
+	}
 
-    @GetMapping("/entries")
-    public List<Professional> findAll(@RequestParam(required = false, defaultValue = "1", name = "page") Integer pageOffset) {
-        return service.findAll(pageOffset);
-    }
+	@GetMapping("/entries")
+	public List<Professional> findAll(
+			@RequestParam(required = false, defaultValue = "1", name = "page") Integer pageOffset) {
+		return service.findAll(pageOffset);
+	}
 
-    @GetMapping("/detail/{id}")
-    public Professional findOne(@PathVariable(name ="id") Long id) {
-        return service.findOne(id);
-    }
+	@GetMapping("/detail/{id}")
+	public Professional findOne(@PathVariable(name = "id") Long id) {
+		return service.findOne(id);
+	}
 
-    public List<ProfessionalProfile> getAllJobProfiles(){
-    	UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
-    	return service.findAllJobProfile(currentUser.getId());
-    }
+	@GetMapping("/profiles")
+	public List<ProfessionalProfile> getAllJobProfiles() {
+		UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
+		return service.findAllJobProfile(currentUser.getId());
+	}
 }
