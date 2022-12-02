@@ -23,6 +23,14 @@
     color: #0D081B;
 }
 
+@media screen and (max-width: 480px){
+    .helpful_para{ 
+        
+        font-size: 14px;
+    }
+    
+}
+
 
 
 

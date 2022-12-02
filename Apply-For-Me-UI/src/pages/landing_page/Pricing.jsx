@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import tick from "../../assets/images/tick.png";
 import classes from "./Hero.module.css";
 
 const Pricing = () => {
@@ -9,50 +8,41 @@ const Pricing = () => {
         <div className={classes.pricing_container}>
             <div className={classes.pricing_content}>
                 <div className={classes.top}>
-                    <span className={classes.sub_heading}>
+                    <span className={classes.sub_heading} style={{color:"#52515B"}}>
                         Payment services
                     </span>
                     <h3>Our pricing plan</h3>
-                    <button type="button" onClick={() => navigate("/pricing")}>
-                        View All
+                    <button type="button" onClick={() => navigate("/pricing")} style={{background:"#2E3192"}}>
+                        View All &#8594;
                     </button>
                 </div>
 
                 <div className={classes.bottom}>
                     <div className={classes.left}>
                         <div className={classes.list}>
-                            <img src={tick} alt="" />
+                            <img src="https://res.cloudinary.com/hamskid/image/upload/v1669932063/Vector_10_rfw1zh.png" alt="object not found" />
                             <div>
-                                <h4>Applications</h4>
-                                <span>
-                                    We believe career is life, life is once, it
-                                    is therefore worth enjoying.Study, work,
-                                    travel, tour, worship, keep working and keep
-                                    exploring
+                                <h4 style={{fontWeight:"600"}}>Applications</h4>
+                                <span style={{color:"#52515B",lineHeight:"30px"}}>
+                                As part of the basic plan, we send 15 applications every month to various employers who are searching for your skill-set 
                                 </span>
                             </div>
                         </div>
                         <div className={classes.list}>
-                            <img src={tick} alt="" />
+                            <img src="https://res.cloudinary.com/hamskid/image/upload/v1669932063/Vector_10_rfw1zh.png" alt="object not found" />
                             <div>
-                                <h4>Applications</h4>
-                                <span>
-                                    We believe career is life, life is once, it
-                                    is therefore worth enjoying.Study, work,
-                                    travel, tour, worship, keep working and keep
-                                    exploring
+                                <h4 style={{fontWeight:"600"}}>Applications</h4>
+                                <span style={{color:"#52515B",lineHeight:"30px"}}>
+                                You can create up to 5 job profiles of different qualifications in search of various roles within an organisation
                                 </span>
                             </div>
                         </div>
                         <div className={classes.list}>
-                            <img src={tick} alt="" />
+                            <img src="https://res.cloudinary.com/hamskid/image/upload/v1669932063/Vector_10_rfw1zh.png" alt="object not found" />
                             <div>
-                                <h4>Applications</h4>
-                                <span>
-                                    We believe career is life, life is once, it
-                                    is therefore worth enjoying.Study, work,
-                                    travel, tour, worship, keep working and keep
-                                    exploring
+                                <h4 style={{fontWeight:"600"}}>Applications</h4>
+                                <span style={{color:"#52515B",lineHeight:"30px"}}>
+                                We provide you with cutting-edge reviews on your CV that get you through the door to have an interview with your potential employer
                                 </span>
                             </div>
                         </div>
@@ -61,21 +51,21 @@ const Pricing = () => {
                     <div className={classes.price_card}>
                         <div className={classes.top}>
                             <span className={classes.type}>Basic plan</span>
-                            <span className={classes.figure}>$15.99</span>
-                            <span className={classes.interval}>Per month</span>
+                            <span className={classes.figure} style={{color:"#2E3192"}}>$15.99</span>
+                            <span className={classes.interval} style={{color:"#020313"}}>Per month</span>
                         </div>
 
                         <div className={classes.bottom}>
-                            <span>
-                                <img src={tick} alt="" />
+                            <span style={{color:"#020313"}}>
+                                <img src="https://res.cloudinary.com/hamskid/image/upload/v1669939094/Vector_12_mmv9yq.png" alt="object not found" />
                                 up to 15 applications per month
                             </span>
-                            <span>
-                                <img src={tick} alt="" />
+                            <span style={{color:"#020313"}}>
+                                <img src="https://res.cloudinary.com/hamskid/image/upload/v1669939094/Vector_12_mmv9yq.png" alt="object not found" />
                                 can create upto 5 job profiles
                             </span>
-                            <span>
-                                <img src={tick} alt="" />
+                            <span style={{color:"#020313"}}>
+                                <img src="https://res.cloudinary.com/hamskid/image/upload/v1669939094/Vector_12_mmv9yq.png" alt="object not found" />
                                 Access to 2 customer care session on CV review
                             </span>
                         </div>
@@ -84,6 +74,7 @@ const Pricing = () => {
                             <button
                                 type="button"
                                 onClick={() => navigate("/pricing")}
+                                style={{background:"#2E3192"}}
                             >
                                 Get Started
                             </button>
