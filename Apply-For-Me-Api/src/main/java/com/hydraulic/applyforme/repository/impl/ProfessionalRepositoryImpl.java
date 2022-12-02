@@ -1,6 +1,7 @@
 package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -74,5 +75,13 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
             return false;
         }
     }
+
+	@Override
+	public List<ProfessionalProfile> getAllJobProfile(Long id) {
+		String query = "select pp from ProfessionalProfile pp where pp.professional.id = :professionalId orderby pp.updatedOn ASC";
+		TypedQuery<ProfessionalProfile> q = entityManager.createQuery(query, ProfessionalProfile.class);
+		q.setParameter("professionalID", id);
+		return q.getResultList();
+	}
 
 }

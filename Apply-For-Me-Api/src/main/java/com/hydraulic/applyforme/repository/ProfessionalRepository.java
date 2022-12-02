@@ -1,6 +1,7 @@
 package com.hydraulic.applyforme.repository;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface ProfessionalRepository {
     boolean removeMany(List<Long> ids);
 
     boolean removeAll();
+    
+    List<ProfessionalProfile> getAllJobProfile(Long id); 
 }
