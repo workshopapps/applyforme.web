@@ -35,7 +35,7 @@ const Welcome2 = () => {
                 } else if (user?.roles[0] === "SuperAdministrator") {
                     navigate("/user-page");
                 }
-            }, 3000);
+            }, 2000);
         }
     }, [user]);
 

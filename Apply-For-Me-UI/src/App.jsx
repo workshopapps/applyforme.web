@@ -86,9 +86,9 @@ function App() {
                 <Route exact path="/privacy" element={<Privacy />} />
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
-                <Route exact path="/help" element={<HelpAndSupportPage/>}/>
-                <Route exact path="/howafmworks" element={<HowAfmWorks/>}/>
-                <Route exact path="/needHelp" element={<NeedHelp/>}/>
+                <Route exact path="/help" element={<HelpAndSupportPage />} />
+                <Route exact path="/howafmworks" element={<HowAfmWorks />} />
+                <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route
                     exact
                     path="/pricing"
@@ -116,13 +116,9 @@ function App() {
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
                 {/*AUTH ROUTE */}
-                {!user && (
-                    <>
-                        <Route exact path="/wel1" element={<Welcome1 />} />
-                        <Route exact path="/wel2" element={<Welcome2 />} />
-                        <Route exact path="/reg" element={<Registration />} />
-                    </>
-                )}
+                <Route exact path="/wel1" element={<Welcome1 />} />
+                <Route exact path="/wel2" element={<Welcome2 />} />
+                <Route exact path="/reg" element={<Registration />} />
                 <Route exact path="/pass" element={<Password />} />
                 <Route exact path="/nwpass" element={<NewPass />} />
                 <Route exact path="/veri" element={<Verification />} />
