@@ -3,26 +3,27 @@ package com.hydraulic.applyforme.controller.exception;
 import com.hydraulic.applyforme.model.exception.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
 @RestControllerAdvice
-public class GlobalExceptionController {
+public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, Object> dtoDataValidation(MethodArgumentNotValidException ex) {
+    public Map<String, Object> validation(MethodArgumentNotValidException ex) {
         Map<String, Object> errors = new HashMap<String, Object>();
         Map<String, Object> errMap = new HashMap<String, Object>();
         ex.getBindingResult().getAllErrors().forEach(new Consumer<ObjectError>() {
@@ -40,7 +41,7 @@ public class GlobalExceptionController {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public Object uniqueValue(DataIntegrityViolationException ex) {
+    public Object unique(DataIntegrityViolationException ex) {
         final Map<String, Object> errors = new HashMap<>();
         errors.put("entityName", "Unknown");
         errors.put("message", "One of fields submitted matches that of an existing entity or the referenced entity id does not exist, all existent and new entities field must be unique and referenced ids must exist.");
@@ -59,17 +60,16 @@ public class GlobalExceptionController {
         return errors;
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(CountryDuplicateEntityException.class)
-    public Object handleDuplicate(CountryDuplicateEntityException ex) {
+    public Object duplicate(CountryDuplicateEntityException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
         errors.put("entityName", CountryDuplicateEntityException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
-        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        ex.setCode(HttpStatus.CONFLICT.value());
         errors.put("code", ex.getCode().toString());
         return errors;
     }
-
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(RoleNotFoundException.class)
@@ -82,13 +82,13 @@ public class GlobalExceptionController {
         return errors;
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(RoleDuplicateEntityException.class)
-    public Object handleDuplicate(RoleDuplicateEntityException ex) {
+    public Object duplicate(RoleDuplicateEntityException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
         errors.put("entityName", RoleDuplicateEntityException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
-        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        ex.setCode(HttpStatus.CONFLICT.value());
         errors.put("code", ex.getCode().toString());
         return errors;
     }
@@ -105,13 +105,13 @@ public class GlobalExceptionController {
         return errors;
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(ApplyForMeDuplicateEntityException.class)
-    public Object handleDuplicate(ApplyForMeDuplicateEntityException ex) {
+    public Object duplicate(ApplyForMeDuplicateEntityException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
         errors.put("entityName", ApplyForMeDuplicateEntityException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
-        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        ex.setCode(HttpStatus.CONFLICT.value());
         errors.put("code", ex.getCode().toString());
         return errors;
     }
@@ -129,7 +129,7 @@ public class GlobalExceptionController {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ResetPasswordInvalidTokenException.class)
-    public Object invalidToken(ResetPasswordInvalidTokenException ex) {
+    public Object invalidity(ResetPasswordInvalidTokenException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
         errors.put("entityName", ResetPasswordInvalidTokenException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
@@ -138,13 +138,13 @@ public class GlobalExceptionController {
         return errors;
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(SalaryRangeDuplicateEntityException.class)
-    public Object handleDuplicate(SalaryRangeDuplicateEntityException ex) {
+    public Object duplicate(SalaryRangeDuplicateEntityException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
         errors.put("entityName", SalaryRangeDuplicateEntityException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
-        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        ex.setCode(HttpStatus.CONFLICT.value());
         errors.put("code", ex.getCode().toString());
         return errors;
     }
@@ -162,7 +162,7 @@ public class GlobalExceptionController {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(EmailDeliveryException.class)
-    public Object emailDelivery(EmailDeliveryException ex) {
+    public Object delivery(EmailDeliveryException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
         errors.put("entityName", EmailDeliveryException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
@@ -173,7 +173,7 @@ public class GlobalExceptionController {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(InvalidResetTokenException.class)
-    public Object invalidResetPasswordToken(InvalidResetTokenException ex) {
+    public Object invalidity(InvalidResetTokenException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
         errors.put("entityName", InvalidResetTokenException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
@@ -184,13 +184,24 @@ public class GlobalExceptionController {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(UsernameNotFoundException.class)
-    public Object emailDelivery(UsernameNotFoundException ex) {
+    public Object notFound(UsernameNotFoundException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
         errors.put("entityName", UsernameNotFoundException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
         ex.setCode(HttpStatus.BAD_REQUEST.value());
         errors.put("code", ex.getCode().toString());
         return errors;
+    }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(value = {AccessDeniedException.class})
+    public Object forbidden(AccessDeniedException ex, HttpServletRequest request) {
+        final Map<String, Object> body = new HashMap<>();
+        body.put("error", "Forbidden");
+        body.put("path", request.getServletPath());
+        body.put("message", "You are not allowed to access this resource");
+        body.put("code", String.valueOf(HttpStatus.FORBIDDEN.value()));
+        return body;
     }
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
@@ -200,17 +211,64 @@ public class GlobalExceptionController {
         body.put("error", "Unauthorized");
         body.put("path", request.getServletPath());
         body.put("message", ex.getMessage());
+        body.put("code", String.valueOf(HttpStatus.UNAUTHORIZED.value()));
         return body;
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ProfessionalNotFoundException.class)
     public Object notFound(ProfessionalNotFoundException ex) {
         final Map<String, Object> errors = new HashMap<String, Object>();
         errors.put("entityName", ProfessionalNotFoundException.ENTITY_NAME);
         errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.NOT_FOUND.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(PrivacyPolicyException.class)
+    public Object generic(PrivacyPolicyException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "Apply For Me");
+        errors.put("message", ex.getMessage());
         ex.setCode(HttpStatus.BAD_REQUEST.value());
         errors.put("code", ex.getCode().toString());
         return errors;
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(PasswordMismatchException.class)
+    public Object mismatch(PasswordMismatchException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "Member");
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public Object exists(EmailAlreadyExistsException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", EmailAlreadyExistsException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.CONFLICT.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public Object support(HttpRequestMethodNotSupportedException ex, HttpServletRequest request) {
+        final Map<String, Object> body = new HashMap<>();
+        body.put("error", "Method Not Supported");
+        body.put("path", request.getServletPath());
+        body.put("message", "Request method" + request.getMethod() + " not supported");
+        body.put("code", String.valueOf(HttpStatus.METHOD_NOT_ALLOWED.value()));
+        return body;
+    }
+
+
 }

@@ -10,11 +10,10 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = PhoneNumberValidator.class)
 @Target( {ElementType.FIELD, ElementType.METHOD } )
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PhoneNumberConstraint {
-    String message() default "Invalid Phone Number";
+public @interface PhoneNumber {
+    String message() default "Phone number should be length's should be between 10 and 15 characters";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
 }

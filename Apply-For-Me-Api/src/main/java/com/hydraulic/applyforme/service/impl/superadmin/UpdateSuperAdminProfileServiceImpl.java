@@ -15,14 +15,19 @@ public class UpdateSuperAdminProfileServiceImpl implements UpdateSuperAdminProfi
     @Autowired
     SuperAdminJpaRepository repository;
 
-
     @Override
-    @Transactional
     public Long getCurrentUser() {
-        SuperAdminDetailsService currentUserUtil = CurrentUserUtil.getCurrentUser();
-        System.out.println(currentUserUtil);
-
-
-        return currentUserUtil.getUserId();
+        return null;
     }
+
+
+//    @Override
+//    @Transactional
+//    public Long getCurrentUser() {
+//        SuperAdminDetailsService currentUserUtil = CurrentUserUtil.getCurrentUser();
+//        System.out.println(currentUserUtil);
+//
+//
+//        return currentUserUtil.getUserId();
+//    }
 }

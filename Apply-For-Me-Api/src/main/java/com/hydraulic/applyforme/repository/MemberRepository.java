@@ -12,6 +12,8 @@ public interface MemberRepository {
 
     Member getOne(Long id);
 
+    Member getRef(Long id);
+
     Member saveOne(Member member);
 
     Member updateOne(Member member);
