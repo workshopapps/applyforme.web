@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import "./Welcome1.css";
 import Text from "./components/Text/Text";
@@ -17,12 +17,14 @@ import jwt_decode from "jwt-decode";
 // Toaster
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Spinner from "components/spinner/Spinner";
 const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-up";
 
 const Welcome1 = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { user } = useSelector(state => state.user);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (user) {
@@ -41,6 +43,7 @@ const Welcome1 = () => {
 
     const handleSignup = async event => {
         event.preventDefault();
+        setLoading(true);
         const formData = {
             "first_name": event.target.fname.value,
             "last_name": event.target.lname.value,
@@ -61,6 +64,7 @@ const Welcome1 = () => {
             let tokenKey = "tokenHngKey";
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
+            setLoading(false);
             toast("Signup Successfully");
             setTimeout(() => {
                 if (
@@ -73,6 +77,7 @@ const Welcome1 = () => {
                 }
             }, 3000);
         } else {
+            setLoading(false);
             toast("Error signin up, try again");
         }
     };
@@ -82,6 +87,7 @@ const Welcome1 = () => {
             <Navbar />
             <ToastContainer />
             <div className="w1bdy">
+                {loading && <Spinner />}
                 <Text child="Welcome to ApplyForMe!!" />
                 <Text2 child="Create your ApplyForMe account here" />
                 <form className="form" onSubmit={e => handleSignup(e)}>

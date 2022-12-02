@@ -16,6 +16,7 @@ import { userInfo } from "store/slice/UserSlice";
 // Toaster
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Spinner from "components/spinner/Spinner";
 
 const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-in";
 
@@ -23,6 +24,7 @@ const Welcome2 = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { user } = useSelector(state => state.user);
+    const [loading, setLoading] = useState(false);
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
@@ -37,11 +39,12 @@ const Welcome2 = () => {
                 } else if (user?.roles[0] === "SuperAdministrator") {
                     navigate("/user-page");
                 }
-            }, 2000);
+            }, 3000);
         }
     }, [user]);
 
     const handleSubmit = async event => {
+        setLoading(true);
         event.preventDefault();
         const formData = {
             email_address: event.target.email.value,
@@ -61,8 +64,10 @@ const Welcome2 = () => {
             let tokenKey = "tokenHngKey";
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
+            setLoading(false);
             toast("Login Successfully");
         } else {
+            setLoading(false);
             toast("Wrong credentials");
         }
     };
@@ -72,6 +77,7 @@ const Welcome2 = () => {
             <Navbar />
             <ToastContainer />
             <div className="w2bdy">
+                {loading && <Spinner />}
                 <Text child="Welcome Back !!" />
                 <Text2 child="Login to ApplyForMe " />
                 <form className="form" onSubmit={e => handleSubmit(e)}>
