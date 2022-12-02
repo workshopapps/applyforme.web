@@ -6,6 +6,9 @@
 .uploadFile{
     display: none;
 }
+.learnImg2{
+    display:none;
+}
 input[type="file"]{
     display:none;
 }
@@ -115,11 +118,17 @@ input[type="file"]{
     font-weight: 500;
     margin-bottom: 1rem;
 }
-
+.reviews{
+    font-size: 20px;
+}
+.believe{
+    font-size: 20px;
+}
 .services_content p {
     color: #52515b;
     font-size: 20px;
     line-height: 30px;
+    margin-bottom: 2rem;
 }
 .uploadfile{
     display: none;
@@ -389,7 +398,7 @@ input[type="file"]{
 
 .reviews_content .bottom div {
     flex: 1 1;
-    padding: 16px;
+    padding: 16px 16px 8px 16px;
     background: white;
     margin: 1.5rem 1.5rem 0 1.5rem;
 }
@@ -402,6 +411,7 @@ input[type="file"]{
 .reviews_content .bottom .profile {
     margin-left: 0px;
     display: flex;
+    margin-top: 0;
     align-items: center;
     padding: 0;
 }
@@ -569,10 +579,38 @@ input[type="file"]{
     .FAQ_content div h3 {
         font-size: 2rem;
     }
+    .learn_content .bottom {
+        padding: 80px 40px;
+    }
+    .learn_content .bottom .right p {
+        font-size: 16px;
+    }
+    .reviews{
+        font-size: 16px;
+    }
+    .FAQ_content div .text p {
+        font-size: 16px;
+    }
 }
 
 
 @media (max-width: 650px) {
+    .box{
+        padding:0;
+    }
+    .learnImg2{
+        display:block;
+    }
+    .learnImg{
+        display:none;
+    }
+    .Hero_FAQ_content__xOSam div .Hero_text__9h75H p {
+        font-size: 16px;
+    }
+    .believe{
+        font-size: 16px;
+    }
+   
     .Hero_box__Y9r6z {
         padding: 2rem 1rem 1rem;
         background-color: white;
@@ -633,7 +671,7 @@ input[type="file"]{
     .learn_content .bottom {
         flex-direction: column;
         width: 100%;
-        padding: 112px 20px;
+        padding: 80px 20px;
     }
 
     .learn_content h2 {
@@ -647,9 +685,7 @@ input[type="file"]{
         margin-bottom: 1rem;
     }
 
-    .learn_content .bottom .right p {
-        font-size: 24px;
-    }
+    
 
     .learn_content .bottom h3 {
         font-size: 1.8rem;
@@ -741,11 +777,16 @@ input[type="file"]{
         margin-top: 20px;
     }
     .reviews_content .bottom div{
-    margin: 1.5rem 0rem 0 0rem;
+    margin: 0 0 2rem 0;
     }
+    
+.reviews_content .bottom .profile{
+    margin-bottom: -9px;
+}
 }
 
 @media (max-width: 425px) {
+    
     .learn_content img {
     height: 70vh;
     

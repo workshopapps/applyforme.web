@@ -1,7 +1,7 @@
 import './RR_admin_List.css';
 import { useNavigate } from 'react-router-dom';
 
-export const Desktop_List =({first_name,current_job_title,created_on,id,avatar})=>{
+export const Desktop_List =({first_name,current_job_title,created_on,id})=>{
     const navigate = useNavigate();
     return(
         <>

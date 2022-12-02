@@ -1,5 +1,4 @@
 import { useState,useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './RR_admin_List.css';
 import { Desktop_List } from './desktop_list_wrapper';
@@ -8,8 +7,6 @@ export const RR_Admin_list=({inputSearchValue})=>{
     
     const RR_recruiter = useSelector((state)=>state.RRadmin);
     const [search, setSearch] = useState([]);
-
-    const navigate = useNavigate();
     const [rangeEnd, setRangeEnd]= useState(4);
     const [rangeStart, setRangeStart]= useState(0);
     const [counter, setCounter]= useState(1);
@@ -35,7 +32,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
     return(
         <>
             <div className="sort_header">
-                <h2 style={{color:"#2E3192",fontWeight:"bolder", fontWeight:"600"}}>RR Admin List</h2>
+                <h2 style={{color:"#2E3192",fontWeight:"bolder"}}>RR Admin List</h2>
                 <div>
                     <button> + Add Admin</button>
                 </div>
@@ -59,11 +56,11 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     {
                         search.length !==0? (
                             counter <= search.length? search.map((user, index)=>{
-                                const {first_name,current_job_title,id,avatar} = user;
+                                const {first_name,current_job_title,id} = user;
                                 if((index >= rangeStart) && (index <= rangeEnd) ){
                                     return(
                                         <tr key={index}>
-                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} avatar={avatar} />
+                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} />
                                         </tr>
                                        
                                     )
@@ -72,11 +69,11 @@ export const RR_Admin_list=({inputSearchValue})=>{
                             }):null):
                         (RR_recruiter.loadingStatus === "success" &&
                             counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
-                                const {first_name,current_job_title,id,avatar} = user;
+                                const {first_name,current_job_title,id} = user;
                                 if((index >= rangeStart) && (index <= rangeEnd)){
                                     return(
                                         <tr key={index}>
-                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} avatar={avatar} />
+                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} />
                                         </tr>
                                     )
 
@@ -100,11 +97,11 @@ export const RR_Admin_list=({inputSearchValue})=>{
                         search.length !==0? (
                         RR_recruiter.loadingStatus === "success" &&
                         counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
-                           const {first_name,current_job_title,id,avatar} = user;
+                           const {first_name,current_job_title,id} = user;
                             if((index >= rangeStart) && (index <= rangeEnd) ){
                                 return(
                                     <div className='RRlist' key={index}>
-                                         <Mobile_view_list first_name={first_name} current_job_title={current_job_title} id={id} avatar={avatar} />
+                                         <Mobile_view_list first_name={first_name} current_job_title={current_job_title} id={id} />
                                     </div>
                                   
                                 )
@@ -113,11 +110,11 @@ export const RR_Admin_list=({inputSearchValue})=>{
                         ):(
                             RR_recruiter.loadingStatus === "success" &&
                         counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
-                           const {first_name,current_job_title,id,avatar} = user;
+                           const {first_name,current_job_title,id} = user;
                             if((index >= rangeStart) && (index <= rangeEnd) ){
                                 return(
                                     <div className='RRlist' key={index}>
-                                         <Mobile_view_list first_name={first_name} current_job_title={current_job_title} id={id} avatar={avatar} />
+                                         <Mobile_view_list first_name={first_name} current_job_title={current_job_title} id={id} />
                                     </div>
                                   
                                 )

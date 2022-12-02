@@ -1,6 +1,5 @@
 import React from 'react'
 import classes from "./Hero.module.css"
-import tick from "../../assets/images/tick.png"
 
 const Service = () => {
     return (
