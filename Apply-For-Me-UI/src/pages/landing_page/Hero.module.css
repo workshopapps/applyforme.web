@@ -596,7 +596,7 @@ input[type="file"]{
 
 @media (max-width: 650px) {
     .box{
-        padding: 1rem;
+        adding: 1rem;
         border-radius: 10px;
     }
     .learnImg2{
