@@ -8,6 +8,7 @@ import com.hydraulic.applyforme.model.dto.member.CreateRecruiterDto;
 import com.hydraulic.applyforme.model.enums.RoleType;
 import com.hydraulic.applyforme.model.exception.CountryNotFoundException;
 import com.hydraulic.applyforme.model.exception.EmailAlreadyExistsException;
+import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.repository.CountryRepository;
@@ -19,13 +20,14 @@ import com.hydraulic.applyforme.service.superadmin.SuperAdminApplierService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
@@ -126,5 +128,17 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
         response.setTotalPages(members.getTotalPages());
         response.setLast(members.isLast());
         return response;
+    }
+
+    @Override
+    public List<Member> sortAndPaginateRecruiter( int pageNo, int pageSize, String sortBy, String sortDir) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.RECRUITER.getValue());
+        Page<Member> allAdminPagedContent = jpaRepository.findMembersByRoles(paging, existingRole);
+        if (allAdminPagedContent.hasContent()) {
+            return allAdminPagedContent.getContent();
+        } else {
+            throw new MemberNotFoundException(existingRole.get().getId());
+        }
     }
 }
