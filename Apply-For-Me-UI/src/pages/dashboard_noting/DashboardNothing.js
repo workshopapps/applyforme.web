@@ -1,6 +1,6 @@
 import React from "react";
-import NewUserDashboard from "./NewUserDashboard";
-// import OldUserDashboard from "./OldUserDashboard";
+// import NewUserDashboard from "./NewUserDashboard";
+import OldUserDashboard from "./OldUserDashboard";
 
 
 
@@ -10,10 +10,10 @@ const DashboardNothing = () => {
 
     return(
         <div>
-            {/* <OldUserDashboard/> */}
-            <NewUserDashboard/>
+            <OldUserDashboard/>
+            {/* <NewUserDashboard/> */}
         </div>
-
+    
        
 
     )
