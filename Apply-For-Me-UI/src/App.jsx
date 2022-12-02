@@ -39,7 +39,7 @@ import { pricingPage } from "pages/pricing_plan/pricingData";
 import { formData } from "pages/checkout/checkoutData";
 import Pricing from "./pages/pricing_plan/Pricing";
 import Checkout from "pages/checkout/Checkout";
-
+import ProtectedRoute from "ProtectedRoute";
 //UserDashboard
 import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
@@ -61,7 +61,6 @@ import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
 import { useEffect, useState } from "react";
-import ProtectedRoute from "ProtectedRoute";
 
 function App() {
     const dispatch = useDispatch();
@@ -122,9 +121,18 @@ function App() {
                 <Route exact path="/pass" element={<Password />} />
                 <Route exact path="/nwpass" element={<NewPass />} />
                 <Route exact path="/veri" element={<Verification />} />
-                {/* SUPER ADMIN PROTECTED ROUTE */}
-                <Route element={<ProtectedRoute user={user} />}>
-                    <Route exact path="/user-page/" element={<Dashboard />} />
+                {/*  PROTECTED ROUTE*/}
+                <Route
+                    element={
+                        <ProtectedRoute
+                            user={user}
+                            allowedRoles={["SuperAdministrator"]}
+                        />
+                    }
+                >
+                    {/* SUPER ADMIN ROUTE*/}
+
+                    <Route exact path="/user-page" element={<Dashboard />} />
                     <Route
                         path="/superAdminProfile"
                         element={<ProfileScreen />}
@@ -135,9 +143,16 @@ function App() {
                         element={<RR_admin_profile />}
                     />
                 </Route>
-                {/* USER DASHBAORD */}
-                <Route path="dashboard" element={<UserDashboardLayout />}>
-                    <Route element={<ProtectedRoute user={user} />}>
+                <Route
+                    element={
+                        <ProtectedRoute
+                            user={user}
+                            allowedRoles={["Professional", "Recruiter"]}
+                        />
+                    }
+                >
+                    {/* USER DASHBAORD */}
+                    <Route path="dashboard" element={<UserDashboardLayout />}>
                         <Route
                             path="/dashboard/"
                             element={<DashboardNothing />}

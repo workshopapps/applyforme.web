@@ -8,7 +8,7 @@ import Inputbox from "./components/Elements/Inputbox";
 import Button from "./components/Elements/Button";
 import "./components/Elements/Button.css";
 import Footer from "./Footer";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +23,8 @@ const Welcome2 = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { user } = useSelector(state => state.user);
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         if (user) {
@@ -31,7 +33,7 @@ const Welcome2 = () => {
                     user?.roles[0] === "Professional" ||
                     user?.roles[0] === "Recruiter"
                 ) {
-                    navigate("/dashboard");
+                    navigate("/dashboard/");
                 } else if (user?.roles[0] === "SuperAdministrator") {
                     navigate("/user-page");
                 }

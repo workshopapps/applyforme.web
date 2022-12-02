@@ -35,7 +35,7 @@ const Welcome1 = () => {
                 } else if (user?.roles[0] === "SuperAdministrator") {
                     navigate("/user-page");
                 }
-            }, 2000);
+            }, 3000);
         }
     }, [user]);
 
@@ -62,6 +62,16 @@ const Welcome1 = () => {
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
             toast("Signup Successfully");
+            setTimeout(() => {
+                if (
+                    user.roles[0] === "Professional" ||
+                    user.roles[0] === "Recruiter"
+                ) {
+                    navigate("/dashboard");
+                } else if (user.roles[0] === "SuperAdministrator") {
+                    navigate("/user-page");
+                }
+            }, 3000);
         } else {
             toast("Error signin up, try again");
         }

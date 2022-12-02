@@ -21,6 +21,8 @@ import ProfileIcon from "../../assets/images/profile-circle.svg";
 import { getActiveLink } from "./service/DashboardSidebarService";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
+import { useDispatch } from "react-redux";
+import { userInfo } from "store/slice/UserSlice";
 
 const DashboardHeader = ({ func, setInputSearchValue }) => {
     const [dashboardActive, setDashboardActive] = useState({
@@ -28,6 +30,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
         user: false
     });
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const [showProfileDetails, setShowProfileDetails] = useState(false);
@@ -45,7 +48,11 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
         setInputSearchValue(event.target.search.value);
         event.target.search.value = "";
     };
-
+    const handleLogout = () => {
+        localStorage.removeItem("tokenHngKey");
+        dispatch(userInfo(""));
+        navigate("/");
+    };
     const handleModalShow = () => {
         setShowModal(true);
     };
@@ -112,9 +119,10 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                             <p>Profile</p>
                                         </li>
                                         <li
-                                            onClick={() =>
-                                                setShowMenuProfile(false)
-                                            }
+                                            onClick={() => {
+                                                handleLogout();
+                                                setShowMenuProfile(false);
+                                            }}
                                         >
                                             <img
                                                 src={Signout}
