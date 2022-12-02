@@ -102,6 +102,44 @@
     margin-right: 20px;
     object-fit: cover;
 }
+
+
+
+.nothing-to-see-here{
+    text-align: center;
+}
+
+.nothing-to-see-here button{
+    background-color: #2E3192;
+    color: white;
+    padding: 10px;
+    border: none;
+
+}
+.normal-create button{
+    border-radius: 5px;
+}
+.mobile-create button{
+    border-radius: 50%;
+    padding: 10px 15px;
+    
+}
+.mobile-create{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width:768px) {
 
      .dashboard-myapplication{
@@ -148,6 +186,13 @@
         margin: 10px;
         padding: 10px 10px;
     }
+
+
+
+
+
+
+
 }
 
 @media screen and (max-width:481px) {
@@ -188,4 +233,15 @@
 .overview-card{
     padding:70px 30px;
 }
+
+
+.normal-create{
+    
+    display: none;
+}
+.mobile-create{
+
+    display: block;
+}
+
 }
