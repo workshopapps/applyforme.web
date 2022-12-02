@@ -14,7 +14,9 @@ import { userInfo } from "store/slice/UserSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-
+// Toaster
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-up";
 
 const Welcome1 = () => {
@@ -43,14 +45,19 @@ const Welcome1 = () => {
             let tokenKey = "tokenHngKey";
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
-            navigate("/reg");
+            toast("Signup Successfully");
+            setTimeout(() => {
+                navigate("/dashboard");
+            }, 3000);
         } else {
-            console.log("eer");
+            toast("Error signin up, try again");
         }
     };
+
     return (
         <div className="Welcome1">
             <Navbar />
+            <ToastContainer />
             <div className="w1bdy">
                 <Text child="Welcome to ApplyForMe!!" />
                 <Text2 child="Create your ApplyForMe account here" />

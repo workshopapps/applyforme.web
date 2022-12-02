@@ -25,9 +25,9 @@ import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
 const DashboardHeader = ({ func, setInputSearchValue }) => {
     const [dashboardActive, setDashboardActive] = useState({
         dashboard: true,
-        user:false
+        user: false
     });
-    const navigate  = useNavigate();
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const [showProfileDetails, setShowProfileDetails] = useState(false);
@@ -42,9 +42,8 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
     };
     const handleDashboardSubmit = event => {
         event.preventDefault();
-        setInputSearchValue(event.target.search.value)
-        event.target.search.value="";
-       
+        setInputSearchValue(event.target.search.value);
+        event.target.search.value = "";
     };
 
     const handleModalShow = () => {
@@ -85,7 +84,9 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                             </div>
                             <div
                                 className={classes.user_avater}
-                                onClick={() => setShowMenuProfile(true)}
+                                onClick={() =>
+                                    setShowMenuProfile(prevState => !prevState)
+                                }
                             >
                                 <img
                                     src={ProfilePic}
@@ -109,7 +110,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                                 alt="Profile logo"
                                             />
                                             <p>Profile</p>
-                                        </li>                                           
+                                        </li>
                                         <li
                                             onClick={() =>
                                                 setShowMenuProfile(false)
@@ -126,45 +127,45 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                             )}
                         </div>
                         {/*form for searching for reverse recruiter admin  */}
-                        {dashboardActive.dashboard && <form
-                            className={classes.search}
-                            onSubmit={event => handleDashboardSubmit(event)}
-                        >
-                            <input
-                               
-                                type="search"
-                                name="search"
-                                placeholder="Search for Users and Reverse Recruiter"
-                               
-                            />
-                            <button type="submit">
-                                {" "}
-                                <img src={Search} alt="Apply for me logo" />
-                            </button>
-                        </form>}
-                        
-                         {/*form for searching for users and reverse recruiter */}
-                        {!dashboardActive.dashboard && <form
-                            className={classes.search}
-                            onSubmit={event => handleSubmit(event)}
-                        >
-                            <input
-                               
-                                type="search"
-                                name="search"
-                                placeholder="Search for Users and Reverse Recruiter"
-                               
-                            />
-                            <button type="submit">
-                                {" "}
-                                <img src={Search} alt="Apply for me logo" />
-                            </button>
-                        </form>}
+                        {dashboardActive.dashboard && (
+                            <form
+                                className={classes.search}
+                                onSubmit={event => handleDashboardSubmit(event)}
+                            >
+                                <input
+                                    type="search"
+                                    name="search"
+                                    placeholder="Search for Users and Reverse Recruiter"
+                                />
+                                <button type="submit">
+                                    {" "}
+                                    <img src={Search} alt="Apply for me logo" />
+                                </button>
+                            </form>
+                        )}
+
+                        {/*form for searching for users and reverse recruiter */}
+                        {!dashboardActive.dashboard && (
+                            <form
+                                className={classes.search}
+                                onSubmit={event => handleSubmit(event)}
+                            >
+                                <input
+                                    type="search"
+                                    name="search"
+                                    placeholder="Search for Users and Reverse Recruiter"
+                                />
+                                <button type="submit">
+                                    {" "}
+                                    <img src={Search} alt="Search Logo" />
+                                </button>
+                            </form>
+                        )}
                     </section>
                 </nav>
 
                 {/* Mobile nav */}
-                {showMenu && <MobileNav setShowMenu={setShowMenu}/>}
+                {showMenu && <MobileNav setShowMenu={setShowMenu} />}
             </section>
 
             {showProfileDetails ? (

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Success.module.css";
 import success from "../assets/success.png";
-import TopBar from "../TopBar/TopBar";
+import TopBar from "../components/TopBar/TopBar";
 import BlueButton from "../../../components/buttons/blue_background/BlueButton";
 
 const Success = () => {
