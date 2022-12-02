@@ -78,9 +78,9 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
 
 	@Override
 	public List<ProfessionalProfile> getAllJobProfile(Long id) {
-		String query = "select pp from ProfessionalProfile pp where pp.professional.id = :professionalId orderby pp.updatedOn ASC";
+		String query = "select pp from ProfessionalProfile pp where pp.professional.id = :professionalId order by pp.updatedOn ASC";
 		TypedQuery<ProfessionalProfile> q = entityManager.createQuery(query, ProfessionalProfile.class);
-		q.setParameter("professionalID", id);
+		q.setParameter("professionalId", id);
 		return q.getResultList();
 	}
 
