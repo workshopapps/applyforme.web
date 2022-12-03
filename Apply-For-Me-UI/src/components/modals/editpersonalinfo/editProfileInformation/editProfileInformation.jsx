@@ -12,7 +12,7 @@ export const EditInfoContent=()=>{
         <div>
             <form className="edit_passwordContent" onSubmit={handleSubmit}>
                 <label htmlFor='profilePics'>
-                    Proifile:<input type="file" name="profilePics" value={formField.profilePics} onChange={(e)=>setFormField({...formField, profilePics:e.target.value})}/>
+                    Profile:<input type="file" name="profilePics" value={formField.profilePics} onChange={(e)=>setFormField({...formField, profilePics:e.target.value})}/>
                 </label>
                 
                 <input type="text" name="FirstName" value={formField.FirstName} onChange={(e)=>setFormField({...formField, FirstName:e.target.value})} placeholder="First Name" required />
