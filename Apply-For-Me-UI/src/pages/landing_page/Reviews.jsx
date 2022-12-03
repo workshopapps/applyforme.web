@@ -23,7 +23,7 @@ const Reviews = () => {
                         <img src={Avatar} alt="" />
                         <div>
                             <span className={classes.name}>Jao Yung</span>
-                            <span className={classes.position}>Position, Company name</span>
+                            <span className={classes.position}>Software Develper,Google</span>
                         </div>
                     </div>
                 </div>
@@ -34,8 +34,8 @@ const Reviews = () => {
                     <div className={classes.profile}>
                         <img src={Avatar2} alt="" />
                         <div>
-                            <span className={classes.name}>Jao Yung</span>
-                            <span className={classes.position}>Position, Company name</span>
+                            <span className={classes.name}>Kate James</span>
+                            <span className={classes.position}>Product Designer, Apple</span>
                         </div>
                     </div>
                 </div>

@@ -3,9 +3,6 @@
     margin: auto;
     background-color: #FBFBFB;
 }
-.uploadFile{
-    display: none;
-}
 .learnImg2{
     display:none;
 }
@@ -53,34 +50,12 @@ input[type="file"]{
     right: 0;
 }
 
-.hero_content .left .browse {
-    width: 80%;
-    margin: 7rem 0 2rem 0;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    border: 1px dotted #999999 ;
-    border-radius: 5px;
-    justify-content: center;
-    font-size: 0.9rem;
-    padding: 2rem 1.5rem;
-}
-
-.hero_content .left .browse img {
-    width: 55px;
-    margin: 0 auto;
-}
-
-.hero_content .left .browse .base {
-    color: #cccccc;
-}
 
 .hero_content .left .heading {
     font-size: 4rem;
-    font-weight: 400;
+    font-weight: bold;
     width: 100%;
-    color: #202065;
+    color:  #2E3192;
     margin-bottom: 1.3rem;
 }
 
@@ -130,9 +105,6 @@ input[type="file"]{
     line-height: 30px;
     margin-bottom: 2rem;
 }
-.uploadfile{
-    display: none;
-}
 .services_content .box img {
     margin-bottom: 1rem;
 }
@@ -141,7 +113,7 @@ input[type="file"]{
 
 .learn_container {
     width: 100%;
-    margin: 4rem 0;
+    margin: 4rem 4rem 1rem 0;
     padding: 4rem 0;
     border-top: 1px solid #2E3192;
 }
@@ -168,7 +140,7 @@ input[type="file"]{
     border: 1px solid #2E3192;
     font-weight: 600;
     color: #2E3192;
-    background-color: #c4d5ee33;
+    background-color: white;
     margin-bottom: 2rem;
 }
 
@@ -195,10 +167,10 @@ input[type="file"]{
 }
 
 .learn_content .bottom h3 {
-    color: #4347B2;
+    color: #2E3192;
     font-size: 2.5rem;
     width: 90%;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .learn_content .bottom .right {
@@ -222,7 +194,7 @@ input[type="file"]{
     margin-top: 1rem;
     line-height: 60px;
     font-weight: 600;
-    color: #4347B2;
+    color: #2E3192;
     
 }
 
@@ -416,10 +388,6 @@ input[type="file"]{
     padding: 0;
 }
 
-.reviews_content .bottom .profile img {
-    width: 3rem;
-}
-
 .reviews_content .bottom .profile div {
     display: flex;
     flex-direction: column;
@@ -457,7 +425,7 @@ input[type="file"]{
     border: none;
     background-color: #2E3192;
     color: #ffffff;
-    padding: 16px 32px;
+    padding: 16px 64px;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -596,7 +564,7 @@ input[type="file"]{
 
 @media (max-width: 650px) {
     .box{
-        padding: 1rem;
+        adding: 1rem;
         border-radius: 10px;
     }
     .learnImg2{
@@ -787,11 +755,9 @@ input[type="file"]{
 }
 
 @media (max-width: 425px) {
-    
-    .learn_content img {
-    height: 70vh;
-    
-}
+    .box{
+        margin: 0;
+    }
     .pricing_content .bottom .price_card .bottom span {
         font-size: 16px;
     }
