@@ -50,11 +50,7 @@ const ContactUsForm = () => {
                 message: Yup.string().required("please enter your message"),
                 phone_number: Yup.number()
                     .min(11)
-                    .required("Please enter a phone number")
-                    .matches(
-                        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-                        "Please enter a valid phone number"
-                    ),
+                    .required("Please enter a phone number"),
                 privacy_policy: Yup.boolean().oneOf([true], "please agree")
             }),
 
