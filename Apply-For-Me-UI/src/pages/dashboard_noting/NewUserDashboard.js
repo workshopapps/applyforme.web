@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import avatar from "./img/avatar.png";
 import notification from "./img/notification.png";
 import "./DashboardNothing.css";
@@ -91,7 +92,7 @@ const NewUserDashboard = () => {
                    
                     <div className='mobile-create'>
                             <span> Welcome, you have no job profile yet Tap  </span>
-                         <span>   <button> + </button> </span>  
+                         <span>   <Link to="/dashboard/user">  <button> + </button> </Link> </span>  
                             <span>to create a new job profile</span> 
                     </div>
 
@@ -105,7 +106,7 @@ const NewUserDashboard = () => {
 
              <section className='nothing-to-see-here'>
                 <div className='normal-create'>
-                    Nothing to see here <button>Create a Job Profile +</button> to get started
+                    Nothing to see here <Link to="/dashboard/user"><button>Create a Job Profile +</button></Link> to get started
                 </div>
 
                
