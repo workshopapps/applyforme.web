@@ -7,8 +7,8 @@ const Search = () => {
             className={styles.applications_search_form}
             onSubmit={e => e.preventDefault()}
         >
-            <input type="search" placeholder="Search..." />
             <AiOutlineSearch />
+            <input type="search" placeholder="Search..." />
         </form>
     );
 };

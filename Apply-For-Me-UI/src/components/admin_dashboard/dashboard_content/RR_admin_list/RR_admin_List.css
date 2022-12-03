@@ -49,7 +49,7 @@ thead th{
      font-size: 15px;
      width: 90%;
      background: #2E3192;
-     padding: 0.4rem;
+     padding: 0.7rem;
      border: 1px solid white;
      color: white;
      margin-right: 0.3rem;
@@ -79,6 +79,9 @@ thead th{
 .sort_header button {
     padding: 0.5rem 1rem;
    font-weight: bold;
+}
+.sort_header h2{
+    font-size:24px;
 }
 .view_mobile_Container button {
     border-radius: 4px;
