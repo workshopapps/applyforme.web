@@ -46,7 +46,7 @@ export const DashboardContent=({inputSearchValue})=>{
         <div className="applicantsContainer">
             <h2 className='profile_name'>Hello John Cooper</h2>
             <div className="statisticsContainer">
-                <h2>Statistical</h2>
+                <h2>Statistics</h2>
                 <select style={{background:"whitesmoke"}} name="statistic_sorter" id="statistic_sorter" onChange={statisticsHandler}>
                     {
                         statisticsList.map((statistics, index)=>{

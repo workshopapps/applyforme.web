@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import classes from "./Hero.module.css";
+import { useNavigate } from "react-router-dom";
 const Hero = () => {
+    const navigate = useNavigate();
     return (
         <div className={classes.hero_container}>
             <div className={classes.hero_content}>
@@ -17,51 +19,26 @@ const Hero = () => {
                         lifelong Job/career assistant designed to make the
                         hunting process easy.
                     </span>
-
-                    <div className={classes.browse}>
-                        <img
-                            src="https://res.cloudinary.com/hamskid/image/upload/v1669932063/Vector_9_musiqa.png"
-                            alt="object not found"
-                        />
-                        <span
-                            style={{
-                                color: " #52515B",
-                                background: "white",
-                                margin: "0.5rem 0"
-                            }}
-                        >
-                            Drop your CV here to get the best matches or{" "}
-                            <label htmlFor="file" style={{ color: "#2A73D5" }}>
-                                browse
-                            </label>
-                        </span>
-                        <span className={classes.base}>Supports PDF, Docs</span>
-                    </div>
                     <div className={classes.uploadFile}>
-                        <input
-                            type="file"
-                            id="file"
-                            accept="image/*"
-                            style={{ padding: "1rem 0" }}
-                        />
-                        <label
-                            htmlFor="file"
+                        <button
                             className="fileLabel"
                             style={{
                                 color: "white",
                                 height: "60px",
-                                width: "140px",
-                                backgroundColor: "#202065",
+                                width:"240px",
+                                border:"1px solid #2E3192",
+                                backgroundColor: "#2E3192",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                padding: "2rem 0",
+                                padding: "16px 32px",
                                 margin: "1rem 0",
-                                borderRadius: "10px"
+                                borderRadius: "5px"
                             }}
+                            onClick={()=>navigate('/wel1')}
                         >
-                            Upload File
-                        </label>
+                           Try it now
+                        </button>
                     </div>
                 </div>
 

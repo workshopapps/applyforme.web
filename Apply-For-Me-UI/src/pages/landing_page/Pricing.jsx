@@ -56,7 +56,7 @@ const Pricing = () => {
                             />
                             <div>
                                 <h4 style={{ fontWeight: "600" }}>
-                                    Applications
+                                    Job Profiles
                                 </h4>
                                 <span
                                     style={{
@@ -77,7 +77,7 @@ const Pricing = () => {
                             />
                             <div>
                                 <h4 style={{ fontWeight: "600" }}>
-                                    Applications
+                                    CV Review
                                 </h4>
                                 <span
                                     style={{
