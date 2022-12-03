@@ -149,6 +149,7 @@ function App() {
                 >
                     {/* USER DASHBAORD */}
                     <Route path="dashboard" element={<UserDashboardLayout />}>
+                        {/* User Dashboard Profile */}
                         <Route
                             path="/dashboard/"
                             element={<DashboardNothing />}
@@ -169,16 +170,15 @@ function App() {
                         />
                         <Route path="user/success" element={<Success />} />
                         <Route path="user/profile-list" element={<Profile />} />
-                        {/* <Route path="user" element={<UserDashboard />} /> */}
+                        {/* User Dashboard Applications */}
+                        <Route
+                            path="applications"
+                            element={<ApplicationsDashboardLayout />}
+                        >
+                            <Route index element={<Applications />} />
+                            <Route path=":jobId" element={<JobDescription />} />
+                        </Route>
                     </Route>
-                </Route>
-                {/* APPLICATION DASHBAORD */}
-                <Route
-                    path="/dashboard/applications"
-                    element={<ApplicationsDashboardLayout />}
-                >
-                    <Route index element={<Applications />} />
-                    <Route path=":jobId" element={<JobDescription />} />
                 </Route>
                 <Route path="*" element={<Error />} />
             </Routes>
