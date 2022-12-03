@@ -1,12 +1,21 @@
 import { NavLink } from "react-router-dom";
 import styles from "../CreateProfile.module.css";
 import classes from "./Review.module.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import BlueButton from "../../../../components/buttons/blue_background/BlueButton";
 import LightButton from "../../../../components/buttons/light_button/LightButton";
+// import axios from "axios";
+import { useSelector } from "react-redux";
+
 const Review = ({ formData, keywords }) => {
-    const navigate = useNavigate();
-    function handleSubmit() {
+    // const navigate = useNavigate();
+
+    // const url = "/userId";
+    const { user } = useSelector(state => state.user);
+    // const userId = user.memberId;
+    const userEmail = user.sub;
+
+    const handleSubmit = async () => {
         if (formData.job_title === "") {
             return alert("Please enter a job title");
         } else if (formData.location === "") {
@@ -22,8 +31,15 @@ const Review = ({ formData, keywords }) => {
         } else if (formData.coverletter_body === "") {
             return alert("Please enter a cover letter body");
         }
-        navigate("/dashboard/user/success");
-    }
+
+        // try {
+        //     const resp = await axios.post(url, { formData });
+        //     console.log("done");
+        //     // navigate("/dashboard/user/success");
+        // } catch (error) {
+        //     console.log("error");
+        // }
+    };
     return (
         <div className={styles.form_body}>
             <h3>Review your profile and it's good to go!</h3>
@@ -58,7 +74,7 @@ const Review = ({ formData, keywords }) => {
                         <h5>Uploaded CV</h5>
                     </div>
                     <div>
-                        <p>enwono_id@yahoo.com</p>
+                        <p>{userEmail}</p>
                         <h5>Personal email</h5>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+// import Sidebar from "../components/Sidebar";
 import styles from "./ApplicationDashboard.module.css";
 import BottomNav from "../components/BottomNav";
 import DashboardSidebar from "components/dashboard_sidebar/DashboardSidebar";
