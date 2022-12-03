@@ -1,7 +1,7 @@
 import "./notification_head.css";
 import { useState } from "react";
 import { MobileNav } from "components/dashboard/mobileNav";
-export const NotificationHead = ({ notificationCount, userImage }) => {
+export const NotificationHead = ({ notificationCount }) => {
     const [showMobileNav, setShowMobileNav] = useState(false);
     return (
         <div className="notification_icon" style={{ position: "relative" }}>
@@ -24,13 +24,13 @@ export const NotificationHead = ({ notificationCount, userImage }) => {
             <div>
                 <img
                     className="notification_icon_img"
-                    src="https://res.cloudinary.com/hamskid/image/upload/v1668864953/Vector_jfm392.png"
+                    src="./images/notificationBell-icon.svg"
                     alt="object not found"
                 />
                 <span style={{ width: "30%", marginLeft: "1rem" }}>
                     <img
                         style={{ width: "30%" }}
-                        src={userImage}
+                        src='./images/superAdminProfilePicture.svg'
                         alt="object not found"
                     />
                 </span>
