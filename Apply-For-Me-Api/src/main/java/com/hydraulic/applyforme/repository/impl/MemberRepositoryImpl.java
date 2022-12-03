@@ -98,6 +98,10 @@ public class MemberRepositoryImpl implements MemberRepository {
             return false;
         }
     }
+    
+    public void deleteMemberRole() {
+    	
+    }
 
 }
 
