@@ -215,7 +215,7 @@ public class EmailServiceImpl implements EmailService {
                 + "Sender's lastname: " + dto.getLastName() + "<br>"
                 + "Sender's email: " + dto.getEmailAddress() + "<br>"
                 + "Message: " + dto.getMessage() + "<br>"
-                + "Privacy policy status: " + dto.getPrivacyPolicy()
+                + "Read privacy policy: " + dto.getPrivacyPolicy()
                 + "</p>"+
                 " <hr style=\"border:none;border-top:1px solid #eee\" />" +
                 "<div style=\"margin-top: 20px;padding:8px 0;color:#aaa;font-size:1.0em;line-height:1;font-weight:300\">" +
