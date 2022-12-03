@@ -31,7 +31,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
     return (
         <>
             <div className="sort_header">
-                <h2 style={{color:"#2E3192",fontWeight:"bolder"}}>RR Admin List</h2>
+                <h3 style={{color:"#2E3192",fontWeight:"bolder"}}>RR Admin List</h3>
                 <div>
                     <button> + Add Admin</button>
                 </div>
