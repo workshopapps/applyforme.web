@@ -94,11 +94,24 @@ const Nav = () => {
                             </Link>
                         </>
                     ) : (
-                        <BlueButton
-                            text="Logout"
-                            width="156"
-                            func={handleLogout}
-                        />
+                        <div className={classes.auth__user_btn}>
+                            <BlueButton
+                                text="Dashboard"
+                                width="156"
+                                func={() =>
+                                    navigate(
+                                        user.roles[0] === "SuperAdministrator"
+                                            ? "/user-page"
+                                            : "/dashboard/"
+                                    )
+                                }
+                            />
+                            <BlueButton
+                                text="Logout"
+                                width="156"
+                                func={handleLogout}
+                            />
+                        </div>
                     )}
                 </div>
             </nav>
@@ -178,11 +191,25 @@ const Nav = () => {
                                 </Link>
                             </>
                         ) : (
-                            <BlueButton
-                                text="Logout"
-                                width="156"
-                                func={handleLogout}
-                            />
+                            <div className={classes.auth__user_btn}>
+                                <BlueButton
+                                    text="Dashboard"
+                                    width="156"
+                                    func={() =>
+                                        navigate(
+                                            user.roles[0] ===
+                                                "SuperAdministrator"
+                                                ? "/user-page"
+                                                : "/dashboard/"
+                                        )
+                                    }
+                                />
+                                <BlueButton
+                                    text="Logout"
+                                    width="156"
+                                    func={handleLogout}
+                                />
+                            </div>
                         )}
                     </div>
                 </nav>

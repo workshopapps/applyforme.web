@@ -9,17 +9,24 @@ const Dashboard = () => {
         dashboardPage: true,
         userPage: false
     });
-    
+
     const handlePageSwitch = data => {
         setPage(getActivePage(data));
     };
 
-    const [dashboardsearchParams, dashboardSetSearchParams] = useState('');
+    const [dashboardsearchParams, dashboardSetSearchParams] = useState("");
 
     return (
         <div>
-            <DashboardHeader func={handlePageSwitch} setInputSearchValue={dashboardSetSearchParams} />
-            {page.dashboardPage ? <DashBoardPage inputSearchValue={dashboardsearchParams} />: <UsersPage/> }
+            <DashboardHeader
+                func={handlePageSwitch}
+                setInputSearchValue={dashboardSetSearchParams}
+            />
+            {page.dashboardPage ? (
+                <DashBoardPage inputSearchValue={dashboardsearchParams} />
+            ) : (
+                <UsersPage />
+            )}
         </div>
     );
 };
