@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
     ) : user ? (
         <Navigate to="*" state={{ from: location }} replace />
     ) : (
-        <Navigate to="/" state={{ from: location }} replace />
+        <Outlet />
     );
 };
 
