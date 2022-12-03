@@ -57,7 +57,6 @@
 }
 
 .overview-card-wrapper{
-    padding: 0 20px;
     width: 100%;
 }
 
@@ -186,15 +185,12 @@
         padding: 10px 10px;
     }
 
-
-
-
-
-
-
 }
 
 @media screen and (max-width:481px) {
+    .dashboard-overview {
+        padding: 30px;
+    }
 
     .dashboardnothing{
     
@@ -228,9 +224,6 @@
 }
 .application-array-card{
     padding: 5px;
-}
-.overview-card{
-    padding:70px 30px;
 }
 
 
