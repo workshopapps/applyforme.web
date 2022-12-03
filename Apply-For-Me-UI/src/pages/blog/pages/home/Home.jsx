@@ -169,7 +169,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="right col-md-4">
-                        <div className="inner">
+                        {/* <div className="inner">
                             <p>
                                 Get the latest career resource tips delivered to
                                 your email!
@@ -177,7 +177,7 @@ const Home = () => {
                             </p>
                             <input type="text" placeholder="Email address" />
                             <button>Subscribe</button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

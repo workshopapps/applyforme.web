@@ -55,6 +55,11 @@ const Nav = () => {
 
                 <ul className={classes.nav_links}>
                     <li className="active">
+                        <NavLink to="/" style={handleActiveLink}>
+                           Home
+                        </NavLink>
+                    </li>
+                    <li>
                         <NavLink to="/about" style={handleActiveLink}>
                             About us
                         </NavLink>
@@ -65,20 +70,9 @@ const Nav = () => {
                             Pricing plan
                         </NavLink>
                     </li>
-
-                    <li>
-                        <NavLink to="/blog" style={handleActiveLink}>
-                            Blog
-                        </NavLink>
-                    </li>
                     <li>
                         <NavLink to="/faqs" style={handleActiveLink}>
                             FAQs
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/contact" style={handleActiveLink}>
-                            Contact us
                         </NavLink>
                     </li>
                 </ul>
@@ -151,21 +145,17 @@ const Nav = () => {
                         style={{ display: dropDown ? "flex" : "none" }}
                     >
                         <li onClick={() => setDropDown(false)}>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li onClick={() => setDropDown(false)}>
                             <Link to="/about">About us</Link>
                         </li>
 
                         <li onClick={() => setDropDown(false)}>
                             <Link to="/pricing">Pricing plan</Link>
                         </li>
-
-                        <li onClick={() => setDropDown(false)}>
-                            <Link to="/blog">Blog</Link>
-                        </li>
                         <li>
                             <Link to="/faqs">FAQs</Link>
-                        </li>
-                        <li onClick={() => setDropDown(false)}>
-                            <Link to="/contact">Contact us</Link>
                         </li>
                     </ul>
 

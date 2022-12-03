@@ -1,13 +1,13 @@
 .ProfileMainContainer{
     padding: 2rem 8rem 8rem 8rem;
-    background-color: #eeefff;
+    background-color: white;
     
 }
 .profile_content{
     font-family: 'Outfit', sans-serif;
 }
 .profile_content_btn{
-    background-color: #eeefff;
+    background-color: white;
     width: fit-content;
     display: flex;
     flex-direction: row;
