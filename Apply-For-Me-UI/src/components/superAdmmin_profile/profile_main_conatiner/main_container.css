@@ -1,13 +1,13 @@
 .ProfileMainContainer{
     padding: 2rem 8rem 8rem 8rem;
-    background-color: #eeefff;
+    background-color: white;
     
 }
 .profile_content{
     font-family: 'Outfit', sans-serif;
 }
 .profile_content_btn{
-    background-color: #eeefff;
+    background-color: white;
     width: fit-content;
     display: flex;
     flex-direction: row;
@@ -80,7 +80,7 @@
     height: 100vh;
     background-color: rgba(49, 49, 49,0.8);
 }
-.editContent{
+.editpasswordContent, .editProfileContent{
     padding:2rem;
     position: absolute;
     top: 15%;
@@ -152,6 +152,10 @@
     .profile_header {
         padding: 0.5rem 0;
         
+    }
+    .editpasswordContent{
+        height:auto;
+      
     }
    
 }

@@ -38,7 +38,8 @@ a {
     font-size: 0.8rem;
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    align-items: center;
+    gap: 8px;
     padding: 0.7rem 0 1.4rem 0;
 }
 .dvdr {

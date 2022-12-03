@@ -18,8 +18,11 @@
     width: 1.5rem;
     height: 1.5rem;
 }
-.cover_letter {
+.keywords_box {
     margin-top: 1rem;
+}
+.keywords_box div {
+    margin-block: 0.5rem;
 }
 .settings p {
     margin-top: 1rem;
@@ -27,4 +30,9 @@
     font-size: 1.25rem;
     letter-spacing: 0.01em;
     color: #737373;
+}
+.settings h5 {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #6d6e71;
 }

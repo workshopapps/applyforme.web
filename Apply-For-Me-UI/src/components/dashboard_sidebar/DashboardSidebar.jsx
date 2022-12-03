@@ -11,7 +11,7 @@ import mobileApplicationsIcon from "../../assets/images/bottomnav-applications-i
 import { useGlobalContext } from "../../hooks/context";
 
 import { getActiveLink } from "./service/DashboardSidebarService";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const DashboardSidebar = () => {
     const [activeLink, setActiveLink] = useState({
@@ -22,6 +22,7 @@ const DashboardSidebar = () => {
         messages: false,
         help: false
     });
+
     const navigate = useNavigate();
     const handleAciveLink = link => {
         setActiveLink(() => getActiveLink(link));
@@ -45,7 +46,7 @@ const DashboardSidebar = () => {
             title: "Profile"
         },
         {
-            path: "#",
+            path: "/dashboard/applications",
             img: {
                 web: BriefCaseIcon,
                 mobile: mobileApplicationsIcon
@@ -75,13 +76,20 @@ const DashboardSidebar = () => {
                                     }
                                     onClick={() => handleAciveLink("dashboard")}
                                 >
-                                    <Link to={link.path}>
+                                    <NavLink
+                                        to={link.path}
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? classes.active
+                                                : classes.inactive
+                                        }
+                                    >
                                         <img
                                             src={link.img.web}
                                             alt="Dashboard icon"
                                         />
                                         <p>{link.title}</p>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             );
                         })}
@@ -105,13 +113,20 @@ const DashboardSidebar = () => {
                                     }
                                     onClick={() => handleAciveLink("dashboard")}
                                 >
-                                    <Link to={link.path}>
+                                    <NavLink
+                                        to={link.path}
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? classes.mobile_active
+                                                : classes.mobile_inactive
+                                        }
+                                    >
                                         <img
                                             src={link.img.mobile}
                                             alt="Dashboard icon"
                                         />
                                         <p>{link.title}</p>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             );
                         })}

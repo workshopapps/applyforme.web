@@ -1,12 +1,8 @@
 import styles from "../CreateProfile.module.css";
 import classes from "./Settings.module.css";
-// import closecircle from "../../assets/close-circle.png";
-import Input from "../../InputField/InputField";
+import AddKeyWord from "../../components/AddKeyword/AddKeyword";
 
-const Settings = () => {
-    function handleInputChange() {
-        //
-    }
+const Settings = ({ keywords, setKeywords }) => {
     return (
         <div className={classes.settings}>
             <div className={styles.form_body}>
@@ -15,30 +11,13 @@ const Settings = () => {
                     posting
                 </h3>
                 <p>
-                    Here you have the opportunity to write the specific keyword
+                    Here you have the opportunity to write a specific keywords
                     your perfect job description would have.
                 </p>
-                <div className={classes.cover_letter}>
+                <div className={classes.keywords_box}>
                     <h5>Included keywords</h5>
-                    <Input
-                        type="text"
-                        placeholder="Fintech"
-                        value={name}
-                        name="name"
-                        width={90}
-                        onChange={handleInputChange}
-                    />
-                    <h5>Type keywords and press enter</h5>
-                    {/* <div className={classes.keywords}>
-                        <span className={classes.each_keyword}>
-                            <p>UI/UX Design</p>
-                            <img src={closecircle} alt="remove" />
-                        </span>
-                        <span className={classes.each_keyword}>
-                            <p>Web 3</p>
-                            <img src={closecircle} alt="remove" />
-                        </span>
-                    </div> */}
+
+                    <AddKeyWord keywords={keywords} setKeywords={setKeywords} />
                 </div>
             </div>
         </div>
