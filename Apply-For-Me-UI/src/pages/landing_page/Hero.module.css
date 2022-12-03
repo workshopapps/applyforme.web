@@ -72,10 +72,11 @@ input[type="file"]{
 
 .services_container {
     width: 100%;
-    /* height: 50vh;
-    max-height: 400px; */
+    background-color: #F3F3FB;
     margin: 5rem 0;
     border-top: 1px solid #2E3192;
+    padding-bottom: 2em;
+    padding-top: 1rem;
 }
 
 .services_content {

@@ -14,6 +14,8 @@
 }
 .top-dashboard-stripe h2{
     margin: 0;
+    font-size: 27px;
+    font-weight: bold;
 }
 .top-dashboard-stripe p{
     margin: 10px 0;
@@ -30,24 +32,23 @@
 /* dashboard overview styling */
 
 .dashboard-overview{
-    padding: 50px 20px;
+    padding: 50px;
     width: 100%;
     
 }
 
 .overview-cards-wrapper{
     display: flex;
-    justify-content: space-between;
+    justify-content:center;
     margin-top: 20px;
 }
 
 .overview-card{
-   
-    background-color: #E9F3F7;
     text-align: center;
-    padding: 100px 30px;
-    
+    border: 2px solid #7C7BA8;
+    padding: 60px 30px;
     border-radius: 5px;
+    width:85%;
 }
 .overview-card p{
     margin: 0;
@@ -56,13 +57,7 @@
 }
 
 .overview-card-wrapper{
-    padding: 0 20px;
     width: 100%;
-}
-
-.overview-card-wrapper:nth-child(2){
-    border-left:  1px solid blue;
-    border-right: 1px solid blue;
 }
 
 
@@ -114,7 +109,8 @@
 .nothing-to-see-here button{
     background-color: #2E3192;
     color: white;
-    padding: 10px;
+    padding: 15px 30px;
+    border-radius: 10px;
     border: none;
 
 
@@ -189,15 +185,12 @@
         padding: 10px 10px;
     }
 
-
-
-
-
-
-
 }
 
 @media screen and (max-width:481px) {
+    .dashboard-overview {
+        padding: 30px;
+    }
 
     .dashboardnothing{
     
@@ -231,9 +224,6 @@
 }
 .application-array-card{
     padding: 5px;
-}
-.overview-card{
-    padding:70px 30px;
 }
 
 
