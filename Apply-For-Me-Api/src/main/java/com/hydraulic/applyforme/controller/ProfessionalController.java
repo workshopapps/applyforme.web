@@ -37,8 +37,8 @@ public class ProfessionalController {
 	}
 
 	@GetMapping("/profiles")
-	public List<ProfessionalProfile> getAllJobProfiles() {
+	public List<ProfessionalProfile> getAllJobProfiles(@RequestParam(required = false, defaultValue = "1", name = "page") int pageOffset) {
 		UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
-		return service.findAllJobProfile(currentUser.getId());
+		return service.findAllJobProfile(currentUser.getId(), pageOffset);
 	}
 }
