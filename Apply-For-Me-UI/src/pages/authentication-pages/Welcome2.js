@@ -27,6 +27,10 @@ const Welcome2 = () => {
     const [loading, setLoading] = useState(false);
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+    const [errState, setErrState] = useState({
+        password: false,
+        email_address: false
+    });
 
     useEffect(() => {
         if (user) {
@@ -44,8 +48,8 @@ const Welcome2 = () => {
     }, [user]);
 
     const handleSubmit = async event => {
-        setLoading(true);
         event.preventDefault();
+        setLoading(true);
         const formData = {
             email_address: event.target.email.value,
             password: event.target.pass.value
