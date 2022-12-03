@@ -30,8 +30,9 @@ public class SuperAdminController {
     @GetMapping("/profile")
     public Member getDetails() {
         var currentUser = CurrentUserUtil.getCurrentUser();
-        return service.getDetails(currentUser.getId());
+        return service.getProfileDetails(currentUser.getId());
     }
+
     @PostMapping("/change-password")
     public String updatePassword(@Validated @RequestBody UpdatePasswordDto body) {
         var currentUser = CurrentUserUtil.getCurrentUser();
