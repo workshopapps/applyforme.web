@@ -6,12 +6,12 @@
     margin-right: .625rem;
 }
 
-h1 {
+.contact h1 {
     font-size: 1.5em;
     color: #141662;
 }
 
-p {
+.contact p {
     margin-top: 20px;
     line-height: 30px;
     margin-bottom: 20px;
@@ -34,6 +34,7 @@ p {
     padding: .625rem;
     color: #414244;
     width: 100%;
+    opacity: 0.7;
 }
 
 .form-group input:focus {
@@ -43,7 +44,7 @@ p {
 
 .form-first-line {
     display: flex;
-    gap: 1rem;
+
 }
 
 .first-line-1,
@@ -100,6 +101,7 @@ input.radio {
     margin-top: .3125rem;
     width: 100%;
     color: #414244;
+    opacity: 0.7;
 }
 
 .form-group textarea:focus {
@@ -127,6 +129,7 @@ input.radio {
 @media screen and (max-width: 68.75rem) and (min-width: 47.5rem) {
     .form-body {
         margin-left: 0;
+        flex-basis: 50%;
 
     }
 
@@ -141,6 +144,7 @@ input.radio {
     .form-first-line {
         display: flex;
         flex-wrap: wrap;
+        gap: 0.7rem;
     }
 }
 
@@ -152,6 +156,11 @@ input.radio {
 
     .first-line-2 {
         margin-left: 0;
+    }
+
+    .contact .contact-mid {
+        width: 85%;
+
     }
 }
 
@@ -221,13 +230,6 @@ input.radio {
     flex: 1;
 }
 
-/* 
-.contact-mid {
-    padding-left: 6.25rem;
-    padding-right: 6.25rem;
-    width: 100%;
-} */
-
 .contact-mid .contact-form {
     display: flex;
     gap: 3rem;
@@ -235,9 +237,19 @@ input.radio {
 
 .contact-mid .contact-form .more-details {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-left: 4rem;
+}
+
+.contact-mid .contact-form .more-details h4 {
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 150%;
+    letter-spacing: 0.03em;
+    color: #171B1D;
+
 }
 
 @media screen and (max-width: 48rem) {
@@ -252,22 +264,29 @@ input.radio {
 
     .contact-mid .contact-form .more-details {
         display: none;
+
     }
 }
 
 @media screen and (max-width: 35rem) {
-    .contact-mid .form-details {
-        display: none;
-    }
-
     .contact-mid .contact-form {
         width: 100%;
     }
 }
 
 @media screen and (max-width: 30.0625rem) {
-    .contact-mid .form-details {
-        display: none;
+    .leftdetail {
+        flex-direction: column;
+
+    }
+
+    .leftdetail .details h2 {
+        font-size: 1.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .leftdetail .details p {
+        font-size: 0.9rem;
     }
 
     .contact-mid .contact-form {
@@ -293,6 +312,8 @@ input.radio {
         padding: .625rem 1.25rem;
         font-size: 0.7em;
     }
+
+
 }
 
 @media screen and (max-width: 30.0625rem) {
@@ -300,6 +321,7 @@ input.radio {
         padding: .3125rem .625rem;
         font-size: 0.5em;
     }
+
 }
 
 
@@ -313,7 +335,10 @@ input.radio {
         margin-left: 1.25rem;
     }
 
-
+    .contact-mid .contact-form .more-details {
+        flex-basis: 50%;
+        padding: 0;
+    }
 
     .form-details {
         flex: 1;
@@ -331,11 +356,5 @@ input.radio {
     .img-wrapper {
         display: flex;
         justify-content: center;
-    }
-}
-
-@media only screen and (max-width:420px) {
-    p {
-        font-size: 12px;
     }
 }
