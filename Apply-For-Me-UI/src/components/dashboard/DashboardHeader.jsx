@@ -280,7 +280,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 className={
                                     dashboardActive.dashboard
                                         ? classes.__active_toggle
-                                        : ""
+                                        : classes.text
                                 }
                             >
                                 Dashboard
@@ -308,7 +308,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 className={
                                     dashboardActive.user
                                         ? classes.__active_toggle
-                                        : ""
+                                        : classes.text
                                 }
                             >
                                 User
