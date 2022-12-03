@@ -314,6 +314,23 @@ public class EmailServiceImpl implements EmailService {
         } catch (MessagingException e) {
             throw new EmailDeliveryException();
         }
+    }
+
+    @Override
+    public void dummy() {
+        String content = "Hello World";
+        String subject = "Sign up verification";
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom("hngteamhydraulic@gmail.com");
+            helper.setTo("volunux@gmail.com");
+            helper.setSubject(subject);
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            throw new EmailDeliveryException();
+        }
 
 
     }

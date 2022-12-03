@@ -67,17 +67,17 @@ public class MemberServiceImpl implements MemberService {
             throw new EmailAlreadyExistsException();
         }
 
-        Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.RECRUITER.getValue());
+        Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.PROFESSIONAL.getValue());
 
         if (existingRole.isEmpty()) {
-            throw new RoleNotFoundException(RoleType.RECRUITER.getValue());
+            throw new RoleNotFoundException(RoleType.PROFESSIONAL.getValue());
         }
 
         Member member = new Member();
         member = modelMapper.map(body, Member.class);
 
         member.addRole(existingRole.get());
-        member.setPassword(body.getPassword());
+        member.setPassword(passwordEncoder.encode(body.getPassword()));
 
         repository.saveOne(member);
         String generatedSecretCode = generateSignUpCode();

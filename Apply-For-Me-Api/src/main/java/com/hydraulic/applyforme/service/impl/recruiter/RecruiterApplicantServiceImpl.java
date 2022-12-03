@@ -1,20 +1,16 @@
-package com.hydraulic.applyforme.service.impl.superadmin;
+package com.hydraulic.applyforme.service.impl.recruiter;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.member.MemberDto;
-import com.hydraulic.applyforme.model.dto.professional.DeleteManyProfessionalDto;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
-import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.model.response.ApplicantDetailsResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
-import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
-import com.hydraulic.applyforme.repository.jpa.ProfessionalProfileJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.SuperAdminMemberJpaRepository;
-import com.hydraulic.applyforme.service.superadmin.SuperAdminApplicantService;
+import com.hydraulic.applyforme.service.RecruiterApplicantService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,56 +24,24 @@ import java.util.stream.Collectors;
 import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
 
 @Service
-public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantService {
+public class RecruiterApplicantServiceImpl implements RecruiterApplicantService {
 
     private final ProfessionalRepository repository;
     private final SuperAdminMemberJpaRepository jpaRepository;
     private final MemberRepository memberRepository;
     private final ProfessionalJpaRepository professionalJpaRepository;
 
-    private final ProfessionalProfileJpaRepository professionalProfileJpaRepository;
-
-    private final JobSubmissionRepository jobSubmissionRepository;
-
     @Autowired
     private ModelMapper mapper;
 
-    public SuperAdminApplicantServiceImpl(ProfessionalRepository repository,
+    public RecruiterApplicantServiceImpl(ProfessionalRepository repository,
                                           SuperAdminMemberJpaRepository jpaRepository,
                                           MemberRepository memberRepository,
-                                          ProfessionalJpaRepository professionalJpaRepository,
-                                          JobSubmissionRepository jobSubmissionRepository,
-                                          ProfessionalProfileJpaRepository professionalProfileJpaRepository) {
+                                          ProfessionalJpaRepository professionalJpaRepository) {
         this.repository = repository;
         this.jpaRepository = jpaRepository;
         this.memberRepository = memberRepository;
         this.professionalJpaRepository = professionalJpaRepository;
-        this.jobSubmissionRepository = jobSubmissionRepository;
-        this.professionalProfileJpaRepository = professionalProfileJpaRepository;
-    }
-
-    @Override
-    @Transactional
-    public boolean delete(Long id) {
-        boolean removed = repository.remove(id);
-        if (removed) {
-            return true;
-        }
-        else {
-            throw new ProfessionalNotFoundException(id);
-        }
-    }
-
-    @Override
-    @Transactional
-    public boolean deleteMany(DeleteManyProfessionalDto manyDto) {
-        return repository.removeMany(manyDto.getIds());
-    }
-
-    @Override
-    @Transactional
-    public boolean deleteAll() {
-        return repository.removeAll();
     }
 
     @Override
@@ -132,14 +96,9 @@ public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantServic
         professional.setSubmissions(null);
         professional.setProfessionalProfiles(null);
 
-        long totalSubmissions = jobSubmissionRepository.countByProfessional(professional.getId());
-        long totalProfiles = professionalProfileJpaRepository.countByProfessional(professional.getId());
-
         ApplicantDetailsResponse response = ApplicantDetailsResponse.builder()
                 .membership(member)
                 .professional(professional)
-                .totalSubmissions(totalSubmissions)
-                .totalProfessionalProfile(totalProfiles)
                 .build();
 
         return response;
