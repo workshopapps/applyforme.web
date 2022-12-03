@@ -19,10 +19,47 @@ const Home = () => {
                 <div className="subheader">
                     <img src={subheader} alt="evolve" />
                 </div>
-                <div className="content row ">
+                <div className="contents row ">
                     <div className="left col-md-8">
                         <div className="main">
-                            <h1>JOB INTERVIEWS</h1>
+                            <h1 className="title-heading">
+                                RESUMES AND COVER LETTERS
+                            </h1>
+                            <div className="items-container">
+                                <div className="item">
+                                    <img src={home3} alt="Question" />
+                                    <p className="bold">
+                                        How To Write A Resume For An Internal
+                                        Position
+                                    </p>
+                                    <p>
+                                        You just found out that your company has
+                                        opened up a position that you have been
+                                        vying for for a while. How do you....
+                                    </p>
+                                    <Link to="/blog/resume">
+                                        <button>Read More</button>
+                                    </Link>
+                                </div>
+
+                                <div className="item">
+                                    <img src={home4} alt="Signs" />
+                                    <p className="bold">
+                                        How To List Computer Skills On A Resume
+                                    </p>
+                                    <p>
+                                        Everything you need to know about how to
+                                        display computer skills on your resume
+                                        (and beyond) to land a new job...
+                                    </p>
+                                    <Link to="/blog/skills">
+                                        <button>Read More</button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="main main-bg">
+                            <h1 className="title-heading">JOB INTERVIEWS</h1>
                             <div className="items-container">
                                 <div className="item">
                                     <img src={home1} alt="Question" />
@@ -59,42 +96,7 @@ const Home = () => {
                         </div>
 
                         <div className="main">
-                            <h1>RESUMES AND COVER LETTERS</h1>
-                            <div className="items-container">
-                                <div className="item">
-                                    <img src={home3} alt="Question" />
-                                    <p className="bold">
-                                        How To Write A Resume For An Internal
-                                        Position
-                                    </p>
-                                    <p>
-                                        You just found out that your company has
-                                        opened up a position that you have been
-                                        vying for for a while. How do you....
-                                    </p>
-                                    <Link to="/blog/resume">
-                                        <button>Read More</button>
-                                    </Link>
-                                </div>
-
-                                <div className="item">
-                                    <img src={home4} alt="Signs" />
-                                    <p className="bold">
-                                        How To List Computer Skills On A Resume
-                                    </p>
-                                    <p>
-                                        Everything you need to know about how to
-                                        display computer skills on your resume
-                                        (and beyond) to land a new job...
-                                    </p>
-                                    <Link to="/blog/skills">
-                                        <button>Read More</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="main">
-                            <h1>WORKPLACE</h1>
+                            <h1 className="title-heading">WORKPLACE</h1>
                             <div className="items-container">
                                 <div className="item">
                                     <img src={home5} alt="Question" />
@@ -131,8 +133,8 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="main">
-                            <h1>PERSONAL BRANDING</h1>
+                        <div className="main main-bg">
+                            <h1 className="title-heading">PERSONAL BRANDING</h1>
                             <div className="items-container">
                                 <div className="item">
                                     <img src={home7} alt="Question" />
@@ -168,17 +170,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="right col-md-4">
-                        {/* <div className="inner">
-                            <p>
-                                Get the latest career resource tips delivered to
-                                your email!
-                                <br /> Subscribe to our Newsletter below
-                            </p>
-                            <input type="text" placeholder="Email address" />
-                            <button>Subscribe</button>
-                        </div> */}
-                    </div>
+                    <div className="right col-md-4"></div>
                 </div>
             </div>
         </>
