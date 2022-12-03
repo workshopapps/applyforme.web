@@ -32,10 +32,8 @@ public class SuperAdminStatisticController {
     }
 
     @GetMapping("/applier-submission")
-    public List<ApplierJobSubmissionStatistics> getApplierSubmissionStatistics(
-            @RequestParam(value = "fetchByDate", defaultValue = "0000-01-01", required = false) String date
-    ) {
-        return service.getAppliersTotalSubmissions(date);
+    public List<ApplierJobSubmissionStatistics> getApplierSubmissionStatistics(@RequestParam(required = false, defaultValue = "1", name = "pageNo") Integer pageNumber) {
+        return service.getAppliersTotalSubmissions(pageNumber);
     }
 
 }

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface SuperAdminStatService {
     AdminDashboardStatisticsOne getStatistics(String date);
-    List<ApplierJobSubmissionStatistics> getAppliersTotalSubmissions(String date);
+    List<ApplierJobSubmissionStatistics> getAppliersTotalSubmissions(Integer pageOffset);
 }

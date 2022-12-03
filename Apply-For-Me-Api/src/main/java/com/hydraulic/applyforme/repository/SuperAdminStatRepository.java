@@ -12,7 +12,9 @@ public interface SuperAdminStatRepository {
 
     Long getAllSubmissions(Date startDate, Date endDate);
 
-    Long getAllUsers();
+    Long getAllUsers(Date startDate, Date endDate);
 
-    List<ApplierJobSubmissionStatistics> getAppliersTotalSubmissions(Date startDate, Date endDate);
+    Long getRRAdmins(Date startDate, Date endDate);
+
+    List<ApplierJobSubmissionStatistics> getAppliersTotalSubmissions(Integer pageNumber);
 }

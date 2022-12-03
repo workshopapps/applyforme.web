@@ -33,20 +33,18 @@ public class SuperAdminStatServiceImpl implements SuperAdminStatService {
             throw new DateInvalidException(date);
         }
         Long totalApplications = repository.getAllSubmissions(dateValidator.startDateFormat(date), dateValidator.endDateFormat(date));
-        Long totalUsers = repository.getAllUsers();
+        Long totalUsers = repository.getAllUsers(dateValidator.startDateFormat(date), dateValidator.endDateFormat(date));
+        Long totalRRAdmins = repository.getRRAdmins(dateValidator.startDateFormat(date), dateValidator.endDateFormat(date));
 
-        var statistics = AdminDashboardStatisticsOne.builder()
+        return AdminDashboardStatisticsOne.builder()
                 .totalApplications(totalApplications)
                 .totalUsers(totalUsers)
+                .totalRRAdmins(totalRRAdmins)
                 .build();
-        return statistics;
     }
 
     @Transactional(readOnly = true)
-    public List<ApplierJobSubmissionStatistics> getAppliersTotalSubmissions(String date) {
-        if (dateValidator.isValid(date) == Boolean.FALSE){
-            throw new DateInvalidException(date);
-        }
-        return repository.getAppliersTotalSubmissions(dateValidator.startDateFormat(date), dateValidator.endDateFormat(date));
+    public List<ApplierJobSubmissionStatistics> getAppliersTotalSubmissions(Integer pageNumber) {
+        return repository.getAppliersTotalSubmissions(pageNumber);
     }
 }
