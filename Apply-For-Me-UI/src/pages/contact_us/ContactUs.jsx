@@ -17,6 +17,7 @@ const ContactUs = () => {
                 <div className="contact-form">
                     <ContactUsForm />
                     <div className="more-details">
+                        <h4>Do You Have Queries or Suggestions?</h4>
                         <p>
                             You could also fill the form and send us a message.
                             We guarantee an absolute strict adherence to
