@@ -1,6 +1,8 @@
 import React from "react";
+
 import NewUserDashboard from "./NewUserDashboard";
 // import OldUserDashboard from "./OldUserDashboard";
+
 
 
 
@@ -12,6 +14,7 @@ const DashboardNothing = () => {
         <div>
             {/* <OldUserDashboard/> */}
             <NewUserDashboard/>
+
         </div>
     
        

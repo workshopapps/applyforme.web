@@ -14,8 +14,10 @@
 }
 .top-dashboard-stripe h2{
     margin: 0;
+
     font-size: 27px;
     font-weight: bold;
+
 }
 .top-dashboard-stripe p{
     margin: 10px 0;
@@ -32,6 +34,7 @@
 /* dashboard overview styling */
 
 .dashboard-overview{
+
     padding: 50px;
     width: 100%;
     
@@ -39,11 +42,14 @@
 
 .overview-cards-wrapper{
     display: flex;
+
     justify-content:center;
+
     margin-top: 20px;
 }
 
 .overview-card{
+
     text-align: center;
     border: 2px solid #7C7BA8;
     padding: 60px 30px;
@@ -101,6 +107,7 @@
 
 
 .nothing-to-see-here{
+
     display:flex;
     align-items: center;
     justify-content: center;
@@ -109,6 +116,7 @@
 .nothing-to-see-here button{
     background-color: #2E3192;
     color: white;
+
     padding: 15px 30px;
     border-radius: 10px;
     border: none;
@@ -121,6 +129,7 @@
 .normal-create button{
     border-radius: 5px;
 }
+
 
 .mobile-create{
     display: none;
@@ -185,12 +194,14 @@
         padding: 10px 10px;
     }
 
+
 }
 
 @media screen and (max-width:481px) {
     .dashboard-overview {
         padding: 30px;
     }
+
 
     .dashboardnothing{
     
@@ -227,11 +238,14 @@
 }
 
 
+
+
 .normal-create{
     
     display: none;
 }
 .mobile-create{
+
     display: block;
     margin-bottom: 40px;
     text-align: center;
@@ -246,6 +260,7 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+
 
 
 }
