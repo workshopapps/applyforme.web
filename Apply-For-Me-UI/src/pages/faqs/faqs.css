@@ -8,7 +8,7 @@
 }
 .faq {
     width: 100%;
-    height: 1610px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -90,6 +90,7 @@
 /* for the  linked pages */
 .faqses {
     width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

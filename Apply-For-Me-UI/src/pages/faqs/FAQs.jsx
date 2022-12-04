@@ -15,7 +15,7 @@ const FAQs = () => {
    
 
     return (
-        <div className="faqs">
+        <div className="faq">
             <Nav />
             <div className="faqs__hero">
                 <h2>How can we help you?</h2>
