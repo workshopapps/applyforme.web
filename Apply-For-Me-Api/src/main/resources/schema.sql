@@ -32,6 +32,9 @@ CREATE TABLE IF NOT EXISTS `professional_profile` (
 	`passport_link` VARCHAR(400),
 	`resume_link` VARCHAR(400),
 	`cover_letter` VARCHAR(400),
+	`cover_letter_subject` VARCHAR(400),
+	`cover_letter_content` TEXT,
+
 
     `employment_type` VARCHAR(200),
 	`salary_range` VARCHAR(50),
@@ -107,7 +110,16 @@ CREATE TABLE IF NOT EXISTS `country` (
 CREATE TABLE IF NOT EXISTS `cover_letter_template` (
 	`id` BIGINT AUTO_INCREMENT,
   	`title` VARCHAR(300) NOT NULL,
-  	`template_text` TEXT NOT NULL,
+  	`content` LONGTEXT NOT NULL,
+  	`created_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`updated_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `job_title` (
+	`id` BIGINT AUTO_INCREMENT,
+  	`title` VARCHAR(300) NOT NULL,
   	`created_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`updated_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
