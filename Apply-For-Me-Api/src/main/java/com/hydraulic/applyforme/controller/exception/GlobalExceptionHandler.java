@@ -314,4 +314,26 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ProfessionalProfileNotFoundException.class)
+    public Object notFound(ProfessionalProfileNotFoundException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", ProfessionalProfileNotFoundException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.NOT_FOUND.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ProfessionalProfileDuplicateEntityException.class)
+    public Object duplicate(ProfessionalProfileDuplicateEntityException ex) {
+        final Map<String, Object> errors = new HashMap<>();
+        errors.put("entityName", ProfessionalProfileDuplicateEntityException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.CONFLICT.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
 }
