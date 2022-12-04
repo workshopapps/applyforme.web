@@ -16,7 +16,8 @@ pipeline {
 		stage("build frontend"){
 
 			steps {
-				sh "cd Apply-For-Me-UI && sudo npm i --force && CI=false npm run build"
+				sh "cd Apply-For-Me-UI && sudo npm i --force"
+				sh "sudo mkdir /var/lib/jenkins/workspace/applyforme/Apply-For-Me-UI/node_modules/.cache && CI=false npm run build"
 			} 
         }
         stage("build backend"){
