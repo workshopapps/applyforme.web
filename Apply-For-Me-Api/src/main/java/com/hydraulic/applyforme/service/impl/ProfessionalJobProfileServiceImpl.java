@@ -7,6 +7,7 @@ import com.hydraulic.applyforme.model.exception.ProfessionalProfileNotFoundExcep
 import com.hydraulic.applyforme.repository.ProfessionalProfileRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalProfileJpaRepository;
 import com.hydraulic.applyforme.service.job.ProfessionalJobProfileService;
+import com.hydraulic.applyforme.util.ProfessionalProfileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,19 +44,23 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
     @Override
     @Transactional(readOnly = true)
     public ProfessionalProfile findOne(Long id) {
-        ProfessionalProfile country = repository.getOne(id);
-        if (country == null) {
+        ProfessionalProfile professionalProfile = repository.getOne(id);
+        if (professionalProfile == null) {
             throw new ProfessionalProfileNotFoundException(id);
         }
-        return country;
+        return professionalProfile;
     }
 
     @Override
     @Transactional
     public ProfessionalProfile save(ProfessionalProfileDto body) {
-        ProfessionalProfile country = new ProfessionalProfile();
-        country = modelMapper.map(body, ProfessionalProfile.class);
-        return repository.updateOne(country);
+        ProfessionalProfile professionalProfile = new ProfessionalProfile();
+        professionalProfile = modelMapper.map(body, ProfessionalProfile.class);
+
+        professionalProfile.setEmploymentType(ProfessionalProfileUtil.getEmploymentType(body.getEmploymentType()));
+        professionalProfile.setJobSeniority(ProfessionalProfileUtil.getJobSeniority(body.getJobSeniority()));
+        professionalProfile.setPreferredJobLocationType(ProfessionalProfileUtil.getJobLocationType(body.getPreferredJobLocationType()));
+        return repository.saveOne(professionalProfile);
     }
 
     @Override
@@ -66,10 +71,10 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
             throw new ProfessionalProfileNotFoundException(id);
         }
 
-        ProfessionalProfile country = new ProfessionalProfile();
-        country = modelMapper.map(body, ProfessionalProfile.class);
-        country.setId(id);
-        return repository.updateOne(country);
+        ProfessionalProfile professionalProfile = new ProfessionalProfile();
+        professionalProfile = modelMapper.map(body, ProfessionalProfile.class);
+        professionalProfile.setId(id);
+        return repository.updateOne(professionalProfile);
     }
 
     @Override

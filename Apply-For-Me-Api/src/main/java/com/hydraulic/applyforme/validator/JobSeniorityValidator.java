@@ -23,6 +23,6 @@ public class JobSeniorityValidator implements ConstraintValidator<JobSeniorityAn
         if (value == null) {
             return false;
         }
-        return acceptedValues.contains(value.toString());
+        return acceptedValues.contains(value.toString().toUpperCase());
     }
 }

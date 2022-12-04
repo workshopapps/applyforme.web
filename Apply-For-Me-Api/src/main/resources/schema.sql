@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `professional_profile` (
 
 	`passport_link` VARCHAR(400),
 	`resume_link` VARCHAR(400),
-	`cover_letter` VARCHAR(400),
+	`cover_letter_link` VARCHAR(400),
 	`cover_letter_subject` VARCHAR(400),
 	`cover_letter_content` TEXT,
 

@@ -23,6 +23,6 @@ public class JobLocationTypeValidator implements ConstraintValidator<JobLocation
         if (value == null) {
             return false;
         }
-        return acceptedValues.contains(value.toString());
+        return acceptedValues.contains(value.toString().toUpperCase());
     }
 }

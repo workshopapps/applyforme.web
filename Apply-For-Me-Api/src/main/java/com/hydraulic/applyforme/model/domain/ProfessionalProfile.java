@@ -51,14 +51,14 @@ public class ProfessionalProfile {
     @Column(name ="resume_link")
     private String resumeLink;
 
-    @Column(name ="cover_letter")
-    private String coverLetter;
+    @Column(name ="cover_letter_link")
+    private String coverLetterLink;
 
     @Column(name ="cover_letter_subject")
-    private String cover_letter_subject;
+    private String coverLetterSubject;
 
     @Column(name ="cover_letter_content")
-    private String cover_letter_content;
+    private String coverLetterContent;
 
     @Column(name = "salary_range")
     private String salaryRange = "0";

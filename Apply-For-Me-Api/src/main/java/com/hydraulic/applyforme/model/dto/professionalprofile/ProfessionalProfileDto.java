@@ -46,13 +46,13 @@ public class ProfessionalProfileDto {
     @NotBlank(message = "{professionalProfile.coverLetterSubject.notNull}")
     @Size(min = 1, max = 400, message = "{professionalProfile.coverLetterSubject.size}")
     @JsonProperty("cover_letter_subject")
-    private String cover_letter_subject;
+    private String coverLetterSubject;
 
     @NotNull(message = "{professionalProfile.coverLetterContent.notNull}")
     @NotBlank(message = "{professionalProfile.coverLetterContent.notNull}")
     @Size(min = 1, max = 5000, message = "{professionalProfile.coverLetterContent.size}")
     @JsonProperty("cover_letter_content")
-    private String cover_letter_content;
+    private String coverLetterContent;
 
     @NotNull(message = "{professionalProfile.salaryRange.notNull}")
     @NotBlank(message = "{professionalProfile.salaryRange.notNull}")

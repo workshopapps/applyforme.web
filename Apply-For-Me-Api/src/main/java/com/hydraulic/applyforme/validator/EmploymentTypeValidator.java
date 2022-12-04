@@ -23,6 +23,6 @@ public class EmploymentTypeValidator implements ConstraintValidator<EmploymentTy
         if (value == null) {
             return false;
         }
-        return acceptedValues.contains(value.toString());
+        return acceptedValues.contains(value.toString().toUpperCase());
     }
 }
