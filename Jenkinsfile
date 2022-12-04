@@ -35,7 +35,7 @@ pipeline {
 			steps {
 				// sh "sudo cp -r /var/lib/jenkins/workspace/applyforme/ /home/johnoni/"
                 sh "sudo cp -r ${WORKSPACE}/applyforme.web /home/johnoni/"
-				// sh "sudo systemctl restart "
+				sh "sudo systemctl restart pm2-victoradesanya.service"
             }
 	    }
 	}
