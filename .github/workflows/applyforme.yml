@@ -16,6 +16,8 @@ jobs:
         uses: appleboy/ssh-action@master
     
         env:
+          GITHUB_USERNAME: ${{ secrets.VICDAM_USER }}  
+          GITHUB_TOKEN: ${{ secrets.VICDAM_TOKEN }}     
           host: ${{ secrets.HNG_SERVER_HOST }}          
           username: ${{ secrets.HNG_SERVER_USERNAME }}
           password: ${{ secrets.HNG_SERVER_PASSWORD }}
@@ -29,8 +31,8 @@ jobs:
           script: |
             cd ./applyforme-fe/applyforme.web
             git pull
-            # cd ./Apply-For-Me-UI
-            # npm install
-            # pm2 start npm -- start
-            # pm2 save
+            cd ./Apply-For-Me-UI
+            npm install
+            pm2 start npm -- start
+            pm2 save
      
