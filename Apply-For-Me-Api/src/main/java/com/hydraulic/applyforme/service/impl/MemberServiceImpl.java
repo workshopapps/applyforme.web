@@ -122,4 +122,5 @@ public class MemberServiceImpl implements MemberService {
 
         return repository.updateOne(member);
     }
+
 }
