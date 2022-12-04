@@ -25,7 +25,8 @@ pipeline {
         stage("build backend"){
 
 			steps {
-                sh "cd Apply-For-Me-Api && sudo mvn install"
+                sh "cd Apply-For-Me-Api"
+				sh "cd Apply-For-Me-Api && sudo mvn -B -DskipTests clean package"
             }
         }
 		stage("deploy") {
