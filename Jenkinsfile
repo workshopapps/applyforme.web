@@ -22,17 +22,19 @@ pipeline {
 				sh "cd Apply-For-Me-UI && CI=false sudo npm run build"
 			} 
         }
-        stage("build backend"){
+        // stage("build backend"){
 
-			steps {
-                sh "cd Apply-For-Me-Api"
-				sh "cd Apply-For-Me-Api && sudo mvn -B package --file pom.xml"
-            }
-        }
+		// 	steps {
+        //         sh "cd Apply-For-Me-Api"
+		// 		sh "cd Apply-For-Me-Api && sudo mvn -B package --file pom.xml"
+        //     }
+        // }
+
 		stage("deploy") {
 		
 			steps {
 				sh "sudo cp -r ${WORKSPACE}/applyforme.web /home/johnoni/"
+				// sh "sudo systemctl restart nickstersz.service"
 
 				// sh "sudo systemctl restart tropicalweatherf.service"
 				// sh "sudo systemctl restart tropicalweatherb.service"
