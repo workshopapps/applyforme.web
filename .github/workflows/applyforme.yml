@@ -27,9 +27,9 @@ jobs:
           password: ${{ secrets.HNG_SERVER_PASSWORD }}
           port: ${{ secrets.HNG_SERVER_PORT }}
           script: |
-            cd ./applyforme-fe
+            cd ./applyforme-fe/applyforme.web
             git pull
-            # cd ./applyforme.web/Apply-For-Me-UI
+            # cd ./Apply-For-Me-UI
             # npm install
             # pm2 start npm -- start
             # pm2 save
