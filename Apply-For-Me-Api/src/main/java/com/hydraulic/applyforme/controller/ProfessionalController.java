@@ -6,10 +6,6 @@ import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 import com.hydraulic.applyforme.model.dto.salaryrange.SalaryRangeDto;
 import com.hydraulic.applyforme.service.ProfessionalService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
-<<<<<<< HEAD
-
-=======
->>>>>>> e4f4220cedb0e96446c94ea128e44293f3f682ba
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -43,6 +39,7 @@ public class ProfessionalController {
    // public Professional update(@Validated @RequestBody ProfessionalDto body, Long id) {
     Long id = CurrentUserUtil.getCurrentUser().getId();
         return service.updateProfile(body, id);
+    }
 
     @PutMapping("/update/{id}")
     public Professional update(@Validated @RequestBody ProfessionalDto body, @PathVariable(name ="id") Long id) {

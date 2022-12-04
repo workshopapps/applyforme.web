@@ -18,19 +18,12 @@ import java.util.List;
 
 @Service
 public class ProfessionalServiceImpl implements ProfessionalService {
-
-
     private final ProfessionalRepository repository;
-
     private final ProfessionalJpaRepository professionalJpaRepository;
-
-
 
     public ProfessionalServiceImpl(ProfessionalRepository repository, ProfessionalJpaRepository professionalJpaRepository) {
         this.repository = repository;
         this.professionalJpaRepository = professionalJpaRepository;
-
-
     }
 
     @Override
