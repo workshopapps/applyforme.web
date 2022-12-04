@@ -52,7 +52,7 @@ public class ProfessionalProfile {
     private String resumeLink;
 
     @Column(name ="cover_letter")
-    private String cover_letter;
+    private String coverLetter;
 
     @Column(name ="cover_letter_subject")
     private String cover_letter_subject;
