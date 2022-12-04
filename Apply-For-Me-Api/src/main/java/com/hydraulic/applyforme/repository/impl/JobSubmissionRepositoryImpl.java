@@ -54,9 +54,11 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 
 	@Override
 	public List<ApplierSubmissionDto> getSubmissionDetails(Long id){
-		String queryString = "SELECT s.job_title, s.job_link, s.job_location, s.job_company, s.job_location_type, s.summary, s.other_comment, s.created_on FROM job_submission s WHERE s.applier_id = :applerid";
+		String queryString = "SELECT s.job_title, s.job_link, s.job_location, s.job_company, "
+				                  + "s.job_location_type, s.summary, s.other_comment, "
+								  + "s.created_on FROM job_submission s WHERE s.applier_id = :applierid";
 		Query query = entityManager.createNativeQuery(queryString);
-		query.setParameter("applerid", id);
+		query.setParameter("applierid", id);
 		List submissionList = query.getResultList();
 		System.out.println("submissionList.size(): " + submissionList.size());
 		return submissionList;

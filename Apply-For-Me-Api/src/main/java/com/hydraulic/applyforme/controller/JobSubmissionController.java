@@ -64,6 +64,5 @@ public class JobSubmissionController {
     @GetMapping("/applier/{id}")
     public List<ApplierSubmissionDto> getApplierSubmissions (@PathVariable(name ="id") Long id){
         return service.getApplierSubmissionDetails(id);
-
     }
 }

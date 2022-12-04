@@ -35,7 +35,7 @@ public class ProfessionalController {
 
     @PutMapping("/update")
 //    public Professional update(@Validated @RequestBody ProfessionalDto body) {
-        public Professional update(@Validated @RequestBody ProfessionalDto body, @PathVariable(name ="id") Long id) {
+    public Professional update(@Validated @RequestBody ProfessionalDto body, @PathVariable(name ="id") Long id) {
 //        Long id = CurrentUserUtil.getCurrentUser().getId();
         return service.updateProfile(body, id);
     }

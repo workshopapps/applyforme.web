@@ -86,23 +86,6 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
 
     public List<ApplierSubmissionDto> getApplierSubmissionDetails(Long id) {
         List<ApplierSubmissionDto> applierSubmissionDtos = repo.getSubmissionDetails(id);
-        /*
-        List<ApplierSubmissionDto> applierSubmissionDtos = new ArrayList<>();
-        List<Submission> submissions = repo.getSubmissionDetails(id);
-        for (Submission submission: submissions) {
-            //Submission submission = (Submission)submissionObj;
-            ApplierSubmissionDto applierSubmissionDto = new ApplierSubmissionDto();
-            applierSubmissionDto.setJobTitle(submission.getJobTitle());
-            applierSubmissionDto.setJobLink(submission.getJobLink());
-            applierSubmissionDto.setJobLocation(submission.getJobLocation());
-            applierSubmissionDto.setJobCompany(submission.getJobCompany());
-            applierSubmissionDto.setJobLocationType(submission.getJobLocationType().getValue());
-            applierSubmissionDto.setSummary(submission.getSummary());
-            applierSubmissionDto.setOtherComment(submission.getOtherComment());
-            applierSubmissionDto.setCreatedOn(submission.getCreatedOn());
-            applierSubmissionDtos.add(applierSubmissionDto);
-        }
-        */
         return applierSubmissionDtos;
     }
 }
