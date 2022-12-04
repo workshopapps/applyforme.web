@@ -1,6 +1,6 @@
 package com.hydraulic.applyforme.repository.impl;
 
-import com.hydraulic.applyforme.model.domain.Country;;
+import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.exception.CountryDuplicateEntityException;
 import com.hydraulic.applyforme.repository.CountryRepository;
 import org.springframework.stereotype.Repository;
@@ -35,6 +35,16 @@ public class CountryRepositoryImpl implements CountryRepository {
     @Override
     public Country getOne(Long id) {
         return entityManager.find(Country.class, id);
+    }
+
+    @Override
+    public Country getRef(Long id) {
+        try {
+            return entityManager.getReference(Country.class, id);
+        }
+        catch (EntityNotFoundException ex) {
+            return null;
+        }
     }
 
     @Override
