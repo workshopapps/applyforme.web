@@ -16,7 +16,7 @@ pipeline {
 		stage("build frontend"){
 
 			steps {
-				sh "cd applyforme.web/applyforme.web"
+				sh "cd applyforme.web/"
 				sh "pwd"
 				sh "cd Apply-For-Me-UI && sudo npm i --force"
 
