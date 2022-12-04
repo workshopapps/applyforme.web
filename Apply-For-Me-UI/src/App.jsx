@@ -123,6 +123,12 @@ function App() {
                 <Route exact path="/pass" element={<Password />} />
                 <Route exact path="/nwpass" element={<NewPass />} />
                 <Route exact path="/veri" element={<Verification />} />
+
+                {/* RECRUITER ROUTE */}
+
+                <Route exact path="/rr_sign_in" element={<Sign_In />} />
+                <Route exact path="/rr_sign_up" element={<Sign_Up />} />
+                    
                 {/*  PROTECTED ROUTE*/}
                 <Route
                     element={
@@ -149,10 +155,7 @@ function App() {
                         />
                     }
                 >
-                    {/* RECRUITER ROUTE */}
-
-                    <Route exact path="/rr_sign_in" element={<Sign_In />} />
-                    <Route exact path="/rr_sign_up" element={<Sign_Up />} />
+                    
 
                     
                     {/* USER DASHBAORD */}

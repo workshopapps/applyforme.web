@@ -1,7 +1,7 @@
 import React from 'react';
 import './logoModal.css';
 import logo from '../../../assets/landing-page-imgs/logo-white.png';
-import hero from '../../../assets/landing-page-imgs/hero-img.png';
+// import hero from '../../../assets/landing-page-imgs/hero-img.png';
 import { Link } from 'react-router-dom';
 
 const LogoModal = () => {
@@ -15,7 +15,10 @@ const LogoModal = () => {
         <div className='logomodal-content'>
           <img className='modal-logo' src={logo} alt="logo" />
           <div className='hero'>
-            <img src={hero} alt="hero" />
+               <img
+                  src="https://res.cloudinary.com/hamskid/image/upload/v1669936036/Mask_group_afrsbg.png"
+                  alt=""
+                />
           </div>
           <p>Take a single step to your dream job</p>
         </div>

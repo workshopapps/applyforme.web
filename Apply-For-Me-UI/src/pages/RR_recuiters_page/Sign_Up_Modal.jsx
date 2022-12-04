@@ -61,7 +61,7 @@ const Sign_Up_Modal = () => {
       <div className='rr-sign-in-modal-container'>
         <div className='rr-sign-in-modal-header'>
           <h1>Create an Account</h1>
-          <p>Already have an Account? <span><Link to='/rr_sign_in'>Sign in</Link></span></p>
+          <p>Already have an Account? <span style={{cursor: 'pointer'}}   ><Link to='/rr_sign_in' >Sign in</Link></span></p>
         </div>
         <form onSubmit={e => handleSignup(e)}>
           <div className='rr-sign-in-modal-form'>
