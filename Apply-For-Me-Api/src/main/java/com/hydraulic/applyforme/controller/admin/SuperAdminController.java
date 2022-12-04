@@ -2,13 +2,14 @@ package com.hydraulic.applyforme.controller.admin;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
+import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
 import com.hydraulic.applyforme.service.SuperAdminService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(
@@ -31,5 +32,10 @@ public class SuperAdminController {
         var currentUser = CurrentUserUtil.getCurrentUser();
     	service.updatePassword(currentUser.getId(), body);
     	return "Password successfully changed";
+    }
+
+    @PutMapping("/update")
+    public Member updateProfile(@Valid @RequestBody UpdateProfileDto body){
+        return service.updateProfile(CurrentUserUtil.getCurrentUser().getId(), body);
     }
 }
