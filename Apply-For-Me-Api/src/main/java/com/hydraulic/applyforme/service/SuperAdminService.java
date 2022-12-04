@@ -7,7 +7,7 @@ import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
 public interface SuperAdminService {
 
     Member updateProfile(Long id, UpdateProfileDto body);
-    
+
 	Member getDetailsById(Long id);
 
 	boolean deleteMemberById(Long id);

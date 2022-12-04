@@ -57,4 +57,22 @@ public class UpdateProfileDto {
     @Size(max = 300, message = "{member.state.size}")
     @JsonProperty("state")
     private String state;
+
+    @JsonProperty("nationality_title")
+    private String nationTitle;
+
+    @JsonProperty("nationality_abbreviation")
+    private String nationAbbreviation;
+
+    @JsonProperty("country_title")
+    private String countryTitle;
+
+    @JsonProperty("country_residence")
+    private String countryAbbreviation;
+
+    @JsonProperty("role_title")
+    private String roleTitle;
+
+    @JsonProperty("role_code")
+    private String code;
 }

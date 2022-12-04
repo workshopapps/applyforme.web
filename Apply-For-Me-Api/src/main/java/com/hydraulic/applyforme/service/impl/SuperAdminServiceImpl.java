@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.service.impl;
 
+import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
@@ -74,20 +75,15 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         superAdmin.setFirstName(body.getFirstName());
         superAdmin.setLastName(body.getLastName());
         superAdmin.setUsername(body.getUsername());
+        superAdmin.setDateOfBirth(body.getDateOfBirth());
+        superAdmin.setCurrentJobTitle(body.getCurrentJobTitle());
+        superAdmin.setEmailAddress(body.getEmailAddress());
+        superAdmin.setPhoneNumber(body.getPhoneNumber());
+        superAdmin.setCity(body.getCity());
+        superAdmin.setState(body.getState());
+        superAdmin.setNationality(Country.builder().id(body.getNationality()).title(body.getNationTitle()).abbreviation(body.getNationAbbreviation()).build());
+        superAdmin.setCountryOfResidence(Country.builder().id(body.getCountryOfResidence()).title(body.getCountryTitle()).abbreviation(body.getCountryAbbreviation()).build());
         return repository.updateOne(superAdmin);
-//        Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.SUPER_ADMINISTRATOR.getValue());
-//        if (existingRole.isEmpty()) {
-//            throw new RoleNotFoundException(RoleType.SUPER_ADMINISTRATOR.getValue());
-//        }
-
-//        Member existing;
-//
-//        existing = mapper.map(body, Member.class);
-//        existing.setPassword(superAdmin.getPassword());
-//        existing.getRoles().add(existingRole.get());
-//        existing.setNationality(countryRepository.getOne(body.getNationality()));
-//        existing.setCountryOfResidence(countryRepository.getOne(body.getCountryOfResidence()));
-//        return repository.updateOne(existing);
     }
 
     public Member getDetailsById(Long id) {
