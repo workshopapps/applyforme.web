@@ -12,4 +12,5 @@ public interface ProfessionalService {
     Professional findOne(Long id);
 
     Professional updateProfile(ProfessionalDto professionalDto, Long id);
+
 }
