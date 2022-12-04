@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.dto.submission.ApplierSubmissionDto;
 import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
 import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
 import com.hydraulic.applyforme.model.response.SubmissionEntriesResponse;
@@ -14,7 +15,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
@@ -78,5 +82,10 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
         response.setTotalPages(submission.getTotalPages());
         response.setLast(submission.isLast());
         return response;
+    }
+
+    public List<ApplierSubmissionDto> getApplierSubmissionDetails(Long id) {
+        List<ApplierSubmissionDto> applierSubmissionDtos = repo.getSubmissionDetails(id);
+        return applierSubmissionDtos;
     }
 }

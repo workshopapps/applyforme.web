@@ -1,57 +1,51 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.domain.Role;
 import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
-import com.hydraulic.applyforme.model.enums.RoleType;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.model.exception.PasswordMismatchException;
-import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
-import com.hydraulic.applyforme.repository.CountryRepository;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.SuperAdminJpaRepository;
 import com.hydraulic.applyforme.service.SuperAdminService;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-
-import java.util.Optional;
+import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 
 @Validated
 @Service
 public class SuperAdminServiceImpl implements SuperAdminService {
+    private MemberRepository repository;
 
     @Autowired
     private ModelMapper mapper;
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    private SuperAdminJpaRepository adminJpaRepository;
-    private MemberRepository repository;
-    private CountryRepository countryRepository;
+    
+    @Autowired
+    private MemberJpaRepository memberJpaReposiroty;
+    @Autowired
     private RoleJpaRepository roleJpaRepository;
-
-
-    public SuperAdminServiceImpl(SuperAdminJpaRepository adminJpaRepository,
-                                 MemberRepository repository,
-                                 CountryRepository countryRepository,
-                                 RoleJpaRepository roleJpaRepository) {
+    
+    @Autowired
+    private SuperAdminJpaRepository jpaRepository;
+    
+    public SuperAdminServiceImpl(MemberRepository repository) {
         this.repository = repository;
-        this.countryRepository = countryRepository;
-        this.roleJpaRepository = roleJpaRepository;
-        this.adminJpaRepository = adminJpaRepository;
     }
 
 
     @Override
     @Transactional
 	public Member updatePassword(Long id, UpdatePasswordDto dto) throws PasswordMismatchException {
-		Member member = repository.getOne(id);
+		Member member = jpaRepository.getById(id);
+		System.out.println(member);
 		boolean matches = passwordEncoder.matches(dto.getExistingPassword(), member.getPassword());
 		
         if (!matches) {
@@ -61,15 +55,10 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         member.setPassword(passwordEncoder.encode(dto.getNewPassword()));
 		return repository.updateOne(member);		
 	}
-    
-    @Override
-    @Transactional(readOnly = true)
-    public Member getDetails(Long id) {
-        Member member = repository.getOne(id);
 
-        if (member == null) {
-            throw new MemberNotFoundException(id);
-        }
+    @Transactional(readOnly = true)
+    public Member getProfileDetails(Long id) {
+        Member member = repository.getOne(id);
         return member;
     }
 
@@ -100,4 +89,26 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 //        existing.setCountryOfResidence(countryRepository.getOne(body.getCountryOfResidence()));
 //        return repository.updateOne(existing);
     }
+
+    public Member getDetailsById(Long id) {
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteMemberById(Long id) {
+    	Member member = memberJpaReposiroty.getById(id);
+    	if(member == null) {
+    		throw new MemberNotFoundException(id);
+    	}
+    	memberJpaReposiroty.delete(member);
+    	
+    	return true;
+    }
+
+    @Override
+    public Member getAdmin(Long id) {
+        return null;
+    }
+
 }
