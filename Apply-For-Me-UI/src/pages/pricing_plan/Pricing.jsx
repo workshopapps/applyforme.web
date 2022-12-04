@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "pages/pricing_plan/pricing.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //Importing bluebutton component
 import BlueBorderButton from "components/buttons/blue_border_button/BlueBorderButton";
@@ -11,6 +11,7 @@ import Question from "pages/pricing_plan/question/Question";
 import Nav from "components/nav/Nav";
 import Footer from "components/footer/Footer";
 import BlueButton from "components/buttons/blue_background/BlueButton";
+import { useSelector } from "react-redux";
 
 const Pricing = ({
     primaryHeading,
@@ -26,6 +27,9 @@ const Pricing = ({
         monthly: true,
         yearly: false
     });
+
+    const { user } = useSelector(state => state.user);
+    const navigate = useNavigate();
     return (
         <>
             <Nav />
@@ -147,13 +151,22 @@ const Pricing = ({
                                                     }
                                                 )}
                                             </div>
-
-                                            <Link to="/wel2">
+                                            {user ? (
                                                 <BlueButton
+                                                    text="Get Plan"
                                                     width={200}
-                                                    text={btnText}
-                                                />{" "}
-                                            </Link>
+                                                    func={() =>
+                                                        navigate("/checkout")
+                                                    }
+                                                />
+                                            ) : (
+                                                <Link to="/wel2">
+                                                    <BlueButton
+                                                        width={200}
+                                                        text={btnText}
+                                                    />{" "}
+                                                </Link>
+                                            )}
                                         </div>
                                     );
                                 }

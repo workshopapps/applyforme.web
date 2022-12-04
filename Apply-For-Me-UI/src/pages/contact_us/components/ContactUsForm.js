@@ -1,96 +1,250 @@
-import React from 'react';
-import { useState } from "react";
-import axios from 'axios';
-
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import ContactModal from "./ContactModal";
 
 const ContactUsForm = () => {
+    const [submitBtn, setSubmitBtn] = useState(false);
+    const onSubmit = (values, actions) => {
+        console.log(actions);
+        axios
+            .post(
+                "https://official-volunux.uc.r.appspot.com/api/v1/contact-us",
+                values
+            )
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        console.log(values, actions);
+        setSubmitBtn(true);
+        actions.resetForm();
+    };
 
-    const initialValues = { first_name: "", last_name: "",  phone_number: "", 'message': "" , privacy_policy: "true" };
-    const [formValues, setFormValues] = useState(initialValues);
+    const { values, handleBlur, handleChange, touched, errors, handleSubmit } =
+        useFormik({
+            // form state
+            initialValues: {
+                first_name: "",
+                last_name: "",
+                email_address: "",
+                message: "",
+                privacy_policy: false,
+                phone_number: ""
+            },
 
-    
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value });
-      };
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post('https://official-volunux.uc.r.appspot.com/api/v1/contact-us', formValues )
-    
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+            //   form validation
+            validationSchema: Yup.object().shape({
+                first_name: Yup.string()
+                    .max(20, "Name must be 20 characters or less.")
+                    .required("Please enter your first name"),
+                last_name: Yup.string()
+                    .max(20, "Name must be 20 characters or less.")
+                    .required("please enter your last name"),
+                email_address: Yup.string()
+                    .email("Invalid email address")
+                    .required("Email is required"),
+                message: Yup.string().required("please enter your message"),
+                phone_number: Yup.number()
+                    .min(11)
+                    .required("Please enter a phone number"),
+                privacy_policy: Yup.boolean().oneOf([true], "please agree")
+            }),
 
-        alert('Your message has been sent sent. Thank You!')
+            onSubmit
+        });
 
-      };
-
-
-  return (
-    <div className="form-body">
-        <form onSubmit={handleSubmit}>
-
+    return (
+        <div className="form-body">
+            <form onSubmit={handleSubmit}>
                 <div className="form-first-line">
                     <div className="form-group first-line-1">
-                        <label>First Name</label>
-                        <input type="text" name='first_name' required value={formValues.first_name} onChange={handleChange}/>
-                       
+                        <label htmlFor="first_name">First Name</label>
+                        <input
+                            type="text"
+                            name="first_name"
+                            id="first_name"
+                            className={
+                                touched.first_name && errors.first_name
+                                    ? "input-error"
+                                    : ""
+                            }
+                            value={values.first_name}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            placeholder="Enter first name"
+                        />
+                        {touched.first_name && errors.first_name && (
+                            <small
+                                style={{
+                                    color: "#EB5757",
+                                    paddingTop: "0.3rem"
+                                }}
+                            >
+                                {errors.first_name}
+                            </small>
+                        )}
                     </div>
 
                     <div className="form-group first-line-2">
-                        <label>Last Name</label>
-                        <input type="text" name='last_name' required value={formValues.last_name} onChange={handleChange}></input>
-                      
+                        <label htmlFor="last_name">Last Name</label>
+                        <input
+                            type="text"
+                            id="last_name"
+                            name="last_name"
+                            className={
+                                touched.last_name && errors.last_name
+                                    ? "input-error"
+                                    : ""
+                            }
+                            placeholder="Enter your last name"
+                            value={values.last_name}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        {touched.last_name && errors.last_name && (
+                            <small
+                                style={{
+                                    color: "#EB5757",
+                                    paddingTop: "0.3rem"
+                                }}
+                            >
+                                {errors.last_name}
+                            </small>
+                        )}
                     </div>
                 </div>
 
                 <div className="form-second-line">
-                    <div className='form-group'>
+                    <div className="form-group">
                         <label>Email</label>
-                        <input type="email" name='email_address' required value={formValues.email_address} onChange={handleChange}></input>
-                       
-                    </div>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email_address"
+                            className={
+                                touched.email_address && errors.email_address
+                                    ? "input-error"
+                                    : ""
+                            }
+                            placeholder="yourname@gmail.com"
+                            value={values.email_address}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
 
+                        {touched.email_address && errors.email_address && (
+                            <small
+                                style={{
+                                    color: "#EB5757",
+                                    paddingTop: "0.3rem"
+                                }}
+                            >
+                                {errors.email_address}
+                            </small>
+                        )}
+                    </div>
                 </div>
 
                 <div className="form-third-line">
                     <div className="form-group">
                         <label>Phone Number</label>
-                        <input type="text" name='phone_number' required value={formValues.phone_number} onChange={handleChange}></input>
+                        <input
+                            type="tel"
+                            id="phoneNumber"
+                            name="phone_number"
+                            className={
+                                touched.phone_number && errors.phone_number
+                                    ? "input-error"
+                                    : ""
+                            }
+                            placeholder="Enter your phone number"
+                            value={values.phone_number}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        {touched.phone_number && errors.phone_number && (
+                            <small
+                                style={{
+                                    color: "#EB5757",
+                                    paddingTop: "0.3rem"
+                                }}
+                            >
+                                {errors.phone_number}
+                            </small>
+                        )}
                     </div>
                 </div>
 
                 <div className="form-fourth-line">
                     <div className="form-group">
                         <label>Message</label>
-                        <div className="textarea">
-                           <textarea  name='message' required value={formValues.message} onChange={handleChange}></textarea>
-                          
+                        <div>
+                            <textarea
+                                id="message"
+                                name="message"
+                                cols="30"
+                                rows="5"
+                                className={
+                                    touched.message && errors.message
+                                        ? "textarea-error"
+                                        : ""
+                                }
+                                placeholder="message"
+                                value={values.message}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            ></textarea>
+                            {touched.message && errors.message && (
+                                <small
+                                    style={{
+                                        color: "#EB5757",
+                                        paddingTop: "0.3rem"
+                                    }}
+                                >
+                                    {errors.message}
+                                </small>
+                            )}
                         </div>
-                       
-
                     </div>
-
                 </div>
 
                 <div className="form-fifth-line">
                     <div className="radio-group">
-                        <input type="radio" value={formValues.privacy_policy} onChange={handleChange}></input>
-                        <label className="privacy"> I have read the afm privacy</label>
+                        <input
+                            type="checkbox"
+                            id="check"
+                            name="privacy_policy"
+                            value={values.privacy_policy}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+
+                        <label className="privacy">
+                            {" "}
+                            I have read the afm Privacy Policy
+                        </label>
                     </div>
+                    {touched.privacy_policy && errors.privacy_policy && (
+                        <small
+                            style={{ color: "#EB5757", paddingTop: "0.3rem" }}
+                        >
+                            {errors.privacy_policy}
+                        </small>
+                    )}
                 </div>
 
-                <button value='submit' >Send Message</button>
+                <button type="submit" className="submit-button">
+                    Send Message
+                </button>
+            </form>
 
-        </form>
-      
-    </div>
-  );
-}
+            {submitBtn && <ContactModal setSubmitBtn={setSubmitBtn} />}
+        </div>
+    );
+};
 
 export default ContactUsForm;
-

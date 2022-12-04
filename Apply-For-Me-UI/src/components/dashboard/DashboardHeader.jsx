@@ -21,13 +21,16 @@ import ProfileIcon from "../../assets/images/profile-circle.svg";
 import { getActiveLink } from "./service/DashboardSidebarService";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
+import { useDispatch } from "react-redux";
+import { userInfo } from "store/slice/UserSlice";
 
 const DashboardHeader = ({ func, setInputSearchValue }) => {
     const [dashboardActive, setDashboardActive] = useState({
         dashboard: true,
-        user:false
+        user: false
     });
-    const navigate  = useNavigate();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const [showProfileDetails, setShowProfileDetails] = useState(false);
@@ -42,11 +45,14 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
     };
     const handleDashboardSubmit = event => {
         event.preventDefault();
-        setInputSearchValue(event.target.search.value)
-        event.target.search.value="";
-       
+        setInputSearchValue(event.target.search.value);
+        event.target.search.value = "";
     };
-
+    const handleLogout = () => {
+        localStorage.removeItem("tokenHngKey");
+        dispatch(userInfo(""));
+        navigate("/");
+    };
     const handleModalShow = () => {
         setShowModal(true);
     };
@@ -69,7 +75,11 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                             />
                         )}
 
-                        <img src={Logo} alt="Apply for me logo" />
+                        <img
+                            src={Logo}
+                            alt="Apply for me logo"
+                            onClick={() => navigate("/")}
+                        />
                     </div>
 
                     <section className={classes.swap_nav}>
@@ -85,7 +95,9 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                             </div>
                             <div
                                 className={classes.user_avater}
-                                onClick={() => setShowMenuProfile(true)}
+                                onClick={() =>
+                                    setShowMenuProfile(prevState => !prevState)
+                                }
                             >
                                 <img
                                     src={ProfilePic}
@@ -109,11 +121,12 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                                 alt="Profile logo"
                                             />
                                             <p>Profile</p>
-                                        </li>                                           
+                                        </li>
                                         <li
-                                            onClick={() =>
-                                                setShowMenuProfile(false)
-                                            }
+                                            onClick={() => {
+                                                handleLogout();
+                                                setShowMenuProfile(false);
+                                            }}
                                         >
                                             <img
                                                 src={Signout}
@@ -126,45 +139,45 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                             )}
                         </div>
                         {/*form for searching for reverse recruiter admin  */}
-                        {dashboardActive.dashboard && <form
-                            className={classes.search}
-                            onSubmit={event => handleDashboardSubmit(event)}
-                        >
-                            <input
-                               
-                                type="search"
-                                name="search"
-                                placeholder="Search for Users and Reverse Recruiter"
-                               
-                            />
-                            <button type="submit">
-                                {" "}
-                                <img src={Search} alt="Apply for me logo" />
-                            </button>
-                        </form>}
-                        
-                         {/*form for searching for users and reverse recruiter */}
-                        {!dashboardActive.dashboard && <form
-                            className={classes.search}
-                            onSubmit={event => handleSubmit(event)}
-                        >
-                            <input
-                               
-                                type="search"
-                                name="search"
-                                placeholder="Search for Users and Reverse Recruiter"
-                               
-                            />
-                            <button type="submit">
-                                {" "}
-                                <img src={Search} alt="Apply for me logo" />
-                            </button>
-                        </form>}
+                        {dashboardActive.dashboard && (
+                            <form
+                                className={classes.search}
+                                onSubmit={event => handleDashboardSubmit(event)}
+                            >
+                                <input
+                                    type="search"
+                                    name="search"
+                                    placeholder="Search for Users and Reverse Recruiter"
+                                />
+                                <button type="submit">
+                                    {" "}
+                                    <img src={Search} alt="Apply for me logo" />
+                                </button>
+                            </form>
+                        )}
+
+                        {/*form for searching for users and reverse recruiter */}
+                        {!dashboardActive.dashboard && (
+                            <form
+                                className={classes.search}
+                                onSubmit={event => handleSubmit(event)}
+                            >
+                                <input
+                                    type="search"
+                                    name="search"
+                                    placeholder="Search for Users and Reverse Recruiter"
+                                />
+                                <button type="submit">
+                                    {" "}
+                                    <img src={Search} alt="Search Logo" />
+                                </button>
+                            </form>
+                        )}
                     </section>
                 </nav>
 
                 {/* Mobile nav */}
-                {showMenu && <MobileNav setShowMenu={setShowMenu}/>}
+                {showMenu && <MobileNav setShowMenu={setShowMenu} />}
             </section>
 
             {showProfileDetails ? (
@@ -279,7 +292,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 className={
                                     dashboardActive.dashboard
                                         ? classes.__active_toggle
-                                        : ""
+                                        : classes.text
                                 }
                             >
                                 Dashboard
@@ -307,7 +320,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 className={
                                     dashboardActive.user
                                         ? classes.__active_toggle
-                                        : ""
+                                        : classes.text
                                 }
                             >
                                 User
