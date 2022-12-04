@@ -17,7 +17,7 @@ public interface ProfessionalJobProfileService {
     ProfessionalProfile findOne(Long id);
 
     @Transactional
-    ProfessionalProfile save(ProfessionalProfileDto body);
+    ProfessionalProfile save(Long memberId, ProfessionalProfileDto body);
 
     @Transactional
     ProfessionalProfile update(Long id, ProfessionalProfileDto body);

@@ -1,10 +1,13 @@
 package com.hydraulic.applyforme.service.impl;
 
+import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.dto.professionalprofile.DeleteManyProfessionalProfileDto;
 import com.hydraulic.applyforme.model.dto.professionalprofile.ProfessionalProfileDto;
 import com.hydraulic.applyforme.model.exception.ProfessionalProfileNotFoundException;
+import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.ProfessionalProfileRepository;
+import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalProfileJpaRepository;
 import com.hydraulic.applyforme.service.job.ProfessionalJobProfileService;
 import com.hydraulic.applyforme.util.ProfessionalProfileUtil;
@@ -22,11 +25,18 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
 
     private final ProfessionalProfileRepository repository;
 
+    private final MemberRepository memberRepository;
+    private final ProfessionalJpaRepository professionalJpaRepository;
+
     @Autowired
     private ModelMapper modelMapper;
 
-    public ProfessionalJobProfileServiceImpl(ProfessionalProfileRepository repository, ProfessionalProfileJpaRepository jpaRepository) {
+    public ProfessionalJobProfileServiceImpl(ProfessionalProfileRepository repository,
+                                             MemberRepository memberRepository,
+                                             ProfessionalJpaRepository professionalJpaRepository) {
         this.repository = repository;
+        this.memberRepository = memberRepository;
+        this.professionalJpaRepository = professionalJpaRepository;
     }
 
     @Override
@@ -53,14 +63,33 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
 
     @Override
     @Transactional
-    public ProfessionalProfile save(ProfessionalProfileDto body) {
-        ProfessionalProfile professionalProfile = new ProfessionalProfile();
-        professionalProfile = modelMapper.map(body, ProfessionalProfile.class);
+    public ProfessionalProfile save(Long memberId, ProfessionalProfileDto body) {
+        ProfessionalProfile professionalProfile = ProfessionalProfile.builder()
+                .mainProfile(false)
+                .profileTitle(body.getProfileTitle())
+                .desiredJobTitle(body.getDesiredJobTitle())
+                .resumeLink(body.getResumeLink())
+                .coverLetterSubject(body.getCoverLetterSubject())
+                .coverLetterContent(body.getCoverLetterContent())
+                .employmentType(ProfessionalProfileUtil.getEmploymentType(body.getEmploymentType()))
+                .jobSeniority(ProfessionalProfileUtil.getJobSeniority(body.getJobSeniority()))
+                .preferredJobLocationType(ProfessionalProfileUtil.getJobLocationType(body.getPreferredJobLocationType()))
+                .includedKeywords(body.getIncludedKeywords())
+                .otherComment(body.getOtherComment())
+                .otherSkills(body.getOtherSkills())
+                .yearsOfExperience(body.getYearsOfExperience())
+                .salaryRange(body.getSalaryRange())
+                .build();
+        Professional professional = professionalJpaRepository.getProfessional(memberId);
+        if (professional == null) {
+            throw new ProfessionalProfileNotFoundException("Unknown");
+        }
 
-        professionalProfile.setEmploymentType(ProfessionalProfileUtil.getEmploymentType(body.getEmploymentType()));
-        professionalProfile.setJobSeniority(ProfessionalProfileUtil.getJobSeniority(body.getJobSeniority()));
-        professionalProfile.setPreferredJobLocationType(ProfessionalProfileUtil.getJobLocationType(body.getPreferredJobLocationType()));
-        return repository.saveOne(professionalProfile);
+        professionalProfile.setProfessional(professional);
+        ProfessionalProfile savedProfessionalProfile = repository.saveOne(professionalProfile);
+        savedProfessionalProfile.getProfessional().setSubmissions(null);
+        savedProfessionalProfile.getProfessional().setProfessionalProfiles(null);
+        return savedProfessionalProfile;
     }
 
     @Override

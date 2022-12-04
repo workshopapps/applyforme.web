@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `professional_profile` (
 	`job_location` VARCHAR(50),
  	`preferred_job_location_type` VARCHAR(150),
  	`job_seniority` VARCHAR(150),
- 	`desired_job_title` VARCHAR(150),
+ 	`desired_job_title` VARCHAR(150) ,
 
    	`industry` VARCHAR(150),
  	`years_of_experience` INT,
