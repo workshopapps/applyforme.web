@@ -20,6 +20,7 @@ pipeline {
 
 				// sh "sudo mkdir /var/lib/jenkins/workspace/applyforme/Apply-For-Me-UI/node_modules/.cache"
 				sh "cd Apply-For-Me-UI && CI=false sudo npm run build"
+				sh "pwd"
 			} 
         }
         // stage("build backend"){
