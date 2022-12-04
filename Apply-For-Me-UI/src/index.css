@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("./styles/Navbar.css");
-@import url("./styles/header.css");
+@import url("./styles/Header.css");
 @import url("./styles/Who.css");
 @import url("./styles/MidContent.css");
 @import url("./styles/What.css");
@@ -8,10 +8,16 @@
 @import url("./styles/Copy.css");
 
 :root {
+    --font-family: "Outfit", sans-serif;
+    --afm__primary__text: #52515b;
+    --afm__blue__900: #140f31;
+    --afm__blue__800: #171646;
+    --afm__blue__700: #202065;
+    --afm__primary: #2e3192;
+    --afm__blue__500: #5052a5;
     --primary-white: #fff;
     --primary-gray: rgba(82, 81, 91, 1);
     --primary-black: #434343;
-
     --primary-border: rgba(247, 247, 247, 0.1);
     --primary-background: #eaecf0;
     --primary-blue: #2e3192;

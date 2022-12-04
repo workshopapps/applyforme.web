@@ -1,7 +1,12 @@
 import React from "react";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiChevronRight, FiChevronLeft } from "react-icons/fi";
+import BlueButton from "../../components/buttons/blue_background/BlueButton";
 import classes from "./UserPage.module.css";
+import { Users } from "./user_page_service/UserPageService";
 const UsersPage = () => {
+    const handleApplicantView = id => {
+        console.log(id);
+    };
     return (
         <div className={classes.main_container}>
             <section className={classes.user_header}>
@@ -14,27 +19,64 @@ const UsersPage = () => {
 
             <section className={classes.applicant}>
                 <table className={classes.table}>
-                    <thead>
-                        <tr className={classes.table__head}>
-                            <th>Name</th>
-                            <th>Email Address</th>
-                            <th>Plan</th>
-                            <th>Application done</th>
-                            <th>Interviews</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <hr className={classes.lines} />
-
-                    <tr>
-                        <td>Sharon Sunday</td>
-                        <td>Sharon@gmail.com</td>
-                        <td>Basic</td>
-                        <td>8 of 5</td>
-                        <td>15</td>
-                        <td>Hello</td>
+                    <tr className={classes.table__head}>
+                        <th>Name</th>
+                        <th className={classes.hide_on_mobile}>
+                            Email Address
+                        </th>
+                        <th>Plan</th>
+                        <th className={classes.hide_on_mobile}>
+                            Application done
+                        </th>
+                        <th className={classes.hide_on_mobile}>Interviews</th>
+                        <th>Details</th>
                     </tr>
+
+                    {Users.map(
+                        ({
+                            id,
+                            name,
+                            interviews,
+                            plan,
+                            applicationDone,
+                            email
+                        }) => (
+                            <tr className={classes.user_details} key={id}>
+                                <td>{name}</td>
+                                <td className={classes.hide_on_mobile}>
+                                    {" "}
+                                    {email}
+                                </td>
+                                <td>{plan}</td>
+                                <td className={classes.hide_on_mobile}>
+                                    {applicationDone}
+                                </td>
+                                <td className={classes.hide_on_mobile}>
+                                    {interviews}
+                                </td>
+                                <td className={classes.desktop_button}>
+                                    <BlueButton text="view" width="70" />
+                                </td>
+
+                                <td
+                                    type="button"
+                                    className={classes.mobile_button}
+                                    onClick={() => handleApplicantView(id)}
+                                >
+                                    View
+                                </td>
+                            </tr>
+                        )
+                    )}
                 </table>
+
+                <section className={classes.pagination}>
+                    <p>1-6 of 50</p>
+                    <div className={classes.pagination__inc_dec}>
+                        <FiChevronLeft />
+                        <FiChevronRight />{" "}
+                    </div>
+                </section>
             </section>
         </div>
     );

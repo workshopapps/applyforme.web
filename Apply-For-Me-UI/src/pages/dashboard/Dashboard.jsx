@@ -9,7 +9,7 @@ const Dashboard = () => {
         dashboardPage: true,
         userPage: false
     });
-    
+
     const handlePageSwitch = data => {
         setPage(getActivePage(data));
     };

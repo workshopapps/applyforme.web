@@ -16,8 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -74,16 +74,19 @@ public class CountryServiceImpl implements CountryService {
     private ModelMapper modelMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Country> findAll(Integer pageOffset) {
         return repository.getAll(pageOffset);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Country> findAll() {
         return repository.getAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Country findOne(Long id) {
         Country country = repository.getOne(id);
         if (country == null) {
