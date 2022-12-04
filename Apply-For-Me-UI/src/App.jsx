@@ -61,6 +61,8 @@ import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
 import { useEffect, useState } from "react";
+import Sign_In from "pages/RR_recuiters_page/Sign_In";
+import Sign_Up from "pages/RR_recuiters_page/Sign_Up";
 
 function App() {
     const dispatch = useDispatch();
@@ -147,6 +149,12 @@ function App() {
                         />
                     }
                 >
+                    {/* RECRUITER ROUTE */}
+
+                    <Route exact path="/rr_sign_in" element={<Sign_In />} />
+                    <Route exact path="/rr_sign_up" element={<Sign_Up />} />
+
+                    
                     {/* USER DASHBAORD */}
                     <Route path="dashboard" element={<UserDashboardLayout />}>
                         {/* User Dashboard Profile */}
