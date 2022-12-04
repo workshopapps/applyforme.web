@@ -131,7 +131,7 @@ function App() {
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
                 <Route path="dashboard" element={<UserDashboardLayout />}>
-                    <Route path="/dashboard/" element={<DashboardNothing />} />
+                    {/* <Route path="/dashboard/" element={<DashboardNothing />} /> */}
 
                     <Route path="admin" element={<DashboardHome />} />
                     <Route path="admin/form" element={<ApplicationForm />} />
