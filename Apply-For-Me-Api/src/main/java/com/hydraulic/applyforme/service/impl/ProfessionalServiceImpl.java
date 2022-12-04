@@ -4,8 +4,13 @@ import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
+import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 import com.hydraulic.applyforme.service.ProfessionalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +26,10 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     public ProfessionalServiceImpl(ProfessionalRepository repository) {
         this.repository = repository;
 
+    private final ProfessionalJpaRepository professionalJpaRepository;
+    public ProfessionalServiceImpl(ProfessionalRepository repository, ProfessionalJpaRepository professionalJpaRepository) {
+        this.repository = repository;
+        this.professionalJpaRepository = professionalJpaRepository;
 
     }
 
@@ -66,4 +75,16 @@ public class ProfessionalServiceImpl implements ProfessionalService {
         professional = repository.updateOne(professional);
         return professional;
     }
+
+    @Override
+    public Page<Professional> retrieveAllProfessionals(int pageNo, int pageSize) {
+        Pageable page = PageRequest.of(pageNo, pageSize, Sort.Direction.DESC  );
+      Page<Professional> applicantsPage = professionalJpaRepository.findAll(page);
+      if (applicantsPage.isEmpty()){
+          throw new ProfessionalNotFoundException(applicantsPage.getTotalElements());
+      }
+      return applicantsPage;
+    }
+
+
 }
