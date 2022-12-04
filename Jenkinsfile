@@ -16,6 +16,7 @@ pipeline {
 		stage("build frontend"){
 
 			steps {
+				sh "cd applyforme.web"
 				sh "cd Apply-For-Me-UI && sudo npm i --force"
 
 				// sh "sudo mkdir /var/lib/jenkins/workspace/applyforme/Apply-For-Me-UI/node_modules/.cache"
@@ -34,7 +35,7 @@ pipeline {
 		stage("deploy") {
 		
 			steps {
-				sh "sudo cp -r ${WORKSPACE}/applyforme.web /home/johnoni/"
+				sh "sudo cp -r ${WORKSPACE}/applyforme.web/* /home/johnoni/"
 				// sh "sudo systemctl restart nickstersz.service"
 
 				// sh "sudo systemctl restart tropicalweatherf.service"
