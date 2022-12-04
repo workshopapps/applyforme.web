@@ -1,7 +1,9 @@
 package com.hydraulic.applyforme.repository;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
+import com.hydraulic.applyforme.model.dto.professional.ProfessionalJobSubmissionDetailsDto;
 
 import java.util.List;
 
@@ -18,6 +20,9 @@ public interface ProfessionalRepository {
 
     boolean removeAll();
 
-    Professional updateOne(Professional body);
+    Professional updateProfessional(Professional body);
+
+
+
 
 }

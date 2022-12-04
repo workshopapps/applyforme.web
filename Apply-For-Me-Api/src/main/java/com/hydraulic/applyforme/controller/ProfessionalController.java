@@ -1,9 +1,8 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.model.domain.SalaryRange;
 import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
-import com.hydraulic.applyforme.model.dto.salaryrange.SalaryRangeDto;
+import com.hydraulic.applyforme.model.dto.professional.ProfessionalJobSubmissionDetailsDto;
 import com.hydraulic.applyforme.service.ProfessionalService;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -20,7 +19,9 @@ public class ProfessionalController {
 
     private ProfessionalService service;
 
-    public ProfessionalController(ProfessionalService service) {this.service = service;}
+    public ProfessionalController(ProfessionalService service) {
+        this.service = service;
+    }
 
     @GetMapping("/entries")
     public List<Professional> findAll(@RequestParam(required = false, defaultValue = "1", name = "page") Integer pageOffset) {
@@ -33,7 +34,17 @@ public class ProfessionalController {
     }
 
     @PutMapping("/update/{id}")
-    public Professional update(@Validated @RequestBody ProfessionalDto body, @PathVariable(name ="id") Long id) {
-        return service.updateProfile(body, id);
+    public Professional update(@Validated @PathVariable(name ="id") Long id ,@RequestBody ProfessionalDto body) {
+//        UserDetailsImpl userDetails = CurrentUserUtil.getCurrentUser();
+//        Long id = userDetails.get
+//
+//        Id();
+//        System.out.println("userDetails.getId(): " + id);
+        return service.updateProfessional(body,id);
+    }
+
+    @GetMapping("/jobSubmissions/{id}")
+    public List<ProfessionalJobSubmissionDetailsDto> findAll(@Validated @PathVariable(name ="id") Long id ) {
+        return service.getJobsSubmissionDetails(id);
     }
 }
