@@ -17,5 +17,6 @@ public class ApplicantServiceImpl implements ApplicantService {
     @Override
     public Member getDetails(Long id) {
         return repository.getMyDetailsById(id);
+
     }
 }
