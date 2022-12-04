@@ -10,24 +10,35 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 @Configuration
+<<<<<<< HEAD:Apply-For-Me-Api/src/main/java/com/hydraulic/applyforme/config/aws/AwsConfig.java
+public class AWSConfig {
+    @Value("${access.key.id}")
+=======
 public class AwsConfig2 {
 
     @Value("${aws.access-key}")
+>>>>>>> 8504ce81b3ccab83c93a93bdda7fc706c6f2634e:Apply-For-Me-Api/src/main/java/com/hydraulic/applyforme/config/aws/AwsConfig2.java
     private String accessKeyId;
 
-    @Value("${aws.secret-key}")
+    @Value("${access.key.secret}")
     private String accessKeySecret;
 
-    @Value("${aws.region}")
+    @Value("${s3.region.name}")
     private String s3RegionName;
 
     @Bean
+<<<<<<< HEAD:Apply-For-Me-Api/src/main/java/com/hydraulic/applyforme/config/aws/AwsConfig.java
+    public AmazonS3 getAmazonS3Client() {
+        final BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(accessKeyId, accessKeySecret);
+        // Get Amazon S3 client and return the S3 client object
+=======
     @Primary
     public AmazonS3 getS3Client() {
         final BasicAWSCredentials basicAwsCredentials = new BasicAWSCredentials(accessKeyId, accessKeySecret);
+>>>>>>> 8504ce81b3ccab83c93a93bdda7fc706c6f2634e:Apply-For-Me-Api/src/main/java/com/hydraulic/applyforme/config/aws/AwsConfig2.java
         return AmazonS3ClientBuilder
                 .standard()
-                .withCredentials(new AWSStaticCredentialsProvider(basicAwsCredentials))
+                .withCredentials(new AWSStaticCredentialsProvider(basicAWSCredentials))
                 .withRegion(s3RegionName)
                 .build();
     }

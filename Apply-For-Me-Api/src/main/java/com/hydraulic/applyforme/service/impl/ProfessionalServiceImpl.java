@@ -25,9 +25,11 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     private final ProfessionalJpaRepository professionalJpaRepository;
 
 
+
     public ProfessionalServiceImpl(ProfessionalRepository repository, ProfessionalJpaRepository professionalJpaRepository) {
         this.repository = repository;
         this.professionalJpaRepository = professionalJpaRepository;
+
 
     }
 
@@ -83,6 +85,5 @@ public class ProfessionalServiceImpl implements ProfessionalService {
       }
       return applicantsPage;
     }
-
 
 }

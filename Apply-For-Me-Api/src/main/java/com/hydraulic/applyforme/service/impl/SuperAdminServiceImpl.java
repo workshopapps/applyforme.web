@@ -55,9 +55,10 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 		return repository.updateOne(member);		
 	}
 
-    @Override
-    public Member getDetails(Long id) {
-        return null;
+    @Transactional(readOnly = true)
+    public Member getProfileDetails(Long id) {
+        Member member = repository.getOne(id);
+        return member;
     }
 
     @Override
