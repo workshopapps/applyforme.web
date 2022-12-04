@@ -36,7 +36,7 @@ pipeline {
 		stage("deploy") {
 		
 			steps {
-				sh "sudo cp -r ${WORKSPACE}/applyforme.web/* /home/johnoni/"
+				sh "sudo cp -r ${WORKSPACE}/applyforme/* /home/johnoni/"
 				// sh "sudo systemctl restart nickstersz.service"
 
 				// sh "sudo systemctl restart tropicalweatherf.service"
