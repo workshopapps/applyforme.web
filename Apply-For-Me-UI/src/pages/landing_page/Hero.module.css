@@ -563,9 +563,9 @@ input[type="file"]{
 }
 
 
-@media (max-width: 650px) {
+@media (max-width: 767px) {
     .box{
-        adding: 1rem;
+        padding: 1rem;
         border-radius: 10px;
     }
     .learnImg2{
@@ -609,7 +609,6 @@ input[type="file"]{
     }
 
     .hero_content .left .heading {
-        font-weight: 400;
         font-size: 40px;
     }
 
