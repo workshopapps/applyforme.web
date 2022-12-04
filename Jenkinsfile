@@ -39,8 +39,7 @@ pipeline {
 				sh "sudo cp -r ${WORKSPACE}/applyforme/* /home/johnoni/"
 				// sh "sudo systemctl restart nickstersz.service"
 
-				// sh "sudo systemctl restart tropicalweatherf.service"
-				// sh "sudo systemctl restart tropicalweatherb.service"
+			
             }
 			
 	    }
