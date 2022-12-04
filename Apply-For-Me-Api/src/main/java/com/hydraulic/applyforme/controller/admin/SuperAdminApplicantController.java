@@ -1,11 +1,9 @@
 package com.hydraulic.applyforme.controller.admin;
 
-import com.hydraulic.applyforme.model.domain.Country;
-import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.professional.DeleteManyProfessionalDto;
 import com.hydraulic.applyforme.model.response.ApplicantDetailsResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
+import com.hydraulic.applyforme.service.SuperAdminCustomService;
 import com.hydraulic.applyforme.service.superadmin.SuperAdminApplicantService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
@@ -26,9 +24,11 @@ import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DI
 public class SuperAdminApplicantController {
 
     private SuperAdminApplicantService service;
+    private final SuperAdminCustomService superAdminCustomService;
 
-    public SuperAdminApplicantController(SuperAdminApplicantService service) {
+    public SuperAdminApplicantController(SuperAdminApplicantService service, SuperAdminCustomService secondService, SuperAdminCustomService superAdminCustomService) {
         this.service = service;
+        this.superAdminCustomService = superAdminCustomService;
     }
 
     @PreAuthorize("hasAnyRole('SuperAdministrator')")
@@ -41,13 +41,13 @@ public class SuperAdminApplicantController {
             @RequestParam(value = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fromDate,
             @RequestParam(value = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date toDate,
             @RequestParam(value = "q", required = false) String q) {
-        return service.getEntries(pageNo, pageSize, sortBy, sortDir, q, fromDate, toDate);
+        return superAdminCustomService.getAll(pageNo, pageSize, sortBy, sortDir, q, fromDate, toDate);
     }
 
     @PreAuthorize("hasAnyRole('SuperAdministrator')")
     @GetMapping("/detail/{id}")
     public ApplicantDetailsResponse getOne(@PathVariable Long id) {
-        return service.getOne(id);
+        return superAdminCustomService.getOne(id);
     }
 
     @DeleteMapping("/delete/{id}")
