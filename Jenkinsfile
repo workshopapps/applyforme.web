@@ -26,7 +26,7 @@ pipeline {
 
 			steps {
                 sh "cd Apply-For-Me-Api"
-				sh "cd Apply-For-Me-Api && sudo mvn -B -DskipTests clean package"
+				sh "cd Apply-For-Me-Api && sudo mvn -B package --file pom.xml"
             }
         }
 		stage("deploy") {
