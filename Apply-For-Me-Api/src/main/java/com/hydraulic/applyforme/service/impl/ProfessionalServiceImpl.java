@@ -43,8 +43,11 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     @Override
     public Page<Professional> retrieveAllProfessionals(int pageNo, int pageSize) {
         Pageable page = PageRequest.of(pageNo, pageSize, Sort.Direction.DESC  );
-
-        return professionalJpaRepository.findAll(page);
+      Page<Professional> applicantsPage = professionalJpaRepository.findAll(page);
+      if (applicantsPage.isEmpty()){
+          throw new ProfessionalNotFoundException(applicantsPage.getTotalElements());
+      }
+      return applicantsPage;
     }
 
 }
