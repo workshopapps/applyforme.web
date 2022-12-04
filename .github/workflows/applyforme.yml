@@ -23,8 +23,8 @@ jobs:
           script: |
             cd ./applyforme-fe
             git pull
-            cd ./applyforme.web/Apply-For-Me-UI
-            npm install
-            pm2 start npm -- start
-            pm2 save
+            # cd ./applyforme.web/Apply-For-Me-UI
+            # npm install
+            # pm2 start npm -- start
+            # pm2 save
      
