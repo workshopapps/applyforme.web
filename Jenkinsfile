@@ -8,23 +8,20 @@ pipeline {
 			steps {
 				sh "rm -rf ${WORKSPACE}/applyforme.web"
 				sh "git clone https://github.com/workshopapps/applyforme.web.git"
-				
 			}
-
 		}
 
-		stage("build frontend"){
+        stage("build frontend"){
 
 			steps {
-				sh "cd applyforme.web/"
-				sh "pwd"
-				sh "cd Apply-For-Me-UI && sudo npm i --force"
 
-				// sh "sudo mkdir /var/lib/jenkins/workspace/applyforme/Apply-For-Me-UI/node_modules/.cache"
-				sh "cd Apply-For-Me-UI && CI=false sudo npm run build"
-				sh "pwd"
-			} 
+				dir('applyforme.web/Apply-For-Me-UI') {
+                    sh "npm install"
+                    sh "CI=false npm run build"
+                }
+			}
         }
+
         // stage("build backend"){
 
 		// 	steps {
@@ -36,12 +33,10 @@ pipeline {
 		stage("deploy") {
 		
 			steps {
-				sh "sudo cp -r /var/lib/jenkins/workspace/applyforme/ /home/johnoni/"
-				// sh "sudo systemctl restart nickstersz.service"
-
-			
+				// sh "sudo cp -r /var/lib/jenkins/workspace/applyforme/ /home/johnoni/"
+                sh "sudo cp -r ${WORKSPACE}/applyforme.web /home/johnoni/"
+				// sh "sudo systemctl restart "
             }
-			
 	    }
 	}
 }
