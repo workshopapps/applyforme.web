@@ -60,7 +60,12 @@ import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
+
+
+import RRD from "pages/RR_Dashboard/RRD";
+
 import { useEffect } from "react";
+
 import Sign_In from "pages/RR_recuiters_page/Sign_In";
 import Sign_Up from "pages/RR_recuiters_page/Sign_Up";
 
@@ -99,7 +104,23 @@ function App() {
                     exact
                     path="/checkout"
                     element={<Checkout {...formData} />}
-                />{" "}
+                />
+                <Route exact path="/user-page" element={<Dashboard />} />
+                <Route
+                    path="/superAdminProfile"
+                    element={<ProfileScreen />}
+                ></Route>
+                <Route
+                    exact
+                    path="/reverseRecruiterAdmin/:id"
+                    element={<RR_admin_profile />}
+                />
+
+                <Route
+                    exact
+                    path="/reverseRecruiterDashboard"
+                    element={<RRD />}
+                />
                 <Route exact path="blog" element={<Blog />} />
                 <Route
                     exact
