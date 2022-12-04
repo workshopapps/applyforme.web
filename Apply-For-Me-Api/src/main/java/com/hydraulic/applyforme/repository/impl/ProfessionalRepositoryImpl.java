@@ -1,6 +1,8 @@
 package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.SalaryRange;
+import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -74,5 +76,11 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
             return false;
         }
     }
+
+    @Override
+    public Professional updateOne(Professional body) {
+        return entityManager.merge(body);
+    }
+
 
 }
