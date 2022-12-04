@@ -38,29 +38,35 @@ table {
 tr {
     padding-left: 30px;
 }
+
 thead,
 tbody {
     padding: 0px 80px;
 }
+
 th,
 td {
     padding-left: 0.5rem;
-    text-align: start;
+    text-align: left;
 }
+
 th {
     font-weight: 500;
     font-size: 20px;
     line-height: 150%;
 }
+
 td {
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
 }
+
 td:first-child,
 th:first-child {
     border-radius: 8px 0 0 8px;
 }
+
 td:last-child,
 th:last-child {
     border-radius: 0 8px 8px 0;
@@ -71,11 +77,12 @@ th:last-child {
     height: 62px;
     color: #52515b;
     font-weight: 500;
-    text-align: start;
+    text-align: left;
     font-size: 20px;
     line-height: 150%;
     letter-spacing: 0.01em;
 }
+
 .applications_table_body_row {
     border-bottom: 0.5px #ededed solid;
     height: 56px;
@@ -94,17 +101,19 @@ th:last-child {
 
 .applications_footer {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     gap: 2rem;
     padding-left: 3.5rem;
     padding-right: 2.5rem;
 }
+
 .applications_footer svg {
     width: 1.5em;
     height: 1.5em;
     cursor: pointer;
 }
+
 .applications_footer svg:first-child {
     color: #bfbfbf;
     cursor: unset;
@@ -114,6 +123,7 @@ th:last-child {
 .applications_list_wrapper {
     display: none;
 }
+
 .applications_list_card {
     flex-direction: column;
     background: #f7f7f7;
@@ -133,6 +143,7 @@ th:last-child {
     gap: 16px;
     color: #2e3192;
 }
+
 .applications_card_title {
     display: flex;
     flex-wrap: wrap;
@@ -143,17 +154,20 @@ th:last-child {
     line-height: 150%;
     color: #52515b;
 }
+
 .applications_card_title span:first-child {
     font-weight: 600;
     font-size: 16px;
     letter-spacing: 0.01em;
 }
+
 .applications_card_title span:nth-child(2) {
     font-weight: 300;
     font-size: 14px;
     text-align: right;
     letter-spacing: 0.03em;
 }
+
 .applications_card_lo {
     display: flex;
     flex-wrap: wrap;
@@ -170,12 +184,14 @@ th:last-child {
     justify-content: space-between;
     align-items: center;
 }
-.applications_card_tag_wrapper > div {
+
+.applications_card_tag_wrapper>div {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
 }
-.applications_card_tag_wrapper > span {
+
+.applications_card_tag_wrapper>span {
     font-weight: 600;
     font-size: 14px;
     line-height: 150%;
@@ -195,6 +211,7 @@ th:last-child {
     border: 1px solid #c4d5ee;
     border-radius: 8px;
 }
+
 /* Dropdown Button */
 .dropbtn {
     font-family: "Outfit";
@@ -271,6 +288,7 @@ th:last-child {
     display: flex;
     align-items: center;
 }
+
 .dropdown_item:hover {
     background: #e9eef7;
     border-radius: 8px;
@@ -302,16 +320,20 @@ th:last-child {
     .applications_table_wrapper {
         display: none;
     }
+
     .applications_list_wrapper {
         display: block;
     }
+
     .dropbtn {
         display: none;
     }
+
     .applications_search_form {
         width: 90%;
         padding-left: 0rem;
     }
+
     /* … */
 }
 
@@ -327,6 +349,7 @@ th:last-child {
     .hide_tablet {
         display: none;
     }
+
     .show_tablet {
         display: block;
     }
