@@ -6,6 +6,8 @@ import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 import com.hydraulic.applyforme.model.dto.salaryrange.SalaryRangeDto;
 import com.hydraulic.applyforme.service.ProfessionalService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
+
+import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -39,4 +41,10 @@ public class ProfessionalController {
 //        Long id = CurrentUserUtil.getCurrentUser().getId();
         return service.updateProfile(body, id);
     }
+
+    @GetMapping("/applicants/{pageNo}/{pageSize}")
+    public Page<Professional> retrieveApplicants(@PathVariable int pageNo, @PathVariable int pageSize ){
+        return  service.retrieveAllProfessionals(pageNo, pageSize);
+    }
 }
+
