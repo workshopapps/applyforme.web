@@ -1,16 +1,17 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+// import Sidebar from "../components/Sidebar";
 import styles from "./ApplicationDashboard.module.css";
-import BottomNav from "../components/BottomNav";
+// import BottomNav from "../components/BottomNav";
 
 const ApplicationsDashboardLayout = () => {
     return (
         <main className={styles.layout_container}>
-            <Sidebar />
+            {/* <Sidebar /> */}
+            {/* <DashboardSidebar /> */}
             <div className={styles.layout_main}>
                 <Outlet />
             </div>
-            <BottomNav />
+            {/* <BottomNav /> */}
         </main>
     );
 };

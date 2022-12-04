@@ -1,0 +1,129 @@
+.logomodal {
+  flex: 1;
+  background: var(--afm__primary);
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.logomodal-container {
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: auto auto;
+  gap: 2rem;
+  margin: auto 4rem;
+}
+
+.logomodal-container > .logomodal-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+
+}
+.logomodal-head > Link {
+  color: #fff;
+}
+.logomodal-head {
+  display: none;
+}
+.logomodal-content .hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+.logomodal-content .hero img {
+  width: 100%;
+  height: 100%;
+}
+.logomodal-content p {
+  width: 100%;
+  font-family: var(--font-family) !important;
+  color: #FEFEFF;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 60px;
+  /* text-align: center; */
+}
+@media only screen and (max-width: 1050px) {
+  .logomodal {
+    
+    display: flex;
+    background: var(--afm__primary);
+    padding: 40px 0;
+    
+    
+  }
+  .logomodal-container {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 90%;
+  }
+  .logomodal-container > .logomodal-content {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+   justify-content: flex-end;
+    margin: auto;
+  }
+  .logomodal-head {
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 17px;
+    width: 100%;
+    /* margin-left: 47.9px; */
+  }
+  .logomodal-head p {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 150%;
+    color: #FEFEFF;
+    font-family: var(--font-family);
+  }
+  .logomodal-content p {
+    text-align: center;
+  }
+  .logomodal-content .modal-logo {
+    display: none;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .logomodal{
+    padding: 40px 20px;
+  }
+
+  .logomodal-container {
+    margin : 0;
+  }
+  /* .logomodal-container > .logomodal-content {
+    gap: 36.08px;
+    
+  } */
+  .logomodal-head {
+    gap: 17px;
+  }
+  .logomodal-content p {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    margin-top: 32px;
+  }
+  .logomodal-head p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+    
+  }
+}
+
+

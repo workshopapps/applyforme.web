@@ -14,7 +14,6 @@ const Profile = () => {
             jobtype: "Onsite, hybrid",
             location: "London"
         }
-        // { jobtitle: "Product Designer", id: 2 },
     ];
     const CurrentProfile = ProfileDetails.map(oneprofile => (
         <div key={oneprofile.id} className={styles.each_profile}>

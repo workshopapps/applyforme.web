@@ -52,6 +52,7 @@
 .subheading {
   color: #171746;
   font-size: 3vmax;
+  font-weight: 500;
   margin-bottom: 2rem;
 }
 
@@ -154,7 +155,7 @@ input[type="number"] {
 }
 
 .submit:disabled {
-  background-color: #b2ddff;
+  background-color: #171746;
 }
 
 .checked {
@@ -164,8 +165,9 @@ input[type="number"] {
 }
 
 .checklabel {
-  font-size: 1rem;
-  line-height: 1.1;
+  font-size: 16px;
+  line-height: 25px;
+  color: #52515B;
 }
 
 /*When the form has been touched and it's empty*/

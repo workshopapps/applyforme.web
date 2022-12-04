@@ -6,8 +6,10 @@ import Footer from '../../components/footer/Footer'
 import Nav from '../../components/nav/Nav'
 import HowAfmWorks from '../afmworks/HowAfmWorks'
 import classes from './Help.module.css'
+import { useNavigate } from 'react-router'
 
 const HelpAndSupportPage = () => {
+    const navigate = useNavigate();
   return (
     <>
         <Nav />
@@ -17,7 +19,7 @@ const HelpAndSupportPage = () => {
                     <h5 className={classes.help_subhead}>Welcome to our Help and Support Center</h5>
                 </div>
                 <div className={classes.card_wrap}>
-                    <Card header="how afm works"
+                    <Card header="How afm works"
                             para=" ApplyForMe is a marketplace that connects 
                             job seekers with their dream jobs.
                             Here, job seekers like you sign up, letting professionals 
@@ -60,13 +62,13 @@ const HelpAndSupportPage = () => {
                     />
                 </div>
                 <div className={classes.contactus_wrap}>
-                    <h4 className={classes.contactus_header}> 
+                    <h4 className={classes.contactus_header} style={{marginTop:"0",marginBottom:"0"}}> 
                         Haven't found answer? We can help..
                     </h4>
-                    <p className={classes.contactus_para}>
+                    <p className={classes.contactus_para}  style={{marginTop:"0",marginBottom:"0"}}>
                         Contact us and we'll get back to you as soon as possible.
                     </p>
-                    <BlueButton width="150" text="Contact us" />
+                    <BlueButton width="150" text="Contact us" func={()=>navigate('/contact')}/>
                 </div> 
             </div>
         <Footer /> 
