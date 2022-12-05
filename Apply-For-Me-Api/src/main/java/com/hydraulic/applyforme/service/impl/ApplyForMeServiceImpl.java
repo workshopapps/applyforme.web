@@ -10,8 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 @Slf4j
 @Service
@@ -20,7 +20,6 @@ public class ApplyForMeServiceImpl implements ApplyForMeService {
     @Autowired
     private ModelMapper modelMapper;
     private final ApplyForMeRepository repository;
-
 
     public ApplyForMeServiceImpl(ApplyForMeRepository repository) {
         this.repository = repository;
@@ -32,6 +31,7 @@ public class ApplyForMeServiceImpl implements ApplyForMeService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ApplyForMe findOne(Long id) {
         ApplyForMe applyForMe = repository.getOne(id);
         if (applyForMe == null) {

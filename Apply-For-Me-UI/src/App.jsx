@@ -60,13 +60,14 @@ import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
-import { useEffect, useState } from "react";
+
 
 import RRD from "pages/RR_Dashboard/RRD";
 
+import { useEffect } from "react";
+
 import Sign_In from "pages/RR_recuiters_page/Sign_In";
 import Sign_Up from "pages/RR_recuiters_page/Sign_Up";
-
 
 function App() {
     const dispatch = useDispatch();
@@ -103,7 +104,6 @@ function App() {
                     exact
                     path="/checkout"
                     element={<Checkout {...formData} />}
-
                 />
                 <Route exact path="/user-page" element={<Dashboard />} />
                 <Route
