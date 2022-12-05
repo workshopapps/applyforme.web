@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
+import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
 import com.hydraulic.applyforme.service.SuperAdminService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
+
+import javax.validation.Valid;
 
 import static com.hydraulic.applyforme.constants.PagingConstants.*;
 import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DIRECTION;
@@ -40,7 +43,14 @@ public class SuperAdminController {
     	service.updatePassword(currentUser.getId(), body);
     	return "Password successfully changed";
     }
-    
+
+
+    @PutMapping("/update")
+    public Member updateProfile(@Valid @RequestBody UpdateProfileDto body) {
+        return service.updateProfile(CurrentUserUtil.getCurrentUser().getId(), body);
+    }
+
+
     @DeleteMapping("/recruiter/{id}")
     public boolean deleteMember(@PathVariable("id") Long id) {
     	return service.deleteMemberById(id);
@@ -54,5 +64,6 @@ public class SuperAdminController {
             @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir
     ){
         return secondService.findAll(pageNo, pageSize, sortBy, sortDir);
+
     }
 }
