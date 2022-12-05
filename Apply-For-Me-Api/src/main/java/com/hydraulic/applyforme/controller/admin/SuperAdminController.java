@@ -24,10 +24,8 @@ import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DI
 )
 public class SuperAdminController {
     private final SuperAdminService service;
-    private final SuperAdminCustomService secondService;
-    public SuperAdminController(SuperAdminService service, SuperAdminCustomService secondService) {
+    public SuperAdminController(SuperAdminService service) {
         this.service = service;
-        this.secondService = secondService;
     }
 
     @GetMapping("/profile")
@@ -54,16 +52,5 @@ public class SuperAdminController {
     @DeleteMapping("/recruiter/{id}")
     public boolean deleteMember(@PathVariable("id") Long id) {
     	return service.deleteMemberById(id);
-    }
-
-    @GetMapping("/application/all")
-    public ApplyForMeResponse getAllApplication(
-            @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
-            @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
-            @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
-            @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir
-    ){
-        return secondService.findAll(pageNo, pageSize, sortBy, sortDir);
-
     }
 }
