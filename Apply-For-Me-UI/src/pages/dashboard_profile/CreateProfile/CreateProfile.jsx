@@ -7,7 +7,7 @@ import styles from "./CreateProfile.module.css";
 import TopBar from "../components/TopBar/TopBar";
 import BlueButton from "../../../components/buttons/blue_background/BlueButton";
 import BlueBorderButton from "../../../components/buttons/blue_border_button/BlueBorderButton";
-import LightButton from "../../../components/buttons/light_button/LightButton";
+// import LightButton from "../../../components/buttons/light_button/LightButton";
 
 const CreateProfile = () => {
     const [step, setStep] = useState(0);
@@ -133,7 +133,7 @@ const CreateProfile = () => {
             <div>
                 <div>{FormDisplay()}</div>
                 <div className={styles.stepbuttons}>
-                    {step > 0 && step < 3 && (
+                    {/* {step > 0 && step < 3 && (
                         <LightButton
                             width={150}
                             text={"Back"}
@@ -142,12 +142,12 @@ const CreateProfile = () => {
                                 setStep(currStep => currStep - 1);
                             }}
                         />
-                    )}
+                    )} */}
                     {step < 3 && (
                         <BlueButton
                             disabled={step === FormSteps.length}
-                            width={150}
-                            text={"Next"}
+                            // width={150}
+                            text={"Save and Continue"}
                             func={() => {
                                 setStep(currStep => currStep + 1);
                             }}
