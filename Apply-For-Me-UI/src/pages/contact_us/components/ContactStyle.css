@@ -260,8 +260,9 @@ input.radio {
         width: 95%;
     }
 
+}
 
-
+@media screen and (max-width: 47rem) {
     .contact-mid .contact-form .more-details {
         display: none;
 
@@ -272,6 +273,8 @@ input.radio {
     .contact-mid .contact-form {
         width: 100%;
     }
+
+
 }
 
 @media screen and (max-width: 30.0625rem) {
