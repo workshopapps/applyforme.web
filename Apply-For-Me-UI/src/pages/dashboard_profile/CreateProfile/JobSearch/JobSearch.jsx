@@ -1,12 +1,15 @@
+/* eslint-disable no-unused-vars */
 import styles from "../CreateProfile.module.css";
 import classes from "./JobSearch.module.css";
 import pdf from "../../assets/pdf.png";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import DragDropFile from "pages/dashboard_profile/components/DragDropFile/DragDropFile";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const JobSearch = ({ formData, setFormData }) => {
     const [countries, setCountries] = useState();
+
     const countrynames = countries?.map(onecountry => ({
         label: onecountry.title,
         value: onecountry.title
@@ -17,14 +20,12 @@ const JobSearch = ({ formData, setFormData }) => {
         label: "Job Location",
         value: ""
     });
-
     useEffect(() => {
-        fetch(
-            "https://official-volunux.uc.r.appspot.com/api/v1/country/entries/all"
-        )
+        fetch("https://api.applyforme.hng.tech/api/v1/country/entries/all")
             .then(response => response.json())
             .then(data => setCountries(data));
     }, []);
+
     return (
         <form className={styles.form_body}>
             <h3>Complete your desired job info and location</h3>
@@ -32,15 +33,41 @@ const JobSearch = ({ formData, setFormData }) => {
                 <Dropdown
                     options={[
                         { label: "Job Title", value: "" },
-                        { label: "Designer", value: "Designer" },
                         {
-                            label: "Front-end Developer",
-                            value: "Front-end Developer"
+                            label: "Backend engineer",
+                            value: "Backend engineer"
                         },
                         {
-                            label: "Back-end Developer",
-                            value: "Back-end Developer"
-                        }
+                            label: "Data scientist",
+                            value: "Data scientist"
+                        },
+                        {
+                            label: "Frontend engineer",
+                            value: "Frontend engineer"
+                        },
+                        { label: "Game developer", value: "Game developer" },
+                        { label: "Illustrator", value: "Illustrator" },
+                        {
+                            label: "Musician",
+                            value: "Musician"
+                        },
+                        {
+                            label: "No code developer",
+                            value: "No code developer"
+                        },
+                        {
+                            label: "Product designer",
+                            value: "Product designer"
+                        },
+                        {
+                            label: "Product manager",
+                            value: "Product manager"
+                        },
+                        {
+                            label: "Sound engineer",
+                            value: "Sound engineer"
+                        },
+                        { label: "UX researcher", value: "UX researcher" }
                     ]}
                     width={90}
                     value={formData.job_title}
@@ -91,10 +118,10 @@ const JobSearch = ({ formData, setFormData }) => {
                     <Dropdown
                         options={[
                             { label: "Experience", value: "" },
-                            { label: "No experience", value: "No experience" },
-                            { label: "Entry Level", value: "Entry level" },
-                            { label: "Mid-Level", value: "Mid-Level" },
-                            { label: "Senior Level", value: "Senior Level" }
+                            { label: "No experience", value: "trainee" },
+                            { label: "Entry level", value: "intern" },
+                            { label: "Mid level", value: "mid_level" },
+                            { label: "Senior level", value: "senior" }
                         ]}
                         value={formData.experience}
                         onChange={e => {
@@ -110,9 +137,9 @@ const JobSearch = ({ formData, setFormData }) => {
                     <Dropdown
                         options={[
                             { label: "Employment Type", value: "" },
-                            { label: "Contract", value: "Contract" },
-                            { label: "Full-time", value: "Full-time" },
-                            { label: "Part-Time", value: "Part-time" }
+                            { label: "Contract", value: "contract" },
+                            { label: "Full-time", value: "full_time" },
+                            { label: "Part-time", value: "part_time" }
                         ]}
                         value={formData.employment_type}
                         onChange={e => {
@@ -128,10 +155,19 @@ const JobSearch = ({ formData, setFormData }) => {
                     <Dropdown
                         options={[
                             { label: "Salary", value: "" },
-                            { label: "$3,000-$5,000", value: "salary1" },
-                            { label: "$5,000-$10,000", value: "salary2" },
-                            { label: "$10,000-$15,000", value: "salary3" },
-                            { label: "$15,000-$25,000", value: "salary4" }
+                            { label: "$3,000-$5,000", value: "$3,000-$5,000" },
+                            {
+                                label: "$5,000-$10,000",
+                                value: "$5,000-$10,000"
+                            },
+                            {
+                                label: "$10,000-$15,000",
+                                value: "$10,000-$15,000"
+                            },
+                            {
+                                label: "$15,000-$25,000",
+                                value: "$15,000-$25,000"
+                            }
                         ]}
                         value={formData.salary_expectation}
                         onChange={e => {
@@ -161,6 +197,15 @@ const JobSearch = ({ formData, setFormData }) => {
             )}
             <div className={classes.uploadcv_box}>
                 <p>Upload your CV</p>
+                {/* <DragDropFile
+                    onChange={e => {
+                        setFormData({
+                            ...formData,
+                            cv_file: e.target.files[0]
+                        });
+                        console.log('boy')
+                    }}
+                /> */}
                 <DragDropFile
                     onChange={e => {
                         setFormData({

@@ -1,16 +1,17 @@
 import { NavLink } from "react-router-dom";
 import styles from "../CreateProfile.module.css";
 import classes from "./Review.module.css";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import BlueButton from "../../../../components/buttons/blue_background/BlueButton";
 import LightButton from "../../../../components/buttons/light_button/LightButton";
-// import axios from "axios";
+import axios from "axios";
 import { useSelector } from "react-redux";
 
 const Review = ({ formData, keywords }) => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
+    const included_keywords = String(keywords);
+    let jobLocationType = formData.isremote ? "remote" : "hybrid";
 
-    // const url = "/userId";
     const { user } = useSelector(state => state.user);
     // const userId = user.memberId;
     const userEmail = user.sub;
@@ -32,13 +33,55 @@ const Review = ({ formData, keywords }) => {
             return alert("Please enter a cover letter body");
         }
 
-        // try {
-        //     const resp = await axios.post(url, { formData });
-        //     console.log("done");
-        //     // navigate("/dashboard/user/success");
-        // } catch (error) {
-        //     console.log("error");
-        // }
+        //Make POST requests
+        try {
+            const fileType = formData.cv_file.type;
+            let extension = "";
+            if (fileType === "application/pdf") {
+                extension = "pdf";
+            } else if (fileType === "application/msword") {
+                extension = "doc";
+            } else {
+                extension = "docx";
+            }
+            // First POST request
+            const firstResponse = await axios.post(
+                `https://api.applyforme.hng.tech/api/v1/upload/pre-signed-resume?extension=.${extension}`
+            );
+            console.log(firstResponse.data);
+            // Second POST request
+            const fd = new FormData();
+            fd.set("file", formData.cv_file);
+            const secondResponse = await axios.post(firstResponse.data, fd);
+            console.log(secondResponse);
+            //Final POST request
+            const finalResponse = await axios.post(
+                "https://api.applyforme.hng.tech/api/v1/job-profile/save",
+                {
+                    "job_title": formData.job_title,
+                    "passport_link": "string",
+                    "resume_link": "string",
+                    "cover_letter_link": "string",
+                    "cover_letter_subject": formData.coverletter_subject,
+                    "cover_letter_content": formData.coverletter_body,
+                    "salary_range": formData.salary_expectation,
+                    "employment_type": formData.employment_type,
+                    "job_location": formData.location,
+                    "job_location_type": jobLocationType,
+                    "job_seniority": formData.experience,
+                    "desired_job_title": "string",
+                    "industry": "string",
+                    "years_of_experience": 0,
+                    "other_skills": "string",
+                    "other_comment": "string",
+                    "included_keywords": included_keywords
+                }
+            );
+            console.log(finalResponse);
+            navigate("/dashboard/user/success");
+        } catch (error) {
+            console.log(error);
+        }
     };
     return (
         <div className={styles.form_body}>
@@ -52,7 +95,7 @@ const Review = ({ formData, keywords }) => {
                     <div>
                         <p>
                             {formData.location}
-                            {formData.isRemote ? ", remote" : null}
+                            {formData.isRemote ? ", remote" : ", hybrid"}
                         </p>
                         <h5>Job location</h5>
                     </div>

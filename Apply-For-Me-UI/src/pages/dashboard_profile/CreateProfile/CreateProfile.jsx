@@ -52,7 +52,8 @@ const CreateProfile = () => {
         cv_file: [],
         coverletter_subject: "",
         coverletter_body: "",
-        keywords: ""
+        keywords: "",
+        xyz: ""
     });
     // console.log(formData);
 
