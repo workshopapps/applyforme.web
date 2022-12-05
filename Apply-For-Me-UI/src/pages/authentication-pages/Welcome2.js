@@ -18,7 +18,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "components/spinner/Spinner";
 
-const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-in";
+const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-in";
 
 const Welcome2 = () => {
     const dispatch = useDispatch();

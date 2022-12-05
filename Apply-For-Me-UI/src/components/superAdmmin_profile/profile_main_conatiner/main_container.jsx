@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
     const [showEditModal, setEditModal] = useState(false);
     const [showPasswordModal, setPasswordModal] = useState(false);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     
     return(
