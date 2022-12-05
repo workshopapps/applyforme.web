@@ -1,7 +1,7 @@
 .rrd_applications_wrapper {
     padding: 2rem 1.25rem;
     color: #52515b;
-    width: 99vw;
+    /* width: 99vw; */
 }
 
 .rrd_applications_wrapper button {
