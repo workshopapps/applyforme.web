@@ -1,0 +1,10 @@
+1. Create an Email Service to send verification code to users
+2. Contact Us Page
+3. Retrieve list of all job applications by the admin
+4. User should be able to change his password
+5. User should be able to update his profile
+6. Admin should be able to see all the list of applicant on the platform.
+7. User should be able to sign up as a Developer
+8. Admin should be able to view profile
+9. Add a new Admin
+10. Create a Job profile.
