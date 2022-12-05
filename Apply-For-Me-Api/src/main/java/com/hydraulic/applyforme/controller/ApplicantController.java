@@ -35,4 +35,9 @@ public class ApplicantController {
             @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
         return service.getApplicationList(pageNo, pageSize, sortBy, sortDir);
     }
+
+    public void dummy() {
+
+    }
+
 }
