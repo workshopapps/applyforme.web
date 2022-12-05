@@ -9,10 +9,7 @@ const ContactUsForm = () => {
     const onSubmit = (values, actions) => {
         console.log(actions);
         axios
-            .post(
-                "https://official-volunux.uc.r.appspot.com/api/v1/contact-us",
-                values
-            )
+            .post("https://api.applyforme.hng.tech/api/v1/contact-us", values)
             .then(response => {
                 console.log(response);
             })
