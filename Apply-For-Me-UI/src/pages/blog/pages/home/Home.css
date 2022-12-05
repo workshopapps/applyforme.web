@@ -7,8 +7,9 @@
     width: 100%;
 }
 
-.home .content {
+.home .contents {
     margin-top: 40px;
+    margin-inline: 0;
 }
 
 .home .left {
@@ -25,19 +26,22 @@
 .home .left .item .bold {
     font-size: 30px;
     line-height: 38px;
+    text-align: left;
     font-weight: 500;
+    margin: 0;
     width: 85%;
+    margin-left: 1rem;
+
     color: var(--secondary-blue);
 }
 
 .home .left p {
     width: 80%;
-    margin: 0 auto;
     color: var(--secondary-blue);
+    margin-left: 1rem;
 }
 
 .home .main {
-    background-color: var(--primary-gray-bg);
     padding: 40px;
 }
 
@@ -52,7 +56,7 @@
 }
 
 .home .left .item {
-    width: 49%;
+    width: 35%;
     background-color: var(--primary-white);
     display: flex;
     flex-direction: column;
@@ -66,16 +70,18 @@
 .home .left button {
     width: fit-content;
     outline: none;
+    cursor: pointer;
     border: none;
-    padding: 15px 32px;
-    background: var(--primary-blue);
-    color: var(--primary-white);
-    border-radius: 8px;
+    padding: 0.5rem 0;
+    margin-left: 1rem;
+    color: var(--primary-blue);
+    font-weight: 500;
+    font-size: 1.25rem;
+    background-color: transparent;
     transition: background 0.7s ease;
 }
-
 .home .left button:hover {
-    background: var(--secondary-blue);
+    border-bottom: 0.25rem solid var(--primary-blue);
 }
 
 /* Right */
@@ -143,7 +149,7 @@
         text-align: center;
     }
 
-    .home .content {
+    .home .contents {
         width: 100%;
     }
 
@@ -162,7 +168,9 @@
     .home .left .item .bold {
         font-size: 20px;
         line-height: 30px;
-        text-align: center;
+        margin: 0;
+        margin-left: 1rem;
+        text-align: left;
         width: 88%;
     }
 
@@ -183,4 +191,13 @@
     .home .right img {
         width: 100%;
     }
+}
+.title-heading {
+    font-size: 2.5rem;
+    margin-left: 8%;
+    color: #000000;
+    font-weight: 400;
+}
+.main-bg {
+    background: #edf5fd;
 }

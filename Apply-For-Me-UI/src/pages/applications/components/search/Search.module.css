@@ -1,20 +1,31 @@
 input[type="search"] {
-    width: 100%;
+    width: 90%;
     color: #bfbfbf;
-    border: 1px #bfbfbf solid;
+    /* border: 1px #bfbfbf solid; */
+    border: none;
     border-radius: 8px;
     outline: none;
-    text-indent: 50px;
-    height: 56px;
+    text-indent: 30px;
+    height: 100%;
 }
+
 .applications_search_form {
-    position: relative;
-    max-width: 500px;
-    min-width: 200px;
+    box-sizing: border-box;
+    padding: 0px 0px 0px 20px;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    width: 516px;
+    height: 56px;
+    border: 1px solid #BFBFBF;
+    border-radius: 8px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
 .applications_search_form > svg {
-    position: absolute;
+    /* position: absolute; */
     right: auto;
     top: 30px;
     left: 30px;
@@ -27,5 +38,4 @@ input[type="search"] {
     .applications_search_form {
         width: 90%;
     }
-    /* … */
 }

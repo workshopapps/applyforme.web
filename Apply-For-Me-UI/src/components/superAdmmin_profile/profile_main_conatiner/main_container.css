@@ -1,20 +1,20 @@
 .ProfileMainContainer{
     padding: 2rem 8rem 8rem 8rem;
-    background-color: #eeefff;
+    background-color: white;
     
 }
 .profile_content{
     font-family: 'Outfit', sans-serif;
 }
 .profile_content_btn{
-    background-color: #eeefff;
+    background-color: white;
     width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;
     color: #52515B ;
     border-radius: 5px;
-    border:1px solid grey;
+    border:1px solid #2E3192;
     padding: 0.3rem;
 }
 .proileInfoContainer{
@@ -30,7 +30,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 0;
-    border-bottom:1px solid  gray;
+    border-bottom:1px solid  #EEEFFF;
 }
 .profile_header h1{
     color:#2E3192 ;
@@ -80,7 +80,7 @@
     height: 100vh;
     background-color: rgba(49, 49, 49,0.8);
 }
-.editContent{
+.editpasswordContent, .editProfileContent{
     padding:2rem;
     position: absolute;
     top: 15%;
@@ -152,6 +152,10 @@
     .profile_header {
         padding: 0.5rem 0;
         
+    }
+    .editpasswordContent{
+        height:auto;
+      
     }
    
 }
