@@ -1,12 +1,14 @@
 .blogs {
-    background-color: #eaf2fd;
-    padding: 200px 0;
-    width: 100%;
+    background-color: #b4d3f8;
+    padding: 48px 0;
+    width: 60%;
+    border-radius: 16px;
+    margin-inline: auto;
     overflow-y: hidden;
+    margin-bottom: 5rem;
 }
 
 .blogs .content {
-    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,17 +16,24 @@
 }
 
 .blogs p {
-    width: 76%;
+    width: 100%;
     margin: 0 auto;
     font-size: 30px;
     font-weight: 500;
     text-align: center;
-    color: var(--secondary-blue);
+    color: #222226;
 }
-
+.blogs .sub {
+    width: 100%;
+    margin: 0 auto;
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    color: #222226;
+}
 .blogs .input-container {
     display: flex;
-    width: 82%;
+    width: 50%;
 }
 
 .blogs input {
@@ -41,6 +50,7 @@
 }
 
 .blogs button {
+    cursor: pointer;
     width: 30%;
     outline: none;
     border: none;

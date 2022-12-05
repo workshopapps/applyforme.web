@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Welcome2.css";
 import Navbar from "./Navbar";
 import Text from "./components/Text/Text";
@@ -8,20 +8,48 @@ import Inputbox from "./components/Elements/Inputbox";
 import Button from "./components/Elements/Button";
 import "./components/Elements/Button.css";
 import Footer from "./Footer";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
+// Toaster
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Spinner from "components/spinner/Spinner";
 
 const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-in";
 
 const Welcome2 = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { user } = useSelector(state => state.user);
+    const [loading, setLoading] = useState(false);
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    const [errState, setErrState] = useState({
+        password: false,
+        email_address: false
+    });
+
+    useEffect(() => {
+        if (user) {
+            setTimeout(() => {
+                if (
+                    user?.roles[0] === "Professional" ||
+                    user?.roles[0] === "Recruiter"
+                ) {
+                    navigate("/dashboard/");
+                } else if (user?.roles[0] === "SuperAdministrator") {
+                    navigate("/user-page");
+                }
+            }, 3000);
+        }
+    }, [user]);
 
     const handleSubmit = async event => {
         event.preventDefault();
+        setLoading(true);
         const formData = {
             email_address: event.target.email.value,
             password: event.target.pass.value
@@ -35,21 +63,25 @@ const Welcome2 = () => {
             });
 
         if (result?.token) {
+            console.log("res", result.token);
             let decoded = jwt_decode(result.token);
             let tokenKey = "tokenHngKey";
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
-            navigate("/dashboard");
+            setLoading(false);
+            toast("Login Successfully");
         } else {
-            console.log("eer");
+            setLoading(false);
+            toast("Wrong credentials");
         }
     };
 
     return (
         <div className="Welcome2">
             <Navbar />
-
+            <ToastContainer />
             <div className="w2bdy">
+                {loading && <Spinner />}
                 <Text child="Welcome Back !!" />
                 <Text2 child="Login to ApplyForMe " />
                 <form className="form" onSubmit={e => handleSubmit(e)}>

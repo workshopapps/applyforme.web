@@ -194,7 +194,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
 
                             <BlueButton
                                 text="Assign Quota"
-                                width="214"
+                                width="364"
                                 func={handleModalShow}
                             />
                         </div>

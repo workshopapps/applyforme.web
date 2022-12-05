@@ -1,4 +1,4 @@
-import TopBar from "../TopBar/TopBar";
+import TopBar from "../components/TopBar/TopBar";
 import styles from "./Profile.module.css";
 import { NavLink } from "react-router-dom";
 import edit from "../assets/edit.png";
@@ -14,7 +14,6 @@ const Profile = () => {
             jobtype: "Onsite, hybrid",
             location: "London"
         }
-        // { jobtitle: "Product Designer", id: 2 },
     ];
     const CurrentProfile = ProfileDetails.map(oneprofile => (
         <div key={oneprofile.id} className={styles.each_profile}>

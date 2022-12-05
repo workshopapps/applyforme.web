@@ -1,12 +1,11 @@
 import React from "react";
 import { FiChevronDown, FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import BlueButton from "../../components/buttons/blue_background/BlueButton";
+import { useSelector } from "react-redux";
 import classes from "./UserPage.module.css";
-import { Users } from "./user_page_service/UserPageService";
+// import { Users } from "./user_page_service/UserPageService";
 const UsersPage = () => {
-    const handleApplicantView = id => {
-        console.log(id);
-    };
+
+    const applicantList = useSelector((state) => state.RRadmin)
     return (
         <div className={classes.main_container}>
             <section className={classes.user_header}>
@@ -29,48 +28,38 @@ const UsersPage = () => {
                             <th className={classes.hide_on_mobile}>
                                 Application done
                             </th>
-                            <th className={classes.hide_on_mobile}>Interviews</th>
-                            <th>Details</th>
+                            <th className={classes.hide_header_desktop}>
+                                Stat
+                            </th>
+                            <th className={classes.hide_on_mobile}>
+                                Interviews
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-
-                    {Users.map(
-                        ({
-                            id,
-                            name,
-                            interviews,
-                            plan,
-                            applicationDone,
-                            email
-                        }) => (
-                            <tr className={classes.user_details} key={id}>
-                                <td>{name}</td>
-                                <td className={classes.hide_on_mobile}>
-                                    {" "}
-                                    {email}
-                                </td>
-                                <td>{plan}</td>
-                                <td className={classes.hide_on_mobile}>
-                                    {applicationDone}
-                                </td>
-                                <td className={classes.hide_on_mobile}>
-                                    {interviews}
-                                </td>
-                                <td className={classes.desktop_button}>
-                                    <BlueButton text="view" width="70" />
-                                </td>
-
-                                <td
-                                    type="button"
-                                    className={classes.mobile_button}
-                                    onClick={() => handleApplicantView(id)}
-                                >
-                                    View
-                                </td>
-                            </tr>
-                        )
-                    )}
+                        {(applicantList.applicantList.content.length!==0) && applicantList.applicantList.content.map((list) => {
+                            {/* ({
+                                id,
+                                name,
+                                interviews,
+                                plan,
+                                applicationDone,
+                                email */}
+                            return (
+                                <tr className={classes.user_details} key={list.membership.id}>
+                                    <td>{list.membership.firstName}</td>
+                                    <td className={classes.hide_on_mobile}>
+                                        {" "}
+                                        {list.membership.emailAddress}
+                                    </td>
+                                    <td>basic</td>
+                                    <td>{list.totalSubmissions} of 15</td>
+                                    <td className={classes.hide_on_mobile}>
+                                        15
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
 

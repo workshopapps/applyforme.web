@@ -1,37 +1,47 @@
 .general_container {
     max-width: 1600px;
     margin: auto;
+    background-color: #FBFBFB;
 }
-
+.learnImg2{
+    display:none;
+}
+input[type="file"]{
+    display:none;
+}
 .sub_heading {
-    font-size: 12px;
+    font-size: 16px;
+}
+.box{
+    padding: 3rem 1rem 0rem;
+    background-color: white;
+    margin: 0.5rem;
 }
 
 /*======= Hero section =======*/
 
 .hero_container {
     width: 100%;
-    height: 90vh;
-    max-height: 650px;
-    /* background: #ceceec;
-    filter: blur(100px);
-    transform: rotate(18.96deg); */
 }
 
 .hero_container .hero_content {
     display: flex;
     width: 90%;
-    height: 100%;
+    align-items: center;
     margin: auto;
     margin-top: 1rem;
 }
 
 .hero_content .left {
+    width: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
     padding-top: 2.5rem;
     position: relative;
+}
+.file{
+    display: none;
 }
 
 .hero_content .left .elipse {
@@ -40,34 +50,12 @@
     right: 0;
 }
 
-.hero_content .left .browse {
-    width: 70%;
-    height: 150px;
-    margin-top: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    border: 1px solid #999999;
-    border-radius: 5px;
-    justify-content: center;
-    background-color: #ffffff;
-    font-size: 0.9rem;
-    padding: 1.2rem;
-}
-
-.hero_content .left .browse img {
-    width: 55px;
-    margin: 0 auto;
-}
-
-.hero_content .left .browse .base {
-    color: #cccccc;
-}
 
 .hero_content .left .heading {
-    font-size: 3rem;
+    font-size: 4rem;
+    font-weight: bold;
     width: 100%;
-    color: #202065;
+    color:  #2E3192;
     margin-bottom: 1.3rem;
 }
 
@@ -84,10 +72,11 @@
 
 .services_container {
     width: 100%;
-    /* height: 50vh;
-    max-height: 400px; */
+    background-color: #F3F3FB;
     margin: 5rem 0;
-    border-top: 1px solid #202065;
+    border-top: 1px solid #2E3192;
+    padding-bottom: 2em;
+    padding-top: 1rem;
 }
 
 .services_content {
@@ -100,13 +89,23 @@
 }
 
 .services_content h3 {
-    color: #202065;
+    color: #2E3192;
+    font-size: 27px;
+    font-weight: 500;
+    margin-bottom: 1rem;
 }
-
+.reviews{
+    font-size: 20px;
+}
+.believe{
+    font-size: 20px;
+}
 .services_content p {
     color: #52515b;
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 2rem;
 }
-
 .services_content .box img {
     margin-bottom: 1rem;
 }
@@ -115,9 +114,9 @@
 
 .learn_container {
     width: 100%;
-    margin: 4rem 0;
+    margin: 4rem 4rem 1rem 0;
     padding: 4rem 0;
-    border-top: 1px solid #202065;
+    border-top: 1px solid #2E3192;
 }
 
 .learn_content {
@@ -128,19 +127,21 @@
 .learn_content .top {
     margin-left: 1.4rem;
 }
-
 .learn_content h2 {
     margin: 1rem 0 2rem;
-    font-size: 2.5rem;
-    color: #202065;
-    width: 50%;
+    font-size: 3rem;
+    color: #2E3192;
+    font-weight: 600;
+    width: 60%;
 }
 
 .learn_content button {
-    padding: 0.5rem 2rem;
-    border: none;
-    color: #171646;
-    background-color: #c4d5ee33;
+    padding: 1rem 4rem;
+    border-radius: 7px;
+    border: 1px solid #2E3192;
+    font-weight: 600;
+    color: #2E3192;
+    background-color: white;
     margin-bottom: 2rem;
 }
 
@@ -152,6 +153,8 @@
 .learn_content .bottom {
     display: flex;
     position: relative;
+    background: #F3F3FB;
+    padding: 112px 120px;
 }
 
 .learn_content .bottom .left {
@@ -165,9 +168,10 @@
 }
 
 .learn_content .bottom h3 {
-    color: #52515b;
+    color: #2E3192;
     font-size: 2.5rem;
     width: 90%;
+    font-weight: 500;
 }
 
 .learn_content .bottom .right {
@@ -175,6 +179,7 @@
 }
 
 .learn_content .bottom .boxes {
+    background: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 1.5rem;
@@ -186,15 +191,18 @@
 }
 
 .boxes .box .figure {
-    font-size: 2rem;
-    color: #5052a5;
-    font-weight: 700;
+    font-size: 48px;
+    margin-top: 1rem;
+    line-height: 60px;
+    font-weight: 600;
+    color: #2E3192;
+    
 }
 
 /*==== Pricing section ========*/
 
 .pricing_container {
-    border-top: 1px solid #202065;
+    border-top: 1px solid #2E3192;
     padding: 4rem 0;
 }
 
@@ -208,8 +216,8 @@
 }
 
 .pricing_content .top h3 {
-    font-size: 2.5rem;
-    color: #202065;
+    font-size: 3.5rem;
+    color: #2E3192;
     margin: 20px 0;
 }
 
@@ -220,7 +228,7 @@
 
 .pricing_content .top button {
     border: none;
-    background-color: #202065;
+    background-color: #2E3192;
     color: #ffffff;
     padding: 0.5rem;
     border-radius: 5px;
@@ -254,9 +262,9 @@
 }
 
 .pricing_content .bottom .price_card {
-    border: 3px solid #5052a5;
+    border: 3px solid #2E3192;
     padding: 1.5rem;
-    border-radius: 15px;
+    border-radius: 10px;
     line-height: 1.8;
     width: 20rem;
     margin: auto;
@@ -279,9 +287,10 @@
 }
 
 .price_card .figure {
-    font-size: 2.5rem;
+    font-size: 2.9rem;
     font-weight: 600;
-    color: #202065;
+    margin:2rem;
+    color: #2E3192;
 }
 
 .price_card .interval {
@@ -296,6 +305,9 @@
 
 .pricing_content .bottom .price_card .bottom span {
     display: flex;
+    margin: 0.5rem 0;
+    font-size: 16px;
+    line-height: 20px;
     align-items: center;
     gap: 1rem;
 }
@@ -307,7 +319,7 @@
 .pricing_content .bottom .price_card button {
     border: none;
     margin: 1.5rem auto;
-    background-color: #202065;
+    background-color: #2E3192;
     color: #ffffff;
     width: 200px;
     padding: 16px 32px;
@@ -323,10 +335,11 @@
 /*======= Testimonials ========*/
 
 .reviews_container {
+    background-color: #F3F3FB;
     width: 100%;
     padding: 2rem 0;
-    border-top: 1px solid #202065;
-    border-bottom: 1px solid #202065;
+    border-top: 1px solid #2E3192;
+    border-bottom: 1px solid #2E3192;
     padding-bottom: 4.5rem;
     position: relative;
 }
@@ -346,9 +359,9 @@
 }
 
 .reviews_content .top h3 {
-    font-weight: 700;
-    color: #202065;
-    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2E3192;
+    font-size: 3rem;
     width: 40%;
 }
 
@@ -357,8 +370,10 @@
 }
 
 .reviews_content .bottom div {
-    flex: 1;
-    color: #1b1b1b;
+    flex: 1 1;
+    padding: 16px 16px 8px 16px;
+    background: white;
+    margin: 1.5rem 1.5rem 0 1.5rem;
 }
 
 .reviews_content .bottom div .stars {
@@ -367,14 +382,11 @@
 }
 
 .reviews_content .bottom .profile {
+    margin-left: 0px;
     display: flex;
+    margin-top: 0;
     align-items: center;
-    margin-top: 1.5rem;
-    gap: 1rem;
-}
-
-.reviews_content .bottom .profile img {
-    width: 3rem;
+    padding: 0;
 }
 
 .reviews_content .bottom .profile div {
@@ -412,9 +424,9 @@
 
 .FAQ_content div button {
     border: none;
-    background-color: #202065;
+    background-color: #2E3192;
     color: #ffffff;
-    padding: 0.4rem 2.5rem;
+    padding: 16px 64px;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -425,13 +437,17 @@
 }
 
 .FAQ_content div .text p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+    margin-top: 1.4rem;
+    font-size: 20px;
 }
 
+
 .FAQ_content div h3 {
-    font-weight: 700;
-    color: #202065;
-    font-size: 2.5rem;
+    font-weight: 600;
+    width:100%;
+    color: #2E3192;
+    font-size: 3rem;
 }
 
 .FAQ_content div ul li {
@@ -439,7 +455,7 @@
     padding: 1rem;
     width: 100%;
 
-    border-bottom: 1px solid #202065;
+    border-bottom: 1px solid #2E3192;
     position: relative;
 }
 
@@ -464,14 +480,17 @@
 .faq_one h5 {
     margin: 10px 0px;
 }
-
+.faqlist{
+    font-size: 20px;
+}
 .FAQ_content div ul li:first-child {
-    border-top: 1px solid #202065;
+    border-top: 1px solid #2E3192;
+    font-size: 20px;
 }
 
 @media (max-width: 820px) {
-    .hero_container {
-        max-height: 500px;
+    .uploadFile{
+        display: block;
     }
 
     .hero_container .hero_content {
@@ -487,10 +506,6 @@
     .hero_content .left .elipse {
         display: none;
     }
-
-    .services_container {
-        margin-top: 10rem;
-    }
     .services_content {
         width: 95%;
     }
@@ -500,13 +515,13 @@
     }
 
     .services_content .box h3 {
-        color: #202065;
+        color: #2E3192;
         font-size: 20px;
         margin-top: 20px;
     }
 
     .services_content .box p {
-        font-size: 16px;
+        font-size: 17px;
         margin-top: 20px;
     }
 
@@ -533,21 +548,55 @@
     .FAQ_content div h3 {
         font-size: 2rem;
     }
+    .learn_content .bottom {
+        padding: 80px 40px;
+    }
+    .learn_content .bottom .right p {
+        font-size: 16px;
+    }
+    .reviews{
+        font-size: 16px;
+    }
+    .FAQ_content div .text p {
+        font-size: 16px;
+    }
 }
 
-@media (max-width: 650px) {
+
+@media (max-width: 767px) {
+    .box{
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    .learnImg2{
+        display:block;
+    }
+    .learnImg{
+        display:none;
+    }
+    .Hero_FAQ_content__xOSam div .Hero_text__9h75H p {
+        font-size: 16px;
+    }
+    .believe{
+        font-size: 16px;
+    }
+   
+    .Hero_box__Y9r6z {
+        padding: 2rem 1rem 1rem;
+        background-color: white;
+        margin: 0.5rem;
+    }
+    
     .hero_container {
         width: 100%;
-        height: 90vh;
-        max-height: 650px;
-        /* background: #ceceec;
-        filter: blur(100px);
-        transform: rotate(18.96deg); */
+    }
+    .uploadFile{
+        display: block;
     }
 
     .hero_container .hero_content {
         display: flex;
-        width: 314px;
+        width: 90%;
     }
 
     .hero_content {
@@ -560,29 +609,28 @@
     }
 
     .hero_content .left .heading {
-        font-weight: 400;
         font-size: 40px;
     }
 
     .hero_content .right img {
-        width: 85%;
+        width: 100%;
         float: left;
     }
 
     .services_content {
         grid-template-columns: 1fr;
         height: fit-content;
-        padding: 0 20px;
+        padding: 0 10px;
     }
 
     .services_content h3 {
-        color: #202065;
+        color: #2E3192;
         font-size: 20px;
     }
 
     .services_content p {
         color: #52515b;
-        font-size: 14px;
+        font-size: 16px;
     }
     .services_content .box img {
         margin-bottom: 1rem;
@@ -591,22 +639,22 @@
 
     .learn_content .bottom {
         flex-direction: column;
-        width: 95%;
+        width: 100%;
+        padding: 80px 20px;
     }
 
     .learn_content h2 {
         font-size: 24px;
-        color: #202065;
+        color: #2E3192;
         width: 100%;
     }
 
     .learn_content .bottom .left h3 {
-        font-size: 16px;
+        font-size: 20px;
+        margin-bottom: 1rem;
     }
 
-    .learn_content .bottom .right p {
-        font-size: 14px;
-    }
+    
 
     .learn_content .bottom h3 {
         font-size: 1.8rem;
@@ -620,7 +668,7 @@
     }
 
     .learn_content .bottom .boxes .box span {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .boxes .box .figure {
@@ -637,10 +685,6 @@
 
     .pricing_content .bottom .left {
         width: 100%;
-    }
-
-    .pricing_content .top span {
-        font-size: 9px;
     }
     .pricing_content .top h3 {
         font-size: 32px;
@@ -659,7 +703,7 @@
     }
 
     .pricing_content .bottom .list span {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     /* ================Testimonial======================== */
@@ -674,7 +718,6 @@
 
     .reviews_content .bottom {
         flex-direction: column;
-        gap: 3rem;
     }
 
     .reviews_content .elipse {
@@ -702,13 +745,52 @@
         width: 100%;
         margin-top: 20px;
     }
+    .reviews_content .bottom div{
+    margin: 0 0 2rem 0;
+    }
+    
+.reviews_content .bottom .profile{
+    margin-bottom: -9px;
+}
 }
 
-@media (max-width: 420px) {
+@media (max-width: 425px) {
+    .box{
+        margin: 0;
+    }
+    .pricing_content .bottom .price_card .bottom span {
+        font-size: 16px;
+    }
+    .pricing_content .bottom .list span {
+        font-size: 16px;
+    }
+    .pricing_content {
+        width: 100%;
+    }
+    .pricing_content .top button {
+        width: 100px;
+        padding: 16px 0;
+    }
+    .learn_content button {
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    .learn_content .top {
+        margin-left: 0;
+    }
     .hero_container {
         height: fit-content;
+        background: #FBFBFB;
     }
     .hero_content .left .heading {
         font-size: 40px;
     }
+    .pricing_content .bottom .price_card{
+        width:100%;
+    }
+    
+    .services_container {
+       background: #FBFBFB;
+    }
+    
 }

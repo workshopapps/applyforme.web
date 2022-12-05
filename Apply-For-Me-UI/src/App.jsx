@@ -29,7 +29,7 @@ import Endorsment from "./pages/blog/pages/endorsement/Endorsement";
 import JobDescription from "./pages/job_decription/JobDescription";
 import HelpAndSupportPage from "./pages/help_support_pg/HelpAndSupportPage";
 import HowAfmWorks from "./pages/afmworks/HowAfmWorks";
-import NeedHelp  from "./pages/need_help/NeedHelp";
+import NeedHelp from "./pages/need_help/NeedHelp";
 
 // import AdminDashboard from "./pages/admin_dashboard/AdminDashboard";
 import ApplicantDetails from "./pages/admin_dashboard/components/applicant_details/ApplicantDetails";
@@ -39,7 +39,7 @@ import { pricingPage } from "pages/pricing_plan/pricingData";
 import { formData } from "pages/checkout/checkoutData";
 import Pricing from "./pages/pricing_plan/Pricing";
 import Checkout from "pages/checkout/Checkout";
-
+import ProtectedRoute from "ProtectedRoute";
 //UserDashboard
 import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
@@ -60,11 +60,19 @@ import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
-import { useEffect, useState } from "react";
+
+
+import RRD from "pages/RR_Dashboard/RRD";
+
+import { useEffect } from "react";
+
+import Sign_In from "pages/RR_recuiters_page/Sign_In";
+import Sign_Up from "pages/RR_recuiters_page/Sign_Up";
 
 function App() {
     const dispatch = useDispatch();
-
+    const { user } = useSelector(state => state.user);
+    console.log("App her", user);
     useEffect(() => {
         if (localStorage?.getItem("tokenHngKey")) {
             let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
@@ -84,10 +92,9 @@ function App() {
                 <Route exact path="/privacy" element={<Privacy />} />
                 <Route exact path="/cookies" element={<Cookies />} />
                 <Route exact path="/career" element={<Career />} />
-                <Route exact path="/help" element={<HelpAndSupportPage/>}/>
-                <Route exact path="/howafmworks" element={<HowAfmWorks/>}/>
-                <Route exact path="/needHelp" element={<NeedHelp/>}/>
-            
+                <Route exact path="/help" element={<HelpAndSupportPage />} />
+                <Route exact path="/howafmworks" element={<HowAfmWorks />} />
+                <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route
                     exact
                     path="/pricing"
@@ -108,12 +115,19 @@ function App() {
                     path="/reverseRecruiterAdmin/:id"
                     element={<RR_admin_profile />}
                 />
+
+                <Route
+                    exact
+                    path="/reverseRecruiterDashboard"
+                    element={<RRD />}
+                />
                 <Route exact path="blog" element={<Blog />} />
                 <Route
                     exact
                     path="/blog/questions"
                     element={<BestQuestions />}
                 />
+                {/* BLOG ROUTE */}
                 <Route exact path="/blog/skills" element={<Skills />} />
                 <Route exact path="blog/cover" element={<Cover />} />
                 <Route exact path="blog/work" element={<Work />} />
@@ -123,38 +137,81 @@ function App() {
                 <Route exact path="blog/brand" element={<Brand />} />
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
-                <Route path="dashboard" element={<UserDashboardLayout />}>
-                    <Route path="/dashboard/" element={<DashboardNothing />} />
+                {/*AUTH ROUTE */}
+                <Route exact path="/wel1" element={<Welcome1 />} />
+                <Route exact path="/wel2" element={<Welcome2 />} />
+                <Route exact path="/reg" element={<Registration />} />
+                <Route exact path="/pass" element={<Password />} />
+                <Route exact path="/nwpass" element={<NewPass />} />
+                <Route exact path="/veri" element={<Verification />} />
 
-                    <Route path="admin" element={<DashboardHome />} />
-                    <Route path="admin/form" element={<ApplicationForm />} />
+                {/* RECRUITER ROUTE */}
+
+                <Route exact path="/rr_sign_in" element={<Sign_In />} />
+                <Route exact path="/rr_sign_up" element={<Sign_Up />} />
+                    
+                {/*  PROTECTED ROUTE*/}
+                <Route
+                    element={
+                        <ProtectedRoute allowedRoles={["SuperAdministrator"]} />
+                    }
+                >
+                    {/* SUPER ADMIN ROUTE*/}
+
+                    <Route exact path="/user-page" element={<Dashboard />} />
                     <Route
-                        path="admin/details"
-                        element={<ApplicantDetails />}
-                    />
-                    <Route path="user/" element={<NoProfile />} />
+                        path="/superAdminProfile"
+                        element={<ProfileScreen />}
+                    ></Route>
                     <Route
-                        path="user/create-profile"
-                        element={<CreateProfile />}
+                        exact
+                        path="/reverseRecruiterAdmin/:id"
+                        element={<RR_admin_profile />}
                     />
-                    <Route path="user/success" element={<Success />} />
-                    <Route path="user/profile-list" element={<Profile />} />
-                    {/* <Route path="user" element={<UserDashboard />} /> */}
                 </Route>
                 <Route
-                    path="/dashboard/applications"
-                    element={<ApplicationsDashboardLayout />}
+                    element={
+                        <ProtectedRoute
+                            allowedRoles={["Professional", "Recruiter"]}
+                        />
+                    }
                 >
-                    <Route index element={<Applications />} />
-                    <Route path=":jobId" element={<JobDescription />} />
-                </Route>
-                <Route exact path="/wel1" element={<Welcome1 />} />
-                <Route exact path="/reg" element={<Registration />} />
-                <Route exact path="/wel2" element={<Welcome2 />} />
-                <Route exact path="/pass" element={<Password />} />
-                <Route exact path="/veri" element={<Verification />} />
-                <Route exact path="/nwpass" element={<NewPass />} />
+                    
 
+                    
+                    {/* USER DASHBAORD */}
+                    <Route path="dashboard" element={<UserDashboardLayout />}>
+                        {/* User Dashboard Profile */}
+                        <Route
+                            path="/dashboard/"
+                            element={<DashboardNothing />}
+                        />
+                        <Route path="admin" element={<DashboardHome />} />
+                        <Route
+                            path="admin/form"
+                            element={<ApplicationForm />}
+                        />
+                        <Route
+                            path="admin/details"
+                            element={<ApplicantDetails />}
+                        />
+                        <Route path="user/" element={<NoProfile />} />
+                        <Route
+                            path="user/create-profile"
+                            element={<CreateProfile />}
+                        />
+                        <Route path="user/success" element={<Success />} />
+                        <Route path="user/profile-list" element={<Profile />} />
+                        {/* User Dashboard Applications */}
+                        <Route
+                            path="applications"
+                            element={<ApplicationsDashboardLayout />}
+                        >
+                            <Route index element={<Applications />} />
+                            <Route path=":jobId" element={<JobDescription />} />
+                        </Route>
+                    </Route>
+                </Route>
                 <Route path="*" element={<Error />} />
             </Routes>
         </>

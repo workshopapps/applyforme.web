@@ -46,3 +46,7 @@
 .review_jobtitle {
     margin-top: 1rem;
 }
+.review_keywords {
+    display: flex;
+    gap: 0.5rem;
+}
