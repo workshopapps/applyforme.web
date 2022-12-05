@@ -72,6 +72,12 @@ public class JwtUtil {
 
         claims.put("memberId", userDetails1.getId());
         claims.put("roles", roles);
+
+        claims.put("fullName", userDetails1.getFullName());
+        claims.put("emailAddress", userDetails1.getEmailAddress());
+        claims.put("username", userDetails1.getDisplayName());
+        claims.put("avatar", userDetails1.getAvatar());
+        claims.put("phoneNumber", userDetails1.getPhoneNumber());
         return doGenerateToken(claims, userDetails.getUsername());
     }
 

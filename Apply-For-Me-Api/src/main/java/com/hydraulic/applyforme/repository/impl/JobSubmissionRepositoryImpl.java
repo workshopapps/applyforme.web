@@ -1,11 +1,14 @@
 package com.hydraulic.applyforme.repository.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import com.hydraulic.applyforme.model.dto.submission.ApplierSubmissionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -49,4 +52,15 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 		return professionalSubmissionDTO;
 	}
 
+	@Override
+	public List<ApplierSubmissionDto> getSubmissionDetails(Long id){
+		String queryString = "SELECT s.job_title, s.job_link, s.job_location, s.job_company, "
+				                  + "s.job_location_type, s.summary, s.other_comment, "
+								  + "s.created_on FROM job_submission s WHERE s.applier_id = :applierid";
+		Query query = entityManager.createNativeQuery(queryString);
+		query.setParameter("applierid", id);
+		List submissionList = query.getResultList();
+		System.out.println("submissionList.size(): " + submissionList.size());
+		return submissionList;
+	}
 }
