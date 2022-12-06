@@ -82,7 +82,6 @@ export const SuperAdmin_changePassword = createAsyncThunk(
     "RRadmin/SuperAdmin_changePassword",
     async value => {
         try {
-            console.log("form values:", value);
             const token = localStorage.getItem("tokenHngKey");
             const response = await axios.post(
                 `${url}/api/v1/super-admin/change-password`,
@@ -101,7 +100,6 @@ export const SuperAdmin_changePassword = createAsyncThunk(
             toast.success("password changed Successfully");
             return response?.data;
         } catch (error) {
-            console.log(error.response.data);
             toast.error("Failed to update password due to an unexpected error");
             return error.response.data;
         }
