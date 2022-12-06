@@ -3,8 +3,22 @@ import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import ApplicationsListHeader from "./ApplicationsListHeader";
 import { applications } from "../applicationsMock";
+import axios from "axios";
+import { useEffect, useState } from "react";
 const Table = () => {
+    const [data, setData] = useState([])
+    const [error, setError] = useState(false)
     const navigate = useNavigate();
+    useEffect(() => {
+        axios.get(`https://api.applyforme.hng.tech/api/v1/applicant/entries`)
+        .then(res => {
+            setData(res.data.content)
+            setError(false)
+        })
+        .catch(err => {
+            setError(err)
+        })
+    }, [])
     return (
         <div className={styles.applications_table_wrapper}>
             <ApplicationsListHeader />
@@ -21,10 +35,10 @@ const Table = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {applications.map((application, index) => (
+                        {data?.map?.((application, index) => (
                             <tr
                                 className={styles.applications_table_body_row}
-                                key={`${application.company}-${index}`}
+                                key={`${application.jobCompany}-${index}`}
                                 onClick={() =>
                                     navigate(
                                         `/dashboard/applications/${application.id}`
@@ -32,9 +46,9 @@ const Table = () => {
                                 }
                             >
                                 <td>
-                                    <div>{application.company}</div>
+                                    <div>{application.jobCompany}</div>
                                     <div className={styles.show_tablet}>
-                                        {application.location}
+                                        {application.jobLocation}
                                     </div>
                                 </td>
                                 <td>
@@ -44,11 +58,11 @@ const Table = () => {
                                     </div>
                                 </td>
                                 <td className={styles.hide_tablet}>
-                                    {application.location}
+                                    {application.jobLocation}
                                 </td>
                                 <td>{application.salaryRange}</td>
                                 <td className={styles.hide_tablet}>
-                                    {application.jobDuration}
+                                    {application.jobType}
                                 </td>
                                 <td>{application.date}</td>
                             </tr>
