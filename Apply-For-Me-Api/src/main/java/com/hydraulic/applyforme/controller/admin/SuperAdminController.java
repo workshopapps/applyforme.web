@@ -41,7 +41,7 @@ public class SuperAdminController {
         var currentUser = CurrentUserUtil.getCurrentUser();
         System.out.println(currentUser.getId());
     	service.updatePassword(currentUser.getId(), body);
-    	return "Password successfully changed";
+    	return "password successfully changed";
     }
 
 
