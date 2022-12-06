@@ -86,7 +86,7 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 
     @Override
     public List<JobSummaryResponse> retrieveProfessionalSubmissions(String emailAddress) {
-        Professional applicant = professionalJpaRepository.getProfessionalByMemberEmailAddress(emailAddress);
+        Professional applicant = professionalJpaRepository.getProfessionalByMemberEmailAddress(emailAddress.toLowerCase());
         if (applicant == null){
             throw new ProfessionalNotFoundException(emailAddress);
         }
