@@ -4,6 +4,7 @@ import { EditInfoContent } from "../../modals/editpersonalinfo/editProfileInform
 import "./main_container.css";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+//import { useSelector, UseDispatch } from "react-redux";
 export const MainContainer = ({ img, address, dob }) => {
     const [showEditModal, setEditModal] = useState(false);
     const [showPasswordModal, setPasswordModal] = useState(false);
@@ -11,6 +12,8 @@ export const MainContainer = ({ img, address, dob }) => {
     const token = localStorage.getItem("tokenHngKey");
     let decoded = jwtDecode(token);
     const { fullName, emailAddress, phoneNumber } = decoded;
+    // const adminDetails = useSelector(state => state.RRadmin);
+    // const dispatch = useDispatch();
 
     return (
         <>
