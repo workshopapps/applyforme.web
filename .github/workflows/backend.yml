@@ -7,8 +7,8 @@ on:
 
 jobs:
 
-  deploy_Frontend:
-    name: deploy frontend
+  deploy_backend:
+    name: deploy backend
     runs-on: ubuntu-latest
 
     steps:
@@ -29,10 +29,8 @@ jobs:
           password: ${{ secrets.HNG_SERVER_PASSWORD }}
           port: ${{ secrets.HNG_SERVER_PORT }}
           script: |
-            cd ./applyforme-fe/applyforme.web
-            # git pull
-            # cd ./Apply-For-Me-UI
-            # npm install
-            # pm2 start npm -- start
-            # pm2 save
+            cd ./applyforme-be/applyforme.web
+            git pull
+            pm2 restart backend
+            pm2 save
      
