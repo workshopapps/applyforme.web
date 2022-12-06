@@ -4,6 +4,7 @@ import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.SalaryRange;
 import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 import com.hydraulic.applyforme.model.dto.salaryrange.SalaryRangeDto;
+import com.hydraulic.applyforme.model.response.JobDescriptionResponse;
 import com.hydraulic.applyforme.service.ProfessionalService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.springframework.data.domain.Page;
@@ -47,6 +48,12 @@ public class ProfessionalController {
     @GetMapping("/applicants/{pageNo}/{pageSize}")
     public Page<Professional> retrieveApplicants(@PathVariable int pageNo, @PathVariable int pageSize ){
         return  service.retrieveAllProfessionals(pageNo, pageSize);
+
+    }
+
+    @GetMapping("/view-job-description/{applicantId}/{jobId}")
+    public JobDescriptionResponse getJobDescription(@PathVariable Long applicantId, @PathVariable Long jobId){
+      return service.viewJobDescription(applicantId, jobId);
 
     }
 }
