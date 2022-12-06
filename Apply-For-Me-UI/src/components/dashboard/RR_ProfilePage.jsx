@@ -21,14 +21,26 @@ import ProfileIcon from "../../assets/images/profile-circle.svg";
 // import { getActiveLink } from "./service/DashboardSidebarService";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getRRAdminProfile } from "store/slice/RR_AdminSlice";
 // import { Navigate } from "react-router-dom";
 
 const RR_admin_Profile = ({ setInputSearchValue }) => {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
+    const dispatch = useDispatch();
+    const recruiter = useSelector((state)=>state.RRadmin);
+    const {firstName, avatar,emailAddress,phoneNumber,currentJobTitle} = recruiter.reverseRProfile;
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
+    const id = useParams();
+    useEffect(()=>{
+        dispatch(getRRAdminProfile(id))
+    },[dispatch, getRRAdminProfile]);
+    
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -41,7 +53,6 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const handleModalShow = () => {
         setShowModal(true);
     };
-
     const handleQuota = event => {
         event.preventDefault();
     };
@@ -165,7 +176,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         <div className={classes.img_details}>
                             <div className={classes.img_wrapper}>
                                 <img
-                                    src={ProfilePiture}
+                                    src={ProfilePic}
                                     alt="profile picture"
                                 />
                             </div>
@@ -184,12 +195,10 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         </div>
 
                         <div className={classes.profile_details__text_content}>
-                            <h3>Regina Griffin</h3>
-                            <p>Reverse recruiter</p>
-                            <p>ReginaGriffin505@gmail.com</p>
-
-                            <p>+2348012345678</p>
-
+                            <h3>{firstName}</h3>
+                            <p>{currentJobTitle}</p>
+                            <p>{emailAddress}</p>
+                            <p>{phoneNumber}</p>
                             <p>Female</p>
 
                             <BlueButton
