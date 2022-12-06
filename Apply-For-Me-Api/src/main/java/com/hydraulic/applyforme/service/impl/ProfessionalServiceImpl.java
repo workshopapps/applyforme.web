@@ -1,12 +1,13 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
+import com.hydraulic.applyforme.model.response.JobDescriptionResponse;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 import com.hydraulic.applyforme.service.ProfessionalService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,19 +16,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ProfessionalServiceImpl implements ProfessionalService {
     private final ProfessionalRepository repository;
     private final ProfessionalJpaRepository professionalJpaRepository;
-    
+
     public ProfessionalServiceImpl(ProfessionalRepository repository, ProfessionalJpaRepository professionalJpaRepository) {
         this.repository = repository;
         this.professionalJpaRepository = professionalJpaRepository;
     }
 
     @Override
-    public List<Professional> findAll(Integer pageOffset) { return repository.getAll(pageOffset); }
+    public List<Professional> findAll(Integer pageOffset) {
+        return repository.getAll(pageOffset);
+    }
 
     @Override
     @Transactional(readOnly = true)
@@ -44,7 +49,7 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 
     @Override
     @Transactional
-    public Professional updateProfile(ProfessionalDto professionalDto, Long id){
+    public Professional updateProfile(ProfessionalDto professionalDto, Long id) {
         Professional professional = repository.getOne(id);
         if (professional == null) {
             throw new ProfessionalNotFoundException(id);
@@ -71,12 +76,40 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 
     @Override
     public Page<Professional> retrieveAllProfessionals(int pageNo, int pageSize) {
-        Pageable page = PageRequest.of(pageNo, pageSize, Sort.Direction.DESC  );
-      Page<Professional> applicantsPage = professionalJpaRepository.findAll(page);
-      if (applicantsPage.isEmpty()){
-          throw new ProfessionalNotFoundException(applicantsPage.getTotalElements());
-      }
-      return applicantsPage;
+        Pageable page = PageRequest.of(pageNo, pageSize, Sort.Direction.DESC);
+        Page<Professional> applicantsPage = professionalJpaRepository.findAll(page);
+        if (applicantsPage.isEmpty()) {
+            throw new ProfessionalNotFoundException(applicantsPage.getTotalElements());
+        }
+        return applicantsPage;
     }
+
+    @Override
+    public JobDescriptionResponse viewJobDescription(Long professionalId, Long submissionId) {
+        Optional<Professional> professional = professionalJpaRepository.findById(professionalId);
+        if (professional.isEmpty()) {
+            throw new ProfessionalNotFoundException(professionalId);
+        }
+        Set<Submission> submissions = professional.get().getSubmissions();
+
+        for (Submission submission:submissions){
+
+            if(submission.getId().equals(submissionId)){
+                JobDescriptionResponse jobDescriptionResponse = JobDescriptionResponse.builder()
+                        .jobLocation(submission.getJobLocation())
+                        .jobTitle(submission.getJobTitle())
+                        .jobSummary(submission.getSummary())
+                        .jobCompany(submission.getJobCompany())
+                        .date(submission.getCreatedOn())
+                        .monthlySalaryRange(null)
+                        .build();
+
+                return jobDescriptionResponse;
+            }
+
+        }
+        return null;
+    }
+
 
 }
