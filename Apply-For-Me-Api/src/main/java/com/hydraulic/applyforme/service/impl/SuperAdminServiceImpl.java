@@ -7,6 +7,7 @@ import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.model.exception.PasswordMismatchException;
 import com.hydraulic.applyforme.repository.MemberRepository;
+import com.hydraulic.applyforme.repository.impl.MemberRepositoryImpl;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.SuperAdminJpaRepository;
 import com.hydraulic.applyforme.service.SuperAdminService;
@@ -93,7 +94,8 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     @Override
     @Transactional
     public boolean deleteMemberById(Long id) {
-    	Member member = memberJpaReposiroty.getById(id);
+    	Member member =  repository.deleteOne(id);
+    	System.out.println(member);
     	if(member == null) {
     		throw new MemberNotFoundException(id);
     	}
