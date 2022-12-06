@@ -49,5 +49,8 @@ public class ProfessionalController {
         return  service.retrieveAllProfessionals(pageNo, pageSize);
 
     }
+
+ghjghj
+
 }
 
