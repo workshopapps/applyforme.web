@@ -30,20 +30,7 @@ export const PasswordContent = () => {
         <div>
             <form className="edit_passwordContent" onSubmit={handleSubmit}>
                 <input
-                    type="text"
-                    name="newPassword"
-                    placeholder="enter new password"
-                    required
-                    value={formField.newpassword}
-                    onChange={e =>
-                        setFormField({
-                            ...formField,
-                            newpassword: e.target.value
-                        })
-                    }
-                />
-                <input
-                    type="text"
+                    type="password"
                     name="oldPassword"
                     placeholder="enter old password"
                     required
@@ -56,7 +43,21 @@ export const PasswordContent = () => {
                     }
                 />
                 <input
-                    type="text"
+                    type="password"
+                    name="newPassword"
+                    placeholder="enter new password"
+                    required
+                    value={formField.newpassword}
+                    onChange={e =>
+                        setFormField({
+                            ...formField,
+                            newpassword: e.target.value
+                        })
+                    }
+                />
+                
+                <input
+                    type="password"
                     name="confirm"
                     placeholder="confirm password"
                     required

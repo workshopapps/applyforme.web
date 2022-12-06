@@ -48,9 +48,6 @@ const UsersPage = () => {
                                     <td>basic</td>
                                     <td>{list.totalSubmissions} of 15</td>
                                     <td>basic</td>
-                                    <td className={classes.hide_on_mobile}>
-                                       15
-                                    </td>
                                 </tr>
                             )}
                         )}

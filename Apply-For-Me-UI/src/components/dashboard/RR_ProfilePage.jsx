@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import classes from "./DashboardHeader.module.css";
 import { FiChevronLeft, FiPause, FiTrash } from "react-icons/fi";
 import Logo from "../../assets/images/nav_logo.svg";
@@ -19,7 +19,6 @@ import ProfileIcon from "../../assets/images/profile-circle.svg";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRRAdminProfile } from "store/slice/RR_AdminSlice";
 // import { Navigate } from "react-router-dom";
@@ -36,7 +35,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const id = useParams();
     useEffect(()=>{
         dispatch(getRRAdminProfile(id))
-    },[dispatch, getRRAdminProfile]);
+    },[dispatch, getRRAdminProfile,id]);
     
 
     const handleSubmit = event => {
