@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import * as Sentry from "@sentry/react";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landing_page/LandingPage";
 import AboutUs from "./pages/about_us/AboutUs";
@@ -218,4 +219,4 @@ function App() {
     );
 }
 
-export default App;
+export default Sentry.withProfiler(App);
