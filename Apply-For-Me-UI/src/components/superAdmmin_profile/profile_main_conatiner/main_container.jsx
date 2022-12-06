@@ -2,11 +2,15 @@ import { useState } from "react";
 import { PasswordContent } from "../../modals/editpersonalinfo/editPassword/editPassword";
 import { EditInfoContent } from "../../modals/editpersonalinfo/editProfileInformation/editProfileInformation";
 import  "./main_container.css";
+import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
+export const MainContainer=({img,address,dob})=>{
     const [showEditModal, setEditModal] = useState(false);
     const [showPasswordModal, setPasswordModal] = useState(false);
     const navigate = useNavigate();
+    const token = localStorage.getItem("tokenHngKey");
+    let decoded = jwtDecode(token);
+    const {fullName, emailAddress,phoneNumber} = decoded;
 
     
     return(
@@ -30,28 +34,28 @@ export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
                         <div className="mobile_info_top">
                             <div className="proileInfo">
                                 <h2 className="proileInfolabel">Name</h2>
-                                <h2 className="proileInfovalue">{name}</h2>
+                                <h2 className="proileInfovalue">{fullName && fullName}</h2>
                             </div>
                             <div className="proileInfo">
                                 <h2 className="proileInfolabel">Email Address</h2>
-                                <h2 className="proileInfovalue"> {email}</h2>
+                                <h2 className="proileInfovalue"> {emailAddress}</h2>
                             </div>
                         </div>                          
                     </div>
                     <div className="desktop_info_top">
                         <div className="proileInfo">
                             <h2 className="proileInfolabel">Name</h2>
-                            <h2 className="proileInfovalue">{name}</h2>
+                            <h2 className="proileInfovalue">{fullName && fullName}</h2>
                         </div>
                         <div className="proileInfo">
                             <h2 className="proileInfolabel">Email Address</h2>
-                            <h2 className="proileInfovalue"> {email}</h2>
+                            <h2 className="proileInfovalue"> {emailAddress && emailAddress}</h2>
                         </div>
                     </div>
                     
                     <div className="proileInfo">
                         <h2 className="proileInfolabel">Phone Number</h2>
-                        <h2 className="proileInfovalue">{phoneNumber}</h2>
+                        <h2 className="proileInfovalue">{phoneNumber  && phoneNumber}</h2>
                     </div>
                     <div className="proileInfo">
                         <h2 className="proileInfolabel">Address</h2>

@@ -32,12 +32,13 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const dispatch = useDispatch();
-    const recruiter = useSelector((state)=>state.RRadmin)
+    const recruiter = useSelector((state)=>state.RRadmin);
+    const {firstName, avatar,emailAddress,phoneNumber,currentJobTitle} = recruiter.reverseRProfile;
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const id = useParams();
     useEffect(()=>{
-        dispatch(getRRAdminProfile({id:id}))
+        dispatch(getRRAdminProfile(id))
     },[dispatch, getRRAdminProfile]);
     
 
@@ -175,7 +176,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         <div className={classes.img_details}>
                             <div className={classes.img_wrapper}>
                                 <img
-                                    src={ProfilePiture}
+                                    src={ProfilePic}
                                     alt="profile picture"
                                 />
                             </div>
@@ -194,12 +195,10 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         </div>
 
                         <div className={classes.profile_details__text_content}>
-                            <h3>Regina Griffin</h3>
-                            <p>Reverse recruiter</p>
-                            <p>ReginaGriffin505@gmail.com</p>
-
-                            <p>+2348012345678</p>
-
+                            <h3>{firstName}</h3>
+                            <p>{currentJobTitle}</p>
+                            <p>{emailAddress}</p>
+                            <p>{phoneNumber}</p>
                             <p>Female</p>
 
                             <BlueButton

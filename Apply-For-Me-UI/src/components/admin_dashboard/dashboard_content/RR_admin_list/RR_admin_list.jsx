@@ -6,7 +6,6 @@ import { Desktop_List } from './desktop_list_wrapper';
 import { Mobile_view_list } from './mobile_list_wrapper';
 export const RR_Admin_list=({inputSearchValue})=>{
     const RR_recruiter = useSelector((state)=>state.RRadmin);
-    console.log(RR_recruiter);
     const [search, setSearch] = useState([]);
     const [rangeEnd, setRangeEnd]= useState(4);
     const [rangeStart, setRangeStart]= useState(0);

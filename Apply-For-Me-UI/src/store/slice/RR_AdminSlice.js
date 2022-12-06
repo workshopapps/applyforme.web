@@ -11,7 +11,6 @@ export const Fetch_RR_Admin = createAsyncThunk(
         try {
             const response = await axios.get(
                 `${url}/api/v1/super-admin/member/recruiter/all`);
-                console.log(response?.data);
             return response?.data;
            
         } catch (error) {
@@ -24,8 +23,11 @@ export const getRRAdminProfile = createAsyncThunk(
     "RRadmin/getRRAdminProfile",
     async (values,  { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${url}/api/v1/super-admin/recruiter/${values.id}`);
-            console.log(response?.data)
+            const response = await axios.get(`${url}/api/v1/super-admin/member/detail/${values.id}`,{
+                headers:{
+                    "Authorization":`Bearer ${token}` 
+                }
+            });
             return response?.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -43,7 +45,6 @@ export const SuperAdminApplicants = createAsyncThunk(
                     "Authorization":`Bearer ${token}` 
                 }
             });
-            console.log(response?.data)
             return response?.data;
         } catch (error) {
             console.log(error);
@@ -52,17 +53,18 @@ export const SuperAdminApplicants = createAsyncThunk(
 )
 export const Delete_RR_Admin = createAsyncThunk(
     "RRadmin/Delete_RR_Admin",
-    async (params, { rejectWithValue }) => {
+    async (params) => {
         try {
             const token = localStorage.getItem("tokenHngKey");
-            console.log(token);
-            const response = await axios.delete(`${url}/api/v1/super-admin/member/remove/${params.id}`, { 
-                headers: { "Authorization": `Bearer ${token}` } 
+            const response = await axios.delete(`${url}/api/v1/super-admin/recruiter/${params.id}`,{
+                headers:{
+                    "Authorization":`Bearer ${token}` 
+                }
             });
             console.log("deleted")
             return response?.data;
         } catch (error) {
-            return rejectWithValue(error.response.data);
+           console.log(error.response.data);
         }
     }
 );
@@ -76,12 +78,7 @@ const RR_Admin_Slice = createSlice({
         errorStatus: "",
         deleteError:"",
         deleteStatus:"",
-        reverseRecruiterfirstName:'',
-        reverseRecruiterLasttName:'',
-        reverseRecruiterPhoneNumber:'',
-        reverseRecruiterCurrentJobTitle:'',
-        reverseRecruiteEemailAddress:'',
-        reverseRecruiterAvatar:'',
+        reverseRProfile:{},
         RRProfileloadingStatus:"",
         RRProfilerrorStatus: "",
     },
@@ -89,7 +86,6 @@ const RR_Admin_Slice = createSlice({
     extraReducers: {
         [Fetch_RR_Admin.pending]: (state) => {
             state.loadingStatus = "pending";
-            console.log(state.loadingStatus )
         },
         [Fetch_RR_Admin.fulfilled]: (state, action) => {
             state.loadingStatus = "success";
@@ -100,8 +96,6 @@ const RR_Admin_Slice = createSlice({
         [Fetch_RR_Admin.rejected]: (state,action) => {
             state.loadingStatus = "rejected";
             state.errorStatus = action.payload;
-            console.log(state.loadingStatus )
-            console.log(state.errorStatus)
         },
         [Delete_RR_Admin.pending]: (state) => {
             state.deleteStatus = "pending";
@@ -136,14 +130,16 @@ const RR_Admin_Slice = createSlice({
         },
         [getRRAdminProfile.fulfilled]: (state, action) => {
             state.RRProfileloadingStatus = "success";
-            const details = action.payload;
-            console.log(details);
+            if(action.payload){
+                state.reverseRProfile = action.payload;
+                console.log(state.reverseRProfile)
+            }
+           
             
         },
         [getRRAdminProfile.rejected]: (state,action) => {
             state.RRProfileloadingStatus = "rejected";
             state.RRProfilerrorStatus = action.payload;
-            console.log(state.RRProfilerrorStatus);
         }
     }
 });

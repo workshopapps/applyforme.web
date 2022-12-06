@@ -6,6 +6,7 @@ import com.hydraulic.applyforme.service.SuperAdminStatService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,13 +25,15 @@ public class SuperAdminStatisticController {
     }
 
     @GetMapping("/counts-part-one")
-    public AdminDashboardStatisticsOne getPartOne(){
-        return service.getStatistics();
+    public AdminDashboardStatisticsOne getPartOne(
+            @RequestParam(value = "fetchByDate", defaultValue = "0000-01-01", required = false) String date
+    ){
+        return service.getStatistics(date);
     }
 
     @GetMapping("/applier-submission")
-    public List<ApplierJobSubmissionStatistics> getApplierSubmissionStatistics() {
-        return service.getAppliersTotalSubmissions();
+    public List<ApplierJobSubmissionStatistics> getApplierSubmissionStatistics(@RequestParam(required = false, defaultValue = "1", name = "pageNo") Integer pageNumber) {
+        return service.getAppliersTotalSubmissions(pageNumber);
     }
 
 }
