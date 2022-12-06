@@ -1,21 +1,23 @@
 package com.hydraulic.applyforme.controller.admin;
 
-import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
-import com.hydraulic.applyforme.service.SuperAdminCustomService;
+import javax.validation.Valid;
+
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
 import com.hydraulic.applyforme.service.SuperAdminService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
-
-import javax.validation.Valid;
-
-import static com.hydraulic.applyforme.constants.PagingConstants.*;
-import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DIRECTION;
 
 @RestController
 @RequestMapping(
