@@ -2,6 +2,8 @@ package com.hydraulic.applyforme.model.response;
 
 import lombok.*;
 
+import java.util.Date;
+
 @Builder
 @Getter
 @NoArgsConstructor
@@ -14,7 +16,7 @@ public class JobDescriptionResponse {
 
     public String jobLocation;
 
-    public String date;
+    public Date date;
 
     public String monthlySalaryRange;
 
