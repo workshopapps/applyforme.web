@@ -38,7 +38,7 @@ const DashboardHome = () => {
 
                     <Link
                         className={classes.job_application_form_button}
-                        to="/dashboard/applications"
+                        to="/dashboard/admin/form"
                     >
                         Job Application Form
                     </Link>

@@ -1,6 +1,7 @@
 import classes from "../../../RR_Dashboard/styles/Applications.module.css";
-
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import instance from "../axios/axios";
 
 const list = [
     {
@@ -54,6 +55,17 @@ const list = [
 ];
 
 const ApplicationList = () => {
+    // const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        instance
+            .get("/api/v1/recruiter/application/entries")
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => console.log(err));
+    }, []);
+
     return (
         // Application stats Table
         <div className={classes.new_applications_stats_table}>
