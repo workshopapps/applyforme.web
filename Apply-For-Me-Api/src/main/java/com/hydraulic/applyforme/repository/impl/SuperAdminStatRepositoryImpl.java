@@ -10,9 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -29,22 +31,38 @@ public class SuperAdminStatRepositoryImpl implements SuperAdminStatRepository {
         this.applierRepository = applierRepository;
     }
     @Override
-    public Long getAllSubmissions() {
-        String queryText = "select count(jb) from Submission jb";
-        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class);
+    public Long getAllSubmissions(Date startDate, Date endDate) {
+        String queryText = "select count(jb) from Submission jb where jb.createdOn between :startDate and :endDate";
+        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class)
+                .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
+                .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
         return total.getSingleResult();
     }
     @Override
-    public Long getAllUsers() {
-        String queryText = "select count(m) from Member m";
-        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class);
+    public Long getAllUsers(Date startDate, Date endDate) {
+        String queryText = "select count(m) from Member m where m.createdOn between :startDate and :endDate";
+        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class)
+                .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
+                .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
         return total.getSingleResult();
     }
 
     @Override
-    public List<ApplierJobSubmissionStatistics> getAppliersTotalSubmissions() {
+    public Long getRRAdmins(Date startDate, Date endDate) {
+        String queryText = "select count(ap) from Applier ap where ap.member.createdOn between :startDate and :endDate";
+        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class)
+                .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
+                .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+        return total.getSingleResult();
+    }
+
+    @Override
+    public List<ApplierJobSubmissionStatistics> getAppliersTotalSubmissions(Integer pageNumber) {
         String queryText = "select applier_id, count(*) AS total from job_submission group by applier_id order by total DESC";
-        List<Object[]> stats = entityManager.createNativeQuery(queryText).setMaxResults(10).getResultList();
+
+        List<Object[]> stats = entityManager.createNativeQuery(queryText)
+                .setFirstResult((pageNumber - 1) * DEFAULT_PAGE_SIZE)
+                .setMaxResults(DEFAULT_PAGE_SIZE).getResultList();
 
         List<ApplierJobSubmissionTotalResponse> submissions = new ArrayList<>();
         List<ApplierJobSubmissionStatistics> statistics = new ArrayList<>();

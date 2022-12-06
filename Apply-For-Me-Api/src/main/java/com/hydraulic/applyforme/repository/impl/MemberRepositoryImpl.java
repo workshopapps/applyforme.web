@@ -37,6 +37,14 @@ public class MemberRepositoryImpl implements MemberRepository {
     public Member getOne(Long id) {
         return entityManager.find(Member.class, id);
     }
+    
+    @Override
+    public Member deleteOne(Long id) {
+    	String q = "select m from Member m where m.id = :id";
+    	TypedQuery<Member> query = entityManager.createQuery(q, Member.class);
+    	query.setParameter("id", id); 
+    	return query.getSingleResult();
+    }
 
     @Override
     public Member getRef(Long id) {

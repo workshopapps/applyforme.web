@@ -30,9 +30,9 @@ jobs:
           port: ${{ secrets.HNG_SERVER_PORT }}
           script: |
             cd ./applyforme-fe/applyforme.web
-            git pull
-            cd ./Apply-For-Me-UI
-            npm install
-            pm2 start npm -- start
-            pm2 save
+            # git pull
+            # cd ./Apply-For-Me-UI
+            # npm install
+            # pm2 start npm -- start
+            # pm2 save
      
