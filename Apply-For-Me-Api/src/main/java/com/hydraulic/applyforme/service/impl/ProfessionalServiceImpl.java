@@ -1,6 +1,8 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
+import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.model.response.JobSummaryResponse;
@@ -15,7 +17,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ProfessionalServiceImpl implements ProfessionalService {
@@ -82,8 +86,25 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 
     @Override
     public List<JobSummaryResponse> retrieveProfessionalSubmissions(String emailAddress) {
+        Professional applicant = professionalJpaRepository.getProfessionalByMemberEmailAddress(emailAddress);
+        if (applicant == null){
+            throw new ProfessionalNotFoundException(emailAddress);
+        }
 
-        return null;
+        List<JobSummaryResponse> summaries = new ArrayList<>();
+
+        Set<Submission> allJobSubmissions = applicant.getSubmissions();
+        for (Submission submission : allJobSubmissions){
+            JobSummaryResponse summaryResponse = JobSummaryResponse.builder()
+                    .jobLocation(submission.getJobLocation())
+                    .jobCompany(submission.getJobCompany())
+                    .jobTitle(submission.getJobTitle())
+                    .createdOn(submission.getCreatedOn())
+                    .jobLocationType(submission.getJobLocationType())
+                    .build();
+            summaries.add(summaryResponse);
+        }
+        return summaries;
     }
 
 }
