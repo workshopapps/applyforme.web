@@ -1,8 +1,10 @@
 package com.hydraulic.applyforme.service;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 
+import com.hydraulic.applyforme.model.response.JobDescriptionResponse;
 import org.springframework.data.domain.Page;
 
 
@@ -17,5 +19,7 @@ public interface ProfessionalService {
     Professional updateProfile(ProfessionalDto professionalDto, Long id);
 
     Page<Professional> retrieveAllProfessionals(int pageNo, int PageSize);
+
+    JobDescriptionResponse viewJobDescription(Long professionalId, Long submissionId);
 
 }
