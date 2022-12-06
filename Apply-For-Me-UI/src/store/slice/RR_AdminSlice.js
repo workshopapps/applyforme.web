@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const url = "https://api.applyforme.hng.tech";
 const token = localStorage.getItem("tokenHngKey");
@@ -81,6 +82,7 @@ export const SuperAdmin_changePassword = createAsyncThunk(
     "RRadmin/SuperAdmin_changePassword",
     async value => {
         try {
+            console.log("form values:", value);
             const token = localStorage.getItem("tokenHngKey");
             const response = await axios.post(
                 `${url}/api/v1/super-admin/change-password`,
@@ -96,9 +98,11 @@ export const SuperAdmin_changePassword = createAsyncThunk(
                     }
                 }
             );
-
+            toast.success("password changed Successfully");
             return response?.data;
         } catch (error) {
+            console.log(error.response.data);
+            toast.error("Failed to update password due to an unexpected error");
             return error.response.data;
         }
     }
@@ -202,6 +206,7 @@ const RR_Admin_Slice = createSlice({
             if (action.payload) {
                 state.superAdminProfileDetails = action.payload;
             }
+            console.log(action.payload);
             console.log(state.superAdminProfileDetails);
         },
         [getSuperAdminProfileInfo.rejected]: state => {
