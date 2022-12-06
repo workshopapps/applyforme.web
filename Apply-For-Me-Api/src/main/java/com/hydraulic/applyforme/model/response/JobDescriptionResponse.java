@@ -20,6 +20,5 @@ public class JobDescriptionResponse {
 
     public String jobSummary;
 
-    public String Responsibilities;
 
 }
