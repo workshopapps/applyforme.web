@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import "./RR_admin_List.css";
 import { useNavigate } from "react-router-dom";
-export const Mobile_view_list =({first_name,current_job_title,id})=>{
+export const Mobile_view_list =({firstName,currentJobTitle,id} )=>{
     const navigate = useNavigate();
     return (
         <>
@@ -13,8 +13,8 @@ export const Mobile_view_list =({first_name,current_job_title,id})=>{
                 />
             </div>
             <div style={{ width: "50%" }}>
-                <h3>{first_name}</h3>
-                <h3>{current_job_title}</h3>
+                <h3>{firstName}</h3>
+                <h3>{currentJobTitle}</h3>
             </div>
             <div className="view_mobile_Container">
                 <span className="dropdown">
