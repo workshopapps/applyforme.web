@@ -11,11 +11,20 @@ const ContactUs = () => {
             <Nav />
 
             <div className="contact-mid">
-                <div className="form">
-                    <ContactUsForm />
-                </div>
                 <div className="form-details">
                     <LeftDetails />
+                </div>
+                <div className="contact-form">
+                    <ContactUsForm />
+                    <div className="more-details">
+                        <h4>Do You Have Queries or Suggestions?</h4>
+                        <p>
+                            You could also fill the form and send us a message.
+                            We guarantee an absolute strict adherence to
+                            information security and also a swift implementation
+                            to your feedback
+                        </p>
+                    </div>
                 </div>
             </div>
 

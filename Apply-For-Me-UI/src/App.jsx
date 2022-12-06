@@ -60,7 +60,14 @@ import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
-import { useEffect, useState } from "react";
+
+
+import RRD from "pages/RR_Dashboard/RRD";
+
+import { useEffect } from "react";
+
+import Sign_In from "pages/RR_recuiters_page/Sign_In";
+import Sign_Up from "pages/RR_recuiters_page/Sign_Up";
 
 function App() {
     const dispatch = useDispatch();
@@ -97,7 +104,23 @@ function App() {
                     exact
                     path="/checkout"
                     element={<Checkout {...formData} />}
-                />{" "}
+                />
+                <Route exact path="/user-page" element={<Dashboard />} />
+                <Route
+                    path="/superAdminProfile"
+                    element={<ProfileScreen />}
+                ></Route>
+                <Route
+                    exact
+                    path="/reverseRecruiterAdmin/:id"
+                    element={<RR_admin_profile />}
+                />
+
+                <Route
+                    exact
+                    path="/reverseRecruiterDashboard"
+                    element={<RRD />}
+                />
                 <Route exact path="blog" element={<Blog />} />
                 <Route
                     exact
@@ -121,6 +144,12 @@ function App() {
                 <Route exact path="/pass" element={<Password />} />
                 <Route exact path="/nwpass" element={<NewPass />} />
                 <Route exact path="/veri" element={<Verification />} />
+
+                {/* RECRUITER ROUTE */}
+
+                <Route exact path="/rr_sign_in" element={<Sign_In />} />
+                <Route exact path="/rr_sign_up" element={<Sign_Up />} />
+                    
                 {/*  PROTECTED ROUTE*/}
                 <Route
                     element={
@@ -147,8 +176,12 @@ function App() {
                         />
                     }
                 >
+                    
+
+                    
                     {/* USER DASHBAORD */}
                     <Route path="dashboard" element={<UserDashboardLayout />}>
+                        {/* User Dashboard Profile */}
                         <Route
                             path="/dashboard/"
                             element={<DashboardNothing />}
@@ -169,16 +202,15 @@ function App() {
                         />
                         <Route path="user/success" element={<Success />} />
                         <Route path="user/profile-list" element={<Profile />} />
-                        {/* <Route path="user" element={<UserDashboard />} /> */}
+                        {/* User Dashboard Applications */}
+                        <Route
+                            path="applications"
+                            element={<ApplicationsDashboardLayout />}
+                        >
+                            <Route index element={<Applications />} />
+                            <Route path=":jobId" element={<JobDescription />} />
+                        </Route>
                     </Route>
-                </Route>
-                {/* APPLICATION DASHBAORD */}
-                <Route
-                    path="/dashboard/applications"
-                    element={<ApplicationsDashboardLayout />}
-                >
-                    <Route index element={<Applications />} />
-                    <Route path=":jobId" element={<JobDescription />} />
                 </Route>
                 <Route path="*" element={<Error />} />
             </Routes>

@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.model.domain;
 
 import com.hydraulic.applyforme.model.enums.JobLocationType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +21,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name ="job_submission")
 public class Submission {

@@ -1,7 +1,12 @@
 import "./RR_admin_List.css";
 import { useNavigate } from "react-router-dom";
-export const Desktop_List =({first_name,current_job_title,created_on,id})=>{
+import { useDispatch } from "react-redux";
+import { Delete_RR_Admin } from "store/slice/RR_AdminSlice";
+export const Desktop_List =({firstName,currentJobTitle,id,createdOn} )=>{
     const navigate = useNavigate();
+    const dispatch= useDispatch();
+    
+    
     return (
         <>
             <td>
@@ -13,14 +18,14 @@ export const Desktop_List =({first_name,current_job_title,created_on,id})=>{
                             alt="object not found"
                         />
                     </span>
-                    <h3 style={{ marginLeft: "0.4rem" }}>{first_name}</h3>
+                    <h3 style={{ marginLeft: "0.4rem" }}>{firstName}</h3>
                 </div>
             </td>
             <td>
-                <h3 style={{ fontWeight: "400" }}>{current_job_title}</h3>
+                <h3 style={{ fontWeight: "400" }}>{currentJobTitle}</h3>
             </td>
             <td>
-                <h3 style={{ fontWeight: "400" }}>{created_on}</h3>
+                <h3 style={{ fontWeight: "400" }}>{createdOn}</h3>
             </td>
             <td>
                 <div className="viewContainer">
@@ -39,6 +44,9 @@ export const Desktop_List =({first_name,current_job_title,created_on,id})=>{
                             <img
                                 src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51367_phrq53.png"
                                 style={{ marginBottom: "0.7rem" }}
+                                onClick={()=> {
+                                    dispatch(Delete_RR_Admin({id:id}))
+                                }}
                             />
                             <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51368_oevqxr.png" />
                         </div>

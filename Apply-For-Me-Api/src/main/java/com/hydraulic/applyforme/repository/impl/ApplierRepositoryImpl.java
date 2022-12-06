@@ -6,6 +6,7 @@ import com.hydraulic.applyforme.repository.ApplierRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 @Repository
@@ -20,6 +21,16 @@ public class ApplierRepositoryImpl implements ApplierRepository {
     @Override
     public Applier getOne(Long id) {
         return entityManager.find(Applier.class, id);
+    }
+
+    @Override
+    public Applier getRef(Long id) {
+        try {
+            return entityManager.getReference(Applier.class, id);
+        }
+        catch (EntityNotFoundException ex) {
+            return null;
+        }
     }
 
     @Override

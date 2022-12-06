@@ -16,8 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -74,16 +74,19 @@ public class RoleServiceImpl implements RoleService {
     private ModelMapper modelMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Role> findAll(Integer pageOffset) {
         return repository.getAll(pageOffset);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Role> findAll() {
         return repository.getAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Role findOne(Long id) {
         Role role = repository.getOne(id);
         if (role == null) {

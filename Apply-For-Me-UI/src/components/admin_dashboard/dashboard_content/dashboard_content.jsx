@@ -1,3 +1,4 @@
+import jwtDecode from 'jwt-decode';
 import {useState} from 'react';
 import './dashboard_content.css';
 import { RR_Admin_list } from './RR_admin_list/RR_admin_list';
@@ -26,7 +27,9 @@ export const DashboardContent=({inputSearchValue})=>{
         users:"12000",
         recruiter:"8000"
     }]
-
+    const token = localStorage.getItem("tokenHngKey");
+    let decoded = jwtDecode(token);
+    const {fullName} = decoded;
     const statisticsHandler=(e)=>{
         statisticsList.find((item)=>{
             if(e.target.value === item.date){
@@ -39,14 +42,13 @@ export const DashboardContent=({inputSearchValue})=>{
             }
         })
         console.log(e.target.value);
-
     }
     return(
         <>
         <div className="applicantsContainer">
-            <h2 className='profile_name'>Hello John Cooper</h2>
+            <h2 className='profile_name'>Hello {fullName}</h2>
             <div className="statisticsContainer">
-                <h2>Statistical</h2>
+                <h2>Statistics</h2>
                 <select style={{background:"whitesmoke"}} name="statistic_sorter" id="statistic_sorter" onChange={statisticsHandler}>
                     {
                         statisticsList.map((statistics, index)=>{

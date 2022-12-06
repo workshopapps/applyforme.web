@@ -26,10 +26,10 @@ const TermsAndCondition = () => {
                 <div className={classes.text_area}>
                     {/* intro section */}
                     <div className={classes.introduction}>
-                        <p id="date_ref" className={classes.heading}>
+                        <p id="date_ref" className={classes.small_heading}>
                             Effective from the 18th of November, 2022
                         </p>
-                        <p>
+                        <p className={classes.instruction_caps}>
                             PLEASE READ THESE TERMS AND CONDITIONS CAREFULLY
                             BEFORE USING OUR SERVICE
                         </p>
@@ -37,7 +37,9 @@ const TermsAndCondition = () => {
                     {/* Acknowledgement */}
                     <div className="acknowledge">
                         <p className={classes.heading}>Acknowledgment</p>
-                        <div className={classes.child}>
+                        <div
+                            className={`${classes.child} ${classes.child_no_indent}`}
+                        >
                             <p>
                                 This page states the terms of use (“Terms”)
                                 under which you (“You”) may use the
@@ -124,7 +126,7 @@ const TermsAndCondition = () => {
                             2. What’s in these terms?
                         </p>
                         <div className={classes.child}>
-                            <p>
+                            <p className={classes.no_indent}>
                                 These jobseeker terms (the “Jobseeker Terms“)
                                 set out the information applicable to jobseekers
                                 (the “Jobseekers“) who wish to use the Site and
@@ -148,7 +150,7 @@ const TermsAndCondition = () => {
                             3. There are other Terms that may apply to you
                         </p>
                         <div className={classes.child}>
-                            <p>
+                            <p className={classes.no_indent}>
                                 This Acceptable Use Policy refers to the
                                 following additional terms, which also apply to
                                 your use of the Site:
@@ -230,7 +232,9 @@ const TermsAndCondition = () => {
                         <p className={classes.heading}>
                             5. Employment Business Regulations
                         </p>
-                        <div className={classes.child}>
+                        <div
+                            className={`${classes.child} ${classes.child_no_indent}`}
+                        >
                             <p>
                                 The Conduct of Employment Business Regulations
                                 (the “Regulations'') seek to ensure that
@@ -272,7 +276,9 @@ const TermsAndCondition = () => {
                         <p className={classes.heading}>
                             6. Object of the agreement and scope of the Services
                         </p>
-                        <div className={classes.child}>
+                        <div
+                            className={`${classes.child} ${classes.child_no_indent}`}
+                        >
                             <p>
                                 We offer a variety of career services via the
                                 Platforms. We want to be your lifelong career
@@ -300,11 +306,11 @@ const TermsAndCondition = () => {
                     <div>
                         <p className={classes.heading}>7. Your Account</p>
                         <div className={classes.child}>
-                            <p>
+                            <p className={classes.no_indent}>
                                 Certain Services will only be available as part
                                 of an account on the Site.
                             </p>
-                            <p>
+                            <p className={classes.no_indent}>
                                 If you enter into an agreement for an account,
                                 you can use additional Services as described
                                 hereinafter. You can register for an account as
@@ -401,7 +407,7 @@ const TermsAndCondition = () => {
                     <div>
                         <p className={classes.heading}>9. Dormant Emails</p>
                         <div className={classes.child}>
-                            <p>
+                            <p className={classes.no_indent}>
                                 If you have an account but you have been
                                 inactive for a predetermined period, we may
                                 email you to check whether you are still on the

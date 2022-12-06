@@ -18,7 +18,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "components/spinner/Spinner";
 
-const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-in";
+const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-in";
 
 const Welcome2 = () => {
     const dispatch = useDispatch();
@@ -27,6 +27,10 @@ const Welcome2 = () => {
     const [loading, setLoading] = useState(false);
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+    const [errState, setErrState] = useState({
+        password: false,
+        email_address: false
+    });
 
     useEffect(() => {
         if (user) {
@@ -44,8 +48,8 @@ const Welcome2 = () => {
     }, [user]);
 
     const handleSubmit = async event => {
-        setLoading(true);
         event.preventDefault();
+        setLoading(true);
         const formData = {
             email_address: event.target.email.value,
             password: event.target.pass.value
