@@ -96,6 +96,7 @@ public class ProfessionalServiceImpl implements ProfessionalService {
         Set<Submission> allJobSubmissions = applicant.getSubmissions();
         for (Submission submission : allJobSubmissions){
             JobSummaryResponse summaryResponse = JobSummaryResponse.builder()
+                    .submissionId(submission.getId())
                     .jobLocation(submission.getJobLocation())
                     .jobCompany(submission.getJobCompany())
                     .jobTitle(submission.getJobTitle())

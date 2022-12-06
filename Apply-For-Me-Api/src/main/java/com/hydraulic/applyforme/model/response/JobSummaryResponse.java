@@ -9,6 +9,7 @@ import java.util.Date;
 @Data
 @Builder
 public class JobSummaryResponse {
+    private  Long submissionId;
     private String jobTitle;
     private String jobLocation;
     private String jobCompany;
