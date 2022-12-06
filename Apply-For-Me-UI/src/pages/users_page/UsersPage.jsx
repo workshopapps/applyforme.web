@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FiChevronDown, FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import classes from "./UserPage.module.css";
 const UsersPage = () => {
     const list = useSelector((state)=>state.RRadmin);
-    const dispatch = useDispatch();
     return (
         <div className={classes.main_container}>
             <section className={classes.user_header}>

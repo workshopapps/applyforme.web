@@ -13,9 +13,6 @@ import Signout from "../../assets/images/signout.svg";
 import ProgressBar from "../../assets/images/progress_bar.svg";
 import { MobileNav } from "./mobileNav";
 import { useNavigate } from "react-router-dom";
-
-import ProfilePiture from "../../assets/images/profile_picture.svg";
-
 import ProfileIcon from "../../assets/images/profile-circle.svg";
 // import Help from "../../assets/images/help_outline.svg";
 // import { getActiveLink } from "./service/DashboardSidebarService";
@@ -33,7 +30,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const dispatch = useDispatch();
     const recruiter = useSelector((state)=>state.RRadmin);
-    const {firstName, avatar,emailAddress,phoneNumber,currentJobTitle} = recruiter.reverseRProfile;
+    const {firstName,emailAddress,phoneNumber,currentJobTitle} = recruiter.reverseRProfile;
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const id = useParams();

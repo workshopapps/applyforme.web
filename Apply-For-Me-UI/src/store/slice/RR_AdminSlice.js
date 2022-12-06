@@ -14,7 +14,7 @@ export const Fetch_RR_Admin = createAsyncThunk(
             );
             return response?.data;
         } catch (error) {
-            console.log(error.response.data);
+           return error.response.data;
         }
     }
 );
@@ -52,7 +52,7 @@ export const SuperAdminApplicants = createAsyncThunk(
             );
             return response?.data;
         } catch (error) {
-            console.log(error);
+            return error.response.data;
         }
     }
 );
@@ -69,7 +69,6 @@ export const Delete_RR_Admin = createAsyncThunk(
                     }
                 }
             );
-            console.log("deleted");
             return response?.data;
         } catch (error) {
             console.log(error.response.data);
@@ -96,7 +95,6 @@ export const SuperAdmin_changePassword = createAsyncThunk(
                     }
                 }
             );
-
             return response?.data;
         } catch (error) {
             return error.response.data;
@@ -116,7 +114,7 @@ export const getSuperAdminProfileInfo = createAsyncThunk(
                     }
                 }
             );
-            //console.log("superadmin info", response?.data);
+            console.log("superadmin info", response);
             return response?.data;
         } catch (error) {
             console.log(error.response.data);
