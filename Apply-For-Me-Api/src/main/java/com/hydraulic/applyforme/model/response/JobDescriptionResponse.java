@@ -1,9 +1,14 @@
-package com.hydraulic.applyforme.model.response.base;
+package com.hydraulic.applyforme.model.response;
 
+import lombok.*;
 
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class JobDescriptionResponse {
 
-    public  String jobTitle;
+    public String jobTitle;
 
     public String jobCompany;
 
