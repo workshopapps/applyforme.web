@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const url = "https://api.applyforme.hng.tech";
-const token = localStorage?.getItem("tokenHngKey");
+const token = localStorage.getItem("tokenHngKey");
 
 export const Fetch_RR_Admin = createAsyncThunk(
     "RRadmin/Fetch_RR_Admin",
@@ -20,15 +21,19 @@ export const Fetch_RR_Admin = createAsyncThunk(
 );
 export const getRRAdminProfile = createAsyncThunk(
     "RRadmin/getRRAdminProfile",
-    async (values,{rejectWithValue}) => {
+    async (values) => {
         try {
             const response = await axios.get(
-                `${url}/api/v1/super-admin/member/detail/${values.id}`
+                `${url}/api/v1/super-admin/member/detail/${values.id}`,{
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
             );
             console.log(response);
             return response?.data;
         } catch (error) {
-           return rejectWithValue(error.response.data);
+          console.log(error.response.data);
         }
     }
 );
@@ -46,6 +51,7 @@ export const SuperAdminApplicants = createAsyncThunk(
                     }
                 }
             );
+            console.log("super rr", response?.data)
             return response?.data;
         } catch (error) {
            return error.response.data;
@@ -54,7 +60,7 @@ export const SuperAdminApplicants = createAsyncThunk(
 );
 export const Delete_RR_Admin = createAsyncThunk(
     "RRadmin/Delete_RR_Admin",
-    async params => {
+    async(params) => {
         try {
             const token = localStorage.getItem("tokenHngKey");
             const response = await axios.delete(
@@ -67,14 +73,14 @@ export const Delete_RR_Admin = createAsyncThunk(
             );
             return response?.data;
         } catch (error) {
-            console.log(error.response.data);
+         
         }
     }
 );
 
 export const SuperAdmin_changePassword = createAsyncThunk(
     "RRadmin/SuperAdmin_changePassword",
-    async value => {
+    async (value) => {
         try {
             const token = localStorage?.getItem("tokenHngKey")
             const response = await axios.post(
@@ -110,6 +116,20 @@ export const getSuperAdminProfileInfo = createAsyncThunk(
                 }
             );
             console.log("superadmin info", response);
+            return response?.data;
+        } catch (error) {
+           return error.response.data;
+        }
+    }
+);
+export const getRRApplications = createAsyncThunk(
+    "RRadmin/getRRApplications",
+    async () => {
+        try {
+            const response = await axios.get(
+                `${url}/api/v1/recruiter/application/entries`
+            );
+            console.log("rrApplication info", response?.data);
             return response?.data;
         } catch (error) {
            return error.response.data;
@@ -154,10 +174,12 @@ const RR_Admin_Slice = createSlice({
         },
         [Delete_RR_Admin.fulfilled]: (state, action) => {
             state.deleteStatus = "success";
+            toast.success("deleted request successful");
             console.log(action.payload);
         },
         [Delete_RR_Admin.rejected]: (state, action) => {
             state.deleteStatus = "rejected";
+            toast.error("deleted request failed");
             state.deleteError = action.payload;
             console.log(state.deleteError);
         },
@@ -166,9 +188,8 @@ const RR_Admin_Slice = createSlice({
         },
         [SuperAdminApplicants.fulfilled]: (state, action) => {
             state.applicantsloadingStatus = "success";
-            if (action.payload) {
-                state.superAdminApplicantsList = action.payload;
-            }
+            state.superAdminApplicantsList= action.payload;
+           
         },
         [SuperAdminApplicants.rejected]: state => {
             state.applicantsloadingStatus = "rejected";
@@ -197,7 +218,6 @@ const RR_Admin_Slice = createSlice({
             state.superAdminProfileDetailsLoadingStatus = "success";
            
                 state.superAdminProfileDetails = action.payload;
-            
             console.log(state.superAdminProfileDetails);
         },
         [getSuperAdminProfileInfo.rejected]: state => {

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import classes from "./UserPage.module.css";
 const UsersPage = () => {
     const list = useSelector((state)=>state.RRadmin);
+    console.log(list);
     return (
         <div className={classes.main_container}>
             <section className={classes.user_header}>
