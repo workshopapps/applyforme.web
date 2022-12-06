@@ -1,0 +1,38 @@
+name: Frontend Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+
+  deploy_frontend:
+    name: deploy frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+    
+        env:
+          GITHUB_USERNAME: ${{ secrets.VICDAM_USER }}  
+          GITHUB_TOKEN: ${{ secrets.VICDAM_TOKEN }}     
+          host: ${{ secrets.HNG_SERVER_HOST }}          
+          username: ${{ secrets.HNG_SERVER_USERNAME }}
+          password: ${{ secrets.HNG_SERVER_PASSWORD }}
+          port: ${{ secrets.HNG_SERVER_PORT }}
+
+        with:
+          host: ${{ secrets.HNG_SERVER_HOST }}          
+          username: ${{ secrets.HNG_SERVER_USERNAME }}
+          password: ${{ secrets.HNG_SERVER_PASSWORD }}
+          port: ${{ secrets.HNG_SERVER_PORT }}
+          script: |
+            cd ./applyforme-ui/applyforme.web
+            git pull
+            cd ./Apply-For-Me-UI
+            npm install
+            pm2 restart npm
+            pm2 save
+     
