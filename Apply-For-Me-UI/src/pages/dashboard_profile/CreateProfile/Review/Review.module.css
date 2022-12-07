@@ -50,3 +50,8 @@
     display: flex;
     gap: 0.5rem;
 }
+.not_filled {
+    font-style: italic;
+    font-size: 1.2rem;
+    font-weight: 300;
+}

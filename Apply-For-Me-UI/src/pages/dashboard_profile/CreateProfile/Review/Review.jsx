@@ -80,29 +80,47 @@ const Review = ({ formData, keywords }) => {
     return (
         <div className={styles.form_body}>
             <h3>Review your profile and it's good to go!</h3>
-            <h3 className={classes.review_jobtitle}>{formData.job_title}</h3>
+            {formData.job_title ? (
+                <h3 className={classes.review_jobtitle}>
+                    {formData.job_title}
+                </h3>
+            ) : (
+                <p className={classes.not_filled}>not specified yet</p>
+            )}
+
             <h5>Job title</h5>
             <hr className={styles.hr_one} />
             <div className={classes.review_box}>
                 <div className={classes.review_box_left}>
                     <h6>Search Info</h6>
                     <div>
-                        <p>
-                            {formData.location}
-                            {formData.isRemote ? ", remote" : ", hybrid"}
-                        </p>
+                        {formData.location ? (
+                            <p>{formData.location}</p>
+                        ) : (
+                            <p className={classes.not_filled}>
+                                not specified yet
+                            </p>
+                        )}
                         <h5>Job location</h5>
                     </div>
                     <div>
-                        <p>{formData.experience}</p>
+                        {formData.experience ? (
+                            <p>{formData.experience}</p>
+                        ) : (
+                            <p className={classes.not_filled}>
+                                not specified yet
+                            </p>
+                        )}
                         <h5>Experience</h5>
                     </div>
                     <div>
-                        <section className={classes.review_keywords}>
-                            {keywords?.map((k, index) => (
-                                <p key={`${k.k}+${index}`}>{k}</p>
-                            ))}
-                        </section>
+                        {included_keywords ? (
+                            <section className={classes.review_keywords}>
+                                {included_keywords}
+                            </section>
+                        ) : (
+                            <p className={classes.not_filled}>none specified</p>
+                        )}
                         <h5>Keywords</h5>
                     </div>
                     <h6>Personal Info</h6>
@@ -110,7 +128,9 @@ const Review = ({ formData, keywords }) => {
                         {formData.cv_file?.name ? (
                             <p>{formData.cv_file?.name}</p>
                         ) : (
-                            <p>Not uploaded yet</p>
+                            <p className={classes.not_filled}>
+                                not uploaded yet
+                            </p>
                         )}
                         <h5>Uploaded CV</h5>
                     </div>
@@ -124,13 +144,25 @@ const Review = ({ formData, keywords }) => {
                     <div>
                         <h6>Cover letter template</h6>
                         <div>
-                            <p>{formData.coverletter_subject}</p>
+                            {formData.coverletter_subject ? (
+                                <p>{formData.coverletter_subject}</p>
+                            ) : (
+                                <p className={classes.not_filled}>
+                                    not yet written
+                                </p>
+                            )}
                             <h5>Cover letter subject</h5>
                         </div>
                         <div className={classes.coverletter_body}>
                             <h6>Cover letter body</h6>
                             <div className={classes.review_textarea}>
-                                {formData.coverletter_body}
+                                {formData.coverletter_body ? (
+                                    <p>{formData.coverletter_body}</p>
+                                ) : (
+                                    <p className={classes.not_filled}>
+                                        not yet written
+                                    </p>
+                                )}
                             </div>
                             <div className={classes.review_buttons}>
                                 <BlueButton
