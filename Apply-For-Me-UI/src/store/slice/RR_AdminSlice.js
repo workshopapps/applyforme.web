@@ -95,8 +95,12 @@ export const SuperAdmin_changePassword = createAsyncThunk(
             toast.success("password changed Successfully");
             return response?.data;
         } catch (error) {
-            toast.error("Failed to update password due to an unexpected error");
-            return error.response.data;
+            if (error.response.data) {
+                toast.error(error.response.data.error);
+            } else {
+                toast.error(error.response.data.message);
+            }
+            console.log(error.response.data);
         }
     }
 );
