@@ -98,6 +98,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 onClick={() =>
                                     setShowMenuProfile(prevState => !prevState)
                                 }
+                                style={{ cursor: "pointer" }}
                             >
                                 <img
                                     src={ProfilePic}

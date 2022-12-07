@@ -1,4 +1,4 @@
-name: App deploy
+name: Frontend Deploy
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  deploy_Frontend:
+  deploy_frontend:
     name: deploy frontend
     runs-on: ubuntu-latest
 
@@ -29,10 +29,10 @@ jobs:
           password: ${{ secrets.HNG_SERVER_PASSWORD }}
           port: ${{ secrets.HNG_SERVER_PORT }}
           script: |
-            cd ./applyforme-fe/applyforme.web
-            # git pull
-            # cd ./Apply-For-Me-UI
-            # npm install
-            # pm2 start npm -- start
-            # pm2 save
+            cd ./applyforme-ui/applyforme.web
+            git pull
+            cd ./Apply-For-Me-UI
+            npm install
+            pm2 restart npm
+            pm2 save
      
