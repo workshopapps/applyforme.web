@@ -11,16 +11,17 @@ const JobSearch = ({ formData, setFormData }) => {
     const [countries, setCountries] = useState();
     const [requestStatus, setRequestStatus] = useState("idle");
 
-    const countrynames = countries?.map(onecountry => ({
-        label: onecountry.title,
-        value: onecountry.title
-    }));
-    const countryNames = countrynames?.reverse();
+    // Create a Set that only contains unique values from the title property to prevent duplicates that may be fetched
+    const uniqueTitles = new Set(
+        countries?.map(onecountry => onecountry.title)
+    );
 
-    countryNames?.splice(1, 0, {
-        label: "Job Location",
-        value: ""
-    });
+    // Create an array of objects with the unique titles
+    const countryNames = Array.from(uniqueTitles)?.map(title => ({
+        label: title,
+        value: title
+    }));
+
     useEffect(() => {
         fetch("https://api.applyforme.hng.tech/api/v1/country/entries/all")
             .then(response => response.json())
@@ -38,8 +39,8 @@ const JobSearch = ({ formData, setFormData }) => {
         }
 
         const file = e.target.files[0];
-        const fileName = file.name;
-        const fileExtension = fileName.split(".").pop();
+        const fileName = file?.name;
+        const fileExtension = fileName?.split(".").pop();
         console.log(fileExtension);
         //Make POST requests
         setRequestStatus("loading");
@@ -76,7 +77,6 @@ const JobSearch = ({ formData, setFormData }) => {
             <div className={classes.dropdownbox}>
                 <Dropdown
                     options={[
-                        { label: "Job Title", value: "" },
                         {
                             label: "Backend engineer",
                             value: "Backend engineer"
@@ -121,6 +121,7 @@ const JobSearch = ({ formData, setFormData }) => {
                             job_title: e.target.value
                         });
                     }}
+                    placeholderText="Job Title"
                 />
 
                 <h5>This job title will be used to find jobs around the web</h5>
@@ -130,6 +131,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     options={countryNames}
                     value={formData.location}
                     width={90}
+                    placeholderText="Job Location"
                     onChange={e => {
                         setFormData({
                             ...formData,
@@ -161,12 +163,12 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Experience</p>
                     <Dropdown
                         options={[
-                            { label: "Experience", value: "" },
                             { label: "No experience", value: "trainee" },
                             { label: "Entry level", value: "intern" },
                             { label: "Mid level", value: "mid_level" },
                             { label: "Senior level", value: "senior" }
                         ]}
+                        placeholderText="Select experience"
                         value={formData.experience}
                         onChange={e => {
                             setFormData({
@@ -180,11 +182,11 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Employment Type</p>
                     <Dropdown
                         options={[
-                            { label: "Employment Type", value: "" },
                             { label: "Contract", value: "contract" },
                             { label: "Full-time", value: "full_time" },
                             { label: "Part-time", value: "part_time" }
                         ]}
+                        placeholderText="Employment Type"
                         value={formData.employment_type}
                         onChange={e => {
                             setFormData({
@@ -198,7 +200,6 @@ const JobSearch = ({ formData, setFormData }) => {
                     <p>Salary Expectation</p>
                     <Dropdown
                         options={[
-                            { label: "Salary", value: "" },
                             { label: "$3,000-$5,000", value: "$3,000-$5,000" },
                             {
                                 label: "$5,000-$10,000",
@@ -213,6 +214,7 @@ const JobSearch = ({ formData, setFormData }) => {
                                 value: "$15,000-$25,000"
                             }
                         ]}
+                        placeholderText="Salary Expectation"
                         value={formData.salary_expectation}
                         onChange={e => {
                             setFormData({
@@ -223,7 +225,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     />
                 </div>
             </div>
-            {formData.cv_file.type && (
+            {formData.cv_file?.type && (
                 <div>
                     <div className={classes.uploaded_file}>
                         <img src={pdf} alt="pdf" />
@@ -251,7 +253,6 @@ const JobSearch = ({ formData, setFormData }) => {
                 <p>Upload your CV</p>
 
                 <DragDropFile
-                    fileId="file-input"
                     onChange={e => {
                         handleCvUpload(e);
                     }}

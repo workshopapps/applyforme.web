@@ -88,14 +88,14 @@ p {
     animation: loading_animation 2s linear infinite;
 }
 
-/* Define the animation */
+/* Define  animation */
 @keyframes loading_animation {
     0% {
         background-color: #bfbfbf;
         background-position: 0% 0%;
     }
 
-    100% {
+    50% {
         background-color: #2f80ed;
         background-position: 100% 0%;
     }

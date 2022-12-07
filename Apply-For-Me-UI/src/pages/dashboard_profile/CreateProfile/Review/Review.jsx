@@ -107,7 +107,11 @@ const Review = ({ formData, keywords }) => {
                     </div>
                     <h6>Personal Info</h6>
                     <div>
-                        <p>{formData.cv_file.name}</p>
+                        {formData.cv_file?.name ? (
+                            <p>{formData.cv_file?.name}</p>
+                        ) : (
+                            <p>Not uploaded yet</p>
+                        )}
                         <h5>Uploaded CV</h5>
                     </div>
                     <div>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import classes from "./DashboardHeader.module.css";
 import { FiChevronLeft, FiPause, FiTrash } from "react-icons/fi";
@@ -32,15 +33,15 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const dispatch = useDispatch();
-    const recruiter = useSelector((state)=>state.RRadmin);
-    const {firstName, avatar,emailAddress,phoneNumber,currentJobTitle} = recruiter.reverseRProfile;
+    const recruiter = useSelector(state => state.RRadmin);
+    const { firstName, avatar, emailAddress, phoneNumber, currentJobTitle } =
+        recruiter.reverseRProfile;
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const id = useParams();
-    useEffect(()=>{
-        dispatch(getRRAdminProfile(id))
-    },[dispatch, getRRAdminProfile]);
-    
+    useEffect(() => {
+        dispatch(getRRAdminProfile(id));
+    }, [dispatch, getRRAdminProfile]);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -175,10 +176,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     <div className={classes.profile_details}>
                         <div className={classes.img_details}>
                             <div className={classes.img_wrapper}>
-                                <img
-                                    src={ProfilePic}
-                                    alt="profile picture"
-                                />
+                                <img src={ProfilePic} alt="profile picture" />
                             </div>
 
                             <div className={classes.img_text_details}>
