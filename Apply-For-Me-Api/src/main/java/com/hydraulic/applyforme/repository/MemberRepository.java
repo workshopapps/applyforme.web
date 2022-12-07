@@ -12,7 +12,7 @@ public interface MemberRepository {
 
     Member getOne(Long id);
     
-    Member deleteOne(Long id);
+    Member fetchOne(Long id);
 
     Member getRef(Long id);
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
 import { Outlet, useNavigate } from "react-router-dom";

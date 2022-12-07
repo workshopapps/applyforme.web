@@ -4,7 +4,7 @@ import salarySlice from "./slice/salary-rangeSlice";
 import RR_Admin_Slice, {
     Fetch_RR_Admin,
     SuperAdminApplicants,
-    getSuperAdminProfileInfo
+    getSuperAdminProfileInfo,
 } from "./slice/RR_AdminSlice";
 
 const store = configureStore({

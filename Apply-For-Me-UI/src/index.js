@@ -23,13 +23,13 @@ process.env.NODE_ENV == "production" & Sentry.init({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <AppProvider>
-        <React.StrictMode>
+        {/*<React.StrictMode>*/}
             <Provider store={store}>
                 <BrowserRouter>
                     <App />
                 </BrowserRouter>
             </Provider>
-        </React.StrictMode>
+       {/* </React.StrictMode>*/}
     </AppProvider>
 );
 
