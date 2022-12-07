@@ -3,8 +3,9 @@ import CareerForm from "./components/CareerForm";
 import HeroSection from "./components/HeroSection";
 import JobOpenings from "./components/JobOpenings";
 import Footer from "./components/Footer";
+import Nav from "components/nav/Nav";
 
-import Nav from "./components/Nav";
+// import Nav from "./components/Nav";
 import Principles from "./components/Principles";
 import Testimonials from "./components/Testimonials";
 
@@ -20,6 +21,6 @@ const CareerPage = () => {
             <Footer />
         </React.Fragment>
     );
-}
+};
 
 export default CareerPage;
