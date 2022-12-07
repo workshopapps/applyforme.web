@@ -4,6 +4,7 @@ import Nav from "../../components/nav/Nav";
 import Footer from "../../components/footer/Footer";
 import HeroSection from "./components/HeroSection";
 import JobOpenings from "./components/JobOpenings";
+import Principles from "./components/Principles";
 import Testimonials from "./components/Testimonials";
 import Cookies from "../../components/modals/cookieModal/CookieModal";
 
@@ -12,6 +13,7 @@ const CareerPage = () => {
         <React.Fragment>
             <Nav />
             <HeroSection />
+             <Principles />
             <JobOpenings />
             <Testimonials />
             <CareerForm />
@@ -19,6 +21,6 @@ const CareerPage = () => {
             <Cookies />
         </React.Fragment>
     );
-}
+};
 
 export default CareerPage;
