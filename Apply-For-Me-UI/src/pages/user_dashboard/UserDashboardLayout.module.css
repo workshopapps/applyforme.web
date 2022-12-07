@@ -1,11 +1,5 @@
 .dashboard_container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     /*gap: 40px;*/
-}
-
-@media only screen and (max-width: 480px) {
-    .dashboard_container {
-        flex-direction: column-reverse;
-    }
 }

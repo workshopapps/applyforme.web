@@ -2,15 +2,18 @@ import { useState } from "react";
 import { PasswordContent } from "../../modals/editpersonalinfo/editPassword/editPassword";
 import { EditInfoContent } from "../../modals/editpersonalinfo/editProfileInformation/editProfileInformation";
 import "./main_container.css";
+import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-export const MainContainer = ({ img }) => {
-    const personalDetails = useSelector((state)=>state.RRadmin);
-    const {superAdminProfileDetails} = personalDetails;
-    console.log(superAdminProfileDetails)
+//import { useSelector, UseDispatch } from "react-redux";
+export const MainContainer = ({ img, address, dob }) => {
     const [showEditModal, setEditModal] = useState(false);
     const [showPasswordModal, setPasswordModal] = useState(false);
     const navigate = useNavigate();
+    const token = localStorage.getItem("tokenHngKey");
+    let decoded = jwtDecode(token);
+    const { fullName, emailAddress, phoneNumber } = decoded;
+    // const adminDetails = useSelector(state => state.RRadmin);
+    // const dispatch = useDispatch();
 
     return (
         <>
@@ -50,7 +53,7 @@ export const MainContainer = ({ img }) => {
                             <div className="proileInfo">
                                 <h2 className="proileInfolabel">Name</h2>
                                 <h2 className="proileInfovalue">
-                                    {superAdminProfileDetails && superAdminProfileDetails.firstName} {superAdminProfileDetails && superAdminProfileDetails.lastName}
+                                    {fullName && fullName}
                                 </h2>
                             </div>
                             <div className="proileInfo">
@@ -59,7 +62,7 @@ export const MainContainer = ({ img }) => {
                                 </h2>
                                 <h2 className="proileInfovalue">
                                     {" "}
-                                    {superAdminProfileDetails && superAdminProfileDetails.emailAddress}
+                                    {emailAddress}
                                 </h2>
                             </div>
                         </div>
@@ -68,14 +71,14 @@ export const MainContainer = ({ img }) => {
                         <div className="proileInfo">
                             <h2 className="proileInfolabel">Name</h2>
                             <h2 className="proileInfovalue">
-                                {superAdminProfileDetails && superAdminProfileDetails.firstName} {superAdminProfileDetails && superAdminProfileDetails.lastName}
+                                {fullName && fullName}
                             </h2>
                         </div>
                         <div className="proileInfo">
                             <h2 className="proileInfolabel">Email Address</h2>
                             <h2 className="proileInfovalue">
                                 {" "}
-                                {superAdminProfileDetails && superAdminProfileDetails.emailAddress}
+                                {emailAddress && emailAddress}
                             </h2>
                         </div>
                     </div>
@@ -83,16 +86,16 @@ export const MainContainer = ({ img }) => {
                     <div className="proileInfo">
                         <h2 className="proileInfolabel">Phone Number</h2>
                         <h2 className="proileInfovalue">
-                        {superAdminProfileDetails && superAdminProfileDetails.phoneNumber}
+                            {phoneNumber && phoneNumber}
                         </h2>
                     </div>
                     <div className="proileInfo">
                         <h2 className="proileInfolabel">Address</h2>
-                        <h2 className="proileInfovalue">{superAdminProfileDetails && superAdminProfileDetails.city}</h2>
+                        <h2 className="proileInfovalue">{address}</h2>
                     </div>
                     <div className="proileInfo">
                         <h2 className="proileInfolabel">Dob</h2>
-                        <h2 className="proileInfovalue">{superAdminProfileDetails && superAdminProfileDetails.dateOfBirth}</h2>
+                        <h2 className="proileInfovalue">{dob}</h2>
                     </div>
                 </div>
                 <div className="changePassword" style={{ marginTop: "0.5rem" }}>

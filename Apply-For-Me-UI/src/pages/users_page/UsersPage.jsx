@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FiChevronDown, FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./UserPage.module.css";
 const UsersPage = () => {
     const list = useSelector((state)=>state.RRadmin);
-    console.log(list);
+    const dispatch = useDispatch();
     return (
         <div className={classes.main_container}>
             <section className={classes.user_header}>
@@ -49,6 +49,9 @@ const UsersPage = () => {
                                     <td>basic</td>
                                     <td>{list.totalSubmissions} of 15</td>
                                     <td>basic</td>
+                                    <td className={classes.hide_on_mobile}>
+                                       15
+                                    </td>
                                 </tr>
                             )}
                         )}
