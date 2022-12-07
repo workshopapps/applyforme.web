@@ -68,7 +68,7 @@ const Welcome2 = () => {
                         (user.roles.length ===1 && user?.roles[0] === "Professional")
                     )
                 ) {
-                    navigate("/dashboard");
+                    navigate("/dashboard")
                 }
             }, 3000);
         }
