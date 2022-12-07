@@ -1,5 +1,5 @@
 import styles from "../Applications.module.css";
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
+// import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import ApplicationsListHeader from "./ApplicationsListHeader";
 import { applications } from "../applicationsMock";
@@ -69,14 +69,6 @@ const Table = () => {
                         ))}
                     </tbody>
                 </table>
-            </div>
-
-            <div className={styles.applications_footer}>
-                <span>1-10/60</span>
-                <span>
-                    <HiOutlineChevronLeft />
-                    <HiOutlineChevronRight />
-                </span>
             </div>
         </div>
     );
