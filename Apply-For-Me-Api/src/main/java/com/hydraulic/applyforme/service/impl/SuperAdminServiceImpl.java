@@ -13,9 +13,9 @@ import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.model.exception.PasswordMismatchException;
+import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
-import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.SuperAdminJpaRepository;
 import com.hydraulic.applyforme.service.SuperAdminService;
 
@@ -32,7 +32,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     @Autowired
     private MemberJpaRepository memberJpaReposiroty;
     @Autowired
-    private RoleJpaRepository roleJpaRepository;
+    private ApplierRepository applierRepository;
     
     @Autowired
     private SuperAdminJpaRepository jpaRepository;
@@ -93,13 +93,14 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     @Override
     @Transactional
     public boolean deleteMemberById(Long id) {
-    	Member member =  repository.fetchOne(id);
-    	System.out.println(member);
-    	if(member == null) {
-    		throw new MemberNotFoundException(id);
-    	}
-    	memberJpaReposiroty.delete(member);
+//    	  Member member = repository.fetchOne(id);
+//    	System.out.println(member);
+//    	if(member == null) {
+//    		throw new MemberNotFoundException(id);
+//    	}
+//    	repository.remove(member.getId());
     	
+    	applierRepository.remove(id);
     	return true;
     }
 
