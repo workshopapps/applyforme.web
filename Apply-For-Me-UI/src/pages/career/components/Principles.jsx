@@ -1,10 +1,4 @@
 import "../styles/Principles.css";
-import bottomLeft from "../assets/images/bottom-left.svg";
-import bottomRight from "../assets/images/bottom-right.svg";
-import topLeft from "../assets/images/top-left.svg";
-import topRight from "../assets/images/top-right.svg";
-import underCurve from "../assets/images/under-curve.svg";
-import tick from "../assets/images/task-tick.svg";
 
 const Principles = () => {
     return (
@@ -12,19 +6,19 @@ const Principles = () => {
             <div className="principles-wrapper">
                 <div className="principles-heading">
                     <h2>Our Principles</h2>
-                    <img src={underCurve} alt="" />
+                    <img src="https://res.cloudinary.com/hamskid/image/upload/v1670406759/Vector_9_ejupno.svg" alt="object not found" />
                 </div>
 
                 <div className="principles-container">
                     <div className="border-container">
-                        <img src={topLeft} alt="" />
-                        <img src={topRight} alt="" />
+                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1670406759/Vector_3_qoskae.svg" alt="object not found" />
+                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1670406759/Vector_1_yq5ros.svg" alt="object not found" />
                     </div>
                     <div className="principles">
                         <div className="principles-row principles-row-one">
                             <div className="principle principle-one">
                                 <div className="principle-tick">
-                                    <img src={tick} alt="" />
+                                    <img src="https://res.cloudinary.com/hamskid/image/upload/v1670406759/Vector_jnjkg9.svg" alt="object not found" />
                                 </div>
                                 <div className="principle-content">
                                     <h2>Trust</h2>
@@ -37,7 +31,7 @@ const Principles = () => {
 
                             <div className="principle principle-two">
                                 <div className="principle-tick">
-                                    <img src={tick} alt="" />
+                                    <img src="https://res.cloudinary.com/hamskid/image/upload/v1670406759/Vector_jnjkg9.svg" alt="object not found" />
                                 </div>
                                 <div className="principle-content">
                                     <h2>Security</h2>
@@ -51,7 +45,7 @@ const Principles = () => {
                         <div className="principles-row principles-row-two">
                             <div className="principle principle-three">
                                 <div className="principle-tick">
-                                    <img src={tick} alt="" />
+                                    <img src="https://res.cloudinary.com/hamskid/image/upload/v1670406759/Vector_jnjkg9.svg" alt="object not found" />
                                 </div>
                                 <div className="principle-content">
                                     <h2>Excellence</h2>
@@ -63,7 +57,7 @@ const Principles = () => {
 
                             <div className="principle principle-final">
                                 <div className="principle-tick">
-                                    <img src={tick} alt="" />
+                                    <img src="https://res.cloudinary.com/hamskid/image/upload/v1670406759/Vector_jnjkg9.svg" alt="object not found" />
                                 </div>
                                 <div className="principle-content">
                                     <h2>Satisfaction</h2>
@@ -76,8 +70,8 @@ const Principles = () => {
                         </div>
                     </div>
                     <div className="border-container">
-                        <img src={bottomLeft} alt="" />
-                        <img src={bottomRight} alt="" />
+                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1670406759/Vector_4_b6tp0r.svg" alt="object not found" />
+                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1670406759/Vector_2_v92zzb.svg" alt="object not found" />
                     </div>
                 </div>
             </div>

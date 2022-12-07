@@ -15,17 +15,16 @@ export const Fetch_RR_Admin = createAsyncThunk(
             );
             return response?.data;
         } catch (error) {
-            console.log(error.response.data);
+           return error.response.data;
         }
     }
 );
 export const getRRAdminProfile = createAsyncThunk(
     "RRadmin/getRRAdminProfile",
-    async (values, { rejectWithValue }) => {
+    async (values) => {
         try {
             const response = await axios.get(
-                `${url}/api/v1/super-admin/member/detail/${values.id}`,
-                {
+                `${url}/api/v1/super-admin/member/detail/${values.id}`,{
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }
@@ -33,7 +32,7 @@ export const getRRAdminProfile = createAsyncThunk(
             );
             return response?.data;
         } catch (error) {
-            return rejectWithValue(error.response.data);
+            return error.response.data;
         }
     }
 );
@@ -42,7 +41,6 @@ export const SuperAdminApplicants = createAsyncThunk(
     "RRadmin/SuperAdminApplicants",
     async () => {
         try {
-            console.log(token);
             const response = await axios.get(
                 `${url}/api/v1/super-admin/applicant/entries`,
                 {
@@ -53,15 +51,14 @@ export const SuperAdminApplicants = createAsyncThunk(
             );
             return response?.data;
         } catch (error) {
-            console.log(error);
+           return error.response.data;
         }
     }
 );
 export const Delete_RR_Admin = createAsyncThunk(
     "RRadmin/Delete_RR_Admin",
-    async params => {
+    async(params) => {
         try {
-            const token = localStorage.getItem("tokenHngKey");
             const response = await axios.delete(
                 `${url}/api/v1/super-admin/recruiter/${params.id}`,
                 {
@@ -70,19 +67,18 @@ export const Delete_RR_Admin = createAsyncThunk(
                     }
                 }
             );
-            console.log("deleted");
+            console.log(response);
             return response?.data;
         } catch (error) {
-            console.log(error.response.data);
+            return error.response.data;
         }
     }
 );
 
 export const SuperAdmin_changePassword = createAsyncThunk(
     "RRadmin/SuperAdmin_changePassword",
-    async value => {
+    async (value) => {
         try {
-            const token = localStorage.getItem("tokenHngKey");
             const response = await axios.post(
                 `${url}/api/v1/super-admin/change-password`,
                 {
@@ -90,7 +86,6 @@ export const SuperAdmin_changePassword = createAsyncThunk(
                     "new_password": value.newpassword,
                     "confirmation_password": value.confirmpassword
                 },
-
                 {
                     headers: {
                         "Authorization": `Bearer ${token}`
@@ -122,10 +117,24 @@ export const getSuperAdminProfileInfo = createAsyncThunk(
                     }
                 }
             );
-            //console.log("superadmin info", response?.data);
+            console.log("superadmin info", response);
             return response?.data;
         } catch (error) {
-            console.log(error.response.data);
+           return error.response.data;
+        }
+    }
+);
+export const getRRApplications = createAsyncThunk(
+    "RRadmin/getRRApplications",
+    async () => {
+        try {
+            const response = await axios.get(
+                `${url}/api/v1/recruiter/application/entries`
+            );
+            console.log("rrApplication info", response?.data);
+            return response?.data;
+        } catch (error) {
+           return error.response.data;
         }
     }
 );
@@ -155,6 +164,7 @@ const RR_Admin_Slice = createSlice({
             state.loadingStatus = "success";
             if (action.payload) {
                 state.list = action.payload;
+                console.log(state.list);
             }
         },
         [Fetch_RR_Admin.rejected]: (state, action) => {
@@ -166,10 +176,12 @@ const RR_Admin_Slice = createSlice({
         },
         [Delete_RR_Admin.fulfilled]: (state, action) => {
             state.deleteStatus = "success";
-            console.log(action.payload);
+            toast.success("deleted request successful");
+    
         },
         [Delete_RR_Admin.rejected]: (state, action) => {
             state.deleteStatus = "rejected";
+            toast.error("deleted request failed");
             state.deleteError = action.payload;
             console.log(state.deleteError);
         },
@@ -178,44 +190,43 @@ const RR_Admin_Slice = createSlice({
         },
         [SuperAdminApplicants.fulfilled]: (state, action) => {
             state.applicantsloadingStatus = "success";
-            if (action.payload) {
-                state.superAdminApplicantsList = action.payload;
-                console.log(state.superAdminApplicantsList.content);
-            }
+            state.superAdminApplicantsList= action.payload;
+           
         },
         [SuperAdminApplicants.rejected]: state => {
             state.applicantsloadingStatus = "rejected";
         },
-        [getRRAdminProfile.pending]: state => {
+        [getRRAdminProfile.pending]: (state) => {
             state.RRProfileloadingStatus = "pending";
+             console.log( state.RRProfileloadingStatus);
+           
         },
         [getRRAdminProfile.fulfilled]: (state, action) => {
             state.RRProfileloadingStatus = "success";
-            if (action.payload) {
-                state.reverseRProfile = action.payload;
-                console.log(state.reverseRProfile);
-            }
-        },
+            state.reverseRProfile = action.payload;
+        }
+        ,
         [getRRAdminProfile.rejected]: (state, action) => {
             state.RRProfileloadingStatus = "rejected";
+             console.log( state.RRProfileloadingStatus)
             state.RRProfilerrorStatus = action.payload;
         },
-        [getSuperAdminProfileInfo.pending]: state => {
+        [getSuperAdminProfileInfo.pending]: (state) => {
             state.superAdminProfileDetailsLoadingStatus = "pending";
+            console.log(state.superAdminProfileDetailsLoadingStatus);
         },
         [getSuperAdminProfileInfo.fulfilled]: (state, action) => {
             state.superAdminProfileDetailsLoadingStatus = "success";
-            if (action.payload) {
+          
                 state.superAdminProfileDetails = action.payload;
-            }
-            console.log(action.payload);
-            console.log(state.superAdminProfileDetails);
+                console.log(state.superAdminProfileDetailsLoadingStatus);
         },
         [getSuperAdminProfileInfo.rejected]: state => {
             state.superAdminProfileDetailsLoadingStatus = "rejected";
+            console.log(state.superAdminProfileDetailsLoadingStatus);
         }
-    }
-});
+    
+}});
 
 export const RR_Admin_Actions = RR_Admin_Slice.actions;
 export default RR_Admin_Slice;
