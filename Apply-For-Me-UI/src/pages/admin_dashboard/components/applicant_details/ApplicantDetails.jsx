@@ -3,7 +3,7 @@ import style from "./ApplicantDetails.module.css";
 import pdfIcon from "../../../../assets/images/pdf-icon.svg";
 import goBackIcon from "../../../../assets/images/back_arrow.svg";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 
 const details = {
@@ -20,14 +20,15 @@ const details = {
 };
 
 const ApplicationDetails = () => {
+    const navigate = useNavigate();
     return ( 
             <article className={style.container}>
             <RRD_Nav />
             <div className={style.go_back_link}>
-                <Link to="/dashboard/admin">
+                <Link to="/rr_admin">
                     <img src={goBackIcon} alt="" />
                 </Link>
-                <span className={style.view_applicants}>
+                <span className={style.view_applicants} onClick={()=>navigate("/rr_admin")}>
                     View Applicants details
                 </span>
             </div>
