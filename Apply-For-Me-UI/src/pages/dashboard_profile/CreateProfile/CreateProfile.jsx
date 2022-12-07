@@ -17,7 +17,14 @@ const CreateProfile = () => {
     const FormSteps = ["JobSearch", "CoverLetter", "Settings", "Review"];
     const FormDisplay = () => {
         if (step === 0) {
-            return <JobSearch formData={formData} setFormData={setFormData} />;
+            return (
+                <JobSearch
+                    formData={formData}
+                    setFormData={setFormData}
+                    step={step}
+                    setStep={setStep}
+                />
+            );
         } else if (step === 1) {
             return (
                 <CoverLetter formData={formData} setFormData={setFormData} />
@@ -38,6 +45,7 @@ const CreateProfile = () => {
                     setFormData={setFormData}
                     keywords={keywords}
                     setKeywords={setKeywords}
+                    setStep={setStep}
                 />
             );
         }
@@ -56,7 +64,6 @@ const CreateProfile = () => {
         keywords: "",
         xyz: ""
     });
-    // console.log(formData);
 
     return (
         <div className={styles.createprofile}>

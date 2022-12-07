@@ -9,7 +9,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
-const Review = ({ formData, keywords }) => {
+const Review = ({ formData, keywords, setStep }) => {
     const [response, setResponse] = useState(null);
     const navigate = useNavigate();
     const included_keywords = String(keywords);
@@ -37,7 +37,6 @@ const Review = ({ formData, keywords }) => {
         } else if (formData.coverletter_body === "") {
             return alert("Please enter a cover letter body");
         }
-        console.log(formData);
 
         try {
             // Make POST request
@@ -169,12 +168,11 @@ const Review = ({ formData, keywords }) => {
                                     func={handleSubmit}
                                     text={"Send profile for searching"}
                                 />
-                                <NavLink
-                                    to="/dashboard/user/create-profile"
-                                    style={{ textDecoration: "none" }}
-                                >
-                                    <LightButton text={"Go back to edit"} />
-                                </NavLink>
+
+                                <LightButton
+                                    text={"Go back to edit"}
+                                    func={() => setStep(0)}
+                                />
                             </div>
                         </div>
                     </div>

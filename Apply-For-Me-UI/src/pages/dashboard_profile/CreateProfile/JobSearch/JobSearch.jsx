@@ -29,19 +29,12 @@ const JobSearch = ({ formData, setFormData }) => {
     }, []);
 
     const handleCvUpload = async e => {
-        if (e.target.value === "") {
-            setFormData({
-                ...formData,
-                cv_file: []
-            });
-        } else {
-            setFormData({ ...formData, cv_file: e.target.files[0] });
-        }
+        setFormData({ ...formData, cv_file: undefined });
+        setFormData({ ...formData, cv_file: e.target.files[0] });
 
         const file = e.target.files[0];
         const fileName = file?.name;
         const fileExtension = fileName?.split(".").pop();
-        console.log(fileExtension);
         //Make POST requests
         setRequestStatus("loading");
         try {
@@ -49,7 +42,6 @@ const JobSearch = ({ formData, setFormData }) => {
             const firstResponse = await axios.post(
                 `https://api.applyforme.hng.tech/api/v1/upload/pre-signed-resume?extension=.${fileExtension}`
             );
-            console.log(firstResponse.data);
             // Second POST request
             const fd = new FormData();
             fd.set("file", file);
@@ -58,7 +50,6 @@ const JobSearch = ({ formData, setFormData }) => {
                 body: fd
             });
             const shortenedCVUrl = secondResponse.url.split("?")[0];
-            console.log(shortenedCVUrl);
             setFormData({
                 ...formData,
                 cv_file: e.target.files[0],
@@ -66,7 +57,6 @@ const JobSearch = ({ formData, setFormData }) => {
             });
             setRequestStatus("idle");
         } catch (error) {
-            console.log(error);
             setRequestStatus("idle");
         }
     };
