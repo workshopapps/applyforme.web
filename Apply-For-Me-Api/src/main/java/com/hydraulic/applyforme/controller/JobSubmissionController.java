@@ -1,12 +1,15 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.dto.FileDto;
+import com.hydraulic.applyforme.model.dto.submission.ApplierSubmissionDto;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.FileService;
 import com.hydraulic.applyforme.service.JobSubmissionService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 import static com.hydraulic.applyforme.constants.PagingConstants.*;
 
@@ -56,5 +59,10 @@ public class JobSubmissionController {
             @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
         return service.filterJobSubmission(pageNo, pageSize, sortBy, sortDir, q);
+    }
+
+    @GetMapping("/applier/{id}")
+    public List<ApplierSubmissionDto> getApplierSubmissions (@PathVariable(name ="id") Long id){
+        return service.getApplierSubmissionDetails(id);
     }
 }

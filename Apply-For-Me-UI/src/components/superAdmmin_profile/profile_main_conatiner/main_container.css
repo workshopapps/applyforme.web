@@ -1,161 +1,203 @@
-.ProfileMainContainer{
+.ProfileMainContainer {
     padding: 2rem 8rem 8rem 8rem;
     background-color: white;
-    
+
 }
-.profile_content{
+
+.profile_content {
     font-family: 'Outfit', sans-serif;
 }
-.profile_content_btn{
+
+.profile_content_btn {
     background-color: white;
     width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;
-    color: #52515B ;
+    color: #52515B;
     border-radius: 5px;
-    border:1px solid #2E3192;
+    border: 1px solid #2E3192;
     padding: 0.3rem;
+    cursor: pointer;
 }
-.proileInfoContainer{
+
+.proileInfoContainer {
     padding-top: 2rem;
 }
-.profile_content_btn h4{
+
+.profile_content_btn h4 {
     margin: 0 0.5rem;
     font-size: 13px;
 }
-.profile_header{
+
+.profile_header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 0;
-    border-bottom:1px solid  #EEEFFF;
+    border-bottom: 1px solid #EEEFFF;
 }
-.profile_header h1{
-    color:#2E3192 ;
+
+.profile_header h1 {
+    color: #2E3192;
     font-size: 30px;
 }
-.proileInfo{
+
+.proileInfo {
     display: flex;
     justify-content: space-between;
     overflow-wrap: break-word;
     text-align: left;
     padding: 1rem 0 0 0;
 }
-.proileInfovalue{
+
+.proileInfovalue {
     font-weight: 400;
-    width:50%;
+    width: 50%;
 }
-.changePassword{
+
+.changePassword {
     display: flex;
     align-items: center;
-    border-top: 1px solid  gray;
-    border-bottom: 1px solid  gray;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
     padding: 0.5rem 0;
 }
-.changePassword h1{
+
+.changePassword h1 {
     font-size: 20px;
 }
-.changePassword button{
+
+.changePassword button {
     margin-left: 5rem;
+    cursor: pointer;
 }
-.verticalNavPills_dashboard_link.footer{
+
+.verticalNavPills_dashboard_link.footer {
     margin-top: 3rem;
 }
-.mobile_info_top_view{
-    display:flex;
+
+.mobile_info_top_view {
+    display: flex;
     justify-content: space-between;
 }
-.mobile_info_top{
+
+.mobile_info_top {
     display: none;
 }
-.editContainer{
+
+.editContainer {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    right:0;
+    right: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(49, 49, 49,0.8);
-}
-.editpasswordContent, .editProfileContent{
-    padding:2rem;
-    position: absolute;
-    top: 15%;
-    overflow: auto;
-    z-index: 1;
-    left: 20px;
-    right: 20px;
-    height:70vh;
-    margin: 0 auto;
-    width: fit-content;
-    background-color: white;
-    transform: (translate(-50%, -50%));
-    border-radius: 8px;
-}
-.modal_closal{
-    display: flex;
-    justify-content: flex-end;
+    background-color: rgba(49, 49, 49, 0.8);
 }
 
-@media only screen and (min-width: 320px)and (max-width: 667px){
-    .mobile_info_top{
+.editpasswordContent,
+.editProfileContent {
+    padding: 2rem;
+    position: fixed;
+    top: 50%;
+    overflow: auto;
+    z-index: 1;
+    left: 50%;
+    width: fit-content;
+    height: 70vh;
+    margin: 0 auto;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+}
+
+.modal_closal {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.button-type {
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 320px)and (max-width: 667px) {
+    .mobile_info_top {
         display: flex;
         flex-direction: column;
-        width:45%;
+        width: 45%;
     }
-    .mobile_info_top_view{
+
+    .mobile_info_top_view {
         align-items: center;
     }
-    .mobile_img_top img{
-        width:100%;
+
+    .mobile_img_top img {
+        width: 100%;
     }
-    .mobile_img_top{
-        width:45%;
+
+    .mobile_img_top {
+        width: 45%;
     }
-    .desktop_info_top{
+
+    .desktop_info_top {
         display: none;
     }
-    .proileInfo{
+
+    .proileInfo {
         flex-direction: column;
     }
+
     .proileInfovalue {
         width: 100%;
         font-size: 17px;
         overflow-wrap: anywhere;
     }
-    .proileInfolabel{
+
+    .proileInfolabel {
         font-size: 17px;
     }
-    .profile_content{
+
+    .profile_content {
         width: 100%;
     }
-    .profile_header h1, .changePassword h1{
-        font-size:22px;
+
+    .profile_header h1,
+    .changePassword h1 {
+        font-size: 22px;
     }
-    .ProfileMainContainer{
+
+    .ProfileMainContainer {
         padding: 1rem 1rem 5rem 1rem;
-        
+
     }
-    .changePassword{
+
+    .changePassword {
         padding: 0.5rem 0;
         margin: 0.5rem 0 1rem 0;
     }
+
     .proileInfoContainer {
         padding-top: 1rem;
     }
+
     .changePassword button {
         margin-left: 3rem;
     }
+
     .profile_header {
         padding: 0.5rem 0;
-        
+
     }
-    .editpasswordContent{
-        height:auto;
-      
+
+    .editpasswordContent,
+    .editProfileContent {
+        height: auto;
+        width: 80%;
+
     }
-   
+
 }

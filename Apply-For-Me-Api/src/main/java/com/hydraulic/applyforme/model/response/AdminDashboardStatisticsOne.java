@@ -16,4 +16,7 @@ public class AdminDashboardStatisticsOne {
 
     @JsonProperty("total_applications")
     private Long totalApplications;
+
+    @JsonProperty("total_rr_admins")
+    private Long totalRRAdmins;
 }

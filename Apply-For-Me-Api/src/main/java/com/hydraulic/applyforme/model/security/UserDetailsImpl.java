@@ -31,6 +31,10 @@ public class UserDetailsImpl implements UserDetails {
     private Set<Role> plainRoles;
     private Collection<? extends GrantedAuthority> authorities;
 
+    private String fullName;
+    private String avatar;
+    private String phoneNumber;
+    private String displayName;
     public UserDetailsImpl(Long id, String emailAddress, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.emailAddress = emailAddress;
@@ -46,6 +50,10 @@ public class UserDetailsImpl implements UserDetails {
 
         var details = new UserDetailsImpl(member.getId(), member.getEmailAddress(), member.getPassword(), authorities);
         details.setPlainRoles(member.getRoles());
+        details.setFullName((member.getFirstName() + " " + member.getLastName()));
+        details.setAvatar(member.getAvatar());
+        details.setPhoneNumber(member.getPhoneNumber());
+        details.setDisplayName(member.getUsername());
         return details;
     }
 

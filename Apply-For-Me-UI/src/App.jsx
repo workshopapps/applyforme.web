@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import * as Sentry from "@sentry/react";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landing_page/LandingPage";
 import AboutUs from "./pages/about_us/AboutUs";
@@ -137,6 +138,10 @@ function App() {
                 <Route exact path="blog/brand" element={<Brand />} />
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
+
+                <Route path="dashboard" element={<UserDashboardLayout />}>
+                    {/* <Route path="/dashboard/" element={<DashboardNothing />} /> */}
+                    
                 {/*AUTH ROUTE */}
                 <Route exact path="/wel1" element={<Welcome1 />} />
                 <Route exact path="/wel2" element={<Welcome2 />} />
@@ -218,4 +223,4 @@ function App() {
     );
 }
 
-export default App;
+export default Sentry.withProfiler(App);
