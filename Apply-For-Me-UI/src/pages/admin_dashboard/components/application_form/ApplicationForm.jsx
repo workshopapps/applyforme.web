@@ -2,7 +2,7 @@ import style from "./ApplicationForm.module.css";
 import goBackIcon from "../../../../assets/images/back_arrow.svg";
 import { useState } from "react";
 
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 
 
