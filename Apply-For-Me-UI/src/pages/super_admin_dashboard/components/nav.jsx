@@ -8,7 +8,7 @@ export const NavBar =()=>{
                     <img  src="https://res.cloudinary.com/hamskid/image/upload/v1670374365/Frame_qmqtm3.svg" alt="object not found" className="nav_logo"/>
                 </div>
                 <form className="search-form">
-                    <input type="text" className="search-input" placeHolder="Search For Users and recruiters"/>
+                    <input type="text" className="search-input" placeholder ="Search For Users and recruiters"/>
                     <button className="search-button">
                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1670427746/Vector_ellzhi.svg" alt="object not found"/>
                     </button>
