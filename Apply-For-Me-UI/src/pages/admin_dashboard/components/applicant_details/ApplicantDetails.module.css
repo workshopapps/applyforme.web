@@ -1,116 +1,154 @@
-.container
-{
-    background-color: #FFFFFF;
+.container {
+    background-color: #ffffff;
+    border: none;
     color: rgba(82, 81, 91, 1);
+    margin: 0 72px;
 }
 
-.container>*
-{
-    margin: 0 72px;
+.container > * {
     padding: 40px 0;
 }
 
-.header
-{
+.header {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 40px 0;
-    border-bottom: 1px solid #E6E6E9;
+    padding: 30px 0;
+    border-bottom: 1px solid #e6e6e9;
 }
 
-.header>span
-{
-    padding: 40px;
+.container .go_back_link {
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.go_back_link img {
+    margin-right: 1rem;
+}
+
+.view_applicants {
+    color: inherit;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.header > span.circle {
+    align-items: center;
     border-radius: 50%;
-    background-color: #52515B;
+    background-color: #52515b;
     color: white;
+    display: flex;
     font-size: 33px;
+    font-weight: 700;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
 }
 
-.header div
-{
+.details {
+    color: inherit;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.details_name {
+    font-weight: 700;
+}
+
+.header div {
     display: flex;
     flex-flow: column nowrap;
 }
 
-.header div span:first-child
-{
-    font-weight: 700;
-}
-
-.job_information h2
-{
-    margin-bottom: 16px;
+.job_information h2 {
+    margin-bottom: 24px;
     font-size: 24px;
+    font-weight: 600;
 }
 
-.job_information>div
-{
+.job_information > div {
     display: flex;
     flex-flow: row wrap;
     gap: 35px;
 }
 
-.info_field
-{
-    min-width: calc(100%/6);
+.info_field {
+    min-width: calc(100% / 6);
 }
 
-.info_field h4
-{
+.info_field h4 {
     padding: 8px 0;
     font-size: 1rem;
+    font-weight: 500;
 }
 
-.info_field p
-{
+.info_field p {
     align-items: center;
     display: flex;
     gap: 8px;
+    font-weight: 400;
 }
 
-@media only screen and (max-width: 1024px)
-{
-    .container>*
-    {
+@media only screen and (max-width: 1024px) {
+    .container {
         margin: 0 24px;
+    }
+
+    .container > * {
         padding: 21px 0;
     }
 
-    .header>span
-    {
+    .header > span {
         padding: 26px 30px;
     }
 
-    .job_information>div
-    {
+    .job_information > div {
         gap: 27px;
     }
-    
 }
 
-@media only screen and (max-width: 480px)
-{
-    .container>*
-    {
+@media only screen and (max-width: 480px) {
+    .container {
         margin: 0 16px;
+    }
+
+    .container > * {
         padding: 16px 0;
     }
 
-    .header>span
-    {
-        padding: 20px;
+    .header > span.circle {
+        height: 78px;
+        width: 78px;
         font-size: 30px;
+        font-weight: 400;
     }
-    
-    .info_field
-    {
+
+    .view_applicants {
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    .info_field {
         min-width: 35%;
     }
 
-    .job_information>div
-    {
+    .job_information > div {
         justify-content: space-between;
+    }
+
+    .job_information h2 {
+        font-size: 20px;
+    }
+
+    .info_field p,
+    .details {
+        font-size: 14px;
+    }
+
+    .details_name {
+        font-size: 16px;
     }
 }

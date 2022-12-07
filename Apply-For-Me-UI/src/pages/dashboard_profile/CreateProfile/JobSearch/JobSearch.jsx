@@ -22,6 +22,11 @@ const JobSearch = ({ formData, setFormData }) => {
         value: title
     }));
 
+    //
+    const token = localStorage.getItem("tokenKey");
+    let tokenKey = "tokenHngKey";
+    let storedToken = localStorage.getItem(tokenKey);
+
     useEffect(() => {
         fetch("https://api.applyforme.hng.tech/api/v1/country/entries/all")
             .then(response => response.json())

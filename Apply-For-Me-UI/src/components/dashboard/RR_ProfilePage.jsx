@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./DashboardHeader.module.css";
 import { FiChevronLeft, FiPause, FiTrash } from "react-icons/fi";
 import Logo from "../../assets/images/nav_logo.svg";
@@ -14,16 +13,12 @@ import Signout from "../../assets/images/signout.svg";
 import ProgressBar from "../../assets/images/progress_bar.svg";
 import { MobileNav } from "./mobileNav";
 import { useNavigate } from "react-router-dom";
-
-import ProfilePiture from "../../assets/images/profile_picture.svg";
-
 import ProfileIcon from "../../assets/images/profile-circle.svg";
 // import Help from "../../assets/images/help_outline.svg";
 // import { getActiveLink } from "./service/DashboardSidebarService";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRRAdminProfile } from "store/slice/RR_AdminSlice";
 // import { Navigate } from "react-router-dom";
@@ -34,14 +29,14 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const dispatch = useDispatch();
     const recruiter = useSelector(state => state.RRadmin);
-    const { firstName, avatar, emailAddress, phoneNumber, currentJobTitle } =
+    const { firstName, emailAddress, phoneNumber, currentJobTitle } =
         recruiter.reverseRProfile;
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const id = useParams();
     useEffect(() => {
         dispatch(getRRAdminProfile(id));
-    }, [dispatch, getRRAdminProfile]);
+    }, [dispatch, getRRAdminProfile, id]);
 
     const handleSubmit = event => {
         event.preventDefault();

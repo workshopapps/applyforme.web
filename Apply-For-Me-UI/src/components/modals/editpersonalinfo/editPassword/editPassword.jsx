@@ -2,7 +2,6 @@ import "./editPassword.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { SuperAdmin_changePassword } from "store/slice/RR_AdminSlice";
-import { ToastContainer } from "react-toastify";
 
 export const PasswordContent = () => {
     const [formField, setFormField] = useState({
@@ -49,7 +48,6 @@ export const PasswordContent = () => {
 
     return (
         <div className="edit_password">
-            <ToastContainer />
             <form className="edit_passwordContent" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="">Old password</label>

@@ -71,7 +71,7 @@ const Review = ({ formData, keywords, setStep }) => {
             );
             const finalResponseJson = await finalResponse.json();
             console.log(finalResponseJson);
-            // navigate("/dashboard/user/success");
+            navigate("/dashboard/user/success");
         } catch (error) {
             console.log(error);
         }

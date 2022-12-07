@@ -3,8 +3,33 @@ import styles from "./Success.module.css";
 import success from "../assets/success.png";
 import TopBar from "../components/TopBar/TopBar";
 import BlueButton from "../../../components/buttons/blue_background/BlueButton";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Success = () => {
+    const [profileList, setProfileList] = useState();
+
+    // eslint-disable-next-line no-unused-vars
+    const token = localStorage.getItem("tokenKey");
+    let tokenKey = "tokenHngKey";
+    let storedToken = localStorage.getItem(tokenKey);
+    useEffect(() => {
+        axios
+            .get("https://api.applyforme.hng.tech/api/v1/applicant/profiles", {
+                headers: {
+                    "Authorization": `Bearer ${storedToken}`
+                }
+            })
+            .then(response => {
+                // handle success
+                setProfileList(response.data);
+                console.log(profileList);
+            })
+            .catch(error => {
+                // handle error
+                console.log(error);
+            });
+    }, []);
     return (
         <div className={styles.success_page}>
             <TopBar />
