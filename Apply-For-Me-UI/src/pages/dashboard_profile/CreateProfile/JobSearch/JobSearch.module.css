@@ -78,3 +78,25 @@ p {
     display: flex;
     margin-left: 1%;
 }
+
+/* Set the height, background color, and border radius of the animation */
+.loading_animation {
+    width: 20%;
+    height: 5px;
+    background-color: #bfbfbf;
+    border-radius: 5px;
+    animation: loading_animation 2s linear infinite;
+}
+
+/* Define the animation */
+@keyframes loading_animation {
+    0% {
+        background-color: #bfbfbf;
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-color: #2f80ed;
+        background-position: 100% 0%;
+    }
+}

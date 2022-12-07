@@ -50,6 +50,7 @@ const CreateProfile = () => {
         employment_type: "",
         salary_expectation: "",
         cv_file: [],
+        shortenedCVUrl: "",
         coverletter_subject: "",
         coverletter_body: "",
         keywords: "",

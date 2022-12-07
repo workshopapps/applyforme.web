@@ -9,6 +9,7 @@ import axios from "axios";
 
 const JobSearch = ({ formData, setFormData }) => {
     const [countries, setCountries] = useState();
+    const [requestStatus, setRequestStatus] = useState("idle");
 
     const countrynames = countries?.map(onecountry => ({
         label: onecountry.title,
@@ -26,8 +27,51 @@ const JobSearch = ({ formData, setFormData }) => {
             .then(data => setCountries(data));
     }, []);
 
+    const handleCvUpload = async e => {
+        if (e.target.value === "") {
+            setFormData({
+                ...formData,
+                cv_file: []
+            });
+        } else {
+            setFormData({ ...formData, cv_file: e.target.files[0] });
+        }
+
+        const file = e.target.files[0];
+        const fileName = file.name;
+        const fileExtension = fileName.split(".").pop();
+        console.log(fileExtension);
+        //Make POST requests
+        setRequestStatus("loading");
+        try {
+            // First POST request
+            const firstResponse = await axios.post(
+                `https://api.applyforme.hng.tech/api/v1/upload/pre-signed-resume?extension=.${fileExtension}`
+            );
+            console.log(firstResponse.data);
+            // Second POST request
+            const fd = new FormData();
+            fd.set("file", file);
+            const secondResponse = await fetch(firstResponse.data, {
+                method: "PUT",
+                body: fd
+            });
+            const shortenedCVUrl = secondResponse.url.split("?")[0];
+            console.log(shortenedCVUrl);
+            setFormData({
+                ...formData,
+                cv_file: e.target.files[0],
+                shortenedCVUrl: shortenedCVUrl
+            });
+            setRequestStatus("idle");
+        } catch (error) {
+            console.log(error);
+            setRequestStatus("idle");
+        }
+    };
+
     return (
-        <form className={styles.form_body}>
+        <div className={styles.form_body}>
             <h3>Complete your desired job info and location</h3>
             <div className={classes.dropdownbox}>
                 <Dropdown
@@ -179,43 +223,41 @@ const JobSearch = ({ formData, setFormData }) => {
                     />
                 </div>
             </div>
-            {formData.cv_file.name && (
-                <div className={classes.uploaded_file}>
-                    <img src={pdf} alt="pdf" />
-                    <p>{formData.cv_file.name}</p>
-                    <button
-                        onClick={() => {
-                            setFormData({
-                                ...formData,
-                                cv_file: false
-                            });
-                        }}
-                    >
-                        x
-                    </button>
+            {formData.cv_file.type && (
+                <div>
+                    <div className={classes.uploaded_file}>
+                        <img src={pdf} alt="pdf" />
+                        <p>{formData.cv_file.name}</p>
+                        <button
+                            onClick={() => {
+                                setFormData({
+                                    ...formData,
+                                    cv_file: []
+                                });
+                            }}
+                        >
+                            x
+                        </button>
+                    </div>
                 </div>
             )}
+            <div>
+                {requestStatus === "loading" && (
+                    // Show a loading animation when the request is in progress
+                    <div className={classes.loading_animation} />
+                )}
+            </div>
             <div className={classes.uploadcv_box}>
                 <p>Upload your CV</p>
-                {/* <DragDropFile
-                    onChange={e => {
-                        setFormData({
-                            ...formData,
-                            cv_file: e.target.files[0]
-                        });
-                        console.log('boy')
-                    }}
-                /> */}
+
                 <DragDropFile
+                    fileId="file-input"
                     onChange={e => {
-                        setFormData({
-                            ...formData,
-                            cv_file: e.target.files[0]
-                        });
+                        handleCvUpload(e);
                     }}
                 />
             </div>
-        </form>
+        </div>
     );
 };
 

@@ -3,10 +3,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const url = "https://official-volunux.uc.r.appspot.com";
-const token = localStorage.getItem("tokenHngKey")
+const url = "https://api.applyforme.hng.tech";
+const token = localStorage.getItem("tokenHngKey");
 console.log(token);
-axios.defaults.headers.common['Authorization']=`Bearer ${token}`
+// axios.defaults.headers.common['Authorization']=`Bearer ${token}`
 
 export const getApplicants = createAsyncThunk(
     "RRadmin/getApplicants",

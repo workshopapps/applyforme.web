@@ -18,7 +18,7 @@ import jwt_decode from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "components/spinner/Spinner";
-const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-up";
+const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-up";
 
 const Welcome1 = () => {
     const dispatch = useDispatch();
