@@ -69,6 +69,7 @@ import { useEffect } from "react";
 
 import Sign_In from "pages/RR_recuiters_page/Sign_In";
 import Sign_Up from "pages/RR_recuiters_page/Sign_Up";
+import { SuperDashBoard } from "pages/super_admin_dashboard/dashboardview";
 
 function App() {
     const dispatch = useDispatch();
@@ -84,6 +85,7 @@ function App() {
     return (
         <>
              <Routes>
+                <Route exact path="/super_page" element={<SuperDashBoard/>}/>
                 <Route exact path="/" element={<LandingPage />} />
                 <Route exact path="/about" element={<AboutUs />} />
                 <Route exact path="/faqs" element={<FAQs />} />
@@ -178,10 +180,11 @@ function App() {
                 >
                     {/*Reverse Recruiter Dashboard */}
                     <Route path="rr_admin" element={<DashboardHome/>}>
-                        <Route path="rr_admin/form" element={<ApplicationForm/>}/>
+                       
+                    </Route>
+                    <Route path="rr_admin/form" element={<ApplicationForm/>}/>
                         <Route path="rr_admin/appilicants_details" element={<ApplicantDetails/>}/>
                         <Route path="rr_admin/all_applications" element={<Applications/>}/>
-                    </Route>
                     
                     {/* USER DASHBAORD */}
                     <Route path="dashboard" element={<UserDashboardLayout />}>

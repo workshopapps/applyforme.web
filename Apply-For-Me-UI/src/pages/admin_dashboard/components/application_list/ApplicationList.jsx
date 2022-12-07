@@ -136,7 +136,7 @@ const ApplicationList = () => {
                             className={`${classes.stats_item} ${classes.stats_details}`}
                         >
                             <Link
-                                to="/rr_admin/applicants_details"
+                                to="/rr_admin/appilicants_details"
                                 className={classes.stats_details_view_button}
                             >
                                 {entry.details}
