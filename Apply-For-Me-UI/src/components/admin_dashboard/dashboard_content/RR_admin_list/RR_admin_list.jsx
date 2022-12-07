@@ -107,12 +107,12 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     Please wait while we fetch the data...
                 </p>
             )}
-            {search.length ===0 && <p>Admin not found</p>}
+            {(RR_recruiter.loadingStatus === "success" && search.length ===0) && <p className="text-center">Admin not found</p>}
 
             <div className="pagination">
                 <h5>
                     1-5 of{" "}
-                    {RR_recruiter.loadingStatus === "success" && RR_recruiter.list.content.length}
+                    {RR_recruiter.loadingStatus === "success" &&  search.length}
                 </h5>
                 <div className="pagiantion_control">
                     {counter >= 4 ? (
@@ -125,7 +125,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                         </span>
                     ) : null}
                     {RR_recruiter.loadingStatus === "success" &&
-                        (counter < RR_recruiter.list.content.length ? (
+                        (counter <  search.length ? (
                             <span onClick={forwardHandler}>
                                 <img
                                     style={{ width: "60%" }}
