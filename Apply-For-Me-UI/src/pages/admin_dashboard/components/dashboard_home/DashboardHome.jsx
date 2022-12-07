@@ -1,10 +1,13 @@
 import classes from "../../../RR_Dashboard/styles/Applications.module.css";
 import ApplicationList from "../application_list/ApplicationList";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 
 const DashboardHome = () => {
+    const navigate = useNavigate();
     return (
         <section>
+            <RRD_Nav />
             <div className={classes.rrd_applications_wrapper}>
                 {/* Greetings */}
                 <div className={classes.greeting_text}>
@@ -38,7 +41,7 @@ const DashboardHome = () => {
 
                     <Link
                         className={classes.job_application_form_button}
-                        to="/dashboard/admin/form"
+                        to="/rr_admin/form"
                     >
                         Job Application Form
                     </Link>
@@ -53,6 +56,7 @@ const DashboardHome = () => {
 
                         <button
                             className={`${classes.view_all} ${classes.desktop_only}`}
+                            onClick={()=>navigate("/rr_admin/all_applications")}
                         >
                             View all
                         </button>
