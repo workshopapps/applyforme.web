@@ -39,7 +39,6 @@ public class SuperAdminController {
     @PostMapping("/change-password")
     public String updatePassword(@Validated @RequestBody UpdatePasswordDto body) {
         var currentUser = CurrentUserUtil.getCurrentUser();
-        System.out.println(currentUser.getId());
     	service.updatePassword(currentUser.getId(), body);
     	return "password successfully changed";
     }
