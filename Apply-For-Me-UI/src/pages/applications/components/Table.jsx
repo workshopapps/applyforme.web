@@ -6,13 +6,8 @@ import ApplicationsListHeader from "./ApplicationsListHeader";
 import axios from "axios";
 import { useEffect, useState } from "react";
 const Table = () => {
-<<<<<<< HEAD
     const [data, setData] = useState([]);
-    const [error, setError] = useState(false);
-=======
-    const [data, setData] = useState([])
-    const [ setError] = useState(false)
->>>>>>> dee9dc2d96297c4d233f3e5954b396e6b2859dd6
+    const [setError] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         axios

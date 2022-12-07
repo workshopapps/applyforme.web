@@ -11,6 +11,7 @@ import { useState } from "react";
 
 const Review = ({ formData, keywords, setStep }) => {
     const [response, setResponse] = useState(null);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const included_keywords = String(keywords);
     let jobLocationType = formData.isremote ? "remote" : "hybrid";
@@ -38,41 +39,44 @@ const Review = ({ formData, keywords, setStep }) => {
             return alert("Please enter a cover letter body");
         }
 
+        setLoading(true);
         try {
             // Make POST request
-            const finalResponse = await fetch(
-                "https://api.applyforme.hng.tech/api/v1/job-profile/save",
-                {
-                    method: "POST",
-                    headers: {
-                        Authorization: `Bearer ${storedToken}`,
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        job_title: formData.job_title,
-                        passport_link: "string",
-                        resume_link: formData.shortenedCVUrl,
-                        cover_letter_link: "string",
-                        cover_letter_subject: formData.coverletter_subject,
-                        cover_letter_content: formData.coverletter_body,
-                        salary_range: formData.salary_expectation,
-                        employment_type: formData.employment_type,
-                        job_location: formData.location,
-                        job_location_type: jobLocationType,
-                        job_seniority: formData.experience,
-                        desired_job_title: "string",
-                        industry: "string",
-                        years_of_experience: 0,
-                        other_skills: "string",
-                        other_comment: "string",
-                        included_keywords: included_keywords
-                    })
-                }
-            );
-            const finalResponseJson = await finalResponse.json();
-            console.log(finalResponseJson);
-            navigate("/dashboard/user/success");
+            // const finalResponse = await fetch(
+            //     "https://api.applyforme.hng.tech/api/v1/job-profile/save",
+            //     {
+            //         method: "POST",
+            //         headers: {
+            //             Authorization: `Bearer ${storedToken}`,
+            //             "Content-Type": "application/json"
+            //         },
+            //         body: JSON.stringify({
+            //             job_title: formData.job_title,
+            //             passport_link: "string",
+            //             resume_link: formData.shortenedCVUrl,
+            //             cover_letter_link: "string",
+            //             cover_letter_subject: formData.coverletter_subject,
+            //             cover_letter_content: formData.coverletter_body,
+            //             salary_range: formData.salary_expectation,
+            //             employment_type: formData.employment_type,
+            //             job_location: formData.location,
+            //             job_location_type: jobLocationType,
+            //             job_seniority: formData.experience,
+            //             desired_job_title: "string",
+            //             industry: "string",
+            //             years_of_experience: 0,
+            //             other_skills: "string",
+            //             other_comment: "string",
+            //             included_keywords: included_keywords
+            //         })
+            //     }
+            // );
+            // const finalResponseJson = await finalResponse.json();
+            // setLoading(false);
+            console.log("success");
+            // navigate("/dashboard/user/success");
         } catch (error) {
+            alert("Failed to submit, please try again");
             console.log(error);
         }
     };
@@ -163,6 +167,10 @@ const Review = ({ formData, keywords, setStep }) => {
                                     </p>
                                 )}
                             </div>
+                            {loading && (
+                                <div className={classes.loading_animation} />
+                            )}
+
                             <div className={classes.review_buttons}>
                                 <BlueButton
                                     func={handleSubmit}
