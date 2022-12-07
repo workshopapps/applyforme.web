@@ -36,11 +36,32 @@ const Welcome2 = () => {
         if (user) {
             setTimeout(() => {
                 if (
-                    user?.roles[0] === "Professional" ||
-                    user?.roles[0] === "Recruiter"
+                    (
+                        user?.roles[0] === "Professional" &&
+                        user?.roles[1] === "Recruiter"
+                    )||
+                    (
+                        (user?.roles[0] === "Recruiter" &&
+                        user?.roles[1] === "Professional")
+                    )||
+                    (
+                        (user.roles.length ===1 && user?.roles[0] === "Recruiter")
+                    )
                 ) {
                     navigate("/dashboard/");
-                } else if (user?.roles[0] === "SuperAdministrator") {
+                } else if (
+                    (
+                        user?.roles[0] === "SuperAdministrator" &&
+                        user?.roles[1] === "Recruiter"
+                    )||
+                    (
+                        (user?.roles[0] === "Recruiter" &&
+                        user?.roles[1] === "SuperAdministrator")
+                    )||
+                    (
+                        (user.roles.length ===1 && user?.roles[0] === "SuperAdministrator")
+                    )
+                ) {
                     navigate("/user-page");
                 }
             }, 3000);

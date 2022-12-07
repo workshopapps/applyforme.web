@@ -4,6 +4,7 @@ import pdfIcon from "../../../../assets/images/pdf-icon.svg";
 import goBackIcon from "../../../../assets/images/back_arrow.svg";
 
 import { Link } from "react-router-dom";
+import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 
 const details = {
     name: "Sharon Sunday",
@@ -19,8 +20,9 @@ const details = {
 };
 
 const ApplicationDetails = () => {
-    return (
-        <article className={style.container}>
+    return ( 
+            <article className={style.container}>
+            <RRD_Nav />
             <div className={style.go_back_link}>
                 <Link to="/dashboard/admin">
                     <img src={goBackIcon} alt="" />
@@ -97,6 +99,7 @@ const ApplicationDetails = () => {
                 </div>
             </section>
         </article>
+        
     );
 };
 

@@ -2,12 +2,11 @@ import styles from "../Applications.module.css";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import ApplicationsListHeader from "./ApplicationsListHeader";
-import { applications } from "../applicationsMock";
 import axios from "axios";
 import { useEffect, useState } from "react";
 const Table = () => {
     const [data, setData] = useState([])
-    const [error, setError] = useState(false)
+    const [ setError] = useState(false)
     const navigate = useNavigate();
     useEffect(() => {
         axios.get(`https://api.applyforme.hng.tech/api/v1/applicant/entries`)
