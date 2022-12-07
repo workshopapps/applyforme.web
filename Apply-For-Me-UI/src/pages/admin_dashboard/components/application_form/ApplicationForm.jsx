@@ -62,10 +62,10 @@ const ApplicationForm = () => {
             <section className={style.application_form}>
                  <RRD_Nav/>
                 <div className={style.go_back_link}>
-                    <Link to="/dashboard/admin">
+                    <Link to="/rr_admin/appilicants_details">
                         <img src={goBackIcon} alt="" />
                     </Link>
-                    <span className={style.view_applicants} onClick={()=>navigate("/rr_admin/applicants_details")}>
+                    <span className={style.view_applicants} onClick={()=>navigate("/rr_admin/appilicants_details")}>
                         View Applicants details
                     </span>
                 </div>

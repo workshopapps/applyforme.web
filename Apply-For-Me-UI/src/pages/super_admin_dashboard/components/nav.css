@@ -2,5 +2,20 @@
     background:white;
     display: flex;
     flex-direction:row;
-    padding:1rem 3rem;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 5rem;
+}
+.start-wrapper,.end-wrapper{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+}
+.search-form{
+    margin:0 2rem;
+    border:1px solid red;
+}
+.search-input{
+     width:50%;
+    padding:1rem;
 }
