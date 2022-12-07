@@ -185,7 +185,7 @@ function App() {
 
                     
                     {/* USER DASHBAORD */}
-                    <Route path="dashboard" element={<UserDashboardLayout />}>
+                    <Route path="dashboard" element={<UserDashboardLayout />}/>
                         {/* User Dashboard Profile */}
                         <Route
                             path="/dashboard/"
