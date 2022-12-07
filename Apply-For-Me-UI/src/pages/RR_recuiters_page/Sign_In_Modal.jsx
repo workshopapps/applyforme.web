@@ -36,7 +36,7 @@ const Sign_In_Modal = () => {
         dispatch(userInfo(decoded));
         toast("Welcome back!");
         setTimeout(() => {
-            navigate("/application-form");
+            navigate("/rr_admin");
         }, 3000);
     } else {
         toast("Incorrect password or email");

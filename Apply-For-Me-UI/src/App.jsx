@@ -83,7 +83,7 @@ function App() {
 
     return (
         <>
-            <Routes>
+             <Routes>
                 <Route exact path="/" element={<LandingPage />} />
                 <Route exact path="/about" element={<AboutUs />} />
                 <Route exact path="/faqs" element={<FAQs />} />
@@ -96,6 +96,16 @@ function App() {
                 <Route exact path="/help" element={<HelpAndSupportPage />} />
                 <Route exact path="/howafmworks" element={<HowAfmWorks />} />
                 <Route exact path="/needHelp" element={<NeedHelp />} />
+                <Route exact path="/user-page" element={<Dashboard />} />
+                    <Route
+                        path="/superAdminProfile"
+                        element={<ProfileScreen />}
+                    />
+                    <Route
+                        exact
+                        path="/reverseRecruiterAdmin/:id"
+                        element={<RR_admin_profile />}
+                    />
                 <Route
                     exact
                     path="/pricing"
@@ -106,22 +116,7 @@ function App() {
                     path="/checkout"
                     element={<Checkout {...formData} />}
                 />
-                <Route exact path="/user-page" element={<Dashboard />} />
-                <Route
-                    path="/superAdminProfile"
-                    element={<ProfileScreen />}
-                ></Route>
-                <Route
-                    exact
-                    path="/reverseRecruiterAdmin/:id"
-                    element={<RR_admin_profile />}
-                />
-
-                <Route
-                    exact
-                    path="/reverseRecruiterDashboard"
-                    element={<RRD />}
-                />
+                
                 <Route exact path="blog" element={<Blog />} />
                 <Route
                     exact
@@ -181,8 +176,12 @@ function App() {
                         />
                     }
                 >
-                    
-
+                    {/*Reverse Recruiter Dashboard */}
+                    <Route path="rr_admin" element={<DashboardHome/>}>
+                        <Route path="rr_admin/form" element={<ApplicationForm/>}/>
+                        <Route path="rr_admin/appilicants_details" element={<ApplicantDetails/>}/>
+                        <Route path="rr_admin/all_applications" element={<Applications/>}/>
+                    </Route>
                     
                     {/* USER DASHBAORD */}
                     <Route path="dashboard" element={<UserDashboardLayout />}>
@@ -190,15 +189,6 @@ function App() {
                         <Route
                             path="/dashboard/"
                             element={<DashboardNothing />}
-                        />
-                        <Route path="admin" element={<DashboardHome />} />
-                        <Route
-                            path="admin/form"
-                            element={<ApplicationForm />}
-                        />
-                        <Route
-                            path="admin/details"
-                            element={<ApplicantDetails />}
                         />
                         <Route path="user/" element={<NoProfile />} />
                         <Route
