@@ -60,14 +60,14 @@ public class Member {
      * This column stores a reference to the country of the citizenship of an actor
      * in the system
      */
-    @ManyToOne(fetch = FetchType.EAGER, optional = false,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "nationality_id")
     private Country nationality;
 
     /**
      * This column stores a reference to the country where the actor presently resides.
      */
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "country_of_residence_id")
     private Country countryOfResidence;
 
