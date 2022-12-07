@@ -3,7 +3,7 @@ import { FiChevronDown, FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import classes from "./UserPage.module.css";
 const UsersPage = () => {
-    const list = useSelector((state)=>state.RRadmin);
+    const list = useSelector(state => state.RRadmin);
     console.log(list);
     return (
         <div className={classes.main_container}>
@@ -36,27 +36,34 @@ const UsersPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {(list.superAdminApplicantsList.length!==0 ) && list.superAdminApplicantsList.content.map((list)=>{
-                                
-                            return (
-                                <tr className={classes.user_details} key={list.membership.id}>
-                                    <td>{list.membership.firstName}</td>
-                                    <td className={classes.hide_on_mobile}>
-                                        {" "}
-                                        {list.membership.emailAddress}
-                                        {list.membership.emailAddress}
-                                    </td>
-                                    <td>basic</td>
-                                    <td>{list.totalSubmissions} of 15</td>
-                                    <td>basic</td>
-                                </tr>
-                            )}
-                        )}
+                        {list.superAdminApplicantsList.length !== 0 &&
+                            list.superAdminApplicantsList.content.map(list => {
+                                return (
+                                    <tr
+                                        className={classes.user_details}
+                                        key={list.membership.id}
+                                    >
+                                        <td>{list.membership.firstName}</td>
+                                        <td className={classes.hide_on_mobile}>
+                                            {" "}
+                                            {list.membership.emailAddress}
+                                            {list.membership.emailAddress}
+                                        </td>
+                                        <td>basic</td>
+                                        <td>{list.totalSubmissions} of 15</td>
+                                        <td>basic</td>
+                                    </tr>
+                                );
+                            })}
                     </tbody>
                 </table>
 
                 <section className={classes.pagination}>
-                    <p>1-6 of {list.superAdminApplicantsList.length !==0 && list.superAdminApplicantsList.content.length}</p>
+                    <p>
+                        1-6 of{" "}
+                        {list.superAdminApplicantsList.length !== 0 &&
+                            list.superAdminApplicantsList.content.length}
+                    </p>
                     <div className={classes.pagination__inc_dec}>
                         <FiChevronLeft />
                         <FiChevronRight />{" "}
