@@ -30,10 +30,9 @@ export const getRRAdminProfile = createAsyncThunk(
                     }
                 }
             );
-            console.log(response);
             return response?.data;
         } catch (error) {
-          console.log(error.response.data);
+            return error.response.data;
         }
     }
 );
@@ -42,7 +41,6 @@ export const SuperAdminApplicants = createAsyncThunk(
     "RRadmin/SuperAdminApplicants",
     async () => {
         try {
-            console.log(token);
             const response = await axios.get(
                 `${url}/api/v1/super-admin/applicant/entries`,
                 {
@@ -51,7 +49,6 @@ export const SuperAdminApplicants = createAsyncThunk(
                     }
                 }
             );
-            console.log("super rr", response?.data)
             return response?.data;
         } catch (error) {
            return error.response.data;
@@ -62,7 +59,6 @@ export const Delete_RR_Admin = createAsyncThunk(
     "RRadmin/Delete_RR_Admin",
     async(params) => {
         try {
-            const token = localStorage.getItem("tokenHngKey");
             const response = await axios.delete(
                 `${url}/api/v1/super-admin/recruiter/${params.id}`,
                 {
@@ -71,9 +67,10 @@ export const Delete_RR_Admin = createAsyncThunk(
                     }
                 }
             );
+            console.log(response);
             return response?.data;
         } catch (error) {
-         
+            return error.response.data;
         }
     }
 );
@@ -82,7 +79,6 @@ export const SuperAdmin_changePassword = createAsyncThunk(
     "RRadmin/SuperAdmin_changePassword",
     async (value) => {
         try {
-            const token = localStorage?.getItem("tokenHngKey")
             const response = await axios.post(
                 `${url}/api/v1/super-admin/change-password`,
                 {
@@ -96,8 +92,10 @@ export const SuperAdmin_changePassword = createAsyncThunk(
                     }
                 }
             );
+            toast.success("password changed Successfully");
             return response?.data;
         } catch (error) {
+            toast.error("Failed to update password due to an unexpected error");
             return error.response.data;
         }
     }
@@ -175,7 +173,7 @@ const RR_Admin_Slice = createSlice({
         [Delete_RR_Admin.fulfilled]: (state, action) => {
             state.deleteStatus = "success";
             toast.success("deleted request successful");
-            console.log(action.payload);
+    
         },
         [Delete_RR_Admin.rejected]: (state, action) => {
             state.deleteStatus = "rejected";
@@ -196,35 +194,35 @@ const RR_Admin_Slice = createSlice({
         },
         [getRRAdminProfile.pending]: (state) => {
             state.RRProfileloadingStatus = "pending";
-              console.log( state.RRProfileloadingStatus);
+             console.log( state.RRProfileloadingStatus);
            
         },
         [getRRAdminProfile.fulfilled]: (state, action) => {
             state.RRProfileloadingStatus = "success";
-                state.reverseRProfile = action.payload;
-                console.log( state.RRProfileloadingStatus);
-                console.log(state.reverseRProfile);
-            }
-        },
+            state.reverseRProfile = action.payload;
+        }
+        ,
         [getRRAdminProfile.rejected]: (state, action) => {
             state.RRProfileloadingStatus = "rejected";
              console.log( state.RRProfileloadingStatus)
             state.RRProfilerrorStatus = action.payload;
         },
-        [getSuperAdminProfileInfo.pending]: state => {
+        [getSuperAdminProfileInfo.pending]: (state) => {
             state.superAdminProfileDetailsLoadingStatus = "pending";
+            console.log(state.superAdminProfileDetailsLoadingStatus);
         },
         [getSuperAdminProfileInfo.fulfilled]: (state, action) => {
             state.superAdminProfileDetailsLoadingStatus = "success";
-           
+          
                 state.superAdminProfileDetails = action.payload;
-            console.log(state.superAdminProfileDetails);
+                console.log(state.superAdminProfileDetailsLoadingStatus);
         },
         [getSuperAdminProfileInfo.rejected]: state => {
             state.superAdminProfileDetailsLoadingStatus = "rejected";
+            console.log(state.superAdminProfileDetailsLoadingStatus);
         }
     
-});
+}});
 
 export const RR_Admin_Actions = RR_Admin_Slice.actions;
 export default RR_Admin_Slice;
