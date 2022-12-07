@@ -179,12 +179,12 @@ function App() {
                     }
                 >
                     {/*Reverse Recruiter Dashboard */}
-                    <Route path="rr_admin" element={<DashboardHome/>}>
+                    <Route path="/rr_admin" element={<DashboardHome/>}>
                        
                     </Route>
-                    <Route path="rr_admin/form" element={<ApplicationForm/>}/>
-                        <Route path="rr_admin/appilicants_details" element={<ApplicantDetails/>}/>
-                        <Route path="rr_admin/all_applications" element={<Applications/>}/>
+                    <Route path="/rr_admin/form" element={<ApplicationForm/>}/>
+                        <Route path="/rr_admin/appilicants_details" element={<ApplicantDetails/>}/>
+                        <Route path="/rr_admin/all_applications" element={<Applications/>}/>
                     
                     {/* USER DASHBAORD */}
                     <Route path="dashboard" element={<UserDashboardLayout />}>

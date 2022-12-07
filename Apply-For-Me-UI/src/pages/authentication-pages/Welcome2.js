@@ -48,7 +48,7 @@ const Welcome2 = () => {
                         (user.roles.length ===1 && user?.roles[0] === "Recruiter")
                     )
                 ) {
-                    navigate("/dashboard/");
+                    navigate("/rr_admin");
                 } else if (
                     (
                         user?.roles[0] === "SuperAdministrator" &&
@@ -63,6 +63,12 @@ const Welcome2 = () => {
                     )
                 ) {
                     navigate("/user-page");
+                }else if (
+                    (
+                        (user.roles.length ===1 && user?.roles[0] === "Professional")
+                    )
+                ) {
+                    navigate("/dashboard");
                 }
             }, 3000);
         }
