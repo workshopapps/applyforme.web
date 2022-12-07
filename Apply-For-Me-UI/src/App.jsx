@@ -70,6 +70,8 @@ import { useEffect } from "react";
 import Sign_In from "pages/RR_recuiters_page/Sign_In";
 import Sign_Up from "pages/RR_recuiters_page/Sign_Up";
 
+import TryoutForm from "pages/tryout_form/TryoutForm";
+
 function App() {
     const dispatch = useDispatch();
     const { user } = useSelector(state => state.user);
@@ -97,6 +99,7 @@ function App() {
                 <Route exact path="/howafmworks" element={<HowAfmWorks />} />
                 <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route exact path="/user-page" element={<Dashboard />} />
+                <Route exact path="/tryout-form" element={<TryoutForm />} />
                     <Route
                         path="/superAdminProfile"
                         element={<ProfileScreen />}
