@@ -3,44 +3,48 @@ import styles from "./Success.module.css";
 import success from "../assets/success.png";
 import TopBar from "../components/TopBar/TopBar";
 import BlueButton from "../../../components/buttons/blue_background/BlueButton";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useSelector } from "react-redux";
+
+// import { useEffect, useState } from "react";
+// import axios from "axios";
 
 const Success = () => {
-    const [profileList, setProfileList] = useState();
+    const { user } = useSelector(state => state.user);
+    const username = user.fullName;
+    const userName = username?.split(" ")[0];
+    // const [profileList, setProfileList] = useState();
 
     // eslint-disable-next-line no-unused-vars
-    const token = localStorage.getItem("tokenKey");
-    let tokenKey = "tokenHngKey";
-    let storedToken = localStorage.getItem(tokenKey);
-    useEffect(() => {
-        axios
-            .get("https://api.applyforme.hng.tech/api/v1/applicant/profiles", {
-                headers: {
-                    "Authorization": `Bearer ${storedToken}`
-                }
-            })
-            .then(response => {
-                // handle success
-                setProfileList(response.data);
-                console.log(profileList);
-            })
-            .catch(error => {
-                // handle error
-                console.log(error);
-            });
-    }, []);
+    // const token = localStorage.getItem("tokenKey");
+    // let tokenKey = "tokenHngKey";
+    // let storedToken = localStorage.getItem(tokenKey);
+    // useEffect(() => {
+    //     axios
+    //         .get("https://api.applyforme.hng.tech/api/v1/applicant/profiles", {
+    //             headers: {
+    //                 "Authorization": `Bearer ${storedToken}`
+    //             }
+    //         })
+    //         .then(response => {
+    //             // handle success
+    //             setProfileList(response.data);
+    //             console.log(profileList);
+    //         })
+    //         .catch(error => {
+    //             // handle error
+    //             console.log(error);
+    //         });
+    // }, []);
     return (
         <div className={styles.success_page}>
             <TopBar />
             <p>All done! You can view your new job profile</p>
             <div className={styles.success_message}>
                 <img src={success} alt="completed" />
-                <p>Congratulations Enwono,</p>
+                <p className={styles.congrats}>Congratulations, {userName}</p>
                 <p>
                     Your profile is being matched to get you your dream job sit
-                    back and wait for your interview. You can view submited
-                    applications in “my applications”
+                    back and wait for your interview.
                 </p>
                 <NavLink
                     to="/dashboard/user/profile-list"
