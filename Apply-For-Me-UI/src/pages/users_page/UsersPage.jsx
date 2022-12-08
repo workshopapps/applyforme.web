@@ -1,8 +1,17 @@
 import React from "react";
+import { useEffect } from "react";
 import { FiChevronDown, FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./UserPage.module.css";
+
 const UsersPage = () => {
+
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(SuperAdminApplicants());
+    },[dispatch,SuperAdminApplicants])
+
     const list = useSelector(state => state.RRadmin);
     console.log(list);
     return (
@@ -57,7 +66,7 @@ const UsersPage = () => {
                             })}
                     </tbody>
                 </table>
-
+                {list.applicantsloadingStatus ==="pending" && <p style={{textAlign:"center"}}>Please wait while we fetch the data...</p>}
                 <section className={classes.pagination}>
                     <p>
                         1-6 of{" "}
