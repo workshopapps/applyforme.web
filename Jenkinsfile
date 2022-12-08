@@ -11,14 +11,14 @@ pipeline {
 			}
 		}
 
-        stage("build frontend"){
+        // stage("build frontend"){
 
-			steps {
+		// 	steps {
 
-                    sh "sudo npm install"
-                    sh "sudo CI=false npm run build"
-			}
-        }
+        //             sh "sudo npm install"
+        //             sh "sudo CI=false npm run build"
+		// 	}
+        // }
 
         stage("build backend"){
 
