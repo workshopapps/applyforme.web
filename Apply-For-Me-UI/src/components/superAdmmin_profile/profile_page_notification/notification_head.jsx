@@ -1,8 +1,10 @@
 import "./notification_head.css";
 import { useState } from "react";
 import { MobileNav } from "components/dashboard/mobileNav";
+import { useNavigate } from "react-router-dom";
 export const NotificationHead = ({ notificationCount }) => {
     const [showMobileNav, setShowMobileNav] = useState(false);
+    const navigate = useNavigate();
     return (
         <div className="notification_icon" style={{ position: "relative" }}>
             <div className="head_barge">
@@ -18,6 +20,7 @@ export const NotificationHead = ({ notificationCount }) => {
                         className="notification_icon_amf"
                         src="https://res.cloudinary.com/hamskid/image/upload/v1669063349/Frame_yqkxnb.png"
                         alt="object not found"
+                        onClick={()=>navigate("/")}
                     />
                 </span>
             </div>

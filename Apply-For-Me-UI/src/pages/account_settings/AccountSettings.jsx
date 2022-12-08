@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from "./AccountSettings.module.css";
 import SettingsTopNav from "./SettingsTopNav";
 import person from "../../assets/images/Friendly Ones Avatar.png";
-import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
+// import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
 //import { getActiveLink } from './settingservice/SettingsSecondSidebar'
 
 const AccountSettings = () => {
@@ -45,9 +45,9 @@ const AccountSettings = () => {
 
     return (
         <div className={classes.account_settings_container}>
-            <div className={classes.sidebar_container}>
+            {/* <div className={classes.sidebar_container}>
                 <DashboardSidebar />
-            </div>
+            </div> */}
 
             <div className={classes.body_container}>
                 <SettingsTopNav />

@@ -7,6 +7,7 @@ const Input = ({ placeholder }) => {
                 className={formStyle.input}
                 type="text"
                 placeholder={placeholder}
+                required
             />
         </div>
     );
