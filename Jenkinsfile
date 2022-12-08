@@ -16,8 +16,8 @@ pipeline {
 			steps {
 
 				dir('applyforme.web/Apply-For-Me-UI') {
-                    sh "npm install"
-                    sh "CI=false npm run build"
+                    sh "sudo npm install"
+                    sh "sudo CI=false npm run build"
                 }
 			}
         }
