@@ -76,13 +76,10 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         superAdmin.setLastName(body.getLastName());
         superAdmin.setUsername(body.getUsername());
         superAdmin.setDateOfBirth(body.getDateOfBirth());
-        superAdmin.setCurrentJobTitle(body.getCurrentJobTitle());
         superAdmin.setEmailAddress(body.getEmailAddress());
         superAdmin.setPhoneNumber(body.getPhoneNumber());
         superAdmin.setCity(body.getCity());
         superAdmin.setState(body.getState());
-        superAdmin.setNationality(Country.builder().id(body.getNationality()).title(body.getNationTitle()).abbreviation(body.getNationAbbreviation()).build());
-        superAdmin.setCountryOfResidence(Country.builder().id(body.getCountryOfResidence()).title(body.getCountryTitle()).abbreviation(body.getCountryAbbreviation()).build());
         return repository.updateOne(superAdmin);
     }
 
