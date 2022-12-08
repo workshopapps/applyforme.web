@@ -110,7 +110,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     breakLabel="..."
                     nextLabel=">"
                     pageRangeDisplayed={5}
-                    pageCount={25}
+                    pageCount={RR_recruiter.list?.totalPages}
                     marginPagesDisplayed="1"
                     previousLabel="<"
                     renderOnZeroPageCount={null}

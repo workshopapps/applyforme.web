@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import styles from "../Applications.module.css";
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import ApplicationsListHeader from "./ApplicationsListHeader";
 import axios from "axios";
@@ -8,7 +7,7 @@ import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 const Table = () => {
     const [data, setData] = useState([]);
-    const [setError] = useState(false);
+    const [pageCount, setPageCout] = useState(1)
     const navigate = useNavigate();
      const [pagination, setPagination] = useState({
         "pageNo": 0,
@@ -25,6 +24,7 @@ const Table = () => {
                 )
                 .then(res => {
                     setData(res.data.content);
+                    setPageCout(res.data.totalPages)
                 })
                 .catch(err => {
                     return err.response.data
@@ -97,7 +97,7 @@ const Table = () => {
                     breakLabel="..."
                     nextLabel=">"
                     pageRangeDisplayed={5}
-                    pageCount={25}
+                    pageCount={pageCount}
                     marginPagesDisplayed="1"
                     previousLabel="<"
                     renderOnZeroPageCount={null}

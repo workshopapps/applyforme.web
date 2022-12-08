@@ -83,7 +83,7 @@ const UsersPage = () => {
                     breakLabel="..."
                     nextLabel=">"
                     pageRangeDisplayed={5}
-                    pageCount={25}
+                    pageCount={list.superAdminApplicantsList?.totalPages}
                     marginPagesDisplayed="1"
                     previousLabel="<"
                     renderOnZeroPageCount={null}
