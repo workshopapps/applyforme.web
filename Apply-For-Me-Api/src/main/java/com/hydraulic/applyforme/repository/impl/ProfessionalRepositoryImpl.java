@@ -88,13 +88,4 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
         return entityManager.merge(body);
     }
     
-    @Override
-	public List<ProfessionalProfile> getAllJobProfile(Long id, int pageOffset) {
-		String query = "select pp from ProfessionalProfile pp where pp.professional.id = :professionalId order by pp.updatedOn ASC";
-		TypedQuery<ProfessionalProfile> q = entityManager.createQuery(query, ProfessionalProfile.class);
-		q.setParameter("professionalId", id);
-		q.setFirstResult((pageOffset - 1) * DEFAULT_PAGE_SIZE );
-		q.setMaxResults(DEFAULT_PAGE_SIZE);
-		return q.getResultList();
-	}
 }

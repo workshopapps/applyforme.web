@@ -20,6 +20,5 @@ public interface ProfessionalRepository {
     boolean removeAll();
 
     Professional updateOne(Professional body);
-	List<ProfessionalProfile> getAllJobProfile(Long id, int pageOffset);
 
 }
