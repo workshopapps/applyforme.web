@@ -9,11 +9,13 @@ import Menu from "../../../assets/images/menu.svg";
 import Signout from "../../../assets/images/signout.svg";
 import { MobileNav } from "components/dashboard/mobileNav";
 import { useNavigate } from "react-router-dom";
-
+import { userInfo } from "store/slice/UserSlice"; 
 import ProfileIcon from "../../../assets/images/profile-circle.svg";
+import { useDispatch } from "react-redux";
 
 const RRD_Nav = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
@@ -24,6 +26,13 @@ const RRD_Nav = () => {
         event.target.search.value = "";
         // Quota submission code goes here
     };
+    const handleSignOut =()=>{
+        
+        localStorage.removeItem("tokenHngKey");
+        dispatch(userInfo(""));
+        navigate("/");
+    
+    }
 
     return (
         <section className={classes.main_container}>
@@ -40,7 +49,7 @@ const RRD_Nav = () => {
                             />
                         )}
 
-                        <img src={Logo} alt="Apply for me logo" />
+                        <img src={Logo} alt="Apply for me logo" onClick={()=>navigate("/")}/>
                     </div>
 
                     <section className={classes.swap_nav}>
@@ -88,7 +97,7 @@ const RRD_Nav = () => {
                                         <li
                                             type="button"
                                             onClick={() => {
-                                                navigate("/superAdminProfile");
+                                                navigate("/");
                                             }}
                                         >
                                             <img
@@ -107,7 +116,7 @@ const RRD_Nav = () => {
                                                 src={Signout}
                                                 alt="Signout logo"
                                             />
-                                            <p>Sign out</p>
+                                            <p onClick={handleSignOut}>Sign out</p>
                                         </li>
                                     </ul>
                                 </div>
