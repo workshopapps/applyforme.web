@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { PasswordContent } from "../../modals/editpersonalinfo/editPassword/editPassword";
 import { EditInfoContent } from "../../modals/editpersonalinfo/editProfileInformation/editProfileInformation";
 import "./main_container.css";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getSuperAdminProfileInfo } from "store/slice/RR_AdminSlice";
+
 export const MainContainer = ({ img }) => {
     const personalDetails = useSelector((state)=>state.RRadmin);
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(getSuperAdminProfileInfo());
+    })
     const {superAdminProfileDetails} = personalDetails;
     console.log(superAdminProfileDetails)
     const [showEditModal, setEditModal] = useState(false);

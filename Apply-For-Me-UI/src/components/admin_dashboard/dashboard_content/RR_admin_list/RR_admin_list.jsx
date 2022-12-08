@@ -1,18 +1,24 @@
 
 import { useState,useEffect } from 'react';
-import { useSelector} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import './RR_admin_List.css';
 import { Desktop_List } from './desktop_list_wrapper';
 import { Mobile_view_list } from './mobile_list_wrapper';
+import { Fetch_RR_Admin } from 'store/slice/RR_AdminSlice';
 export const RR_Admin_list=({inputSearchValue})=>{
     const RR_recruiter = useSelector((state)=>state.RRadmin);
     const [search, setSearch] = useState([]);
     const [rangeEnd, setRangeEnd]= useState(4);
     const [rangeStart, setRangeStart]= useState(0);
     const [counter, setCounter]= useState(1);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(Fetch_RR_Admin());
+    },[dispatch,Fetch_RR_Admin])
     
     useEffect(()=>{
-        const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list.length !==0) ? RR_recruiter.list.content.filter((item)=>item.firstName.toLowerCase().includes(inputSearchValue)):[]
+        const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list?.length !==0) ? RR_recruiter.list.content.filter((item)=>item.firstName.toLowerCase().includes(inputSearchValue)):[]
         setSearch(avilableList);
     }, [inputSearchValue, RR_recruiter.list]);
 

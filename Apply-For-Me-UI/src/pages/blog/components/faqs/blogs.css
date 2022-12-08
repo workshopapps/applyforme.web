@@ -6,8 +6,13 @@
     margin-inline: auto;
     overflow-y: hidden;
     margin-bottom: 5rem;
+    margin-top: 5rem;
 }
-
+@media screen and (max-width: 760px) {
+    .blogs {
+        width: 90%;
+    }
+}
 .blogs .content {
     display: flex;
     flex-direction: column;
