@@ -1,6 +1,5 @@
 package com.hydraulic.applyforme.service.impl;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -14,12 +13,10 @@ import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
-import com.hydraulic.applyforme.model.response.ProfessionalProfileResponse;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalProfileJpaRepository;
 import com.hydraulic.applyforme.service.ProfessionalService;
-import com.hydraulic.applyforme.util.ApplyForMeUtil;
 
 @Service
 public class ProfessionalServiceImpl implements ProfessionalService {
