@@ -67,6 +67,7 @@
 
 /* Add the spinning circle */
 .loading_animation {
+    margin-block: 1rem;
     width: 100%;
     height: 5px;
     background-color: #bfbfbf;
