@@ -1,0 +1,337 @@
+/*STYLING OF THE PRICING PAGE*/
+.section__head {
+    margin-block: 2rem 3rem;
+}
+
+.headingWrapper {
+    width: min(88%, 61.56rem);
+    margin-inline: auto;
+}
+
+.mainheading {
+    margin-bottom: 0.625rem;
+    font-size: 1.25rem;
+    text-align: center;
+    color:  #4347B2;
+    font-weight: 500;
+}
+
+.primaryText {
+    color: #52515b; /*Variables be better, but you don't want to set what another has on their branch*/
+    text-align: center;
+    max-width: 44ch;
+    line-height: 1.4;
+    margin: 0 auto;
+}
+
+.toggle {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.toggle .toggle_state {
+    background:  #4347B2;
+    border-radius: 20px;
+    width: 60px;
+    height: 30px;
+    position: inherit;
+    padding: 0 5px;
+}
+
+.toggle p {
+    color: #52515b;
+    font-weight: 300;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.toggle .active_toggle {
+    color:  #4347B2;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.toggle .toggle_state .toggle_circle {
+    background-color: #fff;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    z-index: 2;
+    top: 2px;
+    position: absolute;
+}
+
+.majorPlan {
+    width: min(90%, 85rem);
+    margin-inline: auto;
+    overflow: hidden;
+}
+
+.majorPlan > .card:nth-child(2) {
+    background-color: #2e3192;
+    color: #ffffff;
+    position: relative;
+}
+
+.card:nth-child(2) > * {
+    color: #ffffff;
+}
+
+.card:nth-child(2) > button {
+    background-color: #2e3192;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.card .statusWrapper .status {
+    margin-bottom: -0.5rem;
+}
+
+.card:nth-child(2) .card__heading {
+    font-weight: 600;
+    font-size: 1.7rem;
+    line-height: 120%;
+    margin-top: 1rem;
+}
+
+.card:nth-child(2) > .choices {
+    background: #b7b9e6;
+    border-radius: 8px;
+    padding: 8px;
+    gap: 10px;
+    width: 138px;
+    height: 40px;
+    position: absolute;
+    top: -1.2rem;
+    left: 1.2rem;
+    padding: 10px;
+}
+
+.card:nth-child(2) > .choices .choice_text {
+    margin-top: 0;
+    color: #52515b;
+    text-align: center;
+}
+
+.card:nth-child(2) button {
+    margin-top: 0.8rem;
+    border: 1px solid #fff;
+}
+
+.card {
+    border: 2px solid #5052a5;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 4rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card__heading {
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    font-size: 2rem;
+    color: #140f31;
+}
+
+.card__price {
+    margin-bottom: 0.5rem;
+    color: #2e3192;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+link.btn {
+    border: 1px solid white !important;
+}
+
+.card__duration {
+    margin-bottom: 0.5rem;
+    color: #140f31;
+    font-weight: 500;
+}
+
+.statusWrapper {
+    padding-top: 1rem;
+    border-top: 1px solid #cccccc;
+    margin-top: 0.6rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.7rem;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.status img {
+    width: 20px;
+    height: 20px;
+}
+
+.status__text {
+    font-size: 0.75rem;
+}
+
+.subHead {
+    background-color: #ddeafc;
+    margin-bottom: 2.5rem;
+}
+
+.secondaryHeadWrapper {
+    width: min(90%, 58.87rem);
+    padding-block: 1.5rem;
+    margin: 0 auto;
+}
+
+.secondaryHeading {
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #52515b;
+    font-weight: 500;
+}
+
+.secondaryText {
+    text-align: center;
+    color: #52515b;
+    font-weight: 300;
+    max-width: 49ch;
+    margin-inline: auto;
+}
+
+/*FAQ SECTION*/
+.faqWrapper {
+    width: min(90%, 85rem);
+    margin-inline: auto;
+}
+
+.faqmain {
+    margin-bottom: 2.5rem;
+}
+
+.faqheading {
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    color:  #4347B2;
+}
+
+.faqText {
+    margin-bottom: 1rem;
+    font-size: 0.87rem;
+    color: #1b1b1b;
+    font-weight: 300;
+}
+
+.content__box {
+    /*border: 2px solid red;*/
+
+    border-bottom: 1px solid #9194a1;
+    cursor: pointer;
+    padding: 1rem 0 0.5rem;
+    width: 100%;
+}
+
+.contentbox__question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.minheading {
+    color: #52515b;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.faqicon {
+    margin-top: -0.4rem;
+    transition: all 0.2s ease-in;
+}
+
+.faqicon__active {
+    transform: rotate(-180deg);
+}
+
+@media screen and (max-width: 584px) {
+    .toggle {
+        display: none;
+    }
+}
+
+/*BreakPoints*/
+@media only screen and (min-width: 900px) {
+    .section__head {
+        margin-block: 4rem 2rem;
+    }
+
+    .mainheading {
+        margin-bottom: 1.625rem;
+        font-size: 2.5vmax;
+    }
+
+    .primaryText {
+        font-size: 2vmax;
+    }
+
+    .majorPlan {
+        display: grid;
+        grid-template-columns: 0.9fr 0.7fr 0.9fr;
+        gap: 3vmax;
+        padding: 7rem 0;
+        position: relative;
+        /*grid-template-rows: auto;*/
+        /*justify-content: space-between;*/
+    }
+
+    .majorPlan > .card:nth-child(2) {
+        z-index: 10;
+        transform: scale(1.1, 1.25);
+    }
+
+    .majorPlan > .card:not(:nth-child(2)) .statusWrapper {
+        margin-bottom: 2rem;
+    }
+
+    .status {
+        gap: 0.5rem;
+    }
+
+    .status__text {
+        font-size: 1vmax;
+    }
+
+    .secondaryHeading {
+        font-size: 2vmax;
+    }
+
+    .secondaryText {
+        font-size: 1.5vmax;
+    }
+
+    .faqWrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3.5vmax;
+    }
+
+    .faqText {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        max-width: 35ch;
+    }
+
+    .faqheading {
+        font-size: 2.3vmax;
+        max-width: 15ch;
+    }
+}

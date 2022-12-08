@@ -1,0 +1,188 @@
+/*HEADER SECTION*/
+.checkoutheader {
+  background-color: #f9f9ff;
+}
+
+.headerwrapper {
+  width: min(88%, 75rem);
+  padding-block: 2.5rem;
+  margin-inline: auto;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  width: max(5vw, 4rem);
+}
+
+.profileImg {
+  width: max(1.5vw, 1rem);
+}
+
+.names {
+  font-size: 3.5vmin;
+}
+
+.profilewrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/*MAIN SECTION*/
+.mainCheckout {
+  background-color: #e9eef7;
+  padding-block: 2rem;
+}
+
+.checkout {
+  width: min(88%, 44.125rem);
+  margin-inline: auto;
+}
+
+/*To move back to pricing page*/
+.goback {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.subheading {
+  color: #171746;
+  font-size: 3vmax;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.Inputwrapper {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/*Styling Forms*/
+.input__number,
+.input__text {
+  display: block;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 2px solid #52515b;
+  font-family: inherit;
+}
+
+.input__number:focus:invalid,
+.input__text:focus:invalid,
+.validity:focus:invalid {
+  border: 1px solid red;
+  outline: none;
+}
+
+.input__number:focus:valid,
+.input__text:focus:valid,
+.validity:focus:valid {
+  outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera. Code for removing arrows from number inputs */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  appearance: textfield;
+}
+
+/*Small input boxes*/
+.secure {
+  display: flex;
+  gap: 12vmax;
+  margin-bottom: 3rem;
+}
+
+.secureDate {
+  margin-bottom: 0.6rem;
+}
+
+.expirationlabel {
+  margin-right: 0.5rem;
+}
+
+.warning {
+  width: 0.8rem;
+}
+
+.validity {
+  width: 4rem;
+  border: 2px solid #52515b;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+  padding-block: 1rem;
+  text-align: center;
+}
+
+.expirationWrapper {
+  display: flex;
+  margin-top: 0.7rem;
+}
+
+.cvvlabelwrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+  margin-bottom: 0.5rem;
+}
+
+.label,
+.expirationlabel {
+  margin-bottom: 0.5rem;
+}
+
+.submit {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #2e3192;
+  color: white;
+  border-radius: 0.5rem;
+  border: none;
+  margin-bottom: 2rem;
+  font-family: inherit;
+}
+
+.submit:disabled {
+  background-color: #171746;
+}
+
+.checked {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.checklabel {
+  font-size: 16px;
+  line-height: 25px;
+  color: #52515B;
+}
+
+/*When the form has been touched and it's empty*/
+.inputEmpty {
+  border: 1px solid red;
+}
+
+/*Error text*/
+.hint {
+  color: red;
+}
+
+/*BreakPoints */
+@media only screen and (min-width: 500px) {
+  .validity {
+    width: 6rem;
+  }
+}

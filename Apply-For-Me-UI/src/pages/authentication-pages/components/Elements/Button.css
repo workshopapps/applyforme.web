@@ -1,0 +1,88 @@
+.btn {
+    width: 240px;
+
+    background-color: #2e3192;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    height: 100%;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.lg {
+    width: 16%;
+    height: 3rem;
+}
+.button_label {
+    width: 100%;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1073px) {
+    .lg {
+        width: 18%;
+    }
+}
+@media only screen and (max-width: 943px) {
+    .social {
+        height: 100%;
+        width: 40%;
+        padding: 3%;
+    }
+}
+@media only screen and (max-width: 843px) {
+    .lfthd {
+        font-size: 2.5rem;
+    }
+    .prt22 {
+        font-size: 1.2rem;
+    }
+    .prt21 {
+        font-size: 1.6rem;
+    }
+    .prt23 {
+        font-size: 1.3rem;
+    }
+    .prt3hd,
+    .prt4hd {
+        font-size: 2.2rem;
+    }
+    .cpytxt {
+        font-size: 0.9rem;
+    }
+    .sbprt5hd {
+        padding-top: 0.6rem;
+    }
+    .cpy {
+        width: 10%;
+    }
+    .lgotxt {
+        font-size: 1.8rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .w1bdy {
+        padding-top: 2rem;
+    }
+}
+@media only screen and (max-width: 668px) {
+    .lg {
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+    .lg {
+        width: 35%;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .w1bdy {
+        padding-top: 1.5rem;
+    }
+    .lg {
+        width: 40%;
+    }
+}

@@ -1,12 +1,19 @@
 import React from "react";
+import { useEffect } from "react";
 import { FiChevronDown, FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import BlueButton from "../../components/buttons/blue_background/BlueButton";
+import { useDispatch, useSelector } from "react-redux";
+import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./UserPage.module.css";
-import { Users } from "./user_page_service/UserPageService";
+
 const UsersPage = () => {
-    const handleApplicantView = id => {
-        console.log(id);
-    };
+
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(SuperAdminApplicants());
+    },[dispatch,SuperAdminApplicants])
+
+    const list = useSelector(state => state.RRadmin);
+    console.log(list);
     return (
         <div className={classes.main_container}>
             <section className={classes.user_header}>
@@ -19,59 +26,53 @@ const UsersPage = () => {
 
             <section className={classes.applicant}>
                 <table className={classes.table}>
-                    <tr className={classes.table__head}>
-                        <th>Name</th>
-                        <th className={classes.hide_on_mobile}>
-                            Email Address
-                        </th>
-                        <th>Plan</th>
-                        <th className={classes.hide_on_mobile}>
-                            Application done
-                        </th>
-                        <th className={classes.hide_on_mobile}>Interviews</th>
-                        <th>Details</th>
-                    </tr>
-
-                    {Users.map(
-                        ({
-                            id,
-                            name,
-                            interviews,
-                            plan,
-                            applicationDone,
-                            email
-                        }) => (
-                            <tr className={classes.user_details} key={id}>
-                                <td>{name}</td>
-                                <td className={classes.hide_on_mobile}>
-                                    {" "}
-                                    {email}
-                                </td>
-                                <td>{plan}</td>
-                                <td className={classes.hide_on_mobile}>
-                                    {applicationDone}
-                                </td>
-                                <td className={classes.hide_on_mobile}>
-                                    {interviews}
-                                </td>
-                                <td className={classes.desktop_button}>
-                                    <BlueButton text="view" width="70" />
-                                </td>
-
-                                <td
-                                    type="button"
-                                    className={classes.mobile_button}
-                                    onClick={() => handleApplicantView(id)}
-                                >
-                                    View
-                                </td>
-                            </tr>
-                        )
-                    )}
+                    <thead>
+                        <tr className={classes.table__head}>
+                            <th>Name</th>
+                            <th className={classes.hide_on_mobile}>
+                                Email Address
+                            </th>
+                            <th>Plan</th>
+                            <th className={classes.hide_on_mobile}>
+                                Application done
+                            </th>
+                            <th className={classes.hide_header_desktop}>
+                                Stat
+                            </th>
+                            <th className={classes.hide_on_mobile}>
+                                Interviews
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {list.superAdminApplicantsList.length !== 0 &&
+                            list.superAdminApplicantsList.content?.map(list => {
+                                return (
+                                    <tr
+                                        className={classes.user_details}
+                                        key={list.membership.id}
+                                    >
+                                        <td>{list.membership.firstName}</td>
+                                        <td className={classes.hide_on_mobile}>
+                                            {" "}
+                                            {list.membership.emailAddress}
+                                            {list.membership.emailAddress}
+                                        </td>
+                                        <td>basic</td>
+                                        <td>{list.totalSubmissions} of 15</td>
+                                        <td>basic</td>
+                                    </tr>
+                                );
+                            })}
+                    </tbody>
                 </table>
-
+                {list.applicantsloadingStatus ==="pending" && <p style={{textAlign:"center"}}>Please wait while we fetch the data...</p>}
                 <section className={classes.pagination}>
-                    <p>1-6 of 50</p>
+                    <p>
+                        1-6 of{" "}
+                        {list.superAdminApplicantsList.length !== 0 &&
+                            list.superAdminApplicantsList.content?.length}
+                    </p>
                     <div className={classes.pagination__inc_dec}>
                         <FiChevronLeft />
                         <FiChevronRight />{" "}

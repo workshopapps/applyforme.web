@@ -1,0 +1,74 @@
+.Verification{
+    padding: 2rem 6%;
+    width: 100%;
+    box-sizing: border-box;
+}
+.vrfy{
+    width: 20%;
+    height: 3.5rem;
+    border: 0.2px solid #2E3192;
+    border-radius: 8px;
+    outline: none;
+    font-size: 3rem;
+}
+.vbdy{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: 2rem;
+}
+.verify{
+    display: flex;
+    flex-direction: row;
+    width: 22%;
+    justify-content: space-between;
+    padding-top: 5rem;
+}
+.resend{
+    font-size: .8rem;
+    font-weight: 400;
+    color: #111416;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0 10rem 0;
+}
+
+
+@media only screen and (max-width: 1073px){
+    .verify{
+        width: 28%;
+    }
+}
+@media only screen and (max-width: 873px){
+    .verify{
+        width: 40%;
+    }
+    .vrfy{
+        height: 4rem;
+    }
+}
+
+@media only screen and (max-width: 668px){
+    .verify{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 468px){
+    .verify{
+        width: 60%;
+        padding-top: 3rem;
+    }
+    .resend{
+        padding: 1rem 0 7rem 0;
+    }
+}
+
+@media only screen and (max-width: 376px){
+    .verify{
+        width: 80%;
+    }
+}
+    

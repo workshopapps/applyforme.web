@@ -1,17 +1,19 @@
 package com.hydraulic.applyforme.repository.impl;
 
-import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.model.domain.SalaryRange;
-import com.hydraulic.applyforme.model.domain.Submission;
 
-import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
-import com.hydraulic.applyforme.repository.ProfessionalRepository;
-import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
-
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
+import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
+import com.hydraulic.applyforme.repository.ProfessionalRepository;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository
@@ -84,4 +86,15 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
     public Professional updateOne(Professional body) {
         return entityManager.merge(body);
     }
+    
+    @Override
+	public List<ProfessionalProfile> getAllJobProfile(Long id, int pageOffset) {
+		String query = "select pp from ProfessionalProfile pp where pp.professional.id = :professionalId order by pp.updatedOn ASC";
+		TypedQuery<ProfessionalProfile> q = entityManager.createQuery(query, ProfessionalProfile.class);
+		q.setParameter("professionalId", id);
+		
+		q.setFirstResult((pageOffset - 1) * DEFAULT_PAGE_SIZE );
+		q.setMaxResults(DEFAULT_PAGE_SIZE);
+		return q.getResultList();
+	}
 }

@@ -1,0 +1,27 @@
+.success_page {
+    padding-left: 5%;
+    padding-bottom: 10%;
+    background-color: #f3f3fb;
+    width: 100vw;
+}
+.success_message {
+    background-color: #ffff;
+    text-align: center;
+    width: 90%;
+    margin-top: 2.5rem;
+    padding-block: 5.4rem;
+}
+.success_message button {
+    margin-inline: auto;
+    margin-top: 2.5rem;
+}
+.success_message img {
+    width: 20rem;
+    margin-bottom: 1rem;
+}
+
+.congrats {
+    font-weight: 400;
+    font-size: 2rem;
+    color: #222226;
+}

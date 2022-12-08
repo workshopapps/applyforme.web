@@ -1,12 +1,7 @@
 package com.hydraulic.applyforme.service.impl;
 
-import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
-import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
-import com.hydraulic.applyforme.repository.ProfessionalRepository;
-import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
-import com.hydraulic.applyforme.service.ProfessionalService;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +9,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
+import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
+import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
+import com.hydraulic.applyforme.repository.ProfessionalRepository;
+import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
+import com.hydraulic.applyforme.service.ProfessionalService;
 
 @Service
 public class ProfessionalServiceImpl implements ProfessionalService {
@@ -79,4 +80,8 @@ public class ProfessionalServiceImpl implements ProfessionalService {
       return applicantsPage;
     }
 
+    @Override
+	public List<ProfessionalProfile> findAllJobProfile(Long id, int pageOffset) {
+		return repository.getAllJobProfile(id, pageOffset);
+	}
 }
