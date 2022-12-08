@@ -20,5 +20,4 @@ public interface ProfessionalService {
     Page<Professional> retrieveAllProfessionals(int pageNo, int PageSize);
 
 	List<ProfessionalProfile> findAllJobProfile(Long id, int pageOffset);
-
 }

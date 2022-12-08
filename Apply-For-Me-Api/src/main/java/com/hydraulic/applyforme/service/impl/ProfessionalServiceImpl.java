@@ -79,11 +79,9 @@ public class ProfessionalServiceImpl implements ProfessionalService {
       }
       return applicantsPage;
     }
-    
+
     @Override
 	public List<ProfessionalProfile> findAllJobProfile(Long id, int pageOffset) {
 		return repository.getAllJobProfile(id, pageOffset);
 	}
-
-
 }
