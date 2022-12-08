@@ -44,6 +44,29 @@ thead th{
  .pagiantion_control{
      margin-left:0.5rem;
  }
+ .containerClassName{
+    margin:1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    justify-content: space-evenly;
+ }
+ .activeClassName{
+    background-color: #2E3192;
+    color:white;
+ }
+ .pageClassName{
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+ }
+ .previousClassName a,.nextClassName a{
+    font-weight:bold;
+ }
+ .pageLinkClassName,.previousClassName a,.nextClassName a{
+    font-size: 17px;
+    margin:0 0.1rem;
+ }
  .viewContainer button{
      border-radius: 4px;
      font-size: 15px;

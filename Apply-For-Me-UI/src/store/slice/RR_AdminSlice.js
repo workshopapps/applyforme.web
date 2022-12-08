@@ -8,10 +8,15 @@ const token = localStorage.getItem("tokenHngKey");
 
 export const Fetch_RR_Admin = createAsyncThunk(
     "RRadmin/Fetch_RR_Admin",
-    async () => {
+    async (values) => {
         try {
             const response = await axios.get(
-                `${url}/api/v1/super-admin/member/recruiter/all`
+                `${url}/api/v1/super-admin/member/recruiter/all`,
+                { params:{
+                    "pageNo": values.pageNo,
+                    "pageSize": values.pageSize,
+                }
+                }
             );
             return response?.data;
         } catch (error) {
@@ -39,16 +44,22 @@ export const getRRAdminProfile = createAsyncThunk(
 
 export const SuperAdminApplicants = createAsyncThunk(
     "RRadmin/SuperAdminApplicants",
-    async () => {
+    async (values) => {
         try {
             const response = await axios.get(
                 `${url}/api/v1/super-admin/applicant/entries`,
                 {
+                    params:{
+                    "pageNo": values.pageNo,
+                    "pageSize": values.pageSize,
+                    },
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }
+                    
                 }
             );
+            console.log("super",response?.data)
             return response?.data;
         } catch (error) {
            return error.response.data;
@@ -117,7 +128,6 @@ export const getSuperAdminProfileInfo = createAsyncThunk(
                     }
                 }
             );
-            console.log("superadmin info", response);
             return response?.data;
         } catch (error) {
            return error.response.data;
