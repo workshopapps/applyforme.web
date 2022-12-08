@@ -50,3 +50,40 @@
     display: flex;
     gap: 0.5rem;
 }
+.not_filled {
+    font-style: italic;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+.loading_spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+}
+
+/* Add the spinning circle */
+.loading_animation {
+    margin-block: 1rem;
+    width: 100%;
+    height: 5px;
+    background-color: #bfbfbf;
+    border-radius: 5px;
+    animation: loading_animation 2s linear infinite;
+}
+
+/* Define  animation */
+@keyframes loading_animation {
+    0% {
+        background-color: #bfbfbf;
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-color: #2f80ed;
+        background-position: 100% 0%;
+    }
+}

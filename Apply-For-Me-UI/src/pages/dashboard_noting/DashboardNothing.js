@@ -1,25 +1,16 @@
 import React from "react";
 
 //import NewUserDashboard from "./NewUserDashboard";
- import OldUserDashboard from "./OldUserDashboard";
-
-
-
-
+import NewUserDashboard from "./NewUserDashboard";
 
 const DashboardNothing = () => {
-
-
-    return(
+    return (
         <div>
             {/* <OldUserDashboard/> */}
-            <OldUserDashboard/>
-
+            {/* <OldUserDashboard/> */}
+            <NewUserDashboard />
         </div>
-    
-       
-
-    )
+    );
 };
 
 export default DashboardNothing;

@@ -40,7 +40,7 @@ public class MemberRepositoryImpl implements MemberRepository {
     
     @Override
     public Member fetchOne(Long id) {
-    	String q = "select m from Member m where m.id = :id";
+    	String q = "select m from Applier m where m.member.id = :id";
     	TypedQuery<Member> query = entityManager.createQuery(q, Member.class);
     	query.setParameter("id", id); 
     	return query.getSingleResult();
