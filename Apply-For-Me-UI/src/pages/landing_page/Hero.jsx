@@ -25,8 +25,8 @@ const Hero = () => {
                             style={{
                                 color: "white",
                                 height: "60px",
-                                width:"240px",
-                                border:"1px solid #2E3192",
+                                width: "240px",
+                                border: "1px solid #2E3192",
                                 backgroundColor: "#2E3192",
                                 display: "flex",
                                 alignItems: "center",
@@ -35,9 +35,9 @@ const Hero = () => {
                                 margin: "1rem 0",
                                 borderRadius: "5px"
                             }}
-                            onClick={()=>navigate('/wel1')}
+                            onClick={() => navigate("/tryout-form")}
                         >
-                           Try it now
+                            Try it now
                         </button>
                     </div>
                 </div>
