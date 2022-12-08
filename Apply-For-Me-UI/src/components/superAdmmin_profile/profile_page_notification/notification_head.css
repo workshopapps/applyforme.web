@@ -29,7 +29,6 @@
 }
 .head_barge{
     display:flex;
-    width:35%;
     justify-content: space-around;
     align-items: center;
 }
@@ -74,6 +73,7 @@
     }
     .head_barge{
         margin-left: 0.8rem;
+        width:35%;
     }
     
 }

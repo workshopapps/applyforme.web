@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { PasswordContent } from "../../modals/editpersonalinfo/editPassword/editPassword";
-import { EditInfoContainer } from "../../modals/editpersonalinfo/editpersonalInfo";
 import { EditInfoContent } from "../../modals/editpersonalinfo/editProfileInformation/editProfileInformation";
 import  "./main_container.css";
 export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
@@ -13,7 +12,7 @@ export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
             <div  className="ProfileMainContainer">
                 <div className="profile_header">
                     <h1>Profile</h1>
-                    <button className="profile_content_btn" onClick={()=>setEditModal(true)}>
+                    <button className="profile_content_btn" onClick={()=>setEditModal((prevState)=>!prevState)}>
                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1668865249/pencil-edit_g9boq4.png" alt="object not found"/>
                         <h4>Edit</h4> 
                     </button>
@@ -58,16 +57,35 @@ export const MainContainer=({name, email,img,phoneNumber,address,dob})=>{
                         <h2 className="proileInfovalue">{dob}</h2>
                     </div>
                 </div>
-                <div className="changePassword">
+                <div className="changePassword" style={{marginTop:"0.5rem"}}>
                     <h1>Password</h1>
-                    <button className="profile_content_btn" onClick={()=>setPasswordModal(true)}>
+                    <button className="profile_content_btn" onClick={()=>setPasswordModal((prevState)=>!prevState)}>
                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1668865249/pencil-edit_g9boq4.png" alt="object not found"/>
                         <h4>Change</h4> 
                     </button>
                 </div>
             </div>
-           {showEditModal ? <EditInfoContainer content={<EditInfoContent/>}/>:null}
-           {showPasswordModal ? <EditInfoContainer content={<PasswordContent/>}/>:null}
+           {showEditModal &&(
+                <div className="editContainer">
+                    <div className="passwword-edit">
+                        <div className='modal_closal' style={{marginBottom:"2rem"}}>
+                            <img src="https://res.cloudinary.com/hamskid/image/upload/v1669067698/Vector_rc9avy.png" alt="object not found" onClick={()=> setEditModal((prevState)=>!prevState)}/>
+                        </div>
+                        <EditInfoContent/>
+                    </div>
+                </div>
+
+           )}
+           {showPasswordModal &&(
+                <div className="editContainer">
+                    <div className="editContent">
+                        <div className='modal_closal' style={{marginBottom:"2rem"}}>
+                            <img src="https://res.cloudinary.com/hamskid/image/upload/v1669067698/Vector_rc9avy.png" alt="object not found" onClick={()=>setPasswordModal((prevState)=>!prevState)}/>
+                        </div>
+                        <PasswordContent/>
+                     </div>
+                </div>
+           )}
         </>
     )
 }
