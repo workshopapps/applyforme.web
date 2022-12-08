@@ -82,7 +82,12 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     
     @Override
 	public List<ProfessionalProfile> findAllJobProfile(Long id, int pageOffset) {
-		return repository.getAllJobProfile(id, pageOffset);
+    	List<ProfessionalProfile> profiles = repository.getAllJobProfile(id, pageOffset);
+    	
+    	profiles.forEach(s -> {
+    		s.setProfessional(null);
+    	});
+		return profiles;
 	}
 
 
