@@ -2,15 +2,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BaseUrl = "https://official-volunux.uc.r.appspot.com";
-
+const BaseUrl = "https://api.applyforme.hng.tech";
 
 const initialState = {
-
-    
-
     user: '',
-
 isLoading: false
 };
 
@@ -30,6 +25,7 @@ const UserSlice = createSlice({
             })
             .addCase(postUserAuth.fulfilled, (state, { payload }) => {
                 state.user = payload;
+                console.log(state.user);
                 state.isLoading = false;
             })
             .addCase(postUserAuth.rejected, (state, { payload }) => {

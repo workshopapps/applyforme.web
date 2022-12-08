@@ -11,6 +11,8 @@ public interface MemberRepository {
     List<Member> getAll(Integer pageOffSet);
 
     Member getOne(Long id);
+    
+    Member fetchOne(Long id);
 
     Member getRef(Long id);
 

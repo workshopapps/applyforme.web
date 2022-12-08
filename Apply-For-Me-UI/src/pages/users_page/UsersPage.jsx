@@ -1,8 +1,19 @@
 import React from "react";
+import { useEffect } from "react";
 import { FiChevronDown, FiChevronRight, FiChevronLeft } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./UserPage.module.css";
-import { Users } from "./user_page_service/UserPageService";
+
 const UsersPage = () => {
+
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(SuperAdminApplicants());
+    },[dispatch,SuperAdminApplicants])
+
+    const list = useSelector(state => state.RRadmin);
+    console.log(list);
     return (
         <div className={classes.main_container}>
             <section className={classes.user_header}>
@@ -34,34 +45,34 @@ const UsersPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {Users.map(
-                            ({
-                                id,
-                                name,
-                                interviews,
-                                plan,
-                                applicationDone,
-                                email
-                            }) => (
-                                <tr className={classes.user_details} key={id}>
-                                    <td>{name}</td>
-                                    <td className={classes.hide_on_mobile}>
-                                        {" "}
-                                        {email}
-                                    </td>
-                                    <td>{plan}</td>
-                                    <td>{applicationDone}</td>
-                                    <td className={classes.hide_on_mobile}>
-                                        {interviews}
-                                    </td>
-                                </tr>
-                            )
-                        )}
+                        {list.superAdminApplicantsList.length !== 0 &&
+                            list.superAdminApplicantsList.content?.map(list => {
+                                return (
+                                    <tr
+                                        className={classes.user_details}
+                                        key={list.membership.id}
+                                    >
+                                        <td>{list.membership.firstName}</td>
+                                        <td className={classes.hide_on_mobile}>
+                                            {" "}
+                                            {list.membership.emailAddress}
+                                            {list.membership.emailAddress}
+                                        </td>
+                                        <td>basic</td>
+                                        <td>{list.totalSubmissions} of 15</td>
+                                        <td>basic</td>
+                                    </tr>
+                                );
+                            })}
                     </tbody>
                 </table>
-
+                {list.applicantsloadingStatus ==="pending" && <p style={{textAlign:"center"}}>Please wait while we fetch the data...</p>}
                 <section className={classes.pagination}>
-                    <p>1-6 of 50</p>
+                    <p>
+                        1-6 of{" "}
+                        {list.superAdminApplicantsList.length !== 0 &&
+                            list.superAdminApplicantsList.content?.length}
+                    </p>
                     <div className={classes.pagination__inc_dec}>
                         <FiChevronLeft />
                         <FiChevronRight />{" "}

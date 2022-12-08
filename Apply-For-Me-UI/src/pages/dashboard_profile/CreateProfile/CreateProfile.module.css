@@ -51,6 +51,8 @@
     font-weight: 400;
     font-size: 1rem;
     cursor: pointer;
+    padding-bottom: 5px;
+    padding-inline: 0.5rem;
 }
 .button_active {
     background: none;
@@ -59,7 +61,9 @@
     font-size: 1rem;
     cursor: pointer;
     color: #2e3192;
-    border-bottom: 3px solid #2e3192;
+    border-bottom: 4px solid #2e3192;
+    padding-bottom: 5px;
+    padding-inline: 0.5rem;
 }
 
 /* Form */
@@ -100,7 +104,6 @@
         flex-direction: column;
         margin-inline: auto;
         /* padding-inline: 10%; */
-        gap: 1rem;
         width: 90%;
         padding-bottom: 2rem;
     }
@@ -110,7 +113,6 @@
         display: flex;
         justify-content: flex-end;
         padding-inline: 10%;
-        gap: 1rem;
         background-color: #ffff;
         width: 90%;
         padding-bottom: 2rem;

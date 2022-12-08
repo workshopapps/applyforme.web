@@ -1,0 +1,164 @@
+.job-openings-wrapper {
+    background: #fefeff;
+    color: #52515b;
+    padding-top: 2rem;
+}
+
+.job-openings-mobile {
+    margin-top: 1.25rem;
+}
+
+.job-openings-column {
+    padding: 0 clamp(1.25rem, 12vw, 8rem);
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.job-openings-wrapper h3,
+.last-line {
+    font-weight: 300;
+    font-size: 1.5rem;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.last-line {
+    font-size: 1.25rem;
+}
+
+.job-openings-wrapper h3 {
+    color: #2e3192;
+}
+
+.job-openings-role {
+    color: #2e3192;
+    margin-top: 1rem;
+    text-decoration: underline;
+    text-underline-offset: 0.4rem;
+}
+
+.job-openings-role,
+.job-openings-location,
+.job-openings-description {
+    margin-bottom: 1rem;
+}
+
+.job-openings-column-heading {
+    display: none;
+}
+
+@media screen and (min-width: 860px) {
+    .job-openings-role {
+        max-width: 7.5rem;
+        margin-right: 4.75rem;
+        margin-top: 0;
+    }
+
+    .job-openings-location {
+        margin-right: 13.75rem;
+    }
+
+    .job-openings-description {
+        max-width: 17.3125rem;
+    }
+
+    .job-openings-mobile {
+        display: flex;
+        justify-content: center;
+    }
+
+    .job-openings-column,
+    .job-openings-column-heading {
+        display: flex;
+        padding: 0 0;
+        padding-top: 1.5rem;
+    }
+
+    .job-openings-column-heading h4 {
+        margin-right: 10rem;
+        color: #52515b;
+        font-weight: 400;
+    }
+
+    .job-openings-column h4 {
+        text-decoration: none;
+    }
+
+    .job-openings-role::after {
+        background-color: #2e3192;
+        content: "";
+        display: block;
+        margin-top: 0.25rem;
+        height: 1px;
+        width: 100%;
+    }
+
+    .last-line {
+        font-weight: 500;
+    }
+}
+
+@media screen and (min-width: 1154px) {
+    .job-openings-wrapper {
+        font-size: 1.25rem;
+    }
+
+    .job-openings-role {
+        max-width: none;
+    }
+
+    .job-openings-description {
+        max-width: 21.75rem;
+    }
+
+    .job-openings-wrapper h3 {
+        font-size: 2.5rem;
+        font-weight: 500;
+    }
+
+    .last-line {
+        font-size: 1.75rem;
+        font-weight: 500;
+    }
+
+    h4.job-openings-role-title {
+        margin-right: 18.8rem;
+    }
+
+    .job-openings-location {
+        margin-right: 16.625rem;
+    }
+
+    .job-openings-column-one .job-openings-role {
+        margin-right: 10.4375rem;
+    }
+
+    .job-openings-column-two .job-openings-role {
+        margin-right: 7.375rem;
+    }
+
+    .job-openings-column-three .job-openings-role {
+        margin-right: 9.75rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    h4.job-openings-role-title {
+        margin-right: 22.8rem;
+    }
+
+    .job-openings-location {
+        margin-right: 20.625rem;
+    }
+
+    .job-openings-column-one .job-openings-role {
+        margin-right: 14.4375rem;
+    }
+
+    .job-openings-column-two .job-openings-role {
+        margin-right: 11.375rem;
+    }
+
+    .job-openings-column-three .job-openings-role {
+        margin-right: 13.75rem;
+    }
+}

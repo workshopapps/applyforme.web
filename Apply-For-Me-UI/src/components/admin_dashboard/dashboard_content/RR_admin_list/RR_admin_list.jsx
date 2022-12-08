@@ -1,19 +1,24 @@
 
 import { useState,useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import './RR_admin_List.css';
 import { Desktop_List } from './desktop_list_wrapper';
 import { Mobile_view_list } from './mobile_list_wrapper';
+import { Fetch_RR_Admin } from 'store/slice/RR_AdminSlice';
 export const RR_Admin_list=({inputSearchValue})=>{
-    
     const RR_recruiter = useSelector((state)=>state.RRadmin);
     const [search, setSearch] = useState([]);
     const [rangeEnd, setRangeEnd]= useState(4);
     const [rangeStart, setRangeStart]= useState(0);
     const [counter, setCounter]= useState(1);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(Fetch_RR_Admin());
+    },[dispatch,Fetch_RR_Admin])
     
     useEffect(()=>{
-        const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list.content.length !==0) ? RR_recruiter.list.content.filter((item)=>item.first_name.toLowerCase().includes(inputSearchValue)):[]
+        const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list?.length !==0) ? RR_recruiter.list.content.filter((item)=>item.firstName.toLowerCase().includes(inputSearchValue)):[]
         setSearch(avilableList);
     }, [inputSearchValue, RR_recruiter.list]);
 
@@ -27,6 +32,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
         setRangeStart(prevState => prevState - 5);
         setCounter(prevState => prevState - 5);
     };
+
 
     return (
         <>
@@ -55,33 +61,21 @@ export const RR_Admin_list=({inputSearchValue})=>{
                 </thead>
                 <tbody>
                     {
-                        search.length !==0? (
-                            counter <= search.length? search.map((user, index)=>{
-                                const {first_name,current_job_title,id,created_on} = user;
-                                if((index >= rangeStart) && (index <= rangeEnd) ){
-                                    return(
-                                        <tr key={index}>
-                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} created_on={created_on}  />
-                                        </tr>
-                                       
-                                    )
-    
-                                }
-                            }):null):
-                        (RR_recruiter.loadingStatus === "success" &&
-                            counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
-                                const {first_name,current_job_title,id,created_on} = user;
-                                if((index >= rangeStart) && (index <= rangeEnd)){
-                                    return(
-                                        <tr key={index}>
-                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} created_on={created_on}/>
-                                        </tr>
-                                    )
+                        search.length !==0 &&
+                        counter <= search.length? search.map((user, index)=>{
+                            const {firstName,currentJobTitle,id,createdOn} = user;
+                            if( (index >= rangeStart) && (index <= rangeEnd) ){
+                                return(
+                                    <tr key={index}>
+                                        <Desktop_List firstName={firstName} currentJobTitle={currentJobTitle} id={id} createdOn={createdOn}/>
+                                    </tr> 
+                                )
+                            }
+                        }):null
 
-                                }
-                            }):null
-                        )
                     }
+                        
+                    
                         
                 </tbody> 
             </table>
@@ -97,33 +91,19 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     </select>
                 </div>
                     {
-                        search.length !==0? (
-                        RR_recruiter.loadingStatus === "success" &&
+                        search.length !==0 && 
+                        (RR_recruiter.loadingStatus === "success" && RR_recruiter.list.length !==0) &&
                         counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
-                           const {first_name,current_job_title,id} = user;
+                           const {firstName,currentJobTitle,id} = user;
                             if((index >= rangeStart) && (index <= rangeEnd) ){
                                 return(
                                     <div className='RRlist' key={index}>
-                                         <Mobile_view_list first_name={first_name} current_job_title={current_job_title} id={id} />
+                                         <Mobile_view_list firstName={firstName} currentJobTitle={currentJobTitle} id={id} />
                                     </div>
                                   
                                 )
                             }
                         }):null
-                        ):(
-                            RR_recruiter.loadingStatus === "success" &&
-                        counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
-                           const {first_name,current_job_title,id} = user;
-                            if((index >= rangeStart) && (index <= rangeEnd) ){
-                                return(
-                                    <div className='RRlist' key={index}>
-                                         <Mobile_view_list first_name={first_name} current_job_title={current_job_title} id={id} />
-                                    </div>
-                                  
-                                )
-                            }
-                        }):null
-                        )
                     }
             </div>
 
@@ -133,12 +113,12 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     Please wait while we fetch the data...
                 </p>
             )}
+            {(RR_recruiter.loadingStatus === "success" && search.length ===0) && <p className="text-center">Admin not found</p>}
 
             <div className="pagination">
                 <h5>
                     1-5 of{" "}
-                    {RR_recruiter.loadingStatus === "success" &&
-                        RR_recruiter.list.content.length}
+                    {RR_recruiter.loadingStatus === "success" &&  search.length}
                 </h5>
                 <div className="pagiantion_control">
                     {counter >= 4 ? (
@@ -151,7 +131,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                         </span>
                     ) : null}
                     {RR_recruiter.loadingStatus === "success" &&
-                        (counter < RR_recruiter.list.content.length ? (
+                        (counter <  search.length ? (
                             <span onClick={forwardHandler}>
                                 <img
                                     style={{ width: "60%" }}

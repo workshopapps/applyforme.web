@@ -3,6 +3,9 @@ import React from "react";
 import classes from "./Hero.module.css";
 import { useNavigate } from "react-router-dom";
 const Hero = () => {
+    const token = localStorage.getItem("tokenKey");
+    let tokenKey = "tokenHngKey";
+    let storedToken = localStorage.getItem(tokenKey);
     const navigate = useNavigate();
     return (
         <div className={classes.hero_container}>
@@ -20,25 +23,27 @@ const Hero = () => {
                         hunting process easy.
                     </span>
                     <div className={classes.uploadFile}>
-                        <button
-                            className="fileLabel"
-                            style={{
-                                color: "white",
-                                height: "60px",
-                                width:"240px",
-                                border:"1px solid #2E3192",
-                                backgroundColor: "#2E3192",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                padding: "16px 32px",
-                                margin: "1rem 0",
-                                borderRadius: "5px"
-                            }}
-                            onClick={()=>navigate('/wel1')}
-                        >
-                           Try it now
-                        </button>
+                        {!storedToken && (
+                            <button
+                                className="fileLabel"
+                                style={{
+                                    color: "white",
+                                    height: "60px",
+                                    width: "240px",
+                                    border: "1px solid #2E3192",
+                                    backgroundColor: "#2E3192",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    padding: "16px 32px",
+                                    margin: "1rem 0",
+                                    borderRadius: "5px"
+                                }}
+                                onClick={() => navigate("/tryout-form")}
+                            >
+                                Try it now
+                            </button>
+                        )}
                     </div>
                 </div>
 
