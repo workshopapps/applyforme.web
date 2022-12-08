@@ -6,8 +6,8 @@ pipeline {
         stage("Get repo"){
 
 			steps {
-				sh "rm -rf ${WORKSPACE}/applyforme.web"
-				sh "git clone https://github.com/workshopapps/applyforme.web.git"
+				sh "sudo rm -rf ${WORKSPACE}/applyforme.web"
+				sh "sudo git clone https://github.com/workshopapps/applyforme.web.git"
 			}
 		}
 
