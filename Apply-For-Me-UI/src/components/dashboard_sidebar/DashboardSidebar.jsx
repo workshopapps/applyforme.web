@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import classes from "./DashboardSidebar.module.css";
-import Logo from "../../assets/images/afm-logo.svg";
+import Logo from "../../assets/images/footer_logo.svg";
 import DashboardIcon from "../../assets/images/dashboard_logo.svg";
 import ProfileIcon from "../../assets/images/profile_dashboard_logo.svg";
 import BriefCaseIcon from "../../assets/images/office_briefcase_dashboard_logo.svg";
-import mobileOverviewIcon from "../../assets/images/bottomnav-overview-icon.svg";
-import mobileProfilesIcon from "../../assets/images/bottomnav-profiles-icon.svg";
-import mobileApplicationsIcon from "../../assets/images/bottomnav-applications-icon.svg";
-
-import { useGlobalContext } from "../../hooks/context";
-
+import UsersIcon from "../../assets/images/users_dashboard_logo.svg";
+import MessageIcon from "../../assets/images/envelope_badged_dashboard_logo.svg";
+import HelpIcon from "../../assets/images/help_dashboard_logo.svg";
+import LogoutIcon from "../../assets/images/logout_dashboard_logo.svg";
 import { getActiveLink } from "./service/DashboardSidebarService";
 import { NavLink, useNavigate } from "react-router-dom";
 

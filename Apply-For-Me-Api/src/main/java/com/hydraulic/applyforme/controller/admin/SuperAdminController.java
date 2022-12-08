@@ -2,6 +2,8 @@ package com.hydraulic.applyforme.controller.admin;
 
 import javax.validation.Valid;
 
+import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
+import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,12 +14,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
-import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
 import com.hydraulic.applyforme.service.SuperAdminService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
+
 
 @RestController
 @RequestMapping(
@@ -26,6 +26,7 @@ import com.hydraulic.applyforme.util.CurrentUserUtil;
 )
 public class SuperAdminController {
     private final SuperAdminService service;
+
     public SuperAdminController(SuperAdminService service) {
         this.service = service;
     }

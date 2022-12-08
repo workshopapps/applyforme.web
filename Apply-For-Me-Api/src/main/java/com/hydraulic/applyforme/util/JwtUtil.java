@@ -72,7 +72,6 @@ public class JwtUtil {
 
         claims.put("memberId", userDetails1.getId());
         claims.put("roles", roles);
-
         claims.put("fullName", userDetails1.getFullName());
         claims.put("emailAddress", userDetails1.getEmailAddress());
         claims.put("username", userDetails1.getDisplayName());

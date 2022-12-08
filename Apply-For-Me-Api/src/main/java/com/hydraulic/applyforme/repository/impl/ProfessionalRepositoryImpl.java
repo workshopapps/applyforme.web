@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.repository.impl;
 
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,9 +8,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-
 import org.springframework.stereotype.Repository;
-
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;

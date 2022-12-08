@@ -1,13 +1,12 @@
 package com.hydraulic.applyforme.service.impl;
 
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-
-import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
@@ -45,12 +44,14 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     @Override
     @Transactional
 	public Member updatePassword(Long id, UpdatePasswordDto dto) throws PasswordMismatchException {
+
 		Member member = repository.fetchOne(id);
 		System.out.println(member);
 		boolean matches = passwordEncoder.matches(dto.getExistingPassword(), member.getPassword());
 		
         if (!matches) {
-			throw new PasswordMismatchException(); 
+
+			throw new PasswordMismatchException();
 		}
         
         member.setPassword(passwordEncoder.encode(dto.getNewPassword()));
@@ -76,13 +77,10 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         superAdmin.setLastName(body.getLastName());
         superAdmin.setUsername(body.getUsername());
         superAdmin.setDateOfBirth(body.getDateOfBirth());
-        superAdmin.setCurrentJobTitle(body.getCurrentJobTitle());
         superAdmin.setEmailAddress(body.getEmailAddress());
         superAdmin.setPhoneNumber(body.getPhoneNumber());
         superAdmin.setCity(body.getCity());
         superAdmin.setState(body.getState());
-        superAdmin.setNationality(Country.builder().id(body.getNationality()).title(body.getNationTitle()).abbreviation(body.getNationAbbreviation()).build());
-        superAdmin.setCountryOfResidence(Country.builder().id(body.getCountryOfResidence()).title(body.getCountryTitle()).abbreviation(body.getCountryAbbreviation()).build());
         return repository.updateOne(superAdmin);
     }
 
@@ -93,14 +91,11 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     @Override
     @Transactional
     public boolean deleteMemberById(Long id) {
-//    	  Member member = repository.fetchOne(id);
-//    	System.out.println(member);
-//    	if(member == null) {
-//    		throw new MemberNotFoundException(id);
-//    	}
-//    	repository.remove(member.getId());
-    	
-    	applierRepository.remove(id);
+    	Member member = memberJpaReposiroty.getById(id);
+    	if(member == null) {
+    		throw new MemberNotFoundException(id);
+    	}
+    	memberJpaReposiroty.delete(member);
     	return true;
     }
 

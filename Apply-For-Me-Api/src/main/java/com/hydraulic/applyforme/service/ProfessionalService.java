@@ -21,10 +21,7 @@ public interface ProfessionalService {
 
     Page<Professional> retrieveAllProfessionals(int pageNo, int PageSize);
 
-//	List<ProfessionalProfile> findAllJobProfile(Long id, int pageOffset);
-
-//	ApplyForMeResponse findAllJobProfile(Long id, int pageNo, int pageSize, String sortBy, String sortDir);
-
 	List<ProfessionalProfile> findAllJobProfile(Long id);
 
+	List<ProfessionalProfile> findAllJobProfile(Long id, int pageOffset);
 }
