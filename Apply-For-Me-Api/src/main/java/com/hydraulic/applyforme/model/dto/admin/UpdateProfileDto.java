@@ -24,14 +24,26 @@ public class UpdateProfileDto {
     @JsonProperty("last_name")
     private String lastName;
 
+    @JsonProperty("nationality")
+    private Long nationality;
+
+    @JsonProperty("country_of_residence")
+    private Long countryOfResidence;
+
     @JsonProperty("date_of_birth")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "dd-MM-yyyy")
     @Past(message = "{customer.dateOfBirth.past}")
     private Date dateOfBirth;
 
+    @JsonProperty("current_job_title")
+    private String currentJobTitle;
+
     @JsonProperty("email_address")
     private String emailAddress;
+
+    @JsonProperty("username")
+    private String username;
 
     @NotNull(message = "{member.phoneNumber.notNull}")
     @PhoneNumber
@@ -45,4 +57,22 @@ public class UpdateProfileDto {
     @Size(max = 300, message = "{member.state.size}")
     @JsonProperty("state")
     private String state;
+
+    @JsonProperty("nationality_title")
+    private String nationTitle;
+
+    @JsonProperty("nationality_abbreviation")
+    private String nationAbbreviation;
+
+    @JsonProperty("country_title")
+    private String countryTitle;
+
+    @JsonProperty("country_residence")
+    private String countryAbbreviation;
+
+    @JsonProperty("role_title")
+    private String roleTitle;
+
+    @JsonProperty("role_code")
+    private String code;
 }

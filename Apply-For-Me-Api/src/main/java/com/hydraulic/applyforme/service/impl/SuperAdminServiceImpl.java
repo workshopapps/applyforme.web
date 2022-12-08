@@ -75,6 +75,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 
         superAdmin.setFirstName(body.getFirstName());
         superAdmin.setLastName(body.getLastName());
+        superAdmin.setUsername(body.getUsername());
         superAdmin.setDateOfBirth(body.getDateOfBirth());
         superAdmin.setEmailAddress(body.getEmailAddress());
         superAdmin.setPhoneNumber(body.getPhoneNumber());
