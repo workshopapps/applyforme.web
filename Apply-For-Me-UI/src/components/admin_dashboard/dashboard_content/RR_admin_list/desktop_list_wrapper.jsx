@@ -25,7 +25,7 @@ export const Desktop_List =({firstName,currentJobTitle,id,createdOn} )=>{
                 <h3 style={{ fontWeight: "400" }}>{currentJobTitle}</h3>
             </td>
             <td>
-                <h3 style={{ fontWeight: "400" }}>{createdOn}</h3>
+                <h3 style={{ fontWeight: "400" }}>{createdOn?.split("T").shift()}</h3>
             </td>
             <td>
                 <div className="viewContainer">
