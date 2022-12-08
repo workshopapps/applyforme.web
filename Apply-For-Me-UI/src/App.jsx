@@ -62,7 +62,6 @@ import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
 
-
 import RRD from "pages/RR_Dashboard/RRD";
 
 import { useEffect } from "react";
@@ -70,6 +69,9 @@ import { useEffect } from "react";
 import Sign_In from "pages/RR_recuiters_page/Sign_In";
 import Sign_Up from "pages/RR_recuiters_page/Sign_Up";
 import { SuperDashBoard } from "pages/super_admin_dashboard/dashboardview";
+
+import TryoutForm from "pages/tryout_form/TryoutForm";
+import TrySuccess from "pages/tryout_form/Success";
 
 function App() {
     const dispatch = useDispatch();
@@ -84,8 +86,8 @@ function App() {
 
     return (
         <>
-             <Routes>
-                <Route exact path="/super_page" element={<SuperDashBoard/>}/>
+            <Routes>
+                <Route exact path="/super_page" element={<SuperDashBoard />} />
                 <Route exact path="/" element={<LandingPage />} />
                 <Route exact path="/about" element={<AboutUs />} />
                 <Route exact path="/faqs" element={<FAQs />} />
@@ -99,15 +101,18 @@ function App() {
                 <Route exact path="/howafmworks" element={<HowAfmWorks />} />
                 <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route exact path="/user-page" element={<Dashboard />} />
-                    <Route
-                        path="/superAdminProfile"
-                        element={<ProfileScreen />}
-                    />
-                    <Route
-                        exact
-                        path="/reverseRecruiterAdmin/:id"
-                        element={<RR_admin_profile />}
-                    />
+                <Route exact path="/tryout-form" element={<TryoutForm />} />
+                <Route
+                    exact
+                    path="/tryout-form/success"
+                    element={<TrySuccess />}
+                />
+                <Route path="/superAdminProfile" element={<ProfileScreen />} />
+                <Route
+                    exact
+                    path="/reverseRecruiterAdmin/:id"
+                    element={<RR_admin_profile />}
+                />
                 <Route
                     exact
                     path="/pricing"
@@ -118,7 +123,7 @@ function App() {
                     path="/checkout"
                     element={<Checkout {...formData} />}
                 />
-                
+
                 <Route exact path="blog" element={<Blog />} />
                 <Route
                     exact
@@ -136,9 +141,9 @@ function App() {
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
                 <Route exact path="/settings" element={<AccountSettings />} />
 
-                <Route path="dashboard" element={<UserDashboardLayout />}/>
-                    {/* <Route path="/dashboard/" element={<DashboardNothing />} /> */}
-                    
+                <Route path="dashboard" element={<UserDashboardLayout />} />
+                {/* <Route path="/dashboard/" element={<DashboardNothing />} /> */}
+
                 {/*AUTH ROUTE */}
                 <Route exact path="/wel1" element={<Welcome1 />} />
                 <Route exact path="/wel2" element={<Welcome2 />} />
@@ -151,7 +156,7 @@ function App() {
 
                 <Route exact path="/rr_sign_in" element={<Sign_In />} />
                 <Route exact path="/rr_sign_up" element={<Sign_Up />} />
-                    
+
                 {/*  PROTECTED ROUTE*/}
                 <Route
                     element={
@@ -179,13 +184,20 @@ function App() {
                     }
                 >
                     {/*Reverse Recruiter Dashboard */}
-                    <Route path="/rr_admin" element={<DashboardHome/>}>
-                       
-                    </Route>
-                    <Route path="/rr_admin/form" element={<ApplicationForm/>}/>
-                        <Route path="/rr_admin/appilicants_details" element={<ApplicantDetails/>}/>
-                        <Route path="/rr_admin/all_applications" element={<Applications/>}/>
-                    
+                    <Route path="/rr_admin" element={<DashboardHome />}></Route>
+                    <Route
+                        path="/rr_admin/form"
+                        element={<ApplicationForm />}
+                    />
+                    <Route
+                        path="/rr_admin/appilicants_details"
+                        element={<ApplicantDetails />}
+                    />
+                    <Route
+                        path="/rr_admin/all_applications"
+                        element={<Applications />}
+                    />
+
                     {/* USER DASHBAORD */}
                     <Route path="dashboard" element={<UserDashboardLayout />}>
                         {/* User Dashboard Profile */}

@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 import styles from "../Applications.module.css";
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2"
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import ApplicationsListHeader from "./ApplicationsListHeader";
 import axios from "axios";
 import { useEffect, useState } from "react";
 const Table = () => {
-    const [data, setData] = useState([])
-    const [ setError] = useState(false)
+    const [data, setData] = useState([]);
+    const [setError] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         axios

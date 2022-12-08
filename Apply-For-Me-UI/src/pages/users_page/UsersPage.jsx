@@ -37,7 +37,7 @@ const UsersPage = () => {
                     </thead>
                     <tbody>
                         {list.superAdminApplicantsList.length !== 0 &&
-                            list.superAdminApplicantsList.content.map(list => {
+                            list.superAdminApplicantsList.content?.map(list => {
                                 return (
                                     <tr
                                         className={classes.user_details}
@@ -62,7 +62,7 @@ const UsersPage = () => {
                     <p>
                         1-6 of{" "}
                         {list.superAdminApplicantsList.length !== 0 &&
-                            list.superAdminApplicantsList.content.length}
+                            list.superAdminApplicantsList.content?.length}
                     </p>
                     <div className={classes.pagination__inc_dec}>
                         <FiChevronLeft />

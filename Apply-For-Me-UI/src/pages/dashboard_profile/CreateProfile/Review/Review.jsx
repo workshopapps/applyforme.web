@@ -11,6 +11,7 @@ import { useState } from "react";
 
 const Review = ({ formData, keywords, setStep }) => {
     const [response, setResponse] = useState(null);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const included_keywords = String(keywords);
     let jobLocationType = formData.isremote ? "remote" : "hybrid";
@@ -38,6 +39,7 @@ const Review = ({ formData, keywords, setStep }) => {
             return alert("Please enter a cover letter body");
         }
 
+        setLoading(true);
         try {
             // Make POST request
             const finalResponse = await fetch(
@@ -70,9 +72,11 @@ const Review = ({ formData, keywords, setStep }) => {
                 }
             );
             const finalResponseJson = await finalResponse.json();
-            console.log(finalResponseJson);
+            setLoading(false);
+            console.log("success");
             navigate("/dashboard/user/success");
         } catch (error) {
+            alert("Failed to submit, please try again");
             console.log(error);
         }
     };
@@ -163,6 +167,10 @@ const Review = ({ formData, keywords, setStep }) => {
                                     </p>
                                 )}
                             </div>
+                            {loading && (
+                                <div className={classes.loading_animation} />
+                            )}
+
                             <div className={classes.review_buttons}>
                                 <BlueButton
                                     func={handleSubmit}
