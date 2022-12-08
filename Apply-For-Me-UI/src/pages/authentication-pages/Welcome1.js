@@ -53,7 +53,7 @@ const Welcome1 = () => {
         };
         console.log(formData);
         let result = await axios
-            .post(`${BaseUrl}`)
+            .post(`${BaseUrl}`, formData)
             .then(res => res.data)
             .catch(err => {
                 console.log(err);

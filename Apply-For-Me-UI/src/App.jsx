@@ -139,7 +139,6 @@ function App() {
                 <Route exact path="blog/resume" element={<Resume />} />
                 <Route exact path="blog/brand" element={<Brand />} />
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
-                <Route exact path="/settings" element={<AccountSettings />} />
 
                 <Route path="dashboard" element={<UserDashboardLayout />} />
                 {/* <Route path="/dashboard/" element={<DashboardNothing />} /> */}
@@ -201,9 +200,15 @@ function App() {
                     {/* USER DASHBAORD */}
                     <Route path="dashboard" element={<UserDashboardLayout />}>
                         {/* User Dashboard Profile */}
+
                         <Route
                             path="/dashboard/"
                             element={<DashboardNothing />}
+                        />
+                        <Route
+                            exact
+                            path="/dashboard/settings"
+                            element={<AccountSettings />}
                         />
                         <Route path="user/" element={<NoProfile />} />
                         <Route

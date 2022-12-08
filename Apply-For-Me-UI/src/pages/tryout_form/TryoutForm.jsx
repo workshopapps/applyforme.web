@@ -106,7 +106,9 @@ const TryoutForm = () => {
                                 I want only remote jobs
                             </label>
                         </div>
-                        <div className={formStyling.detailsdropdown_box}>
+                        <div
+                            className={`${formStyling.detailsdropdown_box} ${formStyling.row_of_3}`}
+                        >
                             <div>
                                 <p>Experience</p>
                                 <Dropdown
