@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface JobSubmissionRepository extends JpaRepository<Submission,Long> {
@@ -23,4 +24,6 @@ public interface JobSubmissionRepository extends JpaRepository<Submission,Long> 
 
      @Query(value = "SELECT applier_id AS ApplierId, COUNT(applier_id) AS ValueOccurrence from job_submission GROUP BY ApplierId ORDER BY COUNT(ApplierId) DESC ", nativeQuery = true)
      List<ApplierResponse> getHighestApplier();
+
+     List<Submission> findAllByProfessionalId(Long id);
 }
