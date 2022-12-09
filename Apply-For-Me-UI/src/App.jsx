@@ -46,6 +46,7 @@ import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
 import Profile from "./pages/dashboard_profile/Profile/Profile";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
+import ProfileDescription from "pages/dashboard_profile/Profile/ProfileDescription";
 import { ProfileScreen } from "components/superAdmmin_profile/superAdmin_profileScreen";
 
 // Auth Logic
@@ -217,6 +218,11 @@ function App() {
                         />
                         <Route path="user/success" element={<Success />} />
                         <Route path="user/profile-list" element={<Profile />} />
+                        <Route
+                            path="/dashboard/user/:id"
+                            element={<ProfileDescription />}
+                        />
+
                         {/* User Dashboard Applications */}
                         <Route
                             path="applications"
