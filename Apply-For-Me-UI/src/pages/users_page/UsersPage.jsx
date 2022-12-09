@@ -1,6 +1,7 @@
 import React from "react";
-import { useEffect } from "react";
-import { FiChevronDown, FiChevronRight, FiChevronLeft } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import { FiChevronDown} from "react-icons/fi";
+import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
 import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./UserPage.module.css";
@@ -8,8 +9,17 @@ import classes from "./UserPage.module.css";
 const UsersPage = () => {
 
     const dispatch = useDispatch();
+    const [pagination, setPagination] = useState({
+        "pageNo": 0,
+        "pageSize": 10,
+    });
+    const handlePageClick =(data)=>{
+        setPagination(prevState =>({...prevState,"pageNo":data.selected}));
+        dispatch(SuperAdminApplicants(pagination));
+       
+    }
     useEffect(()=>{
-        dispatch(SuperAdminApplicants());
+        dispatch(SuperAdminApplicants(pagination));
     },[dispatch,SuperAdminApplicants])
 
     const list = useSelector(state => state.RRadmin);
@@ -46,6 +56,7 @@ const UsersPage = () => {
                     </thead>
                     <tbody>
                         {list.superAdminApplicantsList.length !== 0 &&
+                         (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
                             list.superAdminApplicantsList.content?.map(list => {
                                 return (
                                     <tr
@@ -66,18 +77,25 @@ const UsersPage = () => {
                             })}
                     </tbody>
                 </table>
-                {list.applicantsloadingStatus ==="pending" && <p style={{textAlign:"center"}}>Please wait while we fetch the data...</p>}
-                <section className={classes.pagination}>
-                    <p>
-                        1-6 of{" "}
-                        {list.superAdminApplicantsList.length !== 0 &&
-                            list.superAdminApplicantsList.content?.length}
-                    </p>
-                    <div className={classes.pagination__inc_dec}>
-                        <FiChevronLeft />
-                        <FiChevronRight />{" "}
-                    </div>
-                </section>
+                {list.applicantsloadingStatus ==="pending" && <p style={{textAlign:"center"}}>Please wait...</p>}
+                <div>
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">"
+                    pageRangeDisplayed={5}
+                    pageCount={list.superAdminApplicantsList?.totalPages}
+                    marginPagesDisplayed="1"
+                    previousLabel="<"
+                    renderOnZeroPageCount={null}
+                    onPageChange={handlePageClick}
+                    containerClassName="containerClassName"
+                    pageClassName='pageClassName'
+                    previousClassName='previousClassName'
+                    activeClassName="activeClassName"
+                    nextClassName='nextClassName'
+                    pageLinkClassName="pageLinkClassName"
+                />
+                 </div>
             </section>
         </div>
     );
