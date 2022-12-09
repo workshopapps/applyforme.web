@@ -47,9 +47,6 @@
     margin-top: 1rem;
 }
 .review_keywords {
-    font-size: 1.25rem;
-    font-weight: 300;
-    color: #52515b;
     display: flex;
     gap: 0.5rem;
 }

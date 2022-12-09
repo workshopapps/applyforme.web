@@ -30,7 +30,7 @@ export const Desktop_List =({firstName,currentJobTitle,id,createdOn} )=>{
             <td>
                 <div className="viewContainer">
                     <button
-                        onClick={() => navigate(`/reverseRecruiterAdmin/${id}`)}
+                        onClick={() => navigate(`/user-page/reverseRecruiterAdmin/${id}`)}
                     >
                         view Profile
                     </button>

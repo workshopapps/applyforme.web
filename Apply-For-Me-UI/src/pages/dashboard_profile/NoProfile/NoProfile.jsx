@@ -6,29 +6,26 @@ import blueadd from "../assets/blue-add.png";
 import TopBar from "../components/TopBar/TopBar";
 import Profile from "../Profile/Profile";
 // import axios from "axios";
-// import { useEffect } from "react";
+// import { useState, useEffect } from "react";
 const NoProfile = () => {
     const created = false;
+    // const [profileList, setProfileList] = useState();
 
     // eslint-disable-next-line no-unused-vars
-    const token = localStorage.getItem("tokenKey");
-    let tokenKey = "tokenHngKey";
-    let storedToken = localStorage.getItem(tokenKey);
-    console.log(storedToken);
+    // const token = localStorage.getItem("tokenKey");
+    // let tokenKey = "tokenHngKey";
+    // let storedToken = localStorage.getItem(tokenKey);
     // useEffect(() => {
     //     axios
-    //         .get(
-    //             "https://api.applyforme.hng.tech/api/v1/professional/profiles",
-    //             {
-    //                 headers: {
-    //                     "Authorization": `Bearer ${storedToken}`
-    //                 }
+    //         .get("https://api.applyforme.hng.tech/api/v1/applicant/profiles", {
+    //             headers: {
+    //                 "Authorization": `Bearer ${storedToken}`
     //             }
-    //         )
+    //         })
     //         .then(response => {
     //             // handle success
-    //             // setProfileList(response.data);
-    //             console.log(response.data);
+    //             setProfileList(response.data);
+    //             console.log(profileList);
     //         })
     //         .catch(error => {
     //             // handle error

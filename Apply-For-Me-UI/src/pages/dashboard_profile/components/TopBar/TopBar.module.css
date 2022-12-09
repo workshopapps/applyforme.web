@@ -10,10 +10,6 @@
         font-weight: 500;
         color: #52515b;
     }
-    .profilepic {
-        width: 3rem;
-        height: 3rem;
-    }
 }
 @media screen and (max-width: 610px) {
     .topbar h4 {
@@ -21,17 +17,16 @@
         font-weight: 500;
         color: #52515b;
     }
-    .profilepic {
-        width: 2.5rem;
-        height: 2.5rem;
-    }
 }
 .picture_container {
     display: flex;
     align-items: center;
     gap: 24px;
 }
-
+.profilepic {
+    width: 60px;
+    height: 60px;
+}
 .notif {
     width: 24px;
     height: 24px;

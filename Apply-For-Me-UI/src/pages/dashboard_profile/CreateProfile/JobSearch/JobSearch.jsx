@@ -47,7 +47,6 @@ const JobSearch = ({ formData, setFormData }) => {
             const firstResponse = await axios.post(
                 `https://api.applyforme.hng.tech/api/v1/upload/pre-signed-resume?extension=.${fileExtension}`
             );
-            console.log(firstResponse.data);
             // Second POST request
             const fd = new FormData();
             fd.set("file", file);
@@ -55,9 +54,7 @@ const JobSearch = ({ formData, setFormData }) => {
                 method: "PUT",
                 body: fd
             });
-            console.log(secondResponse);
             const shortenedCVUrl = secondResponse.url.split("?")[0];
-            console.log(shortenedCVUrl);
             setFormData({
                 ...formData,
                 cv_file: e.target.files[0],

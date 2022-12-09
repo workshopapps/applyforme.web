@@ -38,7 +38,7 @@ export const Mobile_view_list =({firstName,currentJobTitle,id} )=>{
                     </div>
                 </span>
                 <button
-                    onClick={() => navigate(`/reverseRecruiterAdmin/${id}`)}
+                    onClick={() => navigate(`/user-page/reverseRecruiterAdmin/${id}`)}
                 >
                     view
                 </button>

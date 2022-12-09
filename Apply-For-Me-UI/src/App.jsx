@@ -46,7 +46,6 @@ import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
 import Profile from "./pages/dashboard_profile/Profile/Profile";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
-import ProfileDescription from "pages/dashboard_profile/Profile/ProfileDescription";
 import { ProfileScreen } from "components/superAdmmin_profile/superAdmin_profileScreen";
 
 // Auth Logic
@@ -62,9 +61,6 @@ import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
-
-import RRD from "pages/RR_Dashboard/RRD";
-
 import { useEffect } from "react";
 
 import Sign_In from "pages/RR_recuiters_page/Sign_In";
@@ -158,12 +154,12 @@ function App() {
 
                     <Route exact path="/user-page" element={<Dashboard />} />
                     <Route
-                        path="/superAdminProfile"
+                        path="/user-page/profile"
                         element={<ProfileScreen />}
                     ></Route>
                     <Route
                         exact
-                        path="/reverseRecruiterAdmin/:id"
+                        path="/user-page/reverseRecruiterAdmin/:id"
                         element={<RR_admin_profile />}
                     />
                 </Route>
@@ -190,7 +186,7 @@ function App() {
                     />
 
                     {/* USER DASHBAORD */}
-                    <Route path="dashboard" element={<UserDashboardLayout />}>
+                    <Route path="/dashboard" element={<UserDashboardLayout />}>
                         {/* User Dashboard Profile */}
 
                         <Route
@@ -209,11 +205,6 @@ function App() {
                         />
                         <Route path="user/success" element={<Success />} />
                         <Route path="user/profile-list" element={<Profile />} />
-                        <Route
-                            path="/dashboard/user/:id"
-                            element={<ProfileDescription />}
-                        />
-
                         {/* User Dashboard Applications */}
                         <Route
                             path="applications"
