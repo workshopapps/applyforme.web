@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                         url = "https://github.com/workshopapps/applyforme.web"
                 )
         ),
-        servers = @Server(url = "https://official-volunux.uc.r.appspot.com")
+        servers = @Server(url = "http://localhost:7001") //https://api.applyforme.hng.tech/api/v1/auth/sign-in
 )
 public class OpenApiConfig {
 }
