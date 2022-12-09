@@ -6,6 +6,30 @@
     margin: 0 auto;
 }
 
+.containerClassName{
+    margin:1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    justify-content: space-evenly;
+ }
+ 
+ .activeClassName{
+    background-color: #2E3192;
+    color:white;
+ }
+ .pageClassName{
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+ }
+ .previousClassName a,.nextClassName a{
+    font-weight:bold;
+ }
+ .pageLinkClassName,.previousClassName a,.nextClassName a{
+    font-size: 17px;
+    margin:0 0.1rem;
+ }
 .user_header {
     display: flex;
     justify-content: space-between;
@@ -25,16 +49,23 @@
 .month_year {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    justify-content: space-between;
+    gap: 1rem;
     background-color: #eeefff;
     border-radius: 4px;
     padding: 0.6rem;
+    width: 220px;
+    height: 43px;
 }
 
 .month_year p {
     font-weight: 400;
     font-size: 1rem;
     color: #2e3192;
+}
+
+.month_year svg {
+    font-size: 1.5rem;
 }
 
 .applicant .table {
@@ -44,8 +75,10 @@
 
 .table tr td,
 .table tr th {
-    text-align: left;
+    text-align: center;
+    width:25%;
     border-bottom: 2px solid rgb(228, 227, 227);
+    border-radius: 0;
 }
 
 .table tr th {
@@ -79,6 +112,10 @@
     display: none;
 }
 
+.hide_header_desktop {
+    display: none;
+}
+
 /* Tablet */
 @media screen and (max-width: 914px) {
     .desktop_button {
@@ -89,12 +126,20 @@
         display: block;
         color: #2e3192;
     }
+    .applicant .table tr td,
+    .applicant .table tr th {
+        width:auto;
+    }
 }
 
 /* Mobile Screen */
 @media screen and (max-width: 700px) {
     .hide_on_mobile {
         display: none;
+    }
+
+    .table .hide_header_desktop {
+        display: block;
     }
 
     .user_header p {
@@ -106,5 +151,6 @@
     .applicant .table tr td,
     .applicant .table tr th {
         font-size: 0.9rem;
+        
     }
 }

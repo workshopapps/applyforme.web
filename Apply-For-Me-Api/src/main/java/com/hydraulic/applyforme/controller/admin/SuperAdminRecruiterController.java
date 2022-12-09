@@ -54,7 +54,7 @@ public class SuperAdminRecruiterController {
         Member member = service.saveRecruiter(dto);
         return member;
     }
-
+git
     @GetMapping("/sort-and-paginate")
     public List<Member> sortAndPaginateRecruiter(
             @RequestParam (value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false)int pageNo,

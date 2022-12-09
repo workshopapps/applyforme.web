@@ -31,6 +31,6 @@ public class Applier {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "applier")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "applier", cascade = CascadeType.ALL)
     private Set<Submission> submissions = new HashSet<>();
 }

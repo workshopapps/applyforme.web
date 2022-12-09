@@ -7,7 +7,7 @@ const BlueBorderButton = ({ width, text, func }) => {
         <button
             style={{ width: `${width}px` }}
             className={[classes.btn, mainStyle.main_btn].join(" ")}
-            onClick={() => func() ?? {}}
+            onClick={() => (func ? func() : {})}
         >
             {text}
         </button>

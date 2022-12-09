@@ -1,0 +1,89 @@
+.noprofile {
+    background-color: #f3f3fb;
+    padding-left: 5%;
+    /* margin-left: -3rem; */
+    height: 100vh;
+    width: 100vw;
+}
+
+.noprofile_body {
+    margin-top: 242px;
+    gap: 1rem;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    margin-inline: auto;
+}
+.noprofile_body_text {
+    color: #171b1d;
+    font-size: 2rem;
+    font-weight: 300;
+}
+.createjob_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 15rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    background-color: #2e3192;
+    border: 0;
+    cursor: pointer;
+}
+.createjob_button img {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+.createjob_button p {
+    color: #fbfbff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+@media screen and (min-width: 720px) {
+    #mobile_view {
+        display: none;
+    }
+    #desktop_view {
+        display: flex;
+    }
+}
+@media screen and (max-width: 720px) {
+    #mobile_view {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 242px;
+    }
+    #desktop_view {
+        display: none;
+    }
+}
+.mobile_view p {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #52515b;
+}
+.create_box {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.mobile_view img {
+    margin-top: auto;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.btn_plus_fixed {
+    margin-top: auto;
+    width: 1.5rem;
+    height: 1.5rem;
+    position: fixed;
+    bottom: 15%;
+    right: 7%;
+}

@@ -1,6 +1,12 @@
 import Nav from "../../components/nav/Nav";
 import Footer from "../../components/footer/Footer";
-import introImg from "../../assets/images/terms_condition_introImg.svg";
+
+//Image was exported with text
+// import introImg from "../../assets/images/terms_condition_introImg.svg";
+
+//New Image without text
+import introImg from "../../assets/images/terms_condition_newIntroImg.svg";
+
 import classes from "./TermsAndCondition.module.css";
 
 const TermsAndCondition = () => {
@@ -9,16 +15,21 @@ const TermsAndCondition = () => {
             <Nav />
             <div className={classes.main_section}>
                 {/* image section */}
-                <div className={classes.intro_img}>
-                    <img src={introImg} alt="" />
+                <div
+                    className={classes.intro_img}
+                    style={{ backgroundImage: `url(${introImg})` }}
+                >
+                    {/* changed structured to use background image */}
+                    {/* <img src={introImg} alt="" /> */}
+                    Terms and Conditions
                 </div>
                 <div className={classes.text_area}>
                     {/* intro section */}
                     <div className={classes.introduction}>
-                        <p className={classes.heading}>
+                        <p id="date_ref" className={classes.small_heading}>
                             Effective from the 18th of November, 2022
                         </p>
-                        <p>
+                        <p className={classes.instruction_caps}>
                             PLEASE READ THESE TERMS AND CONDITIONS CAREFULLY
                             BEFORE USING OUR SERVICE
                         </p>
@@ -26,7 +37,9 @@ const TermsAndCondition = () => {
                     {/* Acknowledgement */}
                     <div className="acknowledge">
                         <p className={classes.heading}>Acknowledgment</p>
-                        <div className={classes.child}>
+                        <div
+                            className={`${classes.child} ${classes.child_no_indent}`}
+                        >
                             <p>
                                 This page states the terms of use (“Terms”)
                                 under which you (“You”) may use the
@@ -68,8 +81,11 @@ const TermsAndCondition = () => {
                         <p className={classes.heading}>1. Use of Site</p>
                         <div className={classes.child}>
                             <p>
-                                1.1 .The information and services available on
-                                the site are provided for the sole purpose of
+                                <span className={classes.colored_span}>
+                                    1.1.
+                                </span>{" "}
+                                The information and services available on the
+                                site are provided for the sole purpose of
                                 individuals looking for employment opportunities
                                 and career-related information. Only for these
                                 uses are you permitted to use, print, and
@@ -92,7 +108,10 @@ const TermsAndCondition = () => {
                                 processing.
                             </p>
                             <p>
-                                1.2. All copyright, database rights and other
+                                <span className={classes.colored_span}>
+                                    1.2.
+                                </span>{" "}
+                                All copyright, database rights and other
                                 intellectual property rights in the site and the
                                 material available on the site belongs to us or
                                 its third party suppliers. Use of the site does
@@ -107,7 +126,7 @@ const TermsAndCondition = () => {
                             2. What’s in these terms?
                         </p>
                         <div className={classes.child}>
-                            <p>
+                            <p className={classes.no_indent}>
                                 These jobseeker terms (the “Jobseeker Terms“)
                                 set out the information applicable to jobseekers
                                 (the “Jobseekers“) who wish to use the Site and
@@ -131,7 +150,7 @@ const TermsAndCondition = () => {
                             3. There are other Terms that may apply to you
                         </p>
                         <div className={classes.child}>
-                            <p>
+                            <p className={classes.no_indent}>
                                 This Acceptable Use Policy refers to the
                                 following additional terms, which also apply to
                                 your use of the Site:
@@ -163,32 +182,46 @@ const TermsAndCondition = () => {
                         <p className={classes.heading}>4. Payment Policies</p>
                         <div className={classes.child}>
                             <p>
-                                4.1. All amounts owing to APPLYFORME must be
-                                paid before service will be fulfilled.
+                                <span className={classes.colored_span}>
+                                    4.1.
+                                </span>{" "}
+                                All amounts owing to APPLYFORME must be paid
+                                before service will be fulfilled.
                             </p>
                             <p>
-                                4.2. You are obliged to pay for the services
-                                that APPLYFORME agrees to provide you with
-                                regardless of whether you utilize or fully
-                                utilize those services. If you do not provide
-                                APPLYFORME with the necessary materials or
-                                information for APPLYFORME to deliver these
-                                services to you, you are still liable to
-                                APPLYFORME for full payment.
+                                <span className={classes.colored_span}>
+                                    4.2.
+                                </span>{" "}
+                                You are obliged to pay for the services that
+                                APPLYFORME agrees to provide you with regardless
+                                of whether you utilize or fully utilize those
+                                services. If you do not provide APPLYFORME with
+                                the necessary materials or information for
+                                APPLYFORME to deliver these services to you, you
+                                are still liable to APPLYFORME for full payment.
                             </p>
                             <p>
-                                4.3. Payments using Quickteller, EFT / Bank
-                                Transfer, Paystack or Flutterwave platform
-                                depend on the selected payment method.
+                                <span className={classes.colored_span}>
+                                    4.3.
+                                </span>{" "}
+                                Payments using Quickteller, EFT / Bank Transfer,
+                                Paystack or Flutterwave platform depend on the
+                                selected payment method.
                             </p>
                             <p>
-                                4.4. If you do not pay for services rendered on
-                                time, APPLYFORME may disable your account
-                                without notice and refuse to supply further
-                                services to you.
+                                <span className={classes.colored_span}>
+                                    4.4.
+                                </span>{" "}
+                                If you do not pay for services rendered on time,
+                                APPLYFORME may disable your account without
+                                notice and refuse to supply further services to
+                                you.
                             </p>
                             <p>
-                                4.5. You agree that APPLYFORME may disclose this
+                                <span className={classes.colored_span}>
+                                    4.5.
+                                </span>{" "}
+                                You agree that APPLYFORME may disclose this
                                 information to a credit reporting agency or any
                                 other interested person.
                             </p>
@@ -199,7 +232,9 @@ const TermsAndCondition = () => {
                         <p className={classes.heading}>
                             5. Employment Business Regulations
                         </p>
-                        <div className={classes.child}>
+                        <div
+                            className={`${classes.child} ${classes.child_no_indent}`}
+                        >
                             <p>
                                 The Conduct of Employment Business Regulations
                                 (the “Regulations'') seek to ensure that
@@ -241,7 +276,9 @@ const TermsAndCondition = () => {
                         <p className={classes.heading}>
                             6. Object of the agreement and scope of the Services
                         </p>
-                        <div className={classes.child}>
+                        <div
+                            className={`${classes.child} ${classes.child_no_indent}`}
+                        >
                             <p>
                                 We offer a variety of career services via the
                                 Platforms. We want to be your lifelong career
@@ -269,19 +306,22 @@ const TermsAndCondition = () => {
                     <div>
                         <p className={classes.heading}>7. Your Account</p>
                         <div className={classes.child}>
-                            <p>
+                            <p className={classes.no_indent}>
                                 Certain Services will only be available as part
                                 of an account on the Site.
                             </p>
-                            <p>
+                            <p className={classes.no_indent}>
                                 If you enter into an agreement for an account,
                                 you can use additional Services as described
                                 hereinafter. You can register for an account as
                                 described below.
                             </p>
                             <p>
-                                7.1. Should you wish to create an account with
-                                us, you must provide a valid email address and a
+                                <span className={classes.colored_span}>
+                                    7.1.
+                                </span>{" "}
+                                Should you wish to create an account with us,
+                                you must provide a valid email address and a
                                 password which we will store to perform our
                                 obligation under this Agreement (or use Google).
                                 After we have received your registration
@@ -295,16 +335,22 @@ const TermsAndCondition = () => {
                                 activate your account.
                             </p>
                             <p>
-                                7.2. The completion of the registration by you
-                                only constitutes an offer to enter into a
-                                contract. We reserve the right to accept or
-                                decline the conclusion of the contract at its
-                                own discretion. There is no right to claim a
+                                <span className={classes.colored_span}>
+                                    7.2.
+                                </span>{" "}
+                                The completion of the registration by you only
+                                constitutes an offer to enter into a contract.
+                                We reserve the right to accept or decline the
+                                conclusion of the contract at its own
+                                discretion. There is no right to claim a
                                 conclusion of contract.
                             </p>
                             <p>
-                                7.3. You must provide the requested information
-                                and data completely and truthfully. You are
+                                <span className={classes.colored_span}>
+                                    7.3.
+                                </span>{" "}
+                                You must provide the requested information and
+                                data completely and truthfully. You are
                                 responsible to keep your contact data
                                 (especially your email-address) up to date and
                                 to ensure that you can be contacted under the
@@ -324,9 +370,12 @@ const TermsAndCondition = () => {
                         <p className={classes.heading}>8. Social Accounts</p>
                         <div className={classes.child}>
                             <p>
-                                8.1. You may use your social media accounts to
-                                create and/or sign into your account. Once you
-                                have created an account using your social media
+                                <span className={classes.colored_span}>
+                                    8.1.
+                                </span>{" "}
+                                You may use your social media accounts to create
+                                and/or sign into your account. Once you have
+                                created an account using your social media
                                 account, if you would like to remove access you
                                 will need to login to the said social media
                                 account you had used to remove access i.e., for
@@ -334,20 +383,23 @@ const TermsAndCondition = () => {
                                 Google account in order to remove access.
                             </p>
                             <p>
-                                8.2. We can also create an account with the
-                                details you had provided by using your Apple,
-                                Facebook or Google account (“social Accounts”)
-                                to create a local Applyforme account. In order
-                                to retrieve this account, you will need to set a
-                                password by following the ‘forgotten password’
-                                process. Once we have created a local Applyforme
-                                account, you will no longer need to use your
-                                Social Accounts for logging in. If you register
-                                using your Social Accounts on the mobile App,
-                                you cannot login the same way on the web unless
-                                you register using the same username and
-                                password or your Google details for us to match
-                                the accounts for you.
+                                <span className={classes.colored_span}>
+                                    8.2.
+                                </span>{" "}
+                                We can also create an account with the details
+                                you had provided by using your Apple, Facebook
+                                or Google account (“social Accounts”) to create
+                                a local Applyforme account. In order to retrieve
+                                this account, you will need to set a password by
+                                following the ‘forgotten password’ process. Once
+                                we have created a local Applyforme account, you
+                                will no longer need to use your Social Accounts
+                                for logging in. If you register using your
+                                Social Accounts on the mobile App, you cannot
+                                login the same way on the web unless you
+                                register using the same username and password or
+                                your Google details for us to match the accounts
+                                for you.
                             </p>
                         </div>
                     </div>
@@ -355,7 +407,7 @@ const TermsAndCondition = () => {
                     <div>
                         <p className={classes.heading}>9. Dormant Emails</p>
                         <div className={classes.child}>
-                            <p>
+                            <p className={classes.no_indent}>
                                 If you have an account but you have been
                                 inactive for a predetermined period, we may
                                 email you to check whether you are still on the
@@ -374,7 +426,10 @@ const TermsAndCondition = () => {
                         </p>
                         <div className={classes.child}>
                             <p>
-                                10.1. The agreement with you regarding your user
+                                <span className={classes.colored_span}>
+                                    10.1.
+                                </span>{" "}
+                                The agreement with you regarding your user
                                 account and the services provided under these
                                 terms is for a fixed term unless you voluntarily
                                 request us to delete your account. Either party
@@ -382,19 +437,34 @@ const TermsAndCondition = () => {
                                 effect and without cause.
                             </p>
                             <p>
-                                10.2. We might amend these Jobseeker Terms from
-                                time to time. Every time you wish to use the
-                                Site, please check these Jobseeker Terms to
-                                ensure you understand the terms that apply at
-                                that time.
+                                <span className={classes.colored_span}>
+                                    10.2.
+                                </span>{" "}
+                                We might amend these Jobseeker Terms from time
+                                to time. Every time you wish to use the Site,
+                                please check these Jobseeker Terms to ensure you
+                                understand the terms that apply at that time.
                             </p>
                             <p>
-                                Please view the “Effective from” date at the top
-                                of these terms to see when it was last revised.
+                                Please view the{" "}
+                                <a
+                                    className={classes.colored_href}
+                                    href="#date_ref"
+                                >
+                                    “Effective from”
+                                </a>{" "}
+                                date at the top of these terms to see when it
+                                was last revised.
                             </p>
                             <p>
                                 To contact us, please fill out our Contact us
-                                form here
+                                form{" "}
+                                <a
+                                    className={classes.colored_href}
+                                    href="/contact"
+                                >
+                                    here
+                                </a>
                             </p>
                         </div>
                     </div>

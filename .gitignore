@@ -33,8 +33,4 @@ build/
 
 ### VS Code ###
 .vscode/
-*.xml
-*.xml
-*.xml
-*.xml
-*.xml
+quickbuild.sh
