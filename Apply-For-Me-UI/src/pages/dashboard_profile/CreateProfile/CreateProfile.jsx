@@ -141,16 +141,6 @@ const CreateProfile = () => {
             <div>
                 <div>{FormDisplay()}</div>
                 <div className={styles.stepbuttons}>
-                    {/* {step > 0 && step < 3 && (
-                        <LightButton
-                            width={150}
-                            text={"Back"}
-                            disabled={step === 0}
-                            func={() => {
-                                setStep(currStep => currStep - 1);
-                            }}
-                        />
-                    )} */}
                     {step < 3 && (
                         <BlueButton
                             disabled={step === FormSteps.length}

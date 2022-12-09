@@ -16,7 +16,7 @@ const CoverLetter = ({ formData, setFormData }) => {
             </div> */}
             <div className={classes.cover_letter}>
                 <label>
-                    <h5>Cover letter subject</h5>
+                    <p className={classes.cl_text}>Cover letter subject</p>
                 </label>
                 <Input
                     type="text"
@@ -33,7 +33,7 @@ const CoverLetter = ({ formData, setFormData }) => {
             </div>
             <div>
                 <label>
-                    <h5>Cover letter body</h5>
+                    <p className={classes.cl_text}>Cover letter body</p>
                 </label>
                 <textarea
                     className={classes.cl_textarea}

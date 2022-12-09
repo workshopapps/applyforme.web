@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import classes from "./DashboardHeader.module.css";
 import { FiChevronLeft, FiPause, FiTrash } from "react-icons/fi";
@@ -282,13 +283,13 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 <img
                                     src="https://res.cloudinary.com/hamskid/image/upload/v1670374365/Frame_51422_vbawt4.svg"
                                     alt="Dashboard logo"
-                                    style={{width:"100%"}}
+                                    style={{ width: "100%" }}
                                 />
                             ) : (
                                 <img
                                     src="https://res.cloudinary.com/hamskid/image/upload/v1670374510/Frame_51422_tptxu7.svg"
                                     alt="Dashboard logo"
-                                    style={{width:"100%"}}
+                                    style={{ width: "100%" }}
                                 />
                             )}
                         </li>
@@ -303,13 +304,13 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 <img
                                     src="https://res.cloudinary.com/hamskid/image/upload/v1670374510/Frame_51423_n4kay9.svg"
                                     alt="Disabled User logo"
-                                    style={{width:"100%"}}
+                                    style={{ width: "100%" }}
                                 />
                             ) : (
                                 <img
                                     src="https://res.cloudinary.com/hamskid/image/upload/v1670374366/Frame_51423_xfapfz.svg"
                                     alt="Disabled User logo"
-                                    style={{width:"100%"}}
+                                    style={{ width: "100%" }}
                                 />
                             )}
                         </li>
