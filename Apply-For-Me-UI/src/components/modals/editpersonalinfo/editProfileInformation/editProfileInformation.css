@@ -1,0 +1,46 @@
+.edit_profileContent {
+    width: 90%;
+    margin: 0 auto;
+
+}
+
+.image_container {
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.image_container img {
+    width: 50%;
+}
+
+.edit_profileContent .editButtonDiv {
+    padding-top: 2rem;
+}
+
+.edit_profileContent form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.edit_profileContent input {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 7px;
+    border: 1px solid grey;
+    width: 100%;
+
+}
+
+.edit_profileContent span {
+    color: #EB5757;
+}
+
+.edit_profileContent button {
+    padding: 0.8rem;
+    font-size: 15px;
+    width: 47%;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}

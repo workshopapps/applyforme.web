@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { PasswordContent } from "../../modals/editpersonalinfo/editPassword/editPassword";
 import { EditInfoContent } from "../../modals/editpersonalinfo/editProfileInformation/editProfileInformation";
 import "./main_container.css";
@@ -7,13 +7,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { getSuperAdminProfileInfo } from "store/slice/RR_AdminSlice";
 
 export const MainContainer = ({ img }) => {
-    const personalDetails = useSelector((state)=>state.RRadmin);
+    const personalDetails = useSelector(state => state.RRadmin);
     const dispatch = useDispatch();
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getSuperAdminProfileInfo());
-    })
-    const {superAdminProfileDetails} = personalDetails;
-    console.log(superAdminProfileDetails)
+    }, []);
+    const { superAdminProfileDetails } = personalDetails;
+    console.log(superAdminProfileDetails);
     const [showEditModal, setEditModal] = useState(false);
     const [showPasswordModal, setPasswordModal] = useState(false);
     const navigate = useNavigate();
@@ -56,7 +56,10 @@ export const MainContainer = ({ img }) => {
                             <div className="proileInfo">
                                 <h2 className="proileInfolabel">Name</h2>
                                 <h2 className="proileInfovalue">
-                                    {superAdminProfileDetails && superAdminProfileDetails.firstName} {superAdminProfileDetails && superAdminProfileDetails.lastName}
+                                    {superAdminProfileDetails &&
+                                        superAdminProfileDetails.firstName}{" "}
+                                    {superAdminProfileDetails &&
+                                        superAdminProfileDetails.lastName}
                                 </h2>
                             </div>
                             <div className="proileInfo">
@@ -65,7 +68,8 @@ export const MainContainer = ({ img }) => {
                                 </h2>
                                 <h2 className="proileInfovalue">
                                     {" "}
-                                    {superAdminProfileDetails && superAdminProfileDetails.emailAddress}
+                                    {superAdminProfileDetails &&
+                                        superAdminProfileDetails.emailAddress}
                                 </h2>
                             </div>
                         </div>
@@ -74,14 +78,18 @@ export const MainContainer = ({ img }) => {
                         <div className="proileInfo">
                             <h2 className="proileInfolabel">Name</h2>
                             <h2 className="proileInfovalue">
-                                {superAdminProfileDetails && superAdminProfileDetails.firstName} {superAdminProfileDetails && superAdminProfileDetails.lastName}
+                                {superAdminProfileDetails &&
+                                    superAdminProfileDetails.firstName}{" "}
+                                {superAdminProfileDetails &&
+                                    superAdminProfileDetails.lastName}
                             </h2>
                         </div>
                         <div className="proileInfo">
                             <h2 className="proileInfolabel">Email Address</h2>
                             <h2 className="proileInfovalue">
                                 {" "}
-                                {superAdminProfileDetails && superAdminProfileDetails.emailAddress}
+                                {superAdminProfileDetails &&
+                                    superAdminProfileDetails.emailAddress}
                             </h2>
                         </div>
                     </div>
@@ -89,16 +97,30 @@ export const MainContainer = ({ img }) => {
                     <div className="proileInfo">
                         <h2 className="proileInfolabel">Phone Number</h2>
                         <h2 className="proileInfovalue">
-                        {superAdminProfileDetails && superAdminProfileDetails.phoneNumber}
+                            {superAdminProfileDetails &&
+                                superAdminProfileDetails.phoneNumber}
                         </h2>
                     </div>
                     <div className="proileInfo">
-                        <h2 className="proileInfolabel">Address</h2>
-                        <h2 className="proileInfovalue">{superAdminProfileDetails && superAdminProfileDetails.city}</h2>
+                        <h2 className="proileInfolabel">City</h2>
+                        <h2 className="proileInfovalue">
+                            {superAdminProfileDetails &&
+                                superAdminProfileDetails.city}
+                        </h2>
+                    </div>
+                    <div className="proileInfo">
+                        <h2 className="proileInfolabel">State</h2>
+                        <h2 className="proileInfovalue">
+                            {superAdminProfileDetails &&
+                                superAdminProfileDetails.state}
+                        </h2>
                     </div>
                     <div className="proileInfo">
                         <h2 className="proileInfolabel">Dob</h2>
-                        <h2 className="proileInfovalue">{superAdminProfileDetails && superAdminProfileDetails.dateOfBirth}</h2>
+                        <h2 className="proileInfovalue">
+                            {superAdminProfileDetails &&
+                                superAdminProfileDetails.dateOfBirth}
+                        </h2>
                     </div>
                 </div>
                 <div className="changePassword" style={{ marginTop: "0.5rem" }}>
@@ -119,10 +141,7 @@ export const MainContainer = ({ img }) => {
             </div>
             {showEditModal && (
                 <div className="editContainer">
-                    <div
-                        className="editProfileContent"
-                        style={{ width: "fitContent" }}
-                    >
+                    <div className="editProfileContent">
                         <div
                             className="modal_closal"
                             style={{ marginBottom: "2rem" }}
@@ -135,7 +154,10 @@ export const MainContainer = ({ img }) => {
                                 }
                             />
                         </div>
-                        <EditInfoContent />
+                        <EditInfoContent
+                            setEditModal={setEditModal}
+                            img={img}
+                        />
                     </div>
                 </div>
             )}
