@@ -3,14 +3,11 @@ package com.hydraulic.applyforme.repository.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
+
+import com.hydraulic.applyforme.model.exception.ProfessionalDuplicateEntityException;
 import org.springframework.stereotype.Repository;
 import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -85,6 +82,17 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
     @Override
     public Professional updateOne(Professional body) {
         return entityManager.merge(body);
+    }
+
+    @Override
+    public Professional saveOne(Professional body) {
+        try {
+            entityManager.persist(body);
+            return body;
+        }
+        catch (EntityExistsException ex) {
+            throw new ProfessionalDuplicateEntityException();
+        }
     }
     
 }
