@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 import { BsFillArrowLeftSquareFill } from "react-icons/bs";
 import axios from "axios";
@@ -6,6 +7,7 @@ import styles from "./Profile.module.css";
 import TopBar from "pages/dashboard_profile/components/TopBar/TopBar";
 
 export default function ProfileDescription() {
+
     // eslint-disable-next-line no-unused-vars
     const { id } = useParams();
     const [profileDesc, setProfileDesc] = useState(null);
@@ -38,10 +40,12 @@ export default function ProfileDescription() {
 
     const oneprofile = profileDesc?.find(obj => obj.id === parseInt(id));
 
+
     const navigate = useNavigate();
     return (
         <div className={styles.profile_description}>
             <TopBar />
+
             <button onClick={() => navigate(-1)} className={styles.prev_btn}>
                 <BsFillArrowLeftSquareFill className={styles.back_icon} />
             </button>

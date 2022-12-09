@@ -94,7 +94,7 @@ public class ProfessionalProfile {
     @Column(name ="included_keywords")
     private String includedKeywords;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name ="professional_id")
     private Professional professional;
 

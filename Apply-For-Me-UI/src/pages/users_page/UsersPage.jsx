@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { FiChevronDown} from "react-icons/fi";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
 import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
@@ -26,13 +25,19 @@ const UsersPage = () => {
     console.log(list);
     return (
         <div className={classes.main_container}>
-            <section className={classes.user_header}>
-                <h4>All Applicants</h4>
-                <div className={classes.month_year}>
-                    <p>November, 2022</p>
-                    <FiChevronDown />{" "}
-                </div>
-            </section>
+           <div className="statisticsContainer">
+                <h2  className="list-header">Statistics</h2>
+                <select name="statistic_sorter" id="statistic_sorter">
+                    {list.superAdminApplicantsList.length !== 0 &&
+                         (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
+                            list.superAdminApplicantsList.content?.map((statistics, index)=>{
+                            return(
+                                <option key={index} value={statistics.membership.createdOn?.split("T").shift()}>{statistics.membership.createdOn?.split("T").shift()}</option>
+                            )
+                        })
+                    }
+                </select>
+            </div>
 
             <section className={classes.applicant}>
                 <table className={classes.table}>
