@@ -6,6 +6,7 @@ import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.model.response.JobDescriptionResponse;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
+import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 import com.hydraulic.applyforme.service.ProfessionalService;
 import org.springframework.data.domain.Page;
@@ -23,10 +24,13 @@ import java.util.Set;
 public class ProfessionalServiceImpl implements ProfessionalService {
     private final ProfessionalRepository repository;
     private final ProfessionalJpaRepository professionalJpaRepository;
+    private final JobSubmissionRepository jobSubmissionRepository;
 
-    public ProfessionalServiceImpl(ProfessionalRepository repository, ProfessionalJpaRepository professionalJpaRepository) {
+    public ProfessionalServiceImpl(ProfessionalRepository repository, ProfessionalJpaRepository professionalJpaRepository,
+                                   JobSubmissionRepository jobSubmissionRepository) {
         this.repository = repository;
         this.professionalJpaRepository = professionalJpaRepository;
+        this.jobSubmissionRepository = jobSubmissionRepository;
     }
 
     @Override
@@ -86,11 +90,13 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 
     @Override
     public JobDescriptionResponse viewJobDescription(Long professionalId, Long submissionId) {
+
         Optional<Professional> professional = professionalJpaRepository.findById(professionalId);
         if (professional.isEmpty()) {
             throw new ProfessionalNotFoundException(professionalId);
         }
-        Set<Submission> submissions = professional.get().getSubmissions();
+
+        List<Submission> submissions = jobSubmissionRepository.findAllByProfessionalId(professionalId);
 
         for (Submission submission:submissions){
 
@@ -104,10 +110,12 @@ public class ProfessionalServiceImpl implements ProfessionalService {
                         .monthlySalaryRange(null)
                         .build();
 
+                System.out.println("the if area");
                 return jobDescriptionResponse;
             }
 
         }
+        System.out.println("The null area");
         return null;
     }
 
