@@ -70,6 +70,9 @@ import { SuperDashBoard } from "pages/super_admin_dashboard/dashboardview";
 
 import TryoutForm from "pages/tryout_form/TryoutForm";
 import TrySuccess from "pages/tryout_form/Success";
+import * as atatus from 'atatus-spa';
+
+atatus.config('c626faaef503411ea6216d7b6112de1c').install();
 
 function App() {
     const dispatch = useDispatch();
