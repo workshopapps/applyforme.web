@@ -17,7 +17,7 @@ public interface ProfessionalRepository {
 
     boolean removeAll();
 
-    Professional updateOne(Professional body);
+    boolean updateOne(Professional body);
 
     Professional saveOne(Professional body);
 
