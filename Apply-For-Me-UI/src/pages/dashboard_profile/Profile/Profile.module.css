@@ -85,24 +85,27 @@
     margin-bottom: 1rem;
 }
 .profiledesc_details h6 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 500;
     color: #52515b;
     margin-bottom: 0.5rem;
 }
 .profiledesc_details h5 {
     color: #52515b;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 300;
 }
 .profiledesc_details p {
     color: #52515b;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 400;
 }
 .prev_btn {
     background-color: transparent;
     border: 0;
-    font-size: 1rem;
     color: #2e3192;
+}
+.back_icon {
+    font-size: 1.5rem;
+    margin-block: 1rem;
 }
