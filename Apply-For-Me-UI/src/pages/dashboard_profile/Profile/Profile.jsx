@@ -1,50 +1,42 @@
 import TopBar from "../components/TopBar/TopBar";
 import styles from "./Profile.module.css";
-import { NavLink } from "react-router-dom";
-import edit from "../assets/edit.png";
+import { Link, useNavigate } from "react-router-dom";
 import add from "../assets/add.png";
 
-const Profile = () => {
-    const ProfileDetails = [
-        {
-            jobtitle: "Product Designer",
-            id: 1,
-            emailssent: 5,
-            formsfilled: 3,
-            jobtype: "Onsite, hybrid",
-            location: "London"
-        }
-    ];
-    const CurrentProfile = ProfileDetails.map(oneprofile => (
+// eslint-disable-next-line no-unused-vars
+const Profile = ({ profileList }) => {
+    const navigate = useNavigate();
+
+    const CurrentProfile = profileList?.map(oneprofile => (
         <div key={oneprofile.id} className={styles.each_profile}>
             <div className={styles.edit_box}>
-                <img src={edit} alt="edit" />
-                <div>
-                    <h4>{oneprofile.jobtitle}</h4>
-                    {/* <div className={styles.emails_forms}>
-                        <p>{oneprofile.emailssent} emails sent </p>
-                        <p>.</p>
-                        <p>{oneprofile.formsfilled} forms filled</p>
-                    </div> */}
+                <h3>{oneprofile.profileTitle}</h3>
+                <div className={styles.job_deets}>
+                    <p>{oneprofile.preferredJobLocationType}</p>
+                    <p>{oneprofile.jobLocation}</p>
                 </div>
+                <Link
+                    to={{
+                        pathname: `/dashboard/user/${oneprofile.id}`,
+                        state: { oneprofile }
+                    }}
+                >
+                    See details
+                </Link>
             </div>
-            <h4>{oneprofile.jobtype}</h4>
-            <h4>{oneprofile.location}</h4>
         </div>
     ));
 
     return (
         <div className={styles.profile_page}>
             <TopBar />
-            <NavLink
-                to="/dashboard/user/create-profile"
-                style={{ textDecoration: "none" }}
+            <button
+                className={styles.createjob_button}
+                onClick={() => navigate("/dashboard/user/create-profile")}
             >
-                <button className={styles.createjob_button}>
-                    <p>Create a job profile</p>
-                    <img src={add} alt="add" />
-                </button>
-            </NavLink>
+                <p>Create a job profile</p>
+                <img src={add} alt="add" />
+            </button>
             <div>{CurrentProfile}</div>
         </div>
     );
