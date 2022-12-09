@@ -1,10 +1,10 @@
 import "./RR_admin_List.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { Delete_RR_Admin } from "store/slice/RR_AdminSlice";
+// import { useDispatch } from "react-redux";
+// import { Delete_RR_Admin } from "store/slice/RR_AdminSlice";
 export const Desktop_List =({firstName,currentJobTitle,id,createdOn} )=>{
     const navigate = useNavigate();
-    const dispatch= useDispatch();
+    // const dispatch= useDispatch();
     
     
     return (
