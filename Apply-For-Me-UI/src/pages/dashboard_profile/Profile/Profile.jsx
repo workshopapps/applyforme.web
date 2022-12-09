@@ -1,35 +1,40 @@
 import TopBar from "../components/TopBar/TopBar";
 import styles from "./Profile.module.css";
-import { NavLink } from "react-router-dom";
-import edit from "../assets/edit.png";
+import { Link, NavLink } from "react-router-dom";
 import add from "../assets/add.png";
 
+// eslint-disable-next-line no-unused-vars
 const Profile = () => {
     const ProfileDetails = [
         {
             jobtitle: "Product Designer",
             id: 1,
-            emailssent: 5,
-            formsfilled: 3,
-            jobtype: "Onsite, hybrid",
+            jobtype: "Hybrid",
             location: "London"
+        },
+        {
+            jobtitle: "Game Developer",
+            id: 2,
+            jobtype: "Remote",
+            location: "Nigeria"
+        },
+        {
+            jobtitle: "Musician",
+            id: 3,
+            jobtype: "Remote",
+            location: "Ghana"
         }
     ];
     const CurrentProfile = ProfileDetails.map(oneprofile => (
         <div key={oneprofile.id} className={styles.each_profile}>
             <div className={styles.edit_box}>
-                <img src={edit} alt="edit" />
-                <div>
-                    <h4>{oneprofile.jobtitle}</h4>
-                    {/* <div className={styles.emails_forms}>
-                        <p>{oneprofile.emailssent} emails sent </p>
-                        <p>.</p>
-                        <p>{oneprofile.formsfilled} forms filled</p>
-                    </div> */}
+                <h3>{oneprofile.jobtitle}</h3>
+                <div className={styles.job_deets}>
+                    <p>{oneprofile.jobtype}</p>
+                    <p>{oneprofile.location}</p>
                 </div>
+                <Link to={`/dashboard/user/${oneprofile.id}`}>See details</Link>
             </div>
-            <h4>{oneprofile.jobtype}</h4>
-            <h4>{oneprofile.location}</h4>
         </div>
     ));
 
