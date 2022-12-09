@@ -22,7 +22,7 @@ const Success = () => {
                     back and wait for your interview.
                 </p>
                 <NavLink
-                    to="/dashboard/user/profile-list"
+                    to="/dashboard/user/"
                     style={{ textDecoration: "none" }}
                 >
                     <BlueButton text={"Go to my job profile"} width={300} />
