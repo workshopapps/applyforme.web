@@ -1,6 +1,6 @@
 .main_container {
     width: 100%;
-    background-color: #f7f7f8;
+    background-color: aliceblue;
     position: relative;
 }
 
@@ -151,13 +151,13 @@
 
 /* TOGGLE */
 .toggle_user {
-    background-color: #f7f7f8;
+    background-color: aliceblue;
     height: 100%;
     display: flex;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
-    padding: 1rem 0;
+    padding: 1rem 6rem 0;
     position: relative;
 }
 
@@ -198,7 +198,7 @@
 
 /* Profile User */
 .user_profile {
-    background-color: #f7f7f8;
+    background-color: aliceblue;
     height: 100%;
     position: relative;
     padding: 3.5rem 0;
@@ -455,6 +455,19 @@
 
 /* Mobile Screen */
 @media screen and (max-width: 700px) {
+    .DashboardHeader_toggle_user__B-Wxl ul {
+        flex-wrap: nowrap;
+}
+.toggle_user ul {
+    flex-wrap: nowrap;
+}
+  
+    .toggle_user {
+        padding: 1rem ;
+    }
+    .DashboardHeader_toggle_user__B-Wxl {
+        padding: 1rem;
+    }
     .search_logo,
     .menu {
         display: block;
@@ -583,14 +596,12 @@
 }
 
 @media screen and (max-width: 399px) {
-    .toggle_user {
-        background-color: #fff;
-    }
     .toggle_user ul {
         gap: 1rem;
     }
     .toggle_user ul li {
         font-size: 1rem;
+        width: 50%;
     }
 
     .profile_details__text_content p {

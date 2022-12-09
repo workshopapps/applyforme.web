@@ -280,24 +280,17 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                         >
                             {dashboardActive.dashboard ? (
                                 <img
-                                    src={DashboardActiveIcon}
+                                    src="https://res.cloudinary.com/hamskid/image/upload/v1670374365/Frame_51422_vbawt4.svg"
                                     alt="Dashboard logo"
+                                    style={{width:"100%"}}
                                 />
                             ) : (
                                 <img
-                                    src={DashboardDisabledIcon}
+                                    src="https://res.cloudinary.com/hamskid/image/upload/v1670374510/Frame_51422_tptxu7.svg"
                                     alt="Dashboard logo"
+                                    style={{width:"100%"}}
                                 />
                             )}
-                            <p
-                                className={
-                                    dashboardActive.dashboard
-                                        ? classes.__active_toggle
-                                        : classes.text
-                                }
-                            >
-                                Dashboard
-                            </p>
                         </li>
 
                         <li
@@ -308,24 +301,17 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                         >
                             {dashboardActive.user ? (
                                 <img
-                                    src={UserActiveIcon}
+                                    src="https://res.cloudinary.com/hamskid/image/upload/v1670374510/Frame_51423_n4kay9.svg"
                                     alt="Disabled User logo"
+                                    style={{width:"100%"}}
                                 />
                             ) : (
                                 <img
-                                    src={UserDisabledIcon}
+                                    src="https://res.cloudinary.com/hamskid/image/upload/v1670374366/Frame_51423_xfapfz.svg"
                                     alt="Disabled User logo"
+                                    style={{width:"100%"}}
                                 />
                             )}
-                            <p
-                                className={
-                                    dashboardActive.user
-                                        ? classes.__active_toggle
-                                        : classes.text
-                                }
-                            >
-                                User
-                            </p>
                         </li>
                     </ul>
                 </section>
