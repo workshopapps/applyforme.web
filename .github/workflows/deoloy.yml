@@ -1,14 +1,37 @@
-name: Backend Deploy
+name: Applyforme
 
 on:
   push:
     branches: [ "deployment" ]
   workflow_dispatch:
+    
 
 jobs:
 
-  deploy_backend:
-    name: deploy backend
+  Test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Apply-For-Me-UI
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: npm install --force
+
+    - name: Run the tests
+      run: npm ci
+      
+    - name: Build
+      run: npm run build
+      
+    # - name: test
+    #   run: npm test
+
+  deploy:
+    name: deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -29,8 +52,11 @@ jobs:
           password: ${{ secrets.HNG_SERVER_PASSWORD }}
           port: ${{ secrets.HNG_SERVER_PORT }}
           script: |
-            cd ./applyforme-be/applyforme.web
+            cd applyforme/applyforme.web/
             git pull
             pm2 restart backend
+            cd ./Apply-For-Me-UI
+            npm install
+            pm2 restart frontend
             pm2 save
      

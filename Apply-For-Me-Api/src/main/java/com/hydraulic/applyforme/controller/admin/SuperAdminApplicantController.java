@@ -41,6 +41,7 @@ public class SuperAdminApplicantController {
             @RequestParam(value = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fromDate,
             @RequestParam(value = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date toDate,
             @RequestParam(value = "q", required = false) String q) {
+
         return superAdminCustomService.getAll(pageNo, pageSize, sortBy, sortDir, q, fromDate, toDate);
     }
 

@@ -1,5 +1,10 @@
 package com.hydraulic.applyforme.controller;
 
+import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_PAGE_NUMBER;
+import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_PAGE_SIZE;
+import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_BY;
+import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DIRECTION;
+
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -43,8 +48,6 @@ public class ProfessionalController {
 
 	@PutMapping("/update")
 	public Professional update(@Validated @RequestBody ProfessionalDto body) {
-		// public Professional update(@Validated @RequestBody ProfessionalDto body, Long
-		// id) {
 		Long id = CurrentUserUtil.getCurrentUser().getId();
 		return service.updateProfile(body, id);
 	}
@@ -61,8 +64,12 @@ public class ProfessionalController {
 
 	@GetMapping("/profiles")
 	public List<ProfessionalProfile> getAllJobProfiles(
-			@RequestParam(required = false, defaultValue = "1", name = "page") int pageOffset) {
+			 @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+	            @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
+	            @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
+	            @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
 		UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
-		return service.findAllJobProfile(currentUser.getId(), pageOffset);
+		return service.findAllJobProfile(currentUser.getId());
 	}
 }
+

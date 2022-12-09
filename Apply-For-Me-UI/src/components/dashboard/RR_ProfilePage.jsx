@@ -99,7 +99,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                                         <li
                                             type="button"
                                             onClick={() => {
-                                                navigate("/superAdminProfile");
+                                                navigate("/user-page/profile");
                                             }}
                                         >
                                             <img
