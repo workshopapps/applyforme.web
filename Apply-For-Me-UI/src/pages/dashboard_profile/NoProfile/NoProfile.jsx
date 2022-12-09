@@ -39,8 +39,8 @@ const NoProfile = () => {
             });
     }, []);
 
-    if (data) {
-        if (profileList) {
+    if (data === "done") {
+        if (profileList.length >= 1) {
             return <Profile profileList={profileList} />;
         } else {
             return (
