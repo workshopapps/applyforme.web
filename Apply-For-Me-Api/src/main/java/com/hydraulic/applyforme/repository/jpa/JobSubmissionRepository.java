@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,5 +26,6 @@ public interface JobSubmissionRepository extends JpaRepository<Submission,Long> 
      @Query(value = "SELECT applier_id AS ApplierId, COUNT(applier_id) AS ValueOccurrence from job_submission GROUP BY ApplierId ORDER BY COUNT(ApplierId) DESC ", nativeQuery = true)
      List<ApplierResponse> getHighestApplier();
 
-     List<Submission> findAllByProfessionalId(Long id);
+     @Query (value = "SELECT s from Submission s where s.professional.member.id = ?1 ")
+     List<Submission> findAllByProfessionalId(@Param("id") Long id);
 }
