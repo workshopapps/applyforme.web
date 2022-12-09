@@ -95,12 +95,11 @@ public class ProfessionalServiceImpl implements ProfessionalService {
         if (professional.isEmpty()) {
             throw new ProfessionalNotFoundException(professionalId);
         }
-
         List<Submission> submissions = jobSubmissionRepository.findAllByProfessionalId(professionalId);
 
         for (Submission submission:submissions){
 
-            if(submission.getId().equals(submissionId)){
+
                 JobDescriptionResponse jobDescriptionResponse = JobDescriptionResponse.builder()
                         .jobLocation(submission.getJobLocation())
                         .jobTitle(submission.getJobTitle())
@@ -109,15 +108,9 @@ public class ProfessionalServiceImpl implements ProfessionalService {
                         .date(submission.getCreatedOn())
                         .monthlySalaryRange(null)
                         .build();
-
-                System.out.println("the if area");
                 return jobDescriptionResponse;
-            }
-
+            
         }
-        System.out.println("The null area");
         return null;
     }
-
-
 }
