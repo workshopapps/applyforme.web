@@ -49,7 +49,7 @@ public class SuperAdminRecruiterController {
 //        emailService.confirmRecruiter(dto);
         return member;
     }
-
+git
     @GetMapping("/sort-and-paginate")
     public List<Member> sortAndPaginateRecruiter(
             @RequestParam (value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false)int pageNo,
