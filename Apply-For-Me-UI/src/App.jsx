@@ -61,9 +61,6 @@ import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
-
-import RRD from "pages/RR_Dashboard/RRD";
-
 import { useEffect } from "react";
 
 import Sign_In from "pages/RR_recuiters_page/Sign_In";
@@ -100,18 +97,11 @@ function App() {
                 <Route exact path="/help" element={<HelpAndSupportPage />} />
                 <Route exact path="/howafmworks" element={<HowAfmWorks />} />
                 <Route exact path="/needHelp" element={<NeedHelp />} />
-                <Route exact path="/user-page" element={<Dashboard />} />
                 <Route exact path="/tryout-form" element={<TryoutForm />} />
                 <Route
                     exact
                     path="/tryout-form/success"
                     element={<TrySuccess />}
-                />
-                <Route path="/superAdminProfile" element={<ProfileScreen />} />
-                <Route
-                    exact
-                    path="/reverseRecruiterAdmin/:id"
-                    element={<RR_admin_profile />}
                 />
                 <Route
                     exact
@@ -139,8 +129,6 @@ function App() {
                 <Route exact path="blog/resume" element={<Resume />} />
                 <Route exact path="blog/brand" element={<Brand />} />
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
-
-                <Route path="dashboard" element={<UserDashboardLayout />} />
                 {/* <Route path="/dashboard/" element={<DashboardNothing />} /> */}
 
                 {/*AUTH ROUTE */}
@@ -166,12 +154,12 @@ function App() {
 
                     <Route exact path="/user-page" element={<Dashboard />} />
                     <Route
-                        path="/superAdminProfile"
+                        path="/user-page/profile"
                         element={<ProfileScreen />}
                     ></Route>
                     <Route
                         exact
-                        path="/reverseRecruiterAdmin/:id"
+                        path="/user-page/reverseRecruiterAdmin/:id"
                         element={<RR_admin_profile />}
                     />
                 </Route>
@@ -183,7 +171,7 @@ function App() {
                     }
                 >
                     {/*Reverse Recruiter Dashboard */}
-                    <Route path="/rr_admin" element={<DashboardHome />}></Route>
+                    <Route path="/rr_admin" element={<DashboardHome />}/>
                     <Route
                         path="/rr_admin/form"
                         element={<ApplicationForm />}
@@ -198,7 +186,7 @@ function App() {
                     />
 
                     {/* USER DASHBAORD */}
-                    <Route path="dashboard" element={<UserDashboardLayout />}>
+                    <Route path="/dashboard" element={<UserDashboardLayout />}>
                         {/* User Dashboard Profile */}
 
                         <Route

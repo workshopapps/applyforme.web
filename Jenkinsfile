@@ -11,9 +11,17 @@ pipeline {
 			}
 		}
 
-        stage("build frontend"){
+        // stage("build frontend"){
 
-			steps {
+		// 	steps {
+
+        //             sh "sudo npm install"
+        //             sh "sudo CI=false npm run build"
+		// 	}
+        // }
+
+        stage("build backend"){
+
 
 				dir('applyforme.web/Apply-For-Me-UI') {
                     sh "sudo npm install"
@@ -31,14 +39,15 @@ pipeline {
                     sh "sudo mvn -B package --file pom.xml"
                 }
 			}
+
         }
 
 		stage("deploy") {
 		
 			steps {
-				// sh "sudo cp -r /var/lib/jenkins/workspace/applyforme/ /home/johnoni/"
-                sh "sudo cp -r ${WORKSPACE}/applyforme.web /home/johnoni/"
-// 				sh "sudo systemctl restart pm2-victoradesanya.service"
+				   sh "sudo cp -r /var/lib/jenkins/workspace/applyforme/ /home/johnoni/"
+           sh "sudo cp -r ${WORKSPACE}/applyforme.web /home/johnoni/"
+   				 sh "sudo systemctl restart pm2-victoradesanya.service"
             }
 	    }
 	}
