@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.Role;
 import com.hydraulic.applyforme.model.dto.authentication.SignupDto;
 import com.hydraulic.applyforme.model.dto.member.UpdateMemberDto;
@@ -11,6 +12,7 @@ import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.MemberSecretCodeRepository;
+import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
@@ -31,6 +33,8 @@ public class MemberServiceImpl implements MemberService {
     private final MemberJpaRepository jpaRepository;
     private final MemberSecretCodeRepository memberSecretCodeRepository;
 
+    private final ProfessionalRepository professionalRepository;
+
     @Autowired
     private RoleJpaRepository roleJpaRepository;
 
@@ -42,10 +46,12 @@ public class MemberServiceImpl implements MemberService {
 
     public MemberServiceImpl(MemberRepository repository,
                              MemberJpaRepository jpaRepository,
-                             MemberSecretCodeRepository memberSecretJpaRepository) {
+                             MemberSecretCodeRepository memberSecretJpaRepository,
+                             ProfessionalRepository professionalRepository) {
         this.repository = repository;
         this.jpaRepository = jpaRepository;
         this.memberSecretCodeRepository = memberSecretJpaRepository;
+        this.professionalRepository = professionalRepository;
     }
 
     @Override
@@ -80,6 +86,13 @@ public class MemberServiceImpl implements MemberService {
         member.setPassword(passwordEncoder.encode(body.getPassword()));
 
         repository.saveOne(member);
+        Professional professional = Professional.builder()
+                .member(member)
+                .submissions(null)
+                .professionalProfiles(null)
+                .build();
+        professionalRepository.saveOne(professional);
+
         String generatedSecretCode = generateSignUpCode();
         memberSecretCodeRepository.saveSecretCode(generatedSecretCode);
 
