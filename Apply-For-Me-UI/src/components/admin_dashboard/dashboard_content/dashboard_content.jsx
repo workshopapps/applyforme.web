@@ -48,8 +48,8 @@ export const DashboardContent=({inputSearchValue})=>{
         <div className="applicantsContainer">
             <h2 className='profile_name'>Hello {fullName}</h2>
             <div className="statisticsContainer">
-                <h2>Statistics</h2>
-                <select style={{background:"whitesmoke"}} name="statistic_sorter" id="statistic_sorter" onChange={statisticsHandler}>
+                <h2  className="list-header">Statistics</h2>
+                <select name="statistic_sorter" id="statistic_sorter" onChange={statisticsHandler}>
                     {
                         statisticsList.map((statistics, index)=>{
                             return(
@@ -61,16 +61,16 @@ export const DashboardContent=({inputSearchValue})=>{
             </div>
             <div className='overflow' >
                 <div className="applicants">
-                    <div style={{background:"#2E3192",color:"white"}}>
-                        <h3 className="amount">Total Applications</h3>
+                    <div>
+                        <h6 className="amount">Total Applications</h6>
                         <h1 className="value" style={{color:"white"}}>{statistics.applications}</h1>
                     </div>
                     <div className='users_recruiter_text'>
-                        <h3 className="amount">Total Users</h3>
+                        <h6 className="amount">Total Users</h6>
                         <h1 className="value">{statistics.users}</h1>
                     </div>
                     <div className='users_recruiter_text'>
-                        <h3 className="amount">Total Reverse recruiters</h3>
+                        <h6 className="amount">Total Reverse recruiters</h6>
                         <h1 className="value">{statistics.recruiter}</h1>
                     </div>
                 </div>

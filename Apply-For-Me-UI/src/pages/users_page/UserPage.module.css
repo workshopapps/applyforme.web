@@ -5,6 +5,13 @@
     max-width: 1400px;
     margin: 0 auto;
 }
+.sort_header{
+   
+    border-bottom: 1px solid grey;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 1.5rem 0;
+}
 
 .containerClassName{
     margin:1rem;
@@ -70,23 +77,23 @@
 
 .applicant .table {
     width: 100%;
-    margin-top: 5rem;
 }
 
 .table tr td,
 .table tr th {
-    text-align: center;
+    text-align: start;
     width:25%;
     border-bottom: 2px solid rgb(228, 227, 227);
     border-radius: 0;
 }
 
 .table tr th {
-    padding-bottom: 15px;
+    padding: 2rem;
 }
 
 .table tr td {
-    padding: 2rem 0;
+    padding: 2rem 0rem 2rem 2rem;
+    overflow-wrap: break-word;
 }
 
 .pagination {
