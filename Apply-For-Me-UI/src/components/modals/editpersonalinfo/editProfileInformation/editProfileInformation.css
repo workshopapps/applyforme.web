@@ -44,3 +44,15 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+    .edit_profileContent input {
+        padding: 0.3rem;
+
+    }
+
+    .edit_profileContent {
+        width: 98%;
+
+    }
+}
