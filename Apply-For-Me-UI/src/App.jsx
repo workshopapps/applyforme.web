@@ -101,18 +101,11 @@ function App() {
                 <Route exact path="/help" element={<HelpAndSupportPage />} />
                 <Route exact path="/howafmworks" element={<HowAfmWorks />} />
                 <Route exact path="/needHelp" element={<NeedHelp />} />
-                <Route exact path="/user-page" element={<Dashboard />} />
                 <Route exact path="/tryout-form" element={<TryoutForm />} />
                 <Route
                     exact
                     path="/tryout-form/success"
                     element={<TrySuccess />}
-                />
-                <Route path="/superAdminProfile" element={<ProfileScreen />} />
-                <Route
-                    exact
-                    path="/reverseRecruiterAdmin/:id"
-                    element={<RR_admin_profile />}
                 />
                 <Route
                     exact
@@ -140,8 +133,6 @@ function App() {
                 <Route exact path="blog/resume" element={<Resume />} />
                 <Route exact path="blog/brand" element={<Brand />} />
                 <Route exact path="blog/endorsement" element={<Endorsment />} />
-
-                <Route path="dashboard" element={<UserDashboardLayout />} />
                 {/* <Route path="/dashboard/" element={<DashboardNothing />} /> */}
 
                 {/*AUTH ROUTE */}
@@ -184,7 +175,7 @@ function App() {
                     }
                 >
                     {/*Reverse Recruiter Dashboard */}
-                    <Route path="/rr_admin" element={<DashboardHome />}></Route>
+                    <Route path="/rr_admin" element={<DashboardHome />}/>
                     <Route
                         path="/rr_admin/form"
                         element={<ApplicationForm />}
