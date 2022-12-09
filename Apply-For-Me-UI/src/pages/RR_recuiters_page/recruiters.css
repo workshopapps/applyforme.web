@@ -10,7 +10,7 @@
   flex: 2;
   display: flex;
   justify-content: center;
-
+  height: 100%;
 }
 .rr-sign-in-modal-container{
   width: 100%;
@@ -53,13 +53,13 @@
   align-items: flex-start;
   gap: 50px;
 }
-.rr-sign-in-modal-container  form >  div {
+.rr-sign-in-modal-container  form  div {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  gap: 20px;
+  gap: 26px;
 }
 .rr-sign-in-modal-form span {
   width: 100%;
@@ -176,14 +176,6 @@
   flex-wrap: wrap;
   font-weight: 400;
 }
-.rr-sign-in-modal-container a {
-  color: var(--afm__primary);
-  font-family: var(--font-family);
-  font-weight: 500;
-  text-decoration: none;
-
-
-}
 @media only screen and (max-width: 1050px) {
   .rr_signin {
     display: flex;
@@ -198,7 +190,6 @@
     right: 0;
     left: 0;
     border-radius: 8px 8px 0px 0px;
-    height: 1024px;
   }
   .rr-sign-in-modal-container{
     margin: auto 4rem;
