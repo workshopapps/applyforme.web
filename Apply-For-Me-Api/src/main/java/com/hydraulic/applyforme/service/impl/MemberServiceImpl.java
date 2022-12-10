@@ -7,9 +7,8 @@ import com.hydraulic.applyforme.model.domain.Role;
 import com.hydraulic.applyforme.model.dto.authentication.SignupDto;
 import com.hydraulic.applyforme.model.dto.member.UpdateMemberDto;
 import com.hydraulic.applyforme.model.enums.RoleType;
-import com.hydraulic.applyforme.model.exception.EmailAlreadyExistsException;
-import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
-import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
+import com.hydraulic.applyforme.model.exception.*;
+import com.hydraulic.applyforme.repository.CountryRepository;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.MemberSecretCodeRepository;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
@@ -36,6 +35,8 @@ public class MemberServiceImpl implements MemberService {
 
     private final ProfessionalRepository professionalRepository;
 
+    private final CountryRepository countryRepository;
+
     @Autowired
     private RoleJpaRepository roleJpaRepository;
 
@@ -48,11 +49,13 @@ public class MemberServiceImpl implements MemberService {
     public MemberServiceImpl(MemberRepository repository,
                              MemberJpaRepository jpaRepository,
                              MemberSecretCodeRepository memberSecretJpaRepository,
-                             ProfessionalRepository professionalRepository) {
+                             ProfessionalRepository professionalRepository,
+                             CountryRepository countryRepository) {
         this.repository = repository;
         this.jpaRepository = jpaRepository;
         this.memberSecretCodeRepository = memberSecretJpaRepository;
         this.professionalRepository = professionalRepository;
+        this.countryRepository = countryRepository;
     }
 
     @Override
@@ -120,7 +123,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public Member update(Long id, UpdateMemberDto body) {
+    public boolean update(Long id, UpdateMemberDto body) {
 
         Member member = repository.getOne(id);
 
@@ -128,13 +131,47 @@ public class MemberServiceImpl implements MemberService {
             throw new MemberNotFoundException(id);
         }
 
-        member = modelMapper.map(body, Member.class); 
-//        member.setId(id);
-        member.setCity(body.getCity());
-        member.setUsername(body.getUsername());
-        member.setNationality(Country.builder().id(body.getNationality()).build());
-        member.setCountryOfResidence(Country.builder().id(body.getCountryOfResidence()).build());
+        Member memberExists = jpaRepository.findByEmailAddress(body.getEmailAddress());
 
-        return repository.updateOne(member);
+        if (memberExists != null && memberExists.getId() != id) {
+            throw new EmailAlreadyExistsException();
+        }
+
+        Member memberWithUsername = jpaRepository.findByUsername(body.getUsername());
+
+        if (memberWithUsername != null && memberWithUsername.getId() != id) {
+            throw new UsernameAlreadyExistsException();
+        }
+
+        Member memberWithPhoneNumber = jpaRepository.findByPhoneNumber(body.getPhoneNumber());
+
+        if (memberWithPhoneNumber != null && memberWithPhoneNumber.getId() != id) {
+            throw new PhoneNumberAlreadyExistsException();
+        }
+
+        Country nationality = countryRepository.getOne(body.getNationality());
+        if (nationality == null) {
+            throw new CountryNotFoundException(body.getNationality());
+        }
+
+        Country countryOfResidence = countryRepository.getOne(body.getCountryOfResidence());
+        if (countryOfResidence == null) {
+            throw new CountryNotFoundException(body.getCountryOfResidence());
+        }
+//        member.setId(id);
+        member.setPhoneNumber(body.getPhoneNumber());
+        member.setEmailAddress(body.getEmailAddress());
+        member.setDateOfBirth(body.getDateOfBirth());
+        member.setCity(body.getCity());
+        member.setState(body.getState());
+        member.setFirstName(body.getFirstName());
+        member.setLastName(body.getLastName());
+        member.setAddress(body.getAddress());
+        member.setCurrentJobTitle(body.getCurrentJobTitle());
+        member.setNationality(nationality);
+        member.setCountryOfResidence(countryOfResidence);
+//        jpaRepository.save(member)
+        repository.updateOne(member);
+        return true;
     }
 }

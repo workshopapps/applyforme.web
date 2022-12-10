@@ -346,4 +346,27 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(UsernameAlreadyExistsException.class)
+    public Object exists(UsernameAlreadyExistsException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", UsernameAlreadyExistsException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.CONFLICT.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(PhoneNumberAlreadyExistsException.class)
+    public Object exists(PhoneNumberAlreadyExistsException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", PhoneNumberAlreadyExistsException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.CONFLICT.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+
 }
