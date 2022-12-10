@@ -15,8 +15,8 @@ const NewUserDashboard = () => {
 
             <section className="top-dashboard-stripe">
                 <div className="top-dashboard-left">
-                    <h2>Welcome, {userName}</h2>
-                    <p>Here's an overview</p>
+                    <h2>Welcome {userName},</h2>
+                    <p>Let’s get started </p>
                 </div>
 
                 <div className="top-dashboard-right">
