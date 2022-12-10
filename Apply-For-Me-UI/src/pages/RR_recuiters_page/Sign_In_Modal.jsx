@@ -1,13 +1,14 @@
 import React from 'react';
 import { useDispatch} from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
+import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 // Toaster
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-in";
+const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-in";
 
 
 
@@ -53,8 +54,9 @@ const Sign_In_Modal = () => {
       <div className='rr-sign-in-modal-container'>
         <div className='rr-sign-in-modal-header'>
           <h1>Welcome Back</h1>
-          <p>Don't have an Account? <span>Sign up</span></p>
+          <p>Don't have an Account? <Link to='/rr_sign_up'>Sign up</Link></p>
         </div>
+
         <form onSubmit={e => handleSignup(e)}>
           <div className='rr-sign-in-modal-form'>
             <span>
