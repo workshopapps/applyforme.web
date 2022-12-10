@@ -10,6 +10,10 @@
     font-size: 0.8rem;
     cursor: pointer;
 }
+
+.btn:hover {
+    color: white;
+}
 .lg {
     width: 16%;
     height: 3rem;
