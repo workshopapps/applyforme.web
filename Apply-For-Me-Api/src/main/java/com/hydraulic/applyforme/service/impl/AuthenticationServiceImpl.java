@@ -82,6 +82,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     }
 
+
     public boolean validateToken(String otp){
         PasswordResetTokenEntity validToken = passwordResetTokenJPARepository.findPasswordResetTokenEntitiesByOtp(otp);
         if(validToken.getOtp().equals(otp)){
@@ -107,7 +108,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
 
     }
-
 
 
     public void setPassword(Member member) {
