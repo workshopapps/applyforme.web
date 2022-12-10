@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.repository.jpa;
 
+import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.admin.ApplierResponse;
 import org.springframework.data.domain.Page;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,4 +25,10 @@ public interface JobSubmissionRepository extends JpaRepository<Submission,Long> 
 
      @Query(value = "SELECT applier_id AS ApplierId, COUNT(applier_id) AS ValueOccurrence from job_submission GROUP BY ApplierId ORDER BY COUNT(ApplierId) DESC ", nativeQuery = true)
      List<ApplierResponse> getHighestApplier();
+
+     @Query("SELECT sbm FROM Submission sbm WHERE sbm.applier.id = :id")
+     Page<Submission> getSubmissions(Long id, Pageable pageable);
+
+     @Query("SELECT COUNT (sbm) FROM Submission sbm")
+     Long countSubmission();
 }

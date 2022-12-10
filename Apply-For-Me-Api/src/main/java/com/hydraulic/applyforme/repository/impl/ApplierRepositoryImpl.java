@@ -3,6 +3,8 @@ package com.hydraulic.applyforme.repository.impl;
 import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.ApplyForMe;
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.exception.ApplierDuplicateEntityException;
+import com.hydraulic.applyforme.model.exception.CountryDuplicateEntityException;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.MemberRepository;
@@ -10,10 +12,7 @@ import com.hydraulic.applyforme.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
 import java.util.List;
 @Repository
@@ -44,7 +43,13 @@ public class ApplierRepositoryImpl implements ApplierRepository {
 
     @Override
     public Applier saveOne(Applier body) {
-        return null;
+        try {
+            entityManager.persist(body);
+            return body;
+        }
+        catch (EntityExistsException ex) {
+            throw new ApplierDuplicateEntityException();
+        }
     }
 
     @Override

@@ -17,6 +17,7 @@ const Review = ({ formData, keywords, setStep }) => {
     let jobLocationType = formData.isremote ? "remote" : "hybrid";
 
     const { user } = useSelector(state => state.user);
+    console.log(user);
     const userEmail = user.sub;
     const token = localStorage.getItem("tokenKey");
     let tokenKey = "tokenHngKey";
@@ -73,13 +74,14 @@ const Review = ({ formData, keywords, setStep }) => {
             );
             const finalResponseJson = await finalResponse.json();
             setLoading(false);
-            console.log("success");
+            // console.log(finalResponse);
             navigate("/dashboard/user/success");
         } catch (error) {
             alert("Failed to submit, please try again");
             console.log(error);
         }
     };
+    // console.log(formData);
     return (
         <div className={styles.form_body}>
             <h3>Review your profile and it's good to go!</h3>

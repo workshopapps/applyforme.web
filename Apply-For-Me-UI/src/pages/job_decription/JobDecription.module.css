@@ -1,0 +1,95 @@
+.application_main {
+    padding-top: 120px;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    padding-left: 4rem;
+    padding-right: 3rem;
+    padding-bottom: 20px;
+    gap: 0.5rem;
+}
+
+.application_main > h4 {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 120%;
+    color: #140f31;
+}
+
+.application_main h5 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.03em;
+    color: #140f31;
+    margin-bottom: 20px;
+}
+
+.job_details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.job_details p {
+    font-weight: 400;
+    font-size: 16px;
+    max-width: 900px;
+    line-height: 150%;
+    color: #140f31;
+}
+
+.job_details ul li {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #140f31;
+}
+
+.job_details ul {
+    padding-left: 20px;
+    list-style: circle !important;
+}
+.job_header {
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 24px;
+}
+.job_header_wrapper {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.job_header_salary {
+    color: #2e3192;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 1rem;
+    line-height: 150%;
+    letter-spacing: 0.03em;
+}
+.job_header_icons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #140f31;
+}
+.job_header_icons svg {
+    color: #bbbbd2;
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 480px) {
+    .application_main {
+        padding-bottom: 80px;
+    }
+    .job_header_wrapper {
+        flex-direction: column;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+}
