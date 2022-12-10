@@ -13,12 +13,14 @@ export const RRApplicantsPage = () => {
     });
     const handlePageClick =(data)=>{
         setPagination(prevState =>({...prevState,"pageNo":data.selected}));
+
         dispatch(SuperAdminApplicantsApplicants(pagination));
        
     }
     useEffect(()=>{
         dispatch(SuperAdminApplicants(pagination));
     },[dispatch,SuperAdminApplicants])
+
 
     const list = useSelector(state => state.RRadmin);
     console.log(list);
@@ -27,9 +29,11 @@ export const RRApplicantsPage = () => {
            <div className="statisticsContainer">
                 <h2  className="list-header">Statistics</h2>
                 <select name="statistic_sorter" id="statistic_sorter">
+
                     {list.superAdminApplicantsList.length !== 0 &&
                          (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
                             list.superAdminApplicantsList.content?.map((statistics, index)=>{
+
                             return(
                                 <option key={index} value={statistics.membership.createdOn?.split("T").shift()}>{statistics.membership.createdOn?.split("T").shift()}</option>
                             )
@@ -59,9 +63,11 @@ export const RRApplicantsPage = () => {
                         </tr>
                     </thead>
                     <tbody>
+
                         {list.superAdminApplicantsList.length !== 0 &&
                          (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
                             list.superAdminApplicantsList.content?.map(list => {
+
                                 return (
                                     <tr
                                         className={classes.user_details}

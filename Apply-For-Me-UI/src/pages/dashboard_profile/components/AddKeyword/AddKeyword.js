@@ -8,12 +8,14 @@ const AddKeyword = ({ keywords, setKeywords }) => {
         if (!value.trim()) return;
 
         let same = false;
+         console.log(same)
         keywords.forEach(k => {
             if (value === k) {
                 same = true;
             }
         });
-        same ? null : setKeywords([...keywords, value]);
+        // same ? null : setKeywords([...keywords, value]);
+        setKeywords([...keywords, value]);
         e.target.value = "";
     }
     function removeKeyWord(index) {
