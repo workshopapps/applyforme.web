@@ -38,11 +38,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
     const handleActive = data => {
         setDashboardActive(getActiveLink(data));
     };
-    const handleSubmit = event => {
-        event.preventDefault();
-        setShowModal(false);
-        // Quota submission code goes here
-    };
+
     const handleDashboardSubmit = event => {
         event.preventDefault();
         setInputSearchValue(event.target.search.value);
@@ -140,7 +136,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                             )}
                         </div>
                         {/*form for searching for reverse recruiter admin  */}
-                        {dashboardActive.dashboard && (
+                        {
                             <form
                                 className={classes.search}
                                 onSubmit={event => handleDashboardSubmit(event)}
@@ -148,32 +144,16 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 <input
                                     type="search"
                                     name="search"
-                                    placeholder="Search for Users and Reverse Recruiter"
+                                    placeholder="Search for and Reverse Recruiter"
                                 />
                                 <button type="submit">
                                     {" "}
                                     <img src={Search} alt="Apply for me logo" />
                                 </button>
                             </form>
-                        )}
+                        }
 
                         {/*form for searching for users and reverse recruiter */}
-                        {!dashboardActive.dashboard && (
-                            <form
-                                className={classes.search}
-                                onSubmit={event => handleSubmit(event)}
-                            >
-                                <input
-                                    type="search"
-                                    name="search"
-                                    placeholder="Search for Users and Reverse Recruiter"
-                                />
-                                <button type="submit">
-                                    {" "}
-                                    <img src={Search} alt="Search Logo" />
-                                </button>
-                            </form>
-                        )}
                     </section>
                 </nav>
 

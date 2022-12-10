@@ -66,6 +66,31 @@ export const SuperAdminApplicants = createAsyncThunk(
         }
     }
 );
+
+export const getRecruiterApplicants = createAsyncThunk(
+    "RRadmin/SuperAdminApplicants",
+    async (values) => {
+        try {
+            const response = await axios.get(
+                `${url}/api/v1/recruiter/applicant/entries`,
+                {
+                    params:{
+                    "pageNo": values.pageNo,
+                    "pageSize": values.pageSize,
+                    },
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            console.log("super",response?.data)
+            return response?.data;
+        } catch (error) {
+           return error.response.data;
+        }
+    }
+);
+
 export const Delete_RR_Admin = createAsyncThunk(
     "RRadmin/Delete_RR_Admin",
     async(params) => {
@@ -153,6 +178,9 @@ const RR_Admin_Slice = createSlice({
     name: "RRadmin",
     initialState: {
         list: [],
+        RRApplicantsList:[],
+        RRApplicantsLoading:"",
+        RRApplicantsError:"",
         superAdminProfileDetails: {},
         superAdminProfileDetailsLoadingStatus: "",
         superAdminApplicantsList: [],
@@ -167,6 +195,19 @@ const RR_Admin_Slice = createSlice({
     },
     reducers: {},
     extraReducers: {
+        [getRecruiterApplicants.pending]: state => {
+            state.RRApplicantsLoading = "pending";
+        },
+        [getRecruiterApplicants.fulfilled]: (state, action) => {
+            state.RRApplicantsLoading = "success";
+            if (action.payload) {
+                state.RRApplicantsList = action.payload;
+            }
+        },
+        [getRecruiterApplicants.rejected]: (state, action) => {
+            state.RRApplicantsLoading = "rejected";
+            state.RRApplicantsError = action.payload;
+        },
         [Fetch_RR_Admin.pending]: state => {
             state.loadingStatus = "pending";
         },
