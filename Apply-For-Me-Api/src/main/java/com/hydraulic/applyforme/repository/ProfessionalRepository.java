@@ -20,6 +20,6 @@ public interface ProfessionalRepository {
 
     Professional updateOne(Professional body);
 
-	List<ProfessionalProfile> getAllJobProfile(Long id, int pageOffset);
+	//List<ProfessionalProfile> getAllJobProfile(Long id, int pageOffset);
 
 }
