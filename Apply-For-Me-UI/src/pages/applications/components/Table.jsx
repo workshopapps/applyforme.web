@@ -13,26 +13,27 @@ const Table = () => {
         "pageNo": 0,
         "pageSize": 10,
     });
-    const fetchApplicants =() =>{
-            axios.get(`https://api.applyforme.hng.tech/api/v1/applicant/entries`, 
-                    {
-                        params:{
-                        "pageNo": pagination.pageNo,
-                        "pageSize":pagination.pageSize,
-                        }
-                    }
-                )
-                .then(res => {
-                    setData(res.data.content);
-                    setPageCout(res.data.totalPages)
-                })
-                .catch(err => {
-                    return err.response.data
-                })          
+    const fetchApplicants = async()=>{
+                try{
+                    const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/applicant/entries`, 
+                                            {
+                                                params:{
+                                                "pageNo": pagination.pageNo,
+                                                "pageSize":pagination.pageSize,
+                                                }
+                                            }
+                                            );
+                    setData(response.data?.content);
+                    setPageCout(response.data?.totalPages);
+
+                } catch (error) {
+                    console.error(`Could not get applicants: ${error}`);
+                }          
     }
+
     useEffect(() => {
         fetchApplicants();
-    }, [fetchApplicants]);
+    }, []);
 
    
     const handlePageClick =(data)=>{

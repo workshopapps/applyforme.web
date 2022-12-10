@@ -1,10 +1,15 @@
 package com.hydraulic.applyforme.controller.recruiter;
 
+import com.hydraulic.applyforme.model.dto.RecruiterCustomDto;
 import com.hydraulic.applyforme.model.response.RecruiterApplicantDetails;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.RecruiterCustomService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 import static com.hydraulic.applyforme.constants.PagingConstants.*;
 import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DIRECTION;
@@ -22,19 +27,19 @@ public class RecruiterCustomController {
         this.service = service;
     }
 
+    @PreAuthorize("hasAnyRole('Recruiter')")
     @GetMapping("/entries")
-    public ApplyForMeResponse getAllSubmission(
+    public ApplyForMeResponse findEntries(
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
             @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
-        return service.getList(pageNo, pageSize, sortBy, sortDir);
+        return service.getEntries(pageNo, pageSize, sortBy, sortDir);
     }
 
-    @GetMapping("/details/{id}/{role}/{salary}/{employementtype}")
-    public RecruiterApplicantDetails getDetail(@PathVariable("id") Long id, @PathVariable("role") String role,
-                                               @PathVariable("salary") String salary,
-                                               @PathVariable("employementtype") String empoyment){
-        return service.getOne(id, role, salary, empoyment);
+    @PreAuthorize("hasAnyRole('Recruiter')")
+    @GetMapping("/details")
+    public RecruiterApplicantDetails getDetail(@RequestBody RecruiterCustomDto recruiterCustomDto){
+        return service.getOne(recruiterCustomDto);
     }
 }
