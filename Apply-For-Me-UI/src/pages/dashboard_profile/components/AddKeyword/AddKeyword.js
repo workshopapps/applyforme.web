@@ -1,5 +1,4 @@
 import styles from "./AddKeyWord.module.css";
-// import { useState } from "react";
 import Input from "../InputField/InputField.jsx";
 
 const AddKeyword = ({ keywords, setKeywords }) => {
@@ -9,12 +8,14 @@ const AddKeyword = ({ keywords, setKeywords }) => {
         if (!value.trim()) return;
 
         let same = false;
+         console.log(same)
         keywords.forEach(k => {
             if (value === k) {
                 same = true;
             }
         });
-        same ? null : setKeywords([...keywords, value]);
+        // same ? null : setKeywords([...keywords, value]);
+        setKeywords([...keywords, value]);
         e.target.value = "";
     }
     function removeKeyWord(index) {

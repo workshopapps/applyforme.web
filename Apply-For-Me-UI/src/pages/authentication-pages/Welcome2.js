@@ -27,10 +27,15 @@ const Welcome2 = () => {
     const [loading, setLoading] = useState(false);
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+    const [error, setError] =useState("");
     const [errState, setErrState] = useState({
         password: false,
         email_address: false
     });
+    const [password, setPassword] = useState("password");
+    const handletoggle=()=>{
+        password ==="password"? setPassword("text"): setPassword("password");
+    }
 
     useEffect(() => {
         if (user) {
@@ -86,8 +91,10 @@ const Welcome2 = () => {
             .post(`${BaseUrl}`, formData)
             .then(res => res.data)
             .catch(err => {
-                console.log(err);
-            });
+                let message = typeof err.response.data.message === "object"? err.response.data.message[Object.keys(err.response.data.message)[0]] : err.response.data.message
+                console.log(message);
+                setError(message);
+            }); 
 
         if (result?.token) {
             console.log("res", result.token);
@@ -95,6 +102,7 @@ const Welcome2 = () => {
             let tokenKey = "tokenHngKey";
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
+            setError("");
             setLoading(false);
             toast("Login Successfully");
         } else {
@@ -118,12 +126,13 @@ const Welcome2 = () => {
                         id="eml"
                         place="Email Address"
                     />
-                    <Inputbox
-                        type="password"
-                        name="pass"
-                        id="pass"
-                        place="Password"
-                    />
+                    <label htmlFor="pass" className="passowrd-label">
+                        <input type={password} className="passowrd-label-input" name="pass" id="pass" placeholder="Password" required/>
+                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1670631906/Vector_1_qntpu2.svg" alt="object not found" onClick={handletoggle}/>
+                    </label>
+
+                    {error && <p style={{color:"red"}}>{error}</p>}
+
                     <Link to="/pass" className="forgot">
                         Forgot Password
                     </Link>

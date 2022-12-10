@@ -57,6 +57,6 @@ jobs:
             pm2 restart backend
             cd ./Apply-For-Me-UI
             npm install
-            pm2 restart frontend
+            pm2 restart npm
             pm2 save
      

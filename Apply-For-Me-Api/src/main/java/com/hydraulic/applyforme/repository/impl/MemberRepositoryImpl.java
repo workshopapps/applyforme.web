@@ -68,8 +68,9 @@ public class MemberRepositoryImpl implements MemberRepository {
     }
 
     @Override
-    public Member updateOne(Member body) {
-        return entityManager.merge(body);
+    public boolean updateOne(Member body) {
+    	entityManager.merge(body);
+        return true;
     }
 
     @Override

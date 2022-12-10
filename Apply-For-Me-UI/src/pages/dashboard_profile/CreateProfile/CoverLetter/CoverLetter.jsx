@@ -1,7 +1,6 @@
 import styles from "../CreateProfile.module.css";
 import classes from "./CoverLetter.module.css";
 // import Dropdown from "../../components/Dropdown/Dropdown";
-// import BlueBorderButton from "../../../../components/buttons/blue_border_button/BlueBorderButton";
 import Input from "../../components/InputField/InputField";
 const CoverLetter = ({ formData, setFormData }) => {
     return (
@@ -16,7 +15,7 @@ const CoverLetter = ({ formData, setFormData }) => {
             </div> */}
             <div className={classes.cover_letter}>
                 <label>
-                    <h5>Cover letter subject</h5>
+                    <p className={classes.cl_text}>Cover letter subject</p>
                 </label>
                 <Input
                     type="text"
@@ -33,7 +32,7 @@ const CoverLetter = ({ formData, setFormData }) => {
             </div>
             <div>
                 <label>
-                    <h5>Cover letter body</h5>
+                    <p className={classes.cl_text}>Cover letter body</p>
                 </label>
                 <textarea
                     className={classes.cl_textarea}
@@ -52,7 +51,6 @@ Enwono Ikono"
                     }}
                 />
             </div>
-            {/* <BlueBorderButton text={"Save"} width={120} /> */}
         </form>
     );
 };

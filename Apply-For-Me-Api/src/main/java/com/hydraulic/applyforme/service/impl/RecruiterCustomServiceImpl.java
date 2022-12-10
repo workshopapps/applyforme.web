@@ -2,93 +2,122 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.model.dto.applicant.ApplicantResponse;
+import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.dto.RecruiterCustomDto;
+import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
-import com.hydraulic.applyforme.model.response.ApplicantDetailsResponse;
 import com.hydraulic.applyforme.model.response.RecruiterApplicantDetails;
+import com.hydraulic.applyforme.model.response.SubmissionResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
-import com.hydraulic.applyforme.repository.MemberRepository;
-import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
-import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
+import com.hydraulic.applyforme.repository.ProfessionalRepository;
+import com.hydraulic.applyforme.repository.jpa.*;
 import com.hydraulic.applyforme.service.RecruiterCustomService;
-import com.hydraulic.applyforme.util.ApplyForMeUtil;
+import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
 
 @Service
 public class RecruiterCustomServiceImpl implements RecruiterCustomService {
 
-
     private final JobSubmissionRepository jobSubmissionRepository;
-    private final MemberRepository memberRepository;
+    private final MemberJpaRepository memberRepository;
     private final ProfessionalJpaRepository professionalJpaRepository;
-
+    private final ProfessionalRepository professionalRepository;
     private final ModelMapper modelMapper;
 
-    public RecruiterCustomServiceImpl(JobSubmissionRepository jobSubmissionRepository, MemberRepository memberRepository, ProfessionalJpaRepository professionalJpaRepository, ModelMapper modelMapper) {
+    public RecruiterCustomServiceImpl(JobSubmissionRepository jobSubmissionRepository, MemberJpaRepository memberRepository, ProfessionalJpaRepository professionalJpaRepository, ProfessionalRepository professionalRepository, ProfessionalProfileJpaRepository professionalProfileJpaRepository, ApplierRepo applierRepo, ModelMapper modelMapper) {
         this.jobSubmissionRepository = jobSubmissionRepository;
         this.memberRepository = memberRepository;
         this.professionalJpaRepository = professionalJpaRepository;
+        this.professionalRepository = professionalRepository;
         this.modelMapper = modelMapper;
     }
 
-
     @Override
-    public ApplyForMeResponse getList(int pageNo, int pageSize, String sortBy, String sortDir) {
-        Pageable pageable =  ApplyForMeUtil.createPageable(pageNo, pageSize, sortBy, sortDir);
-        var result =  jobSubmissionRepository.findAll(pageable);
+    @Transactional(readOnly = true)
+    public ApplyForMeResponse getEntries(int pageNo, int pageSize, String sortBy, String sortDir) {
+        Long currentUser = CurrentUserUtil.getCurrentUser().getId();
+        Page<Submission> submissions = jobSubmissionRepository.getSubmissions(currentUser, createPageable(pageNo, pageSize, sortBy, sortDir));
 
-        Collection<ApplicantResponse> applicantResponse = result.getContent().stream().map(x -> ApplicantResponse.builder()
-                .id(x.getId())
-                .date(x.getCreatedOn())
-                .jobLocation(x.getJobLocation())
-                .jobTitle(x.getJobTitle())
-                .jobType(x.getJobLocationType().getValue())
-                .jobCompany(x.getJobCompany())
-                .salaryRange("I don't know where to find it, I can't even do a join table")
-                .build()
-        ).collect(Collectors.toList());
-        ApplyForMeResponse applyForMeResponse = new ApplyForMeResponse();
-        applyForMeResponse.setContent(applicantResponse);
-        applyForMeResponse.setPageSize(result.getSize());
-        applyForMeResponse.setTotalElements(result.getTotalElements());
-        applyForMeResponse.setPageNo(result.getNumber());
-        applyForMeResponse.setTotalPages(result.getTotalPages());
-        applyForMeResponse.setLast(result.isLast());
-        return applyForMeResponse;
+        return getMemberResponse(submissions);
+    }
+
+    private ApplyForMeResponse getMemberResponse(Page<Submission> submissions) {
+        Collection<SubmissionDto> results = submissions
+                .getContent()
+                .stream()
+                .map(x -> {
+                    return modelMapper.map(x, SubmissionDto.class);
+                })
+                .collect(Collectors.toList());
+
+        ApplyForMeResponse response = new ApplyForMeResponse();
+        response.setContent(getMemberResponse(submissions.getContent()));
+        response.setPageNo(submissions.getNumber());
+        response.setPageSize(submissions.getSize());
+        response.setTotalElements(submissions.getTotalElements());
+        response.setTotalPages(submissions.getTotalPages());
+        response.setLast(submissions.isLast());
+        return response;
+    }
+
+    private List<SubmissionResponse> getMemberResponse(Collection<Submission> submissions) {
+        List<SubmissionResponse> responses = new ArrayList<>();
+
+        submissions.forEach(submission -> {
+            Professional professional = submission.getProfessional();
+            Member member = professional.getMember();
+
+            long totalApplications = jobSubmissionRepository.countSubmission();
+            long appliedJobs = jobSubmissionRepository.countByApplier(CurrentUserUtil.getCurrentUser().getId());
+
+            SubmissionResponse response = SubmissionResponse.builder()
+                    .professionalId(professional.getId())
+                    .memberId(member.getId())
+                    .name(member.getFirstName() + " " + member.getLastName())
+                    .jobTitle(submission.getJobTitle())
+                    .plan("Basic")
+                    .salary("$15000-$34500")
+                    .jobType(submission.getJobLocation())
+                    .totalApplications(totalApplications)
+                    .appliedJob(appliedJobs)
+                    .build();
+            responses.add(response);
+        });
+
+        return responses;
     }
 
     @Override
-    public RecruiterApplicantDetails getOne(Long id, String role, String salary, String employement) {
-        Member member = memberRepository.getOne(id);
+    public RecruiterApplicantDetails getOne(RecruiterCustomDto recruiterCustomDto) {
+        Member member = memberRepository.getOne(recruiterCustomDto.getMemberId());
 
         if (member == null) {
-            throw new MemberNotFoundException(id);
+            throw new MemberNotFoundException(recruiterCustomDto.getMemberId());
         }
 
-        Professional professional = professionalJpaRepository.getProfessional(id);
-        professional.setMember(null);
-        professional.setSubmissions(null);
-        professional.setProfessionalProfiles(null);
-
-//        long totalSubmissions = jobSubmissionRepository.countByProfessional(professional.getId());
-//        long totalProfiles = professionalProfileJpaRepository.countByProfessional(professional.getId());
+        Professional professional = professionalJpaRepository.getProfessional(recruiterCustomDto.getMemberId());
 
         RecruiterApplicantDetails response = RecruiterApplicantDetails.builder()
                 .name(member.getFirstName()+" "+member.getLastName())
-                .role(role)
+                .role(recruiterCustomDto.getRole())
                 .joinedOn(member.getCreatedOn())
                 .email(member.getEmailAddress())
                 .phoneNumber(member.getPhoneNumber())
                 .membershipPlan("Basic")
                 .experience(3L)
                 .industry("Tech")
-                .salaryExpectation(salary)
-                .employementType(employement)
+                .salaryExpectation(recruiterCustomDto.getSalary())
+                .employementType(recruiterCustomDto.getEmployement())
                 .cv("Cv of " + member.getFirstName()+".pdf")
                 .coverLetter("Cover letter of "+member.getFirstName()+".pdf")
                 .build();
