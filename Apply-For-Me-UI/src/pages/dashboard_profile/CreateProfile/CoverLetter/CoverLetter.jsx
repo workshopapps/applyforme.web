@@ -1,7 +1,6 @@
 import styles from "../CreateProfile.module.css";
 import classes from "./CoverLetter.module.css";
 // import Dropdown from "../../components/Dropdown/Dropdown";
-// import BlueBorderButton from "../../../../components/buttons/blue_border_button/BlueBorderButton";
 import Input from "../../components/InputField/InputField";
 const CoverLetter = ({ formData, setFormData }) => {
     return (
@@ -52,7 +51,6 @@ Enwono Ikono"
                     }}
                 />
             </div>
-            {/* <BlueBorderButton text={"Save"} width={120} /> */}
         </form>
     );
 };

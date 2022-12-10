@@ -7,7 +7,6 @@ import styles from "./CreateProfile.module.css";
 import TopBar from "../components/TopBar/TopBar";
 import BlueButton from "../../../components/buttons/blue_background/BlueButton";
 import BlueBorderButton from "../../../components/buttons/blue_border_button/BlueBorderButton";
-// import LightButton from "../../../components/buttons/light_button/LightButton";
 
 const CreateProfile = () => {
     const [step, setStep] = useState(0);

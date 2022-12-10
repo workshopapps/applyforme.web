@@ -31,7 +31,7 @@ const NoProfile = () => {
                 // handle success
                 setProfileList(response.data);
                 setData("done");
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(error => {
                 // handle error
