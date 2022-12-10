@@ -23,8 +23,6 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     private final ProfessionalRepository repository;
 
 
-    public ProfessionalServiceImpl(ProfessionalRepository repository) {
-        this.repository = repository;
 
 
     private final ProfessionalJpaRepository professionalJpaRepository;

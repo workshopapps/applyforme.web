@@ -34,15 +34,15 @@ public class ProfessionalController {
         return service.findOne(id);
     }
 
-    @PutMapping("/update")
-   public Professional update(@Validated @RequestBody ProfessionalDto body) {
-   // public Professional update(@Validated @RequestBody ProfessionalDto body, Long id) {
-    Long id = CurrentUserUtil.getCurrentUser().getId();
-        return service.updateProfile(body, id);
+//    @PutMapping("/update")
+//   public Professional update(@Validated @RequestBody ProfessionalDto body) {
+//   // public Professional update(@Validated @RequestBody ProfessionalDto body, Long id) {
+//    Long id = CurrentUserUtil.getCurrentUser().getId();
+//        return service.updateProfile(body, id);
 
     @PutMapping("/update/{id}")
     public Professional update(@Validated @RequestBody ProfessionalDto body, @PathVariable(name ="id") Long id) {
-        return service.updateProfile(body, id);
+        return service.updateProfile(body, id);}
 
     @GetMapping("/applicants/{pageNo}/{pageSize}")
     public Page<Professional> retrieveApplicants(@PathVariable int pageNo, @PathVariable int pageSize ){

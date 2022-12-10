@@ -1,12 +1,9 @@
 package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.model.domain.SalaryRange;
-import com.hydraulic.applyforme.model.domain.Submission;
 
-import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
+import com.hydraulic.applyforme.model.dto.applicant.ApplicantJobProfileDto;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
-import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
@@ -83,5 +80,46 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
     @Override
     public Professional updateOne(Professional body) {
         return entityManager.merge(body);
+    }
+
+    @Override
+    public int updateProfile(ApplicantJobProfileDto body) {
+        String querstr = "UPDATE professional_profile SET profile_title = :profileTitle, " +
+                "main_profile = :mainProfile, " +
+                "passport_link = :passportLink, " +
+                "resume_link = :resumeLink, " +
+                "cover_letter = :coverLetter, " +
+                "salary_range = :salaryRange, " +
+                "employment_type = :employmentType, " +
+                "job_location = :jobLocation, " +
+                "preferred_job_location_type = :preferredJobLocationType, " +
+                "job_seniority = :jobSeniority, " +
+                "desired_job_title = :desiredJobTitle, " +
+                "industry = :industry, " +
+                "years_of_experience = :yearsOfExperience, " +
+                "other_skills = :otherSkills, " +
+                "other_comment = :otherComment, " +
+                "included_keywords = :includedKeywords, " +
+                "updated_on = :updatedOn";
+        Query query = entityManager.createNativeQuery(querstr);
+        query.setParameter("otherComment",  body.getOtherComment());
+        query.setParameter( "otherSkills", body.getOtherSkills());
+        query.setParameter("coverLetter",  body.getCover_letter());
+        query.setParameter( "mainProfile", body.getMainProfile());
+        query.setParameter( "profileTitle", body.getProfileTitle());
+        query.setParameter( "yearsOfExperience", body.getYearsOfExperience());
+        query.setParameter( "preferredJobLocationType", body.getPreferredJobLocationType());
+        query.setParameter( "salaryRange", body.getSalaryRange());
+        query.setParameter( "resumeLink", body.getResumeLink());
+        query.setParameter("passportLink",  body.getPassportLink());
+        query.setParameter("jobSeniority",  body.getJobSeniority());
+        query.setParameter( "jobLocation", body.getJobLocation());
+        query.setParameter( "includedKeywords", body.getIncludedKeywords());
+        query.setParameter( "employmentType", body.getEmploymentType());
+        query.setParameter( "industry", body.getIndustry());
+        query.setParameter( "desiredJobTitle", body.getDesiredJobTitle());
+        query.setParameter( "updatedOn", body.getUpdatedOn());
+        int rowsUpdated = query.executeUpdate();
+        return rowsUpdated;
     }
 }
