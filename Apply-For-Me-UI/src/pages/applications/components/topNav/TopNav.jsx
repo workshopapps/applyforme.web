@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./TopNav.module.css";
-import { TbBellRinging } from "react-icons/tb";
 import { BsArrowLeft } from "react-icons/bs";
 import avatar from "../../assets/avatar.png";
+import notification from "../../assets/notification.png";
+import { Link } from "react-router-dom";
 
 const TopNav = ({ title }) => {
     return (
@@ -12,8 +13,16 @@ const TopNav = ({ title }) => {
                 <h2>{title}</h2>
             </div>
             <div className={styles.application_user_menu}>
-                <TbBellRinging />
-                <img src={avatar} className={styles.application_nav_avatar} />
+                <img
+                    src={notification}
+                    className={styles.application_nav_notif}
+                />
+                <Link to="/dashboard/settings">
+                    <img
+                        src={avatar}
+                        className={styles.application_nav_avatar}
+                    />
+                </Link>
             </div>
         </div>
     );

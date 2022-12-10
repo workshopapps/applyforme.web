@@ -1,59 +1,114 @@
-.form
-{
+.application_form {
+    color: #52515b;
+    padding: 0 20px 50px;
+    font-size: 16px;
+}
+
+.go_back_link {
+    margin: 20px 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.go_back_link img {
+    margin-right: 16px;
+}
+
+.view_applicants {
+    color: inherit;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.form {
     display: flex;
     flex-flow: column nowrap;
-    max-width: 1000px;
-    padding: 16px 24px;
-    margin: 0 auto;
+    max-width: 500px;
     gap: 24px;
-    color: #52515B;
 }
 
-.form *
-{
-    font-family: 'Outfit', 'sans-serif';
+.form p {
+    color: #222226;
+    font-size: 1rem;
+    font-weight: 300;
 }
 
-.form p
-{
-    font-size: 24px;
+.form label span {
+    color: #222226;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
 
-.form label span
-{
-    font-weight: 700;
-    padding: 16px 0;
-}
-
-.form input
-{
-    width: 100%;
+.form input {
+    color: #414244;
+    font-weight: 300;
+    font-size: 16px;
     padding: 16px 24px;
-    border: 1px solid rgba(230, 230, 233, 1);
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+    width: 100%;
 }
 
-.form input[type="submit"]
-{
-    width: 240px;
+.form input[type="submit"] {
     background: rgba(46, 49, 146, 1);
     color: rgba(251, 251, 255, 1);
     border-radius: 8px;
+    padding: 16px 32px;
+    width: 240px;
 }
 
-.form input[type="submit"]:hover
-{
-    background: rgba(32, 32, 101, 1);
+.form input[type="submit"]:hover {
+    opacity: 0.9;
 }
 
-@media only screen and (max-width: 480px)
-{
-    .form
-    {
-        width: 100%;
+.form input::placeholder {
+    font-size: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+    .application_form {
+        padding: 0 40px 50px;
     }
 
-    .form p
-    {
-        font-size: 16px;
+    .go_back_link {
+        margin-top: 40px;
+    }
+
+    .view_applicants {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .form {
+        max-width: clamp(675px, 80vw, 1000px);
+    }
+
+    .form p {
+        font-size: 24px;
+        font-weight: 400;
+        margin: 26px 0 24px;
+    }
+
+    .form label span {
+        font-weight: 700;
+    }
+
+    .form input {
+        font-weight: 400;
+    }
+
+    .form input::placeholder,
+    .form input,
+    .form label span {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .application_form {
+        padding: 0 100px 50px;
     }
 }

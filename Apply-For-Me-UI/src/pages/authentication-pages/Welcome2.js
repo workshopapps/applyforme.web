@@ -18,7 +18,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "components/spinner/Spinner";
 
-const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-in";
+const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-in";
 
 const Welcome2 = () => {
     const dispatch = useDispatch();
@@ -36,12 +36,39 @@ const Welcome2 = () => {
         if (user) {
             setTimeout(() => {
                 if (
-                    user?.roles[0] === "Professional" ||
-                    user?.roles[0] === "Recruiter"
+                    (
+                        user?.roles[0] === "Professional" &&
+                        user?.roles[1] === "Recruiter"
+                    )||
+                    (
+                        (user?.roles[0] === "Recruiter" &&
+                        user?.roles[1] === "Professional")
+                    )||
+                    (
+                        (user.roles.length ===1 && user?.roles[0] === "Recruiter")
+                    )
                 ) {
-                    navigate("/dashboard/");
-                } else if (user?.roles[0] === "SuperAdministrator") {
+                    navigate("/rr_admin");
+                } else if (
+                    (
+                        user?.roles[0] === "SuperAdministrator" &&
+                        user?.roles[1] === "Recruiter"
+                    )||
+                    (
+                        (user?.roles[0] === "Recruiter" &&
+                        user?.roles[1] === "SuperAdministrator")
+                    )||
+                    (
+                        (user.roles.length ===1 && user?.roles[0] === "SuperAdministrator")
+                    )
+                ) {
                     navigate("/user-page");
+                }else if (
+                    (
+                        (user.roles.length ===1 && user?.roles[0] === "Professional")
+                    )
+                ) {
+                    navigate("/dashboard")
                 }
             }, 3000);
         }

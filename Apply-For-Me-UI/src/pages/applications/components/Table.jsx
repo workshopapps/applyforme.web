@@ -1,10 +1,46 @@
+/* eslint-disable no-unused-vars */
 import styles from "../Applications.module.css";
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import ApplicationsListHeader from "./ApplicationsListHeader";
-import { applications } from "../applicationsMock";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 const Table = () => {
+    const [data, setData] = useState([]);
+    const [pageCount, setPageCout] = useState(1)
     const navigate = useNavigate();
+     const [pagination, setPagination] = useState({
+        "pageNo": 0,
+        "pageSize": 10,
+    });
+    const fetchApplicants = async()=>{
+                try{
+                    const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/applicant/entries`, 
+                                            {
+                                                params:{
+                                                "pageNo": pagination.pageNo,
+                                                "pageSize":pagination.pageSize,
+                                                }
+                                            }
+                                            );
+                    setData(response.data?.content);
+                    setPageCout(response.data?.totalPages);
+
+                } catch (error) {
+                    console.error(`Could not get applicants: ${error}`);
+                }          
+    }
+
+    useEffect(() => {
+        fetchApplicants();
+    }, []);
+
+   
+    const handlePageClick =(data)=>{
+        setPagination(prevState =>({...prevState,"pageNo":data.selected}));
+         fetchApplicants();
+       
+    }
     return (
         <div className={styles.applications_table_wrapper}>
             <ApplicationsListHeader />
@@ -21,10 +57,10 @@ const Table = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {applications.map((application, index) => (
+                        {data?.map?.((application, index) => (
                             <tr
                                 className={styles.applications_table_body_row}
-                                key={`${application.company}-${index}`}
+                                key={`${application.jobCompany}-${index}`}
                                 onClick={() =>
                                     navigate(
                                         `/dashboard/applications/${application.id}`
@@ -32,9 +68,9 @@ const Table = () => {
                                 }
                             >
                                 <td>
-                                    <div>{application.company}</div>
+                                    <div>{application.jobCompany}</div>
                                     <div className={styles.show_tablet}>
-                                        {application.location}
+                                        {application.jobLocation}
                                     </div>
                                 </td>
                                 <td>
@@ -44,26 +80,37 @@ const Table = () => {
                                     </div>
                                 </td>
                                 <td className={styles.hide_tablet}>
-                                    {application.location}
+                                    {application.jobLocation}
                                 </td>
                                 <td>{application.salaryRange}</td>
                                 <td className={styles.hide_tablet}>
-                                    {application.jobDuration}
+                                    {application.jobType}
                                 </td>
-                                <td>{application.date}</td>
+                                <td>{application.date?.split("T").shift()}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
 
-            <div className={styles.applications_footer}>
-                <span>1-10/60</span>
-                <span>
-                    <HiOutlineChevronLeft />
-                    <HiOutlineChevronRight />
-                </span>
-            </div>
+            <div>
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">"
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    marginPagesDisplayed="1"
+                    previousLabel="<"
+                    renderOnZeroPageCount={null}
+                    onPageChange={handlePageClick}
+                    containerClassName="containerClassName"
+                    pageClassName='pageClassName'
+                    previousClassName='previousClassName'
+                    activeClassName="activeClassName"
+                    nextClassName='nextClassName'
+                    pageLinkClassName="pageLinkClassName"
+                />
+                 </div>
         </div>
     );
 };

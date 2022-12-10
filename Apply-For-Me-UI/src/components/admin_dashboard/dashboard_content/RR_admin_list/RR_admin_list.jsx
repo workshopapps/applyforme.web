@@ -1,39 +1,43 @@
 
 import { useState,useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import './RR_admin_List.css';
 import { Desktop_List } from './desktop_list_wrapper';
 import { Mobile_view_list } from './mobile_list_wrapper';
+import { Fetch_RR_Admin } from 'store/slice/RR_AdminSlice';
+import ReactPaginate from 'react-paginate';
 export const RR_Admin_list=({inputSearchValue})=>{
-    
     const RR_recruiter = useSelector((state)=>state.RRadmin);
     const [search, setSearch] = useState([]);
-    const [rangeEnd, setRangeEnd]= useState(4);
-    const [rangeStart, setRangeStart]= useState(0);
-    const [counter, setCounter]= useState(1);
+    const dispatch = useDispatch();
+    const [pagination, setPagination] = useState({
+        "pageNo": 0,
+        "pageSize": 10,
+    });
+
+    useEffect(()=>{
+        dispatch(Fetch_RR_Admin(pagination));
+    },[dispatch,Fetch_RR_Admin])
     
     useEffect(()=>{
-        const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list.content.length !==0) ? RR_recruiter.list.content.filter((item)=>item.first_name.toLowerCase().includes(inputSearchValue)):[]
+        const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list?.length !==0) ? RR_recruiter.list?.content?.filter((item)=>item.firstName.toLowerCase().includes(inputSearchValue)):[]
         setSearch(avilableList);
     }, [inputSearchValue, RR_recruiter.list]);
 
-    const forwardHandler = () => {
-        setRangeEnd(prevState => prevState + 5);
-        setRangeStart(prevState => prevState + 5);
-        setCounter(prevState => prevState + 5);
-    };
-    const backwardHandler = () => {
-        setRangeEnd(prevState => prevState - 5);
-        setRangeStart(prevState => prevState - 5);
-        setCounter(prevState => prevState - 5);
-    };
+   
+    const handlePageClick =(data)=>{
+        setPagination(prevState =>({...prevState,"pageNo":data.selected}));
+        dispatch(Fetch_RR_Admin(pagination));
+       
+    }
+
 
     return (
         <>
             <div className="sort_header">
-                <h3 style={{color:"#2E3192",fontWeight:"bolder"}}>RR Admin List</h3>
                 <div>
-                    <button> + Add Admin</button>
+                    <h3 style={{color:"#2E3192",fontWeight:"bolder"}} className="list-header">RR Admin List</h3>
+                    <button className="add-admin">+ Add Admin</button>
                 </div>
             </div>
 
@@ -44,45 +48,22 @@ export const RR_Admin_list=({inputSearchValue})=>{
                         <th>Name</th>
                         <th>Category</th>
                         <th>Date registered</th>
-                        <th>
-                            {" "}
-                            <label htmlFor="applicants">Sort By: </label>
-                            <select name="applicants" id="applicants">
-                                <option value="oldest">Most Active</option>
-                            </select>
-                        </th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        search.length !==0? (
-                            counter <= search.length? search.map((user, index)=>{
-                                const {first_name,current_job_title,id,created_on} = user;
-                                if((index >= rangeStart) && (index <= rangeEnd) ){
+                        search?.length !==0 &&
+                        (RR_recruiter.loadingStatus === "success" && RR_recruiter.list.length !==0) &&
+                        search?.map((user, index)=>{
+                                const {firstName,currentJobTitle,id,createdOn} = user;
                                     return(
                                         <tr key={index}>
-                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} created_on={created_on}  />
-                                        </tr>
-                                       
+                                            <Desktop_List firstName={firstName} currentJobTitle={currentJobTitle} id={id} createdOn={createdOn}/>
+                                        </tr> 
                                     )
-    
-                                }
-                            }):null):
-                        (RR_recruiter.loadingStatus === "success" &&
-                            counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
-                                const {first_name,current_job_title,id,created_on} = user;
-                                if((index >= rangeStart) && (index <= rangeEnd)){
-                                    return(
-                                        <tr key={index}>
-                                            <Desktop_List first_name={first_name} current_job_title={current_job_title} id={id} created_on={created_on}/>
-                                        </tr>
-                                    )
-
-                                }
-                            }):null
-                        )
-                    }
-                        
+                            })
+                    }         
                 </tbody> 
             </table>
 
@@ -91,77 +72,52 @@ export const RR_Admin_list=({inputSearchValue})=>{
                 <div>
                     <label htmlFor="applicants">Sort By: </label>
                     <select name="applicants" id="applicants">
-                        <option value="oldest" disabled>
+                        <option value="true">
                             Most Active
                         </option>
                     </select>
                 </div>
                     {
-                        search.length !==0? (
-                        RR_recruiter.loadingStatus === "success" &&
-                        counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
-                           const {first_name,current_job_title,id} = user;
-                            if((index >= rangeStart) && (index <= rangeEnd) ){
+                        search?.length !==0 && 
+                        (RR_recruiter.loadingStatus === "success" && RR_recruiter.list.length !==0) &&
+                        RR_recruiter.list.content.map((user, index)=>{
+                           const {firstName,currentJobTitle,id} = user;
                                 return(
                                     <div className='RRlist' key={index}>
-                                         <Mobile_view_list first_name={first_name} current_job_title={current_job_title} id={id} />
+                                         <Mobile_view_list firstName={firstName} currentJobTitle={currentJobTitle} id={id} />
                                     </div>
                                   
-                                )
-                            }
-                        }):null
-                        ):(
-                            RR_recruiter.loadingStatus === "success" &&
-                        counter <= RR_recruiter.list.content.length? RR_recruiter.list.content.map((user, index)=>{
-                           const {first_name,current_job_title,id} = user;
-                            if((index >= rangeStart) && (index <= rangeEnd) ){
-                                return(
-                                    <div className='RRlist' key={index}>
-                                         <Mobile_view_list first_name={first_name} current_job_title={current_job_title} id={id} />
-                                    </div>
-                                  
-                                )
-                            }
-                        }):null
-                        )
+                                )                            
+                        })
                     }
             </div>
 
             {/* loading state handler */}
             {RR_recruiter.loadingStatus === "pending" && (
                 <p style={{ textAlign: "center" }}>
-                    Please wait while we fetch the data...
+                    Please wait...
                 </p>
             )}
-
-            <div className="pagination">
-                <h5>
-                    1-5 of{" "}
-                    {RR_recruiter.loadingStatus === "success" &&
-                        RR_recruiter.list.content.length}
-                </h5>
-                <div className="pagiantion_control">
-                    {counter >= 4 ? (
-                        <span onClick={backwardHandler}>
-                            <img
-                                style={{ width: "60%" }}
-                                src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/back-arrow_e22btd.png"
-                                alt="object not found"
-                            />
-                        </span>
-                    ) : null}
-                    {RR_recruiter.loadingStatus === "success" &&
-                        (counter < RR_recruiter.list.content.length ? (
-                            <span onClick={forwardHandler}>
-                                <img
-                                    style={{ width: "60%" }}
-                                    src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/arrow_back_ios_new_wskxof.png"
-                                    alt="object not found"
-                                />
-                            </span>
-                        ) : null)}
-                </div>
+            {(RR_recruiter.loadingStatus === "success" && search?.length ===0) && <p className="text-center">record not found</p>}
+            <div>
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">"
+                    pageRangeDisplayed={5}
+                    pageCount={RR_recruiter.list?.totalPages}
+                    marginPagesDisplayed="1"
+                    previousLabel="<"
+                    renderOnZeroPageCount={null}
+                    onPageChange={handlePageClick}
+                    containerClassName="containerClassName"
+                    pageClassName='pageClassName'
+                    previousClassName='previousClassName'
+                    activeClassName="activeClassName"
+                    nextClassName='nextClassName'
+                    pageLinkClassName="pageLinkClassName"
+                />
             </div>
+            
         </>
     );
 };

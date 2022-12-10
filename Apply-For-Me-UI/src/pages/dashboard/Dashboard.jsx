@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ToastContainer } from "react-toastify";
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
 import DashBoardPage from "../dashboard_page/DashBoardPage";
 import UsersPage from "../users_page/UsersPage";
@@ -18,6 +19,7 @@ const Dashboard = () => {
 
     return (
         <div>
+            <ToastContainer/>
             <DashboardHeader
                 func={handlePageSwitch}
                 setInputSearchValue={dashboardSetSearchParams}
@@ -25,7 +27,7 @@ const Dashboard = () => {
             {page.dashboardPage ? (
                 <DashBoardPage inputSearchValue={dashboardsearchParams} />
             ) : (
-                <UsersPage />
+                <UsersPage/>
             )}
         </div>
     );

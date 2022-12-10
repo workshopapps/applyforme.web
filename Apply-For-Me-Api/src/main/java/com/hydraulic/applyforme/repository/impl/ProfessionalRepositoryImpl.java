@@ -1,17 +1,16 @@
 package com.hydraulic.applyforme.repository.impl;
 
-import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.model.domain.SalaryRange;
-import com.hydraulic.applyforme.model.domain.Submission;
 
-import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
-import com.hydraulic.applyforme.repository.ProfessionalRepository;
-import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 import javax.persistence.*;
-import java.util.List;
+
+import com.hydraulic.applyforme.model.exception.ProfessionalDuplicateEntityException;
+import org.springframework.stereotype.Repository;
+import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.repository.ProfessionalRepository;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository
@@ -33,7 +32,10 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
 
     @Override
     public Professional getOne(Long id) {
-        return entityManager.find(Professional.class, id);
+    	String query = "select p from Professional p where p.member.id = :id";
+    	TypedQuery<Professional> professional = entityManager.createQuery(query, Professional.class);
+    	professional.setParameter("id", id);
+        return professional.getSingleResult();
     }
 
     @Override
@@ -81,7 +83,20 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
     }
 
     @Override
-    public Professional updateOne(Professional body) {
-        return entityManager.merge(body);
+    public boolean updateOne(Professional body) {
+    	Professional merge = entityManager.merge(body);
+    	return true;
     }
+
+    @Override
+    public Professional saveOne(Professional body) {
+        try {
+            entityManager.persist(body);
+            return body;
+        }
+        catch (EntityExistsException ex) {
+            throw new ProfessionalDuplicateEntityException();
+        }
+    }
+    
 }

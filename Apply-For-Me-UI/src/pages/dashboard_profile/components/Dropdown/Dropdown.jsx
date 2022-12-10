@@ -1,6 +1,14 @@
 import styles from "./Dropdown.module.css";
 
-const Dropdown = ({ id, value, onChange, name, options, width }) => {
+const Dropdown = ({
+    id,
+    value,
+    onChange,
+    name,
+    options,
+    width,
+    placeholderText
+}) => {
     return (
         <div className={styles.dropdown}>
             <select
@@ -9,8 +17,10 @@ const Dropdown = ({ id, value, onChange, name, options, width }) => {
                 onChange={onChange}
                 style={{ width: `${width}%` }}
                 name={name}
-                // options={options}
             >
+                <option value="" defaultValue={""}>
+                    {placeholderText}
+                </option>
                 {options?.map(option => (
                     <option key={option.value} value={option.value}>
                         {option.label}

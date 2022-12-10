@@ -17,7 +17,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -28,6 +27,7 @@ import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
 
 @Service
 public class SuperAdminCustomServiceImpl implements SuperAdminCustomService {
+
     private final ProfessionalRepository repository;
     private final SuperAdminMemberJpaRepository jpaRepository;
     private final MemberRepository memberRepository;
@@ -134,7 +134,6 @@ public class SuperAdminCustomServiceImpl implements SuperAdminCustomService {
                 .totalSubmissions(totalSubmissions)
                 .totalProfessionalProfile(totalProfiles)
                 .build();
-
         return response;
     }
 }

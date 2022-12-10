@@ -1,48 +1,56 @@
 .profile_page {
     padding-left: 5%;
-    height: 100vh;
+    padding-bottom: 25%;
     width: 100vw;
     background-color: #f3f3fb;
+}
+.edit_box h3 {
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+    width: 25%;
+}
+.edit_box p {
+    width: 50%;
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+.job_deets {
+    display: flex;
+    gap: 0.5rem;
 }
 @media screen and (min-width: 720px) {
     .each_profile {
         width: 90%;
-        display: flex;
         background: #fefeff;
         border-radius: 12px;
-        justify-content: space-between;
-        margin-top: 2.8rem;
+        margin-top: 1.25rem;
         padding-inline: 1.5rem;
         padding-block: 1.5rem;
+    }
+    .edit_box {
+        display: flex;
+        justify-content: space-between;
     }
 }
 @media screen and (max-width: 720px) {
     .each_profile {
         width: 90%;
-        display: flex;
-        flex-direction: column;
         background: #fefeff;
         border-radius: 12px;
-        justify-content: space-between;
-        margin-top: 2.8rem;
+        margin-top: 1.25rem;
         padding-inline: 1.5rem;
         padding-block: 1.5rem;
     }
+    .edit_box p {
+        width: 22%;
+        font-weight: 400;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
 }
-.each_profile img {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-.edit_box {
-    display: flex;
-    gap: 3.4rem;
-}
-.edit_box img {
-    margin: auto;
-}
-.emails_forms {
-    display: flex;
-}
+
 .createjob_button {
     display: flex;
     margin-top: 2rem;
@@ -65,9 +73,60 @@
     font-size: 1rem;
     font-weight: 600;
 }
-h4 {
-    font-weight: 400;
-    font-size: 1.5rem;
-    line-height: 150%;
+
+.profile_description {
+    padding-left: 5%;
+    padding-bottom: 30%;
+    background-color: #f3f3fb;
+    width: 100%;
+    font-weight: 800;
+}
+.profiledesc_details div {
     margin-bottom: 1rem;
+}
+.profiledesc_details h6 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #52515b;
+    margin-bottom: 0.5rem;
+}
+.profiledesc_details h5 {
+    color: #52515b;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+.profiledesc_details p {
+    color: #52515b;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+.prev_btn {
+    background-color: transparent;
+    border: 0;
+    color: #2e3192;
+}
+.back_icon {
+    font-size: 1.5rem;
+    margin-block: 1rem;
+}
+.loading_animation {
+    margin: auto;
+    width: 20%;
+    height: 5px;
+    background-color: #bfbfbf;
+    border-radius: 5px;
+    animation: loading_animation 2s linear infinite;
+}
+
+/* Define  animation */
+@keyframes loading_animation {
+    0% {
+        background-color: #bfbfbf;
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-color: #2f80ed;
+        background-position: 100% 0%;
+    }
 }

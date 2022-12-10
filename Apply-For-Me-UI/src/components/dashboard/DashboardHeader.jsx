@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import classes from "./DashboardHeader.module.css";
 import { FiChevronLeft, FiPause, FiTrash } from "react-icons/fi";
@@ -8,10 +9,10 @@ import Search from "../../assets/images/search.svg";
 import SearchBlue from "../../assets/images/search_blue.svg";
 import Menu from "../../assets/images/menu.svg";
 import CloseMenu from "../../assets/images/close_menu.svg";
-import DashboardActiveIcon from "../../assets/images/dashboard_active_logo.svg";
-import DashboardDisabledIcon from "../../assets/images/dashboard_disabled_logo.svg";
-import UserDisabledIcon from "../../assets/images/users_disabled_logo.svg";
-import UserActiveIcon from "../../assets/images/users_active_logo.svg";
+// import DashboardActiveIcon from "../../assets/images/dashboard_active_logo.svg";
+// import DashboardDisabledIcon from "../../assets/images/dashboard_disabled_logo.svg";
+// import UserDisabledIcon from "../../assets/images/users_disabled_logo.svg";
+// import UserActiveIcon from "../../assets/images/users_active_logo.svg";
 import Signout from "../../assets/images/signout.svg";
 import ProgressBar from "../../assets/images/progress_bar.svg";
 import { MobileNav } from "./mobileNav";
@@ -38,11 +39,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
     const handleActive = data => {
         setDashboardActive(getActiveLink(data));
     };
-    const handleSubmit = event => {
-        event.preventDefault();
-        setShowModal(false);
-        // Quota submission code goes here
-    };
+
     const handleDashboardSubmit = event => {
         event.preventDefault();
         setInputSearchValue(event.target.search.value);
@@ -98,6 +95,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 onClick={() =>
                                     setShowMenuProfile(prevState => !prevState)
                                 }
+                                style={{ cursor: "pointer" }}
                             >
                                 <img
                                     src={ProfilePic}
@@ -113,7 +111,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                         <li
                                             type="button"
                                             onClick={() => {
-                                                navigate("/superAdminProfile");
+                                                navigate("/user-page/profile");
                                             }}
                                         >
                                             <img
@@ -139,7 +137,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                             )}
                         </div>
                         {/*form for searching for reverse recruiter admin  */}
-                        {dashboardActive.dashboard && (
+                        {
                             <form
                                 className={classes.search}
                                 onSubmit={event => handleDashboardSubmit(event)}
@@ -147,32 +145,16 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 <input
                                     type="search"
                                     name="search"
-                                    placeholder="Search for Users and Reverse Recruiter"
+                                    placeholder="Search for and Reverse Recruiter"
                                 />
                                 <button type="submit">
                                     {" "}
                                     <img src={Search} alt="Apply for me logo" />
                                 </button>
                             </form>
-                        )}
+                        }
 
                         {/*form for searching for users and reverse recruiter */}
-                        {!dashboardActive.dashboard && (
-                            <form
-                                className={classes.search}
-                                onSubmit={event => handleSubmit(event)}
-                            >
-                                <input
-                                    type="search"
-                                    name="search"
-                                    placeholder="Search for Users and Reverse Recruiter"
-                                />
-                                <button type="submit">
-                                    {" "}
-                                    <img src={Search} alt="Search Logo" />
-                                </button>
-                            </form>
-                        )}
                     </section>
                 </nav>
 
@@ -279,24 +261,17 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                         >
                             {dashboardActive.dashboard ? (
                                 <img
-                                    src={DashboardActiveIcon}
+                                    src="https://res.cloudinary.com/hamskid/image/upload/v1670374365/Frame_51422_vbawt4.svg"
                                     alt="Dashboard logo"
+                                    style={{ width: "100%" }}
                                 />
                             ) : (
                                 <img
-                                    src={DashboardDisabledIcon}
+                                    src="https://res.cloudinary.com/hamskid/image/upload/v1670374510/Frame_51422_tptxu7.svg"
                                     alt="Dashboard logo"
+                                    style={{ width: "100%" }}
                                 />
                             )}
-                            <p
-                                className={
-                                    dashboardActive.dashboard
-                                        ? classes.__active_toggle
-                                        : classes.text
-                                }
-                            >
-                                Dashboard
-                            </p>
                         </li>
 
                         <li
@@ -307,24 +282,17 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                         >
                             {dashboardActive.user ? (
                                 <img
-                                    src={UserActiveIcon}
+                                    src="https://res.cloudinary.com/hamskid/image/upload/v1670374510/Frame_51423_n4kay9.svg"
                                     alt="Disabled User logo"
+                                    style={{ width: "100%" }}
                                 />
                             ) : (
                                 <img
-                                    src={UserDisabledIcon}
+                                    src="https://res.cloudinary.com/hamskid/image/upload/v1670374366/Frame_51423_xfapfz.svg"
                                     alt="Disabled User logo"
+                                    style={{ width: "100%" }}
                                 />
                             )}
-                            <p
-                                className={
-                                    dashboardActive.user
-                                        ? classes.__active_toggle
-                                        : classes.text
-                                }
-                            >
-                                User
-                            </p>
                         </li>
                     </ul>
                 </section>

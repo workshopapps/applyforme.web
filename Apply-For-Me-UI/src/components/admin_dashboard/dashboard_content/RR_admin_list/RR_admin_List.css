@@ -2,6 +2,29 @@ thead th{
     padding-top:1.5rem;
      padding-bottom: 1.5rem
  }
+table td{
+    width:25%;
+    padding-bottom:0.5rem;
+    border-bottom:1px solid gainsboro;
+}
+.add-admin{
+    font-size: 20px;
+    margin-left: 2rem;
+    padding: 0.5rem;
+    border-radius: 7px;
+    font-weight: 400;
+    color: #2E3192;
+    background: bottom;
+    border: 1px solid #2E3192;
+}
+.list-header{
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 150%;
+    color: #2E3192;
+}
  .tableContainer{
      width:100%;
  }
@@ -44,15 +67,28 @@ thead th{
  .pagiantion_control{
      margin-left:0.5rem;
  }
- .viewContainer button{
-     border-radius: 4px;
-     font-size: 15px;
-     width: 90%;
-     background: #2E3192;
-     padding: 0.7rem;
-     border: 1px solid white;
-     color: white;
-     margin-right: 0.3rem;
+ .containerClassName{
+    margin:1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    justify-content: space-evenly;
+ }
+ .activeClassName{
+    background-color: #2E3192;
+    color:white;
+ }
+ .pageClassName{
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+ }
+ .previousClassName a,.nextClassName a{
+    font-weight:bold;
+ }
+ .pageLinkClassName,.previousClassName a,.nextClassName a{
+    font-size: 17px;
+    margin:0 0.1rem;
  }
  .sort_header button{
      color: #2E3192;
@@ -64,21 +100,22 @@ thead th{
  }
 
 .sort_header{
+   
+    border-bottom: 1px solid grey;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 1.5rem 0;
+}
+.sort_header div{
+    width:fit-content;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid grey;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    padding-bottom: 0.5rem;
+    
 }
 .mobileList{
     display: none;
-}
-.sort_header button {
-    padding: 0.5rem 1rem;
-   font-weight: bold;
 }
 .sort_header h2{
     font-size:24px;
@@ -128,6 +165,17 @@ thead select{
     left:-4rem;
 }
 @media only screen and (min-width:320px) and (max-width:767px){
+    .view_mobile_Container h5{
+        font-size: 13px;
+    }
+    .sort_header button {
+        font-size:13px;
+        padding: 0.4rem;
+      
+    }
+    .list-header{
+        font-size: 18px;
+    }
     .dropdownContent{
         padding: 0.5rem;
         width:70px;

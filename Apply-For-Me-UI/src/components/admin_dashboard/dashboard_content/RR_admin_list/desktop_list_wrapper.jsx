@@ -1,7 +1,13 @@
+/* eslint-disable no-unused-vars */
 import "./RR_admin_List.css";
 import { useNavigate } from "react-router-dom";
-export const Desktop_List =({first_name,current_job_title,created_on,id})=>{
+
+// import { useDispatch } from "react-redux";
+// import { Delete_RR_Admin } from "store/slice/RR_AdminSlice";
+export const Desktop_List = ({ firstName, currentJobTitle, id, createdOn }) => {
     const navigate = useNavigate();
+    // const dispatch= useDispatch();
+
     return (
         <>
             <td>
@@ -9,40 +15,35 @@ export const Desktop_List =({first_name,current_job_title,created_on,id})=>{
                     <span style={{ width: "15%" }}>
                         <img
                             style={{ width: "100%" }}
-                            src="https://res.cloudinary.com/hamskid/image/upload/v1668865249/Frame_51202_uoy0ee.png"
+                            src="https://res.cloudinary.com/hamskid/image/upload/v1670374366/Ellipse_4_h3itvt.svg"
                             alt="object not found"
                         />
                     </span>
-                    <h3 style={{ marginLeft: "0.4rem" }}>{first_name}</h3>
+                    <h5 style={{ marginLeft: "2rem" }}>{firstName}</h5>
                 </div>
             </td>
             <td>
-                <h3 style={{ fontWeight: "400" }}>{current_job_title}</h3>
+                <h5 style={{ fontWeight: "400" }}>{currentJobTitle}</h5>
             </td>
             <td>
-                <h3 style={{ fontWeight: "400" }}>{created_on}</h3>
+                <h5 style={{ fontWeight: "400" }}>
+                    {createdOn?.split("T").shift()}
+                </h5>
             </td>
             <td>
                 <div className="viewContainer">
-                    <button
-                        onClick={() => navigate(`/reverseRecruiterAdmin/${id}`)}
+                    <h5
+                        onClick={() =>
+                            navigate(`/user-page/reverseRecruiterAdmin/${id}`)
+                        }
+                        style={{
+                            color: "#2E3192",
+                            marginBottom: "0",
+                            marginRight: "0.3rem"
+                        }}
                     >
                         view Profile
-                    </button>
-                    <span className="dropdown">
-                        <img
-                            className="three_dot_icon"
-                            src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png"
-                            alt="object not found"
-                        />
-                        <div className="dropdownContent">
-                            <img
-                                src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51367_phrq53.png"
-                                style={{ marginBottom: "0.7rem" }}
-                            />
-                            <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51368_oevqxr.png" />
-                        </div>
-                    </span>
+                    </h5>
                 </div>
             </td>
         </>

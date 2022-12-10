@@ -1,6 +1,10 @@
 import style from "./ApplicantDetails.module.css";
 
-import pdfIcon from "../../../../assets/images/pdf-icon.svg"
+import pdfIcon from "../../../../assets/images/pdf-icon.svg";
+import goBackIcon from "../../../../assets/images/back_arrow.svg";
+
+import { Link, useNavigate } from "react-router-dom";
+import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 
 const details = {
     name: "Sharon Sunday",
@@ -16,14 +20,28 @@ const details = {
 };
 
 const ApplicationDetails = () => {
-    return (
-        <article className={style.container}>
+    const navigate = useNavigate();
+    return ( 
+            <article className={style.container}>
+            <RRD_Nav />
+            <div className={style.go_back_link}>
+                <Link to="/rr_admin">
+                    <img src={goBackIcon} alt="" />
+                </Link>
+                <span className={style.view_applicants} onClick={()=>navigate("/rr_admin")}>
+                    View Applicants details
+                </span>
+            </div>
             <div className={style.header}>
-                <span>SS</span>
+                <span className={style.circle}>SS</span>
                 <div>
-                    <span>{details.name}</span>
-                    <span>{details.role} Role</span>
-                    <span>Date joined: {details.dateJoined}</span>
+                    <span className={`${style.details} ${style.details_name}`}>
+                        {details.name}
+                    </span>
+                    <span className={style.details}>{details.role} Role</span>
+                    <span className={style.details}>
+                        Date joined: {details.dateJoined}
+                    </span>
                 </div>
             </div>
             <section className={style.job_information}>
@@ -68,15 +86,21 @@ const ApplicationDetails = () => {
                 <div>
                     <div className={style.info_field}>
                         <h4>CV</h4>
-                        <p><img src={pdfIcon} alt="pdf icon" /> OrasmithCV.pdf</p>
+                        <p>
+                            <img src={pdfIcon} alt="pdf icon" /> OrasmithCV.pdf
+                        </p>
                     </div>
                     <div className={style.info_field}>
                         <h4>Cover Letter</h4>
-                        <p><img src={pdfIcon} alt="pdf icon" /> Orasmithcoverletter.pdf</p>
+                        <p>
+                            <img src={pdfIcon} alt="pdf icon" />{" "}
+                            Orasmithcoverletter.pdf
+                        </p>
                     </div>
                 </div>
             </section>
         </article>
+        
     );
 };
 

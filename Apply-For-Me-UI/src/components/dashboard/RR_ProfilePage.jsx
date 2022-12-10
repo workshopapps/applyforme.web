@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./DashboardHeader.module.css";
 import { FiChevronLeft, FiPause, FiTrash } from "react-icons/fi";
 import Logo from "../../assets/images/nav_logo.svg";
@@ -13,22 +13,31 @@ import Signout from "../../assets/images/signout.svg";
 import ProgressBar from "../../assets/images/progress_bar.svg";
 import { MobileNav } from "./mobileNav";
 import { useNavigate } from "react-router-dom";
-
-import ProfilePiture from "../../assets/images/profile_picture.svg";
-
 import ProfileIcon from "../../assets/images/profile-circle.svg";
 // import Help from "../../assets/images/help_outline.svg";
 // import { getActiveLink } from "./service/DashboardSidebarService";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Delete_RR_Admin, getRRAdminProfile } from "store/slice/RR_AdminSlice";
+import { userInfo } from "store/slice/UserSlice";
 // import { Navigate } from "react-router-dom";
 
 const RR_admin_Profile = ({ setInputSearchValue }) => {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
+    const dispatch = useDispatch();
+    const recruiter = useSelector(state => state.RRadmin);
+    const { firstName, emailAddress, phoneNumber, currentJobTitle } =
+        recruiter.reverseRProfile;
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
+    const id = useParams();
+    useEffect(() => {
+        dispatch(getRRAdminProfile(id));
+    }, [dispatch, getRRAdminProfile, id]);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -41,9 +50,13 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const handleModalShow = () => {
         setShowModal(true);
     };
-
     const handleQuota = event => {
         event.preventDefault();
+    };
+     const handleLogout = () => {
+        localStorage.removeItem("tokenHngKey");
+        dispatch(userInfo(""));
+        navigate("/");
     };
     return (
         <section className={classes.main_container}>
@@ -92,7 +105,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                                         <li
                                             type="button"
                                             onClick={() => {
-                                                navigate("/superAdminProfile");
+                                                navigate("/user-page/profile");
                                             }}
                                         >
                                             <img
@@ -111,7 +124,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                                                 src={Signout}
                                                 alt="Signout logo"
                                             />
-                                            <p>Sign out</p>
+                                            <p onClick={handleLogout}>Sign out</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -156,7 +169,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         <div className={classes.user_action__btn__mobile}>
                             <FiTrash className={classes.trash} />
 
-                            <p>Delete</p>
+                            <p onClick={()=>dispatch(Delete_RR_Admin({id:id}) )}>Delete</p>
                         </div>
                     </div>
                 </div>
@@ -164,10 +177,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     <div className={classes.profile_details}>
                         <div className={classes.img_details}>
                             <div className={classes.img_wrapper}>
-                                <img
-                                    src={ProfilePiture}
-                                    alt="profile picture"
-                                />
+                                <img src={ProfilePic} alt="profile picture" />
                             </div>
 
                             <div className={classes.img_text_details}>
@@ -184,12 +194,10 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         </div>
 
                         <div className={classes.profile_details__text_content}>
-                            <h3>Regina Griffin</h3>
-                            <p>Reverse recruiter</p>
-                            <p>ReginaGriffin505@gmail.com</p>
-
-                            <p>+2348012345678</p>
-
+                            <h3>{firstName}</h3>
+                            <p>{currentJobTitle}</p>
+                            <p>{emailAddress}</p>
+                            <p>{phoneNumber}</p>
                             <p>Female</p>
 
                             <BlueButton
@@ -209,7 +217,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         <div className={classes.user_action__btn}>
                             <FiTrash className={classes.trash} />
 
-                            <p>Delete</p>
+                            <p onClick={()=>dispatch(Delete_RR_Admin({id:id}) )}>Delete</p>
                         </div>
                     </div>
                 </div>

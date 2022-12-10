@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.service.impl.superadmin;
 
+import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Role;
@@ -13,10 +14,7 @@ import com.hydraulic.applyforme.model.exception.EmailAlreadyExistsException;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
-import com.hydraulic.applyforme.repository.CountryRepository;
-import com.hydraulic.applyforme.repository.MemberRepository;
-import com.hydraulic.applyforme.repository.SuperAdminApplierJpaRepository;
-import com.hydraulic.applyforme.repository.SuperAdminApplierRepository;
+import com.hydraulic.applyforme.repository.*;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
@@ -50,6 +48,8 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
 
     private final CountryRepository countryRepository;
 
+    private final ApplierRepository applierRepository;
+
     @Autowired
     private ModelMapper mapper;
 
@@ -60,7 +60,8 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
                                         SuperAdminApplierRepository superAdminApplierRepository, RoleJpaRepository roleJpaRepository,
                                         JobSubmissionRepository jobSubmissionRepository, MemberRepository memberRepository,
                                         MemberJpaRepository memberJpaRepository,
-                                        CountryRepository countryRepository) {
+                                        CountryRepository countryRepository,
+                                        ApplierRepository applierRepository) {
         this.jpaRepository = jpaRepository;
         this.superAdminApplierRepository = superAdminApplierRepository;
         this.roleJpaRepository = roleJpaRepository;
@@ -68,6 +69,7 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
         this.memberRepository = memberRepository;
         this.memberJpaRepository = memberJpaRepository;
         this.countryRepository = countryRepository;
+        this.applierRepository = applierRepository;
     }
 
     @Override
@@ -118,7 +120,14 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
         member.getRoles().add(existingRole.get());
         member.setNationality(nationality);
         member.setCountryOfResidence(countryOfResidence);
-        return memberRepository.saveOne(member);
+        memberRepository.saveOne(member);
+
+        Applier applier = Applier.builder()
+                .member(member)
+                .submissions(null)
+                .build();
+        applierRepository.saveOne(applier);
+        return member;
     }
 
     @Override

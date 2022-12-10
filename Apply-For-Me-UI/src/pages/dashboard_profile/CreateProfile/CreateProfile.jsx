@@ -7,7 +7,6 @@ import styles from "./CreateProfile.module.css";
 import TopBar from "../components/TopBar/TopBar";
 import BlueButton from "../../../components/buttons/blue_background/BlueButton";
 import BlueBorderButton from "../../../components/buttons/blue_border_button/BlueBorderButton";
-import LightButton from "../../../components/buttons/light_button/LightButton";
 
 const CreateProfile = () => {
     const [step, setStep] = useState(0);
@@ -17,7 +16,14 @@ const CreateProfile = () => {
     const FormSteps = ["JobSearch", "CoverLetter", "Settings", "Review"];
     const FormDisplay = () => {
         if (step === 0) {
-            return <JobSearch formData={formData} setFormData={setFormData} />;
+            return (
+                <JobSearch
+                    formData={formData}
+                    setFormData={setFormData}
+                    step={step}
+                    setStep={setStep}
+                />
+            );
         } else if (step === 1) {
             return (
                 <CoverLetter formData={formData} setFormData={setFormData} />
@@ -38,6 +44,7 @@ const CreateProfile = () => {
                     setFormData={setFormData}
                     keywords={keywords}
                     setKeywords={setKeywords}
+                    setStep={setStep}
                 />
             );
         }
@@ -50,11 +57,12 @@ const CreateProfile = () => {
         employment_type: "",
         salary_expectation: "",
         cv_file: [],
+        shortenedCVUrl: "",
         coverletter_subject: "",
         coverletter_body: "",
-        keywords: ""
+        keywords: "",
+        xyz: ""
     });
-    // console.log(formData);
 
     return (
         <div className={styles.createprofile}>
@@ -132,21 +140,11 @@ const CreateProfile = () => {
             <div>
                 <div>{FormDisplay()}</div>
                 <div className={styles.stepbuttons}>
-                    {step > 0 && step < 3 && (
-                        <LightButton
-                            width={150}
-                            text={"Back"}
-                            disabled={step === 0}
-                            func={() => {
-                                setStep(currStep => currStep - 1);
-                            }}
-                        />
-                    )}
                     {step < 3 && (
                         <BlueButton
                             disabled={step === FormSteps.length}
-                            width={150}
-                            text={"Next"}
+                            // width={150}
+                            text={"Save and Continue"}
                             func={() => {
                                 setStep(currStep => currStep + 1);
                             }}
