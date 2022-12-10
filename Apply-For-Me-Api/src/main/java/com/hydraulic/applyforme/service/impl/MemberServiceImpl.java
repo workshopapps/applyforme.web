@@ -159,6 +159,7 @@ public class MemberServiceImpl implements MemberService {
             throw new CountryNotFoundException(body.getCountryOfResidence());
         }
 //        member.setId(id);
+        member.setUsername(body.getUsername());
         member.setPhoneNumber(body.getPhoneNumber());
         member.setEmailAddress(body.getEmailAddress());
         member.setDateOfBirth(body.getDateOfBirth());
