@@ -1,6 +1,8 @@
 package com.hydraulic.applyforme.service.impl;
 
+import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.applicant.ApplicantResponse;
+import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.service.ApplicantService;
@@ -9,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -56,5 +59,33 @@ public class ApplicantServiceImpl implements ApplicantService {
         applyForMeResponse.setTotalPages(result.getTotalPages());
         applyForMeResponse.setLast(result.isLast());
         return applyForMeResponse;
+    }
+
+    @Transactional
+    @Override
+    public Professional update(Long id, ApplicantDto applicantDto) {
+        Professional professional = professionalRepository.findById(id).orElseThrow(() -> new ProfessionalNotFoundException("" +
+                "Professional Not Found"));
+
+        if (applicantDto.getEmailAddress() != null) {
+            professional.getMember().setEmailAddress(applicantDto.getEmailAddress());
+        }
+
+        if (applicantDto.getFirstName() != null) {
+            professional.getMember().setFirstName(applicantDto.getFirstName());
+        }
+
+        if (applicantDto.getLastName() != null) {
+            professional.getMember().setLastName(applicantDto.getLastName());
+        }
+
+        if (applicantDto.getUsername() != null) {
+            professional.getMember().setUsername(applicantDto.getUsername());
+        }
+
+        if (applicantDto.getPhoneNumber() != null) {
+            professional.getMember().setPhoneNumber(applicantDto.getPhoneNumber());
+        }
+        return professionalRepository.save(professional);
     }
 }
