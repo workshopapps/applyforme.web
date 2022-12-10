@@ -1,10 +1,12 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.dto.applicant.ApplicantDto;
 import com.hydraulic.applyforme.model.dto.applicant.ApplicantResponse;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
+import com.hydraulic.applyforme.repository.jpa.ProfessionalRepository;
 import com.hydraulic.applyforme.service.ApplicantService;
 import com.hydraulic.applyforme.util.ApplyForMeUtil;
 import org.modelmapper.ModelMapper;
@@ -22,10 +24,13 @@ public class ApplicantServiceImpl implements ApplicantService {
 
     private final JobSubmissionRepository jobSubmissionRepository;
 
+    private final ProfessionalRepository professionalRepository;
+
     private final ModelMapper modelMapper;
 
-    public ApplicantServiceImpl(JobSubmissionRepository jobSubmissionRepository, ModelMapper modelMapper) {
+    public ApplicantServiceImpl(JobSubmissionRepository jobSubmissionRepository, ProfessionalRepository professionalRepository, ModelMapper modelMapper) {
         this.jobSubmissionRepository = jobSubmissionRepository;
+        this.professionalRepository = professionalRepository;
         this.modelMapper = modelMapper;
     }
 
