@@ -21,12 +21,16 @@ const NewUserDashboard = () => {
 
                 <div className="top-dashboard-right">
                     <div className="dashboard-img-wrapper">
-                        <img src={notification} alt="icon"></img>
+                        <img src={notification} alt="icon" className="notif" />
                     </div>
 
                     <div className="dashboard-img-wrapper">
                         <Link to="/dashboard/settings">
-                            <img src={avatar} alt="notification"></img>
+                            <img
+                                src={avatar}
+                                alt="notification"
+                                className="profilepic"
+                            />
                         </Link>
                     </div>
                 </div>
