@@ -20,28 +20,12 @@ export const Mobile_view_list =({firstName,currentJobTitle,id} )=>{
                 <h3>{currentJobTitle}</h3>
             </div>
             <div className="view_mobile_Container">
-                <span className="dropdown">
-                    <img
-                        className="three_dot_icon"
-                        src="https://res.cloudinary.com/hamskid/image/upload/v1668864951/Group_caynky.png"
-                        alt="object not found"
-                    />
-                    <div className="dropdownContent">
-                        <img
-                            src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51367_phrq53.png"
-                            style={{ marginBottom: "0.7rem" }}
-                            onClick={()=> {
-                                dispatch(Delete_RR_Admin({id:id}))
-                            }}
-                        />
-                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1669300167/Frame_51368_oevqxr.png" />
-                    </div>
-                </span>
-                <button
-                    onClick={() => navigate(`/reverseRecruiterAdmin/${id}`)}
-                >
-                    view
-                </button>
+                <h5
+                        onClick={() => navigate(`/user-page/reverseRecruiterAdmin/${id}`)}
+                        style={{color:"#2E3192",marginBottom:"0",marginRight:"0.3rem"}}
+                    >
+                        view Profile
+                    </h5>
             </div>
         </>
     );

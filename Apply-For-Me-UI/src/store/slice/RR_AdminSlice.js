@@ -187,7 +187,6 @@ const RR_Admin_Slice = createSlice({
         [Delete_RR_Admin.fulfilled]: (state, action) => {
             state.deleteStatus = "success";
             toast.success("deleted request successful");
-            window.location.reload();
     
         },
         [Delete_RR_Admin.rejected]: (state, action) => {

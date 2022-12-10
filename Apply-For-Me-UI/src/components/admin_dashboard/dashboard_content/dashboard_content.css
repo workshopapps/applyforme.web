@@ -2,10 +2,18 @@
   font-family: 'Outfit', sans-serif;
 }
 .applicantsContainer{
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 6rem;
 }
 .viewContainer{
     display: flex;
+}
+.list-header{
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 150%;
+    color: #2E3192;
 }
 .statisticsContainer{
     display: flex;
@@ -13,16 +21,13 @@
     justify-content: space-between;
     margin: 1.5rem;
 }
-.statisticsContainer h2{
-   font-size: 20px;
-}
 .statisticsContainer select{
-font-size: 15px;
-padding: 0.5rem;
-color:#2E3192;
-background:gainsboro;
-border: 1px solid white;
-font-weight: bold;
+    font-size: 20px;
+    padding: 0.5rem;
+    border-radius: 7px;
+    color: #2E3192;
+    background: bottom;
+    border: 1px solid #2E3192;
 }
 .applicants{
     display:flex;
@@ -31,28 +36,54 @@ font-weight: bold;
     justify-content: space-between;
 }
 .applicants div{
-    border:1px solid gainsboro;
-    border-radius: 5px;
+    color:white;
     padding: 0.8rem;
-    width:30%;
-    height: 7rem;
     text-align: center;
     display: flex;
-    justify-content: space-between;
+    justify-content:center;
     flex-direction: column;
+}
+.amount{
+    font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 20px;
+line-height: 150%;
+display: flex;
+align-items: center;
+letter-spacing: 0.03em;
+}
+.value{
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 150%;
+    /* or 60px */
+
+    display: flex;
+    align-items: center;
+
+}
+.overflow{
+    background-color: #2E3192;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    height:10rem;
 }
 .applicants h4{
     font-weight: 400;
     margin-bottom: 0;
 }
 .applicants h1{
-    margin-bottom: 0;
-    font-weight: 400;
-    font-size: 27px;
-}
-.users_recruiter_text h1{
-    color:#2E3192;
-    font-weight: 400;
+    width:fit-content;
+    margin: 0 auto;
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 150%;
 }
 .users_recruiter_text h4{
     color:grey;
@@ -80,7 +111,35 @@ font-weight: bold;
 }
 }
 @media only screen and (min-width:320px) and (max-width:767px){
+    .overflow {
+        height: auto; 
+        background-color: white;
+
+    }
+    .applicants div {
+       background-color:#2E3192;
+       border-radius: 4px;
+       color:white;
+       width:500px;
+       padding: 0.5rem;
+        margin: 0.5rem;
+    }
+    .amount {
+        font-size: 12px;
+        margin: 0 auto;
+    }
+    .applicants h1 {
+        font-size: 20px;
+    }
+    .applicants {
+        width: 100%;
+    }
+  
+    .list-header {
+        font-size: 18px;
+    }
     .statisticsContainer select {
+    padding: 0.3rem;
     font-size: 13px;
 }
     .statisticsContainer {
@@ -92,11 +151,7 @@ font-weight: bold;
     .overflow{
         overflow-x: scroll;
     }
-    .applicants div{
-        width: 100%;
-        padding: 0.5rem;
-        margin: 0.5rem;
-    }
+
     .applicants{
         width: 400px;
     }
@@ -104,7 +159,7 @@ font-weight: bold;
         text-align: center;
     }
     h3{
-        font-size: 17px;
+        font-size: 13px;
         font-weight: 400;
     }
     

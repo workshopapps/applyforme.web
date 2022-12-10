@@ -35,9 +35,9 @@ export const RR_Admin_list=({inputSearchValue})=>{
     return (
         <>
             <div className="sort_header">
-                <h3 style={{color:"#2E3192",fontWeight:"bolder"}}>RR Admin List</h3>
                 <div>
-                    <button> + Add Admin</button>
+                    <h3 style={{color:"#2E3192",fontWeight:"bolder"}} className="list-header">RR Admin List</h3>
+                    <button className="add-admin">+ Add Admin</button>
                 </div>
             </div>
 
@@ -48,13 +48,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                         <th>Name</th>
                         <th>Category</th>
                         <th>Date registered</th>
-                        <th>
-                            {" "}
-                            <label htmlFor="applicants">Sort By: </label>
-                            <select name="applicants" id="applicants">
-                                <option value="oldest">Most Active</option>
-                            </select>
-                        </th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,7 +72,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                 <div>
                     <label htmlFor="applicants">Sort By: </label>
                     <select name="applicants" id="applicants">
-                        <option value="oldest" disabled>
+                        <option value="true">
                             Most Active
                         </option>
                     </select>
