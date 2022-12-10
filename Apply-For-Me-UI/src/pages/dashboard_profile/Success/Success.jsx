@@ -13,7 +13,9 @@ const Success = () => {
     return (
         <div className={styles.success_page}>
             <TopBar />
-            <p>All done! You can view your new job profile</p>
+            <p className={styles.all_done}>
+                All done! You can view your new job profile
+            </p>
             <div className={styles.success_message}>
                 <img src={success} alt="completed" />
                 <p className={styles.congrats}>Congratulations, {userName}</p>

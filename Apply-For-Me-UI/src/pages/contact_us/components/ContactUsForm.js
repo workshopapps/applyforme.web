@@ -7,7 +7,6 @@ import ContactModal from "./ContactModal";
 const ContactUsForm = () => {
     const [submitBtn, setSubmitBtn] = useState(false);
     const onSubmit = (values, actions) => {
-        console.log(actions);
         axios
             .post("https://api.applyforme.hng.tech/api/v1/contact-us", values)
             .then(response => {
@@ -16,7 +15,6 @@ const ContactUsForm = () => {
             .catch(error => {
                 console.log(error);
             });
-        console.log(values, actions);
         setSubmitBtn(true);
         actions.resetForm();
     };

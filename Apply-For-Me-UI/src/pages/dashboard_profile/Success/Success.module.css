@@ -15,8 +15,15 @@
     margin-inline: auto;
     margin-top: 2.5rem;
 }
+@media only screen and (max-width: 480px) {
+    .success_message img {
+        width: 20rem;
+        margin-bottom: 1rem;
+    }
+}
+
 .success_message img {
-    width: 20rem;
+    width: 25rem;
     margin-bottom: 1rem;
 }
 
@@ -24,4 +31,7 @@
     font-weight: 400;
     font-size: 2rem;
     color: #222226;
+}
+.all_done {
+    font-size: 1.5rem;
 }
