@@ -2,7 +2,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 const url = "https://api.applyforme.hng.tech";
 const token = localStorage.getItem("tokenHngKey");
 
@@ -29,6 +28,7 @@ export const getRRAdminProfile = createAsyncThunk(
     "RRadmin/getRRAdminProfile",
     async values => {
         try {
+            console.log(values)
             const response = await axios.get(
                 `${url}/api/v1/super-admin/member/detail/${values.id}`,
                 {
@@ -69,23 +69,20 @@ export const SuperAdminApplicants = createAsyncThunk(
     }
 );
 
-export const getRecruiterApplicants = createAsyncThunk(
+export const get_rr_applicants_list = createAsyncThunk(
     "RRadmin/SuperAdminApplicants",
     async (values) => {
         try {
             const response = await axios.get(
-                `${url}/api/v1/recruiter/applicant/entries`,
+                `${url}/api/v1/super-admin/applicant/entries`,
                 {
                     params:{
                     "pageNo": values.pageNo,
-                    "pageSize": values.pageSize,
-                    },
-                    headers: {
-                        "Authorization": `Bearer ${token}`
+                    "pageSize": values.pageSize
                     }
                 }
             );
-            console.log("super",response?.data)
+            console.log("Recruiter",response?.data)
             return response?.data;
         } catch (error) {
            return error.response.data;
@@ -95,10 +92,14 @@ export const getRecruiterApplicants = createAsyncThunk(
 
 export const Delete_RR_Admin = createAsyncThunk(
     "RRadmin/Delete_RR_Admin",
-    async params => {
+    async values => {
+        console.log("fix-top")
+        console.log(values)
+         console.log(typeof values)
+           console.log("fix-bottom")
         try {
             const response = await axios.delete(
-                `${url}/api/v1/super-admin/recruiter/${params.id}`,
+                `${url}/api/v1/super-admin/recruiter/${values.id.id}`,
                 {
                     headers: {
                         "Authorization": `Bearer ${token}`
@@ -204,9 +205,9 @@ const RR_Admin_Slice = createSlice({
     name: "RRadmin",
     initialState: {
         list: [],
-        RRApplicantsList:[],
-        RRApplicantsLoading:"",
-        RRApplicantsError:"",
+        recruiterApplicants: [],
+        recruiterApplicantsLoading:"",
+        recruiterApplicantsError:"",
         superAdminProfileDetails: {},
         superAdminProfileDetailsLoadingStatus: "",
         superAdminApplicantsList: [],
@@ -221,22 +222,17 @@ const RR_Admin_Slice = createSlice({
     },
     reducers: {},
     extraReducers: {
-        [getRecruiterApplicants.pending]: state => {
-            state.RRApplicantsLoading = "pending";
-             console.log(state.RRApplicantsLoading)
+        [get_rr_applicants_list.pending]: state => {
+            state.recruiterApplicantsLoading = "pending";
+             console.log(state.recruiterApplicantsLoading)
         },
-        [getRecruiterApplicants.fulfilled]: (state, action) => {
-            state.RRApplicantsLoading = "success";
-            if (action.payload) {
-                state.RRApplicantsList = action.payload;
-                console.log(token);
-                console.log(state.RRApplicantsLoading,  state.RRApplicantsList )
-            }
+        [get_rr_applicants_list.fulfilled]: (state, action) => {
+            state.recruiterApplicantsLoading = "success";
+            state.recruiterApplicants = action.payload;
         },
-        [getRecruiterApplicants.rejected]: (state, action) => {
-            state.RRApplicantsLoading = "rejected";
-            state.RRApplicantsError = action.payload;
-            console.log(state.RRApplicantsLoading,  state.RRApplicantsError)
+        [get_rr_applicants_list.rejected]: (state, action) => {
+            state.recruiterApplicantsLoading= "rejected";
+            state.recruiterApplicantsError = action.payload;
         },
         [Fetch_RR_Admin.pending]: state => {
             state.loadingStatus = "pending";
@@ -257,7 +253,8 @@ const RR_Admin_Slice = createSlice({
         },
         [Delete_RR_Admin.fulfilled]: (state, action) => {
             state.deleteStatus = "success";
-            toast.success("deleted request successful");
+            toast.success("deleted request successful")
+           window.location.replace("/user-page")
         },
         [Delete_RR_Admin.rejected]: (state, action) => {
             state.deleteStatus = "rejected";
