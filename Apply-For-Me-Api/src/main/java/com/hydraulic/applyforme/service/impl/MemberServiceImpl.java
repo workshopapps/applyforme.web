@@ -119,20 +119,19 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public Member update(Long id, UpdateMemberDto body) {
+    public boolean update(Long id, UpdateMemberDto body) {
 
-        Member existingMember = repository.getOne(id);
+        Member member = repository.getOne(id);
 
-        if (existingMember == null) {
+        if (member == null) {
             throw new MemberNotFoundException(id);
         }
-
-        Member member = new Member();
         member = modelMapper.map(body, Member.class);
-        member.setId(id);
+//        member.setId(id);
         member.setNationality(Country.builder().id(body.getNationality()).build());
         member.setCountryOfResidence(Country.builder().id(body.getCountryOfResidence()).build());
-
-        return repository.updateOne(member);
+//        jpaRepository.save(member)
+        repository.updateOne(member);
+        return true;
     }
 }
