@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.service.impl;
 
+import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.dto.professionalprofile.DeleteManyProfessionalProfileDto;
@@ -130,4 +131,24 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
     public boolean deleteAll() {
         return repository.removeAll();
     }
+
+	@Override
+	public boolean deleteByProfileId(Long id, Long profile_id) {
+		//find the professional
+		Member member = memberRepository.getOne(id);
+		
+		//fetch the professional profile
+		Professional professional = professionalJpaRepository.getById(member.getId());	
+		List<ProfessionalProfile> profiles = repository.findByProfessionalId(professional.getId());
+		//delete one from profile
+		
+		for(ProfessionalProfile profile : profiles) {
+			if(profile.getId() == profile_id) {
+				repository.deleteById(profile.getId());
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
