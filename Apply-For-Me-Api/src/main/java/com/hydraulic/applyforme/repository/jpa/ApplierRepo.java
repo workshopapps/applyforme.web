@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ApplierRepo extends JpaRepository<Applier, Long> {
 
+    Applier findApplierByMemberEmailAddress(String email);
+
 }

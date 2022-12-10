@@ -1,6 +1,8 @@
 package com.hydraulic.applyforme.controller;
 
+import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.FileDto;
+import com.hydraulic.applyforme.model.dto.jobSubmission.JobSubmissionDto;
 import com.hydraulic.applyforme.model.dto.submission.ApplierSubmissionDto;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.FileService;
@@ -9,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.hydraulic.applyforme.constants.PagingConstants.*;
@@ -64,5 +67,11 @@ public class JobSubmissionController {
     @GetMapping("/applier/{id}")
     public List<ApplierSubmissionDto> getApplierSubmissions (@PathVariable(name ="id") Long id){
         return service.getApplierSubmissionDetails(id);
+    }
+
+    @PostMapping("/save{applicantId}")
+    public String saveJob(@PathVariable(name = "applicantId") Long id, @Valid @RequestBody JobSubmissionDto jobSubmissionDto) {
+        service.saveJobSubmission(id, jobSubmissionDto);
+        return "Done";
     }
 }
