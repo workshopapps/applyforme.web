@@ -14,12 +14,12 @@ export const RRApplicantsPage = () => {
     });
     const handlePageClick =(data)=>{
         setPagination(prevState =>({...prevState,"pageNo":data.selected}));
-        dispatch(getRecruiterApplicants(pagination));
+        dispatch( getRecruiterApplicants(pagination));
        
     }
     useEffect(()=>{
-        dispatch(getRecruiterApplicants(pagination));
-    },[dispatch,getRecruiterApplicants])
+        dispatch( getRecruiterApplicants(pagination));
+    },[dispatch, getRecruiterApplicants])
 
     const list = useSelector(state => state.RRadmin);
     console.log(list);
@@ -29,7 +29,7 @@ export const RRApplicantsPage = () => {
                 <h2  className="list-header">Statistics</h2>
                 <select name="statistic_sorter" id="statistic_sorter">
                     {list.RRApplicantsList.length !== 0 &&
-                         (list.RRApplicantsLoading === "success" && list.RRApplicantsList.length !==0) &&
+                         (list.applicantsloadingStatus === "success" && list.RRApplicantsList.length !==0) &&
                             list.RRApplicantsList.content?.map((statistics, index)=>{
                             return(
                                 <option key={index} value={statistics.membership.createdOn?.split("T").shift()}>{statistics.membership.createdOn?.split("T").shift()}</option>
@@ -61,7 +61,7 @@ export const RRApplicantsPage = () => {
                     </thead>
                     <tbody>
                         {list.RRApplicantsList.length !== 0 &&
-                         (list.RRApplicantsLoading === "success" && list.RRApplicantsList.length !==0) &&
+                         (list.applicantsloadingStatus === "success" && list.RRApplicantsList.length !==0) &&
                             list.RRApplicantsList.content?.map(list => {
                                 return (
                                     <tr
@@ -82,7 +82,7 @@ export const RRApplicantsPage = () => {
                             })}
                     </tbody>
                 </table>
-                {list.RRApplicantsLoading ==="pending" && <p style={{textAlign:"center"}}>Please wait...</p>}
+                {list.applicantsloadingStatus ==="pending" && <p style={{textAlign:"center"}}>Please wait...</p>}
                 <div>
                 <ReactPaginate
                     breakLabel="..."
