@@ -72,6 +72,7 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
                 .coverLetterSubject(body.getCoverLetterSubject())
                 .coverLetterContent(body.getCoverLetterContent())
                 .employmentType(ProfessionalProfileUtil.getEmploymentType(body.getEmploymentType()))
+                .jobLocation(body.getJobLocation())
                 .jobSeniority(ProfessionalProfileUtil.getJobSeniority(body.getJobSeniority()))
                 .preferredJobLocationType(ProfessionalProfileUtil.getJobLocationType(body.getPreferredJobLocationType()))
                 .includedKeywords(body.getIncludedKeywords())
