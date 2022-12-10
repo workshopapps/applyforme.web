@@ -98,4 +98,25 @@ public class ProfessionalProfileRepositoryImpl implements ProfessionalProfileRep
         }
     }
 
+	@Override
+	public boolean deleteById(Long id) {
+		String query = "delete from ProfessionalProfile pp where pp.id = :id";
+		Query deleteQuery = entityManager.createQuery(query);
+		deleteQuery.setParameter("id", id);
+		int firstResult = deleteQuery.executeUpdate();
+		
+		if(firstResult == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public List<ProfessionalProfile> findByProfessionalId(Long id) {
+		String query = "select pp from ProfessionalProfile pp where pp.professional.id = :id";
+		TypedQuery<ProfessionalProfile> findQuery = entityManager.createQuery(query, ProfessionalProfile.class);
+		findQuery.setParameter("id", id);
+		return findQuery.getResultList();
+	}
+
 }

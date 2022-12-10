@@ -24,6 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Slf4j
@@ -121,15 +122,16 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public Member update(Long id, UpdateMemberDto body) {
 
-        Member existingMember = repository.getOne(id);
+        Member member = repository.getOne(id);
 
-        if (existingMember == null) {
+        if (member == null) {
             throw new MemberNotFoundException(id);
         }
 
-        Member member = new Member();
-        member = modelMapper.map(body, Member.class);
-        member.setId(id);
+        member = modelMapper.map(body, Member.class); 
+//        member.setId(id);
+        member.setCity(body.getCity());
+        member.setUsername(body.getUsername());
         member.setNationality(Country.builder().id(body.getNationality()).build());
         member.setCountryOfResidence(Country.builder().id(body.getCountryOfResidence()).build());
 
