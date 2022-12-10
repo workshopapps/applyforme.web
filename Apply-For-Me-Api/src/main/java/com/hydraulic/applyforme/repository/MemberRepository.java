@@ -20,6 +20,7 @@ public interface MemberRepository {
 
     boolean updateOne(Member member);
 
+
     boolean remove(Long id);
 
     boolean removeMany(List<Long> ids);
