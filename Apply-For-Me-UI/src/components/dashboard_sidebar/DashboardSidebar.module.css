@@ -74,6 +74,7 @@
         padding: 15px 24px;
         background-color: white;
         height: 10vh;
+        z-index: 1;
     }
 
     .sidebar_container.mobile ul {

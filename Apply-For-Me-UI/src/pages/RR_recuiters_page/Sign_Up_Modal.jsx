@@ -8,7 +8,7 @@ import jwt_decode from "jwt-decode";
 // Toaster
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const BaseUrl = "https://official-volunux.uc.r.appspot.com/api/v1/auth/sign-up";
+const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-up";
 
 const Sign_Up_Modal = () => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const Sign_Up_Modal = () => {
         dispatch(userInfo(decoded));
         toast("Signup Successfully");
         setTimeout(() => {
-            navigate("/dashboard");
+            navigate("/rr_admin");
         }, 3000);
     } else {
         toast("Error signin up, try again");

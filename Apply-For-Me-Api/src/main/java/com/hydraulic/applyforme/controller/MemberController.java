@@ -1,11 +1,17 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.dto.member.UpdateMemberDto;
-import com.hydraulic.applyforme.service.MemberService;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.dto.member.UpdateMemberDto;
+import com.hydraulic.applyforme.model.security.UserDetailsImpl;
+import com.hydraulic.applyforme.service.MemberService;
+import com.hydraulic.applyforme.util.CurrentUserUtil;
 
 @RestController
 @RequestMapping(
@@ -20,8 +26,9 @@ public class MemberController {
         this.service = service;
     }
 
-    @PutMapping("/update/{id}")
-    public Member update(@PathVariable(name = "id") Long id, @Validated @RequestBody UpdateMemberDto body) {
-        return service.update(id, body);
+    @PutMapping("/update")
+    public Member update(@Validated @RequestBody UpdateMemberDto body) {
+    	UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
+        return service.update(currentUser.getId(), body);
     }
 }

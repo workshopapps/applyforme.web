@@ -98,8 +98,7 @@
     background-color: rgba(49, 49, 49, 0.8);
 }
 
-.editpasswordContent,
-.editProfileContent {
+.editpasswordContent {
     padding: 2rem;
     position: fixed;
     top: 50%;
@@ -114,6 +113,20 @@
     border-radius: 8px;
 }
 
+.editProfileContent {
+    padding: 2rem 2rem 3rem;
+    position: fixed;
+    top: 50%;
+    overflow: auto;
+    z-index: 1;
+    left: 50%;
+    width: 30%;
+    height: 100%;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    border-radius: 1.5rem;
+}
+
 .modal_closal {
     display: flex;
     justify-content: flex-end;
@@ -122,6 +135,14 @@
 
 .button-type {
     cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+    .editProfileContent {
+        width: 60%;
+        height: 80%;
+
+    }
 }
 
 @media only screen and (min-width: 320px)and (max-width: 667px) {
@@ -193,9 +214,13 @@
 
     }
 
-    .editpasswordContent,
-    .editProfileContent {
+    .editpasswordContent {
         height: auto;
+        width: 80%;
+
+    }
+
+    .editProfileContent {
         width: 80%;
 
     }

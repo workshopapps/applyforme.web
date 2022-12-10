@@ -1,10 +1,14 @@
 package com.hydraulic.applyforme.service.impl;
 
+
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.applicant.ApplicantDto;
+
+import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.applicant.ApplicantResponse;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
+import com.hydraulic.applyforme.repository.ApplicantRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalRepository;
 import com.hydraulic.applyforme.service.ApplicantService;
@@ -28,10 +32,15 @@ public class ApplicantServiceImpl implements ApplicantService {
 
     private final ModelMapper modelMapper;
 
-    public ApplicantServiceImpl(JobSubmissionRepository jobSubmissionRepository, ProfessionalRepository professionalRepository, ModelMapper modelMapper) {
+
+    private final ApplicantRepository repository;
+
+    public ApplicantServiceImpl(JobSubmissionRepository jobSubmissionRepository, ModelMapper modelMapper, ApplicantRepository repository) {
+
         this.jobSubmissionRepository = jobSubmissionRepository;
         this.professionalRepository = professionalRepository;
         this.modelMapper = modelMapper;
+        this.repository = repository;
     }
 
 
@@ -66,6 +75,7 @@ public class ApplicantServiceImpl implements ApplicantService {
         return applyForMeResponse;
     }
 
+
     @Transactional
     @Override
     public Professional update(Long id, ApplicantDto applicantDto) {
@@ -93,4 +103,10 @@ public class ApplicantServiceImpl implements ApplicantService {
         }
         return professionalRepository.save(professional);
     }
+
+    @Override
+    public Member getDetails(Long id) {
+        return repository.getMyDetailsById(id);
+    }
+
 }

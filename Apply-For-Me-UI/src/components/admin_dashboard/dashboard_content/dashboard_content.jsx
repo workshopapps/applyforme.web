@@ -16,16 +16,6 @@ export const DashboardContent=({inputSearchValue})=>{
         users:"0",
         recruiter:"0"
 
-    },{
-        date:"Monday, 20th June. 2022",
-        applications:"1",
-        users:"1",
-        recruiter:"1"
-    },{
-        date:"Wenesday, 19th May. 2021",
-        applications:"2",
-        users:"2",
-        recruiter:"2"
     }]
     const token = localStorage.getItem("tokenHngKey");
     let decoded = jwtDecode(token);
