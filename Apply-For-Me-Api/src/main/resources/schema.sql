@@ -107,6 +107,9 @@ CREATE TABLE IF NOT EXISTS `country` (
 	PRIMARY KEY (`id`)
 );
 
+
+
+
 CREATE TABLE IF NOT EXISTS `cover_letter_template` (
 	`id` BIGINT AUTO_INCREMENT,
   	`title` VARCHAR(300) NOT NULL,

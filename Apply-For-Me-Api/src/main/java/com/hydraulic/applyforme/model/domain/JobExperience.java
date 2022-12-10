@@ -3,6 +3,7 @@ package com.hydraulic.applyforme.model.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
@@ -12,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name ="job_experience")
-public class JobExperience {
+public class JobExperience implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

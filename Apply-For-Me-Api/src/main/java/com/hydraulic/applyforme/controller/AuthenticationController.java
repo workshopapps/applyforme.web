@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -70,10 +67,14 @@ public class AuthenticationController {
         return new ForgotPasswordResponse();
     }
 
+    @PostMapping("/generate-reset-token")
+    public String generateAndSendPasswordResetToken(@RequestParam String emailAddress){
+        return authenticationService.generateAndSendOtp(emailAddress);
+    }
     @PostMapping("/reset-password")
     public String resetPassword(@Validated @RequestBody ResetPasswordDto passwordDto) {
-        authenticationService.resetPassword(passwordDto);
-        return "You have successfully changed your password.";
+        return authenticationService.passwordReset(passwordDto);
+//        return "You have successfully changed your password.";
     }
 
     @PostMapping("/sign-in")
