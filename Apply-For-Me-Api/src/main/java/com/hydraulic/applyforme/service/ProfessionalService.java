@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.service;
 
 import java.util.List;
 
+import com.hydraulic.applyforme.model.response.JobDescriptionResponse;
 import org.springframework.data.domain.Page;
 
 import com.hydraulic.applyforme.model.domain.Professional;
@@ -19,5 +20,8 @@ public interface ProfessionalService {
     Page<Professional> retrieveAllProfessionals(int pageNo, int PageSize);
 
 	List<ProfessionalProfile> findAllJobProfile(Long id);
+
+    JobDescriptionResponse viewJobDescription(Long professionalId, Long submissionId);
+
 
 }
