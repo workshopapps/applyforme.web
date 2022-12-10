@@ -20,7 +20,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
     },[dispatch,Fetch_RR_Admin])
     
     useEffect(()=>{
-        const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list?.length !==0) ? RR_recruiter.list.content.filter((item)=>item.firstName.toLowerCase().includes(inputSearchValue)):[]
+        const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list?.length !==0) ? RR_recruiter.list?.content?.filter((item)=>item.firstName.toLowerCase().includes(inputSearchValue)):[]
         setSearch(avilableList);
     }, [inputSearchValue, RR_recruiter.list]);
 
@@ -35,9 +35,9 @@ export const RR_Admin_list=({inputSearchValue})=>{
     return (
         <>
             <div className="sort_header">
-                <h3 style={{color:"#2E3192",fontWeight:"bolder"}}>RR Admin List</h3>
                 <div>
-                    <button> + Add Admin</button>
+                    <h3 style={{color:"#2E3192",fontWeight:"bolder"}} className="list-header">RR Admin List</h3>
+                    <button className="add-admin">+ Add Admin</button>
                 </div>
             </div>
 
@@ -48,20 +48,14 @@ export const RR_Admin_list=({inputSearchValue})=>{
                         <th>Name</th>
                         <th>Category</th>
                         <th>Date registered</th>
-                        <th>
-                            {" "}
-                            <label htmlFor="applicants">Sort By: </label>
-                            <select name="applicants" id="applicants">
-                                <option value="oldest">Most Active</option>
-                            </select>
-                        </th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        search.length !==0 &&
+                        search?.length !==0 &&
                         (RR_recruiter.loadingStatus === "success" && RR_recruiter.list.length !==0) &&
-                        search.map((user, index)=>{
+                        search?.map((user, index)=>{
                                 const {firstName,currentJobTitle,id,createdOn} = user;
                                     return(
                                         <tr key={index}>
@@ -78,13 +72,13 @@ export const RR_Admin_list=({inputSearchValue})=>{
                 <div>
                     <label htmlFor="applicants">Sort By: </label>
                     <select name="applicants" id="applicants">
-                        <option value="oldest" disabled>
+                        <option value="true">
                             Most Active
                         </option>
                     </select>
                 </div>
                     {
-                        search.length !==0 && 
+                        search?.length !==0 && 
                         (RR_recruiter.loadingStatus === "success" && RR_recruiter.list.length !==0) &&
                         RR_recruiter.list.content.map((user, index)=>{
                            const {firstName,currentJobTitle,id} = user;
@@ -104,7 +98,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     Please wait...
                 </p>
             )}
-            {(RR_recruiter.loadingStatus === "success" && search.length ===0) && <p className="text-center">record not found</p>}
+            {(RR_recruiter.loadingStatus === "success" && search?.length ===0) && <p className="text-center">record not found</p>}
             <div>
                 <ReactPaginate
                     breakLabel="..."

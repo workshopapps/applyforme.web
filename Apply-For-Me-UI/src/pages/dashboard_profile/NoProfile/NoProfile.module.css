@@ -87,3 +87,31 @@
     bottom: 15%;
     right: 7%;
 }
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+.loading_animation {
+    margin: auto;
+    width: 20%;
+    height: 5px;
+    background-color: #bfbfbf;
+    border-radius: 5px;
+    animation: loading_animation 2s linear infinite;
+}
+
+/* Define  animation */
+@keyframes loading_animation {
+    0% {
+        background-color: #bfbfbf;
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-color: #2f80ed;
+        background-position: 100% 0%;
+    }
+}

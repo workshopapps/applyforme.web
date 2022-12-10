@@ -27,7 +27,7 @@ const Dashboard = () => {
             {page.dashboardPage ? (
                 <DashBoardPage inputSearchValue={dashboardsearchParams} />
             ) : (
-                <UsersPage />
+                <UsersPage/>
             )}
         </div>
     );

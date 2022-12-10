@@ -65,6 +65,13 @@
     padding-bottom: 5px;
     padding-inline: 0.5rem;
 }
+.button_active:focus {
+    background: none;
+    outline: 0;
+}
+.button_active:active {
+    border: 0;
+}
 
 /* Form */
 @media screen and (max-width: 610px) {

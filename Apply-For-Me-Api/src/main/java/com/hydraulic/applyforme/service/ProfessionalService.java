@@ -14,7 +14,7 @@ public interface ProfessionalService {
 
     Professional findOne(Long id);
 
-    Professional updateProfile(ProfessionalDto professionalDto, Long id);
+    boolean updateProfile(ProfessionalDto professionalDto, Long id);
 
     Page<Professional> retrieveAllProfessionals(int pageNo, int PageSize);
 

@@ -14,8 +14,11 @@ import Blog from "./pages/blog/Blog";
 
 import Error from "./pages/error/Error";
 import Dashboard from "./pages/dashboard/Dashboard";
+import AccountSettings from "./pages/account_settings/AccountSettings";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
 import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
+import ApplicationsDashboardLayout from "./pages/applications/layouts/ApplicationsDashboardLayout";
+import Applications from "./pages/applications/Applications";
 import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
 import Skills from "./pages/blog/pages/skills/Skills";
 import Cover from "./pages/blog/pages/cover/Cover";
@@ -43,6 +46,7 @@ import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
 import Profile from "./pages/dashboard_profile/Profile/Profile";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
+import ProfileDescription from "pages/dashboard_profile/Profile/ProfileDescription";
 import { ProfileScreen } from "components/superAdmmin_profile/superAdmin_profileScreen";
 
 // Auth Logic
@@ -58,9 +62,6 @@ import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
 import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
-
-import RRD from "pages/RR_Dashboard/RRD";
-
 import { useEffect } from "react";
 
 import Sign_In from "pages/RR_recuiters_page/Sign_In";
@@ -69,6 +70,9 @@ import { SuperDashBoard } from "pages/super_admin_dashboard/dashboardview";
 
 import TryoutForm from "pages/tryout_form/TryoutForm";
 import TrySuccess from "pages/tryout_form/Success";
+import * as atatus from 'atatus-spa';
+
+atatus.config('c626faaef503411ea6216d7b6112de1c').install();
 
 function App() {
     const dispatch = useDispatch();
@@ -154,12 +158,12 @@ function App() {
 
                     <Route exact path="/user-page" element={<Dashboard />} />
                     <Route
-                        path="/superAdminProfile"
+                        path="/user-page/profile"
                         element={<ProfileScreen />}
                     ></Route>
                     <Route
                         exact
-                        path="/reverseRecruiterAdmin/:id"
+                        path="/user-page/reverseRecruiterAdmin/:id"
                         element={<RR_admin_profile />}
                     />
                 </Route>
@@ -186,7 +190,7 @@ function App() {
                     />
 
                     {/* USER DASHBAORD */}
-                    <Route path="dashboard" element={<UserDashboardLayout />}>
+                    <Route path="/dashboard" element={<UserDashboardLayout />}>
                         {/* User Dashboard Profile */}
 
                         <Route
@@ -205,6 +209,11 @@ function App() {
                         />
                         <Route path="user/success" element={<Success />} />
                         <Route path="user/profile-list" element={<Profile />} />
+                        <Route
+                            path="/dashboard/user/:id"
+                            element={<ProfileDescription />}
+                        />
+
                         {/* User Dashboard Applications */}
                         <Route
                             path="applications"

@@ -15,18 +15,22 @@ const NewUserDashboard = () => {
 
             <section className="top-dashboard-stripe">
                 <div className="top-dashboard-left">
-                    <h2>Welcome, {userName}</h2>
-                    <p>Here's an overview</p>
+                    <h2>Welcome {userName},</h2>
+                    <p>Let’s get started </p>
                 </div>
 
                 <div className="top-dashboard-right">
                     <div className="dashboard-img-wrapper">
-                        <img src={notification} alt="icon"></img>
+                        <img src={notification} alt="icon" className="notif" />
                     </div>
 
                     <div className="dashboard-img-wrapper">
                         <Link to="/dashboard/settings">
-                            <img src={avatar} alt="notification"></img>
+                            <img
+                                src={avatar}
+                                alt="notification"
+                                className="profilepic"
+                            />
                         </Link>
                     </div>
                 </div>
