@@ -155,7 +155,8 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
 		//delete one from profile
 		
 		for (ProfessionalProfile profile : profiles) {
-			if (profile.getId() == profile_id) {
+
+			if ((profile.getId().longValue()) == profile_id) {
 				repository.deleteById(profile.getId());
 				return true;
 			}

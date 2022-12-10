@@ -100,10 +100,10 @@ public class ProfessionalProfileRepositoryImpl implements ProfessionalProfileRep
 
 	@Override
 	public boolean deleteById(Long id) {
-		String query = "delete pp from ProfessionalProfile pp where pp.id = :id ";
-		TypedQuery<ProfessionalProfile> deleteQuery = entityManager.createQuery(query, ProfessionalProfile.class);
+		String query = "delete from ProfessionalProfile pp where pp.id = :id";
+		Query deleteQuery = entityManager.createQuery(query);
 		deleteQuery.setParameter("id", id);
-		int firstResult = deleteQuery.getFirstResult();
+		int firstResult = deleteQuery.executeUpdate();
 		
 		if(firstResult == 1) {
 			return true;
