@@ -1,7 +1,12 @@
 package com.hydraulic.applyforme.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.response.JobDescriptionResponse;
+
+import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,16 +31,18 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 	private final ProfessionalRepository repository;
 	private final ProfessionalJpaRepository professionalJpaRepository;
 	private final ProfessionalProfileJpaRepository professionalProfileJpaRepository;
-	
+	private final JobSubmissionRepository jobSubmissionRepository;
 	@Autowired
 	private MemberRepository memberRepository;
 
+
 	public ProfessionalServiceImpl(ProfessionalRepository repository,
-			ProfessionalJpaRepository professionalJpaRepository,
-			ProfessionalProfileJpaRepository professionalProfileJpaRepository) {
+								   ProfessionalJpaRepository professionalJpaRepository,
+								   ProfessionalProfileJpaRepository professionalProfileJpaRepository, JobSubmissionRepository jobSubmissionRepository) {
 		this.repository = repository;
 		this.professionalJpaRepository = professionalJpaRepository;
 		this.professionalProfileJpaRepository = professionalProfileJpaRepository;
+		this.jobSubmissionRepository = jobSubmissionRepository;
 	}
 
 	@Override
@@ -106,5 +113,30 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 		
 		return jobProfiles;
 	}
+
+    @Override
+    public JobDescriptionResponse viewJobDescription(Long professionalId, Long submissionId) {
+        Optional<Professional> professional = professionalJpaRepository.findById(professionalId);
+        if (professional.isEmpty()) {
+            throw new ProfessionalNotFoundException(professionalId);
+        }
+        List<Submission> submissions = jobSubmissionRepository.findAllByProfessionalId(professionalId);
+
+        for (Submission submission:submissions){
+
+
+            JobDescriptionResponse jobDescriptionResponse = JobDescriptionResponse.builder()
+                    .jobLocation(submission.getJobLocation())
+                    .jobTitle(submission.getJobTitle())
+                    .jobSummary(submission.getSummary())
+                    .jobCompany(submission.getJobCompany())
+                    .date(submission.getCreatedOn())
+                    .monthlySalaryRange(null)
+                    .build();
+            return jobDescriptionResponse;
+
+        }
+        return null;
+    }
 
 }
