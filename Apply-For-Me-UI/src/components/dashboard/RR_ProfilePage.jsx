@@ -20,7 +20,8 @@ import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getRRAdminProfile } from "store/slice/RR_AdminSlice";
+import { Delete_RR_Admin, getRRAdminProfile } from "store/slice/RR_AdminSlice";
+import { userInfo } from "store/slice/UserSlice";
 // import { Navigate } from "react-router-dom";
 
 const RR_admin_Profile = ({ setInputSearchValue }) => {
@@ -51,6 +52,11 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     };
     const handleQuota = event => {
         event.preventDefault();
+    };
+     const handleLogout = () => {
+        localStorage.removeItem("tokenHngKey");
+        dispatch(userInfo(""));
+        navigate("/");
     };
     return (
         <section className={classes.main_container}>
@@ -118,7 +124,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                                                 src={Signout}
                                                 alt="Signout logo"
                                             />
-                                            <p>Sign out</p>
+                                            <p onClick={handleLogout}>Sign out</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -163,7 +169,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         <div className={classes.user_action__btn__mobile}>
                             <FiTrash className={classes.trash} />
 
-                            <p>Delete</p>
+                            <p onClick={()=>dispatch(Delete_RR_Admin({id:id}) )}>Delete</p>
                         </div>
                     </div>
                 </div>
@@ -211,7 +217,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         <div className={classes.user_action__btn}>
                             <FiTrash className={classes.trash} />
 
-                            <p>Delete</p>
+                            <p onClick={()=>dispatch(Delete_RR_Admin({id:id}) )}>Delete</p>
                         </div>
                     </div>
                 </div>
