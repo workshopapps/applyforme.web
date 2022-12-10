@@ -64,15 +64,10 @@ public class SuperAdminRecruiterController {
         return service.sortAndPaginateRecruiter(pageNo,pageSize,sortBy,sortDir);
     }
 
+
     @PreAuthorize("hasAnyRole('SuperAdministrator')")
     @GetMapping("/search-name")
-    public ApplyForMeResponse searchRecruitersByName(
-            @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
-            @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
-            @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
-            @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir,
-            @RequestParam(value = "q") String q){
-        return recruiterService.searchRecruitersByName(pageNo, pageSize, sortBy, sortDir, q);
+    public Member searchRecruiterByName(@RequestParam String firstName){
+        return recruiterService.searchRecruitersByName(firstName);
     }
-
 }

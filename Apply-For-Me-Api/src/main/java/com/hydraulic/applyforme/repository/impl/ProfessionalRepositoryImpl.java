@@ -10,7 +10,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 
 import lombok.extern.slf4j.Slf4j;

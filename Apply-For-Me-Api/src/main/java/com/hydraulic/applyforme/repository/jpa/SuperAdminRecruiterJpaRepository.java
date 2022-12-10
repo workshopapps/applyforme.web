@@ -1,14 +1,13 @@
 package com.hydraulic.applyforme.repository.jpa;
 
 import com.hydraulic.applyforme.model.domain.Member;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface SuperAdminRecruiterJpaRepository extends JpaRepository<Member, Long> {
 
-    @Query(value = "select m FROM Member m inner join m.roles rl where rl.code ='Recruiter' AND " +
-            "(m.firstName like '%' || :q || '%' or m.lastName like '%' || :q || '%')")
-    Page<Member> searchRecruiterByName(Pageable pageable, String q);
+    @Query(value = "select m FROM Member m inner join m.roles rl where rl.code ='RECRUITERS' AND " +
+            "(m.firstName LIKE %:firstName%)")
+    Member searchRecruiterByName(@Param("firstName") String firstName);
 }

@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.model.dto.admin.UpdateProfileDto;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +45,7 @@ public class SuperAdminController {
     	return "password successfully changed";
     }
 
-
+    @PreAuthorize("hasAnyRole('SuperAdministrator')")
     @PutMapping("/update")
     public Member updateProfile(@Valid @RequestBody UpdateProfileDto body) {
         return service.updateProfile(CurrentUserUtil.getCurrentUser().getId(), body);

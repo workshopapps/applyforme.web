@@ -1,7 +1,7 @@
 package com.hydraulic.applyforme.service.superadmin;
 
-import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
+import com.hydraulic.applyforme.model.domain.Member;
 
 public interface SuperAdminRecruiterService {
-    ApplyForMeResponse searchRecruitersByName(int pageNo, int pageSize, String sortBy, String sortDir, String q);
+    Member searchRecruitersByName(String firstName);
 }
