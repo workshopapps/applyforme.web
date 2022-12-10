@@ -8,7 +8,7 @@ public interface EmailService {
     public void sendWelcomeMessage(String emailAddress);
     public String getByResetPasswordToken(String token);
     public void sendResetPasswordMail(String recipientEmail, String baseUrl);
-    void signupVerification(String recipientEmail);
+    void signupVerification(String recipientEmail,String otp);
     public String createVerificationToken();
     public void sendSignUpVerificationEmail(String emailAddress, String memberCode);
     public  void contactUs(ContactUsDto dto);

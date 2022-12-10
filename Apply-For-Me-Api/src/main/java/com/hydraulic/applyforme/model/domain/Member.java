@@ -65,6 +65,30 @@ public class Member implements Serializable {
     @JoinColumn(name = "nationality_id")
     private Country nationality;
 
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", nationality=" + nationality +
+                ", countryOfResidence=" + countryOfResidence +
+                ", dateOfBirth=" + dateOfBirth +
+                ", currentJobTitle='" + currentJobTitle + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", username='" + username + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", password='" + password + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", active=" + active +
+                ", createdOn=" + createdOn +
+                ", updatedOn=" + updatedOn +
+                ", roles=" + roles +
+                '}';
+    }
+
     /**
      * This column stores a reference to the country where the actor presently resides.
      */

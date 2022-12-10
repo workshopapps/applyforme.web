@@ -58,7 +58,7 @@ public class MemberDto {
     private String avatar;
 
     @JsonProperty("active")
-    private Boolean active = true;
+    private Boolean active = false;
 
     @JsonProperty("created_on")
     private Date createdOn;
@@ -66,6 +66,6 @@ public class MemberDto {
     @JsonProperty("updated_on")
     private Date updatedOn;
 
-    @JsonProperty("roles")
-    private Set<Role> roles;
+//    @JsonProperty("roles")
+//    private Set<Role> roles;
 }

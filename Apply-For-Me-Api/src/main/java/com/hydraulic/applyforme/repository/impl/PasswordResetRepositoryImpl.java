@@ -1,7 +1,6 @@
 package com.hydraulic.applyforme.repository.impl;
 
-import com.hydraulic.applyforme.model.domain.PasswordResetTokenEntity;
-import com.hydraulic.applyforme.model.exception.CountryDuplicateEntityException;
+import com.hydraulic.applyforme.model.domain.TokenEntity;
 import com.hydraulic.applyforme.model.exception.PasswordResetEntityDuplicateException;
 import com.hydraulic.applyforme.repository.PasswordResetRepository;
 import org.springframework.stereotype.Repository;
@@ -15,10 +14,10 @@ public class PasswordResetRepositoryImpl implements PasswordResetRepository {
     private EntityManager entityManager;
 
     @Override
-    public PasswordResetTokenEntity saveOne(PasswordResetTokenEntity passwordResetTokenEntity){
+    public TokenEntity saveOne(TokenEntity tokenEntity){
         try {
-            entityManager.persist(passwordResetTokenEntity);
-            return passwordResetTokenEntity;
+            entityManager.persist(tokenEntity);
+            return tokenEntity;
         }
         catch (EntityExistsException ex) {
             throw new PasswordResetEntityDuplicateException();

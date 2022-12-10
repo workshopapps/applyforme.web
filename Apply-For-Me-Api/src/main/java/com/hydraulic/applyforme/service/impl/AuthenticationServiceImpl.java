@@ -2,8 +2,10 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
 
-import com.hydraulic.applyforme.model.domain.PasswordResetTokenEntity;
+import com.hydraulic.applyforme.model.domain.TokenEntity;
 import com.hydraulic.applyforme.model.dto.authentication.ResetPasswordDto;
+import com.hydraulic.applyforme.model.dto.member.MemberDto;
+import com.hydraulic.applyforme.model.exception.MemberDuplicateEntityException;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.PasswordResetRepository;
@@ -12,17 +14,16 @@ import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.PasswordResetTokenJPARepository;
 import com.hydraulic.applyforme.service.AuthenticationService;
 import com.hydraulic.applyforme.util.JwtUtil;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DecimalFormat;
 import java.util.Random;
-import java.util.UUID;
 
 
 @Service
@@ -31,6 +32,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private MemberSecretJpaRepository secretJpaRepository;
     private MemberJpaRepository memberJpaRepository;
     private MemberRepository memberRepository;
+    private final ModelMapper modelMapper;
     private final PasswordResetRepository resetRepository;
 
     private PasswordResetTokenJPARepository passwordResetTokenJPARepository;
@@ -51,14 +53,73 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Autowired
     private EmailServiceImpl emailService;
 
-    public AuthenticationServiceImpl(MemberSecretJpaRepository secretJpaRepository, MemberJpaRepository memberJpaRepository, MemberRepository memberRepository, PasswordResetTokenJPARepository passwordResetTokenJPARepository, PasswordResetRepository resetRepository) {
+    public AuthenticationServiceImpl(MemberSecretJpaRepository secretJpaRepository, MemberJpaRepository memberJpaRepository, MemberRepository memberRepository, ModelMapper modelMapper, PasswordResetTokenJPARepository passwordResetTokenJPARepository, PasswordResetRepository resetRepository) {
         this.secretJpaRepository = secretJpaRepository;
         this.memberJpaRepository = memberJpaRepository;
         this.memberRepository = memberRepository;
+        this.modelMapper = modelMapper;
         this.resetRepository = resetRepository;
         this.passwordResetTokenJPARepository = passwordResetTokenJPARepository;
 
     }
+
+    @Override
+    @Transactional
+    public String signUp(MemberDto memberDto){
+        Member existingMember = memberJpaRepository.findByEmailAddress(memberDto.getEmailAddress());
+        if (existingMember != null){
+            throw new MemberDuplicateEntityException();
+        }
+
+            // create new member object
+            Member newMember = new Member();
+            newMember.setPassword(passwordEncoder.encode(memberDto.getPassword()));
+            newMember.setFirstName(memberDto.getFirstName());
+            newMember.setLastName(memberDto.getLastName());
+            newMember.setEmailAddress(memberDto.getEmailAddress());
+            newMember.setPhoneNumber(memberDto.getPhoneNumber());
+
+
+            Member saveMember = memberJpaRepository.save(newMember);
+            System.out.println("Newly Created Member: "+ saveMember);
+
+            String otp = new DecimalFormat("000000").format(new Random().nextInt(999999));
+
+            // save Otp and new member created in the otp_table
+            TokenEntity tokenEntity = new TokenEntity(saveMember);
+            tokenEntity.setOtp(otp);
+
+
+            passwordResetTokenJPARepository.save(tokenEntity);
+            System.out.println(tokenEntity.getMember());
+            emailService.signupVerification(memberDto.getEmailAddress(),otp);
+
+
+            return "Account created, OTP sent to your email, provide it to activate your account";
+    }
+
+    @Transactional
+    public String validateMemberSignUp(String otp){
+
+        TokenEntity passwordResetToken = passwordResetTokenJPARepository.findByOtp(otp);
+        System.out.println(passwordResetToken);
+        if(passwordResetToken !=null){
+            Member existingMember = memberJpaRepository.findMemberByEmailAddressIgnoreCase(passwordResetToken.getMember().getEmailAddress());
+            System.out.println(existingMember);
+            if(existingMember!=null)
+            {
+            existingMember.setActive(true);
+            memberJpaRepository.save(existingMember);
+            }
+            else {
+                throw  new MemberNotFoundException();
+            }
+
+            return String.format("%s, your account is activated, cheers",existingMember.getFirstName());
+        }
+        return String.format("Provided OTP may not be correct, try again later");
+    }
+
 
     @Transactional
     public String generateAndSendOtp(String emailAddress){
@@ -73,8 +134,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         // Send Token to user email address
         emailService.sendResetPasswordCode(emailAddress,otp);
         // save token sent to user in db
-        PasswordResetTokenEntity tokenEntity = new PasswordResetTokenEntity();
-//        tokenEntity.setId(UUID.randomUUID().toString());
+        TokenEntity tokenEntity = new TokenEntity();
         tokenEntity.setOtp(otp);
         resetRepository.saveOne(tokenEntity);
         System.out.println(String.format("Token sent to %s",emailAddress));
@@ -83,14 +143,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
 
+
+
+
     public boolean validateToken(String otp){
-        PasswordResetTokenEntity validToken = passwordResetTokenJPARepository.findPasswordResetTokenEntitiesByOtp(otp);
+        TokenEntity validToken = passwordResetTokenJPARepository.findByOtp(otp);
         if(validToken.getOtp().equals(otp)){
             return true;
         }
         return false;
 
     }
+
 
 
     public String passwordReset(ResetPasswordDto dto) {

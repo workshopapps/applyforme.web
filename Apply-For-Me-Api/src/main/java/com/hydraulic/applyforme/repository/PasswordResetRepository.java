@@ -1,8 +1,7 @@
 package com.hydraulic.applyforme.repository;
 
-import com.hydraulic.applyforme.model.domain.Country;
-import com.hydraulic.applyforme.model.domain.PasswordResetTokenEntity;
+import com.hydraulic.applyforme.model.domain.TokenEntity;
 
 public interface PasswordResetRepository {
-    PasswordResetTokenEntity saveOne(PasswordResetTokenEntity passwordResetTokenEntity);
+    TokenEntity saveOne(TokenEntity tokenEntity);
 }

@@ -8,5 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface MemberService {
     Member findOne(Long id);
     Member save(SignupDto body);
+
     Member update(Long id, UpdateMemberDto body);
 }
