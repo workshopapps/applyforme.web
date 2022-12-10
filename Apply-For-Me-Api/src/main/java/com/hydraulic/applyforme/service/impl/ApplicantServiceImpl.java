@@ -111,4 +111,12 @@ public class ApplicantServiceImpl implements ApplicantService {
         return repository.getMyDetailsById(id);
     }
 
+    @Override
+    public Member updateAvatar(Long applicantId, String newProfilePicture) {
+        Member applicant = repository.getMyDetailsById(applicantId);
+        applicant.setAvatar(newProfilePicture);
+
+        return applicant;
+    }
+
 }
