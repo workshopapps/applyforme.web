@@ -54,7 +54,7 @@ public class Professional {
     @Column(name ="other_link_3")
     private String otherLink3;
 
-    @OneToMany(mappedBy = "professional", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "professional", fetch = FetchType.LAZY)
     private Set<ProfessionalProfile> professionalProfiles = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "professional")
