@@ -13,16 +13,20 @@ const Review = ({ formData, keywords, setStep }) => {
     const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const included_keywords = String(keywords);
+    let included_keywords = String(keywords);
+
+    if (included_keywords.length <= 1) {
+        included_keywords = "string";
+    }
+    console.log(included_keywords);
     let jobLocationType = formData.isremote ? "remote" : "hybrid";
+    console.log(formData);
 
     const { user } = useSelector(state => state.user);
-    console.log(user);
     const userEmail = user.sub;
     const token = localStorage.getItem("tokenKey");
     let tokenKey = "tokenHngKey";
     let storedToken = localStorage.getItem(tokenKey);
-
     const handleSubmit = async () => {
         if (formData.job_title === "") {
             return alert("Please enter a job title");
@@ -34,9 +38,11 @@ const Review = ({ formData, keywords, setStep }) => {
             return alert("Please select your employment type");
         } else if (formData.salary_expectation === "") {
             return alert("Please select your salary expectation");
-        } else if (formData.coverletter_subject === "") {
+        } else if (formData.cv_file === []) {
+            return alert("Please upload a CV");
+        } else if (formData.coverletter_subject.length < 2) {
             return alert("Please enter a cover letter subject");
-        } else if (formData.coverletter_body === "") {
+        } else if (formData.coverletter_body.length <= 1) {
             return alert("Please enter a cover letter body");
         }
 
