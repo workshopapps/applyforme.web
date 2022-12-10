@@ -72,6 +72,11 @@
     width: max-content;
 }
 
+.job_application_form_button:hover {
+    text-decoration: none;
+    color: white;
+}
+
 .new_applications_stats {
     display: flex;
     flex-direction: column;
