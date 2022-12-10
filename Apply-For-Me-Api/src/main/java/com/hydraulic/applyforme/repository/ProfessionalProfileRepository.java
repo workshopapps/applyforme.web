@@ -15,4 +15,6 @@ public interface ProfessionalProfileRepository {
     boolean remove(Long id);
     boolean removeMany(List<Long> ids);
     boolean removeAll();
+
+    boolean deleteJobProfile(Long id);
 }

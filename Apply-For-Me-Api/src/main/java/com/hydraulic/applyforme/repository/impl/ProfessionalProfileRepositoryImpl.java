@@ -98,4 +98,10 @@ public class ProfessionalProfileRepositoryImpl implements ProfessionalProfileRep
         }
     }
 
+    @Override
+    public boolean deleteJobProfile(Long id) {
+        return true;
+    }
+
+
 }

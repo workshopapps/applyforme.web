@@ -7,10 +7,7 @@ import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(
@@ -31,4 +28,11 @@ public class ProfessionalJobProfileController {
         var currentUser = CurrentUserUtil.getCurrentUser();
         return service.save(currentUser.getId(), body);
     }
+
+    @PreAuthorize("hasRole('Professional')")
+    @DeleteMapping("/remove")
+        public boolean delete(Long id){
+        var currentUser = CurrentUserUtil.getCurrentUser();
+        return service.removeProfile(currentUser.getId());
+        }
 }

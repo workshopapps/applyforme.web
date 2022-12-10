@@ -130,4 +130,16 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
     public boolean deleteAll() {
         return repository.removeAll();
     }
+
+    @Override
+    @Transactional
+    public boolean removeProfile(Long id) {
+        boolean removed = repository.deleteJobProfile(id);
+        if (removed) {
+            return true;
+        }
+        else {
+            throw new ProfessionalProfileNotFoundException(id);
+        }
+    }
 }
