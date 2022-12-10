@@ -7,6 +7,7 @@ import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DI
 
 import java.util.List;
 
+import com.hydraulic.applyforme.model.response.JobDescriptionResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -67,5 +68,12 @@ public class ProfessionalController {
 		UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
 		return service.findAllJobProfile(currentUser.getId());
 	}
+
+    @GetMapping("/view-job-description/{jobId}")
+    public JobDescriptionResponse getJobDescription(@PathVariable Long jobId){
+        var currentUser = CurrentUserUtil.getCurrentUser();
+        return service.viewJobDescription(currentUser.getId(), jobId);
+
+    }
 }
 
