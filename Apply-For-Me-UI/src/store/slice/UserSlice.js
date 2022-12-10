@@ -6,7 +6,8 @@ const BaseUrl = "https://api.applyforme.hng.tech";
 
 const initialState = {
     user: '',
-isLoading: false
+    isLoading: false,
+    error:'',
 };
 
 const UserSlice = createSlice({

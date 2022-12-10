@@ -7,7 +7,7 @@ public class EmailAlreadyExistsException extends ApplyForMeException {
 
     @Override
     public String getMessage() {
-        return String.format("%s already exists in the record and is not available for use by another user.", ENTITY_NAME);
+        return String.format("%s already exists with this email in the record and is not available for use by another user.", ENTITY_NAME);
     }
 
 }
