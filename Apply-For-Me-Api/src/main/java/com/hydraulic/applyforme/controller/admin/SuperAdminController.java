@@ -44,7 +44,7 @@ public class SuperAdminController {
     	service.updatePassword(currentUser.getId(), body);
     	return "password successfully changed";
     }
-
+    
     @PreAuthorize("hasAnyRole('SuperAdministrator')")
     @PutMapping("/update")
     public Member updateProfile(@Valid @RequestBody UpdateProfileDto body) {
