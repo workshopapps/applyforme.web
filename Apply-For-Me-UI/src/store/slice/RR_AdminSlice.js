@@ -46,24 +46,25 @@ export const getRRAdminProfile = createAsyncThunk(
 
 export const SuperAdminApplicants = createAsyncThunk(
     "RRadmin/SuperAdminApplicants",
-    async values => {
+    async (values) => {
         try {
             const response = await axios.get(
                 `${url}/api/v1/super-admin/applicant/entries`,
                 {
-                    params: {
-                        "pageNo": values.pageNo,
-                        "pageSize": values.pageSize
+                    params:{
+                    "pageNo": values.pageNo,
+                    "pageSize": values.pageSize,
                     },
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }
+                    
                 }
             );
-            console.log("super", response?.data);
+            console.log("super",response?.data)
             return response?.data;
         } catch (error) {
-            return error.response.data;
+           return error.response.data;
         }
     }
 );
@@ -222,16 +223,20 @@ const RR_Admin_Slice = createSlice({
     extraReducers: {
         [getRecruiterApplicants.pending]: state => {
             state.RRApplicantsLoading = "pending";
+             console.log(state.RRApplicantsLoading)
         },
         [getRecruiterApplicants.fulfilled]: (state, action) => {
             state.RRApplicantsLoading = "success";
             if (action.payload) {
                 state.RRApplicantsList = action.payload;
+                console.log(token);
+                console.log(state.RRApplicantsLoading,  state.RRApplicantsList )
             }
         },
         [getRecruiterApplicants.rejected]: (state, action) => {
             state.RRApplicantsLoading = "rejected";
             state.RRApplicantsError = action.payload;
+            console.log(state.RRApplicantsLoading,  state.RRApplicantsError)
         },
         [Fetch_RR_Admin.pending]: state => {
             state.loadingStatus = "pending";

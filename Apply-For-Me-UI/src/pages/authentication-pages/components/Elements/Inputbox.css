@@ -5,6 +5,7 @@
     border-radius: 8px;
     padding: 2%;
     box-sizing: border-box;
+    background-color: #E8F0FE;
 }
 ::placeholder{
     color: #414244;

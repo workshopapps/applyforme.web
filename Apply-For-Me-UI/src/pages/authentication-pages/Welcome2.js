@@ -31,6 +31,10 @@ const Welcome2 = () => {
         password: false,
         email_address: false
     });
+    const [password, setPassword] = useState("password");
+    const handletoggle=()=>{
+        password ==="password"? setPassword("text"): setPassword("password");
+    }
 
     useEffect(() => {
         if (user) {
@@ -118,12 +122,11 @@ const Welcome2 = () => {
                         id="eml"
                         place="Email Address"
                     />
-                    <Inputbox
-                        type="password"
-                        name="pass"
-                        id="pass"
-                        place="Password"
-                    />
+                    <label htmlFor="pass" className="passowrd-label">
+                        <input type={password} className="passowrd-label-input" name="pass" id="pass" placeholder="Password" required/>
+                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1670631906/Vector_1_qntpu2.svg" alt="object not found" onClick={handletoggle}/>
+                    </label>
+                    
                     <Link to="/pass" className="forgot">
                         Forgot Password
                     </Link>

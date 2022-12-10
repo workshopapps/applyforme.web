@@ -19,7 +19,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <ToastContainer/>
+            <ToastContainer />
             <DashboardHeader
                 func={handlePageSwitch}
                 setInputSearchValue={dashboardSetSearchParams}
