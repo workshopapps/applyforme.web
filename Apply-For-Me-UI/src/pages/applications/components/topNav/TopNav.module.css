@@ -45,6 +45,11 @@
     background-color: rgb(213, 211, 211);
     border-radius: 50%;
 }
+.application_nav_notif {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
 
 @media (max-width: 480px) {
     .application_user_menu {
