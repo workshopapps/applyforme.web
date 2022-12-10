@@ -30,4 +30,6 @@ public interface ProfessionalJobProfileService {
 
     @Transactional
     boolean deleteAll();
+
+	boolean deleteByProfileId(Long id, Long profile_id);
 }
