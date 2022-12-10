@@ -40,20 +40,16 @@ public class ProfessionalController {
 			@RequestParam(required = false, defaultValue = "1", name = "page") Integer pageOffset) {
 		return service.findAll(pageOffset);
 	}
-
-	@GetMapping("/detail/{id}")
-	public Professional findOne(@PathVariable(name = "id") Long id) {
-		return service.findOne(id);
+	
+	@GetMapping("/detail")
+	public Professional findOne(Long id) {
+		UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
+		return service.findOne(currentUser.getId());
 	}
 
 	@PutMapping("/update")
-	public Professional update(@Validated @RequestBody ProfessionalDto body) {
+	public boolean update(@Validated @RequestBody ProfessionalDto body) {
 		Long id = CurrentUserUtil.getCurrentUser().getId();
-		return service.updateProfile(body, id);
-	}
-
-	@PutMapping("/update/{id}")
-	public Professional update(@Validated @RequestBody ProfessionalDto body, @PathVariable(name = "id") Long id) {
 		return service.updateProfile(body, id);
 	}
 
