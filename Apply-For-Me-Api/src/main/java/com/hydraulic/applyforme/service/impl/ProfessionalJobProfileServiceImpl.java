@@ -1,9 +1,12 @@
 package com.hydraulic.applyforme.service.impl;
 
+import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.dto.professionalprofile.DeleteManyProfessionalProfileDto;
 import com.hydraulic.applyforme.model.dto.professionalprofile.ProfessionalProfileDto;
+import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
+import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.model.exception.ProfessionalProfileNotFoundException;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.ProfessionalProfileRepository;
@@ -130,4 +133,35 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
     public boolean deleteAll() {
         return repository.removeAll();
     }
+
+	@Override
+    @Transactional
+	public boolean deleteByProfileId(Long id, Long profile_id) {
+		//find the professional
+		Member member = memberRepository.getOne(id);
+
+        if (member == null) {
+            throw new MemberNotFoundException(id);
+        }
+		
+		//fetch the professional profile
+		Professional professional = professionalJpaRepository.getProfessional(member.getId());
+
+        if (professional == null) {
+            throw new ProfessionalNotFoundException(member.getId());
+        }
+
+		List<ProfessionalProfile> profiles = repository.findByProfessionalId(professional.getId());
+		//delete one from profile
+		
+		for (ProfessionalProfile profile : profiles) {
+
+			if ((profile.getId().longValue()) == profile_id) {
+				repository.deleteById(profile.getId());
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }

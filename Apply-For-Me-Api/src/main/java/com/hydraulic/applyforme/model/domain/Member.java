@@ -101,6 +101,9 @@ public class Member {
     @Column(name ="state")
     private String state;
 
+    @Column(name ="address")
+    private String address;
+
     @Column(name ="password", nullable = false)
     private String password;
 
