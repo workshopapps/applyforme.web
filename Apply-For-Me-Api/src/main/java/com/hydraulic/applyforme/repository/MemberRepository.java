@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.repository;
 
 import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.dto.authentication.ForgotPasswordDto;
 
 import java.util.List;
 
@@ -23,4 +24,6 @@ public interface MemberRepository {
     boolean removeMany(List<Long> ids);
 
     boolean removeAll();
+
+    Member findByEmail(ForgotPasswordDto forgotPasswordDto);
 }

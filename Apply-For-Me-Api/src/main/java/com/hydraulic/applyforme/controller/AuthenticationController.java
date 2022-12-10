@@ -1,6 +1,7 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.dto.authentication.*;
+import com.hydraulic.applyforme.model.dto.secretCode.MemberSecretCodeDto;
 import com.hydraulic.applyforme.model.response.ForgotPasswordResponse;
 import com.hydraulic.applyforme.model.response.SignInResponse;
 import com.hydraulic.applyforme.service.AuthenticationService;
@@ -61,13 +62,21 @@ public class AuthenticationController {
     }
 
     @PostMapping("/forgot-password")
-    public ForgotPasswordResponse forgotPassword(HttpServletRequest request, @Validated @RequestBody ForgotPasswordDto passwordDto) {
+    public ForgotPasswordResponse forgotPassword(@Validated @RequestBody ForgotPasswordDto passwordDto) {
+        /*
         String baseUrl = ServletUriComponentsBuilder.fromRequestUri(request)
                 .replacePath(null)
                 .build()
                 .toUriString();
-        emailService.sendResetPasswordMail(passwordDto.getEmailAddress(), baseUrl);
+        */
+        authenticationService.forgotPassword(passwordDto);
         return new ForgotPasswordResponse();
+    }
+
+    @PostMapping("/enter-passwordCode")
+    public String enterPasswordCode(@Validated @RequestBody MemberSecretCodeDto memberSecretCodeDto) {
+        authenticationService.matchVerificationCodes(memberSecretCodeDto);
+        return "You have successfully changed your password.";
     }
 
     @PostMapping("/reset-password")

@@ -181,6 +181,28 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(EmailNotFoundException.class)
+    public Object notFound(EmailNotFoundException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", EmailNotFoundException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.NOT_FOUND.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidPasswordResetCodeException.class)
+    public Object invalidity(InvalidPasswordResetCodeException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", InvalidPasswordResetCodeException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(InvalidResetTokenException.class)
     public Object invalidity(InvalidResetTokenException ex) {

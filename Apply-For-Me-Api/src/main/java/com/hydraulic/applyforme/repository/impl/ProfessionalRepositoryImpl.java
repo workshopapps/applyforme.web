@@ -84,4 +84,48 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository {
     public Professional updateOne(Professional body) {
         return entityManager.merge(body);
     }
+
+    /*
+    public Professional updateOne(Professional body) {
+        String sql1 = "UPDATE professional " +
+                "SET available_for_interview = :availableForInterview," +
+                " linkedin_link = :linkedinLink," +
+                " facebook_link = :facebookLink," +
+                " twitter_link = :twitterLink," +
+                " instagram_link = :instagramLink," +
+                " hobbies = :hobbies," +
+                " other_link_1 = :otherLink1," +
+                " other_link_2 = :otherLink2," +
+                " other_link_3 = :otherLink3," +
+                " WHERE id = :pid";
+        int rowsupdated;
+        EntityTransaction entityTransaction = null;
+        try {
+            entityTransaction.begin();
+            Query query = entityManager.createNativeQuery(sql1);
+            query.setParameter("availableForInterview", body.isAvailableForInterview());
+            query.setParameter("linkedinLink", body.getLinkedinLink());
+            query.setParameter("facebookLink", body.getFacebookLink());
+            query.setParameter("twitterLink", body.getTwitterLink());
+            query.setParameter("instagramLink", body.getInstagramLink());
+            query.setParameter("hobbies", body.getHobbies());
+            query.setParameter("otherLink1", body.getOtherLink1());
+            query.setParameter("otherLink2", body.getOtherLink1());
+            query.setParameter("otherLink3",body.getOtherLink2();
+            query.setParameter("pid", body.getId());
+            rowsupdated = query.executeUpdate();
+            entityTransaction.commit();
+        } catch (Exception ex) {
+            if (entityTransaction != null) {
+                entityTransaction.rollback();
+            }
+            System.out.println("Exception: " + ex.getMessage());
+            rowsupdated = 0;
+        }
+        String sql2 ="SELECT * FROM professional WHERE id = " + body.getId() + "";
+        Query query = entityManager.createNativeQuery(sql2);
+        Professional professional = (Professional) query.getSingleResult();
+        return professional;
+    }
+    */
 }

@@ -1,6 +1,7 @@
 package com.hydraulic.applyforme.repository.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.dto.authentication.ForgotPasswordDto;
 import com.hydraulic.applyforme.model.exception.MemberDuplicateEntityException;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import org.springframework.stereotype.Repository;
@@ -101,6 +102,15 @@ public class MemberRepositoryImpl implements MemberRepository {
     
     public void deleteMemberRole() {
     	
+    }
+
+    @Override
+    public Member findByEmail(ForgotPasswordDto forgotPasswordDto){
+        String sql = "select m from Member m where m.emailAddress = :email";
+        Query query = entityManager.createQuery(sql);
+        query.setParameter("email", forgotPasswordDto.getEmailAddress());
+        Member member = (Member) query.getSingleResult();
+        return member;
     }
 
 }
