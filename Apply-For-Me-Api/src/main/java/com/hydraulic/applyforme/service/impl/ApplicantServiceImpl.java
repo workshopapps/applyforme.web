@@ -35,7 +35,9 @@ public class ApplicantServiceImpl implements ApplicantService {
 
     private final ApplicantRepository repository;
 
-    public ApplicantServiceImpl(JobSubmissionRepository jobSubmissionRepository, ModelMapper modelMapper, ApplicantRepository repository) {
+    public ApplicantServiceImpl(JobSubmissionRepository jobSubmissionRepository, ModelMapper modelMapper,
+                                ProfessionalRepository professionalRepository,
+                                ApplicantRepository repository) {
 
         this.jobSubmissionRepository = jobSubmissionRepository;
         this.professionalRepository = professionalRepository;
