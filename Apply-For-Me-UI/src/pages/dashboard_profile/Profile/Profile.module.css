@@ -109,3 +109,24 @@
     font-size: 1.5rem;
     margin-block: 1rem;
 }
+.loading_animation {
+    margin: auto;
+    width: 20%;
+    height: 5px;
+    background-color: #bfbfbf;
+    border-radius: 5px;
+    animation: loading_animation 2s linear infinite;
+}
+
+/* Define  animation */
+@keyframes loading_animation {
+    0% {
+        background-color: #bfbfbf;
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-color: #2f80ed;
+        background-position: 100% 0%;
+    }
+}

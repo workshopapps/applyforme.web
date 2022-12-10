@@ -40,6 +40,7 @@ const Welcome1 = () => {
             }, 3000);
         }
     }, [user]);
+    console.log(user);
 
     const handleSignup = async event => {
         event.preventDefault();

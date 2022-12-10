@@ -74,14 +74,14 @@ const Review = ({ formData, keywords, setStep }) => {
             );
             const finalResponseJson = await finalResponse.json();
             setLoading(false);
-            console.log(finalResponse);
+            // console.log(finalResponse);
             navigate("/dashboard/user/success");
         } catch (error) {
             alert("Failed to submit, please try again");
             console.log(error);
         }
     };
-    console.log(formData);
+    // console.log(formData);
     return (
         <div className={styles.form_body}>
             <h3>Review your profile and it's good to go!</h3>

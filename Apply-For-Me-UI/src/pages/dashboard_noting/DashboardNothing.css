@@ -12,11 +12,14 @@
 .top-dashboard-stripe h2 {
     margin: 0;
 
-    font-size: 27px;
+    font-size: 2rem;
     font-weight: bold;
 }
 .top-dashboard-stripe p {
-    margin: 10px 0;
+    margin: 0.25rem;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #5e5d73;
 }
 .top-dashboard-right {
     display: flex;
@@ -24,6 +27,10 @@
 }
 .top-dashboard-right img {
     object-fit: cover;
+}
+.top-dashboard-right {
+    display: flex;
+    gap: 1.25rem;
 }
 
 /* dashboard overview styling */
@@ -43,17 +50,24 @@
 
 .overview-card {
     text-align: center;
-    border: 2px solid #7c7ba8;
+    border: 2px solid #2e3192;
+    border-radius: 12px;
     padding: 60px 30px;
-    border-radius: 5px;
     width: 85%;
 }
 .overview-card p {
     margin: 0;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #7c7ba8;
     margin-top: 5px;
     border-radius: 5px;
 }
-
+.overview-card h3 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #171646;
+}
 .overview-card-wrapper {
     width: 100%;
 }
@@ -112,6 +126,9 @@
 }
 .normal-create button {
     border-radius: 0.5rem;
+    width: 15rem;
+    font-weight: 700;
+    color: #fbfbff;
 }
 .normal-create {
     padding-top: 1.5rem;
@@ -220,4 +237,27 @@
         margin-left: 5px;
         margin-right: 5px;
     }
+}
+
+@media screen and (min-width: 610px) {
+    .profilepic {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+@media screen and (max-width: 610px) {
+    .profilepic {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+.picture_container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.notif {
+    width: 24px;
+    height: 24px;
 }
