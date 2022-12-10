@@ -1,0 +1,26 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+.button {
+    border: none;
+    background-color: #fff;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 150%;
+    letter-spacing: 0.03em;
+    color: #222226;
+    cursor: pointer;
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    text-decoration: none !important;
+}
+
+.button:hover {
+    color: #222226 !important;
+}
