@@ -14,4 +14,6 @@ public interface ApplicantService {
     ApplyForMeResponse getApplicationList(int pageNo, int pageSize, String sortBy, String sortDir);
         Member getDetails(Long id);
 
+        Member updateAvatar(Long applicantId, String newProfilePicture);
+
 }
