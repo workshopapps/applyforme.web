@@ -39,7 +39,6 @@ public class ProfessionalJobProfileController {
     @DeleteMapping("/delete/{id}")
     public boolean deleteProfessionalJobProfile(@PathVariable("id") Long profile_id) {
     	UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
-    	service.deleteByProfileId(currentUser.getId(), profile_id);
-    	return true;
+    	return service.deleteByProfileId(currentUser.getId(), profile_id);
     }
 }
