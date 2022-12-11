@@ -13,14 +13,32 @@ import * as Yup from "yup";
 
 const TryoutForm = () => {
     const [countries, setCountries] = useState();
+    const [jobTitles, setJobTites] = useState();
+    const [salaryRange, setSalaryRange] = useState();
+
     const navigate = useNavigate();
     // Create a Set that only contains unique values from the title property to prevent duplicates that may be fetched
     const uniqueTitles = new Set(
         countries?.map(onecountry => onecountry.title)
     );
 
+    const uniqueJobTitles = new Set(jobTitles?.map(oneTitle => oneTitle.title));
     // Create an array of objects with the unique titles
     const countryNames = Array.from(uniqueTitles)?.map(title => ({
+        label: title,
+        value: title
+    }));
+
+    const uniqueSalary = new Set(
+        salaryRange?.map(salary => salary.salary_range)
+    );
+
+    const salaryRanges = Array.from(uniqueSalary).map(salary => ({
+        label: salary,
+        value: salary
+    }));
+
+    const jobTitleNames = Array.from(uniqueJobTitles)?.map(title => ({
         label: title,
         value: title
     }));
@@ -28,6 +46,12 @@ const TryoutForm = () => {
         fetch("https://api.applyforme.hng.tech/api/v1/country/entries/all")
             .then(response => response.json())
             .then(data => setCountries(data));
+        fetch("https://api.applyforme.hng.tech/api/v1/job-title/entries/all")
+            .then(response => response.json())
+            .then(data => setJobTites(data));
+        fetch("https://api.applyforme.hng.tech/api/v1/salary-range/entries/all")
+            .then(response => response.json())
+            .then(data => setSalaryRange(data));
     }, []);
 
     const onSubmit = async values => {
@@ -43,7 +67,7 @@ const TryoutForm = () => {
                 return error?.response.data;
             });
         if (res.code == "409") {
-            toast(res.message);
+            toast.error(res.message);
         }
 
         if (res.status == "200") {
@@ -214,52 +238,7 @@ const TryoutForm = () => {
                         </p>
                         <div>
                             <Dropdown
-                                options={[
-                                    {
-                                        label: "Backend engineer",
-                                        value: "Backend engineer"
-                                    },
-                                    {
-                                        label: "Data scientist",
-                                        value: "Data scientist"
-                                    },
-                                    {
-                                        label: "Frontend engineer",
-                                        value: "Frontend engineer"
-                                    },
-                                    {
-                                        label: "Game developer",
-                                        value: "Game developer"
-                                    },
-                                    {
-                                        label: "Illustrator",
-                                        value: "Illustrator"
-                                    },
-                                    {
-                                        label: "Musician",
-                                        value: "Musician"
-                                    },
-                                    {
-                                        label: "No code developer",
-                                        value: "No code developer"
-                                    },
-                                    {
-                                        label: "Product designer",
-                                        value: "Product designer"
-                                    },
-                                    {
-                                        label: "Product manager",
-                                        value: "Product manager"
-                                    },
-                                    {
-                                        label: "Sound engineer",
-                                        value: "Sound engineer"
-                                    },
-                                    {
-                                        label: "UX researcher",
-                                        value: "UX researcher"
-                                    }
-                                ]}
+                                options={jobTitleNames}
                                 value={values.job_title}
                                 width={100}
                                 onChange={handleChange}
@@ -461,24 +440,7 @@ const TryoutForm = () => {
                             <div>
                                 <p>Salary Expectation</p>
                                 <Dropdown
-                                    options={[
-                                        {
-                                            label: "$3,000-$5,000",
-                                            value: "$3,000-$5,000"
-                                        },
-                                        {
-                                            label: "$5,000-$10,000",
-                                            value: "$5,000-$10,000"
-                                        },
-                                        {
-                                            label: "$10,000-$15,000",
-                                            value: "$10,000-$15,000"
-                                        },
-                                        {
-                                            label: "$15,000-$25,000",
-                                            value: "$15,000-$25,000"
-                                        }
-                                    ]}
+                                    options={salaryRanges}
                                     placeholderText="Salary Expectation"
                                     id={"salary_range"}
                                     value={values.salary_range}
