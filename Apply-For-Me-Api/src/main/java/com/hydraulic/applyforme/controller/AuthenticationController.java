@@ -47,10 +47,7 @@ public class AuthenticationController {
         this.userDetailsService = userDetailsService;
     }
 
-    @PostMapping("/sign-up")
-    public String signUp(@RequestBody MemberDto memberDto) {
-        return authenticationService.signUp(memberDto);
-    }
+
 
     @PostMapping("/sign-up-verification/{email}")
     public String validateMemberSignUp(@RequestParam("otp") String otp, @PathVariable("email") String email) {
