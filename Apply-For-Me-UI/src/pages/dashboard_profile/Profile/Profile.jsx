@@ -2,6 +2,7 @@ import TopBar from "../components/TopBar/TopBar";
 import styles from "./Profile.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import add from "../assets/add.png";
+import { AiOutlineDelete } from "react-icons/ai";
 
 // eslint-disable-next-line no-unused-vars
 const Profile = ({ profileList }) => {
@@ -20,6 +21,11 @@ const Profile = ({ profileList }) => {
                 >
                     See details
                 </Link>
+                <button
+                // onClick={() => handleDelete()}
+                >
+                    <AiOutlineDelete className={styles.delete_icon} />
+                </button>
             </div>
         </div>
     ));

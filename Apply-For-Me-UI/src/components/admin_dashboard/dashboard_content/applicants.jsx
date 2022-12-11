@@ -2,43 +2,50 @@ import React from "react";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import {SuperAdminApplicants } from "store/slice/RR_AdminSlice";
+import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./applicants.module.css";
 
 export const RRApplicantsPage = () => {
     const dispatch = useDispatch();
     const [pagination, setPagination] = useState({
         "pageNo": 0,
-        "pageSize": 10,
+        "pageSize": 10
     });
-    const handlePageClick =(data)=>{
-        setPagination(prevState =>({...prevState,"pageNo":data.selected}));
+    const handlePageClick = data => {
+        setPagination(prevState => ({ ...prevState, "pageNo": data.selected }));
 
-        dispatch(SuperAdminApplicantsApplicants(pagination));
-       
-    }
-    useEffect(()=>{
         dispatch(SuperAdminApplicants(pagination));
-    },[dispatch,SuperAdminApplicants])
-
+    };
+    useEffect(() => {
+        dispatch(SuperAdminApplicants(pagination));
+    }, [dispatch, SuperAdminApplicants]);
 
     const list = useSelector(state => state.RRadmin);
     console.log(list);
     return (
         <div className={classes.main_container}>
-           <div className="statisticsContainer">
-                <h2  className="list-header">Statistics</h2>
+            <div className="statisticsContainer">
+                <h2 className="list-header">Statistics</h2>
                 <select name="statistic_sorter" id="statistic_sorter">
-
                     {list.superAdminApplicantsList.length !== 0 &&
-                         (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
-                            list.superAdminApplicantsList.content?.map((statistics, index)=>{
-
-                            return(
-                                <option key={index} value={statistics.membership.createdOn?.split("T").shift()}>{statistics.membership.createdOn?.split("T").shift()}</option>
-                            )
-                        })
-                    }
+                        list.applicantsloadingStatus === "success" &&
+                        list.superAdminApplicantsList.length !== 0 &&
+                        list.superAdminApplicantsList.content?.map(
+                            (statistics, index) => {
+                                return (
+                                    <option
+                                        key={index}
+                                        value={statistics.membership.createdOn
+                                            ?.split("T")
+                                            .shift()}
+                                    >
+                                        {statistics.membership.createdOn
+                                            ?.split("T")
+                                            .shift()}
+                                    </option>
+                                );
+                            }
+                        )}
                 </select>
             </div>
 
@@ -63,11 +70,10 @@ export const RRApplicantsPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-
                         {list.superAdminApplicantsList.length !== 0 &&
-                         (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
+                            list.applicantsloadingStatus === "success" &&
+                            list.superAdminApplicantsList.length !== 0 &&
                             list.superAdminApplicantsList.content?.map(list => {
-
                                 return (
                                     <tr
                                         className={classes.user_details}
@@ -87,28 +93,28 @@ export const RRApplicantsPage = () => {
                             })}
                     </tbody>
                 </table>
-                {list.applicantsloadingStatus ==="pending" && <p style={{textAlign:"center"}}>Please wait...</p>}
+                {list.applicantsloadingStatus === "pending" && (
+                    <p style={{ textAlign: "center" }}>Please wait...</p>
+                )}
                 <div>
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel=">"
-                    pageRangeDisplayed={5}
-                    pageCount={list.superAdminApplicantsList?.totalPages}
-                    marginPagesDisplayed="1"
-                    previousLabel="<"
-                    renderOnZeroPageCount={null}
-                    onPageChange={handlePageClick}
-                    containerClassName="containerClassName"
-                    pageClassName='pageClassName'
-                    previousClassName='previousClassName'
-                    activeClassName="activeClassName"
-                    nextClassName='nextClassName'
-                    pageLinkClassName="pageLinkClassName"
-                />
-                 </div>
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel=">"
+                        pageRangeDisplayed={5}
+                        pageCount={list.superAdminApplicantsList?.totalPages}
+                        marginPagesDisplayed="1"
+                        previousLabel="<"
+                        renderOnZeroPageCount={null}
+                        onPageChange={handlePageClick}
+                        containerClassName="containerClassName"
+                        pageClassName="pageClassName"
+                        previousClassName="previousClassName"
+                        activeClassName="activeClassName"
+                        nextClassName="nextClassName"
+                        pageLinkClassName="pageLinkClassName"
+                    />
+                </div>
             </section>
         </div>
     );
 };
-
-

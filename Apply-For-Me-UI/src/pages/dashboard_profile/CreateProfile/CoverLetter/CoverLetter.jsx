@@ -5,7 +5,6 @@ import Dropdown from "../../components/Dropdown/Dropdown";
 import Input from "../../components/InputField/InputField";
 const CoverLetter = ({ formData, setFormData }) => {
     const [clTemplates, setClTemplates] = useState();
-    const [currentTemplate, setCurrentTemplate] = useState();
 
     useEffect(() => {
         fetch(
