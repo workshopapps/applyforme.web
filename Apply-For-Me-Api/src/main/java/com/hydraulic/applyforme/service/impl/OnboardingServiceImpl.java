@@ -136,6 +136,7 @@ public class OnboardingServiceImpl implements OnboardingService {
 		OnboardingResponse response = new OnboardingResponse();
 		response.setId(member.getId());
 		modelMapper.map(body, response);
+		response.setOnBoardToken(member.getOnboardToken());
 		return response;
 	}
 

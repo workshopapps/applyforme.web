@@ -5,6 +5,7 @@ import com.hydraulic.applyforme.model.dto.contactUs.ContactUsDto;
 import com.hydraulic.applyforme.model.dto.member.CreateRecruiterDto;
 import com.hydraulic.applyforme.model.exception.EmailDeliveryException;
 import com.hydraulic.applyforme.model.exception.PrivacyPolicyException;
+import com.hydraulic.applyforme.model.response.OnboardingResponse;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
 import com.hydraulic.applyforme.service.EmailService;
@@ -49,6 +50,42 @@ public class EmailServiceImpl implements EmailService {
                 "</div>" +
                 "<p style=\"font-size:1.1em\">" +
                 "<b>Hey " + member.getFirstName() + ",</b>" + "<br>" +
+                "Welcome to ApplyForMe. We are thrilled to have you here!" + "<br>" +
+                "ApplyForMe is a service where you tell us your skills and what you are looking for, and people apply for you for 100s of jobs. All you need to do is attend interviews.</p>" +
+                " <hr style=\"border:none;border-top:1px solid #eee\" />" +
+                "<div style=\"margin-top: 20px;padding:8px 0;color:#aaa;font-size:1.0em;line-height:1;font-weight:300\">" +
+                " <p>© 2022 ApplyForMe, All rights reserved.</p>" +
+                " </div>" +
+                "</div>" +
+                "</div>";
+
+        String subject = "Welcome to ApplyForMe";
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom(env.getProperty("applyforme.email"));
+            helper.setTo(emailAddress);
+            helper.setSubject(subject);
+            helper.setText(content, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            throw new EmailDeliveryException();
+        }
+    }
+
+    @Override
+    public void onboard(OnboardingResponse response, String onboardToken) {
+        String link = "https://applyforme.hng.tech/onboarding/" + onboardToken + "/complete";
+        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+                " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
+                "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
+                " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"/\" /></a>" +
+                "<p>ApplyForMe</p>" +
+                "</div>" +
+                "<p style=\"font-size:1.1em\">" +
+                "<b>Hi " + response.getFirstName() + " " + response.getLastName() + ",</b>" + "<br>" +
+                "<b>You can continue with your on-boarding through " +
+                " <a href=\"" + link + "\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\">Complete onboarding</a>" +
                 "Welcome to ApplyForMe. We are thrilled to have you here!" + "<br>" +
                 "ApplyForMe is a service where you tell us your skills and what you are looking for, and people apply for you for 100s of jobs. All you need to do is attend interviews.</p>" +
                 " <hr style=\"border:none;border-top:1px solid #eee\" />" +

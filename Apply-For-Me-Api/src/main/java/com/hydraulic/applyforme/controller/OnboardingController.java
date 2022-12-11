@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.admin.NewPasswordDto;
+import com.hydraulic.applyforme.service.EmailService;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,10 +25,12 @@ import com.hydraulic.applyforme.service.OnboardingService;
 public class OnboardingController {
 
 	public final OnboardingService service;
+	private final EmailService emailService;
 	
-	public OnboardingController(OnboardingService service) {
+	public OnboardingController(OnboardingService service, EmailService emailService) {
 		super();
 		this.service = service;
+		this.emailService = emailService;
 	}
 
 	@PostMapping("/onboard")
