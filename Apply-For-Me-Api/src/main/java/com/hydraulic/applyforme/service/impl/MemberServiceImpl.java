@@ -2,15 +2,16 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.Role;
 import com.hydraulic.applyforme.model.dto.authentication.SignupDto;
 import com.hydraulic.applyforme.model.dto.member.UpdateMemberDto;
 import com.hydraulic.applyforme.model.enums.RoleType;
-import com.hydraulic.applyforme.model.exception.EmailAlreadyExistsException;
-import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
-import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
+import com.hydraulic.applyforme.model.exception.*;
+import com.hydraulic.applyforme.repository.CountryRepository;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.MemberSecretCodeRepository;
+import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
@@ -22,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Slf4j
@@ -30,6 +32,10 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository repository;
     private final MemberJpaRepository jpaRepository;
     private final MemberSecretCodeRepository memberSecretCodeRepository;
+
+    private final ProfessionalRepository professionalRepository;
+
+    private final CountryRepository countryRepository;
 
     @Autowired
     private RoleJpaRepository roleJpaRepository;
@@ -42,10 +48,14 @@ public class MemberServiceImpl implements MemberService {
 
     public MemberServiceImpl(MemberRepository repository,
                              MemberJpaRepository jpaRepository,
-                             MemberSecretCodeRepository memberSecretJpaRepository) {
+                             MemberSecretCodeRepository memberSecretJpaRepository,
+                             ProfessionalRepository professionalRepository,
+                             CountryRepository countryRepository) {
         this.repository = repository;
         this.jpaRepository = jpaRepository;
         this.memberSecretCodeRepository = memberSecretJpaRepository;
+        this.professionalRepository = professionalRepository;
+        this.countryRepository = countryRepository;
     }
 
     @Override
@@ -80,6 +90,13 @@ public class MemberServiceImpl implements MemberService {
         member.setPassword(passwordEncoder.encode(body.getPassword()));
 
         repository.saveOne(member);
+        Professional professional = Professional.builder()
+                .member(member)
+                .submissions(null)
+                .professionalProfiles(null)
+                .build();
+        professionalRepository.saveOne(professional);
+
         String generatedSecretCode = generateSignUpCode();
         memberSecretCodeRepository.saveSecretCode(generatedSecretCode);
 
@@ -106,20 +123,56 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public Member update(Long id, UpdateMemberDto body) {
+    public boolean update(Long id, UpdateMemberDto body) {
 
-        Member existingMember = repository.getOne(id);
+        Member member = repository.getOne(id);
 
-        if (existingMember == null) {
+        if (member == null) {
             throw new MemberNotFoundException(id);
         }
 
-        Member member = new Member();
-        member = modelMapper.map(body, Member.class);
-        member.setId(id);
-        member.setNationality(Country.builder().id(body.getNationality()).build());
-        member.setCountryOfResidence(Country.builder().id(body.getCountryOfResidence()).build());
+        Member memberExists = jpaRepository.findByEmailAddress(body.getEmailAddress());
 
-        return repository.updateOne(member);
+        if (memberExists != null && memberExists.getId() != id) {
+            throw new EmailAlreadyExistsException();
+        }
+
+        Member memberWithUsername = jpaRepository.findByUsername(body.getUsername());
+
+        if (memberWithUsername != null && memberWithUsername.getId() != id) {
+            throw new UsernameAlreadyExistsException();
+        }
+
+        Member memberWithPhoneNumber = jpaRepository.findByPhoneNumber(body.getPhoneNumber());
+
+        if (memberWithPhoneNumber != null && memberWithPhoneNumber.getId() != id) {
+            throw new PhoneNumberAlreadyExistsException();
+        }
+
+        Country nationality = countryRepository.getOne(body.getNationality());
+        if (nationality == null) {
+            throw new CountryNotFoundException(body.getNationality());
+        }
+
+        Country countryOfResidence = countryRepository.getOne(body.getCountryOfResidence());
+        if (countryOfResidence == null) {
+            throw new CountryNotFoundException(body.getCountryOfResidence());
+        }
+//        member.setId(id);
+        member.setUsername(body.getUsername());
+        member.setPhoneNumber(body.getPhoneNumber());
+        member.setEmailAddress(body.getEmailAddress());
+        member.setDateOfBirth(body.getDateOfBirth());
+        member.setCity(body.getCity());
+        member.setState(body.getState());
+        member.setFirstName(body.getFirstName());
+        member.setLastName(body.getLastName());
+        member.setAddress(body.getAddress());
+        member.setCurrentJobTitle(body.getCurrentJobTitle());
+        member.setNationality(nationality);
+        member.setCountryOfResidence(countryOfResidence);
+//        jpaRepository.save(member)
+        repository.updateOne(member);
+        return true;
     }
 }

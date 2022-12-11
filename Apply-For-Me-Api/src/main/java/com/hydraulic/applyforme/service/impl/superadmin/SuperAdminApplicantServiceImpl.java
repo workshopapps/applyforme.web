@@ -21,8 +21,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
@@ -100,7 +102,7 @@ public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantServic
         return getMemberResponse(members);
     }
 
-    private ApplyForMeResponse getMemberResponse(Page<Member> members) {
+    public ApplyForMeResponse getMemberResponse(Page<Member> members) {
         Collection<MemberDto> results = members
                 .getContent()
                 .stream()
@@ -110,13 +112,37 @@ public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantServic
                 .collect(Collectors.toList());
 
         ApplyForMeResponse response = new ApplyForMeResponse();
-        response.setContent(results);
+        response.setContent(getMemberResponse(members.getContent()));
         response.setPageNo(members.getNumber());
         response.setPageSize(members.getSize());
         response.setTotalElements(members.getTotalElements());
         response.setTotalPages(members.getTotalPages());
         response.setLast(members.isLast());
         return response;
+    }
+
+    private List<ApplicantDetailsResponse> getMemberResponse(Collection<Member> members) {
+        List<ApplicantDetailsResponse> responses = new ArrayList<>();
+
+        members.forEach(member -> {
+            Professional professional = professionalJpaRepository.getProfessional(member.getId());
+            professional.setMember(null);
+            professional.setSubmissions(null);
+            professional.setProfessionalProfiles(null);
+
+            long totalSubmissions = jobSubmissionRepository.countByProfessional(professional.getId());
+            long totalProfiles = professionalProfileJpaRepository.countByProfessional(professional.getId());
+
+            ApplicantDetailsResponse response = ApplicantDetailsResponse.builder()
+                    .membership(member)
+                    .professional(professional)
+                    .totalSubmissions(totalSubmissions)
+                    .totalProfessionalProfile(totalProfiles)
+                    .build();
+            responses.add(response);
+        });
+
+        return responses;
     }
 
     @Override

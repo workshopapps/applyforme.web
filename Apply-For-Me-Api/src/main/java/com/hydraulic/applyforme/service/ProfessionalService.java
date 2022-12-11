@@ -1,12 +1,12 @@
 package com.hydraulic.applyforme.service;
 
-import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 
-
-import java.util.List;
+import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
+import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 
 public interface ProfessionalService {
 
@@ -14,8 +14,10 @@ public interface ProfessionalService {
 
     Professional findOne(Long id);
 
-    Professional updateProfile(ProfessionalDto professionalDto, Long id);
+    boolean updateProfile(ProfessionalDto professionalDto, Long id);
 
     Page<Professional> retrieveAllProfessionals(int pageNo, int PageSize);
+
+	List<ProfessionalProfile> findAllJobProfile(Long id);
 
 }

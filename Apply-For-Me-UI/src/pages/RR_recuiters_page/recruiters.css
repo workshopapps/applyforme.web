@@ -1,0 +1,246 @@
+.rr_signin {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100vh;
+  min-height: 800px;
+
+}
+.rr-sign-in-modal  {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.rr-sign-in-modal-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin: auto 4rem;
+}
+.rr-sign-in-modal-header {
+  width: 100%;
+  
+}
+.rr-sign-in-modal-header a {
+  font-family: var(--font-family);
+  color: var(--afm__primary);
+  font-weight: 500;
+  text-decoration: none;
+}
+.rr-sign-in-modal-header > h1 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 150%;
+  font-family: var(--font-family);
+  color: var(--afm__primary);
+  margin-bottom: 8px;
+}
+.rr-sign-in-modal-header > p {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 150%;
+  letter-spacing: 0.01em;
+  color: #262728;
+}
+.rr-sign-in-modal-header > p > span {
+  color: var(--afm__primary);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+}
+.rr-sign-in-modal-container > form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 50px;
+}
+.rr-sign-in-modal-container  form > div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  gap: 26px;
+}
+.rr-sign-in-modal-form span {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+
+}
+
+.rr-sign-in-modal-form span label {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.03em;
+  color: #171B1D;
+  font-family: var(--font-family);
+  display: flex;
+  flex-direction: row;
+}
+.rr-sign-in-modal-container form span input,
+.rr-sign-in-modal-inner-forms span input {
+  width: 100%;
+  height: 56px;
+  background-color: white;
+  border: 1px solid #CCCCCC;
+  border-radius: 8px;
+  padding: 17px 32px;
+}
+
+
+.rr-sign-in-modal-inner-form span  input[type=text] {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #414244;
+  font-family: var(--font-family);
+}
+
+.rr-sign-in-modal-inner-form  span input:focus {
+  border:  1px solid var(--afm__primary);
+}
+
+.rr-sign-in-modal-submit > button {
+  background-color: var(--afm__primary);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+}
+.rr-sign-in-modal-submit > p {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+
+}
+.rr-sign-in-modal-container .modal-vector {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+.rr-sign-in-modal-container .modal-vector > span { 
+  border-bottom: 1.5px solid #B4D3F8;
+  width: 100%;
+  height: 5px;
+ 
+}
+.rr-sign-in-modal-submit > button#google {
+  background-color: white;
+  border: 2px solid var(--afm__primary);
+  color :var(--afm__primary)
+}
+.rr-sign-in-modal-inner-form {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+.rr-sign-in-modal-inner-form-span{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.rr-sign-span {
+  width: 100%;
+  display: flex;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: center;
+  gap: 16px !important;
+}
+.rr-sign-in-modal-inner-forms {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+#rr-agree {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  flex-wrap: wrap;
+  font-weight: 400;
+}
+@media only screen and (max-width: 1050px) {
+  .rr_signin {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .rr-sign-in-modal  {
+    display: flex;
+    background: #fff;
+    position: absolute;
+    top: 500px;
+    right: 0;
+    left: 0;
+    border-radius: 8px 8px 0px 0px;
+  }
+  .rr-sign-in-modal-container{
+    margin: auto 4rem;
+  }
+  
+  
+}
+
+
+
+@media only screen and (max-width: 550px) {
+  .rr_signin {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+  }
+  .rr-sign-in-modal  {
+    display: flex;
+    background: #fff;
+    border-radius: 8px 8px 0px 0px;
+    position: absolute;
+    top: 400.55px;
+    right: 0;
+    left: 0;
+  }
+  .rr-sign-in-modal-container{
+    margin: 4rem 2rem;
+  }
+  .rr-sign-in-modal-header > h1 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .rr-sign-in-modal-header > p {
+    font-size: 16px;
+  }
+  .rr-sign-in-modal-header > p > span {
+    font-size: 14px;
+  }
+  .rr-sign-in-modal-submit > button {
+    font-size: 14px;
+  }
+  .rr-sign-in-modal-inner-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}

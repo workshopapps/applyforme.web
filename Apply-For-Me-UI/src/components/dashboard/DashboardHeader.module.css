@@ -1,6 +1,6 @@
 .main_container {
     width: 100%;
-    background-color: #f7f7f8;
+    background-color: aliceblue;
     position: relative;
 }
 
@@ -105,7 +105,7 @@
 }
 
 .swap_nav form {
-    height: 48px;
+    height: 58px;
     width: 60%;
     max-width: 650px;
     border: 2px solid #2e3192;
@@ -121,8 +121,6 @@
     height: 100%;
     border: none;
     font-weight: 400;
-    font-size: 1rem;
-    line-height: 2rem;
     color: #737373;
     padding: 15px;
 }
@@ -153,13 +151,13 @@
 
 /* TOGGLE */
 .toggle_user {
-    background-color: #f7f7f8;
+    background-color: aliceblue;
     height: 100%;
     display: flex;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
-    padding: 1rem 0;
+    padding: 1rem 6rem 0;
     position: relative;
 }
 
@@ -200,7 +198,7 @@
 
 /* Profile User */
 .user_profile {
-    background-color: #f7f7f8;
+    background-color: aliceblue;
     height: 100%;
     position: relative;
     padding: 3.5rem 0;
@@ -310,6 +308,10 @@
     color: #52515b;
 }
 
+.profile_details__text_content button {
+    height: 56px;
+}
+
 .user_action {
     display: flex;
     align-items: flex-start;
@@ -322,14 +324,15 @@
 
 .user_action__btn,
 .user_action__btn__mobile {
-    background: #e9eef7;
-    padding: 0.7rem 1rem;
+    background: #ede9f7;
+    padding: 0.7rem;
     cursor: pointer;
     border: 1px solid #cccccc;
     border-radius: 4px;
-    width: 130px;
+    width: 120px;
+    height: 40px;
     display: flex;
-    gap: 4px;
+    gap: 10px;
     align-items: center;
 }
 
@@ -452,6 +455,19 @@
 
 /* Mobile Screen */
 @media screen and (max-width: 700px) {
+    .DashboardHeader_toggle_user__B-Wxl ul {
+        flex-wrap: nowrap;
+}
+.toggle_user ul {
+    flex-wrap: nowrap;
+}
+  
+    .toggle_user {
+        padding: 1rem ;
+    }
+    .DashboardHeader_toggle_user__B-Wxl {
+        padding: 1rem;
+    }
     .search_logo,
     .menu {
         display: block;
@@ -573,17 +589,19 @@
     .profile_details__text_content p {
         font-size: 1rem;
     }
+
+    .profile_details__text_content button {
+        width: 100% !important;
+    }
 }
 
 @media screen and (max-width: 399px) {
-    .toggle_user {
-        background-color: #fff;
-    }
     .toggle_user ul {
         gap: 1rem;
     }
     .toggle_user ul li {
         font-size: 1rem;
+        width: 50%;
     }
 
     .profile_details__text_content p {

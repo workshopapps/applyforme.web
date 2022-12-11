@@ -1,0 +1,120 @@
+.foot {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dvdr {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 70%;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.socials {
+    height: 3.5rem;
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1% 0 0 0;
+}
+.social {
+    height: 100%;
+    width: 15%;
+    padding: 3%;
+    box-sizing: border-box;
+    border: 0.2px solid #52515b37;
+}
+.alt {
+    text-transform: uppercase;
+    width: 20%;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+}
+.line {
+    height: 1px;
+    width: 42%;
+    background-color: #111416;
+}
+.checkl {
+    height: 2.3rem;
+}
+
+@media only screen and (max-width: 1073px) {
+    .dvdr {
+        width: 70%;
+    }
+    .social {
+        width: 20%;
+    }
+    .alt {
+        width: 20%;
+    }
+}
+@media only screen and (max-width: 943px) {
+    .alt {
+        width: 25%;
+    }
+}
+@media only screen and (max-width: 843px) {
+    .alt {
+        width: 35%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .social {
+        width: 25%;
+    }
+}
+@media only screen and (max-width: 668px) {
+    .dvdr {
+        width: 80%;
+    }
+    .socials {
+        width: 35%;
+        padding: 3% 0 0 0;
+    }
+    .social {
+        width: 22%;
+    }
+    .alt {
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 568px) {
+    .social {
+        width: 25%;
+    }
+    .socials {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+    .dvdr {
+        width: 90%;
+    }
+    .alt {
+        width: 55%;
+    }
+    .socials {
+        height: 2.8rem;
+        padding: 5% 0 0 0;
+    }
+    .social {
+        padding: 5%;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .dvdr {
+        width: 100%;
+    }
+    .alt {
+        width: 65%;
+    }
+}

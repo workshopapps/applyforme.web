@@ -1,0 +1,251 @@
+.rrd_applications_wrapper {
+    padding: 2rem 1.25rem;
+    color: #52515b;
+    /* width: 99vw; */
+}
+
+.rrd_applications_wrapper button {
+    border: none;
+}
+
+.greeting_text > h1 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.greeting_text > p {
+    color: #737373;
+}
+
+.applications_stats_and_button {
+    display: flex;
+    flex-direction: column;
+}
+
+.applications_stats {
+    margin: 1.5rem 0;
+    overflow: scroll;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.applications_stats::-webkit-scrollbar {
+    display: none;
+}
+
+.applications_stats {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.applications_stat {
+    border: 2px solid #f7f7f8;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 5rem;
+    padding: 1rem 0.5rem;
+    min-width: 7.5rem;
+}
+
+.stat_number {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.greeting_text > p,
+.stat_text {
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+.job_application_form_button {
+    background: #2e3192;
+    border-radius: 0.5rem;
+    color: #fbfbff;
+    font-size: 0.87rem;
+    height: max-content;
+    padding: 0.75rem 1.5rem;
+    width: max-content;
+}
+
+.job_application_form_button:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.new_applications_stats {
+    display: flex;
+    flex-direction: column;
+    margin: 1.25rem 0;
+}
+
+.view_all_wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new_applications_stats_heading {
+    font-weight: 700;
+    margin: 1.5rem 0 1rem;
+}
+
+.new_applications_stats_heading > span {
+    color: inherit;
+}
+
+.new_applications_stats_table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.stats_heading {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.stats_item {
+    font-weight: 300;
+}
+
+.stats_details_view_button {
+    background-color: transparent;
+    color: hsl(238, 52%, 38%);
+}
+
+.stats_row {
+    border-bottom: 1px solid rgba(230, 230, 233, 1);
+    display: flex;
+    gap: 10%;
+    list-style-type: none;
+    padding: 32px 0px 16px;
+}
+
+.stats_name {
+    width: 40%;
+}
+
+.stats_plan {
+    width: 22%;
+}
+
+.stats_details {
+    width: 16%;
+}
+
+.desktop_only {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .rrd_applications_wrapper {
+        padding: 2rem 2.5rem;
+    }
+
+    .desktop_only {
+        display: block;
+    }
+
+    .greeting_text > h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .greeting_text > p,
+    .stat_text,
+    .job_application_form_button,
+    .stats_heading,
+    .stats_details_view_button {
+        font-size: 1rem;
+    }
+
+    .applications_stat {
+        padding-left: 1rem;
+        width: 14.25rem;
+    }
+
+    .stat_number {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+
+    .job_application_form_button {
+        font-weight: 600;
+        padding: 1rem 2.5rem;
+    }
+
+    .new_applications_stats_heading,
+    .new_applications_stats_heading > span {
+        font-size: 1.35rem;
+    }
+
+    .stats_row {
+        border-bottom: 1px solid rgba(230, 230, 233, 1);
+        display: grid;
+        grid-template-columns: 17% 17% 8% 21% 8% 8%;
+        gap: 4%;
+        list-style-type: none;
+        padding: 32px 0px 16px;
+    }
+
+    .stats_details,
+    .stats_name,
+    .stats_plan {
+        width: 100%;
+    }
+
+    .stats_heading {
+        font-weight: 600;
+    }
+
+    .view_all {
+        background: transparent;
+        color: #2e3192;
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (min-width: 1168px) {
+    .rrd_applications_wrapper {
+        padding: 2rem 7rem;
+    }
+
+    .greeting_text > p,
+    .stat_text,
+    .job_application_form_button,
+    .stats_heading {
+        font-size: 1rem;
+    }
+
+    .applications_stat {
+        width: 15.5rem;
+    }
+
+    .new_applications_stats_heading,
+    .new_applications_stats_heading > span {
+        font-size: 1.75rem;
+    }
+
+    .stats_row {
+        grid-template-columns: 17% 17.5% 10% 21% 9% 8%;
+        gap: 3.5%;
+    }
+
+    .stats_heading,
+    .stats_item,
+    .stats_details_view_button {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (min-width: 1328px) {
+    .applications_stats_and_button {
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

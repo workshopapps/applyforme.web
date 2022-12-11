@@ -17,7 +17,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 
     @Override
     public List<Country> getAll() {
-        String queryText = "select c from Country c order by c.updatedOn desc";
+        String queryText = "select c from Country c order by c.title asc";
         TypedQuery<Country> applyForMeQuery = entityManager.createQuery(queryText, Country.class);
         return applyForMeQuery.getResultList();
     }

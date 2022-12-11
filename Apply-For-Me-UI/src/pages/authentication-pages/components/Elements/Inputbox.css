@@ -1,0 +1,25 @@
+.input{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #BDBDBD;
+    border-radius: 8px;
+    padding: 2%;
+    box-sizing: border-box;
+    background-color: #E8F0FE;
+}
+::placeholder{
+    color: #414244;
+    font-size: .8rem;
+}
+.button_label{
+    width: 100%;
+    height: 3rem;
+}
+.inputbox_label{
+    position:relative;
+}
+.eye{
+    top: 15px;
+    right: 1rem;
+    position: absolute;
+}

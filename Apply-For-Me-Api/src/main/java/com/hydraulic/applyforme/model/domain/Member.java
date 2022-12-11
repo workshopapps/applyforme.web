@@ -60,21 +60,23 @@ public class Member {
      * This column stores a reference to the country of the citizenship of an actor
      * in the system
      */
-    @ManyToOne(fetch = FetchType.EAGER, optional = false,cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "nationality_id")
     private Country nationality;
 
     /**
      * This column stores a reference to the country where the actor presently resides.
      */
-    @ManyToOne(fetch = FetchType.EAGER, optional = false,cascade = CascadeType.ALL)
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "country_of_residence_id")
     private Country countryOfResidence;
 
     @Temporal(TemporalType.DATE)
     @Column(name ="date_of_birth")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth = new Date();
 
     /**
@@ -98,6 +100,9 @@ public class Member {
 
     @Column(name ="state")
     private String state;
+
+    @Column(name ="address")
+    private String address;
 
     @Column(name ="password", nullable = false)
     private String password;

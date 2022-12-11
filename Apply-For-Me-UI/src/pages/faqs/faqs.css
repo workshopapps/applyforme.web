@@ -3,12 +3,12 @@
     padding: 0;
     scroll-behavior: smooth;
     text-decoration: none;
-    font-family: var(--font-family);
+    font-family: var(--font-family) !important;
     
 }
 .faq {
     width: 100%;
-    height: 1610px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -90,7 +90,7 @@
 /* for the  linked pages */
 .faqses {
     width: 100%;
-    height: 1160px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

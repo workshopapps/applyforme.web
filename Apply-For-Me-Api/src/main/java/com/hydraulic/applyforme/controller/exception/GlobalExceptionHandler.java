@@ -280,5 +280,93 @@ public class GlobalExceptionHandler {
         return body;
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(JobTitleNotFoundException.class)
+    public Object notFound(JobTitleNotFoundException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", JobTitleNotFoundException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.NOT_FOUND.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(JobTitleDuplicateEntityException.class)
+    public Object duplicate(JobTitleDuplicateEntityException ex) {
+        final Map<String, Object> errors = new HashMap<>();
+        errors.put("entityName", JobTitleDuplicateEntityException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.CONFLICT.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(CoverLetterTemplateNotFoundException.class)
+    public Object notFound(CoverLetterTemplateNotFoundException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", CoverLetterTemplateNotFoundException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.NOT_FOUND.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(CoverLetterTemplateDuplicateEntityException.class)
+    public Object duplicate(CoverLetterTemplateDuplicateEntityException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", CoverLetterTemplateDuplicateEntityException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.CONFLICT.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ProfessionalProfileNotFoundException.class)
+    public Object notFound(ProfessionalProfileNotFoundException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", ProfessionalProfileNotFoundException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.NOT_FOUND.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ProfessionalProfileDuplicateEntityException.class)
+    public Object duplicate(ProfessionalProfileDuplicateEntityException ex) {
+        final Map<String, Object> errors = new HashMap<>();
+        errors.put("entityName", ProfessionalProfileDuplicateEntityException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.CONFLICT.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(UsernameAlreadyExistsException.class)
+    public Object exists(UsernameAlreadyExistsException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", UsernameAlreadyExistsException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.CONFLICT.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(PhoneNumberAlreadyExistsException.class)
+    public Object exists(PhoneNumberAlreadyExistsException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", PhoneNumberAlreadyExistsException.ENTITY_NAME);
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.CONFLICT.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
 
 }

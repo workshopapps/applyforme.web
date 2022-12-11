@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.service.impl;
 
+<<<<<<< HEAD
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.dto.applicant.ApplicantJobProfileDto;
@@ -11,7 +12,19 @@ import com.hydraulic.applyforme.model.enums.JobSeniority;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.repository.ProfessionalProfileRepository;
+=======
+
+import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.dto.applicant.ApplicantDto;
+
+import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.dto.applicant.ApplicantResponse;
+import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
+import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
+import com.hydraulic.applyforme.repository.ApplicantRepository;
+>>>>>>> d1209ce9e517735fb2e20059e2fb0d05cea48f05
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
+import com.hydraulic.applyforme.repository.jpa.ProfessionalRepository;
 import com.hydraulic.applyforme.service.ApplicantService;
 import com.hydraulic.applyforme.util.ApplyForMeUtil;
 import org.modelmapper.ModelMapper;
@@ -19,7 +32,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,12 +44,27 @@ public class ApplicantServiceImpl implements ApplicantService {
     private final JobSubmissionRepository jobSubmissionRepository;
     private final ProfessionalProfileRepository professionalProfileRepository;
 
+    private final ProfessionalRepository professionalRepository;
+
     private final ModelMapper modelMapper;
 
+<<<<<<< HEAD
     public ApplicantServiceImpl(JobSubmissionRepository jobSubmissionRepository, ProfessionalProfileRepository professionalProfileRepository, ModelMapper modelMapper) {
         this.jobSubmissionRepository = jobSubmissionRepository;
         this.professionalProfileRepository = professionalProfileRepository;
+=======
+
+    private final ApplicantRepository repository;
+
+    public ApplicantServiceImpl(JobSubmissionRepository jobSubmissionRepository, ModelMapper modelMapper,
+                                ProfessionalRepository professionalRepository,
+                                ApplicantRepository repository) {
+
+        this.jobSubmissionRepository = jobSubmissionRepository;
+        this.professionalRepository = professionalRepository;
+>>>>>>> d1209ce9e517735fb2e20059e2fb0d05cea48f05
         this.modelMapper = modelMapper;
+        this.repository = repository;
     }
 
 
@@ -43,15 +73,21 @@ public class ApplicantServiceImpl implements ApplicantService {
         Pageable pageable =  ApplyForMeUtil.createPageable(pageNo, pageSize, sortBy, sortDir);
         var result =  jobSubmissionRepository.findAll(pageable);
 
-        Collection<ApplicantResponse> applicantResponse = result.getContent().stream().map(x -> ApplicantResponse.builder()
-                .id(x.getId())
-                .date(x.getCreatedOn())
-                .jobLocation(x.getJobLocation())
-                .jobTitle(x.getJobTitle())
-                .jobType(x.getJobLocationType().getValue())
-                .jobCompany(x.getJobCompany())
-                .salaryRange("I don't know where to find it, I can't even do a join table")
-                .build()
+        Collection<ApplicantResponse> applicantResponse = result.getContent().stream().map(x -> {
+                    Random random = new Random();
+
+                    int randomNumber = random.nextInt(400 - 200) + 200;
+                    return  ApplicantResponse.builder()
+                            .id(x.getId())
+                            .date(x.getCreatedOn())
+                            .jobLocation(x.getJobLocation())
+                            .jobTitle(x.getJobTitle())
+                            .jobType(x.getJobLocationType().getValue())
+                            .jobCompany(x.getJobCompany())
+                            .salaryRange("$" + randomNumber)
+                            .build();
+
+                }
         ).collect(Collectors.toList());
         ApplyForMeResponse applyForMeResponse = new ApplyForMeResponse();
         applyForMeResponse.setContent(applicantResponse);
@@ -64,6 +100,7 @@ public class ApplicantServiceImpl implements ApplicantService {
     }
 
 
+<<<<<<< HEAD
     @Override
     @Transactional
     public ApplicantJobProfileDto updateJobProfile(ApplicantJobProfileDto applicantJobProfileDto, Long id){
@@ -149,4 +186,39 @@ public class ApplicantServiceImpl implements ApplicantService {
         }
         return applicantJobProfileDto;
     }
+=======
+    @Transactional
+    @Override
+    public Professional update(Long id, ApplicantDto applicantDto) {
+        Professional professional = professionalRepository.findById(id).orElseThrow(() -> new ProfessionalNotFoundException("" +
+                "Professional Not Found"));
+
+        if (applicantDto.getEmailAddress() != null) {
+            professional.getMember().setEmailAddress(applicantDto.getEmailAddress());
+        }
+
+        if (applicantDto.getFirstName() != null) {
+            professional.getMember().setFirstName(applicantDto.getFirstName());
+        }
+
+        if (applicantDto.getLastName() != null) {
+            professional.getMember().setLastName(applicantDto.getLastName());
+        }
+
+        if (applicantDto.getUsername() != null) {
+            professional.getMember().setUsername(applicantDto.getUsername());
+        }
+
+        if (applicantDto.getPhoneNumber() != null) {
+            professional.getMember().setPhoneNumber(applicantDto.getPhoneNumber());
+        }
+        return professionalRepository.save(professional);
+    }
+
+    @Override
+    public Member getDetails(Long id) {
+        return repository.getMyDetailsById(id);
+    }
+
+>>>>>>> d1209ce9e517735fb2e20059e2fb0d05cea48f05
 }

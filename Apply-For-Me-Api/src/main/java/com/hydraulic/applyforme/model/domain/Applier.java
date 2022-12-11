@@ -1,10 +1,7 @@
 package com.hydraulic.applyforme.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,6 +14,7 @@ import java.util.Set;
  */
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -31,6 +29,6 @@ public class Applier {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "applier")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "applier", cascade = CascadeType.ALL)
     private Set<Submission> submissions = new HashSet<>();
 }

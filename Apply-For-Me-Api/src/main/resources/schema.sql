@@ -31,14 +31,17 @@ CREATE TABLE IF NOT EXISTS `professional_profile` (
 
 	`passport_link` VARCHAR(400),
 	`resume_link` VARCHAR(400),
-	`cover_letter` VARCHAR(400),
+	`cover_letter_link` VARCHAR(400),
+	`cover_letter_subject` LONGTEXT,
+	`cover_letter_content` TEXT,
+
 
     `employment_type` VARCHAR(200),
 	`salary_range` VARCHAR(50),
 	`job_location` VARCHAR(50),
  	`preferred_job_location_type` VARCHAR(150),
  	`job_seniority` VARCHAR(150),
- 	`desired_job_title` VARCHAR(150),
+ 	`desired_job_title` VARCHAR(150) ,
 
    	`industry` VARCHAR(150),
  	`years_of_experience` INT,
@@ -65,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   	`avatar` VARCHAR(300),
   	`city` VARCHAR(300),
   	`state` VARCHAR(300),
+  	`address` VARCHAR(300),
   	`active` BOOLEAN NOT NULL DEFAULT TRUE,
   	`created_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`updated_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -107,7 +111,16 @@ CREATE TABLE IF NOT EXISTS `country` (
 CREATE TABLE IF NOT EXISTS `cover_letter_template` (
 	`id` BIGINT AUTO_INCREMENT,
   	`title` VARCHAR(300) NOT NULL,
-  	`template_text` TEXT NOT NULL,
+  	`content` LONGTEXT NOT NULL,
+  	`created_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`updated_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `job_title` (
+	`id` BIGINT AUTO_INCREMENT,
+  	`title` VARCHAR(300) NOT NULL,
   	`created_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`updated_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap");
+
+.account_settings_container {
+    display: flex;
+    flex: 1 1 0;
+    font-family: "Outfit", sans-serif;
+}
+
+/* .sidebar_container {
+    width: 10%;
+} */
+
+.top_nav {
+    width: 100%;
+    height: 85px;
+    border-bottom: 1px solid #c6bdbd;
+}
+
+.top_nav .nav_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 78%;
+    margin: auto;
+}
+
+.top_nav h2 {
+    color: #2e3192;
+    font-weight: 700;
+}
+
+.top_nav .nav_content > div {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+}
+
+.nav_image img {
+    width: 45px;
+}
+
+.nav-image {
+    border: 1px solid #c6bdbd;
+    background-color: #e9eef7;
+    border-radius: 50%;
+}
+
+.body_container {
+    width: 100%;
+    height: 100%;
+}
+
+.body_container .body_content {
+    display: flex;
+}
+
+.body_container .second_sidenav {
+    width: 20%;
+    border-right: 0.5px solid #c6bdbd;
+    height: 100%;
+    min-height: 100vh;
+}
+
+.second_sidenav ul {
+    padding-left: 2rem;
+    padding-top: 1rem;
+}
+
+.second_sidenav ul li {
+    list-style: none;
+    padding: 1rem;
+    border-bottom: 0.5px solid #c6bdbd;
+    padding-left: 1.5rem;
+    color: #c6bdbd;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.second_sidenav ul li.active {
+    background-color: #e9eef7;
+    font-weight: 700;
+    color: #2e3192;
+}
+
+.form {
+    width: 50%;
+    padding: 1rem;
+}
+
+.form h3 {
+    color: #262728;
+    font-size: 1.5rem;
+}
+
+.form .change_image {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.form .change_image .image {
+    border: 1px solid #c6bdbd;
+    background-color: #e9eef7;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.form .change_image span a {
+    text-decoration: none;
+    color: #2e3192;
+}
+
+.form .input_fields {
+    margin-top: 1rem;
+}
+
+.form .input_fields .row {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.form .input_fields .row .form_control {
+    width: 100%;
+}
+
+.form .input_fields .row label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #262728;
+}
+
+.form .input_fields .row input {
+    width: 100%;
+    border: 1px solid #ebebeb;
+    height: 40px;
+    border-radius: 8px;
+    padding-left: 10px;
+    outline: none;
+    font-size: 0.7rem;
+}
+
+.input_fields button,.password_div button {
+    background-color: #2e3192;
+    border: none;
+    padding: 0.5rem;
+    width: 28%;
+    margin-top: 1.5rem;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .sidebar_container {
+        display: none;
+    }
+
+    .body_container .second_sidenav {
+        display: none;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .input_fields button {
+        width: 100%;
+    }
+}

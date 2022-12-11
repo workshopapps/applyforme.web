@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -37,16 +38,17 @@ public class UpdateMemberDto {
     @JsonProperty("date_of_birth")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @Past(message = "{customer.dateOfBirth.past}")
     private Date dateOfBirth;
 
     @JsonProperty("current_job_title")
     private String currentJobTitle;
 
     @NotNull(message = "{member.emailAddress.notNull}")
+    @Email(message = "{member.email.valid}")
     @JsonProperty("email_address")
     private String emailAddress;
 
+    @NotNull(message = "{member.username.notNull}")
     @JsonProperty("username")
     private String username;
 
@@ -62,4 +64,8 @@ public class UpdateMemberDto {
     @Size(max = 300, message = "{member.state.size}")
     @JsonProperty("state")
     private String state;
+
+    @Size(max = 300, message = "{member.address.size}")
+    @JsonProperty("address")
+    private String address;
 }

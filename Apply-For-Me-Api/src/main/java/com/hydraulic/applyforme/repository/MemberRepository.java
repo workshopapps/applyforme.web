@@ -11,12 +11,15 @@ public interface MemberRepository {
     List<Member> getAll(Integer pageOffSet);
 
     Member getOne(Long id);
+    
+    Member fetchOne(Long id);
 
     Member getRef(Long id);
 
     Member saveOne(Member member);
 
-    Member updateOne(Member member);
+    boolean updateOne(Member member);
+
 
     boolean remove(Long id);
 

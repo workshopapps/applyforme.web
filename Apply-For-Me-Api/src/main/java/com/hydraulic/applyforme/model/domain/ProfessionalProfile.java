@@ -3,10 +3,7 @@ package com.hydraulic.applyforme.model.domain;
 import com.hydraulic.applyforme.model.enums.EmploymentType;
 import com.hydraulic.applyforme.model.enums.JobLocationType;
 import com.hydraulic.applyforme.model.enums.JobSeniority;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -21,6 +18,7 @@ import java.util.Date;
  */
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -51,8 +49,14 @@ public class ProfessionalProfile {
     @Column(name ="resume_link")
     private String resumeLink;
 
-    @Column(name ="cover_letter")
-    private String cover_letter;
+    @Column(name ="cover_letter_link")
+    private String coverLetterLink;
+
+    @Column(name ="cover_letter_subject")
+    private String coverLetterSubject;
+
+    @Column(name ="cover_letter_content")
+    private String coverLetterContent;
 
     @Column(name = "salary_range")
     private String salaryRange = "0";
@@ -90,7 +94,7 @@ public class ProfessionalProfile {
     @Column(name ="included_keywords")
     private String includedKeywords;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name ="professional_id")
     private Professional professional;
 

@@ -1,8 +1,11 @@
 package com.hydraulic.applyforme.repository;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+<<<<<<< HEAD
 import com.hydraulic.applyforme.model.dto.applicant.ApplicantJobProfileDto;
 import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
+=======
+>>>>>>> d1209ce9e517735fb2e20059e2fb0d05cea48f05
 
 import java.util.List;
 
@@ -19,7 +22,14 @@ public interface ProfessionalRepository {
 
     boolean removeAll();
 
-    Professional updateOne(Professional body);
 
+<<<<<<< HEAD
     int updateProfile(ApplicantJobProfileDto body);
+=======
+    boolean updateOne(Professional body);
+
+    Professional saveOne(Professional body);
+
+//	List<ProfessionalProfile> getAllJobProfile(Long id, int pageOffset);
+>>>>>>> d1209ce9e517735fb2e20059e2fb0d05cea48f05
 }

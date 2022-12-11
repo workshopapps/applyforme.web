@@ -1,10 +1,18 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.Professional;
+<<<<<<< HEAD
 import com.hydraulic.applyforme.model.dto.applicant.ApplicantJobProfileDto;
 import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
+=======
+import com.hydraulic.applyforme.model.dto.applicant.ApplicantDto;
+
+import com.hydraulic.applyforme.model.domain.Member;
+
+>>>>>>> d1209ce9e517735fb2e20059e2fb0d05cea48f05
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.ApplicantService;
+import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -27,7 +35,6 @@ public class ApplicantController {
         this.service = service;
     }
 
-
     @GetMapping("/entries")
     public ApplyForMeResponse getAllSubmission(
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
@@ -37,8 +44,24 @@ public class ApplicantController {
         return service.getApplicationList(pageNo, pageSize, sortBy, sortDir);
     }
 
+<<<<<<< HEAD
     @PutMapping("/update/{id}")
     public ApplicantJobProfileDto update(@Validated @RequestBody ApplicantJobProfileDto body, @PathVariable(name ="id") Long id) {
         return service.updateJobProfile(body, id);}
 
+=======
+
+    @PutMapping("/update/{id}")
+    public Professional update(@Validated @RequestBody ApplicantDto body, @PathVariable(name ="id") Long id) {
+        return service.update(id, body);
+   }
+   
+    @GetMapping("/details")
+    public Member getMyDetails(Long id){
+        var authenticatedUser = CurrentUserUtil.getCurrentUser();
+        assert authenticatedUser != null;
+        return service.getDetails(authenticatedUser.getId());
+
+    }
+>>>>>>> d1209ce9e517735fb2e20059e2fb0d05cea48f05
 }
