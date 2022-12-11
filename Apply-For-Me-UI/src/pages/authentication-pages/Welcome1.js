@@ -25,6 +25,7 @@ const Welcome1 = () => {
     const navigate = useNavigate();
     const { user } = useSelector(state => state.user);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         if (user) {
@@ -57,7 +58,9 @@ const Welcome1 = () => {
             .post(`${BaseUrl}`, formData)
             .then(res => res.data)
             .catch(err => {
-                console.log(err);
+                let message = typeof err.response.data.message === "object"? err.response.data.message[Object.keys(err.response.data.message)[0]] : err.response.data.message
+                setError(message);
+                console.log(err.response.data.message);
             });
 
         if (result?.token) {
@@ -65,6 +68,7 @@ const Welcome1 = () => {
             let tokenKey = "tokenHngKey";
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
+            setError("");
             setLoading(false);
             toast("Signup Successfully");
             setTimeout(() => {
@@ -135,10 +139,12 @@ const Welcome1 = () => {
                             <span className="special">Privacy Policies</span>
                         </span>
                     </label>
+                    {error && <p style={{color:"red"}}>{error}</p>}
                     <div className="lg">
                         <Button child="Sign Up" type="submit" />
                     </div>
                 </form>
+                
                 <span className="ques">
                     Already have an account?{" "}
                     <Link to="/wel2" className="special">

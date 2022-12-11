@@ -2,11 +2,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecruiterApplicants } from "store/slice/RR_AdminSlice";
+import {SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./applicants.module.css";
 
 export const RRApplicantsPage = () => {
-
     const dispatch = useDispatch();
     const [pagination, setPagination] = useState({
         "pageNo": 0,
@@ -14,12 +13,14 @@ export const RRApplicantsPage = () => {
     });
     const handlePageClick =(data)=>{
         setPagination(prevState =>({...prevState,"pageNo":data.selected}));
-        dispatch( getRecruiterApplicants(pagination));
+
+        dispatch(SuperAdminApplicantsApplicants(pagination));
        
     }
     useEffect(()=>{
-        dispatch( getRecruiterApplicants(pagination));
-    },[dispatch, getRecruiterApplicants])
+        dispatch(SuperAdminApplicants(pagination));
+    },[dispatch,SuperAdminApplicants])
+
 
     const list = useSelector(state => state.RRadmin);
     console.log(list);
@@ -28,9 +29,11 @@ export const RRApplicantsPage = () => {
            <div className="statisticsContainer">
                 <h2  className="list-header">Statistics</h2>
                 <select name="statistic_sorter" id="statistic_sorter">
-                    {list.RRApplicantsList.length !== 0 &&
-                         (list.applicantsloadingStatus === "success" && list.RRApplicantsList.length !==0) &&
-                            list.RRApplicantsList.content?.map((statistics, index)=>{
+
+                    {list.superAdminApplicantsList.length !== 0 &&
+                         (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
+                            list.superAdminApplicantsList.content?.map((statistics, index)=>{
+
                             return(
                                 <option key={index} value={statistics.membership.createdOn?.split("T").shift()}>{statistics.membership.createdOn?.split("T").shift()}</option>
                             )
@@ -60,9 +63,11 @@ export const RRApplicantsPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {list.RRApplicantsList.length !== 0 &&
-                         (list.applicantsloadingStatus === "success" && list.RRApplicantsList.length !==0) &&
-                            list.RRApplicantsList.content?.map(list => {
+
+                        {list.superAdminApplicantsList.length !== 0 &&
+                         (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
+                            list.superAdminApplicantsList.content?.map(list => {
+
                                 return (
                                     <tr
                                         className={classes.user_details}
@@ -88,7 +93,7 @@ export const RRApplicantsPage = () => {
                     breakLabel="..."
                     nextLabel=">"
                     pageRangeDisplayed={5}
-                    pageCount={list.RRApplicantsList?.totalPages}
+                    pageCount={list.superAdminApplicantsList?.totalPages}
                     marginPagesDisplayed="1"
                     previousLabel="<"
                     renderOnZeroPageCount={null}

@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./NoProfile.module.css";
-import add from "../assets/add.png";
-import blueadd from "../assets/blue-add.png";
-import TopBar from "../components/TopBar/TopBar";
-import Profile from "../Profile/Profile";
+import add from "../../../assets/add.png";
+import blueadd from "../../../assets/blue-add.png";
+import TopBar from "../../../components/TopBar/TopBar";
+import Profile from "../../../Profile/Profile";
 import axios from "axios";
 import { useEffect, useState } from "react";
 const NoProfile = () => {
@@ -29,6 +29,7 @@ const NoProfile = () => {
             )
             .then(response => {
                 // handle success
+                console.log(response.data);
                 setProfileList(response.data);
                 setData("done");
                 // console.log(response.data);
