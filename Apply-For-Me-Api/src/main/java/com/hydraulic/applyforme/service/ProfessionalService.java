@@ -18,6 +18,6 @@ public interface ProfessionalService {
     Professional updateProfile(ProfessionalDto professionalDto, Long id);
 
     Page<Professional> retrieveAllProfessionals(int pageNo, int PageSize);
-    List<JobSummaryResponse> retrieveProfessionalSubmissions(String emailAddress);
+    List<JobSummaryResponse> retrieveProfessionalSubmissions(Long id);
 
 }
