@@ -7,16 +7,19 @@ const Dropdown = ({
     name,
     options,
     width,
-    placeholderText
+    placeholderText,
+    onBlur,
+    newClass
 }) => {
     return (
-        <div className={styles.dropdown}>
+        <div className={[styles.dropdown, newClass].join(" ")}>
             <select
                 id={id}
                 value={value}
                 onChange={onChange}
                 style={{ width: `${width}%` }}
                 name={name}
+                onBlur={onBlur}
             >
                 <option value="" defaultValue={""}>
                     {placeholderText}

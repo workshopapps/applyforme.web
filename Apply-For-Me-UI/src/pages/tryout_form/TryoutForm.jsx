@@ -6,6 +6,10 @@ import BlueButton from "components/buttons/blue_background/BlueButton";
 import Dropdown from "./Dropdown/Dropdown";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import * as Yup from "yup";
 
 const TryoutForm = () => {
     const [countries, setCountries] = useState();
@@ -25,87 +29,346 @@ const TryoutForm = () => {
             .then(response => response.json())
             .then(data => setCountries(data));
     }, []);
+
+    const onSubmit = async values => {
+        const res = await axios
+            .post(
+                "https://api.applyforme.hng.tech/api/v1/visitor/onboard",
+                values
+            )
+            .then(response => {
+                return response;
+            })
+            .catch(error => {
+                return error?.response.data;
+            });
+        if (res.code == "409") {
+            toast(res.message);
+        }
+
+        if (res.status == "200") {
+            navigate("/tryout-form/success");
+        }
+    };
+
+    const { values, handleChange, handleSubmit, handleBlur, touched, errors } =
+        useFormik({
+            // form state
+            initialValues: {
+                first_name: "",
+                last_name: "",
+                email_address: "",
+                phone_number: "",
+                job_location: "",
+                job_title: "",
+                job_seniority: "",
+                employment_type: "",
+                salary_range: "",
+                job_location_type: ""
+            },
+            //   form validation
+            validationSchema: Yup.object().shape({
+                first_name: Yup.string()
+                    .max(20, "Name must be 20 characters or less.")
+                    .required("Please enter your first name"),
+                last_name: Yup.string()
+                    .max(20, "Name must be 20 characters or less.")
+                    .required("please enter your last name"),
+                email_address: Yup.string()
+                    .email("Invalid email address")
+                    .required("Email is required"),
+                job_location: Yup.string().required(
+                    "please enter your preffered Job location"
+                ),
+                job_title: Yup.string().required("Job title is required"),
+                phone_number: Yup.string()
+                    .min(
+                        11,
+                        "phone number must be between 11 and 14 characters"
+                    )
+                    .required("Please enter a phone number"),
+                job_seniority: Yup.string().required("select experience level"),
+                salary_range: Yup.string().required(
+                    "please select desired salary range"
+                ),
+                employment_type: Yup.string().required("please select one"),
+                job_location_type: Yup.string().required("Please select one")
+            }),
+
+            onSubmit
+        });
+
     return (
         <div>
+            <ToastContainer />
             <Nav />
             <div className={formStyling.form_wrapper}>
-                <form action="" onSubmit={e => e.preventDefault()}>
+                <form onSubmit={handleSubmit}>
                     <p className={formStyling.personal_info}>
                         Please fill in your personal information below
                     </p>
-                    <Input placeholder={"First name"} />
-                    <Input placeholder={"Last name"} />
-                    <Input placeholder={"Email address"} />
-                    <Input placeholder={"Phone number"} />
+                    <div>
+                        {" "}
+                        <Input
+                            placeholder={"First name"}
+                            value={values.first_name}
+                            onChange={handleChange}
+                            id={"first_name"}
+                            onBlur={handleBlur}
+                            newClass={
+                                touched.first_name && errors.first_name
+                                    ? "input-error"
+                                    : ""
+                            }
+                        />
+                        {touched.first_name && errors.first_name && (
+                            <small
+                                style={{
+                                    color: "#EB5757",
+                                    paddingTop: "0.3rem"
+                                }}
+                            >
+                                {errors.first_name}
+                            </small>
+                        )}
+                    </div>
+                    <div>
+                        <Input
+                            placeholder={"Last name"}
+                            value={values.last_name}
+                            onChange={handleChange}
+                            id={"last_name"}
+                            onBlur={handleBlur}
+                            newClass={
+                                touched.last_name && errors.last_name
+                                    ? "input-error"
+                                    : ""
+                            }
+                        />
+                        {touched.last_name && errors.last_name && (
+                            <small
+                                style={{
+                                    color: "#EB5757",
+                                    paddingTop: "0.3rem"
+                                }}
+                            >
+                                {errors.last_name}
+                            </small>
+                        )}
+                    </div>
+
+                    <div>
+                        <Input
+                            placeholder={"Email address"}
+                            value={values.email_address}
+                            onChange={handleChange}
+                            id={"email_address"}
+                            onBlur={handleBlur}
+                            newClass={
+                                touched.email_address && errors.email_address
+                                    ? "input-error"
+                                    : ""
+                            }
+                        />
+                        {touched.email_address && errors.email_address && (
+                            <small
+                                style={{
+                                    color: "#EB5757",
+                                    paddingTop: "0.3rem"
+                                }}
+                            >
+                                {errors.email_address}
+                            </small>
+                        )}
+                    </div>
+                    <div>
+                        <Input
+                            placeholder={"Phone number"}
+                            value={values.phone_number}
+                            onChange={handleChange}
+                            id={"phone_number"}
+                            onBlur={handleBlur}
+                            newClass={
+                                touched.phone_number && errors.phone_number
+                                    ? "input-error"
+                                    : ""
+                            }
+                        />
+
+                        {touched.phone_number && errors.phone_number && (
+                            <small
+                                style={{
+                                    color: "#EB5757",
+                                    paddingTop: "0.3rem"
+                                }}
+                            >
+                                {errors.phone_number}
+                            </small>
+                        )}
+                    </div>
+
                     <div className={formStyling.details}>
                         <p className={formStyling.personal_info}>
                             Complete your desired job info and location for our
                             job search.
                         </p>
-                        <Dropdown
-                            options={[
-                                {
-                                    label: "Backend engineer",
-                                    value: "Backend engineer"
-                                },
-                                {
-                                    label: "Data scientist",
-                                    value: "Data scientist"
-                                },
-                                {
-                                    label: "Frontend engineer",
-                                    value: "Frontend engineer"
-                                },
-                                {
-                                    label: "Game developer",
-                                    value: "Game developer"
-                                },
-                                { label: "Illustrator", value: "Illustrator" },
-                                {
-                                    label: "Musician",
-                                    value: "Musician"
-                                },
-                                {
-                                    label: "No code developer",
-                                    value: "No code developer"
-                                },
-                                {
-                                    label: "Product designer",
-                                    value: "Product designer"
-                                },
-                                {
-                                    label: "Product manager",
-                                    value: "Product manager"
-                                },
-                                {
-                                    label: "Sound engineer",
-                                    value: "Sound engineer"
-                                },
-                                {
-                                    label: "UX researcher",
-                                    value: "UX researcher"
+                        <div>
+                            <Dropdown
+                                options={[
+                                    {
+                                        label: "Backend engineer",
+                                        value: "Backend engineer"
+                                    },
+                                    {
+                                        label: "Data scientist",
+                                        value: "Data scientist"
+                                    },
+                                    {
+                                        label: "Frontend engineer",
+                                        value: "Frontend engineer"
+                                    },
+                                    {
+                                        label: "Game developer",
+                                        value: "Game developer"
+                                    },
+                                    {
+                                        label: "Illustrator",
+                                        value: "Illustrator"
+                                    },
+                                    {
+                                        label: "Musician",
+                                        value: "Musician"
+                                    },
+                                    {
+                                        label: "No code developer",
+                                        value: "No code developer"
+                                    },
+                                    {
+                                        label: "Product designer",
+                                        value: "Product designer"
+                                    },
+                                    {
+                                        label: "Product manager",
+                                        value: "Product manager"
+                                    },
+                                    {
+                                        label: "Sound engineer",
+                                        value: "Sound engineer"
+                                    },
+                                    {
+                                        label: "UX researcher",
+                                        value: "UX researcher"
+                                    }
+                                ]}
+                                value={values.job_title}
+                                width={100}
+                                onChange={handleChange}
+                                placeholderText="Job Title"
+                                id={"job_title"}
+                                onBlur={handleBlur}
+                                newClass={
+                                    touched.job_title && errors.job_title
+                                        ? "input-error"
+                                        : ""
                                 }
-                            ]}
-                            width={100}
-                            placeholderText="Job Title"
-                        />
-                        <span>
-                            This job title will be used to find jobs around the
-                            web
-                        </span>
-                        <Dropdown
-                            options={countryNames}
-                            width={100}
-                            placeholderText="Job Location"
-                        />
+                            />
+                            {touched.job_title && errors.job_title && (
+                                <small
+                                    style={{
+                                        color: "#EB5757",
+                                        paddingTop: "0.3rem"
+                                    }}
+                                >
+                                    {errors.job_title}
+                                </small>
+                            )}
+                            <span>
+                                This job title will be used to find jobs around
+                                the web
+                            </span>
+                        </div>
+                        <div>
+                            {" "}
+                            <Dropdown
+                                options={countryNames}
+                                width={100}
+                                placeholderText="Job Location"
+                                value={values.job_location}
+                                id={"job_location"}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                newClass={
+                                    touched.job_location && errors.job_location
+                                        ? "input-error"
+                                        : ""
+                                }
+                            />
+                            {touched.job_location && errors.job_location && (
+                                <small
+                                    style={{
+                                        color: "#EB5757",
+                                        paddingTop: "0.3rem"
+                                    }}
+                                >
+                                    {errors.job_location}
+                                </small>
+                            )}
+                        </div>
+
                         <span>Type a city or a country</span>
 
-                        <div className={formStyling.checkbox}>
+                        {/* <div className={formStyling.checkbox}>
                             <input type="checkbox" name="" id="" />{" "}
                             <label className={formStyling.only_remote}>
                                 I want only remote jobs
                             </label>
+                        </div> */}
+
+                        <div
+                            className={`${formStyling.detailsdropdown_box} ${formStyling.row_of_3}`}
+                        >
+                            <p>Job location type</p>
+                            <Dropdown
+                                options={[
+                                    {
+                                        label: "Hybrid",
+                                        value: "hybrid"
+                                    },
+                                    {
+                                        label: "Remote",
+                                        value: "remote"
+                                    },
+                                    {
+                                        label: "Onsite",
+                                        value: "onsite"
+                                    }
+                                ]}
+                                placeholderText="Select Job location type"
+                                id={"job_location_type"}
+                                value={values.job_location_type}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                newClass={
+                                    touched.job_location_type &&
+                                    errors.job_location_type
+                                        ? "input-error"
+                                        : ""
+                                }
+                            />
+
+                            {touched.job_location_type &&
+                                errors.job_location_type && (
+                                    <small
+                                        style={{
+                                            color: "#EB5757",
+                                            paddingTop: "0.3rem"
+                                        }}
+                                    >
+                                        {errors.job_location_type}
+                                    </small>
+                                )}
                         </div>
+
                         <div
                             className={`${formStyling.detailsdropdown_box} ${formStyling.row_of_3}`}
                         >
@@ -131,7 +394,28 @@ const TryoutForm = () => {
                                         }
                                     ]}
                                     placeholderText="Select experience"
+                                    id={"job_seniority"}
+                                    value={values.job_seniority}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    newClass={
+                                        touched.job_seniority &&
+                                        errors.job_seniority
+                                            ? "input-error"
+                                            : ""
+                                    }
                                 />
+
+                                {touched.job_seniority && errors.job_seniority && (
+                                    <small
+                                        style={{
+                                            color: "#EB5757",
+                                            paddingTop: "0.3rem"
+                                        }}
+                                    >
+                                        {errors.job_seniority}
+                                    </small>
+                                )}
                             </div>
                             <div>
                                 <p>Employment Type</p>
@@ -151,7 +435,29 @@ const TryoutForm = () => {
                                         }
                                     ]}
                                     placeholderText="Employment Type"
+                                    id={"employment_type"}
+                                    value={values.employment_type}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    newClass={
+                                        touched.employment_type &&
+                                        errors.employment_type
+                                            ? "input-error"
+                                            : ""
+                                    }
                                 />
+
+                                {touched.employment_type &&
+                                    errors.employment_type && (
+                                        <small
+                                            style={{
+                                                color: "#EB5757",
+                                                paddingTop: "0.3rem"
+                                            }}
+                                        >
+                                            {errors.employment_type}
+                                        </small>
+                                    )}
                             </div>
                             <div>
                                 <p>Salary Expectation</p>
@@ -175,18 +481,35 @@ const TryoutForm = () => {
                                         }
                                     ]}
                                     placeholderText="Salary Expectation"
+                                    id={"salary_range"}
+                                    value={values.salary_range}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    newClass={
+                                        touched.salary_range &&
+                                        errors.salary_range
+                                            ? "input-error"
+                                            : ""
+                                    }
                                 />
+
+                                {touched.salary_range && errors.salary_range && (
+                                    <small
+                                        style={{
+                                            color: "#EB5757",
+                                            paddingTop: "0.3rem"
+                                        }}
+                                    >
+                                        {errors.salary_range}
+                                    </small>
+                                )}
                             </div>
                         </div>
                         <div className={formStyling.button}>
                             <BlueButton
                                 width={310}
                                 text={"Submit"}
-                                func={() => {
-                                    setTimeout(() => {
-                                        navigate("/tryout-form/success");
-                                    }, 1500);
-                                }}
+                                type={"submit"}
                             />
                         </div>
                     </div>
