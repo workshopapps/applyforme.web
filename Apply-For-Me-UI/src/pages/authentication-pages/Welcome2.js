@@ -27,55 +27,30 @@ const Welcome2 = () => {
     const [loading, setLoading] = useState(false);
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-    const [error, setError] =useState("");
+    const [error, setError] = useState("");
     const [errState, setErrState] = useState({
         password: false,
         email_address: false
     });
     const [password, setPassword] = useState("password");
-    const handletoggle=()=>{
-        password ==="password"? setPassword("text"): setPassword("password");
-    }
+    const handletoggle = () => {
+        password === "password" ? setPassword("text") : setPassword("password");
+    };
 
     useEffect(() => {
         if (user) {
             setTimeout(() => {
-                if (
-                    (
-                        user?.roles[0] === "Professional" &&
-                        user?.roles[1] === "Recruiter"
-                    )||
-                    (
-                        (user?.roles[0] === "Recruiter" &&
-                        user?.roles[1] === "Professional")
-                    )||
-                    (
-                        (user.roles.length ===1 && user?.roles[0] === "Recruiter")
-                    )
-                ) {
+                if (user?.roles[0] === "Recruiter") {
                     navigate("/rr_admin");
-                } else if (
-                    (
-                        user?.roles[0] === "SuperAdministrator" &&
-                        user?.roles[1] === "Recruiter"
-                    )||
-                    (
-                        (user?.roles[0] === "Recruiter" &&
-                        user?.roles[1] === "SuperAdministrator")
-                    )||
-                    (
-                        (user.roles.length ===1 && user?.roles[0] === "SuperAdministrator")
-                    )
-                ) {
+                } else if (user?.roles[0] === "SuperAdministrator") {
                     navigate("/user-page");
-                }else if (
-                    (
-                        (user.roles.length ===1 && user?.roles[0] === "Professional")
-                    )
+                } else if (
+                    user.roles.length === 1 &&
+                    user?.roles[0] === "Professional"
                 ) {
-                    navigate("/dashboard")
+                    navigate("/dashboard");
                 }
-            }, 3000);
+            }, 2000);
         }
     }, [user]);
 
@@ -91,10 +66,15 @@ const Welcome2 = () => {
             .post(`${BaseUrl}`, formData)
             .then(res => res.data)
             .catch(err => {
-                let message = typeof err.response.data.message === "object"? err.response.data.message[Object.keys(err.response.data.message)[0]] : err.response.data.message
+                let message =
+                    typeof err.response.data.message === "object"
+                        ? err.response.data.message[
+                              Object.keys(err.response.data.message)[0]
+                          ]
+                        : err.response.data.message;
                 console.log(message);
                 setError(message);
-            }); 
+            });
 
         if (result?.token) {
             console.log("res", result.token);
@@ -127,11 +107,22 @@ const Welcome2 = () => {
                         place="Email Address"
                     />
                     <label htmlFor="pass" className="passowrd-label">
-                        <input type={password} className="passowrd-label-input" name="pass" id="pass" placeholder="Password" required/>
-                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1670631906/Vector_1_qntpu2.svg" alt="object not found" onClick={handletoggle}/>
+                        <input
+                            type={password}
+                            className="passowrd-label-input"
+                            name="pass"
+                            id="pass"
+                            placeholder="Password"
+                            required
+                        />
+                        <img
+                            src="https://res.cloudinary.com/hamskid/image/upload/v1670631906/Vector_1_qntpu2.svg"
+                            alt="object not found"
+                            onClick={handletoggle}
+                        />
                     </label>
 
-                    {error && <p style={{color:"red"}}>{error}</p>}
+                    {error && <p style={{ color: "red" }}>{error}</p>}
 
                     <Link to="/pass" className="forgot">
                         Forgot Password
