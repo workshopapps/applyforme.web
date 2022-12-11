@@ -1,17 +1,26 @@
 package com.hydraulic.applyforme.service.impl;
 
+import java.util.Calendar;
+import java.util.Optional;
 import java.util.Random;
 
 import javax.transaction.Transactional;
 
+import com.hydraulic.applyforme.model.domain.*;
+import com.hydraulic.applyforme.model.dto.admin.NewPasswordDto;
+import com.hydraulic.applyforme.model.enums.RoleType;
+import com.hydraulic.applyforme.model.exception.CountryNotFoundException;
+import com.hydraulic.applyforme.model.exception.EmailAlreadyExistsException;
+import com.hydraulic.applyforme.model.exception.PasswordMismatchException;
+import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
+import com.hydraulic.applyforme.repository.jpa.CountryJpaRepository;
+import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
+import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.hydraulic.applyforme.model.domain.Member;
-import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.dto.TryItNowDTO;
 import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.model.response.OnboardingResponse;
@@ -30,27 +39,78 @@ public class OnboardingServiceImpl implements OnboardingService {
 	private PasswordEncoder encoder;
 
 	private final MemberRepository memberRepository;
+
+	private final MemberJpaRepository memberJpaRepository;
+	private final RoleJpaRepository roleJpaRepository;
 	private final ProfessionalProfileRepository profileRepository;
 	private final ProfessionalRepository professionalRepository;
 
-	public OnboardingServiceImpl(MemberRepository memberRepository, 
+	private CountryJpaRepository countryJpaRepository;
+
+	public OnboardingServiceImpl(MemberRepository memberRepository,
 			ProfessionalProfileRepository profileRepository,
-			ProfessionalRepository professionalRepository) {
+			ProfessionalRepository professionalRepository,
+								 MemberJpaRepository memberJpaRepository,
+								 RoleJpaRepository roleJpaRepository,
+								 CountryJpaRepository countryJpaRepository) {
 		super();
 		this.memberRepository = memberRepository;
 		this.profileRepository = profileRepository;
 		this.professionalRepository = professionalRepository;
+		this.memberJpaRepository = memberJpaRepository;
+		this.roleJpaRepository = roleJpaRepository;
+		this.countryJpaRepository = countryJpaRepository;
 	}
 
 	@Override
 	@Transactional
 	public OnboardingResponse onboard(TryItNowDTO body) {
+		boolean existingMember = memberJpaRepository.existsByEmailAddress(body.getEmailAddress());
+
+		if (existingMember) {
+			throw new EmailAlreadyExistsException();
+		}
+
+		Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.PROFESSIONAL.getValue());
+
+		if (existingRole.isEmpty()) {
+			throw new RoleNotFoundException(RoleType.PROFESSIONAL.getValue());
+		}
+
+		final String countryTitle = "Other";
+
+		Optional<Country> nationality = countryJpaRepository.findByTitleAndAbbreviation(countryTitle, "OOO");
+
+		if (nationality.isEmpty()) {
+			throw new CountryNotFoundException(countryTitle);
+		}
+
+		Optional<Country> countryOfResidence = countryJpaRepository.findByTitleAndAbbreviation(countryTitle, "OOO");
+
+		if (countryOfResidence.isEmpty()) {
+			throw new CountryNotFoundException(countryTitle);
+		}
+
+		long password = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+		long onboardingToken = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+		long onboardingToken1 = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+		long username = new Random().nextInt(900000) + 100000;
+
 		Member member = new Member();
 		member.setFirstName(body.getFirstName());
 		member.setLastName(body.getLastName());
 		member.setEmailAddress(body.getEmailAddress());
 		member.setPhoneNumber(body.getPhoneNumber());
-		member.setPassword(encoder.encode(""+(int) Math.random()));
+		member.setPassword(encoder.encode(""+ password));
+		member.addRole(existingRole.get());
+		member.setNationality(nationality.get());
+		member.setCountryOfResidence(countryOfResidence.get());
+		member.setUsername((body.getEmailAddress().split("@")[0]) + username);
+		member.setOnboardToken(String.valueOf(onboardingToken) + String.valueOf(onboardingToken1));
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR, 1990);
+		member.setDateOfBirth(calendar.getTime());
 		memberRepository.saveOne(member);
 		
 		Professional professional = Professional.builder()
@@ -63,10 +123,13 @@ public class OnboardingServiceImpl implements OnboardingService {
 		ProfessionalProfile profile = new ProfessionalProfile();
 		profile.setProfessional(professional);
 		profile.setProfileTitle(body.getProfileTitle());
+		profile.setDesiredJobTitle(body.getDesiredJobTitle());
 		profile.setSalaryRange(body.getSalaryRange());
 		profile.setJobLocation(body.getJobLocation());	
 		profile.setYearsOfExperience(body.getYearsOfExperience());
 		profile.setEmploymentType(ProfessionalProfileUtil.getEmploymentType(body.getEmploymentType()));
+		profile.setJobSeniority(ProfessionalProfileUtil.getJobSeniority(body.getJobSeniority()));
+		profile.setPreferredJobLocationType(ProfessionalProfileUtil.getJobLocationType(body.getPreferredJobLocationType()));
 		profileRepository.saveOne(profile);
 
 		OnboardingResponse response = new OnboardingResponse();
@@ -75,16 +138,16 @@ public class OnboardingServiceImpl implements OnboardingService {
 	}
 
 	@Override
-	public boolean changePassword(Long id, UpdatePasswordDto body) {
-		Member member = memberRepository.getOne(id);
-		System.out.println(member.getPassword());
-		body.setExistingPassword(member.getPassword());
-		System.out.println(body.getNewPassword());
-		if(body.getNewPassword().equals(body.getConfirmationPassword())) {
-			member.setPassword(body.getConfirmationPassword());
-			return true;
+	@Transactional
+	public Member changePassword(String onboardToken, NewPasswordDto body) {
+		Member member = memberJpaRepository.findByOnboardToken(onboardToken);
+
+		if (!body.getNewPassword().equals(body.getConfirmationPassword())) {
+			throw new PasswordMismatchException();
 		}
-		return false;
+		member.setPassword(body.getConfirmationPassword());
+		memberRepository.updateOne(member);
+		return member;
 	}
 
 }

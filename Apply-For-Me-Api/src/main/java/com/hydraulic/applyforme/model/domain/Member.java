@@ -158,6 +158,9 @@ public class Member {
     )
     private Set<Role> roles = new HashSet<>();
 
+    @Column(name = "onboard_token")
+    private String onboardToken = null;
+
     public void addRole(Role role) {
         this.getRoles().add(role);
     }

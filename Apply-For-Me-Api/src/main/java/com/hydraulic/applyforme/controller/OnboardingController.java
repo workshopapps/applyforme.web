@@ -1,5 +1,7 @@
 package com.hydraulic.applyforme.controller;
 
+import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.dto.admin.NewPasswordDto;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,8 +35,8 @@ public class OnboardingController {
 		return service.onboard(body);
 	}
 	
-	@PutMapping("/{id}/registration")
-	public boolean changePassword(@PathVariable("id") Long id, @Validated @RequestBody UpdatePasswordDto body) {
-		return service.changePassword(id, body);
+	@PutMapping("/{token}/complete-onboard")
+	public Member changePassword(@PathVariable("token") String onboardToken, @Validated @RequestBody NewPasswordDto body) {
+		return service.changePassword(onboardToken, body);
 	}
 }
