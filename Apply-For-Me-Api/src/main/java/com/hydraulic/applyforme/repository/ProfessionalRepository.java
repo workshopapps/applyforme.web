@@ -17,10 +17,10 @@ public interface ProfessionalRepository {
 
     boolean removeAll();
 
+
     boolean updateOne(Professional body);
 
     Professional saveOne(Professional body);
 
 //	List<ProfessionalProfile> getAllJobProfile(Long id, int pageOffset);
-
 }
