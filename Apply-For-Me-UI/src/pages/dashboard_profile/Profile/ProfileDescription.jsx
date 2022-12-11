@@ -40,7 +40,7 @@ export default function ProfileDescription() {
     }, []);
 
     const oneprofile = profileDesc?.find(obj => obj.id === parseInt(id));
-
+    console.log(oneprofile);
     const navigate = useNavigate();
     if (done != "done") {
         return <div className={styles.loading_animation} />;
@@ -59,6 +59,10 @@ export default function ProfileDescription() {
                     <div>
                         <p>{oneprofile?.profileTitle}</p>
                         <h5>Job Title</h5>
+                    </div>
+                    <div>
+                        <p>{oneprofile?.jobLocation}</p>
+                        <h5>Job Location</h5>
                     </div>
                     <div>
                         <p>{oneprofile?.jobSeniority}</p>

@@ -67,8 +67,7 @@
     background: rgba(255, 255, 255, 0.5);
     z-index: 1;
 }
-
-/* Add the spinning circle */
+/* Add the spinning circle*/
 .loading_animation {
     margin-block: 1rem;
     width: 100%;
@@ -77,14 +76,12 @@
     border-radius: 5px;
     animation: loading_animation 2s linear infinite;
 }
-
-/* Define  animation */
+/* Define the animation */
 @keyframes loading_animation {
     0% {
         background-color: #bfbfbf;
         background-position: 0% 0%;
     }
-
     50% {
         background-color: #2f80ed;
         background-position: 100% 0%;

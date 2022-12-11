@@ -130,7 +130,9 @@ const Welcome2 = () => {
                         <input type={password} className="passowrd-label-input" name="pass" id="pass" placeholder="Password" required/>
                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1670631906/Vector_1_qntpu2.svg" alt="object not found" onClick={handletoggle}/>
                     </label>
+
                     {error && <p style={{color:"red"}}>{error}</p>}
+
                     <Link to="/pass" className="forgot">
                         Forgot Password
                     </Link>

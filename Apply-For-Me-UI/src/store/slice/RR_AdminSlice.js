@@ -222,6 +222,7 @@ const RR_Admin_Slice = createSlice({
     },
     reducers: {},
     extraReducers: {
+
         [get_rr_applicants_list.pending]: state => {
             state.recruiterApplicantsLoading = "pending";
              console.log(state.recruiterApplicantsLoading)
@@ -233,6 +234,7 @@ const RR_Admin_Slice = createSlice({
         [get_rr_applicants_list.rejected]: (state, action) => {
             state.recruiterApplicantsLoading= "rejected";
             state.recruiterApplicantsError = action.payload;
+
         },
         [Fetch_RR_Admin.pending]: state => {
             state.loadingStatus = "pending";
