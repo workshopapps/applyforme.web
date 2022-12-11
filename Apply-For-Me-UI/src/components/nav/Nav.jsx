@@ -56,7 +56,7 @@ const Nav = () => {
                 <ul className={classes.nav_links}>
                     <li className="active">
                         <NavLink to="/" style={handleActiveLink}>
-                           Home
+                            Home
                         </NavLink>
                     </li>
                     <li>
@@ -96,6 +96,8 @@ const Nav = () => {
                                     navigate(
                                         user.roles[0] === "SuperAdministrator"
                                             ? "/user-page"
+                                            : user.roles[0] === "Recruiter"
+                                            ? "/rr_admin"
                                             : "/dashboard/"
                                     )
                                 }
@@ -190,6 +192,8 @@ const Nav = () => {
                                             user.roles[0] ===
                                                 "SuperAdministrator"
                                                 ? "/user-page"
+                                                : user.roles[0] === "Recruiter"
+                                                ? "/rr_admin"
                                                 : "/dashboard/"
                                         )
                                     }

@@ -1,11 +1,16 @@
 package com.hydraulic.applyforme.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.response.JobDescriptionResponse;
 
+import java.util.Set;
+
+import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.response.JobSummaryResponse;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

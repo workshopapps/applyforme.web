@@ -29,6 +29,7 @@ const NoProfile = () => {
             )
             .then(response => {
                 // handle success
+                console.log(response.data);
                 setProfileList(response.data);
                 setData("done");
                 // console.log(response.data);

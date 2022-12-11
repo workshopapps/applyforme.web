@@ -148,7 +148,18 @@
     width: 70%;
     height: 70%;
 }
+.mobile_inp{
+    width:100%;
+    padding:0.5rem;
+    border:2px solid #2e3192;
+}
+.mobile_btn_cont{
 
+}
+.mobile_btn{
+    background-color: #2e3192;
+    height:1.3rem;
+}
 /* TOGGLE */
 .toggle_user {
     background-color: aliceblue;

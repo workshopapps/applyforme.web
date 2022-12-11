@@ -1,13 +1,17 @@
 package com.hydraulic.applyforme.util;
 
+import com.hydraulic.applyforme.model.response.SignInResponse;
+import com.hydraulic.applyforme.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
@@ -22,6 +26,16 @@ import java.util.stream.Stream;
 
 @Component
 public class ApplyForMeUtil {
+
+    private final UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+
+    public ApplyForMeUtil(UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     public static String[] getNullPropertyNames(Object source) {
         final BeanWrapper wrappedSource = new BeanWrapperImpl(source);
@@ -55,5 +69,13 @@ public class ApplyForMeUtil {
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
         return PageRequest.of(pageNo, pageSize, sort);
+    }
+
+    public SignInResponse generateSignInToken(String emailAddress) {
+        final UserDetails userDetails = userDetailsService
+                .loadUserByUsername(emailAddress);
+
+        final String token = jwtUtil.generateToken(userDetails);
+        return new SignInResponse(token);
     }
 }

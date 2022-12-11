@@ -20,8 +20,11 @@ import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Delete_RR_Admin, getRRAdminProfile } from "store/slice/RR_AdminSlice";
+import { getRRAdminProfile } from "store/slice/RR_AdminSlice";
 import { userInfo } from "store/slice/UserSlice";
+import axios from "axios";
+import { toast } from "react-toastify";
+const url = "https://api.applyforme.hng.tech";
 // import { Navigate } from "react-router-dom";
 
 const RR_admin_Profile = ({ setInputSearchValue }) => {
@@ -29,12 +32,16 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const dispatch = useDispatch();
+    const token = localStorage.getItem("tokenHngKey");
     const recruiter = useSelector(state => state.RRadmin);
+   
     const { firstName, emailAddress, phoneNumber, currentJobTitle } =
         recruiter.reverseRProfile;
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const id = useParams();
+    const newId = {id}
+    console.log(newId.id.id)
     useEffect(() => {
         dispatch(getRRAdminProfile(id));
     }, [dispatch, getRRAdminProfile, id]);
@@ -46,6 +53,27 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
         setShowModal(false);
         // Quota submission code goes here
     };
+    const deleteHandler = async()=> {
+        try {
+            const response = await axios.delete(
+                `${url}/api/v1/super-admin/recruiter/${newId.id.id}`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            console.log(response);
+            console.log("success")
+            toast("delete succesful")
+            navigate("/user-page");
+            return response?.data;
+        } catch (error) {
+            console.log(error)
+            toast(error.response?.data?.message);
+            return error.response?.data;
+        }
+    }
 
     const handleModalShow = () => {
         setShowModal(true);
@@ -85,7 +113,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                                 />
                             </div>
                             <div className={classes.search_logo}>
-                                <img src={SearchBlue} alt="Search " />
+                                <img src={SearchBlue} alt="Search "/>
                             </div>
                             <div
                                 className={classes.user_avater}
@@ -169,7 +197,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         <div className={classes.user_action__btn__mobile}>
                             <FiTrash className={classes.trash} />
 
-                            <p onClick={()=>dispatch(Delete_RR_Admin({id:id}) )}>Delete</p>
+                            <p onClick={deleteHandler}>Delete</p>
                         </div>
                     </div>
                 </div>
@@ -217,7 +245,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         <div className={classes.user_action__btn}>
                             <FiTrash className={classes.trash} />
 
-                            <p onClick={()=>dispatch(Delete_RR_Admin({id:id}) )}>Delete</p>
+                            <p onClick={deleteHandler}>Delete</p>
                         </div>
                     </div>
                 </div>

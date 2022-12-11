@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `professional_profile` (
 	`passport_link` VARCHAR(400),
 	`resume_link` VARCHAR(400),
 	`cover_letter_link` VARCHAR(400),
-	`cover_letter_subject` VARCHAR(400),
+	`cover_letter_subject` LONGTEXT,
 	`cover_letter_content` TEXT,
 
 
@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   	`avatar` VARCHAR(300),
   	`city` VARCHAR(300),
   	`state` VARCHAR(300),
+  	`address` VARCHAR(300),
   	`active` BOOLEAN NOT NULL DEFAULT TRUE,
   	`created_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`updated_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

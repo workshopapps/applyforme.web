@@ -4,12 +4,20 @@
     display: flex;
     flex: 1 1 0;
     font-family: "Outfit", sans-serif;
+    margin-left: 9rem;
+}
+@media only screen and (max-width: 480px) {
+    .account_settings_container {
+        margin-left: 0;
+    }
+}
+.image img {
+    width: 2.5rem;
 }
 
 /* .sidebar_container {
     width: 10%;
 } */
-
 .top_nav {
     width: 100%;
     height: 85px;
@@ -143,7 +151,7 @@
     font-size: 0.7rem;
 }
 
-.input_fields button {
+.input_fields button,.password_div button {
     background-color: #2e3192;
     border: none;
     padding: 0.5rem;

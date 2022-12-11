@@ -102,7 +102,7 @@ public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantServic
         return getMemberResponse(members);
     }
 
-    private ApplyForMeResponse getMemberResponse(Page<Member> members) {
+    public ApplyForMeResponse getMemberResponse(Page<Member> members) {
         Collection<MemberDto> results = members
                 .getContent()
                 .stream()

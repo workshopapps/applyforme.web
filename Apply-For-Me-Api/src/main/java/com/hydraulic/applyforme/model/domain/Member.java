@@ -76,7 +76,7 @@ public class Member {
     @Temporal(TemporalType.DATE)
     @Column(name ="date_of_birth")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth = new Date();
 
     /**
@@ -100,6 +100,9 @@ public class Member {
 
     @Column(name ="state")
     private String state;
+
+    @Column(name ="address")
+    private String address;
 
     @Column(name ="password", nullable = false)
     private String password;
@@ -154,6 +157,9 @@ public class Member {
                     name = "role_id", referencedColumnName = "id")
     )
     private Set<Role> roles = new HashSet<>();
+
+    @Column(name = "onboard_token")
+    private String onboardToken = null;
 
     public void addRole(Role role) {
         this.getRoles().add(role);

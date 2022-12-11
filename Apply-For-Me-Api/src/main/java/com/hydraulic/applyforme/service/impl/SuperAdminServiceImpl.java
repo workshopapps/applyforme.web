@@ -55,7 +55,8 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 		}
         
         member.setPassword(passwordEncoder.encode(dto.getNewPassword()));
-		return repository.updateOne(member);		
+		repository.updateOne(member);
+        return member;
 	}
 
     @Transactional(readOnly = true)
@@ -69,6 +70,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     public Member updateProfile(Long id, UpdateProfileDto body) {
 
         Member superAdmin = repository.getOne(id);
+
         if (superAdmin == null) {
             throw new MemberNotFoundException(id);
         }
@@ -80,7 +82,8 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         superAdmin.setPhoneNumber(body.getPhoneNumber());
         superAdmin.setCity(body.getCity());
         superAdmin.setState(body.getState());
-        return repository.updateOne(superAdmin);
+        repository.updateOne(superAdmin);
+        return superAdmin;
     }
 
     public Member getDetailsById(Long id) {

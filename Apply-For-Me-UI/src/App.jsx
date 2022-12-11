@@ -11,8 +11,8 @@ import Privacy from "./pages/privacy/Privacy";
 import Cookies from "./pages/cookies/Cookies";
 import Career from "./pages/career/Career";
 import Blog from "./pages/blog/Blog";
-
-import Error from "./pages/error/Error";
+import Onboarding from "pages/tryout_form/components/Onboarding";
+import Error from "./pages/dashboard_profile/Success/error/Error";
 import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
@@ -44,7 +44,6 @@ import ProtectedRoute from "ProtectedRoute";
 //UserDashboard
 import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
-import Profile from "./pages/dashboard_profile/Profile/Profile";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
 import ProfileDescription from "pages/dashboard_profile/Profile/ProfileDescription";
 import { ProfileScreen } from "components/superAdmmin_profile/superAdmin_profileScreen";
@@ -70,20 +69,21 @@ import { SuperDashBoard } from "pages/super_admin_dashboard/dashboardview";
 
 import TryoutForm from "pages/tryout_form/TryoutForm";
 import TrySuccess from "pages/tryout_form/Success";
-import * as atatus from 'atatus-spa';
 
-atatus.config('c626faaef503411ea6216d7b6112de1c').install();
+import * as atatus from "atatus-spa";
+import { CreateRecruiter } from "pages/createRecruiter/create_view";
+
+atatus.config("c626faaef503411ea6216d7b6112de1c").install();
 
 function App() {
     const dispatch = useDispatch();
-    const { user } = useSelector(state => state.user);
-    console.log("App her", user);
+
     useEffect(() => {
         if (localStorage?.getItem("tokenHngKey")) {
             let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
             dispatch(userInfo(decoded));
         }
-    }, []);
+    }, [dispatch]);
 
     return (
         <>
@@ -143,12 +143,21 @@ function App() {
                 <Route exact path="/nwpass" element={<NewPass />} />
                 <Route exact path="/veri" element={<Verification />} />
 
+                {/* onboarding */}
+
+                <Route
+                    path="/onboarding/:token/complete"
+                    element={<Onboarding />}
+                />
+
                 {/* RECRUITER ROUTE */}
 
                 <Route exact path="/rr_sign_in" element={<Sign_In />} />
                 <Route exact path="/rr_sign_up" element={<Sign_Up />} />
 
                 {/*  PROTECTED ROUTE*/}
+
+                {/*  SuperAdmin */}
                 <Route
                     element={
                         <ProtectedRoute allowedRoles={["SuperAdministrator"]} />
@@ -166,16 +175,19 @@ function App() {
                         path="/user-page/reverseRecruiterAdmin/:id"
                         element={<RR_admin_profile />}
                     />
+                    <Route
+                        exact
+                        path="/create/recruiter/page"
+                        element={<CreateRecruiter />}
+                    />
                 </Route>
+
+                {/* Reverve Recruiter/Recruiter - Route (Recruiter) */}
                 <Route
-                    element={
-                        <ProtectedRoute
-                            allowedRoles={["Professional", "Recruiter"]}
-                        />
-                    }
+                    element={<ProtectedRoute allowedRoles={["Recruiter"]} />}
                 >
                     {/*Reverse Recruiter Dashboard */}
-                    <Route path="/rr_admin" element={<DashboardHome />}/>
+                    <Route path="/rr_admin" element={<DashboardHome />} />
                     <Route
                         path="/rr_admin/form"
                         element={<ApplicationForm />}
@@ -188,7 +200,12 @@ function App() {
                         path="/rr_admin/all_applications"
                         element={<Applications />}
                     />
+                </Route>
 
+                {/* User  Route (Professional)  */}
+                <Route
+                    element={<ProtectedRoute allowedRoles={["Professional"]} />}
+                >
                     {/* USER DASHBAORD */}
                     <Route path="/dashboard" element={<UserDashboardLayout />}>
                         {/* User Dashboard Profile */}
@@ -208,20 +225,18 @@ function App() {
                             element={<CreateProfile />}
                         />
                         <Route path="user/success" element={<Success />} />
-                        <Route path="user/profile-list" element={<Profile />} />
                         <Route
                             path="/dashboard/user/:id"
                             element={<ProfileDescription />}
                         />
 
                         {/* User Dashboard Applications */}
+                        <Route path="applications" element={<Applications />} />
+                        {/* <Route index element={<Applications />} /> */}
                         <Route
-                            path="applications"
-                            element={<ApplicationsDashboardLayout />}
-                        >
-                            <Route index element={<Applications />} />
-                            <Route path=":jobId" element={<JobDescription />} />
-                        </Route>
+                            path="applications/:jobId"
+                            element={<JobDescription />}
+                        />
                     </Route>
                 </Route>
                 <Route path="*" element={<Error />} />

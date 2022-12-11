@@ -1,60 +1,63 @@
-*{
-  font-family: 'Outfit', sans-serif;
+* {
+    font-family: "Outfit", sans-serif;
 }
-.applicantsContainer{
+.applicantsContainer {
     padding: 1.5rem 6rem;
 }
-.viewContainer{
+.viewContainer {
     display: flex;
 }
-.list-header{
-    font-family: 'Outfit';
+.list-header {
+    font-family: "Outfit";
     font-style: normal;
     font-weight: 500;
     font-size: 28px;
     line-height: 150%;
-    color: #2E3192;
+    color: #2e3192;
 }
-.statisticsContainer{
+
+.statisticsContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 1.5rem;
 }
-.statisticsContainer select{
+.statisticsContainer select {
     font-size: 20px;
     padding: 0.5rem;
     border-radius: 7px;
-    color: #2E3192;
+    color: #2e3192;
     background: bottom;
-    border: 1px solid #2E3192;
+    border: 1px solid #2e3192;
 }
-.applicants{
-    display:flex;
+.applicants {
+    display: flex;
     width: 80%;
     margin: 0 auto;
     justify-content: space-between;
 }
-.applicants div{
-    color:white;
+.applicants div {
+    width:30%;
+    color: white;
     padding: 0.8rem;
+    align-items: center;
     text-align: center;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     flex-direction: column;
 }
-.amount{
-    font-family: 'Outfit';
-font-style: normal;
-font-weight: 300;
-font-size: 20px;
-line-height: 150%;
-display: flex;
-align-items: center;
-letter-spacing: 0.03em;
+.amount {
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.03em;
 }
-.value{
-    font-family: 'Outfit';
+.value {
+    font-family: "Outfit";
     font-style: normal;
     font-weight: 500;
     font-size: 40px;
@@ -63,65 +66,63 @@ letter-spacing: 0.03em;
 
     display: flex;
     align-items: center;
-
 }
-.overflow{
-    background-color: #2E3192;
+.overflow {
+    background-color: #2e3192;
     display: flex;
     align-items: center;
     border-radius: 8px;
-    height:10rem;
+    height: 10rem;
 }
-.applicants h4{
+.applicants h4 {
     font-weight: 400;
     margin-bottom: 0;
 }
-.applicants h1{
-    width:fit-content;
+.applicants h1 {
+    width: fit-content;
     margin: 0 auto;
-    font-family: 'Outfit';
+    font-family: "Outfit";
     font-style: normal;
     font-weight: 500;
     font-size: 40px;
     line-height: 150%;
 }
-.users_recruiter_text h4{
-    color:grey;
+.users_recruiter_text h4 {
+    color: grey;
     font-weight: 400;
 }
-.profile_name{
+.profile_name {
     display: none;
-    color: #2E3192;
+    color: #2e3192;
 }
-@media only screen and (min-width: 768px)and (max-width: 1024px){
-    .profile_name{
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .profile_name {
         display: block;
     }
-    h3{
+    h3 {
         font-size: 17px;
     }
     h1 {
         font-size: 20px;
     }
-    h2{
+    h2 {
         font-size: 20px;
     }
     .navpills_inner {
-    width: 100%;
+        width: 100%;
+    }
 }
-}
-@media only screen and (min-width:320px) and (max-width:767px){
+@media only screen and (min-width: 320px) and (max-width: 767px) {
     .overflow {
-        height: auto; 
+        height: auto;
         background-color: white;
-
     }
     .applicants div {
-       background-color:#2E3192;
-       border-radius: 4px;
-       color:white;
-       width:500px;
-       padding: 0.5rem;
+        background-color: #2e3192;
+        border-radius: 4px;
+        color: white;
+        width: 500px;
+        padding: 0.5rem;
         margin: 0.5rem;
     }
     .amount {
@@ -134,33 +135,33 @@ letter-spacing: 0.03em;
     .applicants {
         width: 100%;
     }
-  
+
     .list-header {
         font-size: 18px;
     }
     .statisticsContainer select {
-    padding: 0.3rem;
-    font-size: 13px;
-}
+        padding: 0.3rem;
+        font-size: 13px;
+    }
     .statisticsContainer {
         margin: 1.5rem 0;
     }
     .applicantsContainer {
-        padding: 0 0.5rem; 
+        padding: 0 0.5rem;
     }
-    .overflow{
+    .overflow {
         overflow-x: scroll;
     }
 
-    .applicants{
+    .applicants {
         width: 400px;
     }
-     .applicants h3, .applicants h1{
+    .applicants h3,
+    .applicants h1 {
         text-align: center;
     }
-    h3{
+    h3 {
         font-size: 13px;
         font-weight: 400;
     }
-    
 }

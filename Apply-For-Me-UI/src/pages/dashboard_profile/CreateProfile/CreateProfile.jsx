@@ -60,6 +60,7 @@ const CreateProfile = () => {
         shortenedCVUrl: "",
         coverletter_subject: "",
         coverletter_body: "",
+        coverletter_template: "",
         keywords: "",
         xyz: ""
     });

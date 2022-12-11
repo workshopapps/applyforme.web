@@ -1,21 +1,19 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.dto.authentication.*;
+import com.hydraulic.applyforme.model.dto.authentication.ForgotPasswordDto;
+import com.hydraulic.applyforme.model.dto.authentication.ResetPasswordDto;
+import com.hydraulic.applyforme.model.dto.authentication.SignInDto;
+import com.hydraulic.applyforme.model.dto.authentication.SignupDto;
 import com.hydraulic.applyforme.model.response.ForgotPasswordResponse;
 import com.hydraulic.applyforme.model.response.SignInResponse;
 import com.hydraulic.applyforme.service.AuthenticationService;
 import com.hydraulic.applyforme.service.EmailService;
 import com.hydraulic.applyforme.service.MemberService;
-import com.hydraulic.applyforme.service.impl.UserDetailsServiceImpl;
-import com.hydraulic.applyforme.util.JwtUtil;
+import com.hydraulic.applyforme.util.ApplyForMeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,30 +32,31 @@ public class AuthenticationController {
 
     public final AuthenticationService authenticationService;
 
-    private final UserDetailsServiceImpl userDetailsService;
-
     @Autowired
-    private JwtUtil jwtUtil;
+    private ApplyForMeUtil applyForMeUtil;
 
 
-    public AuthenticationController(MemberService service, EmailService emailService, AuthenticationService authenticationService, UserDetailsServiceImpl userDetailsService) {
+    public AuthenticationController(MemberService service, EmailService emailService, AuthenticationService authenticationService) {
         this.service = service;
         this.emailService = emailService;
         this.authenticationService = authenticationService;
-        this.userDetailsService = userDetailsService;
     }
 
     @PostMapping("/sign-up")
     public SignInResponse signUp(@Validated @RequestBody SignupDto body) {
         service.save(body);
 //        emailService.sendWelcomeMessage(body.getEmailAddress());
-        return generateSignInToken(body.getEmailAddress());
+        return applyForMeUtil.generateSignInToken(body.getEmailAddress());
     }
 
-    @PostMapping("/sign-up-verification")
-    public String signupVerificationCode(@Validated @RequestBody SignupVerificationDto verificationDto) {
-//        emailService.signupVerification(verificationDto.getEmailAddress());
-        return "Sign up verification code sent";
+    @PostMapping("/sign-out")
+    public String signout() {
+        return "Sign out successfully";
+    }
+
+    @PostMapping("/sign-up-verification/{email}")
+    public String validateMemberSignUp(@RequestParam("otp") String otp, @PathVariable("email") String email) {
+        return authenticationService.validateMemberSignUp(otp,email);
     }
 
     @PostMapping("/forgot-password")
@@ -84,15 +83,7 @@ public class AuthenticationController {
         catch(Exception ex) {
              throw ex;
         }
-        return generateSignInToken(body.getEmailAddress());
-    }
-
-    protected SignInResponse generateSignInToken(String emailAddress) {
-        final UserDetails userDetails = userDetailsService
-                .loadUserByUsername(emailAddress);
-
-        final String token = jwtUtil.generateToken(userDetails);
-        return new SignInResponse(token);
+        return applyForMeUtil.generateSignInToken(body.getEmailAddress());
     }
 
 }

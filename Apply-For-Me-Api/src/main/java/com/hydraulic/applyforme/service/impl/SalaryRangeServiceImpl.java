@@ -78,6 +78,11 @@ public class SalaryRangeServiceImpl implements SalaryRangeService {
     }
 
     @Override
+    public List<SalaryRange> findAll() {
+        return repository.getAll();
+    }
+
+    @Override
     public SalaryRange findOne(Long id) {
         SalaryRange salaryRange = repository.getOne(id);
         if (salaryRange == null) {

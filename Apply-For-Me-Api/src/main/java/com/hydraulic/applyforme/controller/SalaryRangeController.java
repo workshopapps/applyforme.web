@@ -28,6 +28,11 @@ public class SalaryRangeController {
         return service.findAll(pageNumber);
     }
 
+    @GetMapping("/entries/all")
+    public List<SalaryRange> findAll() {
+        return service.findAll();
+    }
+
     @GetMapping("/detail/{id}")
     public SalaryRange findOne(@PathVariable(name ="id") Long id) {
         return service.findOne(id);

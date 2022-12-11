@@ -22,3 +22,26 @@
     justify-content: flex-end;
     margin-bottom: 4rem;
 }
+.passowrd-label {
+    position: relative;
+}
+.passowrd-label-input {
+    background-color: #e8f0fe;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+    padding: 2%;
+    box-sizing: border-box;
+}
+@media screen and (max-width: 860px) {
+    .passowrd-label-input {
+        padding: 4.5%;
+    }
+}
+.passowrd-label img {
+    position: absolute;
+    position: absolute;
+    top: 18px;
+    right: 20px;
+}

@@ -386,7 +386,7 @@ const Cookies = () => {
                                 and similar technologies, please see the “
                                 <span>
                                     {" "}
-                                    <a href="Contact">Contact Us</a>
+                                    <a href="/contact">Contact Us</a>
                                 </span>
                                 ” section of our{" "}
                                 <span>

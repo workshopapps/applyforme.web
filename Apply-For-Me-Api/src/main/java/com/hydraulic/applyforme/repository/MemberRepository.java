@@ -18,7 +18,8 @@ public interface MemberRepository {
 
     Member saveOne(Member member);
 
-    Member updateOne(Member member);
+    boolean updateOne(Member member);
+
 
     boolean remove(Long id);
 

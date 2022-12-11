@@ -32,27 +32,44 @@ public class SuperAdminStatRepositoryImpl implements SuperAdminStatRepository {
     }
     @Override
     public Long getAllSubmissions(Date startDate, Date endDate) {
-        String queryText = "select count(jb) from Submission jb where jb.createdOn between :startDate and :endDate";
-        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class)
-                .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
-                .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+        String queryText = "select count(jb) from Submission jb";
+        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class);
+
+        if (startDate != null && endDate != null) {
+            queryText = "select count(jb) from Submission jb where jb.createdOn between :startDate and :endDate";
+            total = entityManager.createQuery(queryText, Long.class);
+            total.setParameter("startDate", startDate, TemporalType.TIMESTAMP);
+            total.setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+        }
+
         return total.getSingleResult();
     }
     @Override
     public Long getAllUsers(Date startDate, Date endDate) {
-        String queryText = "select count(m) from Member m where m.createdOn between :startDate and :endDate";
-        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class)
-                .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
-                .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+        String queryText = "select count(m) from Member m";
+        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class);
+
+        if (startDate != null && endDate != null) {
+            queryText = "select count(m) from Member m where m.createdOn between :startDate and :endDate";
+            total = entityManager.createQuery(queryText, Long.class);
+            total.setParameter("startDate", startDate, TemporalType.TIMESTAMP);
+            total.setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+        }
+
         return total.getSingleResult();
     }
 
     @Override
     public Long getRRAdmins(Date startDate, Date endDate) {
-        String queryText = "select count(ap) from Applier ap where ap.member.createdOn between :startDate and :endDate";
-        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class)
-                .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
-                .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+        String queryText = "select count(ap) from Applier ap";
+        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class);
+
+        if (startDate != null && endDate != null) {
+            queryText = "select count(ap) from Applier ap where ap.member.createdOn between :startDate and :endDate";
+            total = entityManager.createQuery(queryText, Long.class);
+            total.setParameter("startDate", startDate, TemporalType.TIMESTAMP);
+            total.setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+        }
         return total.getSingleResult();
     }
 

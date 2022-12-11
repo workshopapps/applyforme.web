@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classes from "./AccountSettings.module.css";
 import SettingsTopNav from "./SettingsTopNav";
-import person from "../../assets/images/Friendly Ones Avatar.png";
+import person from "../../pages/dashboard_profile/assets/profilepic.png";
 // import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
 //import { getActiveLink } from './settingservice/SettingsSecondSidebar'
 
@@ -199,8 +199,8 @@ const AccountSettings = () => {
                             </div>
                         </div>
 
-                        <div id="password_div" style={{ display: "none" }}>
-                            <h3>Password page</h3>
+                        <form id="password_div" style={{ display: "none" }}>
+                            <h3 style={{fontWeight:"bold"}}>Change Password</h3>
 
                             <div className={classes.input_fields}>
                                 <div className={classes.row}>
@@ -227,17 +227,19 @@ const AccountSettings = () => {
                                         <input type="password" />
                                     </div>
                                 </div>
+                                <div>
+                                    <button>Save</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
 
                         <div id="preference_div" style={{ display: "none" }}>
                             <div>
-                                <h3>Notification</h3>
-                                <p>
-                                    Manage the kind of notification you get
-                                    about your activities,interest and
-                                    recommendations
-                                </p>
+                                <h3>Your Plan</h3>
+                                <div>
+                                    Standard Member
+                                    <p>$49</p>
+                                </div>
                             </div>
 
                             <div></div>
