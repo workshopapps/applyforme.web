@@ -8,9 +8,7 @@ const ApplicationsDashboardLayout = () => {
         <main className={styles.layout_container}>
             {/* <Sidebar /> */}
             {/* <DashboardSidebar /> */}
-            <div className={styles.layout_main}>
-                <Outlet />
-            </div>
+            <div className={styles.layout_main}>{/* <Outlet /> */}</div>
             {/* <BottomNav /> */}
         </main>
     );

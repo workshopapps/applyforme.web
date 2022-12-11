@@ -7,7 +7,11 @@ const UserDashboardLayout = () => {
     return (
         <section className={classes.dashboard_container}>
             <DashboardSidebar />
-            <Outlet />
+            <Outlet
+                style={{
+                    marginTop: "200px"
+                }}
+            />
         </section>
     );
 };

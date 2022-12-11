@@ -2,6 +2,7 @@ import React from "react";
 import classes from "../styles/Applications.module.css";
 import axios from 'axios';
 
+
 const names = [
     "Sharon Sunday",
     "Sharon Sunday",
@@ -33,22 +34,26 @@ const types = [
 ];
 
 const Applications = () => {
+    const [newApplication, setNewApplication] = useState();
 
    const getList = async () => {
     try {
         console.log("1234")
-        const response = await axios.request({
+        const response = await axios.get({
             url: 'https://api.applyforme.hng.tech/api/v1/recruiter/applicant/entries?pageNo=0&sortBy=id&sortDir=asc&from=11-11-22&to=12-12-22&q=a',
-            method: GET,
-            headers: { Authorization: `Bearer ${localStorage.getItem("tokenHngKey")}`}
+            // method: GET,
+            // headers: { Authorization: `Bearer ${localStorage.getItem("tokenHngKey")}`}
         })
 
         console.log(response)
+        setNewApplication(response)
     } catch (error) {
         console.log(error)
     }
    }
-   getList()
+   useEffect(()=>{
+       getList();
+   }, [])
     return (
         <section>
             <div className={classes.rrd_applications_wrapper}>
@@ -82,7 +87,7 @@ const Applications = () => {
                 <div className={classes.new_applications_stats}>
                     <div className={classes.view_all_wrapper}>
                         <h2 className={classes.new_applications_stats_heading}>
-                            New Applications <span>(23)</span>
+                            New Applications <span>{.length}</span>
                         </h2>
 
                         <button

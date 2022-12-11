@@ -1,1 +1,159 @@
+.recruiterContainer {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+}
+.rContainer_div_1 {
+    width: 40%;
+    background-color: #2e3192;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+    padding: 4rem;
+}
+.imgDiv {
+    margin-bottom: 4rem;
+    width: 100%;
+}
+.afmdiv {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+.rContainer_div_2 {
+    margin: 5rem 0 5rem 0;
+    padding: 0 5rem 0rem 5rem;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    overflow: auto;
+    height: 90vh;
+}
+.formTitle {
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 150%;
+    color: #2e3192;
+}
+.rContainer_div_2 form {
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    margin-bottom: 5rem;
+}
+.rContainer_div_2 .input-tab,
+.select-tab {
+    width: 100%;
+    padding: 1rem;
+    font-size: 16px;
+    margin-right: 1rem;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+.fContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.sConatiner {
+    display: grid;
+    grid-template-columns: 1fr;
+}
 
+.labelConatiner {
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.btn-primary {
+    width: 100%;
+    background-color: #2e3192;
+    padding: 1rem;
+    font-size: 17px;
+    border-radius: 5px;
+}
+.btnCont {
+    margin: 1rem 0.5rem;
+}
+.editContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(49, 49, 49, 0.8);
+    z-index: 1;
+}
+.progress {
+    color: white;
+    background: rgba(49, 49, 49, 0.8);
+    margin: 0 auto;
+    font-size: 25px;
+    padding: 2rem;
+    margin: 20% auto;
+    width: fit-content;
+}
+@media only screen and (max-width: 767px) {
+    .recruiterContainer {
+        flex-direction: column;
+        position: relative;
+    }
+    .rContainer_div_1 {
+        width: 100%;
+        height: fit-content;
+        justify-content: center;
+        padding: 1rem;
+    }
+    .imgDiv {
+        margin-bottom: 0;
+    }
+    .rContainer_div_2 {
+        margin: -10rem 0 0rem 0;
+        z-index: 1;
+        background: white;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        overflow: none;
+        height: fit-content;
+        padding: 0.5rem;
+    }
+    .formTitle {
+        text-align: center;
+        padding: 1rem;
+        font-size: 25px;
+    }
+    .imgDiv img {
+        width: 100%;
+    }
+    .afmdiv {
+        width: 20%;
+    }
+    .afmdiv img {
+        width: 100%;
+    }
+    .rContainer_div_2 .input-tab,
+    .select-tab {
+        padding: 0.5rem;
+        width: auto;
+    }
+    .fContainer {
+        grid-template-columns: 1fr;
+    }
+    .progress {
+        color: white;
+        background: rgba(49, 49, 49, 0.8);
+        margin: 0 auto;
+        font-size: 25px;
+        padding: 2rem;
+        margin: 60% auto;
+        width: fit-content;
+    }
+    .btn-primary {
+        padding: 0.5rem;
+    }
+}

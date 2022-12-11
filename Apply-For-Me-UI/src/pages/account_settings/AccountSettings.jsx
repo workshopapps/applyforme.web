@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classes from "./AccountSettings.module.css";
 import SettingsTopNav from "./SettingsTopNav";
-import person from "../../assets/images/Friendly Ones Avatar.png";
+import person from "../../pages/dashboard_profile/assets/profilepic.png";
 // import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
 //import { getActiveLink } from './settingservice/SettingsSecondSidebar'
 
