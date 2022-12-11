@@ -6,8 +6,10 @@ import { Desktop_List } from './desktop_list_wrapper';
 import { Mobile_view_list } from './mobile_list_wrapper';
 import { Fetch_RR_Admin } from 'store/slice/RR_AdminSlice';
 import ReactPaginate from 'react-paginate';
+import { useNavigate } from 'react-router-dom';
 export const RR_Admin_list=({inputSearchValue})=>{
     const RR_recruiter = useSelector((state)=>state.RRadmin);
+    const navigate = useNavigate()
     const [search, setSearch] = useState([]);
     const dispatch = useDispatch();
     const [pagination, setPagination] = useState({
@@ -37,7 +39,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
             <div className="sort_header">
                 <div>
                     <h3 style={{color:"#2E3192",fontWeight:"bolder"}} className="list-header">RR Admin List</h3>
-                    <button className="add-admin">+ Add Admin</button>
+                    <button className="add-admin" onClick={()=>navigate("/create/recruiter/page")}>+ Add Admin</button>
                 </div>
             </div>
 
