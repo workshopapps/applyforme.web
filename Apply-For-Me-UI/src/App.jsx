@@ -146,7 +146,7 @@ function App() {
                 {/* onboarding */}
 
                 <Route
-                    path="/onboarding/:id/complete"
+                    path="/onboarding/:token/complete"
                     element={<Onboarding />}
                 />
 

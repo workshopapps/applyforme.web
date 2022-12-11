@@ -1,27 +1,38 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Input from "./Input";
 import BlueButton from "components/buttons/blue_background/BlueButton";
 import { useFormik } from "formik";
+import jwt_decode from "jwt-decode";
 import Nav from "components/nav/Nav";
 import * as Yup from "yup";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { userInfo } from "store/slice/UserSlice";
 import styles from "./onboarding.module.css";
 
 const Onboarding = () => {
     const { token } = useParams();
-
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { user } = useSelector(state => state.user);
     const onSubmit = async values => {
+        console.log(token);
+
         const res = await axios
             .put(
                 `https://api.applyforme.hng.tech/api/v1/visitor/${token}/complete-onboard`,
                 values
             )
             .then(response => {
-                console.log(response);
-                return response;
+                let decoded = jwt_decode(response.data.token);
+                let tokenKey = "tokenHngKey";
+                localStorage.setItem(tokenKey, response.data.token);
+                dispatch(userInfo(decoded));
+                navigate("/dashboard");
+                return response?.data;
             })
             .catch(error => {
-                console.log(error);
-                return error?.response.data;
+                return error;
             });
     };
 
@@ -35,10 +46,12 @@ const Onboarding = () => {
             //   form validation
             validationSchema: Yup.object().shape({
                 new_password: Yup.string().required("Password is required"),
-                confirmation_password: Yup.string().oneOf(
-                    [Yup.ref("confirmation_password"), null],
-                    "Passwords must match"
-                )
+                confirmation_password: Yup.string()
+                    .required("Please retype your password.")
+                    .oneOf(
+                        [Yup.ref("new_password")],
+                        "Your passwords do not match."
+                    )
             }),
 
             onSubmit

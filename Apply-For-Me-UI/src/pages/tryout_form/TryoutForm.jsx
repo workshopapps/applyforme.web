@@ -324,9 +324,7 @@ const TryoutForm = () => {
                             </label>
                         </div> */}
 
-                        <div
-                            className={`${formStyling.detailsdropdown_box} ${formStyling.row_of_3}`}
-                        >
+                        <div>
                             <p>Job location type</p>
                             <Dropdown
                                 options={[
@@ -346,6 +344,7 @@ const TryoutForm = () => {
                                 placeholderText="Select Job location type"
                                 id={"job_location_type"}
                                 value={values.job_location_type}
+                                width={100}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 newClass={
