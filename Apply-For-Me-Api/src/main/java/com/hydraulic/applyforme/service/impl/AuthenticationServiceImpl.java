@@ -64,6 +64,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     }
 
+    public String generateOtp(){
+        String otp = new DecimalFormat("000000").format(new Random().nextInt(999999));
+        return otp;
+    }
+
     @Override
     @Transactional
     public String signUp(MemberDto memberDto){
@@ -82,19 +87,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 
             Member saveMember = memberJpaRepository.save(newMember);
-            System.out.println("Newly Created Member: "+ saveMember);
-
-            String otp = new DecimalFormat("000000").format(new Random().nextInt(999999));
-
+            // call generateOtp method to create a new Otp for current User
+            String generatedOtp = generateOtp();
             // save Otp and new member created in the otp_table
             TokenEntity tokenEntity = new TokenEntity();
-            tokenEntity.setOtp(otp);
+            tokenEntity.setOtp(generatedOtp);
             tokenEntity.setMember(saveMember);
 
 
             TokenEntity entity = tokenJPARepository.save(tokenEntity);
             System.out.println(entity);
-            emailService.signupVerification(memberDto.getEmailAddress(),otp);
+            emailService.signupVerification(memberDto.getEmailAddress(),generatedOtp);
 
 
             return String.format("%s,your account is created, OTP sent to your email, provide it to activate your account",entity.getMember().getFirstName());
