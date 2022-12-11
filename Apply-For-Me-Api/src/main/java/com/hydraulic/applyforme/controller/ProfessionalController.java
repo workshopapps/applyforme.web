@@ -7,6 +7,7 @@ import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DI
 
 import java.util.List;
 
+import com.hydraulic.applyforme.model.response.JobSummaryResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -66,6 +67,12 @@ public class ProfessionalController {
 	            @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
 		UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
 		return service.findAllJobProfile(currentUser.getId());
+	}
+
+	@GetMapping("/view-application-summary")
+	public List<JobSummaryResponse> retrieveApplicantJobSummary(){
+		Long id = CurrentUserUtil.getCurrentUser().getId();
+		return  service.retrieveProfessionalSubmissions(id);
 	}
 }
 
