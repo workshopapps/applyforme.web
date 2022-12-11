@@ -1,6 +1,9 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.dto.authentication.*;
+import com.hydraulic.applyforme.model.dto.authentication.ForgotPasswordDto;
+import com.hydraulic.applyforme.model.dto.authentication.ResetPasswordDto;
+import com.hydraulic.applyforme.model.dto.authentication.SignInDto;
+import com.hydraulic.applyforme.model.dto.member.MemberDto;
 import com.hydraulic.applyforme.model.response.ForgotPasswordResponse;
 import com.hydraulic.applyforme.model.response.SignInResponse;
 import com.hydraulic.applyforme.service.AuthenticationService;
@@ -12,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,16 +48,13 @@ public class AuthenticationController {
     }
 
     @PostMapping("/sign-up")
-    public SignInResponse signUp(@Validated @RequestBody SignupDto body) {
-        service.save(body);
-//        emailService.sendWelcomeMessage(body.getEmailAddress());
-        return generateSignInToken(body.getEmailAddress());
+    public String signUp(@RequestBody MemberDto memberDto) {
+        return authenticationService.signUp(memberDto);
     }
 
-    @PostMapping("/sign-up-verification")
-    public String signupVerificationCode(@Validated @RequestBody SignupVerificationDto verificationDto) {
-//        emailService.signupVerification(verificationDto.getEmailAddress());
-        return "Sign up verification code sent";
+    @PostMapping("/sign-up-verification/{email}")
+    public String validateMemberSignUp(@RequestParam("otp") String otp, @PathVariable("email") String email) {
+        return authenticationService.validateMemberSignUp(otp,email);
     }
 
     @PostMapping("/forgot-password")
