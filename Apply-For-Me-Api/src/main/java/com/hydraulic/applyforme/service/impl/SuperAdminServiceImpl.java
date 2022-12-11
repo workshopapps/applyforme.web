@@ -70,6 +70,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     public Member updateProfile(Long id, UpdateProfileDto body) {
 
         Member superAdmin = repository.getOne(id);
+
         if (superAdmin == null) {
             throw new MemberNotFoundException(id);
         }
