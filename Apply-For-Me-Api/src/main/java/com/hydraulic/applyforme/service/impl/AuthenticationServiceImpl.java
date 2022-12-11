@@ -105,10 +105,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Member member = memberJpaRepository.findByEmailAddress(email);
 
         TokenEntity passwordResetToken = tokenJPARepository.findTokenEntityByOtp(otp);
-        System.out.println("MyTokenEntity: "+passwordResetToken);
+
         if(passwordResetToken !=null){
             Member existingMember = memberJpaRepository.findMemberByEmailAddressIgnoreCase(passwordResetToken.getMember().getEmailAddress());
-            System.out.println(existingMember);
+
             if(existingMember!=null)
             {
             existingMember.setActive(true);
@@ -124,57 +124,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
 
-    @Transactional
-    public String generateAndSendOtp(String emailAddress){
-        // Check if any of the user in db has the email provided
-        Member validUser = memberJpaRepository.findByEmailAddress(emailAddress);
-        if (validUser == null ){
-            throw  new MemberNotFoundException();
-        }
-        // if user is valid, generate random 6 digit otp
-        String otp = new DecimalFormat("000000").format(new Random().nextInt(999999));
-        System.out.println("Length of OTP: " +otp.length());
-        // Send Token to user email address
-        emailService.sendResetPasswordCode(emailAddress,otp);
-        // save token sent to user in db
-        TokenEntity tokenEntity = new TokenEntity();
-        tokenEntity.setOtp(otp);
-        resetRepository.saveOne(tokenEntity);
-        System.out.println(String.format("Token sent to %s",emailAddress));
-        return otp;
 
-    }
-
-
-
-
-
-    public boolean validateToken(String otp){
-        TokenEntity validToken = tokenJPARepository.findTokenEntitiesByOtpIgnoreCase(otp);
-        if(validToken.getOtp().equals(otp)){
-            return true;
-        }
-        return false;
-
-    }
-
-
-
-    public String passwordReset(ResetPasswordDto dto) {
-        boolean validatedToken = validateToken(dto.getToken());
-        if(validatedToken) {
-            Member member = memberJpaRepository.findByEmailAddress(dto.getEmailAddress());
-            member.setPassword(dto.getPassword());
-            setPassword(member);
-            memberRepository.saveOne(member);
-            return String.format("%s, password reset successful",member.getFirstName());
-
-        }
-        else{
-            return String.format("%s, password reset failed, try again");
-        }
-
-    }
 
 
     public void setPassword(Member member) {

@@ -69,15 +69,7 @@ public class AuthenticationController {
         return new ForgotPasswordResponse();
     }
 
-    @PostMapping("/generate-reset-token")
-    public String generateAndSendPasswordResetToken(@RequestParam String emailAddress){
-        return authenticationService.generateAndSendOtp(emailAddress);
-    }
-    @PostMapping("/reset-password")
-    public String resetPassword(@Validated @RequestBody ResetPasswordDto passwordDto) {
-        return authenticationService.passwordReset(passwordDto);
-//        return "You have successfully changed your password.";
-    }
+
 
     @PostMapping("/sign-in")
     public SignInResponse signIn(@Validated @RequestBody SignInDto body) throws Exception {
