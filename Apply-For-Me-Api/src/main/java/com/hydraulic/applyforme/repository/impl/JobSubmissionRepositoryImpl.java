@@ -63,4 +63,12 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 		System.out.println("submissionList.size(): " + submissionList.size());
 		return submissionList;
 	}
+
+	@Override
+	public List<Submission> getSubmissionsByProfessionalId(Long professional_id) {
+		String query = "select s from Submission s where s.professional.id = :id";
+		TypedQuery<Submission> submissions = entityManager.createQuery(query, Submission.class);
+		submissions.setParameter("id", professional_id);
+		return submissions.getResultList();
+	}
 }

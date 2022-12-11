@@ -10,4 +10,5 @@ public interface JobSubmissionRepository {
 
 	public ProfessionalJobSubmissionDTO getAllSubmissionsByPagination(Long professionalId, Integer pageOffset);
 	public List<ApplierSubmissionDto> getSubmissionDetails(Long id);
+	public List<Submission> getSubmissionsByProfessionalId(Long professional_id);
 }
