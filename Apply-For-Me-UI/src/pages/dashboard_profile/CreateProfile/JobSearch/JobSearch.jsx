@@ -11,6 +11,7 @@ import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 const JobSearch = ({ formData, setFormData }) => {
     const [countries, setCountries] = useState();
     const [jobTitles, setJobTitles] = useState();
+    const [salaryRanges, setSalaryRanges] = useState();
     const [requestStatus, setRequestStatus] = useState("idle");
 
     // Arrange in alphabetical order
@@ -25,6 +26,10 @@ const JobSearch = ({ formData, setFormData }) => {
         jobTitlesSorted?.map(oneJobTitle => oneJobTitle.title)
     );
 
+    const uniqueSalaries = new Set(
+        salaryRanges?.map(onesalaryrange => onesalaryrange.salary_range)
+    );
+
     // Create an array of objects with the unique titles
     const countryNames = Array.from(uniqueTitles)?.map(title => ({
         label: title,
@@ -32,6 +37,11 @@ const JobSearch = ({ formData, setFormData }) => {
     }));
 
     const jobTitleNames = Array.from(uniqueJobTitles)?.map(title => ({
+        label: title,
+        value: title
+    }));
+
+    const salaryNames = Array.from(uniqueSalaries)?.map(title => ({
         label: title,
         value: title
     }));
@@ -50,6 +60,11 @@ const JobSearch = ({ formData, setFormData }) => {
         fetch("https://api.applyforme.hng.tech/api/v1/job-title/entries/all")
             .then(response => response.json())
             .then(data => setJobTitles(data));
+    }, []);
+    useEffect(() => {
+        fetch("https://api.applyforme.hng.tech/api/v1/salary-range/entries/all")
+            .then(response => response.json())
+            .then(data => setSalaryRanges(data));
     }, []);
 
     const handleCvUpload = async e => {
@@ -179,21 +194,7 @@ const JobSearch = ({ formData, setFormData }) => {
                 <div>
                     <p>Salary Expectation</p>
                     <Dropdown
-                        options={[
-                            { label: "$3,000-$5,000", value: "$3,000-$5,000" },
-                            {
-                                label: "$5,000-$10,000",
-                                value: "$5,000-$10,000"
-                            },
-                            {
-                                label: "$10,000-$15,000",
-                                value: "$10,000-$15,000"
-                            },
-                            {
-                                label: "$15,000-$25,000",
-                                value: "$15,000-$25,000"
-                            }
-                        ]}
+                        options={salaryNames}
                         placeholderText="Salary Expectation"
                         value={formData.salary_expectation}
                         onChange={e => {

@@ -32,6 +32,7 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [mobileSearch, setMobileSearch] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const [showProfileDetails, setShowProfileDetails] = useState(false);
@@ -88,7 +89,8 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 />
                             </div>
                             <div className={classes.search_logo}>
-                                <img src={SearchBlue} alt="Search " />
+                                <img src={SearchBlue} alt="Search " onClick={()=>setMobileSearch(prev =>!prev)}/>
+                                
                             </div>
                             <div
                                 className={classes.user_avater}
@@ -156,9 +158,28 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
 
                         {/*form for searching for users and reverse recruiter */}
                     </section>
+                    
                 </nav>
 
                 {/* Mobile nav */}
+                {mobileSearch && 
+                    
+                         <form
+                                className={classes.search}
+                                onSubmit={event => handleDashboardSubmit(event)}
+                            >
+                               <input
+                                    type="search"
+                                    name="search"
+                                    className={classes.mobile_inp}
+                                    placeholder="Search for and Reverse Recruiter"
+                                />
+                                <button type="submit" className={classes.mobile_btn_cont}>
+                                    {" "}
+                                    <img src={Search} alt="Apply for me logo"  className={classes.mobile_btn}/>
+                                </button>
+                            </form>
+                }
                 {showMenu && <MobileNav setShowMenu={setShowMenu} />}
             </section>
 

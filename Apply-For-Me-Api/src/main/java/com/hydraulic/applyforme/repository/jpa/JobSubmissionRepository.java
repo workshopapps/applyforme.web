@@ -8,11 +8,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface JobSubmissionRepository extends JpaRepository<Submission,Long> {
@@ -31,4 +33,7 @@ public interface JobSubmissionRepository extends JpaRepository<Submission,Long> 
 
      @Query("SELECT COUNT (sbm) FROM Submission sbm")
      Long countSubmission();
+
+     @Query (value = "SELECT s from Submission s where s.professional.member.id = ?1 ")
+     List<Submission> findAllByProfessionalId(@Param("id") Long id);
 }

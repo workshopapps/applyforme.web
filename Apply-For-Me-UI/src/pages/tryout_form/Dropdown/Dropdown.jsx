@@ -7,7 +7,8 @@ const Dropdown = ({
     name,
     options,
     width,
-    placeholderText
+    placeholderText,
+    onBlur
 }) => {
     return (
         <div className={styles.dropdown}>
@@ -17,6 +18,7 @@ const Dropdown = ({
                 onChange={onChange}
                 style={{ width: `${width}%` }}
                 name={name}
+                onBlur={onBlur}
             >
                 <option value="" defaultValue={""}>
                     {placeholderText}
