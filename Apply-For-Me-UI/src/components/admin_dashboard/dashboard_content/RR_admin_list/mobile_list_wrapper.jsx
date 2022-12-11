@@ -11,7 +11,7 @@ export const Mobile_view_list =({firstName,currentJobTitle,id} )=>{
             <div className="img_rapper">
                 <img
                     style={{ width: "100%" }}
-                    src="https://res.cloudinary.com/hamskid/image/upload/v1668865249/Frame_51202_uoy0ee.png"
+                    src="https://res.cloudinary.com/hamskid/image/upload/v1670374366/Ellipse_4_h3itvt.svg"
                     alt="object not found"
                 />
             </div>

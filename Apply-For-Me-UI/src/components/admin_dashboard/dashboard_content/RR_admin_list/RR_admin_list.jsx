@@ -82,7 +82,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     {
                         search?.length !==0 && 
                         (RR_recruiter.loadingStatus === "success" && RR_recruiter.list.length !==0) &&
-                        RR_recruiter.list.content.map((user, index)=>{
+                       search.map((user, index)=>{
                            const {firstName,currentJobTitle,id} = user;
                                 return(
                                     <div className='RRlist' key={index}>
