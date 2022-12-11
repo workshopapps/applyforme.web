@@ -5,25 +5,10 @@ import { RR_Admin_list } from "./RR_admin_list/RR_admin_list";
 import axios from "axios";
 export const DashboardContent = ({ inputSearchValue }) => {
     const [statValue, setStatValue] = useState();
-    const [statistics, setStatisticsValue] = useState({
-        applications: "0",
-        users: "0",
-        recruiter: "0"
-    });
-    const statisticsList = [
-        {
-            date: "Tuesday, 16th Nov. 2022",
-            applications: "0",
-            users: "0",
-            recruiter: "0"
-        }
-    ];
-
-    const createRecruiter = async () => {
+    const getStatisticsDetail = async () => {
         try {
             const response = await axios.get(
                 "https://api.applyforme.hng.tech/api/v1/statistic/counts-part-one",
-
                 {
                     headers: {
                         "Authorization": `Bearer ${token}`
@@ -36,25 +21,13 @@ export const DashboardContent = ({ inputSearchValue }) => {
         }
     };
     useEffect(() => {
-        createRecruiter();
+        getStatisticsDetail();
     }, []);
     console.log(statValue);
 
     const token = localStorage.getItem("tokenHngKey");
     let decoded = jwtDecode(token);
     const { fullName } = decoded;
-    const statisticsHandler = e => {
-        statisticsList.find(item => {
-            if (e.target.value === item.date) {
-                setStatisticsValue({
-                    applications: item.applications,
-                    users: item.users,
-                    recruiter: item.recruiter
-                });
-            }
-        });
-        console.log(e.target.value);
-    };
     return (
         <>
             <div className="applicantsContainer">
@@ -64,15 +37,9 @@ export const DashboardContent = ({ inputSearchValue }) => {
                     <select
                         name="statistic_sorter"
                         id="statistic_sorter"
-                        onChange={statisticsHandler}
+                       
                     >
-                        {statisticsList.map((statistics, index) => {
-                            return (
-                                <option key={index} value={statistics.date}>
-                                    {statistics.date}
-                                </option>
-                            );
-                        })}
+                        <option value={new Date().toLocaleDateString()}> {new Date().toLocaleDateString()}</option>
                     </select>
                 </div>
                 <div className="overflow">
@@ -83,7 +50,7 @@ export const DashboardContent = ({ inputSearchValue }) => {
                                 {statValue?.total_applications}
                             </h1>
                         </div>
-                        <div className="users_recruiter_text">
+                        <div className="users_recruiter_text" style={{borderRight:"1px solid white",borderLeft:"1px solid white"}}>
                             <h6 className="amount">Total Users</h6>
                             <h1 className="value">{statValue?.total_users}</h1>
                         </div>
