@@ -9,10 +9,7 @@ import javax.transaction.Transactional;
 import com.hydraulic.applyforme.model.domain.*;
 import com.hydraulic.applyforme.model.dto.admin.NewPasswordDto;
 import com.hydraulic.applyforme.model.enums.RoleType;
-import com.hydraulic.applyforme.model.exception.CountryNotFoundException;
-import com.hydraulic.applyforme.model.exception.EmailAlreadyExistsException;
-import com.hydraulic.applyforme.model.exception.PasswordMismatchException;
-import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
+import com.hydraulic.applyforme.model.exception.*;
 import com.hydraulic.applyforme.repository.jpa.CountryJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
@@ -146,7 +143,7 @@ public class OnboardingServiceImpl implements OnboardingService {
 		Member member = memberJpaRepository.findByOnboardToken(onboardToken);
 
 		if (member == null) {
-
+			throw new InvalidOnboardTokenException(onboardToken);
 		}
 
 		if (!body.getNewPassword().equals(body.getConfirmationPassword())) {
