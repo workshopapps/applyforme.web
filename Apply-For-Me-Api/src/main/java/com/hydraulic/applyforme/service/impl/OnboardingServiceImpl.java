@@ -145,6 +145,10 @@ public class OnboardingServiceImpl implements OnboardingService {
 	public Member changePassword(String onboardToken, NewPasswordDto body) {
 		Member member = memberJpaRepository.findByOnboardToken(onboardToken);
 
+		if (member == null) {
+
+		}
+
 		if (!body.getNewPassword().equals(body.getConfirmationPassword())) {
 			throw new PasswordMismatchException();
 		}

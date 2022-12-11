@@ -95,7 +95,7 @@ public class EmailServiceImpl implements EmailService {
                 "</div>" +
                 "</div>";
 
-        String subject = "Welcome to ApplyForMe";
+        String subject = "Welcome to ApplyForMe, Complete your on-boarding";
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);

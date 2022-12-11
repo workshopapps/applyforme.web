@@ -368,5 +368,16 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidOnboardTokenException.class)
+    public Object mismatch(InvalidOnboardTokenException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "Member");
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
+
 
 }
