@@ -11,7 +11,7 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    position: sticky;
+    position: fixed;
 }
 
 .sidebar_container.mobile {

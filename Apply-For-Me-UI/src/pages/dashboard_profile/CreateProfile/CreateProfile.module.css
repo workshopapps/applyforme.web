@@ -7,6 +7,12 @@
     padding-left: 5%;
     background-color: #f3f3fb;
     padding-bottom: 20%;
+    margin-left: 9rem;
+}
+@media only screen and (max-width: 480px) {
+    .createprofile {
+        margin-left: 0;
+    }
 }
 .createtext {
     padding-top: 0.5rem;

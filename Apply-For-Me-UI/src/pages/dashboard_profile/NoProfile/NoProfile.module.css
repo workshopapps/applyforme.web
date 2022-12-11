@@ -1,11 +1,15 @@
 .noprofile {
     background-color: #f3f3fb;
     padding-left: 5%;
-    /* margin-left: -3rem; */
+    margin-left: 9rem;
     height: 100vh;
     width: 100vw;
 }
-
+@media only screen and (max-width: 480px) {
+    .profile_page {
+        margin-left: 0;
+    }
+}
 .noprofile_body {
     margin-top: 242px;
     gap: 1rem;
@@ -95,8 +99,9 @@
     width: 100%;
 }
 .loading_animation {
-    margin: auto;
-    width: 20%;
+    margin-top: 50vh;
+    margin-inline: auto;
+    width: 40%;
     height: 5px;
     background-color: #bfbfbf;
     border-radius: 5px;
