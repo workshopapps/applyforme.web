@@ -119,4 +119,6 @@ public class JwtUtil {
         claimsMap.put("memberType", memberType);
     }
 
+
+
 }
