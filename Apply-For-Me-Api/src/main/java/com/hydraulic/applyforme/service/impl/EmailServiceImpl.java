@@ -110,7 +110,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void signupVerification(String emailAddress) {
+    public void signupVerification(String emailAddress,String otp) {
         String token = createVerificationToken();
 
         String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
