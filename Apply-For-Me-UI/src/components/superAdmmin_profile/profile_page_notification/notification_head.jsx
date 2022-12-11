@@ -27,13 +27,13 @@ export const NotificationHead = ({ notificationCount }) => {
             <div>
                 <img
                     className="notification_icon_img"
-                    src="./images/notificationBell-icon.svg"
+                    src="https://res.cloudinary.com/hamskid/image/upload/v1670375727/Vector_nqypjo.svg"
                     alt="object not found"
                 />
                 <span style={{ width: "30%", marginLeft: "1rem" }}>
                     <img
                         style={{ width: "30%" }}
-                        src='./images/superAdminProfilePicture.svg'
+                        src='https://res.cloudinary.com/hamskid/image/upload/v1670374366/Frame_51202_dbdtxv.svg'
                         alt="object not found"
                     />
                 </span>
