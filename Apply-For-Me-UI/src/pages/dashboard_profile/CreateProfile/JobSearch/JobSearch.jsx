@@ -1,23 +1,37 @@
 /* eslint-disable no-unused-vars */
 import styles from "../CreateProfile.module.css";
 import classes from "./JobSearch.module.css";
-import pdf from "../../assets/pdf.png";
+// import pdf from "../../assets/pdf.png";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import DragDropFile from "pages/dashboard_profile/components/DragDropFile/DragDropFile";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 
 const JobSearch = ({ formData, setFormData }) => {
     const [countries, setCountries] = useState();
+    const [jobTitles, setJobTitles] = useState();
     const [requestStatus, setRequestStatus] = useState("idle");
+
+    // Arrange in alphabetical order
+    const jobTitlesSorted = jobTitles?.reverse();
 
     // Create a Set that only contains unique values from the title property to prevent duplicates that may be fetched
     const uniqueTitles = new Set(
         countries?.map(onecountry => onecountry.title)
     );
 
+    const uniqueJobTitles = new Set(
+        jobTitlesSorted?.map(oneJobTitle => oneJobTitle.title)
+    );
+
     // Create an array of objects with the unique titles
     const countryNames = Array.from(uniqueTitles)?.map(title => ({
+        label: title,
+        value: title
+    }));
+
+    const jobTitleNames = Array.from(uniqueJobTitles)?.map(title => ({
         label: title,
         value: title
     }));
@@ -31,6 +45,11 @@ const JobSearch = ({ formData, setFormData }) => {
         fetch("https://api.applyforme.hng.tech/api/v1/country/entries/all")
             .then(response => response.json())
             .then(data => setCountries(data));
+    }, []);
+    useEffect(() => {
+        fetch("https://api.applyforme.hng.tech/api/v1/job-title/entries/all")
+            .then(response => response.json())
+            .then(data => setJobTitles(data));
     }, []);
 
     const handleCvUpload = async e => {
@@ -74,43 +93,7 @@ const JobSearch = ({ formData, setFormData }) => {
             <h3>Complete your desired job info and location</h3>
             <div className={classes.dropdownbox}>
                 <Dropdown
-                    options={[
-                        {
-                            label: "Backend engineer",
-                            value: "Backend engineer"
-                        },
-                        {
-                            label: "Data scientist",
-                            value: "Data scientist"
-                        },
-                        {
-                            label: "Frontend engineer",
-                            value: "Frontend engineer"
-                        },
-                        { label: "Game developer", value: "Game developer" },
-                        { label: "Illustrator", value: "Illustrator" },
-                        {
-                            label: "Musician",
-                            value: "Musician"
-                        },
-                        {
-                            label: "No code developer",
-                            value: "No code developer"
-                        },
-                        {
-                            label: "Product designer",
-                            value: "Product designer"
-                        },
-                        {
-                            label: "Product manager",
-                            value: "Product manager"
-                        },
-                        {
-                            label: "Sound engineer",
-                            value: "Sound engineer"
-                        },
-                        { label: "UX researcher", value: "UX researcher" }
-                    ]}
+                    options={jobTitleNames}
                     width={90}
                     value={formData.job_title}
                     onChange={e => {
@@ -226,7 +209,9 @@ const JobSearch = ({ formData, setFormData }) => {
             {formData.cv_file?.type && (
                 <div>
                     <div className={classes.uploaded_file}>
-                        <img src={pdf} alt="pdf" />
+                        <HiOutlineDocumentDuplicate
+                            className={classes.doc_icon}
+                        />
                         <p>{formData.cv_file.name}</p>
                         <button
                             onClick={() => {

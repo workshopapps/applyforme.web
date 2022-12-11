@@ -1,18 +1,53 @@
+import { useEffect, useState } from "react";
 import styles from "../CreateProfile.module.css";
 import classes from "./CoverLetter.module.css";
-// import Dropdown from "../../components/Dropdown/Dropdown";
+import Dropdown from "../../components/Dropdown/Dropdown";
 import Input from "../../components/InputField/InputField";
 const CoverLetter = ({ formData, setFormData }) => {
+    const [clTemplates, setClTemplates] = useState();
+    const [currentTemplate, setCurrentTemplate] = useState();
+
+    useEffect(() => {
+        fetch(
+            "https://api.applyforme.hng.tech/api/v1/cover-letter-template/entries/all"
+        )
+            .then(response => response.json())
+            .then(data => setClTemplates(data));
+    }, []);
+
+    const clNames = clTemplates?.map(onetemp => ({
+        label: onetemp.title,
+        value: onetemp.title,
+        id: onetemp.id,
+        content: onetemp.content
+    }));
+
+    function populateInputs(e) {
+        const abc = clNames?.find(
+            item => item.value === e.target.value
+        )?.content;
+        setFormData({
+            ...formData,
+            coverletter_subject: e.target.value,
+            coverletter_template: e.target.value,
+            coverletter_body: abc
+        });
+    }
     return (
         <form className={styles.form_body}>
             <h3>Create a cover letter template for this profile</h3>
-            {/* <div className={styles.dropdownbox}>
-                <h5>Template name</h5>
+            <div className={styles.dropdownbox}>
+                <p className={classes.cl_text}>Template name</p>
                 <Dropdown
-                    options={[{ label: "Browse Templates", value: "" }]}
+                    options={clNames}
                     width={90}
+                    placeholderText="Browse Templates"
+                    onChange={e => {
+                        populateInputs(e);
+                    }}
+                    value={formData.coverletter_template}
                 />
-            </div> */}
+            </div>
             <div className={classes.cover_letter}>
                 <label>
                     <p className={classes.cl_text}>Cover letter subject</p>

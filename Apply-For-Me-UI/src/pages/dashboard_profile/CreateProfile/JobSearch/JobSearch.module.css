@@ -100,3 +100,8 @@ p {
         background-position: 100% 0%;
     }
 }
+/* upload icon    */
+.doc_icon {
+    font-size: 2rem;
+    color: #2f80ed;
+}

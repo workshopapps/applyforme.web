@@ -8,10 +8,10 @@
     font-weight: 400;
     font-size: 1.5rem;
     margin-bottom: 0.25rem;
-    width: 25%;
+    /* width: 25%; */
 }
 .edit_box p {
-    width: 50%;
+    /* width: 50%; */
     font-weight: 400;
     font-size: 1rem;
     margin-bottom: 0.25rem;
@@ -33,6 +33,18 @@
         display: flex;
         justify-content: space-between;
     }
+    .edit_box p {
+        width: 40%;
+        font-weight: 400;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+    .edit_box h3 {
+        font-weight: 400;
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+        width: 50%;
+    }
 }
 @media screen and (max-width: 720px) {
     .each_profile {
@@ -44,7 +56,7 @@
         padding-block: 1.5rem;
     }
     .edit_box p {
-        width: 22%;
+        /* width: 22%; */
         font-weight: 400;
         font-size: 1rem;
         margin-bottom: 0.25rem;

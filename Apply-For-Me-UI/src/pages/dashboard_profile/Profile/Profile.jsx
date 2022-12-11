@@ -7,14 +7,20 @@ import add from "../assets/add.png";
 const Profile = ({ profileList }) => {
     const navigate = useNavigate();
 
+    {
+        /* <div className={styles.job_deets}> */
+    }
+    {
+        /* <p>{oneprofile.preferredJobLocationType}</p> */
+    }
+    {
+        /* </div> */
+    }
     const CurrentProfile = profileList?.map(oneprofile => (
         <div key={oneprofile.id} className={styles.each_profile}>
             <div className={styles.edit_box}>
                 <h3>{oneprofile.profileTitle}</h3>
-                <div className={styles.job_deets}>
-                    <p>{oneprofile.preferredJobLocationType}</p>
-                    <p>{oneprofile.jobLocation}</p>
-                </div>
+                <p>{oneprofile.jobLocation}</p>
                 <Link
                     to={{
                         pathname: `/dashboard/user/${oneprofile.id}`,
