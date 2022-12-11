@@ -1,15 +1,14 @@
 package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Professional;
-import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.professional.ProfessionalDto;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
 import com.hydraulic.applyforme.model.response.JobSummaryResponse;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
+import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 import com.hydraulic.applyforme.service.ProfessionalService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,10 +24,12 @@ import java.util.Set;
 public class ProfessionalServiceImpl implements ProfessionalService {
     private final ProfessionalRepository repository;
     private final ProfessionalJpaRepository professionalJpaRepository;
+    private final JobSubmissionRepository jobSubmissionRepository;
     
-    public ProfessionalServiceImpl(ProfessionalRepository repository, ProfessionalJpaRepository professionalJpaRepository) {
+    public ProfessionalServiceImpl(ProfessionalRepository repository, ProfessionalJpaRepository professionalJpaRepository, JobSubmissionRepository jobSubmissionRepository) {
         this.repository = repository;
         this.professionalJpaRepository = professionalJpaRepository;
+        this.jobSubmissionRepository = jobSubmissionRepository;
     }
 
     @Override
@@ -85,15 +86,15 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     }
 
     @Override
-    public List<JobSummaryResponse> retrieveProfessionalSubmissions(String emailAddress) {
-        Professional applicant = professionalJpaRepository.getProfessionalByMemberEmailAddress(emailAddress.toLowerCase());
+    public List<JobSummaryResponse> retrieveProfessionalSubmissions(Long id) {
+        Professional applicant = professionalJpaRepository.getProfessionalByMember_Id(id);
         if (applicant == null){
-            throw new ProfessionalNotFoundException(emailAddress);
+            throw new ProfessionalNotFoundException(id);
         }
 
         List<JobSummaryResponse> summaries = new ArrayList<>();
 
-        Set<Submission> allJobSubmissions = applicant.getSubmissions();
+        Set<Submission> allJobSubmissions = jobSubmissionRepository.findSubmissionsByProfessional_Id(applicant.getId());
         for (Submission submission : allJobSubmissions){
             JobSummaryResponse summaryResponse = JobSummaryResponse.builder()
                     .submissionId(submission.getId())
