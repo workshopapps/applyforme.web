@@ -1,12 +1,17 @@
-import React from 'react'
-import "./Button.css"
+import React from "react";
+import "./Button.css";
 
-const Button = (props) => {
+const Button = props => {
     return (
-        <label className='button_label'>
-            <input type="submit" name="submit" value={props.child} className="btn"/>
+        <label className="button_label">
+            <input
+                type="submit"
+                name="submit"
+                value={props.child}
+                className="btn"
+            />
         </label>
-        )
-}
+    );
+};
 
-export default Button
+export default Button;

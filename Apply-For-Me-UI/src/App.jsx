@@ -77,14 +77,13 @@ atatus.config("c626faaef503411ea6216d7b6112de1c").install();
 
 function App() {
     const dispatch = useDispatch();
-    const { user } = useSelector(state => state.user);
-    console.log("App her", user);
+
     useEffect(() => {
         if (localStorage?.getItem("tokenHngKey")) {
             let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
             dispatch(userInfo(decoded));
         }
-    }, []);
+    }, [dispatch]);
 
     return (
         <>
@@ -157,6 +156,8 @@ function App() {
                 <Route exact path="/rr_sign_up" element={<Sign_Up />} />
 
                 {/*  PROTECTED ROUTE*/}
+
+                {/*  SuperAdmin */}
                 <Route
                     element={
                         <ProtectedRoute allowedRoles={["SuperAdministrator"]} />
@@ -180,12 +181,10 @@ function App() {
                         element={<CreateRecruiter />}
                     />
                 </Route>
+
+                {/* Reverve Recruiter/Recruiter - Route (Recruiter) */}
                 <Route
-                    element={
-                        <ProtectedRoute
-                            allowedRoles={["Professional", "Recruiter"]}
-                        />
-                    }
+                    element={<ProtectedRoute allowedRoles={["Recruiter"]} />}
                 >
                     {/*Reverse Recruiter Dashboard */}
                     <Route path="/rr_admin" element={<DashboardHome />} />
@@ -201,7 +200,12 @@ function App() {
                         path="/rr_admin/all_applications"
                         element={<Applications />}
                     />
+                </Route>
 
+                {/* User  Route (Professional)  */}
+                <Route
+                    element={<ProtectedRoute allowedRoles={["Professional"]} />}
+                >
                     {/* USER DASHBAORD */}
                     <Route path="/dashboard" element={<UserDashboardLayout />}>
                         {/* User Dashboard Profile */}
