@@ -53,6 +53,7 @@ const CoverLetter = ({ formData, setFormData }) => {
                     <p className={classes.cl_text}>Cover letter subject</p>
                 </label>
                 <Input
+                    className={classes.clsubject_input}
                     type="text"
                     value={formData.coverletter_subject}
                     name="coverletter_subject"

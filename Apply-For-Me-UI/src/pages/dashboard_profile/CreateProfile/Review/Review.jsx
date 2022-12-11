@@ -152,7 +152,7 @@ const Review = ({ formData, keywords, setStep }) => {
                         <h5>Personal email</h5>
                     </div>
                 </div>
-                <hr className={styles.hr_one} />
+                {/* <hr className={styles.hr_one} /> */}
                 <div className={classes.cl_template}>
                     <div>
                         <h6>Cover letter template</h6>
@@ -170,7 +170,9 @@ const Review = ({ formData, keywords, setStep }) => {
                             <h6>Cover letter body</h6>
                             <div className={classes.review_textarea}>
                                 {formData.coverletter_body ? (
-                                    <p>{formData.coverletter_body}</p>
+                                    <p className={classes.clbody_text}>
+                                        {formData.coverletter_body}
+                                    </p>
                                 ) : (
                                     <p className={classes.not_filled}>
                                         not yet written
