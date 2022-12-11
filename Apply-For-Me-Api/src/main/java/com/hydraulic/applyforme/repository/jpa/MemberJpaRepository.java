@@ -11,5 +11,6 @@ import java.util.Optional;
 
 public interface MemberJpaRepository extends JpaRepository<Member, Long> {
     Member findByEmailAddress(String emailAddress);
+    Member findMemberByEmailAddressIgnoreCase(String emailAddress);
     boolean existsByEmailAddress(String emailAddress);
 }

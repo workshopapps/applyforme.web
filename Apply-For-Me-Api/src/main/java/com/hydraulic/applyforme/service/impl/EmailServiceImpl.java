@@ -73,8 +73,8 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void signupVerification(String emailAddress) {
-        String token = createVerificationToken();
+    public void signupVerification(String emailAddress,String otp) {
+
 
         String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
                 " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
@@ -83,7 +83,7 @@ public class EmailServiceImpl implements EmailService {
                 "<p>ApplyForMe</p>" +
                 "</div>" +
                 "<p style=\"font-size:1.1em\">" +
-                "Your sign up verification code is " + token +
+                "Your sign up verification code is " + otp +
                 " <hr style=\"border:none;border-top:1px solid #eee\" />" +
                 "<div style=\"margin-top: 20px;padding:8px 0;color:#aaa;font-size:1.0em;line-height:1;font-weight:300\">" +
                 " <p>© 2022 ApplyForMe, All rights reserved.</p>" +

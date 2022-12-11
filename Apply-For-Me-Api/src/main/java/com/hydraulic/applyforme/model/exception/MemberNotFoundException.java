@@ -10,6 +10,8 @@ public class MemberNotFoundException extends ApplyForMeException {
         this.entityId = entityId;
     }
 
+    public MemberNotFoundException() {
+    }
 
     @Override
     public String getMessage() {

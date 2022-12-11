@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -44,7 +45,7 @@ import java.util.Set;
             )
         }
 )
-public class Member {
+public class Member implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,6 +64,30 @@ public class Member {
     @ManyToOne(fetch = FetchType.EAGER, optional = false,cascade = CascadeType.ALL)
     @JoinColumn(name = "nationality_id")
     private Country nationality;
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", nationality=" + nationality +
+                ", countryOfResidence=" + countryOfResidence +
+                ", dateOfBirth=" + dateOfBirth +
+                ", currentJobTitle='" + currentJobTitle + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", username='" + username + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", password='" + password + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", active=" + active +
+                ", createdOn=" + createdOn +
+                ", updatedOn=" + updatedOn +
+                ", roles=" + roles +
+                '}';
+    }
 
     /**
      * This column stores a reference to the country where the actor presently resides.

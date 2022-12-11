@@ -21,7 +21,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "applier")
-public class Applier {
+public class Applier implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -24,7 +25,7 @@ import java.util.Date;
 @Builder
 @Entity
 @Table(name ="job_submission")
-public class Submission {
+public class Submission implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -15,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name ="apply_for_me")
-public class ApplyForMe {
+public class ApplyForMe implements Serializable {
 
     public ApplyForMe() {
         createdOn = new Date();

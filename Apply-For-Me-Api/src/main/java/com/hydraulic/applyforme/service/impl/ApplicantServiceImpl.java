@@ -50,4 +50,6 @@ public class ApplicantServiceImpl implements ApplicantService {
         applyForMeResponse.setLast(result.isLast());
         return applyForMeResponse;
     }
+
+
 }
