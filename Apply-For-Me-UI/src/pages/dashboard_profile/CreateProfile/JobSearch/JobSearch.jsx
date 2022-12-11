@@ -123,7 +123,6 @@ const JobSearch = ({ formData, setFormData }) => {
 
                 <h5>Type a city or country</h5>
             </div>
-            <br />
             <div className={classes.remotecheckbox}>
                 <input
                     type="checkbox"

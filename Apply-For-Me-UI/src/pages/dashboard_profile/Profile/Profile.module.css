@@ -3,7 +3,18 @@
     padding-bottom: 25%;
     width: 100vw;
     background-color: #f3f3fb;
+    margin-left: 9rem;
 }
+.sidemarg {
+    margin-left: 9rem;
+}
+@media only screen and (max-width: 480px) {
+    .profile_page,
+    .sidemarg {
+        margin-left: 0;
+    }
+}
+
 .edit_box h3 {
     font-weight: 400;
     font-size: 1.5rem;
@@ -121,16 +132,30 @@
     font-size: 1.5rem;
     margin-block: 1rem;
 }
-.loading_animation {
-    margin: auto;
-    width: 20%;
+.loading_animate {
+    margin-top: 50vh;
+    width: 100%;
     height: 5px;
     background-color: #bfbfbf;
     border-radius: 5px;
     animation: loading_animation 2s linear infinite;
 }
-
-/* Define  animation */
+.loading_box {
+    margin-left: 50%;
+}
+.loading_box p {
+    text-align: center;
+}
+@media only screen and (max-width: 480px) {
+    .loading_box {
+        margin-left: 0;
+    }
+    .loading_animate {
+        margin-inline: auto;
+        width: 50%;
+    }
+}
+/* Define animation  */
 @keyframes loading_animation {
     0% {
         background-color: #bfbfbf;

@@ -3,15 +3,20 @@
     padding: 24px 60px;
     display: flex;
     width: 90%;
-    position: fixed;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     color: #2e3192;
-    z-index: 40;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+    z-index: -1;
+    /* -webkit-backdrop-filter: blur(8px);   */
     border-bottom: 0.5px #cccccc solid;
+    margin-left: 9.6rem;
+    width: 80vw;
+}
+@media only screen and (max-width: 480px) {
+    .applications_top_nav {
+        margin-left: 0;
+    }
 }
 .applications_page_title {
     display: flex;
