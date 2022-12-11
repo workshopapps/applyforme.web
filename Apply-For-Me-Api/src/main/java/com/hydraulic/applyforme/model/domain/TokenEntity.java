@@ -4,33 +4,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name= "otp_table")
+@Table(name= "otp")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TokenEntity implements Serializable{
+public class TokenEntity{
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(updatable = false, nullable = false)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GenericGenerator(name = "uuid", strategy = "uuid2")
+//    @Column(updatable = false, nullable = false)
+    private Long id;
 
     private String otp;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @NotFound(action = NotFoundAction.IGNORE)
+
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    public TokenEntity(Member saveMember) {
-
-    }
 
     @Override
     public String toString() {

@@ -10,7 +10,7 @@ public interface AuthenticationService {
     String passwordReset(ResetPasswordDto resetPasswordDto);
 
     String signUp(MemberDto memberDto);
-    public String validateMemberSignUp(String otp);
+    public String validateMemberSignUp(String otp, String email);
 
     String generateAndSendOtp(String emailAddress);
 

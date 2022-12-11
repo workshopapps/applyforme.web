@@ -7,11 +7,12 @@ import com.hydraulic.applyforme.model.dto.authentication.ResetPasswordDto;
 import com.hydraulic.applyforme.model.dto.member.MemberDto;
 import com.hydraulic.applyforme.model.exception.MemberDuplicateEntityException;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
+import com.hydraulic.applyforme.model.exception.TokenNotFoundException;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.PasswordResetRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
-import com.hydraulic.applyforme.repository.jpa.PasswordResetTokenJPARepository;
+import com.hydraulic.applyforme.repository.jpa.TokenJpaRepository;
 import com.hydraulic.applyforme.service.AuthenticationService;
 import com.hydraulic.applyforme.util.JwtUtil;
 import org.modelmapper.ModelMapper;
@@ -35,7 +36,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final ModelMapper modelMapper;
     private final PasswordResetRepository resetRepository;
 
-    private PasswordResetTokenJPARepository passwordResetTokenJPARepository;
+    private TokenJpaRepository tokenJPARepository;
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -53,13 +54,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Autowired
     private EmailServiceImpl emailService;
 
-    public AuthenticationServiceImpl(MemberSecretJpaRepository secretJpaRepository, MemberJpaRepository memberJpaRepository, MemberRepository memberRepository, ModelMapper modelMapper, PasswordResetTokenJPARepository passwordResetTokenJPARepository, PasswordResetRepository resetRepository) {
+    public AuthenticationServiceImpl(MemberSecretJpaRepository secretJpaRepository, MemberJpaRepository memberJpaRepository, MemberRepository memberRepository, ModelMapper modelMapper, TokenJpaRepository tokenJPARepository, PasswordResetRepository resetRepository) {
         this.secretJpaRepository = secretJpaRepository;
         this.memberJpaRepository = memberJpaRepository;
         this.memberRepository = memberRepository;
         this.modelMapper = modelMapper;
         this.resetRepository = resetRepository;
-        this.passwordResetTokenJPARepository = passwordResetTokenJPARepository;
+        this.tokenJPARepository = tokenJPARepository;
 
     }
 
@@ -86,23 +87,25 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             String otp = new DecimalFormat("000000").format(new Random().nextInt(999999));
 
             // save Otp and new member created in the otp_table
-            TokenEntity tokenEntity = new TokenEntity(saveMember);
+            TokenEntity tokenEntity = new TokenEntity();
             tokenEntity.setOtp(otp);
+            tokenEntity.setMember(saveMember);
 
 
-            passwordResetTokenJPARepository.save(tokenEntity);
-            System.out.println(tokenEntity.getMember());
+            TokenEntity entity = tokenJPARepository.save(tokenEntity);
+            System.out.println(entity);
             emailService.signupVerification(memberDto.getEmailAddress(),otp);
 
 
-            return "Account created, OTP sent to your email, provide it to activate your account";
+            return String.format("%s,your account is created, OTP sent to your email, provide it to activate your account",entity.getMember().getFirstName());
     }
 
     @Transactional
-    public String validateMemberSignUp(String otp){
+    public String validateMemberSignUp(String otp,String email){
+        Member member = memberJpaRepository.findByEmailAddress(email);
 
-        TokenEntity passwordResetToken = passwordResetTokenJPARepository.findByOtp(otp);
-        System.out.println(passwordResetToken);
+        TokenEntity passwordResetToken = tokenJPARepository.findTokenEntityByOtp(otp);
+        System.out.println("MyTokenEntity: "+passwordResetToken);
         if(passwordResetToken !=null){
             Member existingMember = memberJpaRepository.findMemberByEmailAddressIgnoreCase(passwordResetToken.getMember().getEmailAddress());
             System.out.println(existingMember);
@@ -147,7 +150,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 
     public boolean validateToken(String otp){
-        TokenEntity validToken = passwordResetTokenJPARepository.findByOtp(otp);
+        TokenEntity validToken = tokenJPARepository.findTokenEntitiesByOtpIgnoreCase(otp);
         if(validToken.getOtp().equals(otp)){
             return true;
         }

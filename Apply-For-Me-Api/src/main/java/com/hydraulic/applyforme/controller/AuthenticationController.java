@@ -54,9 +54,9 @@ public class AuthenticationController {
         return authenticationService.signUp(memberDto);
     }
 
-    @PostMapping("/sign-up-verification")
-    public String validateMemberSignUp(@RequestParam("otp") String otp) {
-        return authenticationService.validateMemberSignUp(otp);
+    @PostMapping("/sign-up-verification/{email}")
+    public String validateMemberSignUp(@RequestParam("otp") String otp,@PathVariable("email") String email) {
+        return authenticationService.validateMemberSignUp(otp,email);
     }
 
     @PostMapping("/forgot-password")
