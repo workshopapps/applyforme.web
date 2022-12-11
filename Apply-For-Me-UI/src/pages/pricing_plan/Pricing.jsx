@@ -188,7 +188,9 @@ const Pricing = ({
                             <h2 className={styles.faqheading}>{faqHeading}</h2>
                             <p className={styles.faqText}>{faqText}</p>
 
-                            <BlueBorderButton text={faqBtnText} />
+
+                            <BlueBorderButton text={faqBtnText} func={()=>navigate("/contact")}/>
+
                         </div>
 
                         <div className={styles.questionWrapper}>

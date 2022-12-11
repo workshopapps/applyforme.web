@@ -1,7 +1,9 @@
 
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import classes from "./Hero.module.css";
 const LearnMore = () => {
+    const navigate = useNavigate();
     return (
         <div className={classes.learn_container}>
             <div className={classes.learn_content}>
@@ -15,7 +17,7 @@ const LearnMore = () => {
                     <h2 style={{ color: "#2E3192" }}>
                         With just these few steps, we put you out there
                     </h2>
-                    <button>Learn More &#8594;</button>
+                    <button onClick={()=>navigate("/faqs")}>Learn More &#8594;</button>
                 </div>
                 <img src="https://res.cloudinary.com/hamskid/image/upload/v1670013377/Content_1_ovmknu.svg" className={classes.learnImg} alt="object not found" />
                 <img src="https://res.cloudinary.com/hamskid/image/upload/v1670013058/Content_eyjw1o.svg" className={classes.learnImg2} alt="object not found" />

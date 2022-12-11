@@ -35,6 +35,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const id = useParams();
+    
     useEffect(() => {
         dispatch(getRRAdminProfile(id));
     }, [dispatch, getRRAdminProfile, id]);
@@ -169,7 +170,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         <div className={classes.user_action__btn__mobile}>
                             <FiTrash className={classes.trash} />
 
-                            <p onClick={()=>dispatch(Delete_RR_Admin({id:id}) )}>Delete</p>
+                            <p onClick={()=>dispatch(Delete_RR_Admin(id))}>Delete</p>
                         </div>
                     </div>
                 </div>

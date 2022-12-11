@@ -42,7 +42,7 @@ export const Desktop_List = ({ firstName, currentJobTitle, id, createdOn }) => {
                             marginRight: "0.3rem"
                         }}
                     >
-                        view Profile
+                        View profile
                     </h5>
                 </div>
             </td>

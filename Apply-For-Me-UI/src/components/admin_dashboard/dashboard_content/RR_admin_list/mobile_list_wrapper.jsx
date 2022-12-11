@@ -24,7 +24,7 @@ export const Mobile_view_list =({firstName,currentJobTitle,id} )=>{
                         onClick={() => navigate(`/user-page/reverseRecruiterAdmin/${id}`)}
                         style={{color:"#2E3192",marginBottom:"0",marginRight:"0.3rem"}}
                     >
-                        view Profile
+                        View profile
                     </h5>
             </div>
         </>

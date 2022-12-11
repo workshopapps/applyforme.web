@@ -13,6 +13,10 @@
     border-radius: 8px;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 @media screen and (max-width: 345px) {
     .main_btn {
         font-size: 0.8rem;
