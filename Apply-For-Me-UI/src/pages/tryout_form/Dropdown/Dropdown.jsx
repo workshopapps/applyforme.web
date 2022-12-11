@@ -8,11 +8,10 @@ const Dropdown = ({
     options,
     width,
     placeholderText,
-    onBlur,
-    newClass
+    onBlur
 }) => {
     return (
-        <div className={[styles.dropdown, newClass].join(" ")}>
+        <div className={styles.dropdown}>
             <select
                 id={id}
                 value={value}

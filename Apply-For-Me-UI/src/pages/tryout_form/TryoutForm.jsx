@@ -245,11 +245,6 @@ const TryoutForm = () => {
                                 placeholderText="Job Title"
                                 id={"job_title"}
                                 onBlur={handleBlur}
-                                newClass={
-                                    touched.job_title && errors.job_title
-                                        ? "input-error"
-                                        : ""
-                                }
                             />
                             {touched.job_title && errors.job_title && (
                                 <small
@@ -276,11 +271,6 @@ const TryoutForm = () => {
                                 id={"job_location"}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                newClass={
-                                    touched.job_location && errors.job_location
-                                        ? "input-error"
-                                        : ""
-                                }
                             />
                             {touched.job_location && errors.job_location && (
                                 <small
@@ -326,12 +316,6 @@ const TryoutForm = () => {
                                 width={100}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                newClass={
-                                    touched.job_location_type &&
-                                    errors.job_location_type
-                                        ? "input-error"
-                                        : ""
-                                }
                             />
 
                             {touched.job_location_type &&
@@ -376,12 +360,6 @@ const TryoutForm = () => {
                                     value={values.job_seniority}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    newClass={
-                                        touched.job_seniority &&
-                                        errors.job_seniority
-                                            ? "input-error"
-                                            : ""
-                                    }
                                 />
 
                                 {touched.job_seniority && errors.job_seniority && (
@@ -417,12 +395,6 @@ const TryoutForm = () => {
                                     value={values.employment_type}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    newClass={
-                                        touched.employment_type &&
-                                        errors.employment_type
-                                            ? "input-error"
-                                            : ""
-                                    }
                                 />
 
                                 {touched.employment_type &&
@@ -446,12 +418,6 @@ const TryoutForm = () => {
                                     value={values.salary_range}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    newClass={
-                                        touched.salary_range &&
-                                        errors.salary_range
-                                            ? "input-error"
-                                            : ""
-                                    }
                                 />
 
                                 {touched.salary_range && errors.salary_range && (
