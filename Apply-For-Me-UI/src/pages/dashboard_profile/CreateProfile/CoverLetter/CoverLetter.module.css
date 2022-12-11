@@ -1,6 +1,6 @@
 .cover_letter input {
     width: 90%;
-    height: 1rem;
+    height: 3rem;
     border: 1px solid #6d6e71;
     border-radius: 4px;
     margin-top: 0.5rem;
@@ -26,6 +26,7 @@
     letter-spacing: 0.03em;
     color: #6d6e71;
 }
+/* Cl Text */
 .cl_text {
     font-weight: 400;
     color: #737373;

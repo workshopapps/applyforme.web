@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 
-
 const ApplicationForm = () => {
     const [state, setState] = useState({
         name: "",
@@ -58,40 +57,41 @@ const ApplicationForm = () => {
     const navigate = useNavigate();
 
     return (
+        <section className={style.application_form}>
+            <RRD_Nav />
+            <div className={style.go_back_link}>
+                <Link to="/rr_admin">
+                    <img src={goBackIcon} alt="" />
+                </Link>
+                <span
+                    className={style.view_applicants}
+                    onClick={() => navigate("/rr_admin/appilicants_details")}
+                >
+                    View Applicants details
+                </span>
+            </div>
+            <form className={style.form}>
+                <p>Please, fill this form for every application submitted</p>
+                {applicationsFormData.map((item, index) => {
+                    return (
+                        <label htmlFor={item.id} key={index}>
+                            <span>{item.labelText}</span>
+                            <br />
+                            <input
+                                name={item.id}
+                                id={item.id}
+                                type="text"
+                                placeholder={item.placeholder}
+                                value={item.value}
+                                onChange={handleChange}
+                            />
+                        </label>
+                    );
+                })}
 
-            <section className={style.application_form}>
-                 <RRD_Nav/>
-                <div className={style.go_back_link}>
-                    <Link to="/rr_admin/appilicants_details">
-                        <img src={goBackIcon} alt="" />
-                    </Link>
-                    <span className={style.view_applicants} onClick={()=>navigate("/rr_admin/appilicants_details")}>
-                        View Applicants details
-                    </span>
-                </div>
-                <form className={style.form}>
-                    <p>Please, fill this form for every application submitted</p>
-                    {applicationsFormData.map((item, index) => {
-                        return (
-                            <label htmlFor={item.id} key={index}>
-                                <span>{item.labelText}</span>
-                                <br />
-                                <input
-                                    name={item.id}
-                                    id={item.id}
-                                    type="text"
-                                    placeholder={item.placeholder}
-                                    value={item.value}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        );
-                    })}
-
-                    <input id="submit" type="submit" value="Submit" />
-                </form>
+                <input id="submit" type="submit" value="Submit" />
+            </form>
         </section>
-        
     );
 };
 

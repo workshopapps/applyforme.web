@@ -92,8 +92,9 @@ public class OnboardingServiceImpl implements OnboardingService {
 		}
 
 		long password = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
-		long onboardingToken = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
-		long onboardingToken1 = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+		long onboardToken = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+		long onboardToken1 = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+		long onboardToken2 = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
 		long username = new Random().nextInt(900000) + 100000;
 
 		Member member = new Member();
@@ -106,7 +107,7 @@ public class OnboardingServiceImpl implements OnboardingService {
 		member.setNationality(nationality.get());
 		member.setCountryOfResidence(countryOfResidence.get());
 		member.setUsername((body.getEmailAddress().split("@")[0]) + username);
-		member.setOnboardToken(String.valueOf(onboardingToken) + String.valueOf(onboardingToken1));
+		member.setOnboardToken(String.valueOf(onboardToken) + String.valueOf(onboardToken1) + String.valueOf(onboardToken2));
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.YEAR, 1990);
@@ -133,6 +134,7 @@ public class OnboardingServiceImpl implements OnboardingService {
 		profileRepository.saveOne(profile);
 
 		OnboardingResponse response = new OnboardingResponse();
+		response.setId(member.getId());
 		modelMapper.map(body, response);
 		return response;
 	}

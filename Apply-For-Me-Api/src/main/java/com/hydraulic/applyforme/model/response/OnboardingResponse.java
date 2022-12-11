@@ -33,4 +33,5 @@ public class OnboardingResponse {
     private String salaryRange = "0";
     private String employmentType;
     private Integer yearsOfExperience = 0;
+    private String onBoardToken;
 }

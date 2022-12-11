@@ -1,56 +1,47 @@
-.dashboard
-{
+.dashboard {
     display: flex;
     flex-flow: column;
     gap: 2px;
     --padding: 32px;
-    --blue: #2E3192;
+    --blue: #2e3192;
     --font-size-1: 24px;
     --font-size-2: 16px;
     --font-size-3: 32px;
 }
 
-.dashboard>*
-{
+.dashboard > * {
     margin: 0px 53px;
 }
 
-.header
-{
+.header {
     padding: var(--padding);
     font-size: var(--font-size-2);
     background: white;
 }
 
-.header>*
-{
+.header > * {
     padding: 8px;
 }
 
-.header h1
-{
-    font-size: var(--font-size-1)
+.header h1 {
+    font-size: var(--font-size-1);
 }
 
-.summary
-{
+.summary {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     gap: 54px;
 }
-
-.card
-{
+.card {
     width: 25%;
     padding: 8px 16px;
-    border: 2px solid #F7F7F8;
+    border: 2px solid #f7f7f8;
     border-radius: 8px;
     font-size: var(--font-size-3);
 }
 
-.summary button
-{
+.summary button {
     min-width: 260px;
     padding: 13px;
     border-radius: 8px;
@@ -59,62 +50,49 @@
     font-size: 20px;
 }
 
-.summary button a
-{
+.summary button a {
     color: white;
 }
 
-
-.card>p
-{
+.card > p {
     color: initial;
     font-size: var(--font-size-2);
 }
 
-.list>*
-{
+.list > * {
     margin: 16px var(--padding);
 }
 
-.list_header
-{
+.list_header {
     display: flex;
     justify-content: space-between;
     font-size: var(--font-size-1);
 }
 
-.list_header p:first-child
-{
+.list_header p:first-child {
     font-weight: 700;
 }
 
-.list_header *:last-child
-{
+.list_header *:last-child {
     font-size: 16px;
 }
 
-@media only screen and (max-width: 1024px)
-{
-    .summary
-    {
+@media only screen and (max-width: 1024px) {
+    .summary {
         flex-wrap: wrap;
     }
 
-    .card
-    {
+    .card {
         width: 25%;
     }
 }
 
-@media only screen and (max-width: 480px)
-{
-    .dashboard>*
-    {
+@media only screen and (max-width: 480px) {
+    .dashboard > * {
         margin: 0px 13px;
     }
 
-    .card
-    {
-        width: 35%
+    .card {
+        width: 35%;
     }
 }

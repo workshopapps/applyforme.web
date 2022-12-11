@@ -1,4 +1,4 @@
-import Nav from "../../components/nav/Nav";
+import Nav from "../../../../components/nav/Nav";
 import style from "./error.module.css";
 import { Link } from "react-router-dom";
 
