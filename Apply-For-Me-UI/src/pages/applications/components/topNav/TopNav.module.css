@@ -7,11 +7,10 @@
     justify-content: space-between;
     align-items: center;
     color: #2e3192;
-    z-index: -1;
-    /* -webkit-backdrop-filter: blur(8px);   */
+    /* -webkit-backdrop-filter: blur(8px); */
     border-bottom: 0.5px #cccccc solid;
     margin-left: 9.6rem;
-    width: 80vw;
+    width: 85vw;
 }
 @media only screen and (max-width: 480px) {
     .applications_top_nav {
@@ -49,6 +48,7 @@
     height: 53px;
     background-color: rgb(213, 211, 211);
     border-radius: 50%;
+    cursor: pointer;
 }
 .application_nav_notif {
     width: 24px;

@@ -12,7 +12,7 @@ import Cookies from "./pages/cookies/Cookies";
 import Career from "./pages/career/Career";
 import Blog from "./pages/blog/Blog";
 
-import Error from "./pages/error/Error";
+import Error from "./pages/dashboard_profile/Success/error/Error";
 import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
