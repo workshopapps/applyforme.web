@@ -30,18 +30,19 @@ const Welcome1 = () => {
     useEffect(() => {
         if (user) {
             setTimeout(() => {
-                if (
-                    user?.roles[0] === "Professional" ||
-                    user?.roles[0] === "Recruiter"
-                ) {
-                    navigate("/dashboard");
+                if (user?.roles[0] === "Recruiter") {
+                    navigate("/rr_admin");
                 } else if (user?.roles[0] === "SuperAdministrator") {
                     navigate("/user-page");
+                } else if (
+                    user.roles.length === 1 &&
+                    user?.roles[0] === "Professional"
+                ) {
+                    navigate("/dashboard");
                 }
-            }, 3000);
+            }, 2000);
         }
     }, [user]);
-    console.log(user);
 
     const handleSignup = async event => {
         event.preventDefault();
@@ -58,7 +59,12 @@ const Welcome1 = () => {
             .post(`${BaseUrl}`, formData)
             .then(res => res.data)
             .catch(err => {
-                let message = typeof err.response.data.message === "object"? err.response.data.message[Object.keys(err.response.data.message)[0]] : err.response.data.message
+                let message =
+                    typeof err.response.data.message === "object"
+                        ? err.response.data.message[
+                              Object.keys(err.response.data.message)[0]
+                          ]
+                        : err.response.data.message;
                 setError(message);
                 console.log(err.response.data.message);
             });
@@ -139,12 +145,12 @@ const Welcome1 = () => {
                             <span className="special">Privacy Policies</span>
                         </span>
                     </label>
-                    {error && <p style={{color:"red"}}>{error}</p>}
+                    {error && <p style={{ color: "red" }}>{error}</p>}
                     <div className="lg">
                         <Button child="Sign Up" type="submit" />
                     </div>
                 </form>
-                
+
                 <span className="ques">
                     Already have an account?{" "}
                     <Link to="/wel2" className="special">
