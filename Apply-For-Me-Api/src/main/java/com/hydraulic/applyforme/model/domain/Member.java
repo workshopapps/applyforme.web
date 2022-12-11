@@ -76,7 +76,7 @@ public class Member {
     @Temporal(TemporalType.DATE)
     @Column(name ="date_of_birth")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth = new Date();
 
     /**

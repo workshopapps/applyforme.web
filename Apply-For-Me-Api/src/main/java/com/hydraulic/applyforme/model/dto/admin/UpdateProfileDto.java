@@ -3,8 +3,7 @@ package com.hydraulic.applyforme.model.dto.admin;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hydraulic.applyforme.annotation.PhoneNumber;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -12,8 +11,11 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+@Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UpdateProfileDto {
 
     @NotNull(message = "{member.firstName.notNull}")
@@ -26,8 +28,8 @@ public class UpdateProfileDto {
 
     @JsonProperty("date_of_birth")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    @Past(message = "{customer.dateOfBirth.past}")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Past(message = "{member.dateOfBirth.past}")
     private Date dateOfBirth;
 
     @JsonProperty("email_address")
