@@ -49,9 +49,10 @@ public class ProfessionalController {
 
     }
 
-    @GetMapping("/view-application-summary/{applicantEmail}")
-    public List<JobSummaryResponse> retrieveApplicantJobSummary(@PathVariable String applicantEmail){
-    return  service.retrieveProfessionalSubmissions(applicantEmail);
+    @GetMapping("/view-application-summary")
+    public List<JobSummaryResponse> retrieveApplicantJobSummary(){
+        Long id = CurrentUserUtil.getCurrentUser().getId();
+        return  service.retrieveProfessionalSubmissions(id);
     }
 
 }
