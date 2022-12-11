@@ -70,7 +70,10 @@ import { SuperDashBoard } from "pages/super_admin_dashboard/dashboardview";
 
 import TryoutForm from "pages/tryout_form/TryoutForm";
 import TrySuccess from "pages/tryout_form/Success";
-import * as atatus from "atatus-spa";
+
+import * as atatus from 'atatus-spa';
+import { CreateRecruiter } from "pages/createRecruiter/create_view";
+
 
 atatus.config("c626faaef503411ea6216d7b6112de1c").install();
 
@@ -166,6 +169,7 @@ function App() {
                         path="/user-page/reverseRecruiterAdmin/:id"
                         element={<RR_admin_profile />}
                     />
+                    <Route exact path="/create/recruiter/page" element={<CreateRecruiter/>}/>
                 </Route>
                 <Route
                     element={
