@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface JobSubmissionRepository extends JpaRepository<Submission,Long> {
@@ -31,4 +32,5 @@ public interface JobSubmissionRepository extends JpaRepository<Submission,Long> 
 
      @Query("SELECT COUNT (sbm) FROM Submission sbm")
      Long countSubmission();
+     Set<Submission> findSubmissionsByProfessional_Id(Long id);
 }
