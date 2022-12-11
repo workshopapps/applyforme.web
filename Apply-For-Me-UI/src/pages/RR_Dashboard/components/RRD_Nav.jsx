@@ -124,7 +124,6 @@ const RRD_Nav = () => {
                         </div>
                     </section>
                 </nav>
-
                 {/* Mobile nav */}
                 {showMenu && <MobileNav setShowMenu={setShowMenu} />}
             </section>
