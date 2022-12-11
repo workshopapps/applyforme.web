@@ -16,7 +16,7 @@ const Review = ({ formData, keywords, setStep }) => {
     let included_keywords = String(keywords);
 
     if (included_keywords.length <= 1) {
-        included_keywords = "string";
+        included_keywords = "none";
     }
     console.log(included_keywords);
     let jobLocationType = formData.isremote ? "remote" : "hybrid";
@@ -38,11 +38,11 @@ const Review = ({ formData, keywords, setStep }) => {
             return alert("Please select your employment type");
         } else if (formData.salary_expectation === "") {
             return alert("Please select your salary expectation");
-        } else if (formData.cv_file === []) {
+        } else if (formData.shortenedCVUrl === "") {
             return alert("Please upload a CV");
-        } else if (formData.coverletter_subject.length < 2) {
+        } else if (formData.coverletter_subject === "") {
             return alert("Please enter a cover letter subject");
-        } else if (formData.coverletter_body.length <= 1) {
+        } else if (formData.coverletter_body.length === "") {
             return alert("Please enter a cover letter body");
         }
 
@@ -137,7 +137,9 @@ const Review = ({ formData, keywords, setStep }) => {
                     <h6>Personal Info</h6>
                     <div>
                         {formData.cv_file?.name ? (
-                            <p>{formData.cv_file?.name}</p>
+                            <p className={classes.pdf_name}>
+                                {formData.cv_file?.name}
+                            </p>
                         ) : (
                             <p className={classes.not_filled}>
                                 not uploaded yet
@@ -150,7 +152,7 @@ const Review = ({ formData, keywords, setStep }) => {
                         <h5>Personal email</h5>
                     </div>
                 </div>
-                <hr className={styles.hr_one} />
+                {/* <hr className={styles.hr_one} /> */}
                 <div className={classes.cl_template}>
                     <div>
                         <h6>Cover letter template</h6>
@@ -168,7 +170,9 @@ const Review = ({ formData, keywords, setStep }) => {
                             <h6>Cover letter body</h6>
                             <div className={classes.review_textarea}>
                                 {formData.coverletter_body ? (
-                                    <p>{formData.coverletter_body}</p>
+                                    <p className={classes.clbody_text}>
+                                        {formData.coverletter_body}
+                                    </p>
                                 ) : (
                                     <p className={classes.not_filled}>
                                         not yet written

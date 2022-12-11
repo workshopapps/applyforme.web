@@ -5,10 +5,19 @@
 }
 @media screen and (min-width: 960px) {
     .review_box {
-        display: flex;
-        gap: 3rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
         margin-top: 1.5rem;
-        margin-right: 10%;
+        /* margin-right: 10%; */
+    }
+
+    .review_box p {
+        font-size: 1.25rem;
+        font-weight: 300;
+        line-height: 150%;
+        letter-spacing: 0.01em;
+        color: #52515b;
     }
 }
 .review_box p {
@@ -29,7 +38,7 @@
 }
 .review_textarea {
     width: 80%;
-    /* height: 22rem; */
+    /* height: 22rem;  */
     resize: none;
     background: #ffffff;
     border: 1px solid #cccccc;
@@ -86,4 +95,8 @@
         background-color: #2f80ed;
         background-position: 100% 0%;
     }
+}
+.clbody_text {
+    overflow: auto;
+    max-height: 12rem;
 }

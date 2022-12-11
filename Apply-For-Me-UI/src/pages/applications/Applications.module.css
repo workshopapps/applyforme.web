@@ -1,32 +1,54 @@
+.applications_table_wrapper {
+    margin-left: 9.6rem;
+}
+@media only screen and (max-width: 480px) {
+    .applications_table_wrapper {
+        margin-left: 0;
+    }
+}
+@media only screen and (min-width: 620px) {
+    .applications_table_wrapper {
+        width: 70vw;
+    }
+}
+@media only screen and (min-width: 820px) {
+    .applications_table_wrapper {
+        width: 85vw;
+    }
+}
 .applications_container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
-.containerClassName{
-    margin:1rem 2rem;
+
+.containerClassName {
+    margin: 1rem 2rem;
     font-weight: 500;
     display: flex;
     align-items: center;
     width: fit-content;
     justify-content: space-evenly;
- }
- 
- .activeClassName{
-    background-color: #2E3192;
-    color:white;
- }
- .pageClassName{
+}
+
+.activeClassName {
+    background-color: #2e3192;
+    color: white;
+}
+.pageClassName {
     padding: 0.2rem 0.6rem;
     border-radius: 3px;
- }
- .previousClassName a,.nextClassName a{
-    font-weight:bold;
- }
- .pageLinkClassName,.previousClassName a,.nextClassName a{
+}
+.previousClassName a,
+.nextClassName a {
+    font-weight: bold;
+}
+.pageLinkClassName,
+.previousClassName a,
+.nextClassName a {
     font-size: 17px;
-    margin:0 0.1rem;
- }
+    margin: 0 0.1rem;
+}
 .application_main {
     padding-top: 101px;
     flex: 1 1 auto;
@@ -208,13 +230,13 @@ th:last-child {
     align-items: center;
 }
 
-.applications_card_tag_wrapper>div {
+.applications_card_tag_wrapper > div {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
 }
 
-.applications_card_tag_wrapper>span {
+.applications_card_tag_wrapper > span {
     font-weight: 600;
     font-size: 14px;
     line-height: 150%;
