@@ -69,7 +69,7 @@ public class ProfessionalController {
 		return service.findAllJobProfile(currentUser.getId());
 	}
 
-    @GetMapping("/view-job-description/{jobId}")
+    @GetMapping("/job-description/{jobId}")
     public JobDescriptionResponse getJobDescription(@PathVariable Long jobId){
         var currentUser = CurrentUserUtil.getCurrentUser();
         return service.viewJobDescription(currentUser.getId(), jobId);

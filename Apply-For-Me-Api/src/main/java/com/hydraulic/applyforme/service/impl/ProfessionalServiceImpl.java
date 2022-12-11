@@ -25,6 +25,7 @@ import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalProfileJpaRepository;
 import com.hydraulic.applyforme.service.ProfessionalService;
+import com.hydraulic.applyforme.util.ProfessionalProfileUtil;
 
 @Service
 public class ProfessionalServiceImpl implements ProfessionalService {
@@ -35,10 +36,10 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 	@Autowired
 	private MemberRepository memberRepository;
 
-
 	public ProfessionalServiceImpl(ProfessionalRepository repository,
-								   ProfessionalJpaRepository professionalJpaRepository,
-								   ProfessionalProfileJpaRepository professionalProfileJpaRepository, JobSubmissionRepository jobSubmissionRepository) {
+			ProfessionalJpaRepository professionalJpaRepository,
+			ProfessionalProfileJpaRepository professionalProfileJpaRepository,
+			JobSubmissionRepository jobSubmissionRepository) {
 		this.repository = repository;
 		this.professionalJpaRepository = professionalJpaRepository;
 		this.professionalProfileJpaRepository = professionalProfileJpaRepository;
@@ -88,7 +89,7 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 		professional.setOtherLink2(professionalDto.getOtherLink2());
 		professional.setOtherLink3(professionalDto.getOtherLink3());
 		repository.updateOne(professional);
-		
+
 		return true;
 	}
 
@@ -105,38 +106,43 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 	@Override
 	public List<ProfessionalProfile> findAllJobProfile(Long id) {
 		List<ProfessionalProfile> jobProfiles = professionalProfileJpaRepository.getJobProfiles(id);
-		
+
 		jobProfiles.forEach(profile -> {
 			profile.getProfessional().setSubmissions(null);
 			profile.getProfessional().setProfessionalProfiles(null);
 		});
-		
+
 		return jobProfiles;
 	}
 
-    @Override
-    public JobDescriptionResponse viewJobDescription(Long professionalId, Long submissionId) {
-        Optional<Professional> professional = professionalJpaRepository.findById(professionalId);
-        if (professional.isEmpty()) {
-            throw new ProfessionalNotFoundException(professionalId);
-        }
-        List<Submission> submissions = jobSubmissionRepository.findAllByProfessionalId(professionalId);
+	@Override
+	public JobDescriptionResponse viewJobDescription(Long professionalId, Long submissionId) {
+		Optional<Professional> professional = professionalJpaRepository.findById(professionalId);
+		if (professional.isEmpty()) {
+			throw new ProfessionalNotFoundException(professionalId);
+		}
+		List<Submission> submissions = jobSubmissionRepository.findAllByProfessionalId(professionalId);
 
-        for (Submission submission:submissions){
+		for (Submission submission : submissions) {
+			if (submission.getId().equals(submissionId)) {
+				submission.getApplier().setSubmissions(null);
+				JobDescriptionResponse jobDescriptionResponse = JobDescriptionResponse.builder()
+						.id(submission.getId())
+						.applier(submission.getApplier())
+						.jobLocation(submission.getJobLocation())
+						.jobLink(submission.getJobLink())
+						.jobLocationType(submission.getJobLocationType().getValue())
+						.otherComment(submission.getOtherComment())						.jobTitle(submission.getJobTitle())
+						.jobSummary(submission.getSummary()).
+						jobCompany(submission.getJobCompany())
+						.createdOn(submission.getCreatedOn())
+						.updatedOn(submission.getUpdatedOn())
+						.build();
+				return jobDescriptionResponse;
+			}
 
-
-            JobDescriptionResponse jobDescriptionResponse = JobDescriptionResponse.builder()
-                    .jobLocation(submission.getJobLocation())
-                    .jobTitle(submission.getJobTitle())
-                    .jobSummary(submission.getSummary())
-                    .jobCompany(submission.getJobCompany())
-                    .date(submission.getCreatedOn())
-                    .monthlySalaryRange(null)
-                    .build();
-            return jobDescriptionResponse;
-
-        }
-        return null;
-    }
+		}
+		return null;
+	}
 
 }
