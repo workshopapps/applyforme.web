@@ -1,7 +1,12 @@
 package com.hydraulic.applyforme.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import com.hydraulic.applyforme.model.domain.Submission;
+import com.hydraulic.applyforme.model.response.JobSummaryResponse;
+import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,16 +31,18 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 	private final ProfessionalRepository repository;
 	private final ProfessionalJpaRepository professionalJpaRepository;
 	private final ProfessionalProfileJpaRepository professionalProfileJpaRepository;
+	private final JobSubmissionRepository jobSubmissionRepository;
 	
 	@Autowired
 	private MemberRepository memberRepository;
 
 	public ProfessionalServiceImpl(ProfessionalRepository repository,
-			ProfessionalJpaRepository professionalJpaRepository,
-			ProfessionalProfileJpaRepository professionalProfileJpaRepository) {
+								   ProfessionalJpaRepository professionalJpaRepository,
+								   ProfessionalProfileJpaRepository professionalProfileJpaRepository, JobSubmissionRepository jobSubmissionRepository) {
 		this.repository = repository;
 		this.professionalJpaRepository = professionalJpaRepository;
 		this.professionalProfileJpaRepository = professionalProfileJpaRepository;
+		this.jobSubmissionRepository = jobSubmissionRepository;
 	}
 
 	@Override
@@ -105,6 +112,30 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 		});
 		
 		return jobProfiles;
+	}
+
+	@Override
+	public List<JobSummaryResponse> retrieveProfessionalSubmissions(Long id) {
+		Professional applicant = professionalJpaRepository.getProfessionalByMember_Id(id);
+		if (applicant == null){
+			throw new ProfessionalNotFoundException(id);
+		}
+
+		List<JobSummaryResponse> summaries = new ArrayList<>();
+
+		Set<Submission> allJobSubmissions = jobSubmissionRepository.findSubmissionsByProfessional_Id(applicant.getId());
+		for (Submission submission : allJobSubmissions){
+			JobSummaryResponse summaryResponse = JobSummaryResponse.builder()
+					.submissionId(submission.getId())
+					.jobLocation(submission.getJobLocation())
+					.jobCompany(submission.getJobCompany())
+					.jobTitle(submission.getJobTitle())
+					.createdOn(submission.getCreatedOn())
+					.jobLocationType(submission.getJobLocationType())
+					.build();
+			summaries.add(summaryResponse);
+		}
+		return summaries;
 	}
 
 }
