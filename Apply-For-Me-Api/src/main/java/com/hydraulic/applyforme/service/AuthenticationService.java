@@ -7,9 +7,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface AuthenticationService {
 
+    String passwordReset(ResetPasswordDto resetPasswordDto);
 
     String signUp(MemberDto memberDto);
-    public String validateMemberSignUp(String otp, String email);
+    public String validateMemberSignUp(String otp);
+
+    String generateAndSendOtp(String emailAddress);
+
 
     void authenticate(String username, String password) throws Exception;
 }

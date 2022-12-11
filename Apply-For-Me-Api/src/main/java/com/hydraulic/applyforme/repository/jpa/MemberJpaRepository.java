@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MemberJpaRepository extends JpaRepository<Member, Long> {
-    Member findMemberById(Long id);
     Member findByEmailAddress(String emailAddress);
     Member findMemberByEmailAddressIgnoreCase(String emailAddress);
     boolean existsByEmailAddress(String emailAddress);
