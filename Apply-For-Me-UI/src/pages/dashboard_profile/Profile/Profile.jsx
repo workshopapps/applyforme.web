@@ -12,8 +12,8 @@ const Profile = ({ profileList }) => {
             <div className={styles.edit_box}>
                 <h3>{oneprofile.profileTitle}</h3>
                 <div className={styles.job_deets}>
-                    <p>{oneprofile.preferredJobLocationType}</p>
                     <p>{oneprofile.jobLocation}</p>
+                    <p>{oneprofile.preferredJobLocationType}</p>
                 </div>
                 <Link
                     to={{

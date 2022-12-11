@@ -42,7 +42,7 @@ import Pricing from "./pages/pricing_plan/Pricing";
 import Checkout from "pages/checkout/Checkout";
 import ProtectedRoute from "ProtectedRoute";
 //UserDashboard
-import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
+import NoProfile from "./pages/dashboard_profile/CreateProfile/Review/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
 import Profile from "./pages/dashboard_profile/Profile/Profile";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
@@ -70,9 +70,12 @@ import { SuperDashBoard } from "pages/super_admin_dashboard/dashboardview";
 
 import TryoutForm from "pages/tryout_form/TryoutForm";
 import TrySuccess from "pages/tryout_form/Success";
-import * as atatus from 'atatus-spa';
 
-atatus.config('c626faaef503411ea6216d7b6112de1c').install();
+import * as atatus from 'atatus-spa';
+import { CreateRecruiter } from "pages/createRecruiter/create_view";
+
+
+atatus.config("c626faaef503411ea6216d7b6112de1c").install();
 
 function App() {
     const dispatch = useDispatch();
@@ -166,6 +169,7 @@ function App() {
                         path="/user-page/reverseRecruiterAdmin/:id"
                         element={<RR_admin_profile />}
                     />
+                    <Route exact path="/create/recruiter/page" element={<CreateRecruiter/>}/>
                 </Route>
                 <Route
                     element={
@@ -175,7 +179,7 @@ function App() {
                     }
                 >
                     {/*Reverse Recruiter Dashboard */}
-                    <Route path="/rr_admin" element={<DashboardHome />}/>
+                    <Route path="/rr_admin" element={<DashboardHome />} />
                     <Route
                         path="/rr_admin/form"
                         element={<ApplicationForm />}
