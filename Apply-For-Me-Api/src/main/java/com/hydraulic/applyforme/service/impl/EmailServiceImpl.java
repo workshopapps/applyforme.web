@@ -100,7 +100,7 @@ public class EmailServiceImpl implements EmailService {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setFrom(env.getProperty("applyforme.email"));
-            helper.setTo(emailAddress);
+            helper.setTo(response.getEmailAddress());
             helper.setSubject(subject);
             helper.setText(content, true);
             javaMailSender.send(message);
