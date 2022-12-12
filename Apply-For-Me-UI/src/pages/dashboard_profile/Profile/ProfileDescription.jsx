@@ -36,12 +36,13 @@ export default function ProfileDescription() {
                 // handle error
                 console.log(error);
             });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const oneprofile = profileDesc?.find(obj => obj.id === parseInt(id));
     // console.log(oneprofile);
     const navigate = useNavigate();
-    if (done != "done") {
+    if (done !== "done") {
         return (
             <div className={classes.loading_box}>
                 <div className={classes.loading_animate} />

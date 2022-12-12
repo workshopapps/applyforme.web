@@ -66,7 +66,14 @@ const Profile = ({ profileList }) => {
                     >
                         <AiOutlineEye className={styles.view_icon} />
                     </Link>
-                    <BsPencil className={styles.update_icon} />
+                    <Link
+                        to={{
+                            pathname: `/dashboard/user/${oneprofile.id}/edit`,
+                            state: { oneprofile }
+                        }}
+                    >
+                        <BsPencil className={styles.update_icon} />
+                    </Link>
                     <AiOutlineDelete
                         onClick={() => handleModal(oneprofile.id)}
                         className={styles.delete_icon}

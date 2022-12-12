@@ -46,6 +46,7 @@ import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
 import ProfileDescription from "pages/dashboard_profile/Profile/ProfileDescription";
+import EditProfile from "./pages/dashboard_profile/EditProfile/EditProfile";
 import { ProfileScreen } from "components/superAdmmin_profile/superAdmin_profileScreen";
 
 // Auth Logic
@@ -221,6 +222,10 @@ function App() {
                         <Route
                             path="/dashboard/user/:id"
                             element={<ProfileDescription />}
+                        />
+                        <Route
+                            path="/dashboard/user/:id/edit"
+                            element={<EditProfile />}
                         />
 
                         {/* User Dashboard Applications */}
