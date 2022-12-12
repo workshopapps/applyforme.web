@@ -150,4 +150,10 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 		return null;
 	}
 
+	@Override
+	public List<JobSummaryResponse> retrieveProfessionalSubmissions(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
