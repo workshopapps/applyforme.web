@@ -5,14 +5,12 @@
     align-items: center;
     padding-block: 2rem;
 }
-
-@media screen and (max-width: 480px) {
-    .container {
-        display: none;
-    }
+.containers {
+    display: none;
 }
 
-.button {
+.button,
+.buttons {
     border: none;
     background-color: #fff;
     font-weight: 400;
@@ -28,6 +26,28 @@
     text-decoration: none !important;
 }
 
-.button:hover {
+.buttons {
+    width: 100%;
+    font-size: 18px;
+    background-color: transparent;
+}
+
+.button:hover,
+.buttons:hover {
     color: #222226 !important;
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        display: none;
+    }
+
+    .containers {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 0px;
+        padding-block: 2rem;
+    }
 }
