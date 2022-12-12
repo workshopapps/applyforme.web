@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import avatar from "./img/avatar.png";
 import notification from "./img/notification.png";
 import "./DashboardNothing.css";
+import GoBackMobile from "./GoBackMobile";
 
 const NewUserDashboard = () => {
     const { user } = useSelector(state => state.user);
@@ -41,6 +42,7 @@ const NewUserDashboard = () => {
             {/* section for overview */}
 
             <section className="dashboard-overview">
+                <GoBackMobile />
                 <h5>Overview</h5>
 
                 <div className="overview-cards-wrapper">

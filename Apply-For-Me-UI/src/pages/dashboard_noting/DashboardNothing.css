@@ -1,9 +1,11 @@
 .main-dashboard-page {
     margin-left: 9rem;
+    padding-bottom: 200px;
+    height: auto;
 }
 @media only screen and (max-width: 480px) {
     .main-dashboard-page {
-        margin-left: 0;
+        margin: 0%;
     }
     .overview-card {
     width: 100%;
@@ -20,7 +22,7 @@
     justify-content: space-between;
     color: #2e3192;
 }
-@media (min-width: 480px) and (max-width: 1000px) {
+@media (min-width: 480px) and (max-width: 600px) {
     .top-dashboard-stripe {
         width: 85%;
     }
@@ -87,6 +89,9 @@
 }
 .overview-card-wrapper {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* my appliaction */
@@ -247,6 +252,8 @@
         text-align: center;
     }
     .mobile-create button {
+        position: static;
+        float: right;
         border-radius: 50%;
         padding: 5px 10px;
         background-color: #1d2080;
@@ -254,8 +261,6 @@
         width: 2.5rem;
         height: 2.5rem;
         border: none;
-        margin-left: 5px;
-        margin-right: 5px;
     }
 }
 
