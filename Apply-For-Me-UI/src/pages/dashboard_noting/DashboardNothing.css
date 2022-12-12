@@ -5,6 +5,9 @@
     .main-dashboard-page {
         margin-left: 0;
     }
+    .overview-card {
+    width: 100%;
+}
 }
 .dashboardnothing {
     width: 87vw;
@@ -197,12 +200,13 @@
         padding: 10px 10px;
     }
 }
-
 @media screen and (max-width: 481px) {
     .dashboard-overview {
         padding: 30px;
     }
-
+    .overview-card {
+        width: 100%;
+    }
     .dashboardnothing {
         width: 100vw;
         height: 100vh;

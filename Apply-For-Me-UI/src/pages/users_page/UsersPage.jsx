@@ -53,9 +53,6 @@ const UsersPage = ({ inputSearchValue }) => {
                             <th className={classes.hide_header_desktop}>
                                 Stat
                             </th>
-                            <th className={classes.hide_on_mobile}>
-                                Interviews
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,11 +68,9 @@ const UsersPage = ({ inputSearchValue }) => {
                                         <td className={classes.hide_on_mobile}>
                                             {" "}
                                             {list.membership.emailAddress}
-                                            {list.membership.emailAddress}
                                         </td>
                                         <td>basic</td>
                                         <td>{list.totalSubmissions} of 15</td>
-                                        <td>basic</td>
                                     </tr>
                                 );
                             })}

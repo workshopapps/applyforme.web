@@ -5,8 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./applicants.module.css";
 
-export const RRApplicantsPage = () => {
+export const RRApplicantsPage = ({inputSearchValue}) => {
     const dispatch = useDispatch();
+    const list = useSelector(state => state.RRadmin);
+    console.log(list);
+    const [search, setSearch] = useState([]);
     const [pagination, setPagination] = useState({
         "pageNo": 0,
         "pageSize": 10,
@@ -14,31 +17,26 @@ export const RRApplicantsPage = () => {
     const handlePageClick =(data)=>{
         setPagination(prevState =>({...prevState,"pageNo":data.selected}));
 
-        dispatch(SuperAdminApplicantsApplicants(pagination));
+        dispatch(SuperAdminApplicants(pagination));
        
     }
+    useEffect(()=>{
+        const avilableList = (list.applicantsloadingStatus ==="success" && list.superAdminApplicantsList?.length !==0) ? list.superAdminApplicantsList?.content?.filter((item)=>item.membership.firstName.toLowerCase().includes(inputSearchValue)):[]
+        setSearch(avilableList);
+    }, [inputSearchValue, list.superAdminApplicantsList]);
+
     useEffect(()=>{
         dispatch(SuperAdminApplicants(pagination));
     },[dispatch,SuperAdminApplicants])
 
 
-    const list = useSelector(state => state.RRadmin);
-    console.log(list);
+   
     return (
         <div className={classes.main_container}>
            <div className="statisticsContainer">
-                <h2  className="list-header">Statistics</h2>
+                <h2  className="list-header">All Applicants</h2>
                 <select name="statistic_sorter" id="statistic_sorter">
-
-                    {list.superAdminApplicantsList.length !== 0 &&
-                         (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
-                            list.superAdminApplicantsList.content?.map((statistics, index)=>{
-
-                            return(
-                                <option key={index} value={statistics.membership.createdOn?.split("T").shift()}>{statistics.membership.createdOn?.split("T").shift()}</option>
-                            )
-                        })
-                    }
+                    <option value={new Date().toLocaleDateString()}> {new Date().toLocaleDateString()}</option>
                 </select>
             </div>
 
@@ -57,17 +55,12 @@ export const RRApplicantsPage = () => {
                             <th className={classes.hide_header_desktop}>
                                 Stat
                             </th>
-                            <th className={classes.hide_on_mobile}>
-                                Interviews
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
-
-                        {list.superAdminApplicantsList.length !== 0 &&
+                        {search.length !== 0 &&
                          (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
-                            list.superAdminApplicantsList.content?.map(list => {
-
+                            search?.map(list => {
                                 return (
                                     <tr
                                         className={classes.user_details}
@@ -77,17 +70,16 @@ export const RRApplicantsPage = () => {
                                         <td className={classes.hide_on_mobile}>
                                             {" "}
                                             {list.membership.emailAddress}
-                                            {list.membership.emailAddress}
                                         </td>
                                         <td>basic</td>
                                         <td>{list.totalSubmissions} of 15</td>
-                                        <td>basic</td>
                                     </tr>
                                 );
                             })}
                     </tbody>
                 </table>
                 {list.applicantsloadingStatus ==="pending" && <p style={{textAlign:"center"}}>Please wait...</p>}
+                {(list.applicantsloadingStatus === "success" && search?.length ===0) && <p className="text-center">record not found</p>}
                 <div>
                 <ReactPaginate
                     breakLabel="..."

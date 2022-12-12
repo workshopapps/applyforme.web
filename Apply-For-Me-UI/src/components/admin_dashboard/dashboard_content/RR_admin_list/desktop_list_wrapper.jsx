@@ -19,20 +19,20 @@ export const Desktop_List = ({ firstName, currentJobTitle, id, createdOn }) => {
                             alt="object not found"
                         />
                     </span>
-                    <h5 style={{ marginLeft: "2rem" }}>{firstName}</h5>
+                    <h6 style={{ marginLeft: "2rem" }}>{firstName}</h6>
                 </div>
             </td>
             <td>
-                <h5 style={{ fontWeight: "400" }}>{currentJobTitle}</h5>
+                <h6 style={{ fontWeight: "400" }}>{currentJobTitle}</h6>
             </td>
             <td>
-                <h5 style={{ fontWeight: "400" }}>
+                <h6 style={{ fontWeight: "400" }}>
                     {createdOn?.split("T").shift()}
-                </h5>
+                </h6>
             </td>
             <td>
                 <div className="viewContainer">
-                    <h5
+                    <h6
                         onClick={() =>
                             navigate(`/user-page/reverseRecruiterAdmin/${id}`)
                         }
@@ -43,7 +43,7 @@ export const Desktop_List = ({ firstName, currentJobTitle, id, createdOn }) => {
                         }}
                     >
                         View profile
-                    </h5>
+                    </h6>
                 </div>
             </td>
         </>
