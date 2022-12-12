@@ -150,6 +150,7 @@ public class OnboardingServiceImpl implements OnboardingService {
 			throw new PasswordMismatchException();
 		}
 		member.setPassword(body.getConfirmationPassword());
+		member.setOnboardToken(null);
 		memberRepository.updateOne(member);
 		return member;
 	}
