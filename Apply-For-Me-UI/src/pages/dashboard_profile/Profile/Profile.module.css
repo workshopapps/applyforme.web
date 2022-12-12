@@ -172,3 +172,78 @@
     font-size: 2rem;
     cursor: pointer;
 }
+.delete_modal {
+    margin-top: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 34rem;
+    margin-inline: auto;
+    height: 14rem;
+    background: #ffffff;
+    border-radius: 16px;
+}
+@media screen and (max-width: 860px) {
+    .delete_modal {
+        height: 17rem;
+    }
+    .modal_buttons {
+        flex-direction: column-reverse;
+        margin-inline: auto;
+    }
+}
+@media screen and (max-width: 600px) {
+    .delete_modal {
+        height: 17rem;
+        margin-inline: 2rem;
+        outline: none;
+    }
+}
+
+.delete_modal p {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #000000;
+    padding-bottom: 1rem;
+}
+.delete_modal button {
+    width: 12.5rem;
+}
+.modal_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.modal_buttons button {
+    height: 3.9rem;
+    border: 0;
+}
+.modal_buttons button:first-child {
+    border: 2px solid #bfbfbf;
+    border-radius: 8px;
+    color: #bfbfbf;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+.modal_buttons button:last-child {
+    color: #fbfbff;
+    font-weight: 600;
+    background: #d44e4e;
+    border-radius: 8px;
+}
+.view_icon {
+    font-size: 1.75rem;
+}
+.delete_icon {
+    font-size: 1.75rem;
+    color: #2f80ed;
+}
+.update_icon {
+    font-size: 1.5rem;
+    color: #2f80ed;
+}
+.ved_icons {
+    display: flex;
+    gap: 0.25rem;
+}

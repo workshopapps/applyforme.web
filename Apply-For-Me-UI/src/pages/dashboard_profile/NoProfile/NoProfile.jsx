@@ -12,12 +12,11 @@ const NoProfile = () => {
     const [data, setData] = useState(null);
     const [profileList, setProfileList] = useState(null);
 
-    // eslint-disable-next-line no-unused-vars
-    const token = localStorage.getItem("tokenKey");
-    let tokenKey = "tokenHngKey";
-    let storedToken = localStorage.getItem(tokenKey);
-    console.log(storedToken);
     useEffect(() => {
+        // eslint-disable-next-line no-unused-vars
+        let tokenKey = "tokenHngKey";
+        let storedToken = localStorage.getItem(tokenKey);
+        console.log(storedToken);
         axios
             .get(
                 "https://api.applyforme.hng.tech/api/v1/professional/profiles",
