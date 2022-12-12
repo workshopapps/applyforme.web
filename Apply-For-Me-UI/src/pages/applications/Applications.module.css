@@ -346,8 +346,8 @@ th:last-child {
 
 .applications_sort {
     position: fixed;
-    bottom: 150px;
-    right: 50px;
+    bottom: 100px;
+    right: 10px;
     z-index: 50;
     background-color: #2e3192;
     border-radius: 50%;
