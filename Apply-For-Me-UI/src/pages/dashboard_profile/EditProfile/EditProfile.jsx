@@ -85,7 +85,7 @@ const CreateProfile = () => {
     const [formData, setFormData] = useState({
         job_title: "",
         location: "",
-        isRemote: false,
+        isRemote: "",
         experience: "",
         employment_type: "",
         salary_expectation: "",
@@ -123,7 +123,6 @@ const CreateProfile = () => {
         return (
             <div className={styles.createprofile}>
                 <TopBar />
-                <p>{id}</p>
                 <p className={styles.createtext}>
                     Let's create a new job profile
                 </p>

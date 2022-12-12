@@ -138,7 +138,26 @@ const JobSearch = ({ formData, setFormData }) => {
 
                 <h5>Type a city or country</h5>
             </div>
-            <div className={classes.remotecheckbox}>
+            <div className={classes.dropdownbox}>
+                <Dropdown
+                    options={[
+                        { label: "Hybrid", value: "Hybrid" },
+                        { label: "Remote", value: "Remote" },
+                        { label: "Onsite", value: "Onsite" }
+                    ]}
+                    width={90}
+                    placeholderText="Location Type"
+                    value={formData.isRemote}
+                    onChange={e => {
+                        setFormData({
+                            ...formData,
+                            isRemote: e.target.value
+                        });
+                    }}
+                />
+                <h5>Select your preferred location type</h5>
+            </div>
+            {/* <div className={classes.remotecheckbox}>
                 <input
                     type="checkbox"
                     id="isRemote"
@@ -152,7 +171,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     }}
                 />
                 <label htmlFor="isRemote">I want only remote jobs</label>
-            </div>
+            </div> */}
             <div className={classes.detailsdropdown_box}>
                 <div>
                     <p>Experience</p>

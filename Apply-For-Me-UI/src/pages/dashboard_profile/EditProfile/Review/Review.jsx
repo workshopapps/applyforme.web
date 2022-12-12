@@ -19,7 +19,6 @@ const Review = ({ formData, keywords, setStep, id }) => {
         included_keywords = "none";
     }
     console.log(included_keywords);
-    let jobLocationType = formData.isremote ? "remote" : "hybrid";
     console.log(formData);
 
     const { user } = useSelector(state => state.user);
@@ -32,6 +31,8 @@ const Review = ({ formData, keywords, setStep, id }) => {
             return alert("Please enter a job title");
         } else if (formData.location === "") {
             return alert("Please select your location");
+        } else if (formData.isRemote === "") {
+            return alert("Please select your job location type");
         } else if (formData.experience === "") {
             return alert("Please select your experience");
         } else if (formData.employment_type === "") {
@@ -67,7 +68,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
                         salary_range: formData.salary_expectation,
                         employment_type: formData.employment_type,
                         job_location: formData.location,
-                        job_location_type: jobLocationType,
+                        job_location_type: formData.isRemote,
                         job_seniority: formData.experience,
                         desired_job_title: "string",
                         industry: "string",
