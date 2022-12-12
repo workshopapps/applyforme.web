@@ -165,7 +165,7 @@ public class EmailServiceImpl implements EmailService {
                 "<p style=\"font-size:1.1em\">" +
                 "You have requested to reset your password." +
                 "<p>Copy the code below to reset your password:</p>" + "<br>" +
-                "<a href=\"" + link + "\">Change my password</a>" + "<br>" +
+                "<a href=\"" + link + "\">Change my password</a>" + " or use " + token + " in the form input field <br>" +
                 "Ignore this email if you do remember your password, " +
                 "or you have not made the request.</p>"+
                 " <hr style=\"border:none;border-top:1px solid #eee\" />" +
@@ -191,7 +191,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public String createVerificationToken() {
-        return RandomString.make(30);
+        return RandomString.make(10);
     }
 
 

@@ -137,7 +137,8 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 						.jobLocation(submission.getJobLocation())
 						.jobLink(submission.getJobLink())
 						.jobLocationType(submission.getJobLocationType().getValue())
-						.otherComment(submission.getOtherComment())						.jobTitle(submission.getJobTitle())
+						.otherComment(submission.getOtherComment())
+						.jobTitle(submission.getJobTitle())
 						.jobSummary(submission.getSummary()).
 						jobCompany(submission.getJobCompany())
 						.createdOn(submission.getCreatedOn())

@@ -52,7 +52,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/sign-out")
-    public String signout() {
+    public String signOut() {
         return "Sign out successfully";
     }
 
