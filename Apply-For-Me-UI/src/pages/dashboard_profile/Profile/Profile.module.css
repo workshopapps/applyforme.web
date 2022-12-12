@@ -5,6 +5,18 @@
     background-color: #f3f3fb;
     margin-left: 9rem;
 }
+@media only screen and (min-width: 1440px) {
+    .profile_page{
+        margin-left: 17rem;
+        width: 80%;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1439px)  {
+    .profile_page{
+        margin-left: 15rem;
+        width: 80%;
+    }
+}
 .sidemarg {
     margin-left: 9rem;
 }
@@ -58,7 +70,7 @@
 }
 @media screen and (max-width: 720px) {
     .each_profile {
-        width: 90%;
+        width: 100%;
         background: #fefeff;
         border-radius: 12px;
         margin-top: 1.25rem;

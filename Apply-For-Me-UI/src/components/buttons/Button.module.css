@@ -20,6 +20,5 @@ a:hover {
 @media screen and (max-width: 345px) {
     .main_btn {
         font-size: 0.8rem;
-        width: 80% !important;
     }
 }

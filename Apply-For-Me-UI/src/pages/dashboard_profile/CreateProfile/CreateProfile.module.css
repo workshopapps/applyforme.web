@@ -9,6 +9,16 @@
     padding-bottom: 20%;
     margin-left: 9rem;
 }
+@media only screen and (min-width: 1440px) {
+    .createprofile{
+        margin-left: 17rem;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1439px)  {
+    .createprofile{
+        margin-left: 16rem;
+    }
+}
 @media only screen and (max-width: 480px) {
     .createprofile {
         margin-left: 0;
@@ -82,7 +92,6 @@
 /* Form */
 @media screen and (max-width: 610px) {
     .form_body {
-        width: 90%;
         padding: 1.5rem;
     }
 }

@@ -21,7 +21,7 @@ const NewUserDashboard = () => {
                 </div>
 
                 <div className="top-dashboard-right">
-                    <div className="dashboard-img-wrapper">
+                    <div className="dashboard-img-wrapper-not">
                         <img src={notification} alt="icon" className="notif" />
                     </div>
 
