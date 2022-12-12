@@ -1,6 +1,8 @@
 package com.hydraulic.applyforme.controller;
 
+import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
+import com.hydraulic.applyforme.model.dto.applicant.ApplicantDto;
 import com.hydraulic.applyforme.model.dto.professionalprofile.ProfessionalProfileDto;
 import com.hydraulic.applyforme.model.security.UserDetailsImpl;
 import com.hydraulic.applyforme.service.job.ProfessionalJobProfileService;
@@ -8,12 +10,7 @@ import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(
@@ -40,5 +37,10 @@ public class ProfessionalJobProfileController {
     public boolean deleteProfessionalJobProfile(@PathVariable("id") Long profile_id) {
     	UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
     	return service.deleteByProfileId(currentUser.getId(), profile_id);
+    }
+
+    @PutMapping("/update/{id}")
+    public ProfessionalProfile update(@Validated @RequestBody ProfessionalProfileDto body, @PathVariable(name ="id") Long id) {
+        return service.update(id, body);
     }
 }
