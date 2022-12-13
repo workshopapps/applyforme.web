@@ -52,4 +52,11 @@ public class ApplicantController {
         return service.getDetails(authenticatedUser.getId());
 
     }
+
+    @PutMapping("/update/{newProfilePicture}")
+    public Member updateProfileAvatar(@PathVariable String newProfilePicture){
+        var applicant = CurrentUserUtil.getCurrentUser();
+        return service.updateAvatar(applicant.getId(), newProfilePicture);
+
+    }
 }
