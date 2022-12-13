@@ -54,7 +54,7 @@ const ApplicationDetails = () => {
                 </Link>
                 <span
                     className={style.view_applicants}
-                    onClick={() => navigate("/rr_admin")}
+                    onClick={() => window.history.back()}
                 >
                     View Applicants details
                 </span>
