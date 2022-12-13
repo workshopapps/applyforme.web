@@ -152,6 +152,36 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 	}
 
 	@Override
+	public List<JobDescriptionResponse> getAllJobsDescription(Long professionalId) {
+		Optional<Professional> professional = professionalJpaRepository.findById(professionalId);
+		if (professional.isEmpty()) {
+			throw new ProfessionalNotFoundException(professionalId);
+		}
+
+		List<Submission> submissions = jobSubmissionRepository.findAllByProfessionalId(professionalId);
+		List<JobDescriptionResponse> jobsDescriptionResponseList = null;
+
+		for (Submission submission : submissions) {
+				JobDescriptionResponse jobDescriptionResponse = JobDescriptionResponse.builder()
+						.id(submission.getId())
+						.applier(submission.getApplier())
+						.jobLocation(submission.getJobLocation())
+						.jobLink(submission.getJobLink())
+						.jobLocationType(submission.getJobLocationType().getValue())
+						.otherComment(submission.getOtherComment())
+						.jobTitle(submission.getJobTitle())
+						.jobSummary(submission.getSummary())
+						.jobCompany(submission.getJobCompany())
+						.createdOn(submission.getCreatedOn())
+						.updatedOn(submission.getUpdatedOn())
+						.build();
+				
+				jobsDescriptionResponseList.add(jobDescriptionResponse);
+		}
+		return jobsDescriptionResponseList;
+	}
+
+	@Override
 	public List<JobSummaryResponse> retrieveProfessionalSubmissions(Long id) {
 		// TODO Auto-generated method stub
 		return null;
