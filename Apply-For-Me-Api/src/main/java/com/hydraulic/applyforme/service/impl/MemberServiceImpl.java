@@ -127,8 +127,6 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public boolean update(Long id, UpdateMemberDto body) {
 
-        System.out.println(body);
-
         Member member = repository.getOne(id);
         if (member == null) {
             throw new MemberNotFoundException(id);
@@ -148,15 +146,20 @@ public class MemberServiceImpl implements MemberService {
         if (memberWithPhoneNumber != null && memberWithPhoneNumber.getId() != id) {
             throw new PhoneNumberAlreadyExistsException();
         }
-
-        Country nationality = countryRepository.getOne(body.getNationality());
-        if (nationality == null) {
-            throw new CountryNotFoundException(body.getNationality());
+        if (body.getNationality() != null) {
+            Country nationality = countryRepository.getOne(body.getNationality());
+            if (nationality == null) {
+                throw new CountryNotFoundException(body.getNationality());
+            }
+            member.setNationality(nationality);
         }
 
-        Country countryOfResidence = countryRepository.getOne(body.getCountryOfResidence());
-        if (countryOfResidence == null) {
-            throw new CountryNotFoundException(body.getCountryOfResidence());
+        if (body.getCountryOfResidence() != null) {
+            Country countryOfResidence = countryRepository.getOne(body.getCountryOfResidence());
+            if (countryOfResidence == null) {
+                throw new CountryNotFoundException(body.getCountryOfResidence());
+            }
+            member.setCountryOfResidence(countryOfResidence);
         }
 
         member.setUsername(body.getUsername());
@@ -169,8 +172,8 @@ public class MemberServiceImpl implements MemberService {
         member.setLastName(body.getLastName());
         member.setAddress(body.getAddress());
         member.setCurrentJobTitle(body.getCurrentJobTitle());
-        member.setNationality(nationality);
-        member.setCountryOfResidence(countryOfResidence);
+        member.setAvatar(body.getAvatar());
+
         repository.updateOne(member);
         return true;
     }
