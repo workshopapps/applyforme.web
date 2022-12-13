@@ -36,4 +36,7 @@ public interface JobSubmissionRepository extends JpaRepository<Submission,Long> 
 
      @Query (value = "SELECT s from Submission s where s.professional.member.id = ?1 ")
      List<Submission> findAllByProfessionalId(@Param("id") Long id);
+
+     @Query (value = "SELECT count(*) from Submission s where s.professional.id = ?1 ")
+     Long countSubmissionByProfessional(@Param("id") Long id);
 }

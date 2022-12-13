@@ -81,5 +81,11 @@ public class ProfessionalController {
 		Long id = CurrentUserUtil.getCurrentUser().getId();
 		return  service.retrieveProfessionalSubmissions(id);
 	}
+
+	@GetMapping("/list-of-jobs-description")
+	public List<JobDescriptionResponse> retrieveAllJobsDescription(){
+		var currentUser = CurrentUserUtil.getCurrentUser();
+		return service.getAllJobsDescription(currentUser.getId());
+	}
 }
 
