@@ -63,9 +63,13 @@ public class OnboardingServiceImpl implements OnboardingService {
 	@Transactional
 	public OnboardingResponse onboard(TryItNowDTO body) {
 		boolean existingMember = memberJpaRepository.existsByEmailAddress(body.getEmailAddress());
-
 		if (existingMember) {
 			throw new EmailAlreadyExistsException();
+		}
+
+		boolean existingPhoneNumber = memberJpaRepository.existsByUsername(body.getPhoneNumber());
+		if (existingPhoneNumber) {
+			throw new PhoneNumberAlreadyExistsException();
 		}
 
 		Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.PROFESSIONAL.getValue());
