@@ -70,4 +70,12 @@ public class SuperAdminRecruiterController {
     public Member searchRecruiterByName(@RequestParam String firstName){
         return recruiterService.searchRecruitersByName(firstName);
     }
+
+    @PreAuthorize("hasAnyRole('SuperAdministrator')")
+    @DeleteMapping("/delete/{id}")
+    public void deleteRecruiterById(@PathVariable Long id){
+        recruiterService.deleteRecruiterById(id);
+    }
+
+
 }
