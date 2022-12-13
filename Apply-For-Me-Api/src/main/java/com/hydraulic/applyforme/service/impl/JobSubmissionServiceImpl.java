@@ -8,6 +8,7 @@ import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
 import com.hydraulic.applyforme.model.response.SubmissionEntriesResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.repository.ApplierRepository;
+import com.hydraulic.applyforme.repository.jpa.JobSubmissionJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
 import org.modelmapper.ModelMapper;
@@ -30,14 +31,20 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     private final JobSubmissionRepository repository;
     private final com.hydraulic.applyforme.repository.JobSubmissionRepository repo;
     private final ModelMapper modelMapper;
+    private final JobSubmissionJpaRepository jpaRepository;
+
+    private final com.hydraulic.applyforme.repository.JobSubmissionRepository jobSubmissionRepository;
 
     public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository, 
-    		com.hydraulic.applyforme.repository.JobSubmissionRepository repo, ModelMapper modelMapper) {
+    		com.hydraulic.applyforme.repository.JobSubmissionRepository repo, ModelMapper modelMapper,
+                                    JobSubmissionJpaRepository jpaRepository,
+                                    com.hydraulic.applyforme.repository.JobSubmissionRepository jobSubmissionRepository) {
         this.applierRepository = applierRepository;
         this.repository = repository;
         this.repo = repo;
         this.modelMapper = modelMapper;
-        
+        this.jpaRepository = jpaRepository;
+        this.jobSubmissionRepository = jobSubmissionRepository;
     }
 
     @Override
@@ -87,5 +94,79 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     public List<ApplierSubmissionDto> getApplierSubmissionDetails(Long id) {
         List<ApplierSubmissionDto> applierSubmissionDtos = repo.getSubmissionDetails(id);
         return applierSubmissionDtos;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ApplyForMeResponse getEntries(int pageNo, int pageSize, String sortBy, String sortDir, String q, Date from, Date to) {
+        Page<Submission> submissions = null;
+
+        if (from != null && to != null && q != null && q.trim() != "") {
+            submissions = jpaRepository.getEntries(from, to, q, createPageable(pageNo, pageSize, sortBy, sortDir));
+        }
+        else if (from != null && to != null) {
+            submissions = jpaRepository.getEntries(from, to, createPageable(pageNo, pageSize, sortBy, sortDir));
+        }
+        if (q != null && q.trim() != "") {
+            submissions = jpaRepository.getEntries(q, createPageable(pageNo, pageSize, sortBy, sortDir));
+        }
+        else {
+            submissions = jpaRepository.getEntries(createPageable(pageNo, pageSize, sortBy, sortDir));
+        }
+        return getJobSubmissionResponse(submissions);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ApplyForMeResponse getUserEntries(int pageNo, int pageSize, String sortBy, String sortDir, String q, Date from, Date to, Long userId) {
+        Page<Submission> submissions = null;
+
+        if (from != null && to != null && q != null && q.trim() != "") {
+            submissions = jpaRepository.getUserEntries(from, to, q, userId, createPageable(pageNo, pageSize, sortBy, sortDir));
+        }
+        else if (from != null && to != null) {
+            submissions = jpaRepository.getUserEntries(from, to, userId, createPageable(pageNo, pageSize, sortBy, sortDir));
+        }
+        if (q != null && q.trim() != "") {
+            submissions = jpaRepository.getUserEntries(q, userId, createPageable(pageNo, pageSize, sortBy, sortDir));
+        }
+        else {
+            submissions = jpaRepository.getUserEntries(userId, createPageable(pageNo, pageSize, sortBy, sortDir));
+        }
+        return getJobSubmissionResponse(submissions);
+    }
+
+    @Override
+    public Submission findOne(Long id) {
+        Submission submission = jobSubmissionRepository.getOne(id);
+        submission.getProfessional().setSubmissions(null);
+        submission.getApplier().setSubmissions(null);
+        submission.getProfessional().getMember().setRoles(null);
+        submission.getProfessional().setProfessionalProfiles(null);
+        return submission;
+    }
+
+    private ApplyForMeResponse getJobSubmissionResponse(Page<Submission> submissions) {
+        Collection<Submission> results = submissions
+                .getContent()
+                .stream()
+                .map(x -> {
+                    x.getProfessional().setSubmissions(null);
+                    x.getProfessional().getMember().setRoles(null);
+                    x.getProfessional().setProfessionalProfiles(null);
+                    x.getApplier().setSubmissions(null);
+                    x.getApplier().getMember().setRoles(null);
+                    return modelMapper.map(x, Submission.class);
+                })
+                .collect(Collectors.toList());
+
+        ApplyForMeResponse response = new ApplyForMeResponse();
+        response.setContent(results);
+        response.setPageNo(submissions.getNumber());
+        response.setPageSize(submissions.getSize());
+        response.setTotalElements(submissions.getTotalElements());
+        response.setTotalPages(submissions.getTotalPages());
+        response.setLast(submissions.isLast());
+        return response;
     }
 }
