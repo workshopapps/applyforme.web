@@ -58,7 +58,7 @@ export const RRApplicantsPage = ({inputSearchValue}) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {search.length !== 0 &&
+                        {search?.length !== 0 &&
                          (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
                             search?.map(list => {
                                 return (

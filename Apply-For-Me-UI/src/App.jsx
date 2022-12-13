@@ -230,7 +230,6 @@ function App() {
                             path="/dashboard/user/:id"
                             element={<ProfileDescription />}
                         />
-
                         {/* User Dashboard Applications */}
                         <Route path="applications" element={<Applications />} />
                         {/* <Route index element={<Applications />} /> */}

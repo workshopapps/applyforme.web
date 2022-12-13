@@ -2,7 +2,7 @@ thead th{
     padding-top:1.5rem;
      padding-bottom: 1.5rem
  }
-table td{
+.table-td{
     width:25%;
     padding-bottom:0.5rem;
     border-bottom:1px solid gainsboro;

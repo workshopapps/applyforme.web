@@ -10,7 +10,7 @@ export const Desktop_List = ({ firstName, currentJobTitle, id, createdOn }) => {
 
     return (
         <>
-            <td>
+             <td className="table-td">
                 <div className="name_table_data">
                     <span style={{ width: "15%" }}>
                         <img
@@ -22,15 +22,15 @@ export const Desktop_List = ({ firstName, currentJobTitle, id, createdOn }) => {
                     <h6 style={{ marginLeft: "2rem" }}>{firstName}</h6>
                 </div>
             </td>
-            <td>
+             <td className="table-td">
                 <h6 style={{ fontWeight: "400" }}>{currentJobTitle}</h6>
             </td>
-            <td>
+             <td className="table-td">
                 <h6 style={{ fontWeight: "400" }}>
                     {createdOn?.split("T").shift()}
                 </h6>
             </td>
-            <td>
+             <td className="table-td">
                 <div className="viewContainer">
                     <h6
                         onClick={() =>

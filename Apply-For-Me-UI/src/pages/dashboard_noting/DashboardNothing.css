@@ -1,17 +1,8 @@
 
 .dashboardnothing{
-    margin-left: 9rem;
+    margin-left: 11rem;
 }
-@media only screen and (min-width: 1440px) {
-    .dashboardnothing{
-        margin-left: 17rem;
-    }
-}
-@media only screen and (min-width: 769px) and (max-width: 1439px)  {
-    .dashboardnothing{
-        margin-left: 16rem;
-    }
-}
+
 @media only screen and (max-width: 480px) {
     .dashboardnothing {
          margin-left: 0rem; 

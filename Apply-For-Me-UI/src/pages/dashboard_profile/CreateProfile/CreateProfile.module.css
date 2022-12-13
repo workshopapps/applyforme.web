@@ -7,17 +7,7 @@
     padding-left: 5%;
     background-color: #f3f3fb;
     padding-bottom: 20%;
-    margin-left: 9rem;
-}
-@media only screen and (min-width: 1440px) {
-    .createprofile{
-        margin-left: 17rem;
-    }
-}
-@media only screen and (min-width: 769px) and (max-width: 1439px)  {
-    .createprofile{
-        margin-left: 16rem;
-    }
+    margin-left: 10rem;
 }
 @media only screen and (max-width: 480px) {
     .createprofile {
