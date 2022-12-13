@@ -20,15 +20,19 @@ const details = {
 };
 
 const ApplicationDetails = () => {
+    // eslint-disable-next-line no-unused-vars
     const navigate = useNavigate();
-    return ( 
-            <article className={style.container}>
+    return (
+        <article className={style.container}>
             <RRD_Nav />
             <div className={style.go_back_link}>
                 <Link to="/rr_admin">
                     <img src={goBackIcon} alt="" />
                 </Link>
-                <span className={style.view_applicants} onClick={()=>window.history.back()}>
+                <span
+                    className={style.view_applicants}
+                    onClick={() => window.history.back()}
+                >
                     View Applicants details
                 </span>
             </div>
@@ -100,7 +104,6 @@ const ApplicationDetails = () => {
                 </div>
             </section>
         </article>
-        
     );
 };
 

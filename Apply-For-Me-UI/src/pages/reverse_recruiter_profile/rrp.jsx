@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-pascal-case */
 import { useNavigate } from "react-router";
 import ProfilePic from "../../assets/images/clearProfilePic.svg";
@@ -9,10 +10,10 @@ const RRProfile = () => {
     const navigate = useNavigate();
     return (
         <div className={rrpCss.page}>
-            <NotificationHead notificationCount="0"/>
+            <NotificationHead notificationCount="0" />
             <div className={rrpCss.rr_profile_container}>
                 <div className={rrpCss.back_button}>
-                    <button type="submit" onClick={()=>window.history.back()}>
+                    <button type="submit" onClick={() => window.history.back()}>
                         <span>&lt;</span>
                         <span>Profile Details</span>
                     </button>
@@ -53,7 +54,7 @@ const RRProfile = () => {
                             <p>Gender</p>
                             <p>Female</p>
                         </div>
-                     </div>
+                    </div>
                 </div>
                 <div className={rrpCss.bottomSection}>
                     <div className={rrpCss.btn_bottom}>
@@ -63,9 +64,7 @@ const RRProfile = () => {
                         Change Password
                     </button>
                 </div>
-                
             </div>
-            
         </div>
     );
 };
