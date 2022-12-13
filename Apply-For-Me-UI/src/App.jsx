@@ -198,7 +198,7 @@ function App() {
                         element={<ApplicationForm />}
                     />
                     <Route
-                        path="/rr_admin/appilicants_details"
+                        path="/professional-profile/user/details/:id"
                         element={<ApplicantDetails />}
                     />
                     <Route

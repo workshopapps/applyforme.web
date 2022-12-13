@@ -12,7 +12,7 @@ const RRProfile = () => {
             <NotificationHead notificationCount="0"/>
             <div className={rrpCss.rr_profile_container}>
                 <div className={rrpCss.back_button}>
-                    <button type="submit" onClick={() => navigate("")}>
+                    <button type="submit" onClick={()=>window.history.back()}>
                         <span>&lt;</span>
                         <span>Profile Details</span>
                     </button>
