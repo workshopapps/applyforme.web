@@ -105,8 +105,8 @@ function App() {
                 <Route exact path="/howafmworks" element={<HowAfmWorks />} />
                 <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route exact path="/tryout-form" element={<TryoutForm />} />
-                <Route exact path="/rrp" element={<RRProfile />} />
-                <Route exact path="/registration" element={<Registration />} />
+                <Route exact path="/reverse/profile" element={<RRProfile />} />
+                <Route exact path="/registration" element ={<Registration/>}/>
                 <Route
                     exact
                     path="/tryout-form/success"
