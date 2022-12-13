@@ -11,10 +11,12 @@ import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
 import com.hydraulic.applyforme.service.EmailService;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -22,6 +24,7 @@ import javax.mail.internet.MimeMessage;
 
 @Service
 @PropertySource(value = "classpath:application.properties")
+@Configuration
 public class EmailServiceImpl implements EmailService {
     private MemberJpaRepository memberJpaRepository;
 
@@ -74,6 +77,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
+    @Async
     public void onboard(OnboardingResponse response, String onboardToken) {
         String link = "https://applyforme.hng.tech/onboarding/" + onboardToken + "/complete";
         String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
@@ -105,7 +109,7 @@ public class EmailServiceImpl implements EmailService {
             helper.setText(content, true);
             javaMailSender.send(message);
         } catch (MessagingException e) {
-            throw new EmailDeliveryException();
+            System.out.println("Error sending email");
         }
     }
 
