@@ -1,32 +1,10 @@
 import classes from "../../../RR_Dashboard/styles/Applications.module.css";
 import ApplicationList from "../application_list/ApplicationList";
 import { Link, useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import { useEffect } from "react";
 import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 
 const DashboardHome = () => {
     const navigate = useNavigate();
-    // const getList = async () => {
-    //     try {
-    //         console.log("1234");
-    //         const response = await axios.request({
-    //             url: "https://api.applyforme.hng.tech/api/v1/recruiter/application/entries?pageNo=0&pageSize=10&sortBy=id&sortDir=asc",
-    //             method: "GET",
-    //             headers: {
-    //                 Authorization: `Bearer ${localStorage.getItem(
-    //                     "tokenHngKey"
-    //                 )}`
-    //             }
-    //         });
-    //         console.log(response);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-    // useEffect(() => {
-    //     getList();
-    // });
     return (
         <section>
             <RRD_Nav />
