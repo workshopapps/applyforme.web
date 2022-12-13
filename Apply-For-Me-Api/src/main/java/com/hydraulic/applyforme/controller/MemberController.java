@@ -36,7 +36,7 @@ public class MemberController {
     	UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
     	return service.findOne(currentUser.getId());
     }
-    @PreAuthorize("hasAnyRole('Professional', 'Recruiter')")
+    @PreAuthorize("hasAnyRole('Professional', 'Recruiter', 'SuperAdministrator')")
     @PutMapping("/update")
     public boolean update(@Validated @RequestBody UpdateMemberDto body) {
     	UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
