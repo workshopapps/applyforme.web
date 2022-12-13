@@ -95,7 +95,6 @@ public class ProfessionalProfile {
     @Column(name ="included_keywords")
     private String includedKeywords;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name ="professional_id")
     private Professional professional;
