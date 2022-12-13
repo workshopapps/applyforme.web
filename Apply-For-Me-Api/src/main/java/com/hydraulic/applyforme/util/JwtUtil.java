@@ -26,7 +26,7 @@ import java.util.function.Function;
 public class JwtUtil {
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
-    public static final long REFRESH_TOKEN_VALIDITY = 24 * 60 * 60;
+    public static final long REFRESH_TOKEN_VALIDITY = 2 * 24 * 60 * 60;
 
     @Value("${applyforme.jwt.secret}")
     private String secret;

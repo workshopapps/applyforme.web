@@ -153,7 +153,7 @@ public class OnboardingServiceImpl implements OnboardingService {
 		if (!body.getNewPassword().equals(body.getConfirmationPassword())) {
 			throw new PasswordMismatchException();
 		}
-		member.setPassword(body.getConfirmationPassword());
+		member.setPassword(encoder.encode(body.getConfirmationPassword()));
 		member.setOnboardToken(null);
 		memberRepository.updateOne(member);
 		return member;
