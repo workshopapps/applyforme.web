@@ -103,15 +103,20 @@ const CreateProfile = () => {
             ...formData,
             job_title: oneprofile?.profileTitle,
             location: oneprofile?.jobLocation,
+            isRemote:
+                oneprofile?.preferredJobLocationType.charAt(0).toUpperCase() +
+                oneprofile?.preferredJobLocationType.slice(1).toLowerCase(),
             experience: oneprofile?.jobSeniority.toLowerCase(),
             employment_type: oneprofile?.employmentType.toLowerCase(),
             salary_expectation: oneprofile?.salaryRange,
             coverletter_body: oneprofile?.coverLetterContent,
             coverletter_subject: oneprofile?.coverLetterSubject
         });
+        const keyArray = [oneprofile?.includedKeywords.split(",")];
+        setKeywords(keyArray[0]);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [done]);
-
+    console.log(keywords);
     if (done !== "done") {
         return (
             <div className={styles.loading_box}>

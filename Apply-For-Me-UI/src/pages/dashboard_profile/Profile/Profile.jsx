@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import TopBar from "../components/TopBar/TopBar";
 import styles from "./Profile.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import add from "../assets/add.png";
 import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
-import { BsPencil } from "react-icons/bs";
+import { BsPencil, BsThreeDotsVertical } from "react-icons/bs";
 import Modal from "react-modal";
 import { useState } from "react";
 import axios from "axios";
@@ -53,32 +54,60 @@ const Profile = ({ profileList }) => {
         // window.location.reload(false);
     };
     const CurrentProfile = profileList?.map(oneprofile => (
-        <div key={oneprofile.id} className={styles.each_profile}>
+        <div
+            key={oneprofile.id}
+            className={styles.each_profile}
+            onClick={() => {
+                navigate(`/dashboard/user/${oneprofile.id}`);
+            }}
+        >
             <div className={styles.edit_box}>
-                <h3>{oneprofile.profileTitle}</h3>
-                <p>{oneprofile.jobLocation}</p>
-                <div className={styles.ved_icons}>
-                    <Link
-                        to={{
-                            pathname: `/dashboard/user/${oneprofile.id}`,
-                            state: { oneprofile }
-                        }}
-                    >
-                        <AiOutlineEye className={styles.view_icon} />
-                    </Link>
-                    <Link
-                        to={{
-                            pathname: `/dashboard/user/${oneprofile.id}/edit`,
-                            state: { oneprofile }
-                        }}
-                    >
-                        <BsPencil className={styles.update_icon} />
-                    </Link>
-                    <AiOutlineDelete
-                        onClick={() => handleModal(oneprofile.id)}
-                        className={styles.delete_icon}
-                    />
+                <div className={styles.title_location}>
+                    <h3>{oneprofile.profileTitle}</h3>
+                    <p>{oneprofile.jobLocation}</p>
                 </div>
+
+                <span className={styles.dropdown}>
+                    <BsThreeDotsVertical className={styles.three_dot_icon} />
+
+                    <div className={styles.dropdownContent}>
+                        <div className={styles.icon_text_box}>
+                            <Link
+                                to={{
+                                    pathname: `/dashboard/user/${oneprofile.id}`,
+                                    state: { oneprofile }
+                                }}
+                                className={styles.crud_link}
+                            >
+                                <AiOutlineEye className={styles.view_icon} />
+                                <p>View</p>
+                            </Link>
+                        </div>
+                        <div className={styles.icon_text_box}>
+                            <Link
+                                to={{
+                                    pathname: `/dashboard/user/${oneprofile.id}/edit`,
+                                    state: { oneprofile }
+                                }}
+                                className={styles.crud_link}
+                            >
+                                <BsPencil className={styles.update_icon} />
+                                <p>Edit</p>
+                            </Link>
+                        </div>
+                        <div className={styles.icon_text_box}>
+                            <div
+                                className={styles.crud_link}
+                                onClick={() => handleModal(oneprofile.id)}
+                            >
+                                <AiOutlineDelete
+                                    className={styles.delete_icon}
+                                />
+                                <p>Delete</p>
+                            </div>
+                        </div>
+                    </div>
+                </span>
             </div>
 
             <Modal

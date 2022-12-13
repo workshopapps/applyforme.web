@@ -2,6 +2,7 @@
     padding-left: 5%;
     padding-bottom: 25%;
     width: 100vw;
+    min-height: 100vh;
     background-color: #f3f3fb;
     margin-left: 9rem;
 }
@@ -17,7 +18,7 @@
 
 .edit_box h3 {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 0.25rem;
     /* width: 25%; */
 }
@@ -39,13 +40,14 @@
         margin-top: 1.25rem;
         padding-inline: 1.5rem;
         padding-block: 1.5rem;
+        cursor: pointer;
     }
     .edit_box {
         display: flex;
         justify-content: space-between;
     }
     .edit_box p {
-        width: 40%;
+        width: 20%;
         font-weight: 400;
         font-size: 1rem;
         margin-bottom: 0.25rem;
@@ -54,9 +56,10 @@
         font-weight: 400;
         font-size: 1.5rem;
         margin-bottom: 0.25rem;
-        width: 45%;
+        width: 100%;
     }
 }
+
 @media screen and (max-width: 720px) {
     .each_profile {
         width: 90%;
@@ -65,12 +68,17 @@
         margin-top: 1.25rem;
         padding-inline: 1.5rem;
         padding-block: 1.5rem;
+        cursor: pointer;
     }
     .edit_box p {
         /* width: 22%; */
         font-weight: 400;
         font-size: 1rem;
         margin-bottom: 0.25rem;
+    }
+    .edit_box {
+        display: flex;
+        justify-content: space-between;
     }
 }
 
@@ -96,9 +104,14 @@
     font-size: 1rem;
     font-weight: 600;
 }
+@media screen and (max-width: 480px) {
+    .createjob_button {
+        display: none;
+    }
+}
 
 .profile_description {
-    padding-left: 5%;
+    padding-inline: 5%;
     padding-bottom: 30%;
     background-color: #f3f3fb;
     width: 100%;
@@ -232,18 +245,57 @@
     background: #d44e4e;
     border-radius: 8px;
 }
-.view_icon {
-    font-size: 1.75rem;
-}
-.delete_icon {
-    font-size: 1.75rem;
-    color: #2f80ed;
-}
+.view_icon,
+.delete_icon,
 .update_icon {
-    font-size: 1.5rem;
-    color: #2f80ed;
+    margin-block: auto;
+    color: #2e3192;
+
+    font-size: 1rem;
 }
 .ved_icons {
     display: flex;
+    flex-direction: column;
     gap: 0.25rem;
+}
+
+.three_dot_icon {
+    cursor: pointer;
+}
+.dropdown {
+    position: relative;
+}
+.dropdown:hover .dropdownContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    top: 1rem;
+    z-index: 1;
+    background-color: white;
+}
+.dropdownContent {
+    position: absolute;
+    padding: 1rem;
+    border-radius: 5px;
+    display: none;
+    left: -4rem;
+}
+.dropdownContent .icon_text_box {
+    display: flex;
+    gap: 1rem;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    .dropdownContent {
+        padding: 0.5rem;
+        /* width: 70px; */
+        left: -1rem;
+    }
+}
+.crud_link {
+    display: flex;
+    cursor: pointer;
+    gap: 0.25rem;
+}
+.crud_link p {
+    color: #2e3192;
 }
