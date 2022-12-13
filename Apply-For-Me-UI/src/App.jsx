@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 /* eslint-disable no-unused-vars */
 import * as Sentry from "@sentry/react";
 import { Routes, Route } from "react-router-dom";
@@ -48,6 +49,7 @@ import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile
 import ProfileDescription from "pages/dashboard_profile/Profile/ProfileDescription";
 import EditProfile from "./pages/dashboard_profile/EditProfile/EditProfile";
 import { ProfileScreen } from "components/superAdmmin_profile/superAdmin_profileScreen";
+import RRProfile from "pages/reverse_recruiter_profile/rrp";
 
 // Auth Logic
 import jwt_decode from "jwt-decode";
@@ -103,6 +105,7 @@ function App() {
                 <Route exact path="/howafmworks" element={<HowAfmWorks />} />
                 <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route exact path="/tryout-form" element={<TryoutForm />} />
+                <Route exact path="/rrp" element={<RRProfile />} />
                 <Route exact path="/registration" element={<Registration />} />
                 <Route
                     exact
