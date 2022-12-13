@@ -3,10 +3,7 @@ package com.hydraulic.applyforme.model.dto.member;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hydraulic.applyforme.annotation.PhoneNumber;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
@@ -19,6 +16,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class UpdateMemberDto {
 
     @NotNull(message = "{member.firstName.notNull}")
@@ -68,4 +66,6 @@ public class UpdateMemberDto {
     @Size(max = 300, message = "{member.address.size}")
     @JsonProperty("address")
     private String address;
+
+    private String avatar;
 }

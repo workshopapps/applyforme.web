@@ -47,4 +47,6 @@ public class UpdateProfileDto {
     @Size(max = 300, message = "{member.state.size}")
     @JsonProperty("state")
     private String state;
+
+    private String avatar;
 }

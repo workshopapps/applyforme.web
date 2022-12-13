@@ -127,6 +127,8 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public boolean update(Long id, UpdateMemberDto body) {
 
+        System.out.println(body);
+
         Member member = repository.getOne(id);
         if (member == null) {
             throw new MemberNotFoundException(id);
