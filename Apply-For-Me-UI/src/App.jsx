@@ -11,7 +11,7 @@ import Privacy from "./pages/privacy/Privacy";
 import Cookies from "./pages/cookies/Cookies";
 import Career from "./pages/career/Career";
 import Blog from "./pages/blog/Blog";
-
+import Onboarding from "pages/tryout_form/components/Onboarding";
 import Error from "./pages/dashboard_profile/Success/error/Error";
 import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
@@ -103,6 +103,7 @@ function App() {
                 <Route exact path="/howafmworks" element={<HowAfmWorks />} />
                 <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route exact path="/tryout-form" element={<TryoutForm />} />
+                <Route exact path="/registration" element={<Registration />} />
                 <Route
                     exact
                     path="/tryout-form/success"
@@ -143,6 +144,13 @@ function App() {
                 <Route exact path="/pass" element={<Password />} />
                 <Route exact path="/nwpass" element={<NewPass />} />
                 <Route exact path="/veri" element={<Verification />} />
+
+                {/* onboarding */}
+
+                <Route
+                    path="/onboarding/:token/complete"
+                    element={<Onboarding />}
+                />
 
                 {/* RECRUITER ROUTE */}
 

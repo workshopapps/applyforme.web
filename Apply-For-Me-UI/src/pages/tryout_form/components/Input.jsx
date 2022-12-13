@@ -1,13 +1,24 @@
 import formStyle from "../TryoutForm.module.css";
 
-const Input = ({ placeholder }) => {
+const Input = ({
+    placeholder,
+    value,
+    onChange,
+    id,
+    onBlur,
+    newClass,
+    type = "text"
+}) => {
     return (
         <div>
             <input
-                className={formStyle.input}
-                type="text"
+                className={[formStyle.input, newClass].join(" ")}
+                type={type}
                 placeholder={placeholder}
-                required
+                value={value}
+                onChange={onChange}
+                id={id}
+                onBlur={onBlur}
             />
         </div>
     );
