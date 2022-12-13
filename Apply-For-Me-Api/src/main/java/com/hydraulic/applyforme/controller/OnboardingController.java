@@ -41,7 +41,7 @@ public class OnboardingController {
 	@PostMapping("/onboard")
 	public OnboardingResponse onboard(@Validated @RequestBody TryItNowDTO body) {
 		OnboardingResponse response = service.onboard(body);
-//		emailService.onboard(response, response.getOnBoardToken());
+		emailService.onboard(response, response.getOnBoardToken());
 		return response;
 	}
 	
