@@ -121,7 +121,6 @@ const CreateProfile = () => {
         return (
             <div className={styles.loading_box}>
                 <div className={styles.loading_animate} />
-                <p>Loading...</p>
             </div>
         );
     } else {

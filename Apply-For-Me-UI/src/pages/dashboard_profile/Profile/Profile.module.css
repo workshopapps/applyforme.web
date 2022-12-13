@@ -40,7 +40,6 @@
         margin-top: 1.25rem;
         padding-inline: 1.5rem;
         padding-block: 1.5rem;
-        cursor: pointer;
     }
     .edit_box {
         display: flex;
@@ -68,7 +67,6 @@
         margin-top: 1.25rem;
         padding-inline: 1.5rem;
         padding-block: 1.5rem;
-        cursor: pointer;
     }
     .edit_box p {
         /* width: 22%; */
@@ -261,6 +259,7 @@
 
 .three_dot_icon {
     cursor: pointer;
+    font-size: 1.25rem;
 }
 .dropdown {
     position: relative;

@@ -8,6 +8,8 @@ import LightButton from "../../../../components/buttons/light_button/LightButton
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Review = ({ formData, keywords, setStep, id }) => {
     const [response, setResponse] = useState(null);
@@ -82,6 +84,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
             const finalResponseJson = await finalResponse.json();
             setLoading(false);
             // console.log(finalResponse);
+            toast("Profile submitted successfully");
             navigate("/dashboard/user/success");
         } catch (error) {
             alert("Failed to submit, please try again");
@@ -180,6 +183,8 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                     </p>
                                 )}
                             </div>
+                            <ToastContainer />
+
                             {loading && (
                                 <div className={classes.loading_animation} />
                             )}

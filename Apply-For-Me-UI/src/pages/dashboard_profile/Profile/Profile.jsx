@@ -8,6 +8,8 @@ import { BsPencil, BsThreeDotsVertical } from "react-icons/bs";
 import Modal from "react-modal";
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Profile = ({ profileList }) => {
     const navigate = useNavigate();
@@ -48,19 +50,17 @@ const Profile = ({ profileList }) => {
                     console.log(error);
                 });
             setModalIsOpen(false);
+            toast("Profile deleted successfully");
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
         } catch (error) {
+            toast("Error deleting. Please, try again");
             console.log(error);
         }
-        // window.location.reload(false);
     };
     const CurrentProfile = profileList?.map(oneprofile => (
-        <div
-            key={oneprofile.id}
-            className={styles.each_profile}
-            onClick={() => {
-                navigate(`/dashboard/user/${oneprofile.id}`);
-            }}
-        >
+        <div key={oneprofile.id} className={styles.each_profile}>
             <div className={styles.edit_box}>
                 <div className={styles.title_location}>
                     <h3>{oneprofile.profileTitle}</h3>
@@ -140,6 +140,7 @@ const Profile = ({ profileList }) => {
     return (
         <div className={styles.profile_page}>
             <TopBar />
+            <ToastContainer />
             <button
                 className={styles.createjob_button}
                 onClick={() => navigate("/dashboard/user/create-profile")}

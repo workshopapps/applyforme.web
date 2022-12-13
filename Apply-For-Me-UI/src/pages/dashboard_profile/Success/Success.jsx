@@ -14,12 +14,12 @@ const Success = () => {
         <div className={styles.success_page}>
             <TopBar />
             <p className={styles.all_done}>
-                All done! You can view your updated job profile
+                All done! You can view your up to date job profile
             </p>
             <div className={styles.success_message}>
                 <img src={success} alt="completed" />
                 <p className={styles.congrats}>Congratulations, {userName}</p>
-                <p>Your profile has been updated succesfully!</p>
+                <p>Your profile has been uploaded succesfully!</p>
                 <NavLink
                     to="/dashboard/user/"
                     style={{ textDecoration: "none" }}
