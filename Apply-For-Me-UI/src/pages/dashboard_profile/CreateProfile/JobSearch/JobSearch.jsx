@@ -252,7 +252,9 @@ const JobSearch = ({ formData, setFormData }) => {
                 )}
             </div>
             <div className={classes.uploadcv_box}>
-                <p>Upload your CV</p>
+                <p>
+                    Upload your CV<small>(pdf, doc, docx)</small>
+                </p>
 
                 <DragDropFile
                     onChange={e => {

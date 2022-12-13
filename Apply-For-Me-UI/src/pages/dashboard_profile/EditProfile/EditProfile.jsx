@@ -110,7 +110,8 @@ const CreateProfile = () => {
             employment_type: oneprofile?.employmentType.toLowerCase(),
             salary_expectation: oneprofile?.salaryRange,
             coverletter_body: oneprofile?.coverLetterContent,
-            coverletter_subject: oneprofile?.coverLetterSubject
+            coverletter_subject: oneprofile?.coverLetterSubject,
+            shortenedCVUrl: oneprofile?.resumeLink
         });
         const keyArray = [oneprofile?.includedKeywords.split(",")];
         setKeywords(keyArray[0]);
