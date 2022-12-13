@@ -1,15 +1,14 @@
 package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.dto.authentication.ForgotPasswordDto;
-import com.hydraulic.applyforme.model.dto.authentication.ResetPasswordDto;
-import com.hydraulic.applyforme.model.dto.authentication.SignInDto;
-import com.hydraulic.applyforme.model.dto.authentication.SignupDto;
+import com.hydraulic.applyforme.model.dto.authentication.*;
+import com.hydraulic.applyforme.model.exception.InvalidRefreshJwtException;
 import com.hydraulic.applyforme.model.response.ForgotPasswordResponse;
 import com.hydraulic.applyforme.model.response.SignInResponse;
 import com.hydraulic.applyforme.service.AuthenticationService;
 import com.hydraulic.applyforme.service.EmailService;
 import com.hydraulic.applyforme.service.MemberService;
 import com.hydraulic.applyforme.util.ApplyForMeUtil;
+import com.hydraulic.applyforme.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -35,6 +34,9 @@ public class AuthenticationController {
     @Autowired
     private ApplyForMeUtil applyForMeUtil;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
 
     public AuthenticationController(MemberService service, EmailService emailService, AuthenticationService authenticationService) {
         this.service = service;
@@ -50,7 +52,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/sign-out")
-    public String signout() {
+    public String signOut() {
         return "Sign out successfully";
     }
 
@@ -84,6 +86,18 @@ public class AuthenticationController {
              throw ex;
         }
         return applyForMeUtil.generateSignInToken(body.getEmailAddress());
+    }
+
+    @PostMapping("/refresh-token")
+    public SignInResponse refresh(@Validated @RequestBody RefreshTokenDto dto) throws Exception {
+        try {
+            String username = jwtUtil.getUsernameFromToken(dto.getRefreshToken());
+            return applyForMeUtil.generateSignInToken(username);
+        }
+        catch (Exception e) {
+            throw new InvalidRefreshJwtException();
+        }
+
     }
 
 }

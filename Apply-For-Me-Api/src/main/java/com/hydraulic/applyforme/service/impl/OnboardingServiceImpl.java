@@ -63,9 +63,13 @@ public class OnboardingServiceImpl implements OnboardingService {
 	@Transactional
 	public OnboardingResponse onboard(TryItNowDTO body) {
 		boolean existingMember = memberJpaRepository.existsByEmailAddress(body.getEmailAddress());
-
 		if (existingMember) {
 			throw new EmailAlreadyExistsException();
+		}
+
+		boolean existingPhoneNumber = memberJpaRepository.existsByUsername(body.getPhoneNumber());
+		if (existingPhoneNumber) {
+			throw new PhoneNumberAlreadyExistsException();
 		}
 
 		Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.PROFESSIONAL.getValue());
@@ -150,6 +154,7 @@ public class OnboardingServiceImpl implements OnboardingService {
 			throw new PasswordMismatchException();
 		}
 		member.setPassword(body.getConfirmationPassword());
+		member.setOnboardToken(null);
 		memberRepository.updateOne(member);
 		return member;
 	}

@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hydraulic.applyforme.model.enums.JobLocationType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -60,8 +61,12 @@ public class Submission {
     @Column(name ="summary")
     private String summary;
 
-    @Column(name = "other_comment", nullable = true)
+    @Column(name = "other_comment")
     private String otherComment;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name ="professional_profile_id")
+    private ProfessionalProfile professionalProfile;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

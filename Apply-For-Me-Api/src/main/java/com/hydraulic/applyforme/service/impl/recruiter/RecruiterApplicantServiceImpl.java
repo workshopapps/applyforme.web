@@ -103,4 +103,15 @@ public class RecruiterApplicantServiceImpl implements RecruiterApplicantService 
 
         return response;
     }
+
+    @Override
+    public Member getOneMember(Long id) {
+        Member member = memberRepository.getOne(id);
+
+        if (member == null) {
+            throw new MemberNotFoundException(id);
+        }
+
+        return member;
+    }
 }
