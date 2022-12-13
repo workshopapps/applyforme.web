@@ -102,6 +102,7 @@ function App() {
                 <Route exact path="/howafmworks" element={<HowAfmWorks />} />
                 <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route exact path="/tryout-form" element={<TryoutForm />} />
+                <Route exact path="/registration" element ={<Registration/>}/>
                 <Route
                     exact
                     path="/tryout-form/success"
@@ -229,7 +230,6 @@ function App() {
                             path="/dashboard/user/:id"
                             element={<ProfileDescription />}
                         />
-
                         {/* User Dashboard Applications */}
                         <Route path="applications" element={<Applications />} />
                         {/* <Route index element={<Applications />} /> */}

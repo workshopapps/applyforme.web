@@ -3,8 +3,9 @@
     padding-bottom: 25%;
     width: 100vw;
     background-color: #f3f3fb;
-    margin-left: 9rem;
+    margin-left: 10rem;
 }
+
 .sidemarg {
     margin-left: 9rem;
 }
@@ -58,7 +59,7 @@
 }
 @media screen and (max-width: 720px) {
     .each_profile {
-        width: 90%;
+        width: 100%;
         background: #fefeff;
         border-radius: 12px;
         margin-top: 1.25rem;

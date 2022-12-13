@@ -33,11 +33,6 @@
 
 @media only screen and (max-width: 480px)
 {
-    .list ul
-    {
-        /* grid-template-columns: auto auto auto; */
-    }
-
     .list_list ul
     {
         display: flex;
