@@ -1,14 +1,12 @@
-package com.hydraulic.applyforme.controller.submission;
+package com.hydraulic.applyforme.controller;
 
-import com.hydraulic.applyforme.model.domain.Submission;
-import com.hydraulic.applyforme.model.dto.submission.CreateJobSubmissionDto;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
-import com.hydraulic.applyforme.service.JobSubmissionService;
+import com.hydraulic.applyforme.service.ProfessionalProfileService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -17,14 +15,14 @@ import static com.hydraulic.applyforme.constants.PagingConstants.*;
 
 @RestController
 @RequestMapping(
-        value = "job-submission",
+        value = "professional-profile",
         produces = { MediaType.APPLICATION_JSON_VALUE }
 )
-public class SubmissionController {
+public class ProfessionalProfileController {
 
-    private final JobSubmissionService service;
+    private final ProfessionalProfileService service;
 
-    public SubmissionController(JobSubmissionService service) {
+    public ProfessionalProfileController(ProfessionalProfileService service) {
         this.service = service;
     }
 
@@ -39,6 +37,7 @@ public class SubmissionController {
             @RequestParam(value = "q", required = false) String q) {
         return service.getEntries(pageNo, pageSize, sortBy, sortDir, q, fromDate, toDate);
     }
+
     @PreAuthorize("hasAnyRole('Professional')")
     @GetMapping("/user/entries/all")
     public ApplyForMeResponse findUserEntries(
@@ -54,19 +53,15 @@ public class SubmissionController {
     }
 
     @GetMapping("/detail/{id}")
-    public Submission findOne(@PathVariable(name ="id") Long id) {
+    public ProfessionalProfile findOne(@PathVariable(name ="id") Long id) {
         return service.findOne(id);
     }
+
     @PreAuthorize("hasAnyRole('Professional')")
     @GetMapping("/user/detail/{id}")
-    public Submission findOneUserSubmission(@PathVariable(name ="id") Long id) {
+    public ProfessionalProfile findOneUserProfessionalProfile(@PathVariable(name ="id") Long id) {
         var currentUser = CurrentUserUtil.getCurrentUser();
         return service.findOne(currentUser.getId(), id);
     }
 
-    @PreAuthorize("hasAnyRole('Recruiter')")
-    @PostMapping("/save")
-    public Submission save(@Validated @RequestBody CreateJobSubmissionDto dto) {
-        return service.saveSubmission(dto);
-    }
 }

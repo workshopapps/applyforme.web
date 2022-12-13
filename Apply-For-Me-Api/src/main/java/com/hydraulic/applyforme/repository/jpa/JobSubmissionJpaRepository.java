@@ -1,11 +1,11 @@
 package com.hydraulic.applyforme.repository.jpa;
 
 import com.hydraulic.applyforme.model.domain.Submission;
-import com.hydraulic.applyforme.model.domain.Submission;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 
@@ -70,4 +70,7 @@ public interface JobSubmissionJpaRepository extends JpaRepository<Submission, Lo
             "(jb.jobTitle like '%' || :q || '%' or jb.jobLocation like '%' || :q || '%' or " +
             "jb.jobCompany like '%' || :q || '%' or jb.jobLink like '%' || :q || '%')")
     Page<Submission> getUserEntries(String q, Date from, Long id, Pageable pageable);
+
+    @Query(value = "select jb FROM Submission jb where jb.professional.member.id = :memberId AND id = :id")
+    Submission getOneUserSubmission(@Param("memberId") Long memberId, Long id);
 }

@@ -61,7 +61,7 @@ public class Submission {
     @Column(name ="summary")
     private String summary;
 
-    @Column(name = "other_comment", nullable = true)
+    @Column(name = "other_comment")
     private String otherComment;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

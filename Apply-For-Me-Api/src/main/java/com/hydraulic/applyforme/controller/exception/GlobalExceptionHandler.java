@@ -425,4 +425,14 @@ public class GlobalExceptionHandler {
         errors.put("code", HttpStatus.BAD_REQUEST.value());
         return errors;
     }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(SubmissionDuplicateEntityException.class)
+    public Object submission(SubmissionDuplicateEntityException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "User");
+        errors.put("message", ex.getMessage());
+        errors.put("code", HttpStatus.CONFLICT.value());
+        return errors;
+    }
 }
