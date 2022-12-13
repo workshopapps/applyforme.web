@@ -28,7 +28,7 @@ const ApplicationDetails = () => {
                 <Link to="/rr_admin">
                     <img src={goBackIcon} alt="" />
                 </Link>
-                <span className={style.view_applicants} onClick={()=>navigate("/rr_admin")}>
+                <span className={style.view_applicants} onClick={()=>window.history.back()}>
                     View Applicants details
                 </span>
             </div>

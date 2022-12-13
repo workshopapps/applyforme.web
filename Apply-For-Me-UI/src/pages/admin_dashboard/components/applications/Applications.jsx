@@ -1,6 +1,6 @@
 import style from "./Applications.module.css";
 
-import ApplicationList from "../application_list/ApplicationList";
+import ApplicationList from "./rr_applications_list"
 
 import arrowDown from "../../../../assets/images/arrow-down.svg";
 import filterIcon from "../../../../assets/images/filter-icon.svg";

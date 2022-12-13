@@ -4,13 +4,13 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 export const RR_admin_profile = () => {
-    const [dashboardSetSearchParams] = useState("");
+    const [dashboardsearchParams, dashboardSetSearchParams] = useState("");
 
     return (
         <>
-            <ToastContainer />
-            <RR_admin_Profile setInputSearchValue={dashboardSetSearchParams} />
-            <RRApplicantsPage />
+            <ToastContainer/>
+            <RR_admin_Profile setInputSearchValue={dashboardSetSearchParams}/>
+            <RRApplicantsPage  inputSearchValue={dashboardsearchParams}/>
         </>
     );
 };

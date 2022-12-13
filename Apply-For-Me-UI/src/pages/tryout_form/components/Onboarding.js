@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
 import Input from "./Input";
 import BlueButton from "components/buttons/blue_background/BlueButton";

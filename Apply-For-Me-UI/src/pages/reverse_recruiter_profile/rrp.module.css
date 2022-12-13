@@ -1,0 +1,152 @@
+.page {
+    display: flex;
+    flex-direction: column;
+}
+.rr_profile_container{
+    padding: 1rem 3rem;
+}
+.ProfilePic {
+    width: 80px;
+    height: 80px;
+    margin: 24px 0;
+    margin-right: 3em;
+}
+
+.back_button {
+    margin: 20px 20px 0;
+}
+
+.back_button button {
+    background-color: transparent;
+    border: none;
+}
+
+.back_button span {
+    margin-right: 24px;
+    color: #52515B;
+}
+
+.topSection {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+    border-bottom: 1px solid #E6E6E9;
+}
+
+.infoSection {
+    margin: 24px 20px;
+    border-bottom: 1px solid #E6E6E9;
+    display: flex;
+    padding-bottom: 24px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.left {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0.03em;
+    color: #52515B;
+}
+
+.left p {
+    width: 115px;
+    margin-right: 16px;
+}
+
+.right {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0.03em;
+    color: #52515B;
+}
+
+.bottomSection {
+    display: flex;
+    align-self: flex-end;
+    margin: 0 20px;
+    gap: 30px;
+    padding-bottom: 24px;
+}
+
+.btn_bottom {
+    display: block;
+}
+.btn{
+    display: none;
+}
+
+.btn_bottom button {
+    height: 60px;
+}
+
+.change_password {
+    background-color: transparent;
+    border: 2px solid #2E3192;
+    border-radius: 8px;
+    padding: 16px 32px;
+    color: #2E3192;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+}
+.info_container{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    line-height: 40px;
+}
+.isubinfo_container{
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.isubinfo_container p{
+    overflow-wrap: break-word;
+    width:50%;
+}
+
+@media screen and (max-width: 768px) {
+    .rr_profile_container{
+        padding: 1rem 1.5rem;
+    }
+    .bottomSection {
+        align-self: flex-start;
+    }
+
+    .left p {
+        width: auto;
+    }
+
+    .ProfilePic {
+        width: 170px;
+        height: 170px;
+    }
+
+    .infoSection {
+        gap: 60px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .ProfilePic {
+        width: 90px;
+    }
+    .btn {
+        display: block;
+        margin-left: 1rem;
+    }
+
+    .btn_bottom {
+        display:none;
+    }
+    .rr_profile_container{
+        padding: 1rem 0;
+    }
+}

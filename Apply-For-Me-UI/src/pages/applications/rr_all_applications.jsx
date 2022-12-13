@@ -1,4 +1,4 @@
-import styles from "./Applications.module.css";
+import styles from "./rr_all_applications.module.css";
 import ApplicationsListCard from "./components/ApplicationsListCard";
 import Table from "./components/Table";
 import TopNav from "./components/topNav/TopNav";
@@ -8,10 +8,10 @@ const Applications = () => {
     return (
         <div className={styles.applications_container}>
             <TopNav title={"Applications"} />
-                <section className={styles.application_main}>
-                    <Table applications={applications} />
-                    <ApplicationsListCard applications={applications} />
-                </section>
+            <section className={styles.application_main}>
+                <Table applications={applications} />
+                <ApplicationsListCard applications={applications} />
+            </section>
             <GoBack />
         </div>
     );

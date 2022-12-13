@@ -7,7 +7,7 @@
     padding-left: 5%;
     background-color: #f3f3fb;
     padding-bottom: 20%;
-    margin-left: 10rem;
+    margin-left: 9rem;
 }
 @media only screen and (max-width: 480px) {
     .createprofile {
@@ -82,6 +82,7 @@
 /* Form */
 @media screen and (max-width: 610px) {
     .form_body {
+        width: 90%;
         padding: 1.5rem;
     }
 }
@@ -132,4 +133,33 @@
 }
 .hr_one {
     border: 0.8px solid #b7b9e6;
+}
+.loading_animate {
+    margin-top: 50vh;
+    width: 100%;
+    height: 5px;
+    background-color: #bfbfbf;
+    border-radius: 5px;
+    animation: loading_animation 2s linear infinite;
+}
+@media only screen and (max-width: 480px) {
+    .loading_box {
+        margin-left: 0;
+    }
+    .loading_animate {
+        margin-inline: auto;
+        width: 50%;
+    }
+}
+/* Define animation  */
+@keyframes loading_animation {
+    0% {
+        background-color: #bfbfbf;
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-color: #2f80ed;
+        background-position: 100% 0%;
+    }
 }
