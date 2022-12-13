@@ -1,7 +1,9 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.domain.Member;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
 import com.hydraulic.applyforme.model.dto.member.UpdateMemberDto;
+import com.hydraulic.applyforme.model.dto.professionalprofile.ProfessionalProfileDto;
 import com.hydraulic.applyforme.model.security.UserDetailsImpl;
 import com.hydraulic.applyforme.service.MemberService;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
@@ -29,9 +31,15 @@ public class MemberController {
     	return service.findOne(currentUser.getId());
     }
 
-    @PutMapping("/update")
-    public boolean update(@Validated @RequestBody UpdateMemberDto body) {
-    	UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
-        return service.update(currentUser.getId(), body);
+//    @PutMapping("/update")
+//    public boolean update(@Validated @RequestBody UpdateMemberDto body) {
+//    	UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();
+//        return service.update(currentUser.getId(), body);
+//    }
+
+    @PutMapping("/update/{id}")
+    public boolean update(@Validated @RequestBody UpdateMemberDto body, @PathVariable(name ="id") Long id) {
+        return service.update(id, body);
     }
+
 }
