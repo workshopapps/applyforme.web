@@ -14,7 +14,7 @@ const DragDropFile = ({ onChange }) => {
                 <input
                     type="file"
                     id="cv"
-                    accept="application/pdf, .doc,.docx"
+                    accept="application/pdf, .doc,.docx, image/*"
                     required
                     onChange={onChange}
                 />

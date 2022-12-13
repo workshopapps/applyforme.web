@@ -47,6 +47,7 @@ import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
 import Success from "./pages/dashboard_profile/Success/Success";
 import CreateProfile from "./pages/dashboard_profile/CreateProfile/CreateProfile";
 import ProfileDescription from "pages/dashboard_profile/Profile/ProfileDescription";
+import EditProfile from "./pages/dashboard_profile/EditProfile/EditProfile";
 import { ProfileScreen } from "components/superAdmmin_profile/superAdmin_profileScreen";
 import RRProfile from "pages/reverse_recruiter_profile/rrp";
 
@@ -105,7 +106,7 @@ function App() {
                 <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route exact path="/tryout-form" element={<TryoutForm />} />
                 <Route exact path="/rrp" element={<RRProfile />} />
-                <Route exact path="/registration" element ={<Registration/>}/>
+                <Route exact path="/registration" element={<Registration />} />
                 <Route
                     exact
                     path="/tryout-form/success"
@@ -233,6 +234,11 @@ function App() {
                             path="/dashboard/user/:id"
                             element={<ProfileDescription />}
                         />
+                        <Route
+                            path="/dashboard/user/:id/edit"
+                            element={<EditProfile />}
+                        />
+
                         {/* User Dashboard Applications */}
                         <Route path="applications" element={<Applications />} />
                         {/* <Route index element={<Applications />} /> */}

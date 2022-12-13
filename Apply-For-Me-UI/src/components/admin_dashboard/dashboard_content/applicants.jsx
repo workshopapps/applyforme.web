@@ -2,41 +2,52 @@ import React from "react";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import {SuperAdminApplicants } from "store/slice/RR_AdminSlice";
+import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./applicants.module.css";
 
-export const RRApplicantsPage = ({inputSearchValue}) => {
+export const RRApplicantsPage = ({ inputSearchValue }) => {
     const dispatch = useDispatch();
     const list = useSelector(state => state.RRadmin);
     console.log(list);
     const [search, setSearch] = useState([]);
     const [pagination, setPagination] = useState({
         "pageNo": 0,
-        "pageSize": 10,
+        "pageSize": 10
     });
-    const handlePageClick =(data)=>{
-        setPagination(prevState =>({...prevState,"pageNo":data.selected}));
+    const handlePageClick = data => {
+        setPagination(prevState => ({ ...prevState, "pageNo": data.selected }));
 
         dispatch(SuperAdminApplicants(pagination));
-       
-    }
-    useEffect(()=>{
-        const avilableList = (list.applicantsloadingStatus ==="success" && list.superAdminApplicantsList?.length !==0) ? list.superAdminApplicantsList?.content?.filter((item)=>item.membership.firstName.toLowerCase().includes(inputSearchValue)):[]
+    };
+    useEffect(() => {
+        const avilableList =
+            list.applicantsloadingStatus === "success" &&
+            list.superAdminApplicantsList?.length !== 0
+                ? list.superAdminApplicantsList?.content?.filter(item =>
+                      item.membership.firstName
+                          .toLowerCase()
+                          .includes(inputSearchValue)
+                  )
+                : [];
         setSearch(avilableList);
     }, [inputSearchValue, list.superAdminApplicantsList]);
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(SuperAdminApplicants(pagination));
-    },[dispatch,SuperAdminApplicants])
+    });
+    useEffect(() => {
+        dispatch(SuperAdminApplicants(pagination));
+    }, [dispatch, SuperAdminApplicants]);
 
-
-   
     return (
         <div className={classes.main_container}>
-           <div className="statisticsContainer">
-                <h2  className="list-header">All Applicants</h2>
+            <div className="statisticsContainer">
+                <h2 className="list-header">All Applicants</h2>
                 <select name="statistic_sorter" id="statistic_sorter">
-                    <option value={new Date().toLocaleDateString()}> {new Date().toLocaleDateString()}</option>
+                    <option value={new Date().toLocaleDateString()}>
+                        {" "}
+                        {new Date().toLocaleDateString()}
+                    </option>
                 </select>
             </div>
 
@@ -59,7 +70,8 @@ export const RRApplicantsPage = ({inputSearchValue}) => {
                     </thead>
                     <tbody>
                         {search?.length !== 0 &&
-                         (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
+                            list.applicantsloadingStatus === "success" &&
+                            list.superAdminApplicantsList.length !== 0 &&
                             search?.map(list => {
                                 return (
                                     <tr
@@ -78,29 +90,32 @@ export const RRApplicantsPage = ({inputSearchValue}) => {
                             })}
                     </tbody>
                 </table>
-                {list.applicantsloadingStatus ==="pending" && <p style={{textAlign:"center"}}>Please wait...</p>}
-                {(list.applicantsloadingStatus === "success" && search?.length ===0) && <p className="text-center">record not found</p>}
+                {list.applicantsloadingStatus === "pending" && (
+                    <p style={{ textAlign: "center" }}>Please wait...</p>
+                )}
+                {list.applicantsloadingStatus === "success" &&
+                    search?.length === 0 && (
+                        <p className="text-center">record not found</p>
+                    )}
                 <div>
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel=">"
-                    pageRangeDisplayed={5}
-                    pageCount={list.superAdminApplicantsList?.totalPages}
-                    marginPagesDisplayed="1"
-                    previousLabel="<"
-                    renderOnZeroPageCount={null}
-                    onPageChange={handlePageClick}
-                    containerClassName="containerClassName"
-                    pageClassName='pageClassName'
-                    previousClassName='previousClassName'
-                    activeClassName="activeClassName"
-                    nextClassName='nextClassName'
-                    pageLinkClassName="pageLinkClassName"
-                />
-                 </div>
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel=">"
+                        pageRangeDisplayed={5}
+                        pageCount={list.superAdminApplicantsList?.totalPages}
+                        marginPagesDisplayed="1"
+                        previousLabel="<"
+                        renderOnZeroPageCount={null}
+                        onPageChange={handlePageClick}
+                        containerClassName="containerClassName"
+                        pageClassName="pageClassName"
+                        previousClassName="previousClassName"
+                        activeClassName="activeClassName"
+                        nextClassName="nextClassName"
+                        pageLinkClassName="pageLinkClassName"
+                    />
+                </div>
             </section>
         </div>
     );
 };
-
-
