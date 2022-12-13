@@ -97,7 +97,7 @@ const RRD_Nav = () => {
                                         <li
                                             type="button"
                                             onClick={() => {
-                                                navigate("/");
+                                                navigate("/reverse/profile");
                                             }}
                                         >
                                             <img

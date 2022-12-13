@@ -215,7 +215,6 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         </div>
                         <div className={classes.user_action__btn__mobile}>
                             <FiTrash className={classes.trash} />
-
                             <p onClick={deleteHandler}>Delete</p>
                         </div>
                     </div>
