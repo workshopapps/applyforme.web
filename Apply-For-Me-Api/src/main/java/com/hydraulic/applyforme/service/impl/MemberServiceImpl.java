@@ -4,16 +4,18 @@ import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.Role;
+import com.hydraulic.applyforme.model.dto.admin.UpdatePasswordDto;
 import com.hydraulic.applyforme.model.dto.authentication.SignupDto;
 import com.hydraulic.applyforme.model.dto.member.UpdateMemberDto;
 import com.hydraulic.applyforme.model.enums.RoleType;
 import com.hydraulic.applyforme.model.exception.*;
+import com.hydraulic.applyforme.model.response.AdminDashboardStatisticsOne;
+import com.hydraulic.applyforme.model.response.UserDashboardStatisticsOne;
 import com.hydraulic.applyforme.repository.CountryRepository;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.MemberSecretCodeRepository;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
-import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
 import com.hydraulic.applyforme.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
@@ -126,25 +128,21 @@ public class MemberServiceImpl implements MemberService {
     public boolean update(Long id, UpdateMemberDto body) {
 
         Member member = repository.getOne(id);
-
         if (member == null) {
             throw new MemberNotFoundException(id);
         }
 
         Member memberExists = jpaRepository.findByEmailAddress(body.getEmailAddress());
-
         if (memberExists != null && memberExists.getId() != id) {
             throw new EmailAlreadyExistsException();
         }
 
         Member memberWithUsername = jpaRepository.findByUsername(body.getUsername());
-
         if (memberWithUsername != null && memberWithUsername.getId() != id) {
             throw new UsernameAlreadyExistsException();
         }
 
         Member memberWithPhoneNumber = jpaRepository.findByPhoneNumber(body.getPhoneNumber());
-
         if (memberWithPhoneNumber != null && memberWithPhoneNumber.getId() != id) {
             throw new PhoneNumberAlreadyExistsException();
         }
@@ -158,7 +156,7 @@ public class MemberServiceImpl implements MemberService {
         if (countryOfResidence == null) {
             throw new CountryNotFoundException(body.getCountryOfResidence());
         }
-//        member.setId(id);
+
         member.setUsername(body.getUsername());
         member.setPhoneNumber(body.getPhoneNumber());
         member.setEmailAddress(body.getEmailAddress());
@@ -171,8 +169,43 @@ public class MemberServiceImpl implements MemberService {
         member.setCurrentJobTitle(body.getCurrentJobTitle());
         member.setNationality(nationality);
         member.setCountryOfResidence(countryOfResidence);
-//        jpaRepository.save(member)
         repository.updateOne(member);
         return true;
+    }
+
+    @Override
+    @Transactional
+    public Member updatePassword(Long id, UpdatePasswordDto dto) throws PasswordMismatchException {
+        Member member = repository.getOne(id);
+        if (member == null) {
+            throw new MemberNotFoundException(id);
+        }
+
+        boolean matches = passwordEncoder.matches(dto.getExistingPassword(), member.getPassword());
+
+        if (!matches) {
+            throw new PasswordMismatchException();
+        }
+
+        if (!dto.getNewPassword().equals(dto.getConfirmationPassword())) {
+            throw new PasswordMismatchException();
+        }
+
+        member.setPassword(passwordEncoder.encode(dto.getNewPassword()));
+        repository.updateOne(member);
+        return member;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserDashboardStatisticsOne getStatistics(Long id, Date from, Date to) {
+
+        Long totalApplications = repository.getAllSubmissions(id, from, to);
+        Long totalProfiles = repository.getAllProfiles(id, from, to);
+
+        return UserDashboardStatisticsOne.builder()
+                .totalNumberOfSubmissions(totalApplications)
+                .totalNumberOfProfiles(totalProfiles)
+                .build();
     }
 }

@@ -1,26 +1,34 @@
 package com.hydraulic.applyforme.config.filter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hydraulic.applyforme.model.exception.ExpiredJwtToken;
 import com.hydraulic.applyforme.model.security.UserDetailsImpl;
 import com.hydraulic.applyforme.service.impl.UserDetailsServiceImpl;
 import com.hydraulic.applyforme.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @Slf4j
 @Component
@@ -34,6 +42,13 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
+    @Qualifier("handlerExceptionResolver")
+    private HandlerExceptionResolver resolver;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -54,11 +69,17 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         try {
             emailAddress = jwtUtil.getUsernameFromToken(token);
-            System.out.println("Email Address " + emailAddress);
         } catch (IllegalArgumentException e) {
             System.out.println("Unable to get JWT Token");
         } catch (ExpiredJwtException e) {
-            System.out.println("JWT Token has expired");
+            resolver.resolveException(request, response, null, e);
+            return;
+        } catch (MalformedJwtException e) {
+            resolver.resolveException(request, response, null, e);
+            return;
+        } catch (SignatureException e) {
+            resolver.resolveException(request, response, null, e);
+            return;
         }
 
         if (!StringUtils.isNotEmpty(emailAddress)) {
@@ -87,5 +108,4 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
-
 }
