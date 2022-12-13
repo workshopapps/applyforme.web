@@ -78,6 +78,8 @@ const Welcome2 = () => {
         if (result?.token) {
             let decoded = jwt_decode(result.token);
             let tokenKey = "tokenHngKey";
+            let refreshKey = "refreshTokenHngKey";
+            localStorage.setItem(refreshKey, result.refresh_token);
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
             setError("");
