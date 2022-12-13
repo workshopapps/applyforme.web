@@ -15,4 +15,7 @@ public interface ProfessionalProfileJpaRepository extends JpaRepository<Professi
     
     @Query("select pp from ProfessionalProfile pp where pp.professional.member.id = :id")
     List<ProfessionalProfile> getJobProfiles(@Param("id") Long member_id);
+
+    @Query("select j from ProfessionalProfile j")
+    List<ProfessionalProfile> getAllJobProfileSubmission();
 }

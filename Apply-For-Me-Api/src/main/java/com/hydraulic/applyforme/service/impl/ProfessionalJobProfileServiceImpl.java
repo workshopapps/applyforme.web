@@ -31,6 +31,8 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
     private final MemberRepository memberRepository;
     private final ProfessionalJpaRepository professionalJpaRepository;
 
+    ProfessionalProfileJpaRepository jpaRepository;
+
     @Autowired
     private ModelMapper modelMapper;
 
@@ -164,4 +166,12 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
 		
 		return false;
 	}
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProfessionalProfile> findAllJobProfiles() {
+        return jpaRepository.getAllJobProfileSubmission();
+    }
+
 }
+
