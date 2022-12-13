@@ -147,10 +147,6 @@ public class MemberServiceImpl implements MemberService {
             throw new PhoneNumberAlreadyExistsException();
         }
 
-        if (body.getNationality() == null || body.getCountryOfResidence() == null) {
-            throw new CountryNotFoundException("Unknown");
-        }
-
         Country nationality = countryRepository.getOne(body.getNationality());
         if (nationality == null) {
             throw new CountryNotFoundException(body.getNationality());
