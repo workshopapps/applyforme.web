@@ -7,12 +7,16 @@ import com.hydraulic.applyforme.model.dto.applicant.ApplicantDto;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.applicant.ApplicantResponse;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
+import com.hydraulic.applyforme.model.response.ApplicantStats;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.repository.ApplicantRepository;
+import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
+import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalRepository;
 import com.hydraulic.applyforme.service.ApplicantService;
 import com.hydraulic.applyforme.util.ApplyForMeUtil;
+import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,16 +36,22 @@ public class ApplicantServiceImpl implements ApplicantService {
 
     private final ModelMapper modelMapper;
 
+    private final MemberRepository memberRepository;
+
+    private final ProfessionalJpaRepository professionalJpaRepository;
+
 
     private final ApplicantRepository repository;
 
     public ApplicantServiceImpl(JobSubmissionRepository jobSubmissionRepository, ModelMapper modelMapper,
                                 ProfessionalRepository professionalRepository,
-                                ApplicantRepository repository) {
+                                MemberRepository memberRepository, ProfessionalJpaRepository professionalJpaRepository, ApplicantRepository repository) {
 
         this.jobSubmissionRepository = jobSubmissionRepository;
         this.professionalRepository = professionalRepository;
         this.modelMapper = modelMapper;
+        this.memberRepository = memberRepository;
+        this.professionalJpaRepository = professionalJpaRepository;
         this.repository = repository;
     }
 
@@ -109,6 +119,24 @@ public class ApplicantServiceImpl implements ApplicantService {
     @Override
     public Member getDetails(Long id) {
         return repository.getMyDetailsById(id);
+    }
+
+    public ApplicantStats getApplicantStats() {
+        var authenticatedUser = CurrentUserUtil.getCurrentUser();
+        assert authenticatedUser != null;
+
+        Long memberId = authenticatedUser.getId();
+        Professional  professional = professionalJpaRepository.getProfessional(memberId);
+        Long professionalId = professional.getId();
+
+        Long totalAppliactions = jobSubmissionRepository.countSubmissionByProfessional(professionalId);
+
+        ApplicantStats applicantStats = new ApplicantStats();
+        applicantStats.setTotalApplications(totalAppliactions);
+        applicantStats.setActiveApplications(3L);
+        applicantStats.setCompletedInterviews(6L);
+
+        return applicantStats;
     }
 
 }

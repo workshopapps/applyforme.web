@@ -5,8 +5,10 @@ import com.hydraulic.applyforme.model.dto.applicant.ApplicantDto;
 
 import com.hydraulic.applyforme.model.domain.Member;
 
+import com.hydraulic.applyforme.model.response.ApplicantStats;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.ApplicantService;
+import com.hydraulic.applyforme.service.impl.ApplicantServiceImpl;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,9 +27,12 @@ public class ApplicantController {
 
     private final ApplicantService service;
 
+    private  final ApplicantServiceImpl applicantService;
+
     @Autowired
-    public ApplicantController(ApplicantService service) {
+    public ApplicantController(ApplicantService service, ApplicantServiceImpl applicantService) {
         this.service = service;
+        this.applicantService = applicantService;
     }
 
     @GetMapping("/entries")
@@ -51,5 +56,11 @@ public class ApplicantController {
         assert authenticatedUser != null;
         return service.getDetails(authenticatedUser.getId());
 
+    }
+
+    @GetMapping("/statistics")
+    public ApplicantStats getApplicantsStats() {
+
+        return applicantService.getApplicantStats();
     }
 }
