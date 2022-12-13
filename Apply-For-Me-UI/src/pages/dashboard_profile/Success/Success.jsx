@@ -19,7 +19,10 @@ const Success = () => {
             <div className={styles.success_message}>
                 <img src={success} alt="completed" />
                 <p className={styles.congrats}>Congratulations, {userName}</p>
-                <p>Your profile has been uploaded succesfully!</p>
+                <p>
+                    Your profile is being matched to get you your dream job sit
+                    back and wait for your interview.
+                </p>
                 <NavLink
                     to="/dashboard/user/"
                     style={{ textDecoration: "none" }}

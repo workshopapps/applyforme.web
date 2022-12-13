@@ -288,7 +288,7 @@
     .dropdownContent {
         padding: 0.5rem;
         /* width: 70px; */
-        left: -1rem;
+        left: -5rem;
     }
 }
 .crud_link {
@@ -298,4 +298,21 @@
 }
 .crud_link p {
     color: #2e3192;
+}
+.btn_plus_fixed {
+    /* margin-top: auto; */
+    width: 3rem;
+    height: 3rem;
+    position: fixed;
+    bottom: 15%;
+    right: 7%;
+}
+.btn_plus_fixed img {
+    width: 3rem;
+    height: 3rem;
+}
+@media screen and (min-width: 480px) {
+    .mobile_only {
+        display: none;
+    }
 }

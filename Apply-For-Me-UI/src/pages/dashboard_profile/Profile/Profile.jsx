@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import TopBar from "../components/TopBar/TopBar";
 import styles from "./Profile.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import add from "../assets/add.png";
+import blueadd from "../assets/blue-add.png";
 import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
 import { BsPencil, BsThreeDotsVertical } from "react-icons/bs";
 import Modal from "react-modal";
@@ -149,6 +150,16 @@ const Profile = ({ profileList }) => {
                 <img src={add} alt="add" />
             </button>
             <div>{CurrentProfile}</div>
+            <div className={styles.mobile_only}>
+                <NavLink
+                    to="/dashboard/user/create-profile"
+                    style={{ textDecoration: "none" }}
+                >
+                    <div className={styles.btn_plus_fixed}>
+                        <img src={blueadd} alt="add" />
+                    </div>
+                </NavLink>
+            </div>
         </div>
     );
 };
