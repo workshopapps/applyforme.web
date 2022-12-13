@@ -62,9 +62,20 @@ const Welcome2 = () => {
             password: event.target.pass.value
         };
 
-        let result = await axios
+        await axios
             .post(`${BaseUrl}`, formData)
-            .then(res => res.data)
+            .then(res => {
+                let result = res.data;
+                let decoded = jwt_decode(result.token);
+                let tokenKey = "tokenHngKey";
+                let refreshKey = "refreshTokenHngKey";
+                localStorage.setItem(refreshKey, result.refresh_token);
+                localStorage.setItem(tokenKey, result.token);
+                dispatch(userInfo(decoded));
+                setError("");
+                setLoading(false);
+                toast.success("Login Successfully");
+            })
             .catch(err => {
                 let message =
                     typeof err.response.data.message === "object"
@@ -73,22 +84,9 @@ const Welcome2 = () => {
                           ]
                         : err.response.data.message;
                 setError(message);
+                setLoading(false);
+                toast.error(message);
             });
-
-        if (result?.token) {
-            let decoded = jwt_decode(result.token);
-            let tokenKey = "tokenHngKey";
-            let refreshKey = "refreshTokenHngKey";
-            localStorage.setItem(refreshKey, result.refresh_token);
-            localStorage.setItem(tokenKey, result.token);
-            dispatch(userInfo(decoded));
-            setError("");
-            setLoading(false);
-            toast.success("Login Successfully");
-        } else {
-            setLoading(false);
-            toast.error("Wrong credentials");
-        }
     };
 
     return (
