@@ -29,6 +29,7 @@ const url = "https://api.applyforme.hng.tech";
 
 const RR_admin_Profile = ({ setInputSearchValue }) => {
     const navigate = useNavigate();
+    const [mobileSearch, setMobileSearch] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const dispatch = useDispatch();
@@ -65,12 +66,12 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
             );
             console.log(response);
             console.log("success")
-            toast("delete succesful")
+            toast("delete successful")
             navigate("/user-page");
             return response?.data;
         } catch (error) {
             console.log(error)
-            toast(error.response?.data?.message);
+            toast.error(error.response?.data?.message);
             return error.response?.data;
         }
     }
@@ -113,7 +114,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                                 />
                             </div>
                             <div className={classes.search_logo}>
-                                <img src={SearchBlue} alt="Search "/>
+                                <img src={SearchBlue} alt="Search "  onClick={()=>setMobileSearch(prev =>!prev)}/>
                             </div>
                             <div
                                 className={classes.user_avater}
@@ -178,6 +179,24 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                 </nav>
 
                 {/* Mobile nav */}
+                  {mobileSearch && 
+                    
+                         <form
+                                className={classes.search}
+                                onSubmit={event => handleSubmit(event)}
+                            >
+                               <input
+                                    type="search"
+                                    name="search"
+                                    className={classes.mobile_inp}
+                                    placeholder="Search for and Reverse Recruiter"
+                                />
+                                <button type="submit" className={classes.mobile_btn_cont}>
+                                    {" "}
+                                    <img src={Search} alt="Apply for me logo"  className={classes.mobile_btn}/>
+                                </button>
+                            </form>
+                }
                 {showMenu && <MobileNav setShowMenu={setShowMenu} />}
             </section>
 

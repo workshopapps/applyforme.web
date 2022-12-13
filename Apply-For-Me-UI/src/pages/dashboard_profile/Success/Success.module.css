@@ -14,9 +14,10 @@
 .success_message {
     background-color: #ffff;
     text-align: center;
-    width: 90%;
+    width: 100%;
     margin-top: 1rem;
     padding-block: 1rem;
+    margin-bottom: 4rem;
 }
 .success_message button {
     margin-inline: auto;
