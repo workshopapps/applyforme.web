@@ -8,8 +8,10 @@ import LightButton from "../../../../components/buttons/light_button/LightButton
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Review = ({ formData, keywords, setStep }) => {
+const Review = ({ formData, keywords, setStep, id }) => {
     const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -51,9 +53,9 @@ const Review = ({ formData, keywords, setStep }) => {
         try {
             // Make POST request
             const finalResponse = await fetch(
-                "https://api.applyforme.hng.tech/api/v1/job-profile/save",
+                `https://api.applyforme.hng.tech/api/v1/job-profile/update/${id}`,
                 {
-                    method: "POST",
+                    method: "PUT",
                     headers: {
                         Authorization: `Bearer ${storedToken}`,
                         "Content-Type": "application/json"
@@ -82,6 +84,7 @@ const Review = ({ formData, keywords, setStep }) => {
             const finalResponseJson = await finalResponse.json();
             setLoading(false);
             // console.log(finalResponse);
+            toast("Profile submitted successfully");
             navigate("/dashboard/user/success");
         } catch (error) {
             alert("Failed to submit, please try again");
@@ -180,6 +183,8 @@ const Review = ({ formData, keywords, setStep }) => {
                                     </p>
                                 )}
                             </div>
+                            <ToastContainer />
+
                             {loading && (
                                 <div className={classes.loading_animation} />
                             )}

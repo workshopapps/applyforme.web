@@ -36,12 +36,13 @@ export default function ProfileDescription() {
                 // handle error
                 console.log(error);
             });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const oneprofile = profileDesc?.find(obj => obj.id === parseInt(id));
     // console.log(oneprofile);
     const navigate = useNavigate();
-    if (done != "done") {
+    if (done !== "done") {
         return (
             <div className={classes.loading_box}>
                 <div className={classes.loading_animate} />
@@ -71,11 +72,36 @@ export default function ProfileDescription() {
                             <h5>Job Location</h5>
                         </div>
                         <div>
-                            <p>{oneprofile?.jobSeniority}</p>
+                            <p>
+                                {oneprofile?.preferredJobLocationType
+                                    .charAt(0)
+                                    .toUpperCase() +
+                                    oneprofile?.preferredJobLocationType
+                                        .slice(1)
+                                        .toLowerCase()}
+                            </p>
+                            <h5>Job Location Type</h5>
+                        </div>
+                        <div>
+                            <p>
+                                {oneprofile?.jobSeniority
+                                    .charAt(0)
+                                    .toUpperCase() +
+                                    oneprofile?.jobSeniority
+                                        .slice(1)
+                                        .toLowerCase()}
+                            </p>
                             <h5>Experience</h5>
                         </div>
                         <div>
-                            <p>{oneprofile?.employmentType}</p>
+                            <p>
+                                {oneprofile?.employmentType
+                                    .charAt(0)
+                                    .toUpperCase() +
+                                    oneprofile?.employmentType
+                                        .slice(1)
+                                        .toLowerCase()}
+                            </p>
                             <h5>Employment Type</h5>
                         </div>
                         <div>
@@ -97,6 +123,10 @@ export default function ProfileDescription() {
                         <div>
                             <p>{oneprofile?.coverLetterContent}</p>
                             <h5>Cover letter body</h5>
+                        </div>
+                        <div>
+                            <p>{oneprofile?.includedKeywords}</p>
+                            <h5>Included keywords</h5>
                         </div>
                     </div>
                 </div>
