@@ -10,8 +10,9 @@ import BlueBorderButton from "../../../components/buttons/blue_border_button/Blu
 
 const CreateProfile = () => {
     const [step, setStep] = useState(0);
-
     const [keywords, setKeywords] = useState([]);
+    // eslint-disable-next-line no-unused-vars
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const FormSteps = ["JobSearch", "CoverLetter", "Settings", "Review"];
     const FormDisplay = () => {
