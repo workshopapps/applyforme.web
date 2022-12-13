@@ -3,32 +3,59 @@ import style from "./ApplicantDetails.module.css";
 import pdfIcon from "../../../../assets/images/pdf-icon.svg";
 import goBackIcon from "../../../../assets/images/back_arrow.svg";
 
-import { Link, useNavigate } from "react-router-dom";
-import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
-
-const details = {
-    name: "Sharon Sunday",
-    role: "Product Design",
-    dateJoined: "Oct 4, 2021",
-    email: "Sharon@yahoo.com",
-    phone: "+234822398736",
-    membership: "Premium",
-    experience: "3",
-    industry: "Tech",
-    salary: "$10,000 - $15,000",
-    type: "Remote"
-};
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Nav from "pages/RR_Dashboard/components/RRD_Nav";
+import { useState, useEffect } from "react";
+//import axios from "axios";
+//import { toast } from "react-toastify";
 
 const ApplicationDetails = () => {
     const navigate = useNavigate();
-    return ( 
-            <article className={style.container}>
-            <RRD_Nav />
+    const { id } = useParams();
+    const [details, setDetails] = useState();
+    console.log(id);
+
+    useEffect(() => {
+        fetch(
+            `https://api.applyforme.hng.tech/api/v1/professional-profile/detail/${id}`
+        )
+            .then(response => response.json())
+            .then(data => setDetails(data));
+    }, [id]);
+
+    console.log(details);
+    // const getDetails = async values => {
+    //     const res = await axios
+    //         .post(
+    //             "https://api.applyforme.hng.tech/api/v1/visitor/onboard",
+    //             values
+    //         )
+    //         .then(response => {
+    //             return response;
+    //         })
+    //         .catch(error => {
+    //             return error?.response.data;
+    //         });
+    //     if (res.code == "409") {
+    //         toast.error(res.message);
+    //     }
+
+    //     if (res.status == "200") {
+    //         navigate("/tryout-form/success");
+    //     }
+    // };
+
+    return (
+        <article className={style.container}>
+            <Nav />
             <div className={style.go_back_link}>
                 <Link to="/rr_admin">
                     <img src={goBackIcon} alt="" />
                 </Link>
-                <span className={style.view_applicants} onClick={()=>navigate("/rr_admin")}>
+                <span
+                    className={style.view_applicants}
+                    onClick={() => navigate("/rr_admin")}
+                >
                     View Applicants details
                 </span>
             </div>
@@ -100,7 +127,6 @@ const ApplicationDetails = () => {
                 </div>
             </section>
         </article>
-        
     );
 };
 
