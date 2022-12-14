@@ -1,6 +1,8 @@
 package com.hydraulic.applyforme.controller;
 
+import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
+import com.hydraulic.applyforme.model.dto.applicant.ApplicantDto;
 import com.hydraulic.applyforme.model.dto.professionalprofile.ProfessionalProfileDto;
 import com.hydraulic.applyforme.model.security.UserDetailsImpl;
 import com.hydraulic.applyforme.service.job.ProfessionalJobProfileService;
@@ -39,9 +41,11 @@ public class ProfessionalJobProfileController {
     	return service.deleteByProfileId(currentUser.getId(), profile_id);
     }
 
+
 //    @PreAuthorize("hasRole('Recruiter')")
     @GetMapping("/all")
     public List<ProfessionalProfile> getAll(){
         return service.findAllJobProfiles();
+
     }
 }

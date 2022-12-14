@@ -13,18 +13,18 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class UpdatePasswordDto {
 
-	@NotNull(message = "{superAdmin.password.notNull}")
-	@Size(min = 8, message = "{superAdmin.password.size}")
+	@NotNull(message = "{member.password.notNull}")
+	@Size(min = 8, message = "{member.password.size}")
 	@JsonProperty("existing_password")
 	private String existingPassword;
 
-	@NotNull(message = "{superAdmin.password.notNull}")
-	@Size(min = 8, message = "{superAdmin.password.size}")
+	@NotNull(message = "{member.password.notNull}")
+	@Size(min = 8, message = "{member.password.size}")
 	@JsonProperty("new_password")
 	private String newPassword;
 
-	@NotNull(message = "{superAdmin.password.notNull}")
-	@Size(min = 8, message = "{superAdmin.password.size}")
+	@NotNull(message = "{member.password.notNull}")
+	@Size(min = 8, message = "{member.password.size}")
 	@JsonProperty("confirmation_password")
 	private String confirmationPassword;
 }

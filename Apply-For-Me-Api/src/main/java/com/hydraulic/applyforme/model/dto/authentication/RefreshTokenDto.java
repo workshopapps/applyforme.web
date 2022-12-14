@@ -1,5 +1,4 @@
-package com.hydraulic.applyforme.model.response;
-
+package com.hydraulic.applyforme.model.dto.authentication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -7,18 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class SignInResponse implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    private String token;
+@NoArgsConstructor
+public class RefreshTokenDto {
 
     @JsonProperty("refresh_token")
+    @NotNull(message = "auth.refreshToken.notNull")
     private String refreshToken;
-
 }

@@ -76,6 +76,7 @@ public class ApplyForMeUtil {
                 .loadUserByUsername(emailAddress);
 
         final String token = jwtUtil.generateToken(userDetails);
-        return new SignInResponse(token);
+        final String refreshToken = jwtUtil.doGenerateRefreshToken(emailAddress);
+        return new SignInResponse(token, refreshToken);
     }
 }

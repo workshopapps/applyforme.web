@@ -3,6 +3,7 @@ package com.hydraulic.applyforme.model.domain;
 import com.hydraulic.applyforme.model.enums.EmploymentType;
 import com.hydraulic.applyforme.model.enums.JobLocationType;
 import com.hydraulic.applyforme.model.enums.JobSeniority;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
