@@ -216,7 +216,13 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
             throw new ProfessionalProfileNotFoundException(dto.getProfessionalProfileId());
         }
 
-        Submission submission = modelMapper.map(dto, Submission.class);
+        Submission submission = new Submission();
+        submission.setJobTitle(dto.getJobTitle());
+        submission.setJobCompany(dto.getJobCompany());
+        submission.setJobLink(dto.getJobLink());
+        submission.setJobLocation(dto.getJobLocation());
+        submission.setOtherComment(dto.getOtherComment());
+        submission.setSummary(dto.getSummary());
         submission.setProfessional(existingProfessional);
         submission.setProfessionalProfile(existingProfessionalProfile);
         submission.setApplier(existingApplier);
