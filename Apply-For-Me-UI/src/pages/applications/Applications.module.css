@@ -1,25 +1,17 @@
 .applications_table_wrapper {
-    margin-left: 9.6rem;
+    width: 100%;
 }
 @media only screen and (max-width: 480px) {
     .applications_table_wrapper {
         margin-left: 0;
     }
 }
-@media only screen and (min-width: 620px) {
-    .applications_table_wrapper {
-        width: 70vw;
-    }
-}
-@media only screen and (min-width: 820px) {
-    .applications_table_wrapper {
-        width: 85vw;
-    }
-}
 .applications_container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    margin-left: 9rem;
+    width:100%;
 }
 
 .containerClassName {
@@ -50,12 +42,12 @@
     margin: 0 0.1rem;
 }
 .application_main {
-    padding-top: 101px;
     flex: 1 1 auto;
     padding-bottom: 20px;
 }
 
 .applications_table_header {
+    border-top: 0.5px #cccccc solid;
     height: 112px;
     display: flex;
     flex-wrap: wrap;
@@ -173,14 +165,14 @@ th:last-child {
     flex-direction: column;
     background: #f7f7f7;
     gap: 16px;
-    padding: 10px 25px;
+    padding: 12px 12px 0 12px;
     overflow-y: scroll;
-    padding-bottom: 80px;
 }
 
 .applications_card {
-    height: 149px;
-    margin-top: 1.5rem;
+    border-radius: 5px;
+    height: fit-content;
+    margin-bottom: 0.5rem;
     background: #fefeff;
     display: flex;
     flex-direction: column;
@@ -351,8 +343,6 @@ th:last-child {
     z-index: 50;
     background-color: #2e3192;
     border-radius: 50%;
-    width: 64px;
-    height: 64px;
 }
 
 .applications_sort svg {
@@ -362,6 +352,29 @@ th:last-child {
 }
 
 @media (max-width: 480px) {
+    .applications_list_card {
+       
+        padding: 12px 12px 4rem 12px;
+       
+    }
+    .applications_container  {
+        margin-left: 0rem;
+    }
+    .applications_page_title h2 {
+        font-size: 20px;
+    }
+    .Applications_applications_table_header__fR7kM {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .TopNav_applications_top_nav__uM31u {
+    width: 100%;
+    }
+    .applications_table_header {
+        padding-left: 1rem;
+            padding-right: 1rem;
+    }
+
     .applications_table_wrapper {
         display: none;
     }

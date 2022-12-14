@@ -3,9 +3,16 @@
     padding-bottom: 10%;
     background-color: #f3f3fb;
     width: 100vw;
+    min-height: 100vh;
     margin-left: 9rem;
 }
 @media only screen and (max-width: 480px) {
+    .success_page {
+        margin-left: 0;
+    }
+    .success_message img {
+        display: none;
+    }
     .success_page {
         margin-left: 0;
     }
@@ -14,33 +21,19 @@
 .success_message {
     background-color: #ffff;
     text-align: center;
-    width: 90%;
+    width: 100%;
     margin-top: 1rem;
     padding-block: 1rem;
+    margin-bottom: 4rem;
 }
 .success_message button {
     margin-inline: auto;
     margin-top: 2.5rem;
 }
-@media only screen and (max-width: 480px) {
-    .success_message img {
-        width: 20rem;
-        margin-bottom: 1rem;
-    }
-}
 
 .success_message img {
     width: 25rem;
     margin-bottom: 1rem;
-}
-@media only screen and (max-width: 480px) {
-    .success_page {
-        margin-left: 0;
-    }
-    .success_message img {
-        width: 10rem;
-        margin-bottom: 1rem;
-    }
 }
 
 .congrats {

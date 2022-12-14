@@ -12,6 +12,7 @@
     align-items: center;
     min-height: 100vh;
     position: fixed;
+    width: 10rem;
 }
 
 .sidebar_container.mobile {
@@ -42,7 +43,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
     color: #fff;
     line-height: 2rem;
     text-decoration: none;
@@ -52,12 +52,6 @@
 
 .sidebar_container ul .__active {
     font-weight: 700;
-}
-
-@media only screen and (max-width: 1024px) {
-    .sidebar_container {
-        height: 100vh;
-    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -73,7 +67,6 @@
         width: 100%;
         padding: 15px 24px;
         background-color: white;
-        height: 10vh;
         z-index: 1;
     }
 
@@ -86,9 +79,10 @@
     .sidebar_container.mobile ul li a > p {
         color: #999999;
         margin: 0;
+        font-size: 13px;
     }
     .sidebar_container.mobile .mobile_active > p {
-        color: #999999;
+        color: #6567b0;
         font-weight: 700;
         margin: 0;
     }

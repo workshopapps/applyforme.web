@@ -8,11 +8,10 @@ const Applications = () => {
     return (
         <div className={styles.applications_container}>
             <TopNav title={"Applications"} />
-            <section className={styles.application_main}>
-                <Table applications={applications} />
-                <ApplicationsListCard applications={applications} />
-            </section>
-
+                <section className={styles.application_main}>
+                    <Table applications={applications} />
+                    <ApplicationsListCard applications={applications} />
+                </section>
             <GoBack />
         </div>
     );

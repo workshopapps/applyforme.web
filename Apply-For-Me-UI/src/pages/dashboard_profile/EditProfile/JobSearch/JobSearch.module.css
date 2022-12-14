@@ -1,0 +1,107 @@
+p {
+    margin: 0;
+}
+.remotecheckbox {
+    display: flex;
+    gap: 1rem;
+    margin-block: 1rem;
+}
+.remotecheckbox input {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.remotecheckbox label {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #737373;
+}
+.dropdownbox {
+    display: block;
+    margin-top: 0.6rem;
+}
+
+@media screen and (min-width: 850px) {
+    .detailsdropdown_box {
+        display: grid;
+        grid-template-columns: repeat(3, 29%);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+}
+@media screen and (max-width: 850px) {
+    .detailsdropdown_box {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+}
+.detailsdropdown_box p {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #999999;
+}
+.detailsdropdown_box div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.uploadcv_box {
+    margin-top: 1rem;
+    width: 90%;
+    padding: 1.5rem;
+    border: 1px solid #bfbfbf;
+    border-radius: 3px;
+}
+.uploadcv_box p {
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    color: #222226;
+    margin-bottom: 1rem;
+}
+.uploaded_file {
+    margin-block: 2rem;
+    display: flex;
+    gap: 0.75rem;
+}
+.uploaded_file img {
+    width: 2rem;
+    height: 2rem;
+}
+.uploaded_file button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 2rem;
+    display: flex;
+    margin-left: 1%;
+}
+
+/* Set the height, background color, and border radius of the animation */
+.loading_animation {
+    width: 20%;
+    height: 5px;
+    background-color: #bfbfbf;
+    border-radius: 5px;
+    animation: loading_animation 2s linear infinite;
+}
+
+/* Define  animation */
+@keyframes loading_animation {
+    0% {
+        background-color: #bfbfbf;
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-color: #2f80ed;
+        background-position: 100% 0%;
+    }
+}
+/* upload icon    */
+.doc_icon {
+    font-size: 2rem;
+    color: #2f80ed;
+}
