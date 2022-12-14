@@ -108,17 +108,48 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Transactional
-    public void resetPassword(ResetPasswordDto dto) {
-        MemberSecretCode secretCodeExists = secretJpaRepository.findByForgotPasswordCode(dto.getToken());
+    public String sendOtpForPasswordReset(String email){
+        Member existingMember = memberJpaRepository.findByEmailAddress(email);
 
-        if (secretCodeExists == null) {
-            throw new InvalidResetTokenException(dto.getToken(), dto.getEmailAddress());
+        if(existingMember!=null){
+            TokenEntity tokenEntity = new TokenEntity();
+
+            String validOtp = generateOtp();
+            tokenEntity.setOtp(validOtp);
+            tokenEntity.setMember(existingMember);
+            emailService.sendResetPasswordCode(email,validOtp);
+
+            tokenJpaRepository.save(tokenEntity);
+            return String.format("%s, Otp sent to %s, proceed to reset password, proceed",existingMember.getFirstName(),email);
         }
 
-        Member member = memberJpaRepository.findByEmailAddress(dto.getEmailAddress());
-        member.setPassword(dto.getPassword());
-        setPassword(member);
-        memberRepository.updateOne(member);
+        return String.format("Invalid User, confirm your email address is correct");
+
+    }
+
+    @Transactional
+    public  String resetPassword(ResetPasswordDto request){
+        // Check if the person to change password is a valid member first
+        Member existingMember = memberJpaRepository.findByEmailAddress(request.getEmailAddress());
+        System.out.println(existingMember);
+        if(existingMember!=null){
+            // if valid member send otp and save to DB
+            String otpFromMember = request.getOtp();
+            TokenEntity tokenEntity = tokenJpaRepository.findTokenEntityByOtp(otpFromMember);
+            System.out.println(tokenEntity);
+            if(tokenEntity!=null){
+                // If his record is in the database allow him to reset password
+                String newPassword = passwordEncoder.encode(request.getNewPassword());
+                existingMember.setPassword(newPassword);
+                memberJpaRepository.save(existingMember);
+                return String.format("%s, Otp verified, password successfuly reset",existingMember.getFirstName());
+            }
+            else {
+                return String.format("%s, Otp not valid or has expired",existingMember.getFirstName());
+            }
+        }
+        return String.format("Email not valid, Current user not in DB");
+
     }
 
     public void setPassword(Member member) {
