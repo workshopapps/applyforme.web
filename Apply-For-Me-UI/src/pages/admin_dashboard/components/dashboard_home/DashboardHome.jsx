@@ -19,19 +19,19 @@ const DashboardHome = () => {
                     {/* Applications stat on cards */}
                     <div className={classes.applications_stats}>
                         <div className={classes.applications_stat}>
-                            <h2 className={classes.stat_number}>100</h2>
+                            <h2 className={classes.stat_number}>0</h2>
                             <p className={classes.stat_text}>
                                 Total Applications
                             </p>
                         </div>
 
                         <div className={classes.applications_stat}>
-                            <h2 className={classes.stat_number}>60</h2>
+                            <h2 className={classes.stat_number}>0</h2>
                             <p className={classes.stat_text}>Applied Jobs</p>
                         </div>
 
                         <div className={classes.applications_stat}>
-                            <h2 className={classes.stat_number}>23</h2>
+                            <h2 className={classes.stat_number}>0</h2>
                             <p className={classes.stat_text}>
                                 Quota for the day
                             </p>
@@ -46,7 +46,7 @@ const DashboardHome = () => {
                 <div className={classes.new_applications_stats}>
                     <div className={classes.view_all_wrapper}>
                         <h2 className={classes.new_applications_stats_heading}>
-                            New Applications <span>(23)</span>
+                            New Applications
                         </h2>
 
                         <button
