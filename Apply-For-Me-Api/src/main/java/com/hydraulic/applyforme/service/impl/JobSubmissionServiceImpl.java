@@ -74,6 +74,7 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
                                     ProfessionalProfileRepository professionalProfileRepository,
                                     SubmissionRepository submissionRepository) {
 
+
         this.applierRepository = applierRepository;
         this.repository = repository;
         this.professionalJpaRepository = professionalJpaRepository;
