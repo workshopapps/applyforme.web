@@ -9,33 +9,6 @@ import { useState, useEffect } from "react";
 import Spinner from "components/spinner/Spinner";
 
 const ApplicationDetails = () => {
-<<<<<<< HEAD
-    // eslint-disable-next-line no-unused-vars
-    const navigate = useNavigate();
-    return (
-        <article className={style.container}>
-            <RRD_Nav />
-            <div className={style.go_back_link}>
-                <Link to="/rr_admin">
-                    <img src={goBackIcon} alt="" />
-                </Link>
-                <span
-                    className={style.view_applicants}
-                    onClick={() => window.history.back()}
-                >
-                    View Applicants details
-                </span>
-            </div>
-            <div className={style.header}>
-                <span className={style.circle}>SS</span>
-                <div>
-                    <span className={`${style.details} ${style.details_name}`}>
-                        {details.name}
-                    </span>
-                    <span className={style.details}>{details.role} Role</span>
-                    <span className={style.details}>
-                        Date joined: {details.dateJoined}
-=======
     const { id } = useParams();
     const token = localStorage.getItem("tokenHngKey");
     const [details, setDetails] = useState();
@@ -79,7 +52,6 @@ const ApplicationDetails = () => {
                         onClick={() => window.history.back()}
                     >
                         View Applicants details
->>>>>>> a4d2e7fa4336ae7972ae5f705e52e055dfbdeb69
                     </span>
                 </div>
                 <div className={style.header}>
@@ -161,66 +133,7 @@ const ApplicationDetails = () => {
                     </div>
                 </section>
             </div>
-<<<<<<< HEAD
-            <section className={style.job_information}>
-                <h2>Job Information</h2>
-                <div>
-                    <div className={style.info_field}>
-                        <h4>Name</h4>
-                        <p>{details.name}</p>
-                    </div>
-                    <div className={style.info_field}>
-                        <h4>Email</h4>
-                        <p>{details.email}</p>
-                    </div>
-                    <div className={style.info_field}>
-                        <h4>Phone Number</h4>
-                        <p>{details.phone}</p>
-                    </div>
-                    <div className={style.info_field}>
-                        <h4>Membership Plan</h4>
-                        <p>{details.membership}</p>
-                    </div>
-                    <div className={style.info_field}>
-                        <h4>Experience</h4>
-                        <p>{details.experience}</p>
-                    </div>
-                    <div className={style.info_field}>
-                        <h4>Industry</h4>
-                        <p>{details.industry}</p>
-                    </div>
-                    <div className={style.info_field}>
-                        <h4>Salary Expectation</h4>
-                        <p>{details.salary}</p>
-                    </div>
-                    <div className={style.info_field}>
-                        <h4>Employment Type</h4>
-                        <p>{details.type}</p>
-                    </div>
-                </div>
-            </section>
-            <section className={style.job_information}>
-                <h2>Attachments</h2>
-                <div>
-                    <div className={style.info_field}>
-                        <h4>CV</h4>
-                        <p>
-                            <img src={pdfIcon} alt="pdf icon" /> OrasmithCV.pdf
-                        </p>
-                    </div>
-                    <div className={style.info_field}>
-                        <h4>Cover Letter</h4>
-                        <p>
-                            <img src={pdfIcon} alt="pdf icon" />{" "}
-                            Orasmithcoverletter.pdf
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </article>
-=======
         </div>
->>>>>>> a4d2e7fa4336ae7972ae5f705e52e055dfbdeb69
     );
 };
 
