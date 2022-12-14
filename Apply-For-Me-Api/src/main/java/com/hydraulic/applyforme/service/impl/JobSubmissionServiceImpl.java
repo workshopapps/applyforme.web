@@ -27,15 +27,16 @@ import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
 @Service
 public class JobSubmissionServiceImpl implements JobSubmissionService {
 
-	private final ApplierRepository applierRepository;
-	private final JobSubmissionRepository repository;
-	private final com.hydraulic.applyforme.repository.JobSubmissionRepository repo;
-	private final ModelMapper modelMapper;
-	private final JobSubmissionJpaRepository jpaRepository;
-	private final MemberJpaRepository memberJpaRepository;
-	private final MemberRepository memberRepository;
-	private final ApplierJpaRepository applierJpaRepository;
-	private final SubmissionRepository submissionRepository;
+    private final ApplierRepository applierRepository;
+    private final JobSubmissionRepository repository;
+    private final com.hydraulic.applyforme.repository.JobSubmissionRepository repo;
+    private final ModelMapper modelMapper;
+    private final JobSubmissionJpaRepository jpaRepository;
+    private final MemberJpaRepository memberJpaRepository;
+    private final MemberRepository memberRepository;
+    private final ApplierJpaRepository applierJpaRepository;
+    private final ProfessionalJpaRepository professionalJpaRepository;
+    private final SubmissionRepository submissionRepository;
 
 	@Autowired
 	private ProfessionalJpaRepository professionalJpaRepository;
@@ -43,6 +44,29 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
 	private final ProfessionalProfileRepository professionalProfileRepository;
 
 	private final com.hydraulic.applyforme.repository.JobSubmissionRepository jobSubmissionRepository;
+    public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository, 
+    		com.hydraulic.applyforme.repository.JobSubmissionRepository repo, ModelMapper modelMapper,
+                                    JobSubmissionJpaRepository jpaRepository,
+                                    com.hydraulic.applyforme.repository.JobSubmissionRepository jobSubmissionRepository,
+                                    MemberJpaRepository memberJpaRepository,
+                                    MemberRepository memberRepository,
+                                    ProfessionalJpaRepository professionalJpaRepository,
+                                    ApplierJpaRepository applierJpaRepository,
+                                    ProfessionalProfileRepository professionalProfileRepository,
+                                    SubmissionRepository submissionRepository) {
+        this.applierRepository = applierRepository;
+        this.repository = repository;
+        this.repo = repo;
+        this.modelMapper = modelMapper;
+        this.jpaRepository = jpaRepository;
+        this.jobSubmissionRepository = jobSubmissionRepository;
+        this.memberJpaRepository = memberJpaRepository;
+        this.memberRepository = memberRepository;
+        this.professionalJpaRepository = professionalJpaRepository;
+        this.applierJpaRepository = applierJpaRepository;
+        this.professionalProfileRepository = professionalProfileRepository;
+        this.submissionRepository = submissionRepository;
+    }
 
 	public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository,
 			com.hydraulic.applyforme.repository.JobSubmissionRepository repo, ModelMapper modelMapper,
@@ -208,11 +232,17 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
 			throw new ProfessionalProfileNotFoundException(dto.getProfessionalProfileId());
 		}
 
-		Submission submission = modelMapper.map(dto, Submission.class);
-		submission.setProfessional(existingProfessional);
-		submission.setProfessionalProfile(existingProfessionalProfile);
-		submission.setApplier(existingApplier);
-		submissionRepository.saveOne(submission);
+        Submission submission = new Submission();
+        submission.setJobTitle(dto.getJobTitle());
+        submission.setJobCompany(dto.getJobCompany());
+        submission.setJobLink(dto.getJobLink());
+        submission.setJobLocation(dto.getJobLocation());
+        submission.setOtherComment(dto.getOtherComment());
+        submission.setSummary(dto.getSummary());
+        submission.setProfessional(existingProfessional);
+        submission.setProfessionalProfile(existingProfessionalProfile);
+        submission.setApplier(existingApplier);
+        submissionRepository.saveOne(submission);
 
 		submission.getProfessional().setSubmissions(null);
 		submission.getApplier().setSubmissions(null);

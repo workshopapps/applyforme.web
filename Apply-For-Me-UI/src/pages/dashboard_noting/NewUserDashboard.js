@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import avatar from "./img/avatar.png";
 import notification from "./img/notification.png";
 import "./DashboardNothing.css";
+import GoBackMobile from "./GoBackMobile";
 
 const NewUserDashboard = () => {
     const { user } = useSelector(state => state.user);
     const username = user.fullName;
     const userName = username?.split(" ")[0];
+    const token = localStorage.getItem("tokenHngKey");
+    const [statValue, setStatValue] = useState();
+    const getStatisticsDetail = async () => {
+        try {
+            const response = await axios.get(
+                "https://api.applyforme.hng.tech/api/v1/member/stats",
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            setStatValue(response?.data);
+        } catch (err) {
+            console.log(err?.response?.data);
+        }
+    };
+    useEffect(() => {
+        getStatisticsDetail();
+    }, []);
     return (
         <div className="dashboardnothing">
             {/* this is the top stripe */}
@@ -18,9 +39,8 @@ const NewUserDashboard = () => {
                     <h2>Welcome {userName},</h2>
                     <p>Let’s get started </p>
                 </div>
-
                 <div className="top-dashboard-right">
-                    <div className="dashboard-img-wrapper">
+                    <div className="dashboard-img-wrapper-not">
                         <img src={notification} alt="icon" className="notif" />
                     </div>
 
@@ -41,13 +61,14 @@ const NewUserDashboard = () => {
             {/* section for overview */}
 
             <section className="dashboard-overview">
+                <GoBackMobile />
                 <h5>Overview</h5>
 
                 <div className="overview-cards-wrapper">
                     <div className="overview-card-wrapper">
                         <div className="overview-card">
-                            <h3>0</h3>
-                            <p>Total Application</p>
+                            <h3>{statValue?.total_number_of_profile}</h3>
+                            <p>Total Submissions</p>
                         </div>
                     </div>
 
@@ -60,8 +81,8 @@ const NewUserDashboard = () => {
 
                     <div className="overview-card-wrapper">
                         <div className="overview-card">
-                            <h3>0</h3>
-                            <p>Active Applications</p>
+                            <h3>{statValue?.total_number_of_profile}</h3>
+                            <p>Totals Applications</p>
                         </div>
                     </div>
 

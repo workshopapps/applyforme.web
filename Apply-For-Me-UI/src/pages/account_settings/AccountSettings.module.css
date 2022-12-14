@@ -64,7 +64,7 @@
 }
 
 .body_container .second_sidenav {
-    width: 20%;
+    width: clamp(14.375rem, 20vw, 16rem);
     border-right: 0.5px solid #c6bdbd;
     height: 100%;
     min-height: 100vh;
@@ -141,7 +141,8 @@
     color: #262728;
 }
 
-.form .input_fields .row input {
+.form .input_fields .row input,
+.form select {
     width: 100%;
     border: 1px solid #ebebeb;
     height: 40px;
@@ -151,7 +152,8 @@
     font-size: 0.7rem;
 }
 
-.input_fields button,.password_div button {
+.input_fields button,
+.password_div button {
     background-color: #2e3192;
     border: none;
     padding: 0.5rem;
@@ -162,20 +164,35 @@
     cursor: pointer;
 }
 
-@media (max-width: 650px) {
-    .sidebar_container {
+@media screen and (max-width: 768px) {
+    .body_container .second_sidenav {
         display: none;
     }
 
-    .body_container .second_sidenav {
+    .top_nav {
         display: none;
     }
 
     .form {
         width: 100%;
+        padding: 3.5rem 2.5rem 0 2.5rem;
+    }
+
+    .form h3 {
+        font-weight: 600;
     }
 
     .input_fields button {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .form {
+        padding: 3rem 1.25rem;
+    }
+
+    .form h3 {
+        font-weight: 300;
     }
 }

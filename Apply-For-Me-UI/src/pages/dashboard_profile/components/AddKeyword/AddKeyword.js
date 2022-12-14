@@ -8,8 +8,8 @@ const AddKeyword = ({ keywords, setKeywords }) => {
         if (!value.trim()) return;
 
         let same = false;
-         console.log(same)
-        keywords.forEach(k => {
+        console.log(same);
+        keywords?.forEach(k => {
             if (value === k) {
                 same = true;
             }
@@ -19,7 +19,7 @@ const AddKeyword = ({ keywords, setKeywords }) => {
         e.target.value = "";
     }
     function removeKeyWord(index) {
-        setKeywords(keywords.filter((el, i) => i !== index));
+        setKeywords(keywords?.filter((el, i) => i !== index));
     }
     return (
         <div className={styles.keywords_input_container}>
