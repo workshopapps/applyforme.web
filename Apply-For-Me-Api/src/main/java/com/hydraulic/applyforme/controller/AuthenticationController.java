@@ -67,6 +67,8 @@ public class AuthenticationController {
         return new ForgotPasswordResponse();
     }
 
+    // James you are to give these 2 EndPoints
+
     @PostMapping("/send-otp-for-reset-password")
     public String sendOtpForPasswordReset(@RequestParam String email){
         return authenticationService.sendOtpForPasswordReset(email);
