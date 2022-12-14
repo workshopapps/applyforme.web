@@ -16,6 +16,10 @@
 .edit_profileContent .editButtonDiv {
     padding-top: 2rem;
 }
+input[type="file"]{
+    display: none;
+}
+
 
 .edit_profileContent form {
     display: flex;

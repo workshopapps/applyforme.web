@@ -71,17 +71,17 @@ public class AuthenticationController {
         return new ForgotPasswordResponse();
     }
 
-    // James/ Yussuf you are to give this EndPoint to FE DEv
 
+    // This end point should be used by FE Devs
     @PostMapping("/send-otp-for-reset-password")
     public String sendOtpForPasswordReset(@RequestParam String email){
         return authenticationService.sendOtpForPasswordReset(email);
     }
 
-    // James/ Yussuf you are to give this EndPoint to FE DEv too
+    //  This EndPoint should also be used by  FE DEv too
     @PostMapping("/reset-password")
     public String resetPassword(@Validated @RequestBody ResetPasswordDto passwordDto) {
-       return authenticationService.resetPassword(passwordDto);
+        return authenticationService.resetPassword(passwordDto);
 
     }
 

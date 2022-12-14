@@ -3,6 +3,7 @@ import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { BsPlusLg } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
 import ApplicationsListHeader from "./ApplicationsListHeader";
+import { Link } from "react-router-dom";
 const ApplicationCard = ({ application }) => {
     return (
         <div className={styles.applications_card}>
@@ -45,7 +46,7 @@ const ApplicationsListCard = ({ applications }) => {
                 ))}
             </div>
             <button className={styles.applications_sort}>
-                <BsPlusLg />
+                <Link to="/dashboard/user/create-profile"><BsPlusLg /></Link>
             </button>
         </div>
     );

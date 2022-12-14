@@ -79,6 +79,9 @@ export const get_rr_applicants_list = createAsyncThunk(
                     params:{
                     "pageNo": values.pageNo,
                     "pageSize": values.pageSize
+                    },
+                    headers: {
+                        "Authorization": `Bearer ${token}`
                     }
                 }
             );
