@@ -12,6 +12,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(
         value = "job-profile",
@@ -39,8 +41,11 @@ public class ProfessionalJobProfileController {
     	return service.deleteByProfileId(currentUser.getId(), profile_id);
     }
 
-    @PutMapping("/update/{id}")
-    public ProfessionalProfile update(@Validated @RequestBody ProfessionalProfileDto body, @PathVariable(name ="id") Long id) {
-        return service.update(id, body);
+
+//    @PreAuthorize("hasRole('Recruiter')")
+    @GetMapping("/all")
+    public List<ProfessionalProfile> getAll(){
+        return service.findAllJobProfiles();
+
     }
 }

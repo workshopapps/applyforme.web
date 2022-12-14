@@ -77,9 +77,7 @@ public class ProfessionalProfileServiceImpl implements ProfessionalProfileServic
     @Override
     public ProfessionalProfile findOne(Long id) {
         ProfessionalProfile professionalProfile = repository.getOne(id);
-        professionalProfile.getProfessional().setProfessionalProfiles(null);
-        professionalProfile.getProfessional().getMember().setRoles(null);
-        professionalProfile.getProfessional().setProfessionalProfiles(null);
+        professionalProfile.setProfessional(null);
         return professionalProfile;
     }
 
