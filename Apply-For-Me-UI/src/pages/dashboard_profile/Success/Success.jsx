@@ -14,7 +14,7 @@ const Success = () => {
         <div className={styles.success_page}>
             <TopBar />
             <p className={styles.all_done}>
-                All done! You can view your new job profile
+                All done! You can view your up to date job profile
             </p>
             <div className={styles.success_message}>
                 <img src={success} alt="completed" />

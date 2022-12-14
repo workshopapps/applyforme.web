@@ -57,7 +57,28 @@ const Welcome1 = () => {
         console.log(formData);
         let result = await axios
             .post(`${BaseUrl}`, formData)
-            .then(res => res.data)
+            .then(res => {
+                let result = res.data;
+                let decoded = jwt_decode(result.token);
+                let tokenKey = "tokenHngKey";
+                let refreshKey = "refreshTokenHngKey";
+                localStorage.setItem(refreshKey, result.refresh_token);
+                localStorage.setItem(tokenKey, result.token);
+                dispatch(userInfo(decoded));
+                setError("");
+                setLoading(false);
+                toast.success("Signup Successfully");
+                setTimeout(() => {
+                    if (
+                        user.roles[0] === "Professional" ||
+                        user.roles[0] === "Recruiter"
+                    ) {
+                        navigate("/dashboard");
+                    } else if (user.roles[0] === "SuperAdministrator") {
+                        navigate("/user-page");
+                    }
+                }, 3000);
+            })
             .catch(err => {
                 let message =
                     typeof err.response.data.message === "object"
@@ -66,37 +87,15 @@ const Welcome1 = () => {
                           ]
                         : err.response.data.message;
                 setError(message);
-                console.log(err.response.data.message);
+                setLoading(false);
+                toast.error(message);
             });
-
-        if (result?.token) {
-            let decoded = jwt_decode(result.token);
-            let tokenKey = "tokenHngKey";
-            localStorage.setItem(tokenKey, result.token);
-            dispatch(userInfo(decoded));
-            setError("");
-            setLoading(false);
-            toast("Signup Successfully");
-            setTimeout(() => {
-                if (
-                    user.roles[0] === "Professional" ||
-                    user.roles[0] === "Recruiter"
-                ) {
-                    navigate("/dashboard");
-                } else if (user.roles[0] === "SuperAdministrator") {
-                    navigate("/user-page");
-                }
-            }, 3000);
-        } else {
-            setLoading(false);
-            toast("Error signin up, try again");
-        }
     };
 
     return (
         <div className="Welcome1">
-            <Navbar />
             <ToastContainer />
+            <Navbar />
             <div className="w1bdy">
                 {loading && <Spinner />}
                 <Text child="Welcome to ApplyForMe!!" />

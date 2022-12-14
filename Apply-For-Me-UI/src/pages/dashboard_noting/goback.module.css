@@ -4,19 +4,20 @@
     justify-content: flex-end;
     align-items: center;
     padding-block: 2rem;
+    margin-top: 6rem;
+}
+.containers {
+    display: none;
 }
 
-@media screen and (max-width: 480px) {
-    .container {
-        display: none;
-    }
-}
-
-.button {
+.button,
+.buttons {
     border: none;
     background-color: #fff;
     font-weight: 400;
     font-size: 1.25rem;
+    padding-right: 2rem;
+    float: right;
     line-height: 150%;
     letter-spacing: 0.03em;
     color: #222226;
@@ -24,10 +25,31 @@
     display: flex;
     gap: 0.7rem;
     align-items: center;
-    margin-bottom: 2rem;
     text-decoration: none !important;
 }
 
-.button:hover {
+.buttons {
+    width: 100%;
+    font-size: 15px;
+    background-color: transparent;
+}
+
+.button:hover,
+.buttons:hover {
     color: #222226 !important;
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        display: none;
+    }
+
+    .containers {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 0px;
+        padding-block: 2rem;
+    }
 }

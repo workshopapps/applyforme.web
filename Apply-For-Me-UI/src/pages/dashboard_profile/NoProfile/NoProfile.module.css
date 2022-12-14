@@ -6,7 +6,8 @@
     width: 100vw;
 }
 @media only screen and (max-width: 480px) {
-    .profile_page {
+    .profile_page,
+    .noprofile {
         margin-left: 0;
     }
 }
@@ -80,13 +81,13 @@
 }
 .mobile_view img {
     margin-top: auto;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 3rem;
+    height: 3rem;
 }
 .btn_plus_fixed {
     margin-top: auto;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 3rem;
+    height: 3rem;
     position: fixed;
     bottom: 15%;
     right: 7%;

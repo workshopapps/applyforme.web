@@ -1,0 +1,410 @@
+.applications_table_wrapper {
+    width: 100%;
+}
+.applications_container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+@media only screen and (max-width: 480px) {
+    .applications_table_wrapper {
+        margin-left: 0;
+    }
+}
+@media only screen and (min-width: 620px) {
+    .applications_table_wrapper {
+        width: 70vw;
+    }
+}
+@media only screen and (min-width: 820px) {
+    .applications_table_wrapper {
+        width: 85vw;
+    }
+}
+
+
+.containerClassName {
+    margin: 1rem 2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    justify-content: space-evenly;
+}
+
+.activeClassName {
+    background-color: #2e3192;
+    color: white;
+}
+.pageClassName {
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+}
+.previousClassName a,
+.nextClassName a {
+    font-weight: bold;
+}
+.pageLinkClassName,
+.previousClassName a,
+.nextClassName a {
+    font-size: 17px;
+    margin: 0 0.1rem;
+}
+.application_main {
+    flex: 1 1 auto;
+    padding-bottom: 20px;
+}
+
+.applications_table_header {
+    border-top: 0.5px #cccccc solid;
+    height: 112px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100vw;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0.5px #cccccc solid;
+}
+
+.applications_table_container {
+    margin-bottom: 2rem;
+    min-height: 300px;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    width: 100%;
+}
+
+tr {
+    padding-left: 30px;
+}
+
+thead,
+tbody {
+    padding: 0px 80px;
+}
+
+th,
+td {
+    padding-left: 0.5rem;
+    text-align: left;
+}
+
+th {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+}
+
+td {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+}
+
+td:first-child,
+th:first-child {
+    border-radius: 8px 0 0 8px;
+}
+
+td:last-child,
+th:last-child {
+    border-radius: 0 8px 8px 0;
+}
+
+.applications_table_head_row {
+    border-bottom: 0.5px #cccccc solid;
+    height: 62px;
+    color: #52515b;
+    font-weight: 500;
+    text-align: left;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+}
+
+.applications_table_body_row {
+    border-bottom: 0.5px #ededed solid;
+    height: 56px;
+    text-align: start;
+    font-weight: 400;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+}
+
+.applications_table_body_row:hover {
+    background-color: #e9eef7;
+    color: #2e3192;
+}
+
+.applications_footer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+    padding-left: 3.5rem;
+    padding-right: 2.5rem;
+}
+
+.applications_footer svg {
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+}
+
+.applications_footer svg:first-child {
+    color: #bfbfbf;
+    cursor: unset;
+}
+
+/* Applications Card */
+.applications_list_wrapper {
+    display: none;
+}
+
+.applications_list_card {
+    flex-direction: column;
+    background: #f7f7f7;
+    gap: 16px;
+    padding: 12px 12px 0 12px;
+    overflow-y: scroll;
+}
+
+.applications_card {
+    border-radius: 5px;
+    height: fit-content;
+    margin-bottom: 0.5rem;
+    background: #fefeff;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 25px;
+    gap: 16px;
+    color: #2e3192;
+}
+
+.applications_card_title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Outfit";
+    font-style: normal;
+    line-height: 150%;
+    color: #52515b;
+}
+
+.applications_card_title span:first-child {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+}
+
+.applications_card_title span:nth-child(2) {
+    font-weight: 300;
+    font-size: 14px;
+    text-align: right;
+    letter-spacing: 0.03em;
+}
+
+.applications_card_lo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #737373;
+}
+
+.applications_card_tag_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.applications_card_tag_wrapper > div {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.applications_card_tag_wrapper > span {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    color: #2e3192;
+}
+
+.applications_card_tag {
+    height: 23px;
+    font-weight: 400;
+    display: flex;
+    padding: 0 0.2rem;
+    align-items: center;
+    font-size: 12px;
+    line-height: 15px;
+    color: #8388c9;
+    background-color: #e9eef7;
+    border: 1px solid #c4d5ee;
+    border-radius: 8px;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #52515b;
+    background-color: transparent;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover,
+.dropbtn:focus {
+    color: #2e3192;
+    outline: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    flex-basis: 30%;
+    display: inline-block;
+}
+
+.dropdown svg {
+    height: 20px;
+    width: 20px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown_content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 10px;
+    display: none;
+    position: absolute;
+    background: #ffffff;
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown_content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown_content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown_item {
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown_item:hover {
+    background: #e9eef7;
+    border-radius: 8px;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: flex;
+}
+
+.applications_sort {
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    z-index: 50;
+    background-color: #2e3192;
+    border-radius: 50%;
+}
+
+.applications_sort svg {
+    color: #e9eef7;
+    width: 40px;
+    height: 40px;
+}
+
+@media (max-width: 480px) {
+    .applications_list_card {
+       
+        padding: 12px 12px 4rem 12px;
+       
+    }
+    .applications_container  {
+        margin-left: 0rem;
+    }
+    .applications_page_title h2 {
+        font-size: 20px;
+    }
+    .Applications_applications_table_header__fR7kM {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .TopNav_applications_top_nav__uM31u {
+    width: 100%;
+    }
+    .applications_table_header {
+        padding-left: 1rem;
+            padding-right: 1rem;
+    }}
+
+    .applications_table_wrapper {
+        display: none;
+    }
+
+    .applications_list_wrapper {
+        display: block;
+    }
+
+    .dropbtn {
+        display: none;
+    }
+
+    .applications_search_form {
+        width: 90%;
+        padding-left: 0rem;
+    }
+
+.show_tablet {
+    display: none;
+    color: #7c7ba8;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+}
