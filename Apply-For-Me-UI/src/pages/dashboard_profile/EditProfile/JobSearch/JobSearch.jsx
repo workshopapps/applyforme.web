@@ -251,11 +251,9 @@ const JobSearch = ({ formData, setFormData }) => {
                     <div className={classes.loading_animation} />
                 )}
             </div>
-            <p>
-                <a href={`${formData?.shortenedCVUrl}`}>This </a>
-                is your previously uploaded CV. If you want to change it, upload
-                a new one
-            </p>
+            {formData?.shortenedCVUrl ? (
+                <p>If you want to change your CV, upload a new one</p>
+            ) : null}
             <div className={classes.uploadcv_box}>
                 <p>Upload your CV</p>
 

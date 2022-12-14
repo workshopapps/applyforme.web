@@ -34,6 +34,7 @@ const CreateProfile = () => {
                 // handle success
 
                 setFullProfiles(response.data);
+                console.log(fullProfiles);
                 setDone("done");
             })
             .catch(error => {
@@ -97,7 +98,6 @@ const CreateProfile = () => {
         keywords: "",
         xyz: ""
     });
-    console.log(oneprofile);
     useEffect(() => {
         setFormData({
             ...formData,
@@ -117,7 +117,7 @@ const CreateProfile = () => {
         setKeywords(keyArray[0]);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [done]);
-    console.log(keywords);
+    // console.log(keywords);
     if (done !== "done") {
         return (
             <div className={styles.loading_box}>
