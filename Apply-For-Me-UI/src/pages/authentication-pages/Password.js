@@ -17,27 +17,39 @@ const Password = () => {
     const [loading, setLoading] = useState(false);
 
     const handlePassChange = event => {
+        let errvalues;
         event.preventDefault();
         setLoading(true);
         const data = {
             "email_address": `${email}`
         };
-        axios
-            .post(
-                "https://api.applyforme.hng.tech/api/v1/auth/forgot-password",
-                data
-            )
-            .then(res => {
-                toast.success(res.data.message);
-                setLoading(false);
-                setTimeout(() => {
-                    navigate("/");
-                }, 2000);
-            })
-            .catch(err => {
-                setLoading(false);
-                toast.error(err);
-            });
+
+        // handle Empty Fields
+        Object.keys(data).forEach(val => {
+            if (data[`${val}`] === "") {
+                errvalues += `${val}`;
+                toast.error(`Please Enter ${val}`);
+            }
+        });
+
+        if (!errvalues?.split(" ").length) {
+            axios
+                .post(
+                    "https://api.applyforme.hng.tech/api/v1/auth/forgot-password",
+                    data
+                )
+                .then(res => {
+                    toast.success(res.data.message);
+                    setLoading(false);
+                    setTimeout(() => {
+                        navigate("/");
+                    }, 2000);
+                })
+                .catch(err => {
+                    setLoading(false);
+                    toast.error(err);
+                });
+        }
     };
 
     return (

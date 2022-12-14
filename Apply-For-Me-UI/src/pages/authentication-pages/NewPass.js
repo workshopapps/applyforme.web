@@ -25,7 +25,7 @@ const NewPass = () => {
             "email_address": `${formData.email_address}`,
             "password": `${formData.password}`
         };
-        console.log(data);
+
         // handle Empty Fields
         Object.keys(data).forEach(val => {
             if (data[`${val}`] === "") {
