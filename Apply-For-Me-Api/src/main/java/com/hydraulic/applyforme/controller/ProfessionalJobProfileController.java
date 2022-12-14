@@ -41,6 +41,11 @@ public class ProfessionalJobProfileController {
     	return service.deleteByProfileId(currentUser.getId(), profile_id);
     }
 
+    @PutMapping("/update/{id}")
+    public ProfessionalProfile update(@Validated @RequestBody ProfessionalProfileDto body, @PathVariable(name ="id") Long id) {
+        return service.update(id, body);
+    }
+
 
 //    @PreAuthorize("hasRole('Recruiter')")
     @GetMapping("/all")
