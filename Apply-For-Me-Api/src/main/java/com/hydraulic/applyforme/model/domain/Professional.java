@@ -1,5 +1,6 @@
 package com.hydraulic.applyforme.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;

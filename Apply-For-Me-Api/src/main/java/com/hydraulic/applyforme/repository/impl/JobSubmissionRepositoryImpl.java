@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.dto.submission.ApplierSubmissionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -62,5 +63,18 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 		List submissionList = query.getResultList();
 		System.out.println("submissionList.size(): " + submissionList.size());
 		return submissionList;
+	}
+
+	@Override
+	public List<Submission> getSubmissionsByProfessionalId(Long professional_id) {
+		String query = "select s from Submission s where s.professional.id = :id";
+		TypedQuery<Submission> submissions = entityManager.createQuery(query, Submission.class);
+		submissions.setParameter("id", professional_id);
+		return submissions.getResultList();
+	}
+
+	@Override
+	public Submission getOne(Long id) {
+		return entityManager.find(Submission.class, id);
 	}
 }

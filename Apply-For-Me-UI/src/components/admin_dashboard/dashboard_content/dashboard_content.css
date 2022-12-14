@@ -37,8 +37,10 @@
     justify-content: space-between;
 }
 .applicants div {
+    width:30%;
     color: white;
     padding: 0.8rem;
+    align-items: center;
     text-align: center;
     display: flex;
     justify-content: center;

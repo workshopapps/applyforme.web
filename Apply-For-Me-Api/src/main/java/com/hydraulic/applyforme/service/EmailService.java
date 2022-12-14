@@ -9,7 +9,7 @@ public interface EmailService {
     public void sendWelcomeMessage(String emailAddress);
     public String getByResetPasswordToken(String token);
     public void sendResetPasswordMail(String recipientEmail, String baseUrl);
-
+    @Async
     void onboard(OnboardingResponse response, String onboardToken);
 
     void signupVerification(String recipientEmail,String otp);

@@ -72,22 +72,20 @@ const Welcome2 = () => {
                               Object.keys(err.response.data.message)[0]
                           ]
                         : err.response.data.message;
-                console.log(message);
                 setError(message);
             });
 
         if (result?.token) {
-            console.log("res", result.token);
             let decoded = jwt_decode(result.token);
             let tokenKey = "tokenHngKey";
             localStorage.setItem(tokenKey, result.token);
             dispatch(userInfo(decoded));
             setError("");
             setLoading(false);
-            toast("Login Successfully");
+            toast.success("Login Successfully");
         } else {
             setLoading(false);
-            toast("Wrong credentials");
+            toast.error("Wrong credentials");
         }
     };
 

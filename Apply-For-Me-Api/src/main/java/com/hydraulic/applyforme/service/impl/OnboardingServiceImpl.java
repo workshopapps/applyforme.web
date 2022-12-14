@@ -9,10 +9,7 @@ import javax.transaction.Transactional;
 import com.hydraulic.applyforme.model.domain.*;
 import com.hydraulic.applyforme.model.dto.admin.NewPasswordDto;
 import com.hydraulic.applyforme.model.enums.RoleType;
-import com.hydraulic.applyforme.model.exception.CountryNotFoundException;
-import com.hydraulic.applyforme.model.exception.EmailAlreadyExistsException;
-import com.hydraulic.applyforme.model.exception.PasswordMismatchException;
-import com.hydraulic.applyforme.model.exception.RoleNotFoundException;
+import com.hydraulic.applyforme.model.exception.*;
 import com.hydraulic.applyforme.repository.jpa.CountryJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
@@ -66,9 +63,13 @@ public class OnboardingServiceImpl implements OnboardingService {
 	@Transactional
 	public OnboardingResponse onboard(TryItNowDTO body) {
 		boolean existingMember = memberJpaRepository.existsByEmailAddress(body.getEmailAddress());
-
 		if (existingMember) {
 			throw new EmailAlreadyExistsException();
+		}
+
+		boolean existingPhoneNumber = memberJpaRepository.existsByUsername(body.getPhoneNumber());
+		if (existingPhoneNumber) {
+			throw new PhoneNumberAlreadyExistsException();
 		}
 
 		Optional<Role> existingRole = roleJpaRepository.findByCode(RoleType.PROFESSIONAL.getValue());
@@ -146,13 +147,14 @@ public class OnboardingServiceImpl implements OnboardingService {
 		Member member = memberJpaRepository.findByOnboardToken(onboardToken);
 
 		if (member == null) {
-
+			throw new InvalidOnboardTokenException(onboardToken);
 		}
 
 		if (!body.getNewPassword().equals(body.getConfirmationPassword())) {
 			throw new PasswordMismatchException();
 		}
-		member.setPassword(body.getConfirmationPassword());
+		member.setPassword(encoder.encode(body.getConfirmationPassword()));
+		member.setOnboardToken(null);
 		memberRepository.updateOne(member);
 		return member;
 	}

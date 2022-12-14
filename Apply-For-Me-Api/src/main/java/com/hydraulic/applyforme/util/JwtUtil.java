@@ -26,6 +26,8 @@ import java.util.function.Function;
 public class JwtUtil {
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
+    public static final long REFRESH_TOKEN_VALIDITY = 2 * 24 * 60 * 60;
+
     @Value("${applyforme.jwt.secret}")
     private String secret;
 
@@ -56,7 +58,7 @@ public class JwtUtil {
         return details;
     }
 
-    private Boolean isTokenExpired(String token) {
+    public Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
@@ -90,9 +92,22 @@ public class JwtUtil {
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
+    public String doGenerateRefreshToken(String subject) {
+        return Jwts.builder()
+                .setSubject(subject)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_VALIDITY * 1000))
+                .signWith(SignatureAlgorithm.HS512, secret).compact();
+    }
+
     public Boolean validateToken(String token, UserDetails details) {
         final String username = getUsernameFromToken(token);
         return (username.equals(details.getUsername()) && !isTokenExpired(token));
+    }
+
+    public Boolean checkToken(String token, UserDetails details) {
+        final String username = getUsernameFromToken(token);
+        return (username.equals(details.getUsername()));
     }
 
     private void setMemberType(UserDetails userDetails, Map<String, Object> claimsMap) {
