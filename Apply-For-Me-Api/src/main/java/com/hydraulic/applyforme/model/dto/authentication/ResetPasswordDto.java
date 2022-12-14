@@ -14,8 +14,8 @@ import javax.validation.constraints.Size;
 public class ResetPasswordDto {
 
     @NotNull(message = "resetPassword.token.notNull")
-    @JsonProperty("otp")
-    private String otp;
+    @JsonProperty("token")
+    private String token;
 
     @NotNull(message = "member.email.notNull")
     @JsonProperty("email_address")
@@ -23,6 +23,6 @@ public class ResetPasswordDto {
 
     @NotNull(message = "resetPassword.password.notNull")
     @Size(min = 8, message = "{member.password.size}")
-    @JsonProperty("new_password")
-    private String newPassword;
+    @JsonProperty("password")
+    private String password;
 }
