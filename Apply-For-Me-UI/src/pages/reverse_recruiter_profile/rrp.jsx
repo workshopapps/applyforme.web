@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-pascal-case */
 import ProfilePic from "../../assets/images/clearProfilePic.svg";
 import BlueButton from "components/buttons/blue_background/BlueButton";
@@ -44,7 +43,7 @@ const RRProfile = () => {
             <div className={rrpCss.rr_profile_container}>
                 <RRD_Nav/>
                 <div className={rrpCss.back_button}>
-                    <button type="submit" onClick={() => window.history.back()}>
+                    <button type="submit" onClick={()=>window.history.back()}>
                         <span>&lt;</span>
                         <span>Profile Details</span>
                     </button>
@@ -87,7 +86,7 @@ const RRProfile = () => {
                             <p>Gender</p>
                             <p>{details?.emailAddress}</p>
                         </div>
-                    </div>
+                     </div>
                 </div>
                 <div className={rrpCss.bottomSection}>
                     <div className={rrpCss.btn_bottom}  onClick={() =>
@@ -101,6 +100,7 @@ const RRProfile = () => {
                         Change Password
                     </button>
                 </div>
+                
             </div>
             {showEditModal && (
                 <div className="editContainer">

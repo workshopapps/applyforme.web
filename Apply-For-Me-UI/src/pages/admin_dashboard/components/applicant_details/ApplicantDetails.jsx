@@ -68,7 +68,7 @@ const ApplicationDetails = () => {
                             {`${details?.professional?.member?.firstName} ${details?.professional?.member?.lastName}`}
                         </span>
                         <span className={style.details}>
-                            {details?.professional?.member?.roles} Role
+                            {details?.professional?.member?.roles[0]?.title} Role
                         </span>
                         {/* <span className={style.details}>
                             Date joined:{" "}

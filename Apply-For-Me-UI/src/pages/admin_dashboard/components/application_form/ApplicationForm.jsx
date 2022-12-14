@@ -1,47 +1,55 @@
 import style from "./ApplicationForm.module.css";
 import goBackIcon from "../../../../assets/images/back_arrow.svg";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
+import jwtDecode from "jwt-decode";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const ApplicationForm = () => {
 
     const {id} = useParams();
-    console.log(id);
-    const [submissionDetail,setSubmissionDetails] = useState({
-        "professional_id": 0,
-        "applier_id": 0,
-        "professional_profile_id": 0,
-        "job_title": "string",
-        "job_link": "string",
-        "job_location": "string",
-        "job_company": "string",
-        "summary": "string",
-        "other_comment": "string"
-    });
-    
     const token = localStorage.getItem("tokenHngKey");
-    const [details, setDetails] = useState();
-
-    const getApplierDetails= async () => {
-        try {
-            const response = await axios.get(
-                `${url}/api/v1/recruiter/details`,
-                {
-                    headers: {
-                        "Authorization": `Bearer ${token}`
+    const decoded = jwtDecode(localStorage.getItem("tokenHngKey"))
+    console.log(decoded);
+    const [professional, setProfessional] = useState()
+     const [state, setState] = useState({
+        name: "",
+        role: "",
+        plan: "",
+        company: "",
+        reverse_recruiter: ""
+    });
+    const handleSubmit=()=>{
+        const submitDetails = async () => {
+            try {
+                const response = await axios.post(
+                    "https://api.applyforme.hng.tech/api/v1/job-submission/save",
+                    {
+                        "professional_id":professional?.id,
+                        "applier_id": decoded.memberId,
+                        "professional_profile_id": professional.professional?.id,
+                        "job_title": professional?.desiredJobTitle,
+                        "job_company": state?.company
+                    },
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
                     }
-                }
-            );
-            console.log("Recruiter Profile", response?.data);
-            setDetails(response?.data)
-            return response?.data;
-           
-        } catch (error) {
-            return error.response?.data;
-        }
-    }
+                );
+                toast.success("seccesful")
+                console.log(response.data)
+                setDetails(response?.data?.professional);
+            } catch (err) {
+                 toast.error("seccesful")
+                console.log(err.response?.data);
+            }
+        };
+        submitDetails();
+    } 
 
     const getProfessionalProfile = async () => {
         try {
@@ -54,21 +62,18 @@ const ApplicationForm = () => {
                 }
             );
             console.log(response.data)
-            setListArray(response.data.content);
-            console.log(listArray);
+            setProfessional(response.data);
+            console.log(professional);
         } catch (err) {
             console.log(err.response?.data);
         }
     };
 
+    useEffect(()=>{
+        getProfessionalProfile()
+    },[])
 
-    const [state, setState] = useState({
-        name: "",
-        role: "",
-        plan: "",
-        company: "",
-        reverse_recruiter: ""
-    });
+   
 
     const handleChange = event => {
         const value = event.target.value;
@@ -83,13 +88,13 @@ const ApplicationForm = () => {
             id: "name",
             labelText: "Applicant's Name",
             placeholder: "John Doe",
-            value: `${state.name}`
+            value: `${professional.professional?.member?.firstName}`
         },
         {
             id: "role",
             labelText: "Job Role",
             placeholder: "Product Design",
-            value: `${state.role}`
+            value: `${professional.professional?.member?.role[0]?.title}`
         },
         {
             id: "plan",
@@ -126,7 +131,7 @@ const ApplicationForm = () => {
                     View Applicants details
                 </span>
             </div>
-            <form className={style.form}>
+            <form className={style.form} onSubmit={handleSubmit}>
                 <p>Please, fill this form for every application submitted</p>
                 {applicationsFormData.map((item, index) => {
                     return (

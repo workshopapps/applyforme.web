@@ -58,6 +58,7 @@
 
 .drop_down {
     position: absolute;
+    z-index: 1;
     width: 130px;
     top: 50px;
     right: 5px;
