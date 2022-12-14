@@ -20,7 +20,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
     if (included_keywords.length <= 1) {
         included_keywords = "none";
     }
-    console.log(included_keywords);
+    // console.log(included_keywords);
     console.log(formData);
 
     const { user } = useSelector(state => state.user);
@@ -41,11 +41,20 @@ const Review = ({ formData, keywords, setStep, id }) => {
             return alert("Please select your employment type");
         } else if (formData.salary_expectation === "") {
             return alert("Please select your salary expectation");
-        } else if (formData.shortenedCVUrl === "") {
+        } else if (
+            formData.shortenedCVUrl === "" ||
+            formData?.shortenedCVUrl === null
+        ) {
             return alert("Please upload a CV");
-        } else if (formData.coverletter_subject === "") {
+        } else if (
+            formData?.coverletter_subject === "" ||
+            formData?.coverletter_subject === null
+        ) {
             return alert("Please enter a cover letter subject");
-        } else if (formData.coverletter_body.length === "") {
+        } else if (
+            formData?.coverletter_body?.length === "" ||
+            formData?.coverletter_body === null
+        ) {
             return alert("Please enter a cover letter body");
         }
 
@@ -81,9 +90,9 @@ const Review = ({ formData, keywords, setStep, id }) => {
                     })
                 }
             );
-            const finalResponseJson = await finalResponse.json();
+            // const finalResponseJson = await finalResponse.json();
             setLoading(false);
-            // console.log(finalResponse);
+            console.log(finalResponse);
             toast("Profile submitted successfully");
             navigate("/dashboard/user/success");
         } catch (error) {
@@ -140,16 +149,16 @@ const Review = ({ formData, keywords, setStep, id }) => {
                     </div>
                     <h6>Personal Info</h6>
                     <div>
-                        {formData.cv_file?.name ? (
+                        {/* {formData.cv_file?.name ? (
                             <p className={classes.pdf_name}>
-                                {formData.cv_file?.name}
+                                {formData?.shortenedCVUrl}
                             </p>
                         ) : (
                             <p className={classes.not_filled}>
                                 not uploaded yet
                             </p>
                         )}
-                        <h5>Uploaded CV</h5>
+                        <h5>Uploaded CV</h5> */}
                     </div>
                     <div>
                         <p>{userEmail}</p>

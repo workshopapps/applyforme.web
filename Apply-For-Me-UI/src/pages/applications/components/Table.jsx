@@ -7,40 +7,38 @@ import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 const Table = () => {
     const [data, setData] = useState([]);
-    const [pageCount, setPageCout] = useState(1)
+    const [pageCount, setPageCout] = useState(1);
     const navigate = useNavigate();
-     const [pagination, setPagination] = useState({
+    const [pagination, setPagination] = useState({
         "pageNo": 0,
-        "pageSize": 10,
+        "pageSize": 10
     });
-    const fetchApplicants = async()=>{
-                try{
-                    const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/applicant/entries`, 
-                                            {
-                                                params:{
-                                                "pageNo": pagination.pageNo,
-                                                "pageSize":pagination.pageSize,
-                                                }
-                                            }
-                                            );
-                    setData(response.data?.content);
-                    setPageCout(response.data?.totalPages);
-
-                } catch (error) {
-                    console.error(`Could not get applicants: ${error}`);
-                }          
-    }
+    const fetchApplicants = async () => {
+        try {
+            const response = await axios.get(
+                `https://api.applyforme.hng.tech/api/v1/applicant/entries`,
+                {
+                    params: {
+                        "pageNo": pagination.pageNo,
+                        "pageSize": pagination.pageSize
+                    }
+                }
+            );
+            setData(response.data?.content);
+            setPageCout(response.data?.totalPages);
+        } catch (error) {
+            console.error(`Could not get applicants: ${error}`);
+        }
+    };
 
     useEffect(() => {
         fetchApplicants();
     }, []);
 
-   
-    const handlePageClick =(data)=>{
-        setPagination(prevState =>({...prevState,"pageNo":data.selected}));
-         fetchApplicants();
-       
-    }
+    const handlePageClick = data => {
+        setPagination(prevState => ({ ...prevState, "pageNo": data.selected }));
+        fetchApplicants();
+    };
     return (
         <div className={styles.applications_table_wrapper}>
             <ApplicationsListHeader />
@@ -104,13 +102,13 @@ const Table = () => {
                     renderOnZeroPageCount={null}
                     onPageChange={handlePageClick}
                     containerClassName="containerClassName"
-                    pageClassName='pageClassName'
-                    previousClassName='previousClassName'
+                    pageClassName="pageClassName"
+                    previousClassName="previousClassName"
                     activeClassName="activeClassName"
-                    nextClassName='nextClassName'
+                    nextClassName="nextClassName"
                     pageLinkClassName="pageLinkClassName"
                 />
-                 </div>
+            </div>
         </div>
     );
 };
