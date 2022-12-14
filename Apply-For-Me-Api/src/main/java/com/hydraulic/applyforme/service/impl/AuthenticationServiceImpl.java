@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.MemberSecretCode;
+import com.hydraulic.applyforme.model.domain.PasswordResetVerificationDto;
 import com.hydraulic.applyforme.model.domain.TokenEntity;
 import com.hydraulic.applyforme.model.dto.authentication.ResetPasswordDto;
 import com.hydraulic.applyforme.model.dto.member.MemberDto;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 import java.util.Random;
 
 @Service
@@ -32,6 +34,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final TokenJpaRepository tokenJpaRepository;
     private final EmailService emailService;
     private MemberRepository memberRepository;
+
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
@@ -43,6 +46,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.tokenJpaRepository = tokenJpaRepository;
         this.emailService = emailService;
         this.memberRepository = memberRepository;
+
     }
 
     public String generateOtp(){
@@ -108,18 +112,50 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Transactional
-    public void resetPassword(ResetPasswordDto dto) {
-        MemberSecretCode secretCodeExists = secretJpaRepository.findByForgotPasswordCode(dto.getToken());
+    public String sendOtpForPasswordReset(String email){
+        Member existingMember = memberJpaRepository.findByEmailAddress(email);
 
-        if (secretCodeExists == null) {
-            throw new InvalidResetTokenException(dto.getToken(), dto.getEmailAddress());
+        if(existingMember!=null){
+        TokenEntity tokenEntity = new TokenEntity();
+
+        String validOtp = generateOtp();
+        tokenEntity.setOtp(validOtp);
+        tokenEntity.setMember(existingMember);
+        emailService.sendResetPasswordCode(email,validOtp);
+
+        tokenJpaRepository.save(tokenEntity);
+        return String.format("%s, Otp sent to %s, proceed to reset password, proceed",existingMember.getFirstName(),email);
         }
 
-        Member member = memberJpaRepository.findByEmailAddress(dto.getEmailAddress());
-        member.setPassword(dto.getPassword());
-        setPassword(member);
-        memberRepository.updateOne(member);
+        return String.format("Invalid User, confirm your email address is correct");
+
     }
+
+    @Transactional
+    public  String resetPassword(ResetPasswordDto request){
+        Member existingMember = memberJpaRepository.findByEmailAddress(request.getEmailAddress());
+        System.out.println(existingMember);
+        if(existingMember!=null){
+            String otpFromMember = request.getOtp();
+            TokenEntity tokenEntity = tokenJpaRepository.findTokenEntityByOtp(otpFromMember);
+            System.out.println(tokenEntity);
+            if(tokenEntity!=null){
+                String newPassword = passwordEncoder.encode(request.getNewPassword());
+                existingMember.setPassword(newPassword);
+                memberJpaRepository.save(existingMember);
+                return String.format("%s, Otp verified, password successfuly reset",existingMember.getFirstName());
+            }
+            else {
+                return String.format("%s, Otp not valid or has expired",existingMember.getFirstName());
+            }
+        }
+        return String.format("Email not valid, Current user not in DB");
+
+    }
+
+
+
+
 
     public void setPassword(Member member) {
         member.setPassword(passwordEncoder.encode(member.getPassword()));

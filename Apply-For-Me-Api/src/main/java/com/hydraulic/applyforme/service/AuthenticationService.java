@@ -7,7 +7,9 @@ public interface AuthenticationService {
     String signUp(MemberDto memberDto);
     public String validateMemberSignUp(String otp, String email);
 
-    void resetPassword(ResetPasswordDto resetPasswordDto);
+    String sendOtpForPasswordReset(String email);
+
+    String resetPassword(ResetPasswordDto resetPasswordDto);
 
     void authenticate(String username, String password) throws Exception;
 }

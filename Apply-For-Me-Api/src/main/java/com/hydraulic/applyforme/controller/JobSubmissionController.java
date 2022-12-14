@@ -42,7 +42,11 @@ public class JobSubmissionController {
     public Long totalApplierEntry(@PathVariable(name = "applierId") Long id) {
         return service.countAllApplierSubmissions(id);
     }
-    
+
+    @GetMapping("/professional/count/{professionalId}")
+    public Long totalProfessionalEntry(@PathVariable(name = "professionalId") Long id) {
+        return service.countAllApplierSubmissions(id);
+    }
     @GetMapping("/entries")
     public ApplyForMeResponse getAllSubmission(
             @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
