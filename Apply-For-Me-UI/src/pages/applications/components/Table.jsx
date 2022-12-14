@@ -5,6 +5,7 @@ import ApplicationsListHeader from "./ApplicationsListHeader";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
+import { ToastContainer, toast } from "react-toastify";
 const Table = () => {
     const [data, setData] = useState([]);
     const [pageCount, setPageCout] = useState(1);
@@ -27,7 +28,7 @@ const Table = () => {
             setData(response.data?.content);
             setPageCout(response.data?.totalPages);
         } catch (error) {
-            console.error(`Could not get applicants: ${error}`);
+            toast.error(`Could not get applicants: ${error}`);
         }
     };
 
@@ -42,6 +43,7 @@ const Table = () => {
     return (
         <div className={styles.applications_table_wrapper}>
             <ApplicationsListHeader />
+            <ToastContainer />
             <div className={styles.applications_table_container}>
                 <table>
                     <thead>
