@@ -35,6 +35,7 @@ public class ProfessionalProfileController {
             @RequestParam(value = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fromDate,
             @RequestParam(value = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date toDate,
             @RequestParam(value = "q", required = false) String q) {
+    	
         return service.getEntries(pageNo, pageSize, sortBy, sortDir, q, fromDate, toDate);
     }
 
