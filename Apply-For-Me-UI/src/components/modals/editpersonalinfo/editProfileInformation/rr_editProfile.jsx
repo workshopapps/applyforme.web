@@ -52,12 +52,12 @@ export const EditInfoContent = ({ setEditModal, img }) => {
 
     return (
         <div className="edit_profileContent">
-             <label htmlFor="profile">
-                <input type="file" id="profile" name="profile"/>
-                <img src={img} alt="object not found"/>
-            </label>
             <form onSubmit={handleSubmit}>
                 <div className="edit_field">
+                    <label htmlFor="profile">
+                        <input type="file" id="profile" name="profile"/>
+                        <img src={img} alt="object not found"/>
+                    </label>
                     <input
                         type="text"
                         name="first_name"

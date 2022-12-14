@@ -18,8 +18,8 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
 import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
-import ApplicationsDashboardLayout from "./pages/applications/layouts/ApplicationsDashboardLayout";
 import Applications from "./pages/applications/Applications";
+import RRApplications from "./pages/applications/rr_all_applications";
 import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
 import Skills from "./pages/blog/pages/skills/Skills";
 import Cover from "./pages/blog/pages/cover/Cover";
@@ -194,7 +194,7 @@ function App() {
                     {/*Reverse Recruiter Dashboard */}
                     <Route path="/rr_admin" element={<DashboardHome />} />
                     <Route
-                        path="/rr_admin/form"
+                        path="/rr_admin/form/:id"
                         element={<ApplicationForm />}
                     />
                     <Route
@@ -203,7 +203,7 @@ function App() {
                     />
                     <Route
                         path="/rr_admin/all_applications"
-                        element={<Applications />}
+                        element={<RRApplications />}
                     />
                 </Route>
 

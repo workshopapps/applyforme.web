@@ -1,3 +1,51 @@
+.editContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(49, 49, 49, 0.8);
+}
+
+.editpasswordContent {
+    padding: 2rem;
+    position: fixed;
+    top: 50%;
+    overflow: auto;
+    z-index: 1;
+    left: 50%;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+}
+
+.editProfileContent {
+    padding: 2rem 2rem 3rem;
+    position: fixed;
+    top: 50%;
+    overflow: auto;
+    z-index: 1;
+    left: 50%;
+    height:80%;
+    width: 30%;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    border-radius: 1.5rem;
+}
+
+.modal_closal {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.button-type {
+    cursor: pointer;
+}
 .page {
     display: flex;
     flex-direction: column;
@@ -112,8 +160,23 @@
     overflow-wrap: break-word;
     width:50%;
 }
+@media only screen and (max-width: 900px) {
+    .editProfileContent {
+        width: 60%;
+        height: 80%;
 
+    }
+}
 @media screen and (max-width: 768px) {
+    .editpasswordContent {
+        height: auto;
+        width: 80%;
+
+    }
+    .editProfileContent {
+        width: 80%;
+
+    }
     .rr_profile_container{
         padding: 1rem 1.5rem;
     }

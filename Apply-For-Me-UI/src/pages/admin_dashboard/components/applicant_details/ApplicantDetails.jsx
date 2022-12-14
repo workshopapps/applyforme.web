@@ -26,8 +26,8 @@ const ApplicationDetails = () => {
         )
             .then(response => response.json())
             .then(data => {
-                setDetails(data);
-                console.log(data);
+                setDetails( data);
+                console.log("reverse recruiter",data);
                 setIsLoading(false);
             })
             .catch(error => {
@@ -44,9 +44,9 @@ const ApplicationDetails = () => {
             <Nav />
             <div className={style.container}>
                 <div className={style.go_back_link}>
-                    <Link to="/rr_admin">
-                        <img src={goBackIcon} alt="" />
-                    </Link>
+                   
+                        <img src={goBackIcon} alt="" onClick={()=>window.history.back()}/>
+                    
                     <span
                         className={style.view_applicants}
                         onClick={() => window.history.back()}
@@ -68,7 +68,7 @@ const ApplicationDetails = () => {
                             {`${details?.professional?.member?.firstName} ${details?.professional?.member?.lastName}`}
                         </span>
                         <span className={style.details}>
-                            {details?.professional?.member?.roles} Role
+                            {details?.professional?.member?.roles[0]?.title} Role
                         </span>
                         {/* <span className={style.details}>
                             Date joined:{" "}
@@ -131,7 +131,17 @@ const ApplicationDetails = () => {
                             </a>
                         </div>
                     </div>
+                       
                 </section>
+                <div>
+                    <Link
+                        className={style.job_RR_form}
+                        to={`/rr_admin/form/${details?.id}`}
+                    >
+                        Job Application Form
+                    </Link>
+                </div>
+               
             </div>
         </div>
     );

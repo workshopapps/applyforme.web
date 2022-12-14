@@ -186,7 +186,7 @@
     .stats_row {
         border-bottom: 1px solid rgba(230, 230, 233, 1);
         display: grid;
-        grid-template-columns: 17% 17% 8% 21% 8% 8%;
+        grid-template-columns:1fr 1fr 1fr 1fr 1fr;
         gap: 4%;
         list-style-type: none;
         padding: 32px 0px 16px;
@@ -231,7 +231,7 @@
     }
 
     .stats_row {
-        grid-template-columns: 17% 17.5% 10% 21% 9% 8%;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         gap: 3.5%;
     }
 

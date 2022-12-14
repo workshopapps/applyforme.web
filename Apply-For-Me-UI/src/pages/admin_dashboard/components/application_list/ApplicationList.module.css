@@ -2,7 +2,10 @@
 {
     background: white;
 }
-
+.stats_row{
+    display:flex;
+    justify-content: space-evenly;
+}
 .list_list ul
 {
     display: grid;
