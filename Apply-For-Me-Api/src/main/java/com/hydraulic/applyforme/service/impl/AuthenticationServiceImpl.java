@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.service.impl;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.MemberSecretCode;
+import com.hydraulic.applyforme.model.domain.PasswordResetVerificationDto;
 import com.hydraulic.applyforme.model.domain.TokenEntity;
 import com.hydraulic.applyforme.model.dto.authentication.ResetPasswordDto;
 import com.hydraulic.applyforme.model.dto.member.MemberDto;
@@ -14,6 +15,7 @@ import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.TokenJpaRepository;
 import com.hydraulic.applyforme.service.AuthenticationService;
 import com.hydraulic.applyforme.service.EmailService;
+import com.hydraulic.applyforme.service.MemcachedServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 import java.util.Random;
 
 @Service
@@ -32,17 +35,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final TokenJpaRepository tokenJpaRepository;
     private final EmailService emailService;
     private MemberRepository memberRepository;
+
+    private final MemcachedServices memcachedServices;
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public AuthenticationServiceImpl(MemberSecretJpaRepository secretJpaRepository, MemberJpaRepository memberJpaRepository, TokenJpaRepository tokenJpaRepository, EmailService emailService, MemberRepository memberRepository) {
+    public AuthenticationServiceImpl(MemberSecretJpaRepository secretJpaRepository, MemberJpaRepository memberJpaRepository, TokenJpaRepository tokenJpaRepository, EmailService emailService, MemberRepository memberRepository, MemcachedServices memcachedServices) {
         this.secretJpaRepository = secretJpaRepository;
         this.memberJpaRepository = memberJpaRepository;
         this.tokenJpaRepository = tokenJpaRepository;
         this.emailService = emailService;
         this.memberRepository = memberRepository;
+        this.memcachedServices = memcachedServices;
     }
 
     public String generateOtp(){
@@ -108,18 +114,45 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Transactional
-    public void resetPassword(ResetPasswordDto dto) {
-        MemberSecretCode secretCodeExists = secretJpaRepository.findByForgotPasswordCode(dto.getToken());
+    public String sendOtpForPasswordReset(String email){
+        Member existingMember = memberJpaRepository.findByEmailAddress(email);
+        if(existingMember!=null){
 
-        if (secretCodeExists == null) {
-            throw new InvalidResetTokenException(dto.getToken(), dto.getEmailAddress());
+        String validOtp = generateOtp();
+        memcachedServices.save(email,validOtp);
+        emailService.sendResetPasswordCode(email,validOtp);
+        return String.format("%s, Otp sent to %s, proceed to reset password, proceed",existingMember.getFirstName(),email);
         }
 
-        Member member = memberJpaRepository.findByEmailAddress(dto.getEmailAddress());
-        member.setPassword(dto.getPassword());
-        setPassword(member);
-        memberRepository.updateOne(member);
+        return String.format("Invalid User, confirm your email address is correct");
+
     }
+
+    @Transactional
+    public  String resetPassword(ResetPasswordDto request){
+        Member existingMember = memberJpaRepository.findByEmailAddress(request.getEmailAddress());
+        System.out.println(existingMember);
+        if(existingMember!=null){
+            String otpFromMember = request.getOtp();
+            String otpFromMemcached = memcachedServices.getValueByKey(request.getEmailAddress());
+            System.out.println(otpFromMemcached);
+            if(Objects.equals(otpFromMemcached, otpFromMember)){
+                String newPassword = passwordEncoder.encode(request.getNewPassword());
+                existingMember.setPassword(newPassword);
+                memberJpaRepository.save(existingMember);
+                return String.format("%s, Otp verified, password successfuly reset",existingMember.getFirstName());
+            }
+            else {
+                return String.format("%s, Otp not valid or has expired",existingMember.getFirstName());
+            }
+        }
+        return String.format("Email not valid, Current user not in DB");
+
+    }
+
+
+
+
 
     public void setPassword(Member member) {
         member.setPassword(passwordEncoder.encode(member.getPassword()));

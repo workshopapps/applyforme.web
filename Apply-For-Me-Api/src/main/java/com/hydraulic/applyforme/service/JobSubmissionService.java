@@ -8,6 +8,7 @@ import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import java.util.List;
 
 public interface JobSubmissionService {
+    Long countAllProfessionalSubmissions(Long id);
     Long countAllApplierSubmissions(Long Id);
     ApplyForMeResponse getAllJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir);
     ApplyForMeResponse filterJobSubmission(int pageNo, int pageSize, String sortBy, String sortDir, String q);

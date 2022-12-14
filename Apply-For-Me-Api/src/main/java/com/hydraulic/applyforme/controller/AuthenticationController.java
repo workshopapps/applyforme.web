@@ -67,10 +67,15 @@ public class AuthenticationController {
         return new ForgotPasswordResponse();
     }
 
+    @PostMapping("/send-otp-for-reset-password")
+    public String sendOtpForPasswordReset(@RequestParam String email){
+        return authenticationService.sendOtpForPasswordReset(email);
+    }
+
     @PostMapping("/reset-password")
     public String resetPassword(@Validated @RequestBody ResetPasswordDto passwordDto) {
-        authenticationService.resetPassword(passwordDto);
-        return "You have successfully changed your password.";
+       return authenticationService.resetPassword(passwordDto);
+
     }
 
     @PostMapping("/sign-in")
