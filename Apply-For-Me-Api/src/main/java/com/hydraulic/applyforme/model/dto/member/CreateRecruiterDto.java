@@ -1,22 +1,14 @@
 package com.hydraulic.applyforme.model.dto.member;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hydraulic.applyforme.annotation.PhoneNumber;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hydraulic.applyforme.annotation.PhoneNumber;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -52,7 +44,6 @@ public class CreateRecruiterDto {
     @JsonProperty("country_of_residence")
     private Long countryOfResidence;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     @JsonProperty("date_of_birth")
     private Date dateOfBirth;
 
