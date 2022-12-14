@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import styles from "rr_table_module.css";
-import { useNavigate } from "react-router-dom";
+import styles from "./rr_table_module.css";
+import { Link, useNavigate } from "react-router-dom";
 import ApplicationsListHeader from "./RR_ApplicationsListHeader";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import ReactPaginate from "react-paginate";
 const Table = () => {
     const [data, setData] = useState([]);
     const [pageCount, setPageCout] = useState(1)
+    const token = localStorage.getItem("tokenHngKey");
     const navigate = useNavigate();
      const [pagination, setPagination] = useState({
         "pageNo": 0,
@@ -15,14 +16,18 @@ const Table = () => {
     });
     const fetchApplicants = async()=>{
                 try{
-                    const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/applicant/entries`, 
+                    const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all`, 
                                             {
                                                 params:{
                                                 "pageNo": pagination.pageNo,
                                                 "pageSize":pagination.pageSize,
+                                                },
+                                                headers: {
+                                                    "Authorization": `Bearer ${token}`
                                                 }
                                             }
                                             );
+                                            console.log(response.data)
                     setData(response.data?.content);
                     setPageCout(response.data?.totalPages);
 
@@ -48,12 +53,10 @@ const Table = () => {
                 <table>
                     <thead>
                         <tr className={styles.applications_table_head_row}>
-                            <th>Company</th>
+                            <th>Name</th>
                             <th>Job title</th>
-                            <th className={styles.hide_tablet}>Location</th>
-                            <th>Salary Range</th>
-                            <th className={styles.hide_tablet}>Job Duration</th>
-                            <th>Date</th>
+                            <th>Salary</th>
+                            <th className={styles.hide_tablet}>Type</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,30 +66,25 @@ const Table = () => {
                                 key={`${application.jobCompany}-${index}`}
                                 onClick={() =>
                                     navigate(
-                                        `/dashboard/applications/${application.id}`
+                                        `/user-page/reverseRecruiterAdmin/${application.id}`
                                     )
                                 }
                             >
                                 <td>
-                                    <div>{application.jobCompany}</div>
-                                    <div className={styles.show_tablet}>
-                                        {application.jobLocation}
-                                    </div>
+                                    <div>{application.profileTitle}</div>
                                 </td>
                                 <td>
-                                    <div>{application.jobTitle}</div>
-                                    <div className={styles.show_tablet}>
-                                        {application.jobType}
-                                    </div>
+                                    <div>{application.desiredJobTitle}</div>
                                 </td>
+                                 <td>{application.salaryRange}</td>  
                                 <td className={styles.hide_tablet}>
-                                    {application.jobLocation}
+                                    {application.preferredJobLocationType}
                                 </td>
-                                <td>{application.salaryRange}</td>
-                                <td className={styles.hide_tablet}>
-                                    {application.jobType}
+                                <td>
+                                    <Link to={`/professional-profile/user/details/${application.id}`}>
+                                       view
+                                     </Link>
                                 </td>
-                                <td>{application.date?.split("T").shift()}</td>
                             </tr>
                         ))}
                     </tbody>

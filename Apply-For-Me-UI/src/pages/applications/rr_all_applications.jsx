@@ -1,7 +1,7 @@
 import styles from "./rr_all_applications.module.css";
 import ApplicationsListCard from "./components/RR_ApplicationsListCard";
 import Table from "./components/rr_table";
-import TopNav from "./components/topNav/TopNav";
+import TopNav from "./components/topNav/RR_TopNav";
 import { applications } from "./applicationsMock";
 import GoBack from "pages/dashboard_noting/GoBack";
 const Applications = () => {

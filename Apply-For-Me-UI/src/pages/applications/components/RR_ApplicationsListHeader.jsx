@@ -1,6 +1,6 @@
 import styles from "../Applications.module.css";
 import Dropdown from "./RR_DropDown";
-import Search from "./search/RR_search.module.css";
+import Search from "./search/RR_search";
 
 const ApplicationsListHeader = () => {
     return (

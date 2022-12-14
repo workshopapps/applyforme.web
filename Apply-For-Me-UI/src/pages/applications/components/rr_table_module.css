@@ -69,6 +69,7 @@ table {
     border-collapse: separate;
     border-spacing: 0 15px;
     width: 100%;
+    padding: 0rem 2rem;
 }
 
 tr {
