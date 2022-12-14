@@ -22,16 +22,17 @@ const ApplicationForm = () => {
         company: "",
         reverse_recruiter: ""
     });
-    const handleSubmit=()=>{
+    const handleSubmit=(e)=>{
+        e.preventDefault();
         const submitDetails = async () => {
+            console.log( state?.company, )
             try {
                 const response = await axios.post(
                     "https://api.applyforme.hng.tech/api/v1/job-submission/save",
                     {
                         "professional_id":professional?.id,
                         "applier_id": decoded.memberId,
-                        "professional_profile_id": professional.professional?.id,
-                        "job_title": professional?.desiredJobTitle,
+                        "professional_profile_id": professional?.professional?.id,
                         "job_company": state?.company
                     },
                     {
@@ -88,13 +89,13 @@ const ApplicationForm = () => {
             id: "name",
             labelText: "Applicant's Name",
             placeholder: "John Doe",
-            value: `${professional.professional?.member?.firstName}`
+            value: `${professional?.professional?.member?.firstName}`
         },
         {
             id: "role",
             labelText: "Job Role",
             placeholder: "Product Design",
-            value: `${professional.professional?.member?.role[0]?.title}`
+            value: `${state.role}`
         },
         {
             id: "plan",
@@ -112,7 +113,7 @@ const ApplicationForm = () => {
             id: "reverse_recruiter",
             labelText: "Reverse Recruiter's Name",
             placeholder: "Ora Smith",
-            value: `${state.reverse_recruiter}`
+            value: `${decoded.fullName}`
         }
     ];
     const navigate = useNavigate();
