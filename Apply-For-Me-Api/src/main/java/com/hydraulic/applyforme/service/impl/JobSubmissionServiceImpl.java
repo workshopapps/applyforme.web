@@ -1,28 +1,39 @@
 package com.hydraulic.applyforme.service.impl;
 
-import com.hydraulic.applyforme.model.domain.*;
+import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
+
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hydraulic.applyforme.model.domain.Applier;
+import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
+import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.submission.ApplierSubmissionDto;
 import com.hydraulic.applyforme.model.dto.submission.CreateJobSubmissionDto;
 import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
-import com.hydraulic.applyforme.model.exception.*;
+import com.hydraulic.applyforme.model.exception.ApplierNotFoundException;
+import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
+import com.hydraulic.applyforme.model.exception.ProfessionalProfileNotFoundException;
 import com.hydraulic.applyforme.model.response.SubmissionEntriesResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.repository.ApplierRepository;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.ProfessionalProfileRepository;
 import com.hydraulic.applyforme.repository.SubmissionRepository;
-import com.hydraulic.applyforme.repository.jpa.*;
+import com.hydraulic.applyforme.repository.jpa.ApplierJpaRepository;
+import com.hydraulic.applyforme.repository.jpa.JobSubmissionJpaRepository;
+import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
+import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
+import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 import com.hydraulic.applyforme.service.JobSubmissionService;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
 
 @Service
 public class JobSubmissionServiceImpl implements JobSubmissionService {
@@ -38,16 +49,9 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     private final ProfessionalJpaRepository professionalJpaRepository;
     private final SubmissionRepository submissionRepository;
 
-	@Autowired
-	private ProfessionalJpaRepository professionalJpaRepository;
-
-	private final ProfessionalProfileRepository professionalProfileRepository;
-
-	private final com.hydraulic.applyforme.repository.JobSubmissionRepository jobSubmissionRepository;
     public JobSubmissionServiceImpl(JobSubmissionRepository repository, ApplierRepository applierRepository, 
     		com.hydraulic.applyforme.repository.JobSubmissionRepository repo, ModelMapper modelMapper,
                                     JobSubmissionJpaRepository jpaRepository,
-                                    com.hydraulic.applyforme.repository.JobSubmissionRepository jobSubmissionRepository,
                                     MemberJpaRepository memberJpaRepository,
                                     MemberRepository memberRepository,
                                     ProfessionalJpaRepository professionalJpaRepository,
@@ -59,7 +63,6 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
         this.repo = repo;
         this.modelMapper = modelMapper;
         this.jpaRepository = jpaRepository;
-        this.jobSubmissionRepository = jobSubmissionRepository;
         this.memberJpaRepository = memberJpaRepository;
         this.memberRepository = memberRepository;
         this.professionalJpaRepository = professionalJpaRepository;
@@ -173,15 +176,15 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
 		return getJobSubmissionResponse(submissions);
 	}
 
-	@Override
-	public Submission findOne(Long id) {
-		Submission submission = jobSubmissionRepository.getOne(id);
-		submission.getProfessional().setSubmissions(null);
-		submission.getApplier().setSubmissions(null);
-		submission.getProfessional().getMember().setRoles(null);
-		submission.getProfessional().setProfessionalProfiles(null);
-		return submission;
-	}
+    @Override
+    public Submission findOne(Long id) {
+        Submission submission = repo.getOne(id);
+        submission.getProfessional().setSubmissions(null);
+        submission.getApplier().setSubmissions(null);
+        submission.getProfessional().getMember().setRoles(null);
+        submission.getProfessional().setProfessionalProfiles(null);
+        return submission;
+    }
 
 	@Override
 	public Submission findOne(Long memberId, Long id) {
