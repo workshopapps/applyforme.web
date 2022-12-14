@@ -4,6 +4,7 @@ import Table from "./components/rr_table";
 import TopNav from "./components/topNav/RR_TopNav";
 import { applications } from "./applicationsMock";
 import GoBack from "pages/dashboard_noting/GoBack";
+
 const Applications = () => {
     return (
         <div className={styles.applications_container}>

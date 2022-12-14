@@ -24,6 +24,7 @@ const Nav = () => {
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem("tokenHngKey");
+        localStorage.removeItem("refreshTokenHngKey");
         dispatch(userInfo(""));
         navigate("/");
     };
