@@ -5,6 +5,7 @@ import avatar from "./img/avatar.png";
 import notification from "./img/notification.png";
 import "./DashboardNothing.css";
 import GoBackMobile from "./GoBackMobile";
+import axios from "axios";
 
 const NewUserDashboard = () => {
     const { user } = useSelector(state => state.user);
