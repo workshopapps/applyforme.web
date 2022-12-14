@@ -113,7 +113,7 @@ const CreateProfile = () => {
             coverletter_subject: oneprofile?.coverLetterSubject,
             shortenedCVUrl: oneprofile?.resumeLink
         });
-        const keyArray = [oneprofile?.includedKeywords.split(",")];
+        const keyArray = [oneprofile?.includedKeywords?.split(",")];
         setKeywords(keyArray[0]);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [done]);
