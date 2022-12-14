@@ -15,7 +15,6 @@ import com.hydraulic.applyforme.repository.jpa.MemberSecretJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.TokenJpaRepository;
 import com.hydraulic.applyforme.service.AuthenticationService;
 import com.hydraulic.applyforme.service.EmailService;
-import com.hydraulic.applyforme.service.MemcachedServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,19 +35,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final EmailService emailService;
     private MemberRepository memberRepository;
 
-    private final MemcachedServices memcachedServices;
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public AuthenticationServiceImpl(MemberSecretJpaRepository secretJpaRepository, MemberJpaRepository memberJpaRepository, TokenJpaRepository tokenJpaRepository, EmailService emailService, MemberRepository memberRepository, MemcachedServices memcachedServices) {
+    public AuthenticationServiceImpl(MemberSecretJpaRepository secretJpaRepository, MemberJpaRepository memberJpaRepository, TokenJpaRepository tokenJpaRepository, EmailService emailService, MemberRepository memberRepository) {
         this.secretJpaRepository = secretJpaRepository;
         this.memberJpaRepository = memberJpaRepository;
         this.tokenJpaRepository = tokenJpaRepository;
         this.emailService = emailService;
         this.memberRepository = memberRepository;
-        this.memcachedServices = memcachedServices;
+
     }
 
     public String generateOtp(){
@@ -116,11 +114,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Transactional
     public String sendOtpForPasswordReset(String email){
         Member existingMember = memberJpaRepository.findByEmailAddress(email);
+
         if(existingMember!=null){
+        TokenEntity tokenEntity = new TokenEntity();
 
         String validOtp = generateOtp();
-        memcachedServices.save(email,validOtp);
+        tokenEntity.setOtp(validOtp);
+        tokenEntity.setMember(existingMember);
         emailService.sendResetPasswordCode(email,validOtp);
+
+        tokenJpaRepository.save(tokenEntity);
         return String.format("%s, Otp sent to %s, proceed to reset password, proceed",existingMember.getFirstName(),email);
         }
 
@@ -134,9 +137,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         System.out.println(existingMember);
         if(existingMember!=null){
             String otpFromMember = request.getOtp();
-            String otpFromMemcached = memcachedServices.getValueByKey(request.getEmailAddress());
-            System.out.println(otpFromMemcached);
-            if(Objects.equals(otpFromMemcached, otpFromMember)){
+            TokenEntity tokenEntity = tokenJpaRepository.findTokenEntityByOtp(otpFromMember);
+            System.out.println(tokenEntity);
+            if(tokenEntity!=null){
                 String newPassword = passwordEncoder.encode(request.getNewPassword());
                 existingMember.setPassword(newPassword);
                 memberJpaRepository.save(existingMember);
