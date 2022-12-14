@@ -4,6 +4,7 @@ import SettingsTopNav from "./SettingsTopNav";
 import person from "../../pages/dashboard_profile/assets/profilepic.png";
 import { useEffect } from "react";
 import axios from "axios";
+import DragDropFile from "./DragDropFile/DragDropFile";
 // import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
 //import { getActiveLink } from './settingservice/SettingsSecondSidebar'
 
@@ -20,12 +21,14 @@ const AccountSettings = () => {
         country: "",
         password: "",
         new_password: "",
-        confirm_new_password: ""
+        confirm_new_password: "",
+        img_file: [],
+        shortenedCVUrl: ""
     });
 
     const [memberInfo, setMemberInfo] = useState({});
     const [countryDetails, setCountryDetails] = useState([]);
-    console.log("response", memberInfo);
+    // console.log("response", memberInfo);
 
     const fetchDetails = async () => {
         const token = localStorage.getItem("tokenHngKey");
@@ -56,7 +59,7 @@ const AccountSettings = () => {
                 }
             );
             setCountryDetails(response.data);
-            console.log("country", response);
+            // console.log("country", response);
         } catch (err) {
             console.log("error for country", err);
         }
@@ -77,7 +80,7 @@ const AccountSettings = () => {
         "address": formField.address
     };
 
-    console.log(post);
+    // console.log(post);
 
     const updateInfo = async () => {
         const token = localStorage.getItem("tokenHngKey");
@@ -98,7 +101,7 @@ const AccountSettings = () => {
         }
     };
 
-    console.log("id", memberInfo);
+    // console.log("id", memberInfo);
 
     useEffect(() => {
         fetchDetails();
@@ -114,6 +117,43 @@ const AccountSettings = () => {
         password: false,
         preference: false
     });
+
+    const handleCvUpload = async e => {
+        // setFormData({ ...formData, cv_file: undefined });
+        setFormField({ ...formField, img_file: e.target.files[0] });
+
+        const file = e.target.files[0];
+        const fileName = file?.name;
+        const fileExtension = fileName?.split(".").pop();
+        //Make POST requests
+        // setRequestStatus("loading");
+        try {
+            // First POST request
+            const firstResponse = await axios.post(
+                `https://api.applyforme.hng.tech/api/v1/upload/pre-signed-avatar?extension=.${fileExtension}`
+            );
+            console.log(firstResponse.data);
+            // Second POST request
+            const fd = new FormData();
+            fd.set("file", file);
+            const secondResponse = await fetch(firstResponse.data, {
+                method: "PUT",
+                body: fd
+            });
+            console.log(secondResponse);
+            const shortenedCVUrl = secondResponse.url.split("?")[0];
+            console.log(shortenedCVUrl);
+            setFormField({
+                ...formField,
+                cv_file: e.target.files[0],
+                shortenedCVUrl: shortenedCVUrl
+            });
+            // setRequestStatus("idle");
+        } catch (error) {
+            console.log(error);
+            // setRequestStatus("idle");
+        }
+    };
 
     return (
         <div className={classes.account_settings_container}>
@@ -190,7 +230,11 @@ const AccountSettings = () => {
                                         <img src={person} alt="" />
                                     </div>
 
-                                    <span>Change Picture</span>
+                                    <DragDropFile
+                                        onChange={e => {
+                                            handleCvUpload(e);
+                                        }}
+                                    />
                                 </div>
 
                                 <div className={classes.input_fields}>
