@@ -5,6 +5,7 @@ import avatar from "./img/avatar.png";
 import notification from "./img/notification.png";
 import "./DashboardNothing.css";
 import GoBackMobile from "./GoBackMobile";
+import axios from "axios";
 
 const NewUserDashboard = () => {
     const { user } = useSelector(state => state.user);
@@ -12,8 +13,9 @@ const NewUserDashboard = () => {
     const userName = username?.split(" ")[0];
     const token = localStorage.getItem("tokenHngKey");
     const [statValue, setStatValue] = useState();
-    const getStatisticsDetail = async () => {
+    const getStatisticsDetail = async() => {
         try {
+           
             const response = await axios.get(
                 "https://api.applyforme.hng.tech/api/v1/member/stats",
                 {
@@ -22,7 +24,8 @@ const NewUserDashboard = () => {
                     }
                 }
             );
-            setStatValue(response?.data);
+            setStatValue(response.data);
+            console.log(statValue)
         } catch (err) {
             console.log(err?.response?.data);
         }
@@ -67,7 +70,7 @@ const NewUserDashboard = () => {
                 <div className="overview-cards-wrapper">
                     <div className="overview-card-wrapper">
                         <div className="overview-card">
-                            <h3>{statValue?.total_number_of_profile}</h3>
+                            <h3>{statValue?.total_number_of_submissionse}</h3>
                             <p>Total Submissions</p>
                         </div>
                     </div>

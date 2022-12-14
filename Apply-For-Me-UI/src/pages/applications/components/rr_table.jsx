@@ -53,7 +53,6 @@ const Table = () => {
                     <thead>
                         <tr className={styles.applications_table_head_row}>
                             <th>Name</th>
-                            <th>Job title</th>
                             <th>Salary</th>
                             <th className={styles.hide_tablet}>Type</th>
                             <th className={styles.hide_tablet}>Details</th>
@@ -68,9 +67,6 @@ const Table = () => {
                             >
                                 <td>
                                     <div>{application.profileTitle}</div>
-                                </td>
-                                <td>
-                                    <div>{application.desiredJobTitle}</div>
                                 </td>
                                  <td>{application.salaryRange}</td>  
                                 <td className={styles.hide_tablet}>
