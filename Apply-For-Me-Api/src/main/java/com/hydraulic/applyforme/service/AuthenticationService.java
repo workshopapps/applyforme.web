@@ -6,8 +6,9 @@ import com.hydraulic.applyforme.model.dto.member.MemberDto;
 public interface AuthenticationService {
     String signUp(MemberDto memberDto);
     public String validateMemberSignUp(String otp, String email);
+    String sendOtpForPasswordReset(String email);
 
-    void resetPassword(ResetPasswordDto resetPasswordDto);
+    String resetPassword(ResetPasswordDto resetPasswordDto);
 
     void authenticate(String username, String password) throws Exception;
 }
