@@ -1,6 +1,9 @@
 .applications_table_wrapper {
     width: 100%;
 }
+.view{
+    text-decoration:none;
+}
 @media only screen and (max-width: 480px) {
     .applications_table_wrapper {
         margin-left: 0;
@@ -90,13 +93,13 @@ td {
 th {
     font-weight: 500;
     font-size: 20px;
-    line-height: 150%;
+    line-height: 350%;
 }
 
 td {
     font-weight: 400;
     font-size: 16px;
-    line-height: 150%;
+    line-height: 350%;
 }
 
 td:first-child,

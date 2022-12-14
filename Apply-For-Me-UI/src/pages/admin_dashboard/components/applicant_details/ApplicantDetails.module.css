@@ -4,7 +4,17 @@
     color: rgba(82, 81, 91, 1);
     margin: 0 72px;
 }
-
+.job_RR_form{   
+    text-decoration:none;
+    background:rgba(46, 49, 146, 1);
+    color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top:2rem;
+}
+.job_RR_form:hover{
+    color:white
+}
 .container>* {
     padding: 40px 0;
 }

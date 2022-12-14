@@ -39,12 +39,7 @@ const DashboardHome = () => {
                     </div>
                     {/* Job Applications Button */}
 
-                    <Link
-                        className={classes.job_application_form_button}
-                        to="/rr_admin/form"
-                    >
-                        Job Application Form
-                    </Link>
+                    
                 </div>
 
                 {/* New Applications Container */}

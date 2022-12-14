@@ -17,12 +17,12 @@ const TopNav = ({ title }) => {
                     src={notification}
                     className={styles.application_nav_notif}
                 />
-                <Link to="/dashboard/settings">
+                
                     <img
                         src={avatar}
                         className={styles.application_nav_avatar}
                     />
-                </Link>
+               
             </div>
         </div>
     );

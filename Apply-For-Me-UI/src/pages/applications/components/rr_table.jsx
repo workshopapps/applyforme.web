@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import styles from "./rr_table_module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import ApplicationsListHeader from "./RR_ApplicationsListHeader";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -9,7 +9,6 @@ const Table = () => {
     const [data, setData] = useState([]);
     const [pageCount, setPageCout] = useState(1)
     const token = localStorage.getItem("tokenHngKey");
-    const navigate = useNavigate();
      const [pagination, setPagination] = useState({
         "pageNo": 0,
         "pageSize": 10,
@@ -27,7 +26,7 @@ const Table = () => {
                                                 }
                                             }
                                             );
-                                            console.log(response.data)
+                                            console.log("REverse Recruiter", response.data)
                     setData(response.data?.content);
                     setPageCout(response.data?.totalPages);
 
@@ -57,6 +56,7 @@ const Table = () => {
                             <th>Job title</th>
                             <th>Salary</th>
                             <th className={styles.hide_tablet}>Type</th>
+                            <th className={styles.hide_tablet}>Details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,11 +64,7 @@ const Table = () => {
                             <tr
                                 className={styles.applications_table_body_row}
                                 key={`${application.jobCompany}-${index}`}
-                                onClick={() =>
-                                    navigate(
-                                        `/user-page/reverseRecruiterAdmin/${application.id}`
-                                    )
-                                }
+                                
                             >
                                 <td>
                                     <div>{application.profileTitle}</div>
@@ -81,7 +77,7 @@ const Table = () => {
                                     {application.preferredJobLocationType}
                                 </td>
                                 <td>
-                                    <Link to={`/professional-profile/user/details/${application.id}`}>
+                                    <Link to={`/professional-profile/user/details/${application.id}`} style={{textDecoration:"none"}}>
                                        view
                                      </Link>
                                 </td>

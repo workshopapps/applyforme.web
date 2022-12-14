@@ -2,10 +2,66 @@ import style from "./ApplicationForm.module.css";
 import goBackIcon from "../../../../assets/images/back_arrow.svg";
 import { useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 
 const ApplicationForm = () => {
+
+    const {id} = useParams();
+    console.log(id);
+    const [submissionDetail,setSubmissionDetails] = useState({
+        "professional_id": 0,
+        "applier_id": 0,
+        "professional_profile_id": 0,
+        "job_title": "string",
+        "job_link": "string",
+        "job_location": "string",
+        "job_company": "string",
+        "summary": "string",
+        "other_comment": "string"
+    });
+    
+    const token = localStorage.getItem("tokenHngKey");
+    const [details, setDetails] = useState();
+
+    const getApplierDetails= async () => {
+        try {
+            const response = await axios.get(
+                `${url}/api/v1/recruiter/details`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            console.log("Recruiter Profile", response?.data);
+            setDetails(response?.data)
+            return response?.data;
+           
+        } catch (error) {
+            return error.response?.data;
+        }
+    }
+
+    const getProfessionalProfile = async () => {
+        try {
+            const response = await axios.get(
+                `https://api.applyforme.hng.tech/api/v1/professional-profile/detail/${id}`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            console.log(response.data)
+            setListArray(response.data.content);
+            console.log(listArray);
+        } catch (err) {
+            console.log(err.response?.data);
+        }
+    };
+
+
     const [state, setState] = useState({
         name: "",
         role: "",
