@@ -34,7 +34,6 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
     private final MemberJpaRepository memberJpaRepository;
     private final MemberRepository memberRepository;
     private final ApplierJpaRepository applierJpaRepository;
-    private final ProfessionalJpaRepository professionalJpaRepository;
     private final SubmissionRepository submissionRepository;
 
     private final ProfessionalProfileRepository professionalProfileRepository;
@@ -59,7 +58,6 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
         this.jobSubmissionRepository = jobSubmissionRepository;
         this.memberJpaRepository = memberJpaRepository;
         this.memberRepository = memberRepository;
-        this.professionalJpaRepository = professionalJpaRepository;
         this.applierJpaRepository = applierJpaRepository;
         this.professionalProfileRepository = professionalProfileRepository;
         this.submissionRepository = submissionRepository;
