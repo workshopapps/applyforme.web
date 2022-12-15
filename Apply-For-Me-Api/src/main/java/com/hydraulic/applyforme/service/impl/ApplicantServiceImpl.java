@@ -207,8 +207,8 @@ public class ApplicantServiceImpl implements ApplicantService {
 
         ApplicantStats applicantStats = new ApplicantStats();
         applicantStats.setTotalApplications(totalAppliactions);
-        applicantStats.setActiveApplications(3L);
-        applicantStats.setCompletedInterviews(6L);
+        applicantStats.setActiveApplications(1L);
+        applicantStats.setCompletedInterviews(1L);
 
         return applicantStats;
     }

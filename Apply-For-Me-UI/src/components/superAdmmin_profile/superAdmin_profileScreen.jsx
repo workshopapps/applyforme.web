@@ -7,7 +7,7 @@ export const ProfileScreen =()=>{
     return(
         <>
             <ToastContainer/>
-            <NotificationHead userName="John" notificationCount="0" userImage="https://res.cloudinary.com/hamskid/image/upload/v1668865249/Frame_51202_uoy0ee.png"/>
+            <NotificationHead notificationCount="0"/>
             <MainContainer img="https://res.cloudinary.com/hamskid/image/upload/v1668864953/Frame_51202_fn1t9x.png"/>
         </>
     )

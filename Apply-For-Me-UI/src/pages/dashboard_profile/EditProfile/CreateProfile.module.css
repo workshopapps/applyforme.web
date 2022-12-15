@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+}
+.createprofile {
+    min-height: 100vh;
+    width: 100vw;
+    padding-left: 5%;
+    background-color: #f3f3fb;
+    padding-bottom: 20%;
+    margin-left: 9rem;
+}
+@media only screen and (max-width: 480px) {
+    .createprofile {
+        margin-left: 0;
+    }
+}
+.createtext {
+    padding-top: 0.5rem;
+    margin-bottom: 1.3rem;
+    font-weight: 300;
+    font-size: 1.25rem;
+    color: #52515b;
+}
+@media screen and (min-width: 610px) {
+    .content_desktop {
+        display: none;
+    }
+}
+@media screen and (max-width: 610px) {
+    .content_mobile {
+        display: none;
+    }
+}
+@media screen and (min-width: 610px) {
+    .buttons_box {
+        display: flex;
+        gap: 2.4rem;
+    }
+}
+
+@media screen and (max-width: 610px) {
+    .buttons_box {
+        display: flex;
+        gap: 0.7rem;
+        margin-inline: auto;
+    }
+    .buttons_box button {
+        width: 1%;
+    }
+}
+
+.button_inactive {
+    background: none;
+    border: 0;
+    border-bottom: 3px solid #cccccc;
+    color: #999999;
+    font-weight: 400;
+    font-size: 1rem;
+    cursor: pointer;
+    padding-bottom: 5px;
+    padding-inline: 0.5rem;
+}
+.button_active {
+    background: none;
+    border: 0;
+    font-weight: 400;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #2e3192;
+    border-bottom: 4px solid #2e3192;
+    padding-bottom: 5px;
+    padding-inline: 0.5rem;
+}
+.button_active:focus {
+    background: none;
+    outline: 0;
+}
+.button_active:active {
+    border: 0;
+}
+
+/* Form */
+@media screen and (max-width: 610px) {
+    .form_body {
+        width: 90%;
+        padding: 1.5rem;
+    }
+}
+@media screen and (min-width: 610px) {
+    .form_body {
+        background-color: #ffff;
+        width: 90%;
+        padding: 1.5rem;
+    }
+}
+.form_body h3 {
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #52515b;
+}
+.form_body h5 {
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: #737373;
+}
+.form_body h6 {
+    font-weight: 300;
+    font-size: 1.25rem;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+    color: #bfbfbf;
+}
+
+@media screen and (max-width: 610px) {
+    .stepbuttons {
+        display: flex;
+        flex-direction: column;
+        margin-inline: auto;
+        /* padding-inline: 10%; */
+        width: 90%;
+        padding-bottom: 2rem;
+    }
+}
+@media screen and (min-width: 610px) {
+    .stepbuttons {
+        display: flex;
+        justify-content: flex-end;
+        padding-inline: 10%;
+        background-color: #ffff;
+        width: 90%;
+        padding-bottom: 2rem;
+    }
+}
+.hr_one {
+    border: 0.8px solid #b7b9e6;
+}
+.loading_animate {
+    margin-top: 50vh;
+    width: 100%;
+    height: 5px;
+    background-color: #bfbfbf;
+    border-radius: 5px;
+    animation: loading_animation 2s linear infinite;
+}
+@media only screen and (max-width: 480px) {
+    .loading_box {
+        margin-left: 0;
+    }
+    .loading_animate {
+        margin-inline: auto;
+        width: 50%;
+    }
+}
+/* Define animation  */
+@keyframes loading_animation {
+    0% {
+        background-color: #bfbfbf;
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-color: #2f80ed;
+        background-position: 100% 0%;
+    }
+}

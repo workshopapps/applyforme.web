@@ -4,136 +4,30 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 
-// const list = [
-//     {
-//         name: "Sharon Sunday",
-//         jobTitle: "Product Design",
-//         plan: "Premium",
-//         salary: "$10,000 - $15,000",
-//         type: "Remote",
-//         details: "View"
-//     },
-//     {
-//         name: "Sharon Sunday",
-//         jobTitle: "Product Design",
-//         plan: "Basic",
-//         salary: "$10,000 - $15,000",
-//         type: "Hybrid",
-//         details: "View"
-//     },
-//     {
-//         name: "Sharon Sunday",
-//         jobTitle: "Product Design",
-//         plan: "Standard",
-//         salary: "$10,000 - $15,000",
-//         type: "Remote",
-//         details: "View"
-//     },
-//     {
-//         name: "Michael Anu",
-//         jobTitle: "Product Design",
-//         plan: "Premium",
-//         salary: "$10,000 - $15,000",
-//         type: "On-site",
-//         details: "View"
-//     },
-//     {
-//         name: "Michael Anu",
-//         jobTitle: "Product Design",
-//         plan: "Basic",
-//         salary: "$10,000 - $15,000",
-//         type: "Remote",
-//         details: "View"
-//     },
-//     {
-//         name: "Michael Anu",
-//         jobTitle: "Product Design",
-//         plan: "Standard",
-//         salary: "$10,000 - $15,000",
-//         type: "Remote",
-//         details: "View"
-//     }
-// ];
-
 const ApplicationList = () => {
-    // const [posts, setPosts] = useState([]);
-    const [listArray, setListArray] = useState([]);
-
-
-    const getList = async () => {
-        try {
-            // console.log("1234")
-            const response = await axios.request({
-                url: 'https://api.applyforme.hng.tech/api/v1/recruiter/application/entries?pageNo=0&pageSize=10&sortBy=id&sortDir=asc',
-                method: 'GET',
-                headers: { Authorization: `Bearer ${localStorage.getItem("tokenHngKey")}`}
-            })
-    
-            // console.log(response.data.content);
-            setListArray(response.data.content)
-        } catch (error) {
-            console.log(error)
-        }
-       }
+    const [listArray, setListArray] = useState();
+    const token = localStorage.getItem("tokenHngKey");
+       const getApplicationDetail = async () => {
+           try {
+               const response = await axios.get(
+                   "https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all",
+                   {
+                       headers: {
+                           "Authorization": `Bearer ${token}`
+                       }
+                   }
+               );
+               console.log(response.data)
+               setListArray(response.data.content);
+               console.log(listArray);
+           } catch (err) {
+               console.log(err.response?.data);
+           }
+       };
        useEffect(() => {
-          getList();
+        getApplicationDetail ();
        }, []);
-      
-
-
-
-       const ArrayCOntent = listArray.map((entry, i) => {
-                return (
-                    // Entry Row
-                    <ul className={classes.stats_row} key={i}>
-                        <li
-                            className={`${classes.stats_item} ${classes.stats_name}`}
-                        >
-                            {entry.name}
-                        </li>
-                        <li
-                            className={`${classes.stats_item} ${classes.desktop_only}`}
-                        >
-                            {entry.job_title}
-                        </li>
-                        <li
-                            className={`${classes.stats_item} ${classes.stats_plan}`}
-                        >
-                            {entry.plan}
-                        </li>
-                        <li
-                            className={`${classes.stats_item} ${classes.desktop_only}`}
-                        >
-                            {entry.salary}
-                        </li>
-                        <li
-                            className={`${classes.stats_item} ${classes.desktop_only}`}
-                        >
-                            {entry.job_type}
-                        </li>
-                        <li
-                            className={`${classes.stats_item} ${classes.stats_details}`}
-                        >
-                            <Link
-                                to="/rr_admin/appilicants_details"
-                                className={classes.stats_details_view_button}
-                            >
-                                {/* {entry.details} */}view
-                            </Link>
-                        </li>
-                    </ul>
-                );
-            });
-
-    // useEffect(() => {
-    //     instance
-    //         .get("https://api.applyforme.hng.tech/api/v1/recruiter/application/entries")
-    //         .then(response => {
-    //             console.log(response);
-    //         })
-    //         .catch(err => console.log(err));
-    // }, []);
-
+       console.log(listArray);
     return (
         // Application stats Table
         <div className={classes.new_applications_stats_table}>
@@ -148,11 +42,6 @@ const ApplicationList = () => {
                     className={`${classes.stats_heading} ${classes.desktop_only}`}
                 >
                     Job title
-                </li>
-                <li
-                    className={`${classes.stats_heading} ${classes.stats_plan}`}
-                >
-                    Plan
                 </li>
                 <li
                     className={`${classes.stats_heading} ${classes.desktop_only}`}
@@ -173,10 +62,43 @@ const ApplicationList = () => {
 
 
             {
-                listArray.length=== 0 ? <div style={{textAlign:"center"}}>The list is empty</div> : {ArrayCOntent}
+               listArray?.length!== 0 ? (
+                    listArray?.map((entry, i) => {
+                        return (
+                            // Entry Row
+                            <ul className={classes.stats_row} key={i}>
+                                <li
+                                    className={`${classes.stats_item} ${classes.stats_name}`}
+                                >
+                                    {entry.profileTitle}
+                                </li>
+                                <li
+                                    className={`${classes.stats_item} ${classes.desktop_only}`}
+                                >
+                                    {entry.desiredJobTitle}
+                                </li>
+                                <li
+                                    className={`${classes.stats_item} ${classes.desktop_only}`}
+                                >
+                                    {entry.salaryRange}
+                                </li>
+                                <li
+                                    className={`${classes.stats_item} ${classes.desktop_only}`}
+                                >
+                                    {entry.preferredJobLocationType}
+                                </li>
+                                <li
+                                    className={`${classes.stats_item} ${classes.stats_details}`}
+                                >
+                                    <Link to={`/professional-profile/user/details/${entry.id}`} className={classes.stats_details_view_button}>
+                                       view
+                                    </Link>
+                                </li>
+                            </ul>
+                        );
+                    })
+                ):<h3 style={{textAlign:"center"}}>No applications have being made</h3>
             }
-
-            
         </div>
     );
 };
