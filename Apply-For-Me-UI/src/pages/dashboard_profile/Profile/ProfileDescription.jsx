@@ -66,7 +66,13 @@ export default function ProfileDescription() {
         return (
             <div className={classes.profile_description}>
                 <div className={classes.sidemarg}>
-                    <TopBar />
+                    <TopBar
+                        title={"My Job Profile"}
+                        style={{
+                            marginTop: "auto"
+                        }}
+                    />
+
                     <button
                         onClick={() => navigate(-1)}
                         className={classes.prev_btn}
@@ -127,7 +133,10 @@ export default function ProfileDescription() {
                                     Click here to download
                                 </p>
                             </a> */}
-                            <Link url={`${oneprofile?.resumeLink}`} />
+                            <Link
+                                url={`${oneprofile?.resumeLink}`}
+                                style={{ textDecoration: "none" }}
+                            />
 
                             <h5>Uploaded CV</h5>
                         </div>

@@ -127,7 +127,13 @@ const CreateProfile = () => {
     } else {
         return (
             <div className={styles.createprofile}>
-                <TopBar />
+                <TopBar
+                    title={"My Job Profile"}
+                    style={{
+                        marginTop: "auto"
+                    }}
+                />
+
                 <p className={styles.createtext}>Let's edit your job profile</p>
                 <div className={styles.content_mobile}>
                     <nav className={styles.buttons_box}>

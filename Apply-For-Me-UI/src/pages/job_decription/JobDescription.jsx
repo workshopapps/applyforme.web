@@ -2,8 +2,9 @@ import React from "react";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { CiLocationOn } from "react-icons/ci";
-import TopNav from "../applications/components/topNav/TopNav";
+// import TopNav from "../applications/components/topNav/TopNav";
 import styles from "./JobDecription.module.css";
+import TopBar from "pages/dashboard_profile/components/TopBar/TopBar";
 
 const job = {
     jobTitle: "UX Researcher",
@@ -34,8 +35,21 @@ In order to strengthen our forces, we are looking for a UX/UI Designer.`,
 
 const JobDescription = () => {
     return (
-        <div>
-            <TopNav title="Job Description" />
+        <div
+            style={{
+                width: "100%"
+            }}
+        >
+            <TopBar
+                title={"Job Description"}
+                style={{
+                    marginTop: "auto",
+                    color: "#2e3192",
+                    fontWeight: "500",
+                    // marginLeft: "12rem",
+                    width: "100%"
+                }}
+            />
             <div className={styles.application_main}>
                 <div className={styles.job_header}>
                     <h4>{job.jobTitle}</h4>

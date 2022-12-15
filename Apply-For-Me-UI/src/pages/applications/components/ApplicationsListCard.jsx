@@ -1,8 +1,9 @@
 import styles from "../Applications.module.css";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-import { BsPlusLg } from "react-icons/bs";
+// import { BsPlusLg } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
 import ApplicationsListHeader from "./ApplicationsListHeader";
+import blueadd from "../../dashboard_profile/assets/blue-add.png";
 import { Link } from "react-router-dom";
 const ApplicationCard = ({ application }) => {
     return (
@@ -45,9 +46,14 @@ const ApplicationsListCard = ({ applications }) => {
                     />
                 ))}
             </div>
-            <button className={styles.applications_sort}>
+            <Link to="/dashboard/user/create-profile">
+                <div className="btn_plus_fixed">
+                    <img src={blueadd} alt="add" />
+                </div>
+            </Link>
+            {/* <button className={styles.applications_sort}>
                 <Link to="/dashboard/user/create-profile"><BsPlusLg /></Link>
-            </button>
+            </button> */}
         </div>
     );
 };
