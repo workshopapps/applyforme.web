@@ -45,7 +45,13 @@ const NoProfile = () => {
         } else {
             return (
                 <div className={styles.noprofile}>
-                    <TopBar />
+                    <TopBar
+                        title={"My Job Profile"}
+                        style={{
+                            marginTop: "auto"
+                        }}
+                    />
+
                     <span
                         className={styles.noprofile_body}
                         id={styles.desktop_view}

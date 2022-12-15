@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./editProfileInformation.css";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
@@ -7,7 +8,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export const EditInfoContent = ({ setEditModal, img }) => {
-    const [countries, setCountries] = useState()
+    const [countries, setCountries] = useState();
     const getCountry = async () => {
         try {
             const response = await axios.get(
@@ -18,9 +19,9 @@ export const EditInfoContent = ({ setEditModal, img }) => {
             toast.error("An error occured.Request failed");
         }
     };
-    useEffect(()=>{
-        getCountry()
-    },[])
+    useEffect(() => {
+        getCountry();
+    }, []);
 
     const onSubmit = (values, actions) => {
         const sendToEndPoint = async () => {
@@ -28,22 +29,19 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                 const response = await axios.post(
                     "https://api.applyforme.hng.tech/api/v1/recruiter/update",
                     {
-                        
-                            "avatar": resFromContrl,
-                            "first_name": values.first_name,
-                            "last_name": values.last_name,
-                            "nationality": values.nationality,
-                            "country_of_residence": values.country_of_residence,
-                            "date_of_birth":values.date_of_birth,
-                            "current_job_title": values.current_job_title,
-                            "email_address": values.email_address,
-                            "username": values.username,
-                            "phone_number": values.phone_number,
-                            "city":values.city,
-                            "state": values.state,
-                            "address": values.address,
-                          
-                        
+                        "avatar": resFromContrl,
+                        "first_name": values.first_name,
+                        "last_name": values.last_name,
+                        "nationality": values.nationality,
+                        "country_of_residence": values.country_of_residence,
+                        "date_of_birth": values.date_of_birth,
+                        "current_job_title": values.current_job_title,
+                        "email_address": values.email_address,
+                        "username": values.username,
+                        "phone_number": values.phone_number,
+                        "city": values.city,
+                        "state": values.state,
+                        "address": values.address
                     }
                 );
                 setResFromContrl(response?.data);
@@ -53,46 +51,44 @@ export const EditInfoContent = ({ setEditModal, img }) => {
             }
         };
         sendToEndPoint();
-        
+
         actions.resetForm();
     };
     const [fileToUpload, setFileToUpload] = useState("");
     const [resFromContrl, setResFromContrl] = useState("");
-    const handleImageUpload = (e)=>{
-        const file = e.target.files[0]
-        TransformFile(file)
-    }
+    const handleImageUpload = e => {
+        const file = e.target.files[0];
+        TransformFile(file);
+    };
 
-    const TransformFile = (file)=>{
-       const reader = new FileReader()
-       if(file){
-        reader.readAsDataURL(file)
-        reader.onloadend = ()=>{
-            setFileToUpload(reader.result)
-            console.log(fileToUpload)
-        }
+    const TransformFile = file => {
+        const reader = new FileReader();
+        if (file) {
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                setFileToUpload(reader.result);
+                console.log(fileToUpload);
+            };
             const sendToUploaderController = async () => {
                 try {
                     const response = await axios.post(
                         "https://api.applyforme.hng.tech/api/v1/upload/pre-signed-avatar",
                         {
-                            params:{
-                                extension:fileToUpload
+                            params: {
+                                extension: fileToUpload
                             }
-                            
                         }
                     );
                     setResFromContrl(response?.data);
-                    toast.success("Upload complete")
+                    toast.success("Upload complete");
                     console.log(response?.data);
                 } catch (err) {
                     console.log(err?.response?.data);
                 }
             };
             sendToUploaderController();
-
-       }
-    }
+        }
+    };
     const { values, handleBlur, handleChange, touched, errors, handleSubmit } =
         useFormik({
             // form state
@@ -100,16 +96,17 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                 first_name: "",
                 last_name: "",
                 date_of_birth: "",
-                current_job_title:"current_job_title",
+                current_job_title: "current_job_title",
                 email_address: "",
                 phone_number: "",
-                nationality:"",
-                country_of_residence:0,
-                nationality:0,
+                nationality: "",
+                country_of_residence: 0,
+                // eslint-disable-next-line no-dupe-keys
+                nationality: 0,
                 city: "",
                 state: "",
-                avatar:"",
-                address: "",
+                avatar: "",
+                address: ""
             },
             //   form validation
             validationSchema: Yup.object().shape({
@@ -133,7 +130,7 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                 date_of_birth: Yup.string().required(
                     "Please select your date of birth"
                 ),
-                avatar:Yup.string().required("please choose a profile picture")
+                avatar: Yup.string().required("please choose a profile picture")
             }),
 
             onSubmit
@@ -144,13 +141,13 @@ export const EditInfoContent = ({ setEditModal, img }) => {
             <form onSubmit={handleSubmit}>
                 <div className="edit_field">
                     <label htmlFor="avatar">
-                        <input 
-                            type="file" 
-                            id="avatar" 
+                        <input
+                            type="file"
+                            id="avatar"
                             name="avatar"
                             onChange={handleImageUpload}
                         />
-                        <img src={img} alt="object not found"/>
+                        <img src={img} alt="object not found" />
                     </label>
                     <input
                         type="text"
@@ -363,7 +360,7 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                     )}
                 </div>
 
-                 <div className="edit_field">
+                <div className="edit_field">
                     <input
                         type="text"
                         name="current_job_title"
@@ -407,7 +404,7 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                         })}
                     </select>
 
-                     <select
+                    <select
                         name="country_of_residence"
                         id="country_of_residence"
                         className={
