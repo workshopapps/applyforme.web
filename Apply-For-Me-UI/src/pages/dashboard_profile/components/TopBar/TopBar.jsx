@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const TopBar = ({ title, style, subtitle, subStyle }) => {
     const { user } = useSelector(state => state.user);
-    console.log(user);
+
     const userName = user.fullName;
     return (
         <div className={styles.topbar}>
