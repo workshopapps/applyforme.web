@@ -12,7 +12,7 @@ import axios from "axios";
 
 const CreateProfile = () => {
     const [step, setStep] = useState(0);
-    const [keywords, setKeywords] = useState([]);
+    const [keywords, setKeywords] = useState(["none"]);
     const [done, setDone] = useState(null);
     const [fullProfiles, setFullProfiles] = useState();
     const { id } = useParams();
@@ -128,9 +128,7 @@ const CreateProfile = () => {
         return (
             <div className={styles.createprofile}>
                 <TopBar />
-                <p className={styles.createtext}>
-                    Let's create a new job profile
-                </p>
+                <p className={styles.createtext}>Let's edit your job profile</p>
                 <div className={styles.content_mobile}>
                     <nav className={styles.buttons_box}>
                         <button

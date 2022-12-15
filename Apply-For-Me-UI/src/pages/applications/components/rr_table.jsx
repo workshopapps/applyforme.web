@@ -49,7 +49,7 @@ const Table = () => {
         <div className={styles.applications_table_wrapper}>
             <ApplicationsListHeader />
             <div className={styles.applications_table_container}>
-                <table>
+                <table  className={styles.rrtable}>
                     <thead>
                         <tr className={styles.applications_table_head_row}>
                             <th>Name</th>
