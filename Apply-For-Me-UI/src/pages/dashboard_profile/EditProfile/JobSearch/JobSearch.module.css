@@ -1,23 +1,31 @@
 p {
     margin: 0;
 }
+
 .remotecheckbox {
     display: flex;
     gap: 1rem;
     margin-block: 1rem;
 }
+
 .remotecheckbox input {
     width: 1.5rem;
     height: 1.5rem;
 }
+
 .remotecheckbox label {
     font-weight: 400;
     font-size: 1rem;
     color: #737373;
 }
+
 .dropdownbox {
     display: block;
     margin-top: 0.6rem;
+}
+
+.dropdownbox h5 {
+    padding-top: 0.25rem;
 }
 
 @media screen and (min-width: 850px) {
@@ -28,6 +36,7 @@ p {
         margin-bottom: 1.5rem;
     }
 }
+
 @media screen and (max-width: 850px) {
     .detailsdropdown_box {
         display: flex;
@@ -37,16 +46,19 @@ p {
         margin-bottom: 1.5rem;
     }
 }
+
 .detailsdropdown_box p {
     font-weight: 400;
     font-size: 1rem;
     color: #999999;
 }
+
 .detailsdropdown_box div {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.25rem;
 }
+
 .uploadcv_box {
     margin-top: 1rem;
     width: 90%;
@@ -54,6 +66,7 @@ p {
     border: 1px solid #bfbfbf;
     border-radius: 3px;
 }
+
 .uploadcv_box p {
     font-weight: 500;
     font-size: 1rem;
@@ -61,15 +74,18 @@ p {
     color: #222226;
     margin-bottom: 1rem;
 }
+
 .uploaded_file {
     margin-block: 2rem;
     display: flex;
     gap: 0.75rem;
 }
+
 .uploaded_file img {
     width: 2rem;
     height: 2rem;
 }
+
 .uploaded_file button {
     background-color: transparent;
     border: none;
@@ -100,6 +116,7 @@ p {
         background-position: 100% 0%;
     }
 }
+
 /* upload icon    */
 .doc_icon {
     font-size: 2rem;
