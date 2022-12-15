@@ -172,6 +172,10 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
             professionalProfile.setDesiredJobTitle(body.getDesiredJobTitle());
         }
         professionalProfile = repository.updateOne(professionalProfile);
+        professionalProfile.getProfessional().setProfessionalProfiles(null);
+        professionalProfile.getProfessional().setSubmissions(null);
+        professionalProfile.getProfessional().setMember(null);
+
 
         return professionalProfile;
     }
