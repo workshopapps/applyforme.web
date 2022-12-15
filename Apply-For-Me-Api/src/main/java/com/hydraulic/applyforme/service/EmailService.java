@@ -7,7 +7,6 @@ import org.springframework.scheduling.annotation.Async;
 
 public interface EmailService {
     public void sendWelcomeMessage(String emailAddress);
-    public void sendRegistrationMessageToRecruiter(String emailAddress, String password);
     public String getByResetPasswordToken(String token);
     public void sendResetPasswordMail(String recipientEmail, String baseUrl);
     @Async
