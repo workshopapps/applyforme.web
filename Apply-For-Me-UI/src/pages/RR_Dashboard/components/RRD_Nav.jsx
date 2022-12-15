@@ -2,21 +2,22 @@ import React, { useState } from "react";
 import classes from "../../../components/dashboard/DashboardHeader.module.css";
 import Logo from "../../../assets/images/nav_logo.svg";
 import Notification from "../../../assets/images/notification.svg";
-import ProfilePic from "../../../assets/images/profileImg.png";
+import LetteredAvatar from "react-lettered-avatar";
 import Search from "../../../assets/images/search.svg";
 import SearchBlue from "../../../assets/images/search_blue.svg";
 import Menu from "../../../assets/images/menu.svg";
 import Signout from "../../../assets/images/signout.svg";
 import { MobileNav } from "components/dashboard/mobileNav";
 import { useNavigate } from "react-router-dom";
-import { userInfo } from "store/slice/UserSlice"; 
+import { userInfo } from "store/slice/UserSlice";
 import ProfileIcon from "../../../assets/images/profile-circle.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const RRD_Nav = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const { user } = useSelector(state => state.user);
+    const userName = user.fullName;
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
@@ -26,13 +27,11 @@ const RRD_Nav = () => {
         event.target.search.value = "";
         // Quota submission code goes here
     };
-    const handleSignOut =()=>{
-        
+    const handleSignOut = () => {
         localStorage.removeItem("tokenHngKey");
         dispatch(userInfo(""));
         navigate("/");
-    
-    }
+    };
 
     return (
         <section className={classes.main_container}>
@@ -49,7 +48,11 @@ const RRD_Nav = () => {
                             />
                         )}
 
-                        <img src={Logo} alt="Apply for me logo" onClick={()=>navigate("/")}/>
+                        <img
+                            src={Logo}
+                            alt="Apply for me logo"
+                            onClick={() => navigate("/")}
+                        />
                     </div>
 
                     <section className={classes.swap_nav}>
@@ -83,9 +86,9 @@ const RRD_Nav = () => {
                                 className={classes.user_avater}
                                 onClick={() => setShowMenuProfile(true)}
                             >
-                                <img
-                                    src={ProfilePic}
-                                    alt="User Profile Picture"
+                                <LetteredAvatar
+                                    name={userName}
+                                    backgroundColor={"#78909c"}
                                 />
                             </div>
                             {showMenuProfile && (
@@ -116,7 +119,9 @@ const RRD_Nav = () => {
                                                 src={Signout}
                                                 alt="Signout logo"
                                             />
-                                            <p onClick={handleSignOut}>Sign out</p>
+                                            <p onClick={handleSignOut}>
+                                                Sign out
+                                            </p>
                                         </li>
                                     </ul>
                                 </div>
