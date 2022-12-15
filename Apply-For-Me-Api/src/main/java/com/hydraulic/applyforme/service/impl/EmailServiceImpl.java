@@ -135,7 +135,7 @@ public class EmailServiceImpl implements EmailService {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom("hngteamhydraulic@gmail.com");
+            helper.setFrom(env.getProperty("applyforme.email"));
             helper.setTo(emailAddress);
             helper.setSubject(subject);
             helper.setText(content, true);
@@ -270,7 +270,7 @@ public class EmailServiceImpl implements EmailService {
             MimeMessageHelper helper = new MimeMessageHelper(message);
 
             helper.setFrom(senderEmail);
-            helper.setTo("hngteamhydraulic@gmail.com");
+            helper.setTo(env.getProperty("applyforme.email"));
             helper.setSubject(subject);
             helper.setText(content, true);
             javaMailSender.send(message);
@@ -284,6 +284,7 @@ public class EmailServiceImpl implements EmailService {
     * */
 
     @Override
+    @Async
     public void sendResetPasswordCode(String recipientEmail, String code) {
 
         String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
@@ -309,7 +310,7 @@ public class EmailServiceImpl implements EmailService {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message);
-            helper.setFrom("hngteamhydraulic@gmail.com");
+            helper.setFrom(env.getProperty("applyforme.email"));
             helper.setTo(recipientEmail);
             helper.setSubject(subject);
             helper.setText(content, true);
@@ -364,7 +365,7 @@ public class EmailServiceImpl implements EmailService {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom("hngteamhydraulic@gmail.com");
+            helper.setFrom(env.getProperty("applyforme.email"));
             helper.setTo("volunux@gmail.com");
             helper.setSubject(subject);
             helper.setText(content, true);

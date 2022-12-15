@@ -74,15 +74,16 @@ public class AuthenticationController {
 
     // This end point should be used by FE Devs
     @PostMapping("/send-otp-for-reset-password")
-    public String sendOtpForPasswordReset(@RequestParam String email){
-        return authenticationService.sendOtpForPasswordReset(email);
+    public boolean sendOtpForPasswordReset(@RequestParam String email) {
+        authenticationService.sendOtpForPasswordReset(email);
+        return true;
     }
 
     //  This EndPoint should also be used by  FE DEv too
     @PostMapping("/reset-password")
-    public String resetPassword(@Validated @RequestBody ResetPasswordDto passwordDto) {
-        return authenticationService.resetPassword(passwordDto);
-
+    public boolean resetPassword(@Validated @RequestBody ResetPasswordDto passwordDto) {
+        authenticationService.resetPassword(passwordDto);
+        return true;
     }
 
     @PostMapping("/sign-in")

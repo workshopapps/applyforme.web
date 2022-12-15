@@ -14,13 +14,11 @@ import javax.persistence.*;
 public class TokenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GenericGenerator(name = "uuid", strategy = "uuid2")
-//    @Column(updatable = false, nullable = false)
     private Long id;
 
     private String otp;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -30,7 +28,7 @@ public class TokenEntity {
         return "PasswordResetTokenEntity{" +
                 "id='" + id + '\'' +
                 ", otp='" + otp + '\'' +
-                ", member=" + member +
+                ", member=" + member.getEmailAddress() +
                 '}';
     }
 }
