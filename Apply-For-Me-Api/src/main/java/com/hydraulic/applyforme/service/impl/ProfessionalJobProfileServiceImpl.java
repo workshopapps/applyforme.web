@@ -171,13 +171,7 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
         if (body.getDesiredJobTitle() != null) {
             professionalProfile.setDesiredJobTitle(body.getDesiredJobTitle());
         }
-        professionalProfile = repository.updateOne(professionalProfile);
-        professionalProfile.getProfessional().setProfessionalProfiles(null);
-        professionalProfile.getProfessional().setSubmissions(null);
-        professionalProfile.getProfessional().setMember(null);
-
-
-        return professionalProfile;
+        return repository.updateOne(professionalProfile);
     }
 
     @Override

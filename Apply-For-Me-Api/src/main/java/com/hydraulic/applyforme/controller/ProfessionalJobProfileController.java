@@ -42,9 +42,12 @@ public class ProfessionalJobProfileController {
     }
 
     @PutMapping("/update/{id}")
-    public boolean update(@Validated @RequestBody ProfessionalProfileDto body, @PathVariable(name ="id") Long id) {
-        service.update(id, body);
-        return true;
+    public ProfessionalProfile update(@Validated @RequestBody ProfessionalProfileDto body, @PathVariable(name ="id") Long id) {
+        ProfessionalProfile professionalProfile = service.update(id, body);
+        professionalProfile.getProfessional().setProfessionalProfiles(null);
+        professionalProfile.getProfessional().setSubmissions(null);
+        professionalProfile.getProfessional().setMember(null);
+        return professionalProfile;
     }
 
 
