@@ -1,16 +1,98 @@
 import "./editProfileInformation.css";
 import { useDispatch } from "react-redux";
-import { updateSuperAdminProfileInfo } from "store/slice/RR_AdminSlice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export const EditInfoContent = ({ setEditModal, img }) => {
-    const dispatch = useDispatch();
+    const [countries, setCountries] = useState()
+    const getCountry = async () => {
+        try {
+            const response = await axios.get(
+                "https://api.applyforme.hng.tech/api/v1/country/entries/all"
+            );
+            setCountries(response?.data);
+        } catch (err) {
+            toast.error("An error occured.Request failed");
+        }
+    };
+    useEffect(()=>{
+        getCountry()
+    },[])
+
     const onSubmit = (values, actions) => {
-        dispatch(updateSuperAdminProfileInfo(values));
+        const sendToEndPoint = async () => {
+            try {
+                const response = await axios.post(
+                    "https://api.applyforme.hng.tech/api/v1/recruiter/update",
+                    {
+                        
+                            "avatar": resFromContrl,
+                            "first_name": values.first_name,
+                            "last_name": values.last_name,
+                            "nationality": values.nationality,
+                            "country_of_residence": values.country_of_residence,
+                            "date_of_birth":values.date_of_birth,
+                            "current_job_title": values.current_job_title,
+                            "email_address": values.email_address,
+                            "username": values.username,
+                            "phone_number": values.phone_number,
+                            "city":values.city,
+                            "state": values.state,
+                            "address": values.address,
+                          
+                        
+                    }
+                );
+                setResFromContrl(response?.data);
+                console.log(response?.data);
+            } catch (err) {
+                console.log(err?.response?.data);
+            }
+        };
+        sendToEndPoint();
+        
         actions.resetForm();
     };
+    const [fileToUpload, setFileToUpload] = useState("");
+    const [resFromContrl, setResFromContrl] = useState("");
+    const handleImageUpload = (e)=>{
+        const file = e.target.files[0]
+        TransformFile(file)
+    }
 
+    const TransformFile = (file)=>{
+       const reader = new FileReader()
+       if(file){
+        reader.readAsDataURL(file)
+        reader.onloadend = ()=>{
+            setFileToUpload(reader.result)
+            console.log(fileToUpload)
+        }
+            const sendToUploaderController = async () => {
+                try {
+                    const response = await axios.post(
+                        "https://api.applyforme.hng.tech/api/v1/upload/pre-signed-avatar",
+                        {
+                            params:{
+                                extension:fileToUpload
+                            }
+                            
+                        }
+                    );
+                    setResFromContrl(response?.data);
+                    toast.success("Upload complete")
+                    console.log(response?.data);
+                } catch (err) {
+                    console.log(err?.response?.data);
+                }
+            };
+            sendToUploaderController();
+
+       }
+    }
     const { values, handleBlur, handleChange, touched, errors, handleSubmit } =
         useFormik({
             // form state
@@ -18,10 +100,16 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                 first_name: "",
                 last_name: "",
                 date_of_birth: "",
+                current_job_title:"current_job_title",
                 email_address: "",
                 phone_number: "",
+                nationality:"",
+                country_of_residence:0,
+                nationality:0,
                 city: "",
-                state: ""
+                state: "",
+                avatar:"",
+                address: "",
             },
             //   form validation
             validationSchema: Yup.object().shape({
@@ -44,7 +132,8 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                 state: Yup.string().required("please enter your state"),
                 date_of_birth: Yup.string().required(
                     "Please select your date of birth"
-                )
+                ),
+                avatar:Yup.string().required("please choose a profile picture")
             }),
 
             onSubmit
@@ -54,8 +143,13 @@ export const EditInfoContent = ({ setEditModal, img }) => {
         <div className="edit_profileContent">
             <form onSubmit={handleSubmit}>
                 <div className="edit_field">
-                    <label htmlFor="profile">
-                        <input type="file" id="profile" name="profile"/>
+                    <label htmlFor="avatar">
+                        <input 
+                            type="file" 
+                            id="avatar" 
+                            name="avatar"
+                            onChange={handleImageUpload}
+                        />
                         <img src={img} alt="object not found"/>
                     </label>
                     <input
@@ -225,15 +319,113 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                         name="state"
                         id="state"
                         className={
-                            touched.state && errors.state ? "input-error" : ""
+                            touched.city && errors.city ? "input-error" : ""
                         }
                         value={values.state}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder="State"
+                        placeholder="state"
                     />
-
                     {touched.state && errors.state && (
+                        <small
+                            style={{
+                                color: "#EB5757",
+                                paddingTop: "0.1rem"
+                            }}
+                        >
+                            {errors.city}
+                        </small>
+                    )}
+                </div>
+
+                <div className="edit_field">
+                    <input
+                        type="text"
+                        name="address"
+                        id="address"
+                        className={
+                            touched.city && errors.city ? "input-error" : ""
+                        }
+                        value={values.address}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="address"
+                    />
+                    {touched.address && errors.address && (
+                        <small
+                            style={{
+                                color: "#EB5757",
+                                paddingTop: "0.1rem"
+                            }}
+                        >
+                            {errors.address}
+                        </small>
+                    )}
+                </div>
+
+                 <div className="edit_field">
+                    <input
+                        type="text"
+                        name="current_job_title"
+                        id="current_job_title"
+                        className={
+                            touched.city && errors.city ? "input-error" : ""
+                        }
+                        value={values.current_job_title}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="current job title"
+                    />
+                    {touched.current_job_title && errors.current_job_title && (
+                        <small
+                            style={{
+                                color: "#EB5757",
+                                paddingTop: "0.1rem"
+                            }}
+                        >
+                            {errors.current_job_title}
+                        </small>
+                    )}
+                </div>
+
+                <div className="edit_field">
+                    <select
+                        name="nationality"
+                        id="nationality"
+                        className={
+                            touched.state && errors.state ? "input-error" : ""
+                        }
+                        onChange={handleChange}
+                    >
+                        {countries?.map(country => {
+                            const { id, title } = country;
+                            return (
+                                <option key={id} value={id}>
+                                    {title}
+                                </option>
+                            );
+                        })}
+                    </select>
+
+                     <select
+                        name="country_of_residence"
+                        id="country_of_residence"
+                        className={
+                            touched.state && errors.state ? "input-error" : ""
+                        }
+                        onChange={handleChange}
+                    >
+                        {countries?.map(country => {
+                            const { id, title } = country;
+                            return (
+                                <option key={id} value={id}>
+                                    {title}
+                                </option>
+                            );
+                        })}
+                    </select>
+
+                    {touched.nationality && errors.nationality && (
                         <small
                             style={{
                                 color: "#EB5757",
@@ -244,7 +436,6 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                         </small>
                     )}
                 </div>
-
                 <div className="editButtonDiv">
                     <button
                         type="button"

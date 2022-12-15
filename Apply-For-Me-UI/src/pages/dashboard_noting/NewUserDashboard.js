@@ -13,25 +13,30 @@ const NewUserDashboard = () => {
     const username = user.fullName;
     const userName = username?.split(" ")[0];
     const token = localStorage.getItem("tokenHngKey");
-    const [statValue, setStatValue] = useState();
-    const getStatisticsDetail = async () => {
-        try {
-            const response = await axios.get(
-                "https://api.applyforme.hng.tech/api/v1/member/stats",
-                {
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
-                }
-            );
-            setStatValue(response?.data);
-        } catch (err) {
-            console.log(err?.response?.data);
-        }
-    };
+    const [value, setValue] = useState({})
+
     useEffect(() => {
-        getStatisticsDetail();
+        fetch(
+            `https://api.applyforme.hng.tech/api/v1/member/stats`,
+            {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+            )
+            .then(response => response.json())
+            .then(data => {
+                setValue(data);
+                console.log(data)
+                
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }, []);
+
+    console.log(value);
+    
     return (
         <div className="dashboardnothing">
             {/* this is the top stripe */}
@@ -59,7 +64,7 @@ const NewUserDashboard = () => {
                 <div className="overview-cards-wrapper">
                     <div className="overview-card-wrapper">
                         <div className="overview-card">
-                            <h3>{statValue?.total_number_of_profile}</h3>
+                            <h3>{value?.total_number_of_submissions}</h3>
                             <p>Total Submissions</p>
                         </div>
                     </div>
@@ -73,7 +78,7 @@ const NewUserDashboard = () => {
 
                     <div className="overview-card-wrapper">
                         <div className="overview-card">
-                            <h3>{statValue?.total_number_of_profile}</h3>
+                            <h3>{value?.total_number_of_profiles}</h3>
                             <p>Totals Applications</p>
                         </div>
                     </div>
