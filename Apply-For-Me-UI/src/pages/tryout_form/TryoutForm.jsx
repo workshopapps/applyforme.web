@@ -66,11 +66,11 @@ const TryoutForm = () => {
             .catch(error => {
                 return error?.response.data;
             });
-        if (res.code == "409") {
+        if (res.code === "409") {
             toast.error(res.message);
         }
 
-        if (res.status == "200") {
+        if (res.status === "200") {
             navigate("/tryout-form/success");
         }
     };

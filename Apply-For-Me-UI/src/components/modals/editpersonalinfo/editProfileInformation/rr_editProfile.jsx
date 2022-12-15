@@ -3,106 +3,96 @@ import "./editProfileInformation.css";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+//import axios from "axios";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-
-export const EditInfoContent = ({ setEditModal, img }) => {
+//import { toast } from "react-toastify";
+import Dropdown from "pages/dashboard_profile/components/Dropdown/Dropdown";
+import { updateReverseRecruiterProfileInfo } from "store/slice/RR_AdminSlice";
+export const EditInfoContent = ({ setEditModal, details }) => {
     const [countries, setCountries] = useState();
-    const getCountry = async () => {
-        try {
-            const response = await axios.get(
-                "https://api.applyforme.hng.tech/api/v1/country/entries/all"
-            );
-            setCountries(response?.data);
-        } catch (err) {
-            toast.error("An error occured.Request failed");
-        }
-    };
+    const uniqueTitles = new Set(
+        countries?.map(onecountry => onecountry.title)
+    );
+    const dispatch = useDispatch();
+    const countryNames = Array.from(uniqueTitles)?.map(title => ({
+        label: title,
+        value: title
+    }));
     useEffect(() => {
-        getCountry();
+        fetch("https://api.applyforme.hng.tech/api/v1/country/entries/all")
+            .then(response => response.json())
+            .then(data => setCountries(data));
     }, []);
 
     const onSubmit = (values, actions) => {
-        const sendToEndPoint = async () => {
-            try {
-                const response = await axios.post(
-                    "https://api.applyforme.hng.tech/api/v1/recruiter/update",
-                    {
-                        "avatar": resFromContrl,
-                        "first_name": values.first_name,
-                        "last_name": values.last_name,
-                        "nationality": values.nationality,
-                        "country_of_residence": values.country_of_residence,
-                        "date_of_birth": values.date_of_birth,
-                        "current_job_title": values.current_job_title,
-                        "email_address": values.email_address,
-                        "username": values.username,
-                        "phone_number": values.phone_number,
-                        "city": values.city,
-                        "state": values.state,
-                        "address": values.address
-                    }
-                );
-                setResFromContrl(response?.data);
-                console.log(response?.data);
-            } catch (err) {
-                console.log(err?.response?.data);
-            }
-        };
-        sendToEndPoint();
-
+        console.log(values);
+        // const sendToEndPoint = async () => {
+        //     try {
+        //         const response = await axios.put(
+        //             "https://api.applyforme.hng.tech/api/v1/recruiter/update",
+        //             values,
+        //             {
+        //                 headers: {
+        //                     "Authorization": `Bearer ${token}`
+        //                 }
+        //             }
+        //         );
+        //         console.log(response?.data);
+        //     } catch (err) {
+        //         console.log(err?.response?.data);
+        //     }
+        // };
+        // sendToEndPoint();
+        dispatch(updateReverseRecruiterProfileInfo(values));
         actions.resetForm();
     };
-    const [fileToUpload, setFileToUpload] = useState("");
-    const [resFromContrl, setResFromContrl] = useState("");
-    const handleImageUpload = e => {
-        const file = e.target.files[0];
-        TransformFile(file);
-    };
+    // const [fileToUpload, setFileToUpload] = useState("");
+    // const [resFromContrl, setResFromContrl] = useState("");
+    // const handleImageUpload = e => {
+    //     const file = e.target.files[0];
+    //     TransformFile(file);
+    // };
 
-    const TransformFile = file => {
-        const reader = new FileReader();
-        if (file) {
-            reader.readAsDataURL(file);
-            reader.onloadend = () => {
-                setFileToUpload(reader.result);
-                console.log(fileToUpload);
-            };
-            const sendToUploaderController = async () => {
-                try {
-                    const response = await axios.post(
-                        "https://api.applyforme.hng.tech/api/v1/upload/pre-signed-avatar",
-                        {
-                            params: {
-                                extension: fileToUpload
-                            }
-                        }
-                    );
-                    setResFromContrl(response?.data);
-                    toast.success("Upload complete");
-                    console.log(response?.data);
-                } catch (err) {
-                    console.log(err?.response?.data);
-                }
-            };
-            sendToUploaderController();
-        }
-    };
+    // const TransformFile = file => {
+    //     const reader = new FileReader();
+    //     if (file) {
+    //         reader.readAsDataURL(file);
+    //         reader.onloadend = () => {
+    //             setFileToUpload(reader.result);
+    //             console.log(fileToUpload);
+    //         };
+    //         const sendToUploaderController = async () => {
+    //             try {
+    //                 const response = await axios.post(
+    //                     "https://api.applyforme.hng.tech/api/v1/upload/pre-signed-avatar",
+    //                     {
+    //                         params: {
+    //                             extension: fileToUpload
+    //                         }
+    //                     }
+    //                 );
+    //                 setResFromContrl(response?.data);
+    //                 toast.success("Upload complete");
+    //                 return response?.data;
+    //             } catch (err) {
+    //                 return err?.response?.data;
+    //             }
+    //         };
+    //         sendToUploaderController();
+    //     }
+    // };
     const { values, handleBlur, handleChange, touched, errors, handleSubmit } =
         useFormik({
             // form state
             initialValues: {
-                first_name: "",
-                last_name: "",
-                date_of_birth: "",
-                current_job_title: "current_job_title",
-                email_address: "",
-                phone_number: "",
-                nationality: "",
-                country_of_residence: 0,
-                // eslint-disable-next-line no-dupe-keys
-                nationality: 0,
+                first_name: details?.firstName,
+                last_name: details?.lastName,
+                date_of_birth: details?.dateOfBirth,
+                current_job_title: details?.currentJobTitle,
+                email_address: details?.emailAddress,
+                phone_number: details?.phoneNumber,
+                nationality: details?.nationality?.title,
+                country_of_residence: details?.countryOfResidence?.title,
                 city: "",
                 state: "",
                 avatar: "",
@@ -130,7 +120,9 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                 date_of_birth: Yup.string().required(
                     "Please select your date of birth"
                 ),
-                avatar: Yup.string().required("please choose a profile picture")
+                country_of_residence: Yup.string().required(
+                    "please enter your country of residence"
+                )
             }),
 
             onSubmit
@@ -140,7 +132,7 @@ export const EditInfoContent = ({ setEditModal, img }) => {
         <div className="edit_profileContent">
             <form onSubmit={handleSubmit}>
                 <div className="edit_field">
-                    <label htmlFor="avatar">
+                    {/* <label htmlFor="avatar">
                         <input
                             type="file"
                             id="avatar"
@@ -148,7 +140,7 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                             onChange={handleImageUpload}
                         />
                         <img src={img} alt="object not found" />
-                    </label>
+                    </label> */}
                     <input
                         type="text"
                         name="first_name"
@@ -316,7 +308,7 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                         name="state"
                         id="state"
                         className={
-                            touched.city && errors.city ? "input-error" : ""
+                            touched.state && errors.state ? "input-error" : ""
                         }
                         value={values.state}
                         onChange={handleChange}
@@ -330,7 +322,7 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                                 paddingTop: "0.1rem"
                             }}
                         >
-                            {errors.city}
+                            {errors.state}
                         </small>
                     )}
                 </div>
@@ -341,7 +333,9 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                         name="address"
                         id="address"
                         className={
-                            touched.city && errors.city ? "input-error" : ""
+                            touched.address && errors.address
+                                ? "input-error"
+                                : ""
                         }
                         value={values.address}
                         onChange={handleChange}
@@ -386,52 +380,46 @@ export const EditInfoContent = ({ setEditModal, img }) => {
                 </div>
 
                 <div className="edit_field">
-                    <select
-                        name="nationality"
-                        id="nationality"
-                        className={
-                            touched.state && errors.state ? "input-error" : ""
-                        }
+                    <Dropdown
+                        options={countryNames}
+                        width={100}
+                        placeholderText="Nationality"
+                        value={values.nationality}
+                        id={"nationality"}
                         onChange={handleChange}
-                    >
-                        {countries?.map(country => {
-                            const { id, title } = country;
-                            return (
-                                <option key={id} value={id}>
-                                    {title}
-                                </option>
-                            );
-                        })}
-                    </select>
-
-                    <select
-                        name="country_of_residence"
-                        id="country_of_residence"
-                        className={
-                            touched.state && errors.state ? "input-error" : ""
-                        }
-                        onChange={handleChange}
-                    >
-                        {countries?.map(country => {
-                            const { id, title } = country;
-                            return (
-                                <option key={id} value={id}>
-                                    {title}
-                                </option>
-                            );
-                        })}
-                    </select>
-
+                        onBlur={handleBlur}
+                    />
                     {touched.nationality && errors.nationality && (
                         <small
                             style={{
-                                color: "#EB5757",
                                 paddingTop: "0.1rem"
                             }}
                         >
                             {errors.state}
                         </small>
                     )}
+                </div>
+
+                <div className="edit_field">
+                    <Dropdown
+                        options={countryNames}
+                        width={100}
+                        placeholderText="Country of residence"
+                        value={values.country_of_residence}
+                        id={"country of residence"}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    {touched.country_of_residence &&
+                        errors.country_of_residence && (
+                            <small
+                                style={{
+                                    paddingTop: "0.1rem"
+                                }}
+                            >
+                                {errors.country_of_residence}
+                            </small>
+                        )}
                 </div>
                 <div className="editButtonDiv">
                     <button
