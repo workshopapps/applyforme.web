@@ -120,24 +120,57 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
             throw new ProfessionalNotFoundException(id);
         }
 
-        professionalProfile.setOtherComment(body.getOtherComment());
-        professionalProfile.setOtherSkills(body.getOtherSkills());
-        professionalProfile.setCoverLetterLink(body.getCoverLetterLink());
-        professionalProfile.setCoverLetterSubject(body.getCoverLetterSubject());
-        professionalProfile.setCoverLetterContent(body.getCoverLetterContent());
-        professionalProfile.setProfileTitle(body.getProfileTitle());
-        professionalProfile.setYearsOfExperience(body.getYearsOfExperience());
-        professionalProfile.setPreferredJobLocationType(ProfessionalProfileUtil.getJobLocationType(body.getPreferredJobLocationType()));
-        professionalProfile.setSalaryRange(body.getSalaryRange());
-        professionalProfile.setResumeLink(body.getResumeLink());
-        professionalProfile.setPassportLink(body.getPassportLink());
-        professionalProfile.setJobSeniority(ProfessionalProfileUtil.getJobSeniority(body.getJobSeniority()));
-        professionalProfile.setJobLocation(body.getJobLocation());
-        professionalProfile.setIncludedKeywords(body.getIncludedKeywords());
-        professionalProfile.setEmploymentType(ProfessionalProfileUtil.getEmploymentType(body.getEmploymentType()));
-        professionalProfile.setIndustry(body.getIndustry());
-        professionalProfile.setDesiredJobTitle(body.getDesiredJobTitle());
-
+        if (body.getOtherComment() != null) {
+            professionalProfile.setOtherComment(body.getOtherComment());
+        }
+        if (body.getOtherSkills() != null) {
+            professionalProfile.setOtherSkills(body.getOtherSkills());
+        }
+        if (body.getCoverLetterLink() != null) {
+            professionalProfile.setCoverLetterLink(body.getCoverLetterLink());
+        }
+        if (body.getCoverLetterSubject() != null) {
+            professionalProfile.setCoverLetterSubject(body.getCoverLetterSubject());
+        }
+        if (body.getCoverLetterContent() != null) {
+            professionalProfile.setCoverLetterContent(body.getCoverLetterContent());
+        }
+        if (body.getProfileTitle() != null) {
+            professionalProfile.setProfileTitle(body.getProfileTitle());
+        }
+        if (body.getYearsOfExperience() != null) {
+            professionalProfile.setYearsOfExperience(body.getYearsOfExperience());
+        }
+        if (body.getPreferredJobLocationType() != null) {
+            professionalProfile.setPreferredJobLocationType(ProfessionalProfileUtil.getJobLocationType(body.getPreferredJobLocationType()));
+        }
+        if (body.getSalaryRange() != null) {
+            professionalProfile.setSalaryRange(body.getSalaryRange());
+        }
+        if (body.getResumeLink() != null) {
+            professionalProfile.setResumeLink(body.getResumeLink());
+        }
+        if (body.getPassportLink() != null) {
+            professionalProfile.setPassportLink(body.getPassportLink());
+        }
+        if (body.getJobSeniority() != null) {
+            professionalProfile.setJobSeniority(ProfessionalProfileUtil.getJobSeniority(body.getJobSeniority()));
+        }
+        if (body.getJobLocation() != null) {
+            professionalProfile.setJobLocation(body.getJobLocation());
+        }
+        if (body.getIncludedKeywords() != null) {
+            professionalProfile.setIncludedKeywords(body.getIncludedKeywords());
+        }
+        if (body.getEmploymentType() != null) {
+            professionalProfile.setEmploymentType(ProfessionalProfileUtil.getEmploymentType(body.getEmploymentType()));
+        }
+        if (body.getIndustry() != null) {
+            professionalProfile.setIndustry(body.getIndustry());
+        }
+        if (body.getDesiredJobTitle() != null) {
+            professionalProfile.setDesiredJobTitle(body.getDesiredJobTitle());
+        }
         professionalProfile = repository.updateOne(professionalProfile);
 
         return professionalProfile;
