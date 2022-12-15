@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.controller.recruiter;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.response.ApplicantDetailsResponse;
+import com.hydraulic.applyforme.model.response.RecruiterStats;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.RecruiterApplicantService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -49,5 +50,11 @@ public class RecruiterApplicantController {
     @GetMapping("/member/detail/{id}")
     public Member getOneMember(@PathVariable Long id) {
         return service.getOneMember(id);
+    }
+
+    @PreAuthorize("hasAnyRole('Recruiter')")
+    @GetMapping("/statistics")
+    public RecruiterStats getRecruitersStats() {
+        return service.getRecruiterStats();
     }
 }
