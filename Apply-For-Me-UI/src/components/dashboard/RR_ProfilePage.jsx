@@ -64,15 +64,14 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     }
                 }
             );
-            console.log(response);
-            console.log("success")
-            toast("delete successful")
-            navigate("/user-page");
-            return response?.data;
+            toast("Recruiter deleted successfully");
+            setTimeout(() => {
+                navigate("/user-page");
+            }, 3000);
         } catch (error) {
-            console.log(error)
-            toast.error(error.response?.data?.message);
-            return error.response?.data;
+            console.log(error.response?.data?.message)
+            toast.error("An error occured, Please try again");
+            
         }
     }
 
