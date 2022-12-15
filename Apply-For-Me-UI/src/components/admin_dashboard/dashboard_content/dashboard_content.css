@@ -24,6 +24,7 @@
     align-items: center;
     justify-content: space-between;
     margin: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .statisticsContainer select {

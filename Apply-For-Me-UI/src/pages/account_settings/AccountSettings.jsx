@@ -7,13 +7,14 @@ import { useEffect } from "react";
 import axios from "axios";
 import TopBar from "pages/dashboard_profile/components/TopBar/TopBar";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 // import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
 //import { getActiveLink } from './settingservice/SettingsSecondSidebar'
 
 const AccountSettings = () => {
     //User Info
     const { user } = useSelector(state => state.user);
-    console.log(user);
+
     const fullName = user.fullName;
     // const phoneNumber = user.phoneNumber;
     const userEmail = user.sub;
@@ -110,6 +111,7 @@ const AccountSettings = () => {
                 }
             );
             console.log("response", res);
+            toast.success("Hello");
         } catch (err) {
             console.log("error for update", err);
         }
