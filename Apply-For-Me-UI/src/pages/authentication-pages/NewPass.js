@@ -18,7 +18,6 @@ const NewPass = () => {
     });
 
     const handleSubmit = event => {
-        let errvalues;
         event.preventDefault();
         const data = {
             "otp": `${search.get("token")}`,
@@ -26,29 +25,18 @@ const NewPass = () => {
             "new_password": `${formData.password}`
         };
 
-        // handle Empty Fields
-        Object.keys(data).forEach(val => {
-            if (data[`${val}`] === "") {
-                errvalues += `${val}`;
-                toast.error(`Please Enter ${val}`);
-            }
-        });
-
-        if (!errvalues?.split(" ").length) {
-            console.log(data);
-            axios
-                .post(
-                    "https://api.applyforme.hng.tech/api/v1/auth/reset-password",
-                    data
-                )
-                .then(res => {
-                    toast.success(res.data);
-                })
-                .catch(err => {
-                    console.log(err);
-                    toast.error(err.response.data.message);
-                });
-        }
+        axios
+            .post(
+                "https://api.applyforme.hng.tech/api/v1/auth/reset-password",
+                data
+            )
+            .then(res => {
+                toast.success(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+                toast.error(err.response.data.message);
+            });
     };
 
     return (
