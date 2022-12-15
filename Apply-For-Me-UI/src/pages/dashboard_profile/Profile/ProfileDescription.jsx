@@ -66,7 +66,13 @@ export default function ProfileDescription() {
         return (
             <div className={classes.profile_description}>
                 <div className={classes.sidemarg}>
-                    <TopBar />
+                    <TopBar
+                        title={"My Job Profile"}
+                        style={{
+                            marginTop: "auto"
+                        }}
+                    />
+
                     <button
                         onClick={() => navigate(-1)}
                         className={classes.prev_btn}

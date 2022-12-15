@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import avatar from "./img/avatar.png";
-import notification from "./img/notification.png";
+// import avatar from "./img/avatar.png";
+// import notification from "./img/notification.png";
 import "./DashboardNothing.css";
 import GoBackMobile from "./GoBackMobile";
 import axios from "axios";
+import TopBar from "pages/dashboard_profile/components/TopBar/TopBar";
 
 const NewUserDashboard = () => {
     const { user } = useSelector(state => state.user);
@@ -35,27 +36,17 @@ const NewUserDashboard = () => {
         <div className="dashboardnothing">
             {/* this is the top stripe */}
 
-            <section className="top-dashboard-stripe">
-                <div className="top-dashboard-left">
-                    <h2>Welcome {userName},</h2>
-                    <p>Let’s get started </p>
-                </div>
-                <div className="top-dashboard-right">
-                    <div className="dashboard-img-wrapper-not">
-                        <img src={notification} alt="icon" className="notif" />
-                    </div>
-
-                    <div className="dashboard-img-wrapper">
-                        <Link to="/dashboard/settings">
-                            <img
-                                src={avatar}
-                                alt="notification"
-                                className="profilepic"
-                            />
-                        </Link>
-                    </div>
-                </div>
-            </section>
+            <TopBar
+                title={`Welcome ${userName},`}
+                style={{
+                    width: "100%",
+                    marginTop: "auto",
+                    color: "#2e3192",
+                    fontWeight: "700",
+                    marginLeft: "2.5rem"
+                }}
+                subtitle={`Let's get started`}
+            />
 
             <hr></hr>
 

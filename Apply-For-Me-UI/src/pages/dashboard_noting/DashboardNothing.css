@@ -1,18 +1,26 @@
-
-.dashboardnothing{
+.dashboardnothing {
     margin-left: 11rem;
+    width: 100%;
 }
 
+.main-dashboard-page {
+    width: 85%;
+}
+@media only screen and(min-width: 480px) and (max-width: 800px) {
+    .main-dashboard-page {
+        width: 80%;
+    }
+}
 @media only screen and (max-width: 480px) {
     .dashboardnothing {
-         margin-left: 0rem; 
+        margin-left: 0rem;
     }
     .main-dashboard-page {
         margin: 0%;
     }
     .overview-card {
-    width: 100%;
-}
+        width: 100%;
+    }
 }
 .top-dashboard-stripe {
     padding: 20px;
@@ -33,11 +41,11 @@
     font-size: 2rem;
     font-weight: bold;
 }
-.dashboard-img-wrapper{
-    width:10%;
+.dashboard-img-wrapper {
+    width: 10%;
 }
-.dashboard-img-wrapper-not{
-    width:4%
+.dashboard-img-wrapper-not {
+    width: 4%;
 }
 .top-dashboard-stripe p {
     margin: 0.25rem;
@@ -52,11 +60,11 @@
 }
 .top-dashboard-right img {
     object-fit: cover;
-    width:100%;
+    width: 100%;
 }
 .top-dashboard-right {
     display: flex;
-    width:50%;
+    width: 50%;
     gap: 1.25rem;
 }
 
@@ -187,8 +195,8 @@
     .dashboard-img-wrapper {
         width: fit-content;
     }
-    .dashboard-img-wrapper-not{
-        width:fit-content;
+    .dashboard-img-wrapper-not {
+        width: fit-content;
     }
     .dashboardnothing {
         width: 100vw;
@@ -221,7 +229,6 @@
     }
 }
 @media screen and (max-width: 481px) {
-    
     .dashboard-overview {
         padding: 30px;
         padding: 0px 15px 60px;
@@ -286,18 +293,18 @@
         height: 2rem;
     }
 
-.picture_container {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
+    .picture_container {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
 
-.notif {
-    width: 24px;
-    height: 24px;
-}
-.top-dashboard-stripe h2 {
-    font-size: 1.2rem;
+    .notif {
+        width: 24px;
+        height: 24px;
+    }
+    .top-dashboard-stripe h2 {
+        font-size: 1.2rem;
     }
     .top-dashboard-stripe {
         padding: 20px 10px 0 10px;

@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import classes from "./AccountSettings.module.css";
-import SettingsTopNav from "./SettingsTopNav";
-import person from "../../pages/dashboard_profile/assets/profilepic.png";
+// import SettingsTopNav from "./SettingsTopNav";
+// import person from "../../pages/dashboard_profile/assets/profilepic.png";
+import LetteredAvatar from "react-lettered-avatar";
 import { useEffect } from "react";
 import axios from "axios";
-import DragDropFile from "./DragDropFile/DragDropFile";
+import TopBar from "pages/dashboard_profile/components/TopBar/TopBar";
+import { useSelector } from "react-redux";
 // import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
 //import { getActiveLink } from './settingservice/SettingsSecondSidebar'
 
 const AccountSettings = () => {
+    //User Info
+    const { user } = useSelector(state => state.user);
+    console.log(user);
+    const fullName = user.fullName;
+    // const phoneNumber = user.phoneNumber;
+    const userEmail = user.sub;
+
     // state for account settings
     const [formField, setFormField] = useState({
         first_name: "",
@@ -118,48 +127,56 @@ const AccountSettings = () => {
         preference: false
     });
 
-    const handleCvUpload = async e => {
-        // setFormData({ ...formData, cv_file: undefined });
-        setFormField({ ...formField, img_file: e.target.files[0] });
+    // const handleCvUpload = async e => {
+    //     // setFormData({ ...formData, cv_file: undefined });
+    //     setFormField({ ...formField, img_file: e.target.files[0] });
 
-        const file = e.target.files[0];
-        const fileName = file?.name;
-        const fileExtension = fileName?.split(".").pop();
-        //Make POST requests
-        // setRequestStatus("loading");
-        try {
-            // First POST request
-            const firstResponse = await axios.post(
-                `https://api.applyforme.hng.tech/api/v1/upload/pre-signed-avatar?extension=.${fileExtension}`
-            );
-            console.log(firstResponse.data);
-            // Second POST request
-            const fd = new FormData();
-            fd.set("file", file);
-            const secondResponse = await fetch(firstResponse.data, {
-                method: "PUT",
-                body: fd
-            });
-            console.log(secondResponse);
-            const shortenedCVUrl = secondResponse.url.split("?")[0];
-            console.log(shortenedCVUrl);
-            setFormField({
-                ...formField,
-                cv_file: e.target.files[0],
-                shortenedCVUrl: shortenedCVUrl
-            });
-            // setRequestStatus("idle");
-        } catch (error) {
-            console.log(error);
-            // setRequestStatus("idle");
-        }
-    };
+    //     const file = e.target.files[0];
+    //     const fileName = file?.name;
+    //     const fileExtension = fileName?.split(".").pop();
+    //     //Make POST requests
+    //     // setRequestStatus("loading");
+    //     try {
+    //         // First POST request
+    //         const firstResponse = await axios.post(
+    //             `https://api.applyforme.hng.tech/api/v1/upload/pre-signed-avatar?extension=.${fileExtension}`
+    //         );
+    //         console.log(firstResponse.data);
+    //         // Second POST request
+    //         const fd = new FormData();
+    //         fd.set("file", file);
+    //         const secondResponse = await fetch(firstResponse.data, {
+    //             method: "PUT",
+    //             body: fd
+    //         });
+    //         console.log(secondResponse);
+    //         const shortenedCVUrl = secondResponse.url.split("?")[0];
+    //         console.log(shortenedCVUrl);
+    //         setFormField({
+    //             ...formField,
+    //             cv_file: e.target.files[0],
+    //             shortenedCVUrl: shortenedCVUrl
+    //         });
+    //         // setRequestStatus("idle");
+    //     } catch (error) {
+    //         console.log(error);
+    //         // setRequestStatus("idle");
+    //     }
+    // };
 
     return (
         <div className={classes.account_settings_container}>
             <div className={classes.body_container}>
-                <SettingsTopNav />
-
+                <TopBar
+                    title={"Account Settings"}
+                    style={{
+                        marginTop: "auto",
+                        color: "#2e3192",
+                        fontWeight: "700",
+                        marginLeft: "2.5rem"
+                    }}
+                />
+                <hr />
                 <div className={classes.body_content}>
                     <div className={classes.second_sidenav}>
                         <ul>
@@ -227,14 +244,11 @@ const AccountSettings = () => {
                                 <h3>Personal Information</h3>
                                 <div className={classes.change_image}>
                                     <div className={classes.image}>
-                                        <img src={person} alt="" />
+                                        <LetteredAvatar
+                                            name={fullName}
+                                            backgroundColor={"#78909c"}
+                                        />
                                     </div>
-
-                                    <DragDropFile
-                                        onChange={e => {
-                                            handleCvUpload(e);
-                                        }}
-                                    />
                                 </div>
 
                                 <div className={classes.input_fields}>
@@ -290,8 +304,9 @@ const AccountSettings = () => {
                                                             .value
                                                     })
                                                 }
-                                                value={formField.email}
+                                                value={userEmail}
                                                 type="email"
+                                                readOnly
                                                 name="email"
                                                 id="email"
                                                 placeholder="Email Address"
