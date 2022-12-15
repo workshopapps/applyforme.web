@@ -13,4 +13,6 @@ public interface JobSubmissionRepository {
 	public List<ApplierSubmissionDto> getSubmissionDetails(Long id);
 	public List<Submission> getSubmissionsByProfessionalId(Long professional_id);
 	Submission getOne(Long id);
+	Long countAllSubmissions();
+	Long countAllSubmissionByApplier(Long id);
 }
