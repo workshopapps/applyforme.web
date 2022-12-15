@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 // import notification from "./img/notification.png";
 import "./DashboardNothing.css";
 import GoBackMobile from "./GoBackMobile";
-import axios from "axios";
+// import axios from "axios";
 import TopBar from "pages/dashboard_profile/components/TopBar/TopBar";
 
 const NewUserDashboard = () => {
@@ -13,22 +13,18 @@ const NewUserDashboard = () => {
     const username = user.fullName;
     const userName = username?.split(" ")[0];
     const token = localStorage.getItem("tokenHngKey");
-    const [value, setValue] = useState({})
+    const [value, setValue] = useState({});
 
     useEffect(() => {
-        fetch(
-            `https://api.applyforme.hng.tech/api/v1/member/stats`,
-            {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+        fetch(`https://api.applyforme.hng.tech/api/v1/member/stats`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
             }
-            )
+        })
             .then(response => response.json())
             .then(data => {
                 setValue(data);
-                console.log(data)
-                
+                console.log(data);
             })
             .catch(error => {
                 console.log(error);
@@ -36,7 +32,7 @@ const NewUserDashboard = () => {
     }, []);
 
     console.log(value);
-    
+
     return (
         <div className="dashboardnothing">
             {/* this is the top stripe */}
