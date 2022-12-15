@@ -230,7 +230,6 @@ public class JobSubmissionServiceImpl implements JobSubmissionService {
 
         submission.getProfessional().setSubmissions(null);
         submission.getApplier().setSubmissions(null);
-        submission.getProfessional().getMember().setRoles(null);
         submission.getProfessional().setProfessionalProfiles(null);
         return submission;
     }
