@@ -10,6 +10,7 @@ const Table = () => {
     const [data, setData] = useState([]);
     const [pageCount, setPageCout] = useState(1);
     const navigate = useNavigate();
+    const token = localStorage.getItem("tokenHngKey");
     const [pagination, setPagination] = useState({
         "pageNo": 0,
         "pageSize": 10
@@ -17,12 +18,15 @@ const Table = () => {
     const fetchApplicants = async () => {
         try {
             const response = await axios.get(
-                `https://api.applyforme.hng.tech/api/v1/applicant/entries`,
+                `https://api.applyforme.hng.tech/api/v1/professional-profile/user/entries/all`,
                 {
                     params: {
                         "pageNo": pagination.pageNo,
                         "pageSize": pagination.pageSize
+                    },headers: {
+                        "Authorization": `Bearer ${token}`
                     }
+                    
                 }
             );
             setData(response.data?.content);

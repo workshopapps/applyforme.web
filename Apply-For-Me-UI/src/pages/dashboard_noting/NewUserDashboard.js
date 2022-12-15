@@ -25,6 +25,7 @@ const NewUserDashboard = () => {
                 }
             );
             setStatValue(response.data);
+            console.log(response.data)
             console.log(statValue)
         } catch (err) {
             console.log(err?.response?.data);
@@ -33,6 +34,7 @@ const NewUserDashboard = () => {
     useEffect(() => {
         getStatisticsDetail();
     }, []);
+    
     return (
         <div className="dashboardnothing">
             {/* this is the top stripe */}
