@@ -435,4 +435,14 @@ public class GlobalExceptionHandler {
         errors.put("code", HttpStatus.CONFLICT.value());
         return errors;
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidOtpException.class)
+    public Object otp(InvalidOtpException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "User");
+        errors.put("message", ex.getMessage());
+        errors.put("code", HttpStatus.BAD_REQUEST.value());
+        return errors;
+    }
 }

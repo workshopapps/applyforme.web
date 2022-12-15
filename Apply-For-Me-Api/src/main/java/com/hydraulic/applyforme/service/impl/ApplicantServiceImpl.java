@@ -2,29 +2,40 @@ package com.hydraulic.applyforme.service.impl;
 
 
 import com.hydraulic.applyforme.model.domain.Professional;
+import com.hydraulic.applyforme.model.domain.ProfessionalProfile;
+import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.applicant.ApplicantDto;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.applicant.ApplicantResponse;
+import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
 import com.hydraulic.applyforme.model.exception.ProfessionalNotFoundException;
+import com.hydraulic.applyforme.model.response.ApplicantJobs;
 import com.hydraulic.applyforme.model.response.ApplicantStats;
+import com.hydraulic.applyforme.model.response.SubmissionResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.repository.ApplicantRepository;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
+import com.hydraulic.applyforme.repository.jpa.ProfessionalProfileJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalRepository;
 import com.hydraulic.applyforme.service.ApplicantService;
 import com.hydraulic.applyforme.util.ApplyForMeUtil;
 import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+
+import static com.hydraulic.applyforme.util.ApplyForMeUtil.createPageable;
 
 @Service
 public class ApplicantServiceImpl implements ApplicantService {
@@ -40,18 +51,21 @@ public class ApplicantServiceImpl implements ApplicantService {
 
     private final ProfessionalJpaRepository professionalJpaRepository;
 
+    private final ProfessionalProfileJpaRepository professionalProfileJpaRepository;
+
 
     private final ApplicantRepository repository;
 
     public ApplicantServiceImpl(JobSubmissionRepository jobSubmissionRepository, ModelMapper modelMapper,
                                 ProfessionalRepository professionalRepository,
-                                MemberRepository memberRepository, ProfessionalJpaRepository professionalJpaRepository, ApplicantRepository repository) {
+                                MemberRepository memberRepository, ProfessionalJpaRepository professionalJpaRepository, ProfessionalProfileJpaRepository professionalProfileJpaRepository, ApplicantRepository repository) {
 
         this.jobSubmissionRepository = jobSubmissionRepository;
         this.professionalRepository = professionalRepository;
         this.modelMapper = modelMapper;
         this.memberRepository = memberRepository;
         this.professionalJpaRepository = professionalJpaRepository;
+        this.professionalProfileJpaRepository = professionalProfileJpaRepository;
         this.repository = repository;
     }
 
@@ -119,6 +133,66 @@ public class ApplicantServiceImpl implements ApplicantService {
     @Override
     public Member getDetails(Long id) {
         return repository.getMyDetailsById(id);
+    }
+
+    @Override
+    @Transactional
+    public ApplyForMeResponse getApplicantEntries(int pageNo, int pageSize, String sortBy, String sortDir) {
+        Long currentUser = CurrentUserUtil.getCurrentUser().getId();
+        Member member = memberRepository.getOne(currentUser);
+        Professional professional = professionalRepository.getOne(member.getId());
+        Long professional_id = professional.getId();
+        Page<Submission> submissions = jobSubmissionRepository.getSubmissions(professional_id, createPageable(pageNo, pageSize, sortBy, sortDir));
+
+        return getMemberResponse(submissions);
+    }
+
+    private ApplyForMeResponse getMemberResponse(Page<Submission> submissions) {
+        Collection<SubmissionDto> results = submissions
+                .getContent()
+                .stream()
+                .map(x -> {
+                    return modelMapper.map(x, SubmissionDto.class);
+                })
+                .collect(Collectors.toList());
+
+        ApplyForMeResponse response = new ApplyForMeResponse();
+        response.setContent(getMemberResponse(submissions.getContent()));
+        response.setPageNo(submissions.getNumber());
+        response.setPageSize(submissions.getSize());
+        response.setTotalElements(submissions.getTotalElements());
+        response.setTotalPages(submissions.getTotalPages());
+        response.setLast(submissions.isLast());
+        return response;
+    }
+
+    private List<ApplicantJobs> getMemberResponse(Collection<Submission> submissions) {
+        List<ApplicantJobs> responses = new ArrayList<>();
+
+        submissions.forEach(submission -> {
+            Professional professionalObj = submission.getProfessional();
+            Member member = professionalObj.getMember();
+            Professional professional = professionalJpaRepository.getProfessional(member.getId());
+
+            ApplicantJobs response = ApplicantJobs.builder()
+                    .id(submission.getId())
+                    .professional(submission.getProfessional())
+                    .applier(submission.getApplier())
+                    .jobTitle(submission.getJobTitle())
+                    .jobLocationType(submission.getJobLocationType())
+                    .jobLink(submission.getJobLink())
+                    .jobCompany(submission.getJobCompany())
+                    .jobLocationType(submission.getJobLocationType())
+                    .summary(submission.getSummary())
+                    .otherComment(submission.getOtherComment())
+                    .professionalProfile(submission.getProfessionalProfile())
+                    .createdOn(submission.getCreatedOn())
+                    .updatedOn(submission.getUpdatedOn())
+                    .build();
+            responses.add(response);
+        });
+
+        return responses;
     }
 
     public ApplicantStats getApplicantStats() {

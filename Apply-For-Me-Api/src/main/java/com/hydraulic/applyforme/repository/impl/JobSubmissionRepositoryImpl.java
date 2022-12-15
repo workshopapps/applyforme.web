@@ -3,10 +3,7 @@ package com.hydraulic.applyforme.repository.impl;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
 import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.dto.submission.ApplierSubmissionDto;
@@ -76,5 +73,21 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 	@Override
 	public Submission getOne(Long id) {
 		return entityManager.find(Submission.class, id);
+	}
+
+	@Override
+	public Long countAllSubmissions() {
+		String queryText = "select count(jb) from Submission jb";
+		TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class);
+
+		return total.getSingleResult();
+	}
+
+	@Override
+	public Long countAllSubmissionByApplier(Long id) {
+		String queryText = "select count(jb) from Submission jb where jb.applier.member.id = :id";
+		TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class);
+		total.setParameter("id", id);
+		return total.getSingleResult();
 	}
 }

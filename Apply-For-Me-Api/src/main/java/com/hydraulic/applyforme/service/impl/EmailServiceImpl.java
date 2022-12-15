@@ -135,7 +135,7 @@ public class EmailServiceImpl implements EmailService {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom("hngteamhydraulic@gmail.com");
+            helper.setFrom(env.getProperty("applyforme.email"));
             helper.setTo(emailAddress);
             helper.setSubject(subject);
             helper.setText(content, true);
@@ -270,7 +270,7 @@ public class EmailServiceImpl implements EmailService {
             MimeMessageHelper helper = new MimeMessageHelper(message);
 
             helper.setFrom(senderEmail);
-            helper.setTo("hngteamhydraulic@gmail.com");
+            helper.setTo(env.getProperty("applyforme.email"));
             helper.setSubject(subject);
             helper.setText(content, true);
             javaMailSender.send(message);
@@ -284,6 +284,7 @@ public class EmailServiceImpl implements EmailService {
     * */
 
     @Override
+    @Async
     public void sendResetPasswordCode(String recipientEmail, String code) {
 
         String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
@@ -309,7 +310,7 @@ public class EmailServiceImpl implements EmailService {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message);
-            helper.setFrom("hngteamhydraulic@gmail.com");
+            helper.setFrom(env.getProperty("applyforme.email"));
             helper.setTo(recipientEmail);
             helper.setSubject(subject);
             helper.setText(content, true);
@@ -364,7 +365,7 @@ public class EmailServiceImpl implements EmailService {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom("hngteamhydraulic@gmail.com");
+            helper.setFrom(env.getProperty("applyforme.email"));
             helper.setTo("volunux@gmail.com");
             helper.setSubject(subject);
             helper.setText(content, true);
@@ -375,5 +376,46 @@ public class EmailServiceImpl implements EmailService {
 
 
     }
+
+	@Override
+	public void sendRegistrationMessageToRecruiter(String emailAddress, String password) {
+		
+		 Member member = memberJpaRepository.findByEmailAddress(emailAddress);
+	        String content = " <div style=\"min-width:1000px;overflow:auto;line-height:2\">" +
+	                " <div style=\"margin:50px auto;width:50%;padding:20px 0\">" +
+	                "<div style=\"font-family:Helvetica,Arial,sans-serif;display:flex;border-bottom:1px solid #eee;font-size:1.2em;\">" +
+	                " <a href=\"\" style=\"margin-right: 5px;color: #00466a;text-decoration:none;font-weight:600\"><img style=\"height:55px; width:55px\" src=\"/\" /></a>" +
+	                "<p>ApplyForMe</p>" +
+	                "</div>" +
+	                "<p style=\"font-size:1.1em\">" +
+	                "<b>Hello " + member.getFirstName() + ",</b>" + "<br>" +
+	                "Welcome to ApplyForMe. We are thrilled to have you here!" + "<br>" +
+	                "ApplyForMe is a service where you tell us your skills and what you are looking for, and people apply for you for 100s of jobs. All you need to do is attend interviews.</p>" +
+	                "<p style=\"font-size:1.1em\">As a registered recruiter, here are your login details </p>"+
+	                "<li style=\"font-size:1em\">"+"Email Address: "+ member.getEmailAddress()+ "</li>"+
+	                "<li style=\"font-size:1em\">"+"Password: "+ password+ "</li>"+
+	                "<p>you can always change your credentials at your wish in your profile settings. Welcome onboard </p>"+"<br>"+
+	                " <hr style=\"border:none;border-top:1px solid #eee\" />" +
+	                "<div style=\"margin-top: 20px;padding:8px 0;color:#aaa;font-size:1.0em;line-height:1;font-weight:300\">" +
+	                " <p>© 2022 ApplyForMe, All rights reserved.</p>" +
+	                " </div>" +
+	                "</div>" +
+	                "</div>";
+
+	        String subject = "Welcome to ApplyForMe";
+	        try {
+	            MimeMessage message = javaMailSender.createMimeMessage();
+	            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+	            helper.setFrom(env.getProperty("applyforme.email"));
+	            helper.setTo(emailAddress);
+	            helper.setSubject(subject);
+	            helper.setText(content, true);
+	            javaMailSender.send(message);
+	        } catch (MessagingException e) {
+	            throw new EmailDeliveryException();
+	        }
+		
+		
+	}
 
 }

@@ -86,9 +86,6 @@ const Applications = () => {
                 {/* New Applications Container */}
                 <div className={classes.new_applications_stats}>
                     <div className={classes.view_all_wrapper}>
-                        <h2 className={classes.new_applications_stats_heading}>
-                            New Applications <span>{.length}</span>
-                        </h2>
 
                         <button
                             className={`${classes.view_all} ${classes.desktop_only}`}

@@ -7,16 +7,18 @@ import org.springframework.scheduling.annotation.Async;
 
 public interface EmailService {
     public void sendWelcomeMessage(String emailAddress);
+    public void sendRegistrationMessageToRecruiter(String emailAddress, String password);
     public String getByResetPasswordToken(String token);
     public void sendResetPasswordMail(String recipientEmail, String baseUrl);
     @Async
     void onboard(OnboardingResponse response, String onboardToken);
 
     void signupVerification(String recipientEmail,String otp);
-    public String createVerificationToken();
-    public void sendSignUpVerificationEmail(String emailAddress, String memberCode);
-    public  void contactUs(ContactUsDto dto);
-    public void sendResetPasswordCode(String recipientEmail, String code);
+    String createVerificationToken();
+    void sendSignUpVerificationEmail(String emailAddress, String memberCode);
+    void contactUs(ContactUsDto dto);
+    @Async
+    void sendResetPasswordCode(String recipientEmail, String code);
     void confirmRecruiter(CreateRecruiterDto dto);
     @Async
     void dummy();

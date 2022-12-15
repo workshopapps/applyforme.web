@@ -106,7 +106,6 @@
     z-index: 1;
     left: 50%;
     width: fit-content;
-    height: 70vh;
     margin: 0 auto;
     background-color: white;
     transform: translate(-50%, -50%);
@@ -120,6 +119,7 @@
     overflow: auto;
     z-index: 1;
     left: 50%;
+    height:80%;
     width: 30%;
     background-color: white;
     transform: translate(-50%, -50%);
