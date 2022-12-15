@@ -29,6 +29,9 @@ public interface JobSubmissionRepository extends JpaRepository<Submission,Long> 
      List<ApplierResponse> getHighestApplier();
 
      @Query("SELECT sbm FROM Submission sbm WHERE sbm.applier.id = :id")
+     Page<Submission> getSubmissionsProfessional(Long id, Pageable pageable);
+
+     @Query(value = "SELECT s FROM Submission s INNER JOIN ProfessionalProfile pp ON s.professional.id = pp.professional.id WHERE s.professional.id = :id")
      Page<Submission> getSubmissions(Long id, Pageable pageable);
 
      @Query("SELECT COUNT (sbm) FROM Submission sbm")
@@ -37,6 +40,6 @@ public interface JobSubmissionRepository extends JpaRepository<Submission,Long> 
      @Query (value = "SELECT s from Submission s where s.professional.member.id = ?1 ")
      List<Submission> findAllByProfessionalId(@Param("id") Long id);
 
-     @Query (value = "SELECT count(*) from Submission s where s.professional.id = ?1 ")
+     @Query (value = "SELECT count(s) from Submission s where s.professional.id = ?1 ")
      Long countSubmissionByProfessional(@Param("id") Long id);
 }
