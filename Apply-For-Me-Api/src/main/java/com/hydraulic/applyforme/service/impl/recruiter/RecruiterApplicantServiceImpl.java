@@ -5,12 +5,15 @@ import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.member.MemberDto;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.model.response.ApplicantDetailsResponse;
+import com.hydraulic.applyforme.model.response.RecruiterStats;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.repository.MemberRepository;
 import com.hydraulic.applyforme.repository.ProfessionalRepository;
+import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.repository.jpa.ProfessionalJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.SuperAdminMemberJpaRepository;
 import com.hydraulic.applyforme.service.RecruiterApplicantService;
+import com.hydraulic.applyforme.util.CurrentUserUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,18 +33,21 @@ public class RecruiterApplicantServiceImpl implements RecruiterApplicantService 
     private final SuperAdminMemberJpaRepository jpaRepository;
     private final MemberRepository memberRepository;
     private final ProfessionalJpaRepository professionalJpaRepository;
+    private final com.hydraulic.applyforme.repository.JobSubmissionRepository jobSubmissionRepository;
 
     @Autowired
     private ModelMapper mapper;
 
     public RecruiterApplicantServiceImpl(ProfessionalRepository repository,
-                                          SuperAdminMemberJpaRepository jpaRepository,
-                                          MemberRepository memberRepository,
-                                          ProfessionalJpaRepository professionalJpaRepository) {
+                                         SuperAdminMemberJpaRepository jpaRepository,
+                                         MemberRepository memberRepository,
+                                         ProfessionalJpaRepository professionalJpaRepository, JobSubmissionRepository jobSubmissionRepository, JobSubmissionRepository jobSubmissionJpaRepository, com.hydraulic.applyforme.repository.JobSubmissionRepository jobSubmissionRepository1, ModelMapper mapper) {
         this.repository = repository;
         this.jpaRepository = jpaRepository;
         this.memberRepository = memberRepository;
         this.professionalJpaRepository = professionalJpaRepository;
+        this.jobSubmissionRepository = jobSubmissionRepository1;
+        this.mapper = mapper;
     }
 
     @Override
@@ -113,5 +119,17 @@ public class RecruiterApplicantServiceImpl implements RecruiterApplicantService 
         }
 
         return member;
+    }
+
+    @Override
+    public RecruiterStats getRecruiterStats() {
+        var authenticatedUser = CurrentUserUtil.getCurrentUser();
+        Long memberId = authenticatedUser.getId();
+        RecruiterStats recruiterStats = new RecruiterStats();
+        Long totalApplications = jobSubmissionRepository.countAllSubmissions();
+        Long appliedJobs = jobSubmissionRepository.countAllSubmissionByApplier(memberId);
+        recruiterStats.setTotalApplications(totalApplications);
+        recruiterStats.setAppliedJobs(appliedJobs);
+        return recruiterStats;
     }
 }
