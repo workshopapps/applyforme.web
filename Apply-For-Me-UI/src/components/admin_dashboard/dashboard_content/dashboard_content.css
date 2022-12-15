@@ -21,6 +21,7 @@
     align-items: center;
     justify-content: space-between;
     margin: 1.5rem;
+    flex-wrap: wrap;
 }
 .statisticsContainer select {
     font-size: 20px;
@@ -37,7 +38,7 @@
     justify-content: space-between;
 }
 .applicants div {
-    width:30%;
+    width: 30%;
     color: white;
     padding: 0.8rem;
     align-items: center;

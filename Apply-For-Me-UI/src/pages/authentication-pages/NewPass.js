@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./NewPass.css";
 import Navbar from "./Navbar";
 import Text from "./components/Text/Text";
-import Text2 from "./components/Text/Text2";
+
 import BlueButton from "components/buttons/blue_background/BlueButton";
 import "./components/Elements/Button.css";
 import "./Welcome1.css";
@@ -21,9 +21,9 @@ const NewPass = () => {
         let errvalues;
         event.preventDefault();
         const data = {
-            "token": `${search.get("token")}`,
+            "otp": `${search.get("token")}`,
             "email_address": `${formData.email_address}`,
-            "password": `${formData.password}`
+            "new_password": `${formData.password}`
         };
 
         // handle Empty Fields
@@ -35,13 +35,14 @@ const NewPass = () => {
         });
 
         if (!errvalues?.split(" ").length) {
+            console.log(data);
             axios
                 .post(
                     "https://api.applyforme.hng.tech/api/v1/auth/reset-password",
                     data
                 )
                 .then(res => {
-                    toast.success(res.data.message);
+                    toast.success(res.data);
                 })
                 .catch(err => {
                     console.log(err);
@@ -56,7 +57,7 @@ const NewPass = () => {
             <ToastContainer />
             <div className="nbdy">
                 <Text child="Create New Password" />
-                <Text2 child="Enter your new password" />
+
                 <form
                     className="form newpass_form"
                     onSubmit={e => handleSubmit(e)}
@@ -65,7 +66,7 @@ const NewPass = () => {
                         type="email"
                         name="pwrd"
                         value={formData.email_address}
-                        placeholder="Enter New Password"
+                        placeholder="Enter Email"
                         className="input"
                         onChange={e =>
                             setFormData({
