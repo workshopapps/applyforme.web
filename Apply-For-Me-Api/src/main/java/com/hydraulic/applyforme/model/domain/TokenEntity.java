@@ -18,10 +18,9 @@ public class TokenEntity {
 
     private String otp;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
-
 
     @Override
     public String toString() {
