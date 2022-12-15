@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { ToastContainer, toast } from "react-toastify";
 const Table = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState();
     const [pageCount, setPageCout] = useState(1);
     const navigate = useNavigate();
     const token = localStorage.getItem("tokenHngKey");
@@ -15,10 +15,12 @@ const Table = () => {
         "pageNo": 0,
         "pageSize": 10
     });
+    //https://api.applyforme.hng.tech/api/v1/applicant/jobs-applied
+    //https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all
     const fetchApplicants = async () => {
         try {
             const response = await axios.get(
-                `https://api.applyforme.hng.tech/api/v1/professional-profile/user/entries/all`,
+                `https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`,
                 {
                     params: {
                         "pageNo": pagination.pageNo,
@@ -29,8 +31,8 @@ const Table = () => {
                     
                 }
             );
-            setData(response.data?.content);
-            console.log(response.data?.content)
+            console.log(response.data)
+            setData(response?.data?.content)
             setPageCout(response.data?.totalPages);
         } catch (error) {
             toast.error(`Could not get applicants: ${error}`);
@@ -55,9 +57,9 @@ const Table = () => {
                         <tr className={styles.applications_table_head_row}>
                             <th>Company</th>
                             <th>Job title</th>
-                            <th className={styles.hide_tablet}>Location</th>
+                            <th className={styles.hide_tablet}>State</th>
                             <th>Salary Range</th>
-                            <th className={styles.hide_tablet}>Job Duration</th>
+                            <th className={styles.hide_tablet}>Job Type</th>
                             <th>Date</th>
                         </tr>
                     </thead>
@@ -65,33 +67,31 @@ const Table = () => {
                         {data?.map?.((application, index) => (
                             <tr
                                 className={styles.applications_table_body_row}
-                                key={`${application.jobCompany}-${index}`}
-                                onClick={() =>
-                                    navigate(
-                                        `/dashboard/applications/${application.id}`
-                                    )
-                                }
+                                key={index}
+                                onClick={()=>navigate(`/dashboard/applications/${application.id}`)}
                             >
                                 <td>
                                     <div>{application.jobCompany}</div>
                                     <div className={styles.show_tablet}>
-                                        {application.jobLocation}
+                                        {application.jobCompany}
                                     </div>
                                 </td>
                                 <td>
                                     <div>{application.jobTitle}</div>
                                     <div className={styles.show_tablet}>
-                                        {application.jobType}
+                                        {application.jobTitle}
                                     </div>
                                 </td>
                                 <td className={styles.hide_tablet}>
                                     {application.jobLocation}
                                 </td>
-                                <td>{application.salaryRange}</td>
                                 <td className={styles.hide_tablet}>
-                                    {application.jobType}
+                                    {application?.professionalProfile?.salaryRange}
                                 </td>
-                                <td>{application.date?.split("T").shift()}</td>
+                                <td className={styles.hide_tablet}>
+                                    {application.jobLocationType}
+                                </td>
+                                <td>{application.createdOn?.split("T").shift()}</td>
                             </tr>
                         ))}
                     </tbody>
