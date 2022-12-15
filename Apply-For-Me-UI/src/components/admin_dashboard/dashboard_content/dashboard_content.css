@@ -1,12 +1,15 @@
 * {
     font-family: "Outfit", sans-serif;
 }
+
 .applicantsContainer {
     padding: 1.5rem 6rem;
 }
+
 .viewContainer {
     display: flex;
 }
+
 .list-header {
     font-family: "Outfit";
     font-style: normal;
@@ -22,6 +25,7 @@
     justify-content: space-between;
     margin: 1.5rem;
 }
+
 .statisticsContainer select {
     font-size: 20px;
     padding: 0.5rem;
@@ -30,14 +34,16 @@
     background: bottom;
     border: 1px solid #2e3192;
 }
+
 .applicants {
     display: flex;
     width: 80%;
     margin: 0 auto;
     justify-content: space-between;
 }
+
 .applicants div {
-    width:30%;
+    width: 30%;
     color: white;
     padding: 0.8rem;
     align-items: center;
@@ -46,6 +52,7 @@
     justify-content: center;
     flex-direction: column;
 }
+
 .amount {
     font-family: "Outfit";
     font-style: normal;
@@ -56,6 +63,7 @@
     align-items: center;
     letter-spacing: 0.03em;
 }
+
 .value {
     font-family: "Outfit";
     font-style: normal;
@@ -67,6 +75,7 @@
     display: flex;
     align-items: center;
 }
+
 .overflow {
     background-color: #2e3192;
     display: flex;
@@ -74,10 +83,12 @@
     border-radius: 8px;
     height: 10rem;
 }
+
 .applicants h4 {
     font-weight: 400;
     margin-bottom: 0;
 }
+
 .applicants h1 {
     width: fit-content;
     margin: 0 auto;
@@ -87,36 +98,45 @@
     font-size: 40px;
     line-height: 150%;
 }
+
 .users_recruiter_text h4 {
     color: grey;
     font-weight: 400;
 }
+
 .profile_name {
     display: none;
     color: #2e3192;
 }
+
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .profile_name {
         display: block;
     }
+
     h3 {
         font-size: 17px;
     }
+
     h1 {
         font-size: 20px;
     }
+
     h2 {
         font-size: 20px;
     }
+
     .navpills_inner {
         width: 100%;
     }
 }
+
 @media only screen and (min-width: 320px) and (max-width: 767px) {
     .overflow {
         height: auto;
         background-color: white;
     }
+
     .applicants div {
         background-color: #2e3192;
         border-radius: 4px;
@@ -125,13 +145,16 @@
         padding: 0.5rem;
         margin: 0.5rem;
     }
+
     .amount {
         font-size: 12px;
         margin: 0 auto;
     }
+
     .applicants h1 {
         font-size: 20px;
     }
+
     .applicants {
         width: 100%;
     }
@@ -139,27 +162,33 @@
     .list-header {
         font-size: 18px;
     }
+
     .statisticsContainer select {
         padding: 0.3rem;
         font-size: 13px;
     }
+
     .statisticsContainer {
         margin: 1.5rem 0;
     }
+
     .applicantsContainer {
         padding: 0 0.5rem;
     }
+
     .overflow {
         overflow-x: scroll;
     }
 
     .applicants {
-        width: 400px;
+        width: 100%;
     }
+
     .applicants h3,
     .applicants h1 {
         text-align: center;
     }
+
     h3 {
         font-size: 13px;
         font-weight: 400;

@@ -19,21 +19,6 @@ const AccountSettings = () => {
     const userEmail = user.sub;
 
     // state for account settings
-    const [formField, setFormField] = useState({
-        first_name: "",
-        last_name: "",
-        email: "",
-        phone_number: "",
-        address: "",
-        city: "",
-        state: "",
-        country: "",
-        password: "",
-        new_password: "",
-        confirm_new_password: "",
-        img_file: [],
-        shortenedCVUrl: ""
-    });
 
     const [memberInfo, setMemberInfo] = useState({});
     const [countryDetails, setCountryDetails] = useState([]);
@@ -55,6 +40,26 @@ const AccountSettings = () => {
             console.log("error for info", err);
         }
     };
+    useEffect(() => {
+        fetchDetails();
+        fetchCountry();
+    }, []);
+
+    const [formField, setFormField] = useState({
+        first_name: memberInfo?.firstName,
+        last_name: "",
+        email: "",
+        phone_number: "",
+        address: "",
+        city: "",
+        state: "",
+        country: "",
+        password: "",
+        new_password: "",
+        confirm_new_password: "",
+        img_file: [],
+        shortenedCVUrl: ""
+    });
 
     const fetchCountry = async () => {
         const token = localStorage.getItem("tokenHngKey");

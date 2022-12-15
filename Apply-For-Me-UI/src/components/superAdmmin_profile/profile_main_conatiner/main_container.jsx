@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getSuperAdminProfileInfo } from "store/slice/RR_AdminSlice";
 
-export const MainContainer = ({ img }) => {
+export const MainContainer = () => {
     const personalDetails = useSelector(state => state.RRadmin);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -45,13 +45,13 @@ export const MainContainer = ({ img }) => {
                 </div>
                 <div className="proileInfoContainer">
                     <div className="mobile_info_top_view">
-                        <div className="mobile_img_top">
+                        {/* <div className="mobile_img_top">
                             <img
                                 style={{ width: "100%" }}
                                 src={img}
                                 alt="object not found"
                             />
-                        </div>
+                        </div> */}
                         <div className="mobile_info_top">
                             <div className="proileInfo">
                                 <h2 className="proileInfolabel">Name</h2>
@@ -156,7 +156,7 @@ export const MainContainer = ({ img }) => {
                         </div>
                         <EditInfoContent
                             setEditModal={setEditModal}
-                            img={img}
+                            superAdminProfileDetails={superAdminProfileDetails}
                         />
                     </div>
                 </div>

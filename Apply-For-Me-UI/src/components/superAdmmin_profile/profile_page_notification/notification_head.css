@@ -1,47 +1,55 @@
-.notification_icon{
+.notification_icon {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     color: #2E3192;
     border-bottom: 1px solid grey;
     align-items: center;
-     padding: 1rem 3rem;
- }
-.notification_count{
-     position: absolute;
-     background-color: red;
-     width: fit-content;
-     border-radius: 50%;
-     padding: 0.2rem 0.4rem;
-     top: 6px;
-     right: 6rem;
-     color: white;
+    padding: 1rem 3rem;
 }
-.notification_icon_img{
-    width:27%;
-    margin-left:1rem;
+
+.notification_count {
+    position: absolute;
+    background-color: red;
+    width: fit-content;
+    border-radius: 50%;
+    padding: 0.2rem 0.4rem;
+    top: 6px;
+    right: 6rem;
+    color: white;
 }
-.notification_icon_amf{
-    width:80%;
+
+.notification_icon_img {
+    width: 27%;
+    margin-left: 1rem;
 }
-.not_burger{
+
+.notification_icon_amf {
+    width: 80%;
+}
+
+.not_burger {
     display: none;
 }
-.head_barge{
-    display:flex;
+
+.head_barge {
+    display: flex;
     justify-content: space-around;
     align-items: center;
 }
-@media only screen and (min-width: 320px)and (max-width: 518px){
-    .notification_icon{
-         padding: 2rem 0 1rem;
-     }
-     .not_burger{
+
+@media only screen and (min-width: 320px)and (max-width: 518px) {
+    .notification_icon {
+        padding: 2rem 1rem 1rem 0;
+    }
+
+    .not_burger {
         display: block;
     }
-    .head_barge{
+
+    .head_barge {
         margin-left: 0.8rem;
-        width:35%;
+        width: 35%;
     }
-    
+
 }
