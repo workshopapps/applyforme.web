@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import blueadd from "../../pages/dashboard_profile/assets/blue-add.png";
 // import avatar from "./img/avatar.png";
 // import notification from "./img/notification.png";
 import "./DashboardNothing.css";
@@ -36,20 +37,21 @@ const NewUserDashboard = () => {
     return (
         <div className="dashboardnothing">
             {/* this is the top stripe */}
+            <div>
+                <TopBar
+                    title={`Welcome ${userName},`}
+                    style={{
+                        width: "100%",
+                        marginTop: "auto",
+                        color: "#2e3192",
+                        // fontWeight: "700",
+                        marginLeft: "2.5rem"
+                    }}
+                    subtitle={`Let's get started`}
+                />
 
-            <TopBar
-                title={`Welcome ${userName},`}
-                style={{
-                    width: "100%",
-                    marginTop: "auto",
-                    color: "#2e3192",
-                    fontWeight: "700",
-                    marginLeft: "2.5rem"
-                }}
-                subtitle={`Let's get started`}
-            />
-
-            <hr></hr>
+                <hr className="topnav-hr"></hr>
+            </div>
 
             {/* section for overview */}
 
@@ -75,20 +77,21 @@ const NewUserDashboard = () => {
                     <div className="overview-card-wrapper">
                         <div className="overview-card">
                             <h3>{value?.total_number_of_profiles}</h3>
-                            <p>Totals Applications</p>
+                            <p>Total Profiles</p>
                         </div>
                     </div>
 
                     <div className="mobile-create">
-                        <span> Welcome, you have no job profile yet Tap </span>
+                        <span> Welcome. Tap to create a new job profile</span>
                         <span>
                             {" "}
                             <Link to="/dashboard/user/create-profile">
-                                {" "}
-                                <button> + </button>{" "}
+                                <div className="btn_plus_fixed">
+                                    <img src={blueadd} alt="add" />
+                                </div>
                             </Link>{" "}
                         </span>
-                        <span>to create a new job profile</span>
+                        {/* <span>to create a new job profile</span> */}
                     </div>
                 </div>
             </section>

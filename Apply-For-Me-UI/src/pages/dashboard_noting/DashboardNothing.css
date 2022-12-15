@@ -6,9 +6,9 @@
 .main-dashboard-page {
     width: 85%;
 }
-@media only screen and(min-width: 480px) and (max-width: 800px) {
+@media (min-width: 480px) and (max-width: 800px) {
     .main-dashboard-page {
-        width: 80%;
+        width: 75%;
     }
 }
 @media only screen and (max-width: 480px) {
@@ -23,7 +23,7 @@
     }
 }
 .top-dashboard-stripe {
-    padding: 20px;
+    /* padding: 20px; */
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -31,7 +31,7 @@
 }
 @media (min-width: 480px) and (max-width: 600px) {
     .top-dashboard-stripe {
-        width: 85%;
+        /* width: 85%; */
     }
 }
 
@@ -199,7 +199,7 @@
         width: fit-content;
     }
     .dashboardnothing {
-        width: 100vw;
+        /* width: 100vw; */
         height: 100vh;
     }
     .overview-card-wrapper:nth-child(1) {
@@ -215,7 +215,6 @@
         border-left: 0;
         border-right: 0;
 
-        margin-bottom: 20px;
         padding-left: 0;
         padding-top: 0;
         padding-bottom: 0;
@@ -229,6 +228,10 @@
     }
 }
 @media screen and (max-width: 481px) {
+    .overview-card h3 {
+        font-size: 1.25rem;
+        color: #171646;
+    }
     .dashboard-overview {
         padding: 30px;
         padding: 0px 15px 60px;
@@ -246,7 +249,9 @@
     }
     .overview-card {
         margin-bottom: 30px;
+        padding: 5px;
     }
+
     .dashboard-myapplication {
         margin: 0;
         padding: 10px 10px;
@@ -308,5 +313,22 @@
     }
     .top-dashboard-stripe {
         padding: 20px 10px 0 10px;
+    }
+}
+.btn_plus_fixed {
+    /* margin-top: auto; */
+    width: 3rem;
+    height: 3rem;
+    position: fixed;
+    bottom: 14%;
+    right: 7%;
+}
+.btn_plus_fixed img {
+    width: 3rem;
+    height: 3rem;
+}
+@media screen and (max-width: 360px) {
+    .btn_plus_fixed {
+        bottom: 16%;
     }
 }

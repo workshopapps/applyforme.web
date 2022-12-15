@@ -4,17 +4,33 @@
     margin: 0 3rem 0 0rem;
     padding-top: 24px;
 }
+
 @media only screen and (max-width: 480px) {
+    .heading {
+        font-size: 1.1rem;
+    }
+    .sub_heading {
+        font-size: 0.75rem;
+    }
     .topbar {
         margin-left: 0;
+        padding-top: 10px;
+    }
+    .topbar p {
+        margin-left: 1.5rem;
+        color: #52515b;
+    }
+    .texts {
+        display: flex;
+        flex-direction: column;
     }
 }
 @media screen and (min-width: 610px) {
-    .topbar h4 {
+    /* .topbar h4 {
         font-size: 2.5rem;
         font-weight: 500;
         color: #52515b;
-    }
+    } */
     .topbar p {
         margin-left: 3rem;
         color: #52515b;
@@ -25,13 +41,8 @@
     }
 }
 @media screen and (max-width: 610px) {
-    .topbar h4 {
-        font-size: 1.5rem;
-        font-weight: 500;
-        color: #52515b;
-    }
     .topbar p {
-        margin-left: 3rem;
+        margin-left: 2.5rem;
         color: #52515b;
     }
     .profilepic {
@@ -43,6 +54,7 @@
     display: flex;
     align-items: center;
     gap: 24px;
+    font-weight: 500;
 }
 
 .notif {

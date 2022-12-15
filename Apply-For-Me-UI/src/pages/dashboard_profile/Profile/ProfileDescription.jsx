@@ -133,7 +133,10 @@ export default function ProfileDescription() {
                                     Click here to download
                                 </p>
                             </a> */}
-                            <Link url={`${oneprofile?.resumeLink}`} />
+                            <Link
+                                url={`${oneprofile?.resumeLink}`}
+                                style={{ textDecoration: "none" }}
+                            />
 
                             <h5>Uploaded CV</h5>
                         </div>
