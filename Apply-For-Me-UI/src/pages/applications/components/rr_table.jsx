@@ -16,17 +16,17 @@ const Table = () => {
     const fetchApplicants = async()=>{
                 try{
                     const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all`, 
-                                            {
-                                                params:{
-                                                "pageNo": pagination.pageNo,
-                                                "pageSize":pagination.pageSize,
-                                                },
-                                                headers: {
-                                                    "Authorization": `Bearer ${token}`
-                                                }
-                                            }
-                                            );
-                                            console.log("REverse Recruiter", response.data)
+                        {
+                            params:{
+                            "pageNo": pagination.pageNo,
+                            "pageSize":pagination.pageSize,
+                            },
+                            headers: {
+                                "Authorization": `Bearer ${token}`
+                            }
+                        }
+                    );
+                    console.log("REverse Recruiter", response.data)
                     setData(response.data?.content);
                     setPageCout(response.data?.totalPages);
 
@@ -83,24 +83,28 @@ const Table = () => {
                 </table>
             </div>
 
-            <div>
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel=">"
-                    pageRangeDisplayed={5}
-                    pageCount={pageCount}
-                    marginPagesDisplayed="1"
-                    previousLabel="<"
-                    renderOnZeroPageCount={null}
-                    onPageChange={handlePageClick}
-                    containerClassName="containerClassName"
-                    pageClassName='pageClassName'
-                    previousClassName='previousClassName'
-                    activeClassName="activeClassName"
-                    nextClassName='nextClassName'
-                    pageLinkClassName="pageLinkClassName"
-                />
-                 </div>
+            {
+                 pageCount > 1 && (
+                    <div>
+                        <ReactPaginate
+                            breakLabel="..."
+                            nextLabel=">"
+                            pageRangeDisplayed={5}
+                            pageCount={pageCount}
+                            marginPagesDisplayed="1"
+                            previousLabel="<"
+                            renderOnZeroPageCount={null}
+                            onPageChange={handlePageClick}
+                            containerClassName="containerClassName"
+                            pageClassName='pageClassName'
+                            previousClassName='previousClassName'
+                            activeClassName="activeClassName"
+                            nextClassName='nextClassName'
+                            pageLinkClassName="pageLinkClassName"
+                        />
+                    </div>
+                )
+            }
         </div>
     );
 };

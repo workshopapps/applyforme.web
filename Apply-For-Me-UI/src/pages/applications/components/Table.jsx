@@ -97,25 +97,28 @@ const Table = () => {
                     </tbody>
                 </table>
             </div>
-
-            <div>
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel=">"
-                    pageRangeDisplayed={5}
-                    pageCount={pageCount}
-                    marginPagesDisplayed="1"
-                    previousLabel="<"
-                    renderOnZeroPageCount={null}
-                    onPageChange={handlePageClick}
-                    containerClassName="containerClassName"
-                    pageClassName="pageClassName"
-                    previousClassName="previousClassName"
-                    activeClassName="activeClassName"
-                    nextClassName="nextClassName"
-                    pageLinkClassName="pageLinkClassName"
-                />
-            </div>
+            {
+                 pageCount > 1 &&(
+                    <div>
+                        <ReactPaginate
+                            breakLabel="..."
+                            nextLabel=">"
+                            pageRangeDisplayed={5}
+                            pageCount={pageCount}
+                            marginPagesDisplayed="1"
+                            previousLabel="<"
+                            renderOnZeroPageCount={null}
+                            onPageChange={handlePageClick}
+                            containerClassName="containerClassName"
+                            pageClassName="pageClassName"
+                            previousClassName="previousClassName"
+                            activeClassName="activeClassName"
+                            nextClassName="nextClassName"
+                            pageLinkClassName="pageLinkClassName"
+                        />
+                    </div>
+                )
+            }
         </div>
     );
 };

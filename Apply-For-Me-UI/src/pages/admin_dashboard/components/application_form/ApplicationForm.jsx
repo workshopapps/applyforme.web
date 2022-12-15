@@ -146,8 +146,10 @@ const ApplicationForm = () => {
     const navigate = useNavigate();
 
     return (
-        <section className={style.application_form}>
-            <ToastContainer />
+        <>
+          <ToastContainer />
+         <section className={style.application_form} style={{paddingBottom:"6rem"}}>
+            
             <RRD_Nav />
             <div className={style.go_back_link}>
                 <Link to="/rr_admin">
@@ -174,6 +176,7 @@ const ApplicationForm = () => {
                                 placeholder={item.placeholder}
                                 value={item.value}
                                 onChange={handleChange}
+                                required
                             />
                         </label>
                     );
@@ -182,6 +185,9 @@ const ApplicationForm = () => {
                 <input id="submit" type="submit" value="Submit" />
             </form>
         </section>
+        </>
+      
+       
     );
 };
 
