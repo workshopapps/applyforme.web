@@ -1,9 +1,12 @@
+
+import React from 'react'
+
 /* eslint-disable no-unused-vars */
-import React from "react";
-import ggle from "./images/google.svg";
-import apl from "./images/apple.svg";
-import fb from "./images/fb.svg";
+// import ggle from "./images/google.svg";
+// import apl from "./images/apple.svg";
+// import fb from "./images/fb.svg";
 import "./Footer.css";
+
 
 const Footer = () => {
     return (

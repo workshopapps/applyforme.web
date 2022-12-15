@@ -9,7 +9,7 @@
 .list_list ul
 {
     display: grid;
-    grid-template-columns: 16.67% 16.67% 10% 16.67% 10% 10%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 5%;
     list-style-type: none;
     padding: 32px 47px 16px;
