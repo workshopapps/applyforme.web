@@ -1,13 +1,14 @@
 .application_main {
-    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    padding-left: 4rem;
-    padding-right: 3rem;
     padding-bottom: 20px;
     gap: 0.5rem;
     width: 100%;
-    margin-left: 9rem;
+}
+.jobContainer{
+    margin-left:11rem;
+    width:100%;
+    padding:1rem 2rem;
 }
 @media only screen and (max-width: 480px) {
     .application_main {

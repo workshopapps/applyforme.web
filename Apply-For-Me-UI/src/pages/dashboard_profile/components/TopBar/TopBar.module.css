@@ -1,8 +1,8 @@
 .topbar {
     display: flex;
     justify-content: space-between;
-    margin: 0 3rem 0 0rem;
-    padding-top: 24px;
+    width: 100%;
+    padding-top: 1rem;
 }
 
 @media only screen and (max-width: 480px) {

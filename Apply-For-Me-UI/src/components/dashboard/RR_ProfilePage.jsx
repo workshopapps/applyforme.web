@@ -45,7 +45,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     console.log(newId.id.id)
     useEffect(() => {
         dispatch(getRRAdminProfile(id));
-    }, [dispatch, getRRAdminProfile, id]);
+    }, []);
 
     const handleSubmit = event => {
         event.preventDefault();

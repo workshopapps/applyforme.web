@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { CiLocationOn } from "react-icons/ci";
 // import TopNav from "../applications/components/topNav/TopNav";
 import styles from "./JobDecription.module.css";
 import TopBar from "pages/dashboard_profile/components/TopBar/TopBar";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 const job = {
     jobTitle: "UX Researcher",
@@ -34,12 +37,34 @@ In order to strengthen our forces, we are looking for a UX/UI Designer.`,
 };
 
 const JobDescription = () => {
+    const {jobId} = useParams();
+    const [descriptionDetails, setDescriptionDetails] = useState()
+    console.log(jobId)
+    const getJobDescriptions = async () => {
+        try {
+            const token = localStorage.getItem("tokenHngKey");
+            const response = await axios.get(
+                `https://api.applyforme.hng.tech/api/v1/job-submission/user/detail/${jobId}`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                    
+                }
+            );
+            console.log("job description" ,response.data)
+            setDescriptionDetails(response?.data);
+        } catch (error) {
+            toast.error(`Could not get description: ${error}`);
+        }
+    };
+
+    useEffect(() => {
+        getJobDescriptions();
+    }, []);
+
     return (
-        <div
-            style={{
-                width: "100%"
-            }}
-        >
+        <div className={styles.jobContainer}>
             <TopBar
                 title={"Job Description"}
                 style={{
@@ -52,46 +77,42 @@ const JobDescription = () => {
             />
             <div className={styles.application_main}>
                 <div className={styles.job_header}>
-                    <h4>{job.jobTitle}</h4>
+                    <h4>{descriptionDetails?.jobTitle}</h4>
                     <div className={styles.job_header_wrapper}>
                         <span className={styles.job_header_icons}>
                             <HiOutlineBuildingOffice2 />
-                            {job.company}
+                            {descriptionDetails?.jobCompany}
                         </span>
-                        <span className={styles.job_header_icons}>
+                        <span className={styles?.job_header_icons}>
                             <CiLocationOn />
-                            {job.location}
+                            {descriptionDetails?.jobLocation}
                         </span>
                         <span className={styles.job_header_icons}>
                             <AiOutlineClockCircle />
-                            {job.date}
+                            {descriptionDetails?.createdOn?.split("T").shift()}
                         </span>
                     </div>
                     <div className={styles.job_header_salary}>
-                        {job.salaryRange}
+                        {descriptionDetails?.salaryRange}
                     </div>
                 </div>
                 <div className={styles.job_details}>
                     <div>
                         <h5>Job Summary</h5>
-                        <p>{job.jobSummary}</p>
+                        <p>{descriptionDetails?.summary}</p>
                     </div>
-                    <div>
+                    {/* <div>
                         <h5>Responsibilities</h5>
                         <ul>
                             {job.reponsibilities.map(responsibility => (
                                 <li key={responsibility}>{responsibility}</li>
                             ))}
                         </ul>
-                    </div>
-                    <div>
+                    </div> */}
+                    {/* <div>
                         <h5>Skills and Experience</h5>
-                        <ul>
-                            {job.skills.map(skill => (
-                                <li key={skill}>{skill}</li>
-                            ))}
-                        </ul>
-                    </div>
+                        <p>{descriptionDetails?.professionalProfile}</p>
+                    </div> */}
                 </div>
             </div>
         </div>

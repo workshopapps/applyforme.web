@@ -78,24 +78,29 @@ const UsersPage = ({ inputSearchValue }) => {
                 </table>
                 {list.applicantsloadingStatus ==="pending" && <p style={{textAlign:"center"}}>Please wait...</p>}
                 {(list.applicantsloadingStatus === "success" && search?.length ===0) && <p className="text-center">record not found</p>}
-                <div>
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel=">"
-                    pageRangeDisplayed={5}
-                    pageCount={list.superAdminApplicantsList?.totalPages}
-                    marginPagesDisplayed="1"
-                    previousLabel="<"
-                    renderOnZeroPageCount={null}
-                    onPageChange={handlePageClick}
-                    containerClassName="containerClassName"
-                    pageClassName='pageClassName'
-                    previousClassName='previousClassName'
-                    activeClassName="activeClassName"
-                    nextClassName='nextClassName'
-                    pageLinkClassName="pageLinkClassName"
-                />
-                 </div>
+                
+                    {
+                        list.superAdminApplicantsList?.totalPages > 1 &&(
+                            <div>
+                                <ReactPaginate
+                                    breakLabel="..."
+                                    nextLabel=">"
+                                    pageRangeDisplayed={5}
+                                    pageCount={list.superAdminApplicantsList?.totalPages}
+                                    marginPagesDisplayed="1"
+                                    previousLabel="<"
+                                    renderOnZeroPageCount={null}
+                                    onPageChange={handlePageClick}
+                                    containerClassName="containerClassName"
+                                    pageClassName='pageClassName'
+                                    previousClassName='previousClassName'
+                                    activeClassName="activeClassName"
+                                    nextClassName='nextClassName'
+                                    pageLinkClassName="pageLinkClassName"
+                                />
+                             </div>
+                        )
+                    }
             </section>
         </div>
     );
