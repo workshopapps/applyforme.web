@@ -133,17 +133,17 @@ public class MemberServiceImpl implements MemberService {
         }
 
         Member memberExists = jpaRepository.findByEmailAddress(body.getEmailAddress());
-        if (memberExists != null && memberExists.getId() != id) {
+        if (memberExists != null && memberExists.getId().longValue() != id.longValue()) {
             throw new EmailAlreadyExistsException();
         }
 
         Member memberWithUsername = jpaRepository.findByUsername(body.getUsername());
-        if (memberWithUsername != null && memberWithUsername.getId() != id) {
+        if (memberWithUsername != null && memberWithUsername.getId().longValue() != id.longValue()) {
             throw new UsernameAlreadyExistsException();
         }
 
         Member memberWithPhoneNumber = jpaRepository.findByPhoneNumber(body.getPhoneNumber());
-        if (memberWithPhoneNumber != null && memberWithPhoneNumber.getId() != id) {
+        if (memberWithPhoneNumber != null && memberWithPhoneNumber.getId().longValue() != id.longValue()) {
             throw new PhoneNumberAlreadyExistsException();
         }
         if (body.getNationality() != null) {
