@@ -18,7 +18,6 @@ const ApplicationForm = () => {
     const [state, setState] = useState({
         name: "",
         role: "",
-        plan: "",
         company: "",
         reverse_recruiter: "",
         location: "",
@@ -109,12 +108,6 @@ const ApplicationForm = () => {
             labelText: "Job Role",
             placeholder: "Product Design",
             value: `${state.role}`
-        },
-        {
-            id: "plan",
-            labelText: "Membership Plan",
-            placeholder: "Premuim",
-            value: `${state.plan}`
         },
         {
             id: "company",
