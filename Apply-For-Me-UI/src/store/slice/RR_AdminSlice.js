@@ -61,7 +61,6 @@ export const SuperAdminApplicants = createAsyncThunk(
                     }
                 }
             );
-            console.log("super", response?.data);
             return response?.data;
         } catch (error) {
             return error.response.data;
@@ -70,13 +69,15 @@ export const SuperAdminApplicants = createAsyncThunk(
 );
 
 export const get_rr_applicants_list = createAsyncThunk(
-    "RRadmin/SuperAdminApplicants",
+    "RRadmin/get_rr_applicants_list",
     async values => {
+        console.log("member", values.member)
         try {
             const response = await axios.get(
-                `${url}/api/v1/super-admin/applicant/entries`,
+                `${url}/api/v1/super-admin/recruiter/applicant_list`,
                 {
                     params: {
+                        member: values.member,
                         "pageNo": values.pageNo,
                         "pageSize": values.pageSize
                     },
@@ -85,7 +86,6 @@ export const get_rr_applicants_list = createAsyncThunk(
                     }
                 }
             );
-            console.log("Recruiter", response?.data);
             return response?.data;
         } catch (error) {
             return error.response.data;
@@ -96,10 +96,6 @@ export const get_rr_applicants_list = createAsyncThunk(
 export const Delete_RR_Admin = createAsyncThunk(
     "RRadmin/Delete_RR_Admin",
     async values => {
-        console.log("fix-top");
-        console.log(values);
-        console.log(typeof values);
-        console.log("fix-bottom");
         try {
             const response = await axios.delete(
                 `${url}/api/v1/super-admin/recruiter/${values.id.id}`,
@@ -109,7 +105,6 @@ export const Delete_RR_Admin = createAsyncThunk(
                     }
                 }
             );
-            console.log(response);
             return response?.data;
         } catch (error) {
             return error.response.data;
@@ -192,7 +187,6 @@ export const updateSuperAdminProfileInfo = createAsyncThunk(
 export const updateReverseRecruiterProfileInfo = createAsyncThunk(
     "RRadmin/updateReverseRecruiterProfileInfo",
     async (values, id) => {
-        console.log("user id:", id);
         try {
             const response = await axios.put(
                 `${url}/api/v1/member/update`,
@@ -220,7 +214,6 @@ export const getRRApplications = createAsyncThunk(
             const response = await axios.get(
                 `${url}/api/v1/recruiter/application/entries`
             );
-            console.log("rrApplication info", response?.data);
             return response?.data;
         } catch (error) {
             return error.response.data;

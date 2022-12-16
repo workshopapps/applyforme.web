@@ -22,8 +22,7 @@ export const DashboardContent = ({ inputSearchValue }) => {
     };
     useEffect(() => {
         getStatisticsDetail();
-    }, [getStatisticsDetail]);
-    console.log(statValue);
+    }, []);
 
     const token = localStorage.getItem("tokenHngKey");
     let decoded = jwtDecode(token);

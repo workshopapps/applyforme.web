@@ -35,6 +35,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const dispatch = useDispatch();
     const token = localStorage.getItem("tokenHngKey");
     const recruiter = useSelector(state => state.RRadmin);
+    const [loading, setLoading] = useState(false);
 
     const { firstName, emailAddress, phoneNumber, currentJobTitle } =
         recruiter.reverseRProfile;
@@ -56,6 +57,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     };
     const deleteHandler = async () => {
         try {
+            setLoading(true)
             const response = await axios.delete(
                 `${url}/api/v1/super-admin/recruiter/${newId.id.id}`,
                 {
@@ -64,13 +66,14 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     }
                 }
             );
+            setLoading(false);
             toast("Recruiter deleted successfully");
             setTimeout(() => {
                 navigate("/user-page");
             }, 3000);
             return response;
         } catch (error) {
-            console.log(error.response?.data?.message)
+            setLoading(false);
             toast.error("An error occured, Please try again");
             
         }
@@ -310,6 +313,11 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         </form>
                     </div>
                 </section>
+            )}
+            {loading && (
+                <div className={classes.editContainer}>
+                    <div className={classes.progress}>Please wait...</div>
+                </div>
             )}
         </section>
     );
