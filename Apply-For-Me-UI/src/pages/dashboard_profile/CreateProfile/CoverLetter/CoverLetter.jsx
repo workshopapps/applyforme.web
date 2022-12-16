@@ -5,6 +5,8 @@ import Dropdown from "../../components/Dropdown/Dropdown";
 import Input from "../../components/InputField/InputField";
 const CoverLetter = ({ formData, setFormData }) => {
     const [clTemplates, setClTemplates] = useState();
+    const [templateFocus, setTemplateFocus] = useState(false);
+    const [promptColor, setPromptColor] = useState("#2e3192");
 
     useEffect(() => {
         fetch(
@@ -44,9 +46,18 @@ const CoverLetter = ({ formData, setFormData }) => {
                     onChange={e => {
                         populateInputs(e);
                     }}
+                    onFocus={e => {
+                        setTemplateFocus(true);
+                    }}
                     value={formData.coverletter_template}
                 />
             </div>
+            {templateFocus && (
+                <small style={{ color: `${promptColor}` }}>
+                    If you have selected a template, update the details
+                    appropriately
+                </small>
+            )}
             <div className={classes.cover_letter}>
                 <label>
                     <p className={classes.cl_text}>Cover letter subject</p>
@@ -83,6 +94,9 @@ Enwono Ikono"
                             ...formData,
                             coverletter_body: e.target.value
                         });
+                    }}
+                    onFocus={e => {
+                        setPromptColor("#6d6e71");
                     }}
                 />
             </div>
