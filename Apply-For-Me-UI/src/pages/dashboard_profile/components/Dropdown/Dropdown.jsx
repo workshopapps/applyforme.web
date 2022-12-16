@@ -4,6 +4,7 @@ const Dropdown = ({
     id,
     value,
     onChange,
+    onFocus,
     name,
     options,
     width,
@@ -15,6 +16,7 @@ const Dropdown = ({
                 id={id}
                 value={value}
                 onChange={onChange}
+                onFocus={onFocus}
                 style={{ width: `${width}%` }}
                 name={name}
             >

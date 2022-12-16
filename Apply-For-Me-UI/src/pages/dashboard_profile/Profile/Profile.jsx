@@ -51,12 +51,12 @@ const Profile = ({ profileList }) => {
                     console.log(error);
                 });
             setModalIsOpen(false);
-            toast("Profile deleted successfully");
+            toast.success("Profile deleted successfully");
             setTimeout(() => {
                 window.location.reload();
             }, 3000);
         } catch (error) {
-            toast("Error deleting. Please, try again");
+            toast.error("Error deleting. Please, try again");
             console.log(error);
         }
     };

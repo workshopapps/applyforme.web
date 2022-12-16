@@ -354,6 +354,10 @@ th:last-child {
 }
 
 @media (max-width: 480px) {
+    .applications_card_title {
+        flex-direction: column;
+        align-items:flex-start;
+    }
     .applications_list_card {
         padding: 12px 12px 4rem 12px;
     }
@@ -404,6 +408,9 @@ th:last-child {
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
+    .table_head{
+        display:none;
+    }
     .hide_tablet {
         display: none;
     }

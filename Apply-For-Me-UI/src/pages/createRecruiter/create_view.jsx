@@ -2,10 +2,12 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer} from "react-toastify";
 import "./create_view.css";
 
 export const CreateRecruiter = () => {
+    const [password, setPassword] = useState("password");
+
     const token = localStorage.getItem("tokenHngKey");
     const {
         register,
@@ -13,8 +15,12 @@ export const CreateRecruiter = () => {
         formState: { errors }
     } = useForm();
     const navigate = useNavigate();
+    const handletoggle = () => {
+        password === "password" ? setPassword("text") : setPassword("password");
+    };
     const [loading, setLoading] = useState(false);
     const [countries, setCountries] = useState([]);
+    const [defaultPassword] = useState("78789898");
     const getCountry = async () => {
         try {
             const response = await axios.get(
@@ -71,7 +77,7 @@ export const CreateRecruiter = () => {
                 );
                 setLoading(false);
                 console.log(response);
-                toast.success("Admin successfully created");
+                toast.success("Admin successfully created, an email has being sent to the recruiter ");
             } catch (err) {
                 setLoading(false);
                 console.log(err.response?.data);
@@ -89,8 +95,11 @@ export const CreateRecruiter = () => {
                     <div className="afmdiv">
                         <img src="https://res.cloudinary.com/hamskid/image/upload/v1670693251/Group_3_xwy8bo.svg" />
                     </div>
-                    <div className="imgDiv">
-                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1670693275/Mask_group_zajxrc.svg" />
+                    <div className="imgDiv ">
+                        <img
+                            className="img_rr"
+                            src="https://res.cloudinary.com/hamskid/image/upload/v1670693275/Mask_group_zajxrc.svg"
+                        />
                     </div>
                 </div>
                 <div className="rContainer_div_2">
@@ -153,7 +162,7 @@ export const CreateRecruiter = () => {
                                     autoFocus
                                     {...register("eAddy", {
                                         required:
-                                            "Please enter your Last nameEmail Address",
+                                            "Please enter your Email Address",
                                         pattern: {
                                             value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
                                             message: "Enter valid email address"
@@ -167,11 +176,19 @@ export const CreateRecruiter = () => {
                                 )}
                             </div>
                             <div className="labelConatiner">
-                                <label htmlFor="password">Password</label>
+                                <label
+                                    htmlFor="password"
+                                    className="password-label"
+                                >
+                                    Password
+                                </label>
                                 <input
                                     className="input-tab"
                                     required
+
                                     type="password"
+                                    value={defaultPassword}
+
                                     name="password"
                                     id="password"
                                     autoFocus
@@ -184,6 +201,11 @@ export const CreateRecruiter = () => {
                                         }
                                     })}
                                 />
+                                <img
+                                    src="https://res.cloudinary.com/hamskid/image/upload/v1670631906/Vector_1_qntpu2.svg"
+                                    alt="object not found"
+                                    onClick={handletoggle}
+                                />
                                 {errors.password && (
                                     <p className="text-danger ">
                                         {errors.password.message}
@@ -194,6 +216,7 @@ export const CreateRecruiter = () => {
                                 <label htmlFor="nationality">Nationality</label>
                                 <select
                                     className="select-tab"
+                                    required
                                     name="nationality"
                                     id="nationality"
                                     autoFocus
@@ -244,6 +267,7 @@ export const CreateRecruiter = () => {
                                 <label htmlFor="cor">Country of Resident</label>
                                 <select
                                     className="select-tab"
+                                    required
                                     name="cor"
                                     id="cor"
                                     autoFocus

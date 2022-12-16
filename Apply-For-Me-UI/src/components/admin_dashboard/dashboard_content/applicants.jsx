@@ -2,13 +2,14 @@ import React from "react";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
+import { useParams } from "react-router-dom";
+import { get_rr_applicants_list } from "store/slice/RR_AdminSlice";
 import classes from "./applicants.module.css";
 
 export const RRApplicantsPage = ({ inputSearchValue }) => {
     const dispatch = useDispatch();
     const list = useSelector(state => state.RRadmin);
-    console.log(list);
+    const {id} = useParams();
     const [search, setSearch] = useState([]);
     const [pagination, setPagination] = useState({
         "pageNo": 0,
@@ -16,23 +17,32 @@ export const RRApplicantsPage = ({ inputSearchValue }) => {
     });
     const handlePageClick = data => {
         setPagination(prevState => ({ ...prevState, "pageNo": data.selected }));
-        dispatch(SuperAdminApplicants(pagination));
+        dispatch(get_rr_applicants_list({
+            "pageNo": data.selected,
+            "pageSize": pagination.pageSize,
+             member: id
+        }));
     };
     useEffect(() => {
         const avilableList =
-            list.applicantsloadingStatus === "success" &&
-            list.superAdminApplicantsList?.length !== 0
-                ? list.superAdminApplicantsList?.content?.filter(item =>
-                      item.membership.firstName
+            list.recruiterApplicantsLoading === "success" &&
+            list.recruiterApplicants?.length !== 0
+                ? list.recruiterApplicants?.content?.filter(item =>
+                      item.name
                           .toLowerCase()
                           .includes(inputSearchValue)
                   )
                 : [];
         setSearch(avilableList);
-    }, [inputSearchValue, list.superAdminApplicantsList]);
+    }, [inputSearchValue, list.recruiterApplicants]);
+
     useEffect(() => {
-        dispatch(SuperAdminApplicants(pagination));
-    }, [dispatch, SuperAdminApplicants]);
+        dispatch(get_rr_applicants_list({
+            "pageNo": pagination.pageNo,
+            "pageSize": pagination.pageSize,
+             member: id
+        }));
+    }, [dispatch]);
 
     return (
         <div className={classes.main_container}>
@@ -65,41 +75,41 @@ export const RRApplicantsPage = ({ inputSearchValue }) => {
                     </thead>
                     <tbody>
                         {search?.length !== 0 &&
-                            list.applicantsloadingStatus === "success" &&
-                            list.superAdminApplicantsList.length !== 0 &&
-                            search?.map(list => {
+                            list.recruiterApplicantsLoading === "success" &&
+                            list.recruiterApplicants.length !== 0 &&
+                            search?.map((list, index) => {
                                 return (
                                     <tr
                                         className={classes.user_details}
-                                        key={list.membership.id}
+                                        key={index}
                                     >
-                                        <td>{list.membership.firstName}</td>
+                                        <td>{list?.name}</td>
                                         <td className={classes.hide_on_mobile}>
                                             {" "}
-                                            {list.membership.emailAddress}
+                                            {list?.mail}
                                         </td>
-                                        <td>basic</td>
-                                        <td>{list.totalSubmissions} of 15</td>
+                                        <td>{list?.plan}</td>
+                                        <td>{list?.applications_done}</td>
                                     </tr>
                                 );
                             })}
                     </tbody>
                 </table>
-                {list.applicantsloadingStatus === "pending" && (
+                {list.recruiterApplicantsLoading === "pending" && (
                     <p style={{ textAlign: "center" }}>Please wait...</p>
                 )}
-                {list.applicantsloadingStatus === "success" &&
+                {list.recruiterApplicantsLoading === "success" &&
                     search?.length === 0 && (
                         <p className="text-center">record not found</p>
                     )}
                 {
-                    list.superAdminApplicantsList?.totalPages > 1 && (
+                    list.recruiterApplicants?.totalPages > 1 && (
                         <div>
                             <ReactPaginate
                                 breakLabel="..."
                                 nextLabel=">"
                                 pageRangeDisplayed={5}
-                                pageCount={list.superAdminApplicantsList?.totalPages}
+                                pageCount={list.recruiterApplicants?.totalPages}
                                 marginPagesDisplayed="1"
                                 previousLabel="<"
                                 renderOnZeroPageCount={null}

@@ -66,6 +66,7 @@ const AccountSettings = ({ details }) => {
     const updateInfo = async () => {
         const token = localStorage.getItem("tokenHngKey");
         try {
+            // eslint-disable-next-line no-unused-vars
             const res = await axios.put(
                 `https://api.applyforme.hng.tech/api/v1/member/update`,
                 post,
@@ -76,10 +77,17 @@ const AccountSettings = ({ details }) => {
                     params: { "id": details.id }
                 }
             );
+<<<<<<< HEAD
             toast.success("Hello");
         } catch (err) {
             toast.error(err?.response?.data?.message);
             return err?.response?.data;
+=======
+            toast.success("Profile successfully updated");
+        } catch (err) {
+            console.log("error for update", err);
+            toast.error(err?.response.data.message);
+>>>>>>> 83fca9bf62e1313b07ea3ea82fed951d16042119
         }
     };
 
