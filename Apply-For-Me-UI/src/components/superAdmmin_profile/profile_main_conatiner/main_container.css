@@ -119,7 +119,7 @@
     overflow: auto;
     z-index: 1;
     left: 50%;
-    height:80%;
+    height: 80%;
     width: 30%;
     background-color: white;
     transform: translate(-50%, -50%);

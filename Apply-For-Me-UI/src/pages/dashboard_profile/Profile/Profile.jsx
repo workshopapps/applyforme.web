@@ -140,7 +140,12 @@ const Profile = ({ profileList }) => {
 
     return (
         <div className={styles.profile_page}>
-            <TopBar />
+            <TopBar
+                title={"My Job Profile"}
+                style={{
+                    marginTop: "auto"
+                }}
+            />
             <ToastContainer />
             <button
                 className={styles.createjob_button}

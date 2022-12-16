@@ -2,6 +2,7 @@ package com.hydraulic.applyforme.controller.admin;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.member.CreateRecruiterDto;
+import com.hydraulic.applyforme.model.response.ApplicantForRecruiterResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.EmailService;
 import com.hydraulic.applyforme.service.superadmin.SuperAdminApplierService;
@@ -69,5 +70,15 @@ public class SuperAdminRecruiterController {
     @GetMapping("/search-name")
     public Member searchRecruiterByName(@RequestParam String firstName){
         return recruiterService.searchRecruitersByName(firstName);
+    }
+
+    @PreAuthorize("hasAnyRole('SuperAdministrator')")
+    @GetMapping("/applicant_list")
+    public ApplyForMeResponse searchRecruiterById(@RequestParam Long member,
+    @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+    @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
+    @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
+    @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
+        return recruiterService.searchRecruiterById(member, pageNo, pageSize, sortBy, sortDir);
     }
 }

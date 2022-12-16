@@ -1,39 +1,49 @@
 import style from "./ApplicationForm.module.css";
 import goBackIcon from "../../../../assets/images/back_arrow.svg";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 import jwtDecode from "jwt-decode";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 
 const ApplicationForm = () => {
-
-    const {id} = useParams();
+    const { id } = useParams();
     const token = localStorage.getItem("tokenHngKey");
-    const decoded = jwtDecode(localStorage.getItem("tokenHngKey"))
+    const decoded = jwtDecode(localStorage.getItem("tokenHngKey"));
     console.log(decoded);
-    const [professional, setProfessional] = useState()
-     const [state, setState] = useState({
+    const [professional, setProfessional] = useState();
+    const [state, setState] = useState({
         name: "",
         role: "",
         plan: "",
         company: "",
-        reverse_recruiter: ""
+        reverse_recruiter: "",
+        location: "",
+        jobLink: "",
+        summary: ""
     });
-    const handleSubmit=(e)=>{
+
+    const handleSubmit = e => {
         e.preventDefault();
         const submitDetails = async () => {
-            console.log( state?.company, )
             try {
                 const response = await axios.post(
                     "https://api.applyforme.hng.tech/api/v1/job-submission/save",
                     {
-                        "professional_id":professional?.id,
+                        "professional_id":
+                            professional?.professional?.member.id,
                         "applier_id": decoded.memberId,
-                        "professional_profile_id": professional?.professional?.id,
-                        "job_company": state?.company
+                        // eslint-disable-next-line no-dupe-keys
+                        "applier_id": decoded.memberId,
+                        "professional_profile_id": professional?.id,
+                        "job_company": state?.company,
+                        "job_title": state?.role,
+                        "job_link": state.jobLink,
+                        "job_location": state.location,
+                        "summary": state.summary,
+                        "other_comment": "unavailable"
                     },
                     {
                         headers: {
@@ -41,16 +51,17 @@ const ApplicationForm = () => {
                         }
                     }
                 );
-                toast.success("seccesful")
-                console.log(response.data)
-                setDetails(response?.data?.professional);
-            } catch (err) {
-                 toast.error("seccesful")
-                console.log(err.response?.data);
+                toast.success("Submission Successfull");
+                console.log(response.data);
+            } catch (error) {
+                if (error) {
+                    toast.error("Submission Failed");
+                    console.log(error.response.data);
+                }
             }
         };
         submitDetails();
-    } 
+    };
 
     const getProfessionalProfile = async () => {
         try {
@@ -62,7 +73,7 @@ const ApplicationForm = () => {
                     }
                 }
             );
-            console.log(response.data)
+            console.log(response.data);
             setProfessional(response.data);
             console.log(professional);
         } catch (err) {
@@ -70,11 +81,9 @@ const ApplicationForm = () => {
         }
     };
 
-    useEffect(()=>{
-        getProfessionalProfile()
-    },[])
-
-   
+    useEffect(() => {
+        getProfessionalProfile();
+    }, []);
 
     const handleChange = event => {
         const value = event.target.value;
@@ -110,6 +119,24 @@ const ApplicationForm = () => {
             value: `${state.company}`
         },
         {
+            id: "location",
+            labelText: "Job location",
+            placeholder: "Job Location",
+            value: `${state.location}`
+        },
+        {
+            id: "jobLink",
+            labelText: "jobLink",
+            placeholder: "Job Link",
+            value: `${state.jobLink}`
+        },
+        {
+            id: "summary",
+            labelText: "job summary",
+            placeholder: "job summary",
+            value: `${state.summary}`
+        },
+        {
             id: "reverse_recruiter",
             labelText: "Reverse Recruiter's Name",
             placeholder: "Ora Smith",
@@ -119,7 +146,10 @@ const ApplicationForm = () => {
     const navigate = useNavigate();
 
     return (
-        <section className={style.application_form}>
+        <>
+          <ToastContainer />
+         <section className={style.application_form} style={{paddingBottom:"6rem"}}>
+            
             <RRD_Nav />
             <div className={style.go_back_link}>
                 <Link to="/rr_admin">
@@ -146,6 +176,7 @@ const ApplicationForm = () => {
                                 placeholder={item.placeholder}
                                 value={item.value}
                                 onChange={handleChange}
+                                required
                             />
                         </label>
                     );
@@ -154,6 +185,9 @@ const ApplicationForm = () => {
                 <input id="submit" type="submit" value="Submit" />
             </form>
         </section>
+        </>
+      
+       
     );
 };
 

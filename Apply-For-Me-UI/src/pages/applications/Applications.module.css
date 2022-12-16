@@ -9,9 +9,10 @@
 .applications_container {
     display: flex;
     flex-direction: column;
+    padding: 0 2rem;
     flex-wrap: wrap;
     margin-left: 9rem;
-    width:100%;
+    width: 100%;
 }
 
 .containerClassName {
@@ -44,10 +45,11 @@
 .application_main {
     flex: 1 1 auto;
     padding-bottom: 20px;
+    width:100%;
 }
 
 .applications_table_header {
-    border-top: 0.5px #cccccc solid;
+    /* border-top: 0.5px #cccccc solid; */
     height: 112px;
     display: flex;
     flex-wrap: wrap;
@@ -353,11 +355,9 @@ th:last-child {
 
 @media (max-width: 480px) {
     .applications_list_card {
-       
         padding: 12px 12px 4rem 12px;
-       
     }
-    .applications_container  {
+    .applications_container {
         margin-left: 0rem;
     }
     .applications_page_title h2 {
@@ -368,11 +368,11 @@ th:last-child {
         padding-right: 1rem;
     }
     .TopNav_applications_top_nav__uM31u {
-    width: 100%;
+        width: 100%;
     }
     .applications_table_header {
         padding-left: 1rem;
-            padding-right: 1rem;
+        padding-right: 1rem;
     }
 
     .applications_table_wrapper {

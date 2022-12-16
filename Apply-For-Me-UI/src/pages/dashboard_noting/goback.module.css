@@ -6,6 +6,7 @@
     padding-block: 2rem;
     margin-top: 6rem;
 }
+
 .containers {
     display: none;
 }
@@ -50,6 +51,6 @@
         justify-content: flex-end;
         align-items: center;
         height: 0px;
-        padding-block: 2rem;
+        padding-block: 1rem;
     }
 }
