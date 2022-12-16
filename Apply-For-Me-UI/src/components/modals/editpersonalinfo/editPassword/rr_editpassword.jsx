@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux";
 import { SuperAdmin_changePassword } from "store/slice/RR_AdminSlice";
 
 export const PasswordContent = () => {
+    const [oldPassword, setOldPassword] = useState("password");
+    const [newPassword, setNewPassword] = useState("password");
+    const [confirmPassword, setConfirmPassword] = useState("password");
     const [formField, setFormField] = useState({
         newpassword: "",
         oldpassword: "",
@@ -45,15 +48,29 @@ export const PasswordContent = () => {
     const setFormEmpty = () => {
         setFormField({ newpassword: "", oldpassword: "", confirmpassword: "" });
     };
-
+    const handletoggle1 = () => {
+        oldPassword === "password"
+            ? setOldPassword("text")
+            : setOldPassword("password");
+    };
+    const handletoggle2 = () => {
+        newPassword === "password"
+            ? setNewPassword("text")
+            : setNewPassword("password");
+    };
+    const handletoggle3 = () => {
+        confirmPassword === "password"
+            ? setConfirmPassword("text")
+            : setConfirmPassword("password");
+    };
     return (
         <div className="edit_password">
             <form className="edit_passwordContent" onSubmit={handleSubmit}>
-                <div>
+                <div className="password-label">
                     <label htmlFor="">Old password</label>
                     <input
                         id="oldPassword"
-                        type="password"
+                        type={oldPassword}
                         name="oldPassword"
                         placeholder="enter old password"
                         required
@@ -65,13 +82,18 @@ export const PasswordContent = () => {
                             })
                         }
                     />
+                    <img
+                        src="https://res.cloudinary.com/hamskid/image/upload/v1670631906/Vector_1_qntpu2.svg"
+                        alt="object not found"
+                        onClick={handletoggle1}
+                    />
                 </div>
 
-                <div>
+                <div className="password-label">
                     <label htmlFor="">New Password</label>
                     <input
                         id="newPassword"
-                        type="password"
+                        type={newPassword}
                         name="newPassword"
                         placeholder="enter new password"
                         required
@@ -83,14 +105,19 @@ export const PasswordContent = () => {
                             })
                         }
                     />
+                    <img
+                        src="https://res.cloudinary.com/hamskid/image/upload/v1670631906/Vector_1_qntpu2.svg"
+                        alt="object not found"
+                        onClick={handletoggle2}
+                    />
                     <span>{errors.newpassword}</span>
                 </div>
 
-                <div>
+                <div className="password-label">
                     <label htmlFor="confirm">Confirm password</label>
                     <input
                         id="confirm"
-                        type="password"
+                        type={confirmPassword}
                         name="confirm"
                         placeholder="confirm password"
                         required
@@ -101,6 +128,11 @@ export const PasswordContent = () => {
                                 confirmpassword: e.target.value
                             })
                         }
+                    />
+                    <img
+                        src="https://res.cloudinary.com/hamskid/image/upload/v1670631906/Vector_1_qntpu2.svg"
+                        alt="object not found"
+                        onClick={handletoggle3}
                     />
                     <span>{errors.confirmpassword}</span>
                 </div>

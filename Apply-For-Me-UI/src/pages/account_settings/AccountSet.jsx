@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import TopBar from "pages/dashboard_profile/components/TopBar/TopBar";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 // import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
 //import { getActiveLink } from './settingservice/SettingsSecondSidebar'
 
@@ -66,6 +66,7 @@ const AccountSettings = ({ details }) => {
     const updateInfo = async () => {
         const token = localStorage.getItem("tokenHngKey");
         try {
+            // eslint-disable-next-line no-unused-vars
             const res = await axios.put(
                 `https://api.applyforme.hng.tech/api/v1/member/update`,
                 post,
@@ -76,10 +77,10 @@ const AccountSettings = ({ details }) => {
                     params: { "id": details.id }
                 }
             );
-            console.log("response", res);
-            toast.success("Hello");
+            toast.success("Profile successfully updated");
         } catch (err) {
             console.log("error for update", err);
+            toast.error(err?.response.data.message);
         }
     };
 
@@ -204,7 +205,7 @@ const AccountSettings = ({ details }) => {
                             </li>
                         </ul>
                     </div>
-
+                    <ToastContainer />
                     <form
                         onSubmit={e => e.preventDefault()}
                         className={classes.form}

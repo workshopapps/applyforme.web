@@ -73,9 +73,10 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
             }, 3000);
             return response;
         } catch (error) {
+
             setLoading(false);
+
             toast.error("An error occured, Please try again");
-            
         }
     };
 
