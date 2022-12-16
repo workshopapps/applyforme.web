@@ -68,10 +68,10 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
             setTimeout(() => {
                 navigate("/user-page");
             }, 3000);
+            return response;
         } catch (error) {
-            console.log(error.response?.data?.message)
+            console.log(error.response?.data?.message);
             toast.error("An error occured, Please try again");
-            
         }
     };
 
