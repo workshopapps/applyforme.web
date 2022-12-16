@@ -11,55 +11,26 @@ import { toast } from "react-toastify";
 // import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
 //import { getActiveLink } from './settingservice/SettingsSecondSidebar'
 
-const AccountSettings = () => {
+const AccountSettings = ({ details }) => {
     //User Info
     const { user } = useSelector(state => state.user);
 
     const fullName = user.fullName;
-    // const phoneNumber = user.phoneNumber;
     const userEmail = user.sub;
-
-    // state for account settings
-
-    const [memberInfo, setMemberInfo] = useState({});
     const [countryDetails, setCountryDetails] = useState([]);
-    // console.log("response", memberInfo);
-
-    const fetchDetails = async () => {
-        const token = localStorage.getItem("tokenHngKey");
-        try {
-            const response = await axios.get(
-                `https://api.applyforme.hng.tech/api/v1/member/details`,
-                {
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
-                }
-            );
-            setMemberInfo(response.data);
-        } catch (err) {
-            console.log("error for info", err);
-        }
-    };
-    useEffect(() => {
-        fetchDetails();
-        fetchCountry();
-    }, []);
 
     const [formField, setFormField] = useState({
-        first_name: memberInfo?.firstName,
-        last_name: "",
-        email: "",
-        phone_number: "",
-        address: "",
+        first_name: details?.firstName,
+        last_name: details?.lastName,
+        email: details?.emailAddress,
+        phone_number: details?.phoneNumber,
+        address: details?.address,
         city: "",
         state: "",
-        country: "",
-        password: "",
-        new_password: "",
-        confirm_new_password: "",
-        img_file: [],
-        shortenedCVUrl: ""
+        country_of_residence: "",
+        nationality: "",
+        date_of_birth: details?.dateOfBirth,
+        username: ""
     });
 
     const fetchCountry = async () => {
@@ -74,7 +45,6 @@ const AccountSettings = () => {
                 }
             );
             setCountryDetails(response.data);
-            // console.log("country", response);
         } catch (err) {
             console.log("error for country", err);
         }
@@ -83,20 +53,16 @@ const AccountSettings = () => {
     const post = {
         "first_name": formField.first_name,
         "last_name": formField.last_name,
-        "nationality": Number(formField.country),
         "country_of_residence": Number(formField.country),
-        "date_of_birth": memberInfo.dateOfBirth,
-        "current_job_title": memberInfo.currentJobTitle,
+        "date_of_birth": formField.dateOfBirth,
+        "current_job_title": formField.currentJobTitle,
         "email_address": formField.email,
-        "username": memberInfo?.username ? memberInfo.username : "",
+        "username": formField.username,
         "phone_number": formField.phone_number,
         "city": formField.city,
         "state": formField.state,
         "address": formField.address
     };
-
-    // console.log(post);
-
     const updateInfo = async () => {
         const token = localStorage.getItem("tokenHngKey");
         try {
@@ -107,7 +73,7 @@ const AccountSettings = () => {
                     headers: {
                         "Authorization": `Bearer ${token}`
                     },
-                    params: { "id": memberInfo.id }
+                    params: { "id": details.id }
                 }
             );
             console.log("response", res);
@@ -117,10 +83,7 @@ const AccountSettings = () => {
         }
     };
 
-    // console.log("id", memberInfo);
-
     useEffect(() => {
-        fetchDetails();
         fetchCountry();
     }, []);
 
@@ -272,7 +235,7 @@ const AccountSettings = () => {
                                                             event.target.value
                                                     })
                                                 }
-                                                value={formField.first_name}
+                                                value={formField?.first_name}
                                                 type="text"
                                                 name="first_name"
                                                 id="first_name"
@@ -403,18 +366,20 @@ const AccountSettings = () => {
 
                                     <div className={classes.row}>
                                         <div className={classes.form_control}>
-                                            <label htmlFor="country">
+                                            <label htmlFor="country_of_residence">
                                                 Country
                                             </label>
                                             <select
                                                 onChange={event =>
                                                     setFormField({
                                                         ...formField,
-                                                        country:
+                                                        country_of_residence:
                                                             event.target.value
                                                     })
                                                 }
-                                                value={formField.country}
+                                                value={
+                                                    formField.country_of_residence
+                                                }
                                                 type="text"
                                                 name="country"
                                             >

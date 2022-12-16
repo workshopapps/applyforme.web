@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 const url = "https://api.applyforme.hng.tech";
 const token = localStorage.getItem("tokenHngKey");
@@ -190,7 +191,8 @@ export const updateSuperAdminProfileInfo = createAsyncThunk(
 
 export const updateReverseRecruiterProfileInfo = createAsyncThunk(
     "RRadmin/updateReverseRecruiterProfileInfo",
-    async values => {
+    async (values, id) => {
+        console.log("user id:", id);
         try {
             const response = await axios.put(
                 `${url}/api/v1/member/update`,
@@ -198,7 +200,8 @@ export const updateReverseRecruiterProfileInfo = createAsyncThunk(
                 {
                     headers: {
                         "Authorization": `Bearer ${token}`
-                    }
+                    },
+                    params: { "id": id }
                 }
             );
             toast.success("Profile updated Successfully!");
