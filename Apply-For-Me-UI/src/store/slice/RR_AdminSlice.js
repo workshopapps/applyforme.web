@@ -186,7 +186,7 @@ export const updateSuperAdminProfileInfo = createAsyncThunk(
 
 export const updateReverseRecruiterProfileInfo = createAsyncThunk(
     "RRadmin/updateReverseRecruiterProfileInfo",
-    async (values, id) => {
+    async ({values, id}) => {
         try {
             const response = await axios.put(
                 `${url}/api/v1/member/update`,
@@ -195,7 +195,7 @@ export const updateReverseRecruiterProfileInfo = createAsyncThunk(
                     headers: {
                         "Authorization": `Bearer ${token}`
                     },
-                    params: { "id": id }
+
                 }
             );
             toast.success("Profile updated Successfully!");
