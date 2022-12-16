@@ -43,7 +43,11 @@ public class ProfessionalJobProfileController {
 
     @PutMapping("/update/{id}")
     public ProfessionalProfile update(@Validated @RequestBody ProfessionalProfileDto body, @PathVariable(name ="id") Long id) {
-        return service.update(id, body);
+        ProfessionalProfile professionalProfile = service.update(id, body);
+        professionalProfile.getProfessional().setProfessionalProfiles(null);
+        professionalProfile.getProfessional().setSubmissions(null);
+        professionalProfile.getProfessional().setMember(null);
+        return professionalProfile;
     }
 
 
