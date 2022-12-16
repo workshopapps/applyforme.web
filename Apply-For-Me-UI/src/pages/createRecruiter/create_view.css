@@ -139,7 +139,7 @@
     .rContainer_div_2 .input-tab,
     .select-tab {
         padding: 0.5rem;
-        width: auto;
+        width: 100%;
     }
     .fContainer {
         grid-template-columns: 1fr;
@@ -155,5 +155,22 @@
     }
     .btn-primary {
         padding: 0.5rem;
+    }
+}
+.img_rr {
+    width: 100%;
+}
+.labelConatiner {
+    position: relative;
+}
+.labelConatiner img {
+    position: absolute;
+    top: 55px;
+    right: 20px;
+}
+
+@media only screen and (max-width: 480px) {
+    .labelConatiner img {
+        top: 45px;
     }
 }
