@@ -47,7 +47,7 @@ public class CreateJobSubmissionDto {
     @JsonProperty("job_company")
     private String jobCompany;
 
-    @Size(min = 1, max = 400, message = "{jobSubmission.summary.size}")
+    @Size(min = 1, max = 3000, message = "{jobSubmission.summary.size}")
     @JsonProperty("summary")
     private String summary;
 
