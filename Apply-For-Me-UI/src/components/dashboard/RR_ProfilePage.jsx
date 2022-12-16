@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "./DashboardHeader.module.css";
-import { FiChevronLeft, FiPause, FiTrash } from "react-icons/fi";
+import { FiChevronLeft, FiTrash } from "react-icons/fi";
 import Logo from "../../assets/images/nav_logo.svg";
 import Notification from "../../assets/images/notification.svg";
 import ProfilePic from "../../assets/images/test_profile_picture.svg";
@@ -64,15 +64,14 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     }
                 }
             );
-            console.log(response);
-            console.log("success");
-            toast("delete successful");
-            navigate("/user-page");
-            return response?.data;
+            toast("Recruiter deleted successfully");
+            setTimeout(() => {
+                navigate("/user-page");
+            }, 3000);
         } catch (error) {
-            console.log(error);
-            toast.error(error.response?.data?.message);
-            return error.response?.data;
+            console.log(error.response?.data?.message)
+            toast.error("An error occured, Please try again");
+            
         }
     };
 
@@ -220,11 +219,6 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
 
                     <div className={classes.user_action}>
                         <div className={classes.user_action__btn__mobile}>
-                            <FiPause className={classes.pause} />
-
-                            <p>Suspend</p>
-                        </div>
-                        <div className={classes.user_action__btn__mobile}>
                             <FiTrash className={classes.trash} />
                             <p onClick={deleteHandler}>Delete</p>
                         </div>
@@ -266,11 +260,6 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     </div>
 
                     <div className={classes.user_action}>
-                        <div className={classes.user_action__btn}>
-                            <FiPause className={classes.pause} />
-
-                            <p>Suspend</p>
-                        </div>
                         <div className={classes.user_action__btn}>
                             <FiTrash className={classes.trash} />
 

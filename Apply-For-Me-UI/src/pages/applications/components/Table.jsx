@@ -60,7 +60,7 @@ const Table = () => {
                             <th className={styles.hide_tablet}>State</th>
                             <th>Salary Range</th>
                             <th className={styles.hide_tablet}>Job Type</th>
-                            <th>Date</th>
+                            <th className={styles.table_head}>Date</th>
                         </tr>
                     </thead>
                     <tbody>
