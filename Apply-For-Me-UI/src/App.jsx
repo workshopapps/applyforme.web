@@ -75,6 +75,7 @@ import TrySuccess from "pages/tryout_form/Success";
 
 import * as atatus from "atatus-spa";
 import { CreateRecruiter } from "pages/createRecruiter/create_view";
+import { SuperApplicantsPage } from "pages/users_page/user_page_applicants";
 
 atatus.config("c626faaef503411ea6216d7b6112de1c").install();
 
@@ -180,6 +181,10 @@ function App() {
                         path="/user-page/reverseRecruiterAdmin/:id"
                         element={<RR_admin_profile />}
                     />
+                    <Route
+                        exact
+                        path="/superAdmin/applicants/profiles/details/:id"
+                        element={<SuperApplicantsPage/>}/>
                     <Route
                         exact
                         path="/create/recruiter/page"

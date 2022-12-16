@@ -5,8 +5,34 @@
     max-width: 1400px;
     margin: 0 auto;
 }
-.sort_header{
+.nav_back{
+    width:20%;
+}
+.user_details:hover{
+    background-color: aliceblue;
+    position:relative;
+}
+.user_details:hover .hover_item{
+   display: block;
+}
+.hover_item_inner{
+    display: flex;
+    flex-direction: column;
+    width:fit-content;
+    padding:0rem 1rem;
+    background-color: white;
+    border-radius:5px;
+    color:#2E3192;
+}
+.hover_item{
+    right:10px;
+    bottom:0;
+    font-weight: bold;
+    display:none;
+    position: absolute;
    
+}
+.sort_header{
     border-bottom: 1px solid grey;
     margin-bottom: 1rem;
     margin-top: 1rem;
@@ -152,6 +178,10 @@
 
     .user_header p {
         font-size: 0.7rem;
+    }
+    .hover_item_inner{
+        padding:0.5rem;
+        font-size:12px;
     }
 }
 

@@ -14,6 +14,7 @@ const ApplicationForm = () => {
     const decoded = jwtDecode(localStorage.getItem("tokenHngKey"));
     console.log(decoded);
     const [professional, setProfessional] = useState();
+    const [loading, setLoading] = useState(false);
     const [state, setState] = useState({
         name: "",
         role: "",
@@ -29,6 +30,7 @@ const ApplicationForm = () => {
         e.preventDefault();
         const submitDetails = async () => {
             try {
+                setLoading(true);
                 const response = await axios.post(
                     "https://api.applyforme.hng.tech/api/v1/job-submission/save",
                     {
@@ -51,10 +53,12 @@ const ApplicationForm = () => {
                         }
                     }
                 );
+                setLoading(false);
                 toast.success("Submission Successfull");
                 console.log(response.data);
             } catch (error) {
                 if (error) {
+                    setLoading(false);
                     toast.error("Submission Failed");
                     console.log(error.response.data);
                 }
@@ -184,10 +188,13 @@ const ApplicationForm = () => {
 
                 <input id="submit" type="submit" value="Submit" />
             </form>
+            {loading && (
+                <div className={style.editContainer}>
+                    <div className={style.progress}>Sending application...</div>
+                </div>
+            )}
         </section>
         </>
-      
-       
     );
 };
 

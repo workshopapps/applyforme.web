@@ -1,0 +1,25 @@
+.applicants_profile_container{
+    padding:4rem;
+}
+.profile_header{
+    font-size:2.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.profile-text-size{
+    font-size:20px;
+}
+.proile_info_container{
+    line-height: 70px;
+    display: flex;
+justify-content: space-evenly;
+   flex-direction: column;
+    flex-wrap: wrap;
+}
+.proile_info_container_label{
+    font-weight: bold;
+    color:#2E3192;
+    font-size: 25px;
+}
+

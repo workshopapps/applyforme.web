@@ -19,7 +19,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
 
     useEffect(()=>{
         dispatch(Fetch_RR_Admin(pagination));
-    },[dispatch,Fetch_RR_Admin])
+    },[dispatch])
     
     useEffect(()=>{
         const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list?.length !==0) ? RR_recruiter.list?.content?.filter((item)=>item.firstName.toLowerCase().includes(inputSearchValue)):[]

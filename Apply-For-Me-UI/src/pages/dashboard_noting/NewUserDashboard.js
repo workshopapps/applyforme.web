@@ -66,14 +66,6 @@ const NewUserDashboard = () => {
                             <p>Total Submissions</p>
                         </div>
                     </div>
-
-                    <div className="overview-card-wrapper">
-                        <div className="overview-card">
-                            <h3>0</h3>
-                            <p>Completed Interview</p>
-                        </div>
-                    </div>
-
                     <div className="overview-card-wrapper">
                         <div className="overview-card">
                             <h3>{value?.total_number_of_profiles}</h3>
