@@ -43,7 +43,7 @@ export const EditInfoContent = ({ setEditModal, details }) => {
         //     }
         // };
         // sendToEndPoint();
-        dispatch(updateReverseRecruiterProfileInfo(values, details?.id));
+        dispatch(updateReverseRecruiterProfileInfo({values,id: details?.id}));
         actions.resetForm();
     };
     // const [fileToUpload, setFileToUpload] = useState("");
@@ -91,8 +91,8 @@ export const EditInfoContent = ({ setEditModal, details }) => {
                 current_job_title: details?.currentJobTitle,
                 email_address: details?.emailAddress,
                 phone_number: details?.phoneNumber,
-                nationality: details?.nationality?.title,
-                country_of_residence: details?.countryOfResidence?.title,
+                nationality: details?.nationality?.id,
+                country_of_residence: details?.countryOfResidence?.id,
                 city: "",
                 state: "",
                 avatar: "",

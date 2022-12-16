@@ -89,7 +89,7 @@ export const RRApplicantsPage = ({ inputSearchValue }) => {
                                             {list?.mail}
                                         </td>
                                         <td>{list?.plan}</td>
-                                        <td>{list?.interviews}</td>
+                                        <td>{list?.applications_done}</td>
                                     </tr>
                                 );
                             })}
