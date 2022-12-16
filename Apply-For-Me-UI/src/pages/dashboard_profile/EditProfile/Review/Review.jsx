@@ -18,7 +18,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
     let included_keywords = String(keywords);
 
     if (included_keywords.length <= 1) {
-        included_keywords = "none";
+        included_keywords = undefined;
     }
     // console.log(included_keywords);
     console.log(formData);
@@ -143,7 +143,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                 {included_keywords}
                             </section>
                         ) : (
-                            <p className={classes.not_filled}>none specified</p>
+                            <p className={classes.not_filled}>No keywords</p>
                         )}
                         <h5>Keywords</h5>
                     </div>
