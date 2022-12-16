@@ -23,7 +23,6 @@ export const DashboardContent = ({ inputSearchValue }) => {
     useEffect(() => {
         getStatisticsDetail();
     }, []);
-    console.log(statValue);
 
     const token = localStorage.getItem("tokenHngKey");
     let decoded = jwtDecode(token);
@@ -34,13 +33,13 @@ export const DashboardContent = ({ inputSearchValue }) => {
                 <h2 className="profile_name">Hello {fullName}</h2>
                 <div className="statisticsContainer">
                     <h2 className="list-header">Statistics</h2>
-                    <select
+                    {/* <select
                         name="statistic_sorter"
                         id="statistic_sorter"
                        
                     >
                         <option value={new Date().toLocaleDateString()}> {new Date().toLocaleDateString()}</option>
-                    </select>
+                    </select> */}
                 </div>
                 <div className="overflow">
                     <div className="applicants">
@@ -50,7 +49,13 @@ export const DashboardContent = ({ inputSearchValue }) => {
                                 {statValue?.total_applications}
                             </h1>
                         </div>
-                        <div className="users_recruiter_text" style={{borderRight:"1px solid white",borderLeft:"1px solid white"}}>
+                        <div
+                            className="users_recruiter_text"
+                            style={{
+                                borderRight: "1px solid white",
+                                borderLeft: "1px solid white"
+                            }}
+                        >
                             <h6 className="amount">Total Users</h6>
                             <h1 className="value">{statValue?.total_users}</h1>
                         </div>

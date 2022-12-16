@@ -19,7 +19,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
 
     useEffect(()=>{
         dispatch(Fetch_RR_Admin(pagination));
-    },[dispatch,Fetch_RR_Admin])
+    },[dispatch])
     
     useEffect(()=>{
         const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list?.length !==0) ? RR_recruiter.list?.content?.filter((item)=>item.firstName.toLowerCase().includes(inputSearchValue)):[]
@@ -101,25 +101,28 @@ export const RR_Admin_list=({inputSearchValue})=>{
                 </p>
             )}
             {(RR_recruiter.loadingStatus === "success" && search?.length ===0) && <p className="text-center">record not found</p>}
-            <div>
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel=">"
-                    pageRangeDisplayed={5}
-                    pageCount={RR_recruiter.list?.totalPages}
-                    marginPagesDisplayed="1"
-                    previousLabel="<"
-                    renderOnZeroPageCount={null}
-                    onPageChange={handlePageClick}
-                    containerClassName="containerClassName"
-                    pageClassName='pageClassName'
-                    previousClassName='previousClassName'
-                    activeClassName="activeClassName"
-                    nextClassName='nextClassName'
-                    pageLinkClassName="pageLinkClassName"
-                />
-            </div>
-            
+            {
+                RR_recruiter.list?.totalPages > 1 && (
+                    <div>
+                        <ReactPaginate
+                            breakLabel="..."
+                            nextLabel=">"
+                            pageRangeDisplayed={5}
+                            pageCount={RR_recruiter.list?.totalPages}
+                            marginPagesDisplayed="1"
+                            previousLabel="<"
+                            renderOnZeroPageCount={null}
+                            onPageChange={handlePageClick}
+                            containerClassName="containerClassName"
+                            pageClassName='pageClassName'
+                            previousClassName='previousClassName'
+                            activeClassName="activeClassName"
+                            nextClassName='nextClassName'
+                            pageLinkClassName="pageLinkClassName"
+                        />
+                     </div>
+                )
+            }
         </>
     );
 };

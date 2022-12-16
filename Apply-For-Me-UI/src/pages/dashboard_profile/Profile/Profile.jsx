@@ -51,12 +51,12 @@ const Profile = ({ profileList }) => {
                     console.log(error);
                 });
             setModalIsOpen(false);
-            toast("Profile deleted successfully");
+            toast.success("Profile deleted successfully");
             setTimeout(() => {
                 window.location.reload();
             }, 3000);
         } catch (error) {
-            toast("Error deleting. Please, try again");
+            toast.error("Error deleting. Please, try again");
             console.log(error);
         }
     };
@@ -140,7 +140,12 @@ const Profile = ({ profileList }) => {
 
     return (
         <div className={styles.profile_page}>
-            <TopBar />
+            <TopBar
+                title={"My Job Profile"}
+                style={{
+                    marginTop: "auto"
+                }}
+            />
             <ToastContainer />
             <button
                 className={styles.createjob_button}

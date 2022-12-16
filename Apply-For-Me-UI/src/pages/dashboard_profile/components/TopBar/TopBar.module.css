@@ -1,40 +1,69 @@
 .topbar {
     display: flex;
     justify-content: space-between;
-    margin: 0 2rem 0 0;
-    padding-top: 24px;
+    width: 100%;
+    padding-top: 1rem;
+    padding-right: 2rem;
 }
+
 @media only screen and (max-width: 480px) {
+    .heading {
+        font-size: 1.1rem;
+    }
+
+    .sub_heading {
+        font-size: 0.75rem;
+    }
+
     .topbar {
         margin-left: 0;
     }
+
+    .topbar p {
+        margin-left: 1.5rem;
+        color: #52515b;
+    }
+
+    .texts {
+        display: flex;
+        flex-direction: column;
+    }
 }
+
 @media screen and (min-width: 610px) {
-    .topbar h4 {
+    /* .topbar h4 {
         font-size: 2.5rem;
         font-weight: 500;
         color: #52515b;
+    } */
+    .topbar p {
+        margin-left: 3rem;
+        color: #52515b;
     }
+
     .profilepic {
         width: 3rem;
         height: 3rem;
     }
 }
+
 @media screen and (max-width: 610px) {
-    .topbar h4 {
-        font-size: 1.5rem;
-        font-weight: 500;
+    .topbar p {
+        margin-left: 2.5rem;
         color: #52515b;
     }
+
     .profilepic {
         width: 2.5rem;
         height: 2.5rem;
     }
 }
+
 .picture_container {
     display: flex;
     align-items: center;
     gap: 24px;
+    font-weight: 500;
 }
 
 .notif {

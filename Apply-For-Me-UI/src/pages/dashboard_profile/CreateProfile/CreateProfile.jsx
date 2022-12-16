@@ -7,6 +7,7 @@ import styles from "./CreateProfile.module.css";
 import TopBar from "../components/TopBar/TopBar";
 import BlueButton from "../../../components/buttons/blue_background/BlueButton";
 import BlueBorderButton from "../../../components/buttons/blue_border_button/BlueBorderButton";
+import { ToastContainer } from "react-toastify";
 
 const CreateProfile = () => {
     const [step, setStep] = useState(0);
@@ -68,7 +69,12 @@ const CreateProfile = () => {
 
     return (
         <div className={styles.createprofile}>
-            <TopBar />
+            <TopBar
+                title={"My Job Profile"}
+                style={{
+                    marginTop: "auto"
+                }}
+            />
             <p className={styles.createtext}>Let's create a new job profile</p>
             <div className={styles.content_mobile}>
                 <nav className={styles.buttons_box}>
@@ -140,6 +146,8 @@ const CreateProfile = () => {
             </div>
 
             <div>
+                <ToastContainer />
+
                 <div>{FormDisplay()}</div>
                 <div className={styles.stepbuttons}>
                     {step < 3 && (

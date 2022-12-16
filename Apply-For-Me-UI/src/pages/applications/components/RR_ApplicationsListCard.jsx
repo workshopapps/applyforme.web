@@ -46,7 +46,9 @@ const ApplicationsListCard = ({ applications }) => {
                 ))}
             </div>
             <button className={styles.applications_sort}>
-                <Link to="/dashboard/user/create-profile"><BsPlusLg /></Link>
+                <Link to="/dashboard/user/create-profile">
+                    <BsPlusLg />
+                </Link>
             </button>
         </div>
     );

@@ -1,10 +1,35 @@
 import classes from "../../../RR_Dashboard/styles/Applications.module.css";
 import ApplicationList from "../application_list/ApplicationList";
-import { Link, useNavigate } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
+import {useNavigate } from "react-router-dom";
 import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const DashboardHome = () => {
     const navigate = useNavigate();
+    const [statValue, setStatValue] = useState({});
+    const token = localStorage.getItem("tokenHngKey");
+    const getStatisticsDetail = async () => {
+        try {
+            const response = await axios.get(
+                "https://api.applyforme.hng.tech/api/v1/recruiter/applicant/statistics",
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            setStatValue(response?.data);
+            console.log(response?.data);
+        } catch (err) {
+            console.log(err?.response?.data);
+        }
+    };
+    useEffect(() => {
+        getStatisticsDetail();
+    }, []);
+    
     return (
         <section>
             <RRD_Nav />
@@ -19,14 +44,14 @@ const DashboardHome = () => {
                     {/* Applications stat on cards */}
                     <div className={classes.applications_stats}>
                         <div className={classes.applications_stat}>
-                            <h2 className={classes.stat_number}>0</h2>
+                            <h2 className={classes.stat_number}>{statValue?.total_applications}</h2>
                             <p className={classes.stat_text}>
                                 Total Applications
                             </p>
                         </div>
 
                         <div className={classes.applications_stat}>
-                            <h2 className={classes.stat_number}>0</h2>
+                            <h2 className={classes.stat_number}>{statValue?.applied_jobs}</h2>
                             <p className={classes.stat_text}>Applied Jobs</p>
                         </div>
 

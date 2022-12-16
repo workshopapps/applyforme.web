@@ -8,6 +8,7 @@ import LightButton from "../../../../components/buttons/light_button/LightButton
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const Review = ({ formData, keywords, setStep }) => {
     const [response, setResponse] = useState(null);
@@ -81,16 +82,18 @@ const Review = ({ formData, keywords, setStep }) => {
             );
             const finalResponseJson = await finalResponse.json();
             setLoading(false);
+            toast.success("Profile successfully created");
             // console.log(finalResponse);
             navigate("/dashboard/user/success");
         } catch (error) {
             alert("Failed to submit, please try again");
-            console.log(error);
+            toast.error("Failed to submit. Please try again");
         }
     };
     // console.log(formData);
     return (
         <div className={styles.form_body}>
+            <ToastContainer />
             <h3>Review your profile and it's good to go!</h3>
             {formData.job_title ? (
                 <h3 className={classes.review_jobtitle}>
@@ -187,11 +190,13 @@ const Review = ({ formData, keywords, setStep }) => {
                             <div className={classes.review_buttons}>
                                 <BlueButton
                                     func={handleSubmit}
+                                    width={300}
                                     text={"Send profile for searching"}
                                 />
 
                                 <LightButton
                                     text={"Go back to edit"}
+                                    width={300}
                                     func={() => setStep(0)}
                                 />
                             </div>

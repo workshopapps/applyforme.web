@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getSuperAdminProfileInfo } from "store/slice/RR_AdminSlice";
 
-export const MainContainer = ({ img }) => {
+export const MainContainer = () => {
     const personalDetails = useSelector(state => state.RRadmin);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -45,82 +45,82 @@ export const MainContainer = ({ img }) => {
                 </div>
                 <div className="proileInfoContainer">
                     <div className="mobile_info_top_view">
-                        <div className="mobile_img_top">
+                        {/* <div className="mobile_img_top">
                             <img
                                 style={{ width: "100%" }}
                                 src={img}
                                 alt="object not found"
                             />
-                        </div>
+                        </div> */}
                         <div className="mobile_info_top">
                             <div className="proileInfo">
-                                <h2 className="proileInfolabel">Name</h2>
-                                <h2 className="proileInfovalue">
+                                <h4 className="proileInfolabel">Name</h4>
+                                <h4 className="proileInfovalue">
                                     {superAdminProfileDetails &&
                                         superAdminProfileDetails.firstName}{" "}
                                     {superAdminProfileDetails &&
                                         superAdminProfileDetails.lastName}
-                                </h2>
+                                </h4>
                             </div>
                             <div className="proileInfo">
-                                <h2 className="proileInfolabel">
+                                <h4 className="proileInfolabel">
                                     Email Address
-                                </h2>
-                                <h2 className="proileInfovalue">
+                                </h4>
+                                <h4 className="proileInfovalue">
                                     {" "}
                                     {superAdminProfileDetails &&
                                         superAdminProfileDetails.emailAddress}
-                                </h2>
+                                </h4>
                             </div>
                         </div>
                     </div>
                     <div className="desktop_info_top">
                         <div className="proileInfo">
-                            <h2 className="proileInfolabel">Name</h2>
-                            <h2 className="proileInfovalue">
+                            <h4 className="proileInfolabel">Name</h4>
+                            <h4 className="proileInfovalue">
                                 {superAdminProfileDetails &&
                                     superAdminProfileDetails.firstName}{" "}
                                 {superAdminProfileDetails &&
                                     superAdminProfileDetails.lastName}
-                            </h2>
+                            </h4>
                         </div>
                         <div className="proileInfo">
-                            <h2 className="proileInfolabel">Email Address</h2>
-                            <h2 className="proileInfovalue">
+                            <h4 className="proileInfolabel">Email Address</h4>
+                            <h4 className="proileInfovalue">
                                 {" "}
                                 {superAdminProfileDetails &&
                                     superAdminProfileDetails.emailAddress}
-                            </h2>
+                            </h4>
                         </div>
                     </div>
 
                     <div className="proileInfo">
-                        <h2 className="proileInfolabel">Phone Number</h2>
-                        <h2 className="proileInfovalue">
+                        <h4 className="proileInfolabel">Phone Number</h4>
+                        <h4 className="proileInfovalue">
                             {superAdminProfileDetails &&
                                 superAdminProfileDetails.phoneNumber}
-                        </h2>
+                        </h4>
                     </div>
                     <div className="proileInfo">
-                        <h2 className="proileInfolabel">City</h2>
-                        <h2 className="proileInfovalue">
+                        <h4 className="proileInfolabel">City</h4>
+                        <h4 className="proileInfovalue">
                             {superAdminProfileDetails &&
                                 superAdminProfileDetails.city}
-                        </h2>
+                        </h4>
                     </div>
                     <div className="proileInfo">
-                        <h2 className="proileInfolabel">State</h2>
-                        <h2 className="proileInfovalue">
+                        <h4 className="proileInfolabel">State</h4>
+                        <h4 className="proileInfovalue">
                             {superAdminProfileDetails &&
                                 superAdminProfileDetails.state}
-                        </h2>
+                        </h4>
                     </div>
                     <div className="proileInfo">
-                        <h2 className="proileInfolabel">Dob</h2>
-                        <h2 className="proileInfovalue">
+                        <h4 className="proileInfolabel">Dob</h4>
+                        <h4 className="proileInfovalue">
                             {superAdminProfileDetails &&
                                 superAdminProfileDetails.dateOfBirth}
-                        </h2>
+                        </h4>
                     </div>
                 </div>
                 <div className="changePassword" style={{ marginTop: "0.5rem" }}>
@@ -156,7 +156,7 @@ export const MainContainer = ({ img }) => {
                         </div>
                         <EditInfoContent
                             setEditModal={setEditModal}
-                            img={img}
+                            superAdminProfileDetails={superAdminProfileDetails}
                         />
                     </div>
                 </div>

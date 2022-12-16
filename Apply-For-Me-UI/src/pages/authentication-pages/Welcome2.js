@@ -36,7 +36,6 @@ const Welcome2 = () => {
     const handletoggle = () => {
         password === "password" ? setPassword("text") : setPassword("password");
     };
-
     useEffect(() => {
         if (user) {
             setTimeout(() => {
@@ -74,7 +73,9 @@ const Welcome2 = () => {
                 dispatch(userInfo(decoded));
                 setError("");
                 setLoading(false);
+                console.log(decoded);
                 toast.success("Login Successfully");
+                
             })
             .catch(err => {
                 let message =

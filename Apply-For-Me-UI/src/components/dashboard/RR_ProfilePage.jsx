@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "./DashboardHeader.module.css";
-import { FiChevronLeft, FiPause, FiTrash } from "react-icons/fi";
+import { FiChevronLeft, FiTrash } from "react-icons/fi";
 import Logo from "../../assets/images/nav_logo.svg";
 import Notification from "../../assets/images/notification.svg";
 import ProfilePic from "../../assets/images/test_profile_picture.svg";
@@ -35,17 +35,18 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const dispatch = useDispatch();
     const token = localStorage.getItem("tokenHngKey");
     const recruiter = useSelector(state => state.RRadmin);
-   
+    const [loading, setLoading] = useState(false);
+
     const { firstName, emailAddress, phoneNumber, currentJobTitle } =
         recruiter.reverseRProfile;
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const id = useParams();
-    const newId = {id}
-    console.log(newId.id.id)
+    const newId = { id };
+    console.log(newId.id.id);
     useEffect(() => {
         dispatch(getRRAdminProfile(id));
-    }, [dispatch, getRRAdminProfile, id]);
+    }, []);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -54,8 +55,9 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
         setShowModal(false);
         // Quota submission code goes here
     };
-    const deleteHandler = async()=> {
+    const deleteHandler = async () => {
         try {
+            setLoading(true)
             const response = await axios.delete(
                 `${url}/api/v1/super-admin/recruiter/${newId.id.id}`,
                 {
@@ -64,17 +66,19 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     }
                 }
             );
-            console.log(response);
-            console.log("success")
-            toast("delete successful")
-            navigate("/user-page");
-            return response?.data;
+            setLoading(false);
+            toast("Recruiter deleted successfully");
+            setTimeout(() => {
+                navigate("/user-page");
+            }, 3000);
+            return response;
         } catch (error) {
-            console.log(error)
-            toast.error(error.response?.data?.message);
-            return error.response?.data;
+
+            setLoading(false);
+
+            toast.error("An error occured, Please try again");
         }
-    }
+    };
 
     const handleModalShow = () => {
         setShowModal(true);
@@ -82,7 +86,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const handleQuota = event => {
         event.preventDefault();
     };
-     const handleLogout = () => {
+    const handleLogout = () => {
         localStorage.removeItem("tokenHngKey");
         dispatch(userInfo(""));
         navigate("/");
@@ -114,16 +118,19 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                                 />
                             </div>
                             <div className={classes.search_logo}>
-                                <img src={SearchBlue} alt="Search "  onClick={()=>setMobileSearch(prev =>!prev)}/>
+                                <img
+                                    src={SearchBlue}
+                                    alt="Search "
+                                    onClick={() =>
+                                        setMobileSearch(prev => !prev)
+                                    }
+                                />
                             </div>
                             <div
                                 className={classes.user_avater}
                                 onClick={() => setShowMenuProfile(true)}
                             >
-                                <img
-                                    src={ProfilePic}
-                                    alt="User Profile Picture"
-                                />
+                                <img src={ProfilePic} alt="User Profile" />
                             </div>
                             {showMenuProfile && (
                                 <div
@@ -153,7 +160,9 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                                                 src={Signout}
                                                 alt="Signout logo"
                                             />
-                                            <p onClick={handleLogout}>Sign out</p>
+                                            <p onClick={handleLogout}>
+                                                Sign out
+                                            </p>
                                         </li>
                                     </ul>
                                 </div>
@@ -179,24 +188,30 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                 </nav>
 
                 {/* Mobile nav */}
-                  {mobileSearch && 
-                    
-                         <form
-                                className={classes.search}
-                                onSubmit={event => handleSubmit(event)}
-                            >
-                               <input
-                                    type="search"
-                                    name="search"
-                                    className={classes.mobile_inp}
-                                    placeholder="Search for and Reverse Recruiter"
-                                />
-                                <button type="submit" className={classes.mobile_btn_cont}>
-                                    {" "}
-                                    <img src={Search} alt="Apply for me logo"  className={classes.mobile_btn}/>
-                                </button>
-                            </form>
-                }
+                {mobileSearch && (
+                    <form
+                        className={classes.search}
+                        onSubmit={event => handleSubmit(event)}
+                    >
+                        <input
+                            type="search"
+                            name="search"
+                            className={classes.mobile_inp}
+                            placeholder="Search for and Reverse Recruiter"
+                        />
+                        <button
+                            type="submit"
+                            className={classes.mobile_btn_cont}
+                        >
+                            {" "}
+                            <img
+                                src={Search}
+                                alt="Apply for me logo"
+                                className={classes.mobile_btn}
+                            />
+                        </button>
+                    </form>
+                )}
                 {showMenu && <MobileNav setShowMenu={setShowMenu} />}
             </section>
 
@@ -208,11 +223,6 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     </div>
 
                     <div className={classes.user_action}>
-                        <div className={classes.user_action__btn__mobile}>
-                            <FiPause className={classes.pause} />
-
-                            <p>Suspend</p>
-                        </div>
                         <div className={classes.user_action__btn__mobile}>
                             <FiTrash className={classes.trash} />
                             <p onClick={deleteHandler}>Delete</p>
@@ -255,11 +265,6 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     </div>
 
                     <div className={classes.user_action}>
-                        <div className={classes.user_action__btn}>
-                            <FiPause className={classes.pause} />
-
-                            <p>Suspend</p>
-                        </div>
                         <div className={classes.user_action__btn}>
                             <FiTrash className={classes.trash} />
 
@@ -309,6 +314,11 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                         </form>
                     </div>
                 </section>
+            )}
+            {loading && (
+                <div className={classes.editContainer}>
+                    <div className={classes.progress}>Please wait...</div>
+                </div>
             )}
         </section>
     );
