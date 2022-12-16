@@ -41,6 +41,11 @@ const ApplicationList = () => {
                 <li
                     className={`${classes.stats_heading} ${classes.desktop_only}`}
                 >
+                    Job title
+                </li>
+                <li
+                    className={`${classes.stats_heading} ${classes.desktop_only}`}
+                >
                     Salary
                 </li>
                 <li
@@ -66,6 +71,11 @@ const ApplicationList = () => {
                                     className={`${classes.stats_item} ${classes.stats_name}`}
                                 >
                                     {entry.profileTitle}
+                                </li>
+                                <li
+                                    className={`${classes.stats_item} ${classes.desktop_only}`}
+                                >
+                                    {entry.desiredJobTitle}
                                 </li>
                                 <li
                                     className={`${classes.stats_item} ${classes.desktop_only}`}

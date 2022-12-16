@@ -76,25 +76,22 @@
         margin: 0;
     }
 
-    .sidebar_container.mobile ul li a>p {
+    .sidebar_container.mobile ul li a > p {
         color: #999999;
         margin: 0;
         font-size: 13px;
     }
-
-    .sidebar_container.mobile .mobile_active>p {
+    .sidebar_container.mobile .mobile_active > p {
         color: #6567b0;
         font-weight: 700;
         margin: 0;
     }
 }
-
-.sidebar_container ul li a>p {
+.sidebar_container ul li a > p {
     color: #ffff;
     font-weight: 100;
     margin: 0;
 }
-
-.sidebar_container .active>p {
+.sidebar_container .active > p {
     font-weight: 700;
 }

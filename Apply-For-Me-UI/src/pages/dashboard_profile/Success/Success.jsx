@@ -12,13 +12,7 @@ const Success = () => {
 
     return (
         <div className={styles.success_page}>
-            <TopBar
-                title={"My Job Profile"}
-                style={{
-                    marginTop: "auto"
-                }}
-            />
-
+            <TopBar />
             <p className={styles.all_done}>
                 All done! You can view your up to date job profile
             </p>

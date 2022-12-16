@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const DEVURL = "https://api.applyforme.hng.tech/"; //Testing
-const LIVEURL = "https://api.applyforme.hng.tech/"; // live Env
+const DEVURL = "https://official-volunux.uc.r.appspot.com/api"; //Testing
+const LIVEURL = "https://official-volunux.uc.r.appspot.com/api"; // live Env
 const tokenKey = "tokenHngKey";
 const client = axios.create({
     baseURL: process.env.NODE_ENV == "development" ? DEVURL : LIVEURL,

@@ -8,9 +8,9 @@ import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 const RRApplications = () => {
     return (
         <div className={styles.applications_container}>
-            <RRD_Nav />
+           <RRD_Nav/>
             <section className={styles.application_main}>
-                <Table applications={applications} className={styles.table} />
+                <Table applications={applications} />
                 <ApplicationsListCard applications={applications} />
             </section>
             <GoBack />

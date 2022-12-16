@@ -16,6 +16,7 @@ export const RRApplicantsPage = ({ inputSearchValue }) => {
     });
     const handlePageClick = data => {
         setPagination(prevState => ({ ...prevState, "pageNo": data.selected }));
+
         dispatch(SuperAdminApplicants(pagination));
     };
     useEffect(() => {
@@ -30,6 +31,10 @@ export const RRApplicantsPage = ({ inputSearchValue }) => {
                 : [];
         setSearch(avilableList);
     }, [inputSearchValue, list.superAdminApplicantsList]);
+
+    useEffect(() => {
+        dispatch(SuperAdminApplicants(pagination));
+    });
     useEffect(() => {
         dispatch(SuperAdminApplicants(pagination));
     }, [dispatch, SuperAdminApplicants]);
@@ -92,28 +97,24 @@ export const RRApplicantsPage = ({ inputSearchValue }) => {
                     search?.length === 0 && (
                         <p className="text-center">record not found</p>
                     )}
-                {
-                    list.superAdminApplicantsList?.totalPages > 1 && (
-                        <div>
-                            <ReactPaginate
-                                breakLabel="..."
-                                nextLabel=">"
-                                pageRangeDisplayed={5}
-                                pageCount={list.superAdminApplicantsList?.totalPages}
-                                marginPagesDisplayed="1"
-                                previousLabel="<"
-                                renderOnZeroPageCount={null}
-                                onPageChange={handlePageClick}
-                                containerClassName="containerClassName"
-                                pageClassName="pageClassName"
-                                previousClassName="previousClassName"
-                                activeClassName="activeClassName"
-                                nextClassName="nextClassName"
-                                pageLinkClassName="pageLinkClassName"
-                            />
-                        </div>
-                    )
-                }
+                <div>
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel=">"
+                        pageRangeDisplayed={5}
+                        pageCount={list.superAdminApplicantsList?.totalPages}
+                        marginPagesDisplayed="1"
+                        previousLabel="<"
+                        renderOnZeroPageCount={null}
+                        onPageChange={handlePageClick}
+                        containerClassName="containerClassName"
+                        pageClassName="pageClassName"
+                        previousClassName="previousClassName"
+                        activeClassName="activeClassName"
+                        nextClassName="nextClassName"
+                        pageLinkClassName="pageLinkClassName"
+                    />
+                </div>
             </section>
         </div>
     );

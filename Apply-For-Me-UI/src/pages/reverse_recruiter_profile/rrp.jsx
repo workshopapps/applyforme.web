@@ -1,19 +1,16 @@
 /* eslint-disable react/jsx-pascal-case */
-import LetteredAvatar from "react-lettered-avatar";
+import ProfilePic from "../../assets/images/clearProfilePic.svg";
 import BlueButton from "components/buttons/blue_background/BlueButton";
 import rrpCss from "./rrp.module.css";
 import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 import { useEffect, useState } from "react";
 import { PasswordContent } from "components/modals/editpersonalinfo/editPassword/rr_editpassword";
 import { EditInfoContent } from "components/modals/editpersonalinfo/editProfileInformation/rr_editProfile";
-import { useSelector } from "react-redux";
 import axios from "axios";
 
 const RRProfile = () => {
-    const url = "https://api.applyforme.hng.tech";
+    const url = "https://api.applyforme.hng.tech"; 
     const token = localStorage.getItem("tokenHngKey");
-    const { user } = useSelector(state => state.user);
-    const userName = user.fullName;
     const [details, setDetails] = useState();
     const getRecruiterProfile = async () => {
         try {
@@ -26,38 +23,40 @@ const RRProfile = () => {
                 }
             );
             console.log(response?.data);
-            setDetails(response?.data);
+            setDetails(response?.data)
             return response?.data;
+           
         } catch (error) {
             return error.response?.data;
         }
-    };
-    useEffect(() => {
+    }
+    useEffect(()=>{
         getRecruiterProfile();
-        console.log("hello world");
-    }, []);
+        console.log("hello world")
+    },[])
 
     const [showEditModal, setEditModal] = useState(false);
     const [showPasswordModal, setPasswordModal] = useState(false);
     return (
         <div className={rrpCss.page}>
+          
             <div className={rrpCss.rr_profile_container}>
-                <RRD_Nav />
+                <RRD_Nav/>
                 <div className={rrpCss.back_button}>
-                    <button type="submit" onClick={() => window.history.back()}>
+                    <button type="submit" onClick={()=>window.history.back()}>
                         <span>&lt;</span>
                         <span>Profile Details</span>
                     </button>
                 </div>
                 <div className={rrpCss.topSection}>
-                    <LetteredAvatar
-                        name={userName}
-                        backgroundColor={"#78909c"}
+                    <img
+                        className={rrpCss.ProfilePic}
+                        src={ProfilePic}
+                        alt="User Profile"
                     />
-                    <div
-                        className={rrpCss.btn}
-                        onClick={() => setEditModal(prevState => !prevState)}
-                    >
+                    <div className={rrpCss.btn} onClick={() =>
+                                    setEditModal(prevState => !prevState)
+                                }>
                         <BlueButton text={"Edit profile"} />
                     </div>
                 </div>
@@ -69,9 +68,7 @@ const RRProfile = () => {
                         </div>
                         <div className={rrpCss.isubinfo_container}>
                             <p>Name:</p>
-                            <p>
-                                {details?.firstName} {details?.lastName}
-                            </p>
+                            <p>{details?.firstName} {details?.lastName}</p>
                         </div>
                         <div className={rrpCss.isubinfo_container}>
                             <p>Email:</p>
@@ -89,24 +86,21 @@ const RRProfile = () => {
                             <p>Gender</p>
                             <p>{details?.emailAddress}</p>
                         </div>
-                    </div>
+                     </div>
                 </div>
                 <div className={rrpCss.bottomSection}>
-                    <div
-                        className={rrpCss.btn_bottom}
-                        onClick={() => setEditModal(prevState => !prevState)}
-                    >
+                    <div className={rrpCss.btn_bottom}  onClick={() =>
+                                    setEditModal(prevState => !prevState)
+                                }>
                         <BlueButton text={"Edit profile"} />
                     </div>
-                    <button
-                        className={rrpCss.change_password}
-                        onClick={() =>
+                    <button className={rrpCss.change_password}  onClick={() =>
                             setPasswordModal(prevState => !prevState)
-                        }
-                    >
+                        }>
                         Change Password
                     </button>
                 </div>
+                
             </div>
             {showEditModal && (
                 <div className="editContainer">
@@ -125,7 +119,8 @@ const RRProfile = () => {
                         </div>
                         <EditInfoContent
                             setEditModal={setEditModal}
-                            details={details}
+                            img={(details?.avatar)?(details?.avatar):ProfilePic}
+                          
                         />
                     </div>
                 </div>
@@ -145,10 +140,11 @@ const RRProfile = () => {
                                 }
                             />
                         </div>
-                        <PasswordContent />
+                        <PasswordContent/>
                     </div>
                 </div>
             )}
+            
         </div>
     );
 };

@@ -1,10 +1,5 @@
 .btn {
-    background: #2e3192;
-    color: #fff;
-    outline: none;
     border: none;
-}
-
-.btn:focus {
-    outline: none;
+    background: #2E3192;
+    color: #fff;
 }

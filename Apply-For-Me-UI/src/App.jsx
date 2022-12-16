@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable no-unused-vars */
 import * as Sentry from "@sentry/react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landing_page/LandingPage";
 import AboutUs from "./pages/about_us/AboutUs";
 import FAQs from "./pages/faqs/FAQs";
@@ -106,7 +106,7 @@ function App() {
                 <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route exact path="/tryout-form" element={<TryoutForm />} />
                 <Route exact path="/reverse/profile" element={<RRProfile />} />
-                <Route exact path="/registration" element={<Registration />} />
+                <Route exact path="/registration" element ={<Registration/>}/>
                 <Route
                     exact
                     path="/tryout-form/success"
@@ -145,7 +145,7 @@ function App() {
                 <Route exact path="/wel2" element={<Welcome2 />} />
                 <Route exact path="/reg" element={<Registration />} />
                 <Route exact path="/pass" element={<Password />} />
-                <Route exact path="/reset-password" element={<NewPass />} />
+                <Route exact path="/nwpass" element={<NewPass />} />
                 <Route exact path="/veri" element={<Verification />} />
 
                 {/* onboarding */}

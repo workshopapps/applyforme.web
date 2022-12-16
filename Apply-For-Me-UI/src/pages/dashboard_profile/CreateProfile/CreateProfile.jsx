@@ -68,12 +68,7 @@ const CreateProfile = () => {
 
     return (
         <div className={styles.createprofile}>
-            <TopBar
-                title={"My Job Profile"}
-                style={{
-                    marginTop: "auto"
-                }}
-            />
+            <TopBar />
             <p className={styles.createtext}>Let's create a new job profile</p>
             <div className={styles.content_mobile}>
                 <nav className={styles.buttons_box}>

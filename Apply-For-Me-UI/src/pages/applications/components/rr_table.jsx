@@ -16,17 +16,17 @@ const Table = () => {
     const fetchApplicants = async()=>{
                 try{
                     const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all`, 
-                        {
-                            params:{
-                            "pageNo": pagination.pageNo,
-                            "pageSize":pagination.pageSize,
-                            },
-                            headers: {
-                                "Authorization": `Bearer ${token}`
-                            }
-                        }
-                    );
-                    console.log("REverse Recruiter", response.data)
+                                            {
+                                                params:{
+                                                "pageNo": pagination.pageNo,
+                                                "pageSize":pagination.pageSize,
+                                                },
+                                                headers: {
+                                                    "Authorization": `Bearer ${token}`
+                                                }
+                                            }
+                                            );
+                                            console.log("REverse Recruiter", response.data)
                     setData(response.data?.content);
                     setPageCout(response.data?.totalPages);
 
@@ -49,10 +49,11 @@ const Table = () => {
         <div className={styles.applications_table_wrapper}>
             <ApplicationsListHeader />
             <div className={styles.applications_table_container}>
-                <table  className={styles.rrtable}>
+                <table>
                     <thead>
                         <tr className={styles.applications_table_head_row}>
                             <th>Name</th>
+                            <th>Job title</th>
                             <th>Salary</th>
                             <th className={styles.hide_tablet}>Type</th>
                             <th className={styles.hide_tablet}>Details</th>
@@ -67,6 +68,9 @@ const Table = () => {
                             >
                                 <td>
                                     <div>{application.profileTitle}</div>
+                                </td>
+                                <td>
+                                    <div>{application.desiredJobTitle}</div>
                                 </td>
                                  <td>{application.salaryRange}</td>  
                                 <td className={styles.hide_tablet}>
@@ -83,28 +87,24 @@ const Table = () => {
                 </table>
             </div>
 
-            {
-                 pageCount > 1 && (
-                    <div>
-                        <ReactPaginate
-                            breakLabel="..."
-                            nextLabel=">"
-                            pageRangeDisplayed={5}
-                            pageCount={pageCount}
-                            marginPagesDisplayed="1"
-                            previousLabel="<"
-                            renderOnZeroPageCount={null}
-                            onPageChange={handlePageClick}
-                            containerClassName="containerClassName"
-                            pageClassName='pageClassName'
-                            previousClassName='previousClassName'
-                            activeClassName="activeClassName"
-                            nextClassName='nextClassName'
-                            pageLinkClassName="pageLinkClassName"
-                        />
-                    </div>
-                )
-            }
+            <div>
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">"
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    marginPagesDisplayed="1"
+                    previousLabel="<"
+                    renderOnZeroPageCount={null}
+                    onPageChange={handlePageClick}
+                    containerClassName="containerClassName"
+                    pageClassName='pageClassName'
+                    previousClassName='previousClassName'
+                    activeClassName="activeClassName"
+                    nextClassName='nextClassName'
+                    pageLinkClassName="pageLinkClassName"
+                />
+                 </div>
         </div>
     );
 };

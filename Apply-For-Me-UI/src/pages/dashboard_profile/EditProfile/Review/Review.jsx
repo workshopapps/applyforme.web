@@ -202,13 +202,11 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                 <BlueButton
                                     func={handleSubmit}
                                     text={"Send profile for searching"}
-                                    width={300}
                                 />
 
                                 <LightButton
                                     text={"Go back to edit"}
                                     func={() => setStep(0)}
-                                    width={300}
                                 />
                             </div>
                         </div>

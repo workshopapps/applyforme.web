@@ -40,7 +40,7 @@ const ApplicationDetails = () => {
     }
 
     return (
-        <div style={{paddingBottom:"4rem"}}>
+        <div>
             <Nav />
             <div className={style.container}>
                 <div className={style.go_back_link}>
@@ -98,6 +98,10 @@ const ApplicationDetails = () => {
                         <div className={style.info_field}>
                             <h4>Experience</h4>
                             <p>{details?.yearsOfExperience}</p>
+                        </div>
+                        <div className={style.info_field}>
+                            <h4>Industry</h4>
+                            <p>{details?.industry}</p>
                         </div>
                         <div className={style.info_field}>
                             <h4>Salary Expectation</h4>

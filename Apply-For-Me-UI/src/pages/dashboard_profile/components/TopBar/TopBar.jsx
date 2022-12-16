@@ -1,35 +1,19 @@
 import styles from "./TopBar.module.css";
-// import profilepic from "../../assets/profilepic.png";
-// import notif from "../../assets/notif.png";
+import profilepic from "../../assets/profilepic.png";
+import notif from "../../assets/notif.png";
 import { Link } from "react-router-dom";
-import LetteredAvatar from "react-lettered-avatar";
-import { useSelector } from "react-redux";
 
-const TopBar = ({ title, style, subtitle, subStyle }) => {
-    const { user } = useSelector(state => state.user);
-
-    const userName = user.fullName;
+const TopBar = () => {
     return (
         <div className={styles.topbar}>
-            <div className={styles.texts}>
-                <h4 style={style} className={styles.heading}>
-                    {title}
-                </h4>
-                <p style={subStyle} className={styles.sub_heading}>
-                    {subtitle}
-                </p>
-            </div>
+            <h4>My Job Profile</h4>
             <div className={styles.picture_container}>
-                {/* <img src={notif} alt="notif" className={styles.notif} /> */}
+                <img src={notif} alt="notif" className={styles.notif} />
                 <Link to="/dashboard/settings">
-                    {/* <img
+                    <img
                         src={profilepic}
                         alt="profilepic"
                         className={styles.profilepic}
-                    /> */}
-                    <LetteredAvatar
-                        name={userName}
-                        backgroundColor={"#78909c"}
                     />
                 </Link>
             </div>
