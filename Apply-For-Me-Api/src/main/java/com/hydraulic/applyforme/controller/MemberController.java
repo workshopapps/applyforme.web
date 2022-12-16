@@ -30,7 +30,7 @@ public class MemberController {
         this.service = service;
     }
 
-    @PreAuthorize("hasAnyRole('Professional', 'Recruiter')")
+    @PreAuthorize("hasAnyRole('Professional', 'Recruiter', 'SuperAdministrator')")
     @GetMapping("/details")
     public Member details() {
     	UserDetailsImpl currentUser = CurrentUserUtil.getCurrentUser();

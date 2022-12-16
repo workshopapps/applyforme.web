@@ -61,7 +61,7 @@ public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantServic
     @Override
     @Transactional
     public boolean delete(Long id) {
-        boolean removed = repository.remove(id);
+        boolean removed = memberRepository.remove(id);
         if (removed) {
             return true;
         }
