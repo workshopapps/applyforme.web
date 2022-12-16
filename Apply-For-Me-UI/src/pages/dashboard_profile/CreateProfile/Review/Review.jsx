@@ -17,7 +17,7 @@ const Review = ({ formData, keywords, setStep }) => {
     let included_keywords = String(keywords);
 
     if (included_keywords.length <= 1) {
-        included_keywords = "none";
+        included_keywords = undefined;
     }
     console.log(included_keywords);
     console.log(formData);
