@@ -4,6 +4,10 @@
     color: rgba(82, 81, 91, 1);
     margin: 0 72px;
 }
+.cover{
+    line-height: 40px;
+    text-align: justify;
+}
 .job_RR_form{   
     text-decoration:none;
     background:rgba(46, 49, 146, 1);
