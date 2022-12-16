@@ -26,10 +26,10 @@ public interface ProfessionalProfileJpaRepository extends JpaRepository<Professi
 
     @Query(value = "select pp FROM ProfessionalProfile pp where " +
             "(pp.profileTitle like '%' || :q || '%' or pp.jobLocation like '%' || :q || '%' or " +
-            "pp.desiredJobTitle like '%' || :q || '%' or pp.includedKeywords like '%' || :q || '%')")
+            "pp.desiredJobTitle like '%' || :q || '%' or pp.includedKeywords like '%' || :q || '%') order by pp.createdOn desc")
     Page<ProfessionalProfile> getEntries(String q, Pageable pageable);
 
-    @Query(value = "select pp FROM ProfessionalProfile pp")
+    @Query(value = "select pp FROM ProfessionalProfile pp order by pp.createdOn desc")
     Page<ProfessionalProfile> getEntries(Pageable pageable);
 
     @Query(value = "select pp FROM ProfessionalProfile pp where " +
