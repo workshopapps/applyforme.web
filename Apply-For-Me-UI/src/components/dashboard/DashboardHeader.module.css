@@ -3,7 +3,26 @@
     background-color: aliceblue;
     position: relative;
 }
-
+.editContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(49, 49, 49, 0.8);
+    z-index: 1;
+}
+.progress {
+    color: white;
+    background: rgba(49, 49, 49, 0.8);
+    margin: 0 auto;
+    font-size: 25px;
+    padding: 2rem;
+    margin: 20% auto;
+    width: fit-content;
+}
 .header {
     background-color: #fff;
     border-bottom: 0.5px solid #b7b9e6;

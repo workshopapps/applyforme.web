@@ -31,7 +31,7 @@ const UsersPage = ({ inputSearchValue }) => {
     
     useEffect(()=>{
         dispatch(SuperAdminApplicants(pagination));
-    },[dispatch,SuperAdminApplicants])
+    },[dispatch])
 
 
     const handleDeleteApplicants = async(e)=> {
@@ -55,9 +55,6 @@ const UsersPage = ({ inputSearchValue }) => {
             console.log(error.response?.data?.message);
         }
     }
-
-    console.log(list);
-
     return (
         <div className={classes.main_container}>
            <div className="statisticsContainer">

@@ -75,34 +75,14 @@ export const SuperApplicantsPage = () => {
                 </p>
             </div>
             <div className="proile_info_container">
-                <p className="profile-text-size">
-                    <span className="proile_info_container_label">
-                        Country:
-                    </span>{" "}
-                    {applicants?.membership?.countryOfResidence}
-                </p>
-                <p className="profile-text-size">
-                    <span className="proile_info_container_label">City:</span>{" "}
-                    {applicants?.membership?.city}
-                </p>
-                <p className="profile-text-size">
-                    <span className="proile_info_container_label">
-                        Nationality:
-                    </span>{" "}
-                    {applicants?.membership?.nationality}
-                </p>
-                <p className="profile-text-size">
-                    <span className="proile_info_container_label">
-                        Total Profile Applications:
-                    </span>{" "}
-                    {applicants?.totalProfessionalProfile}
-                </p>
-                <p className="profile-text-size">
-                    <span className="proile_info_container_label">
-                        Total Profile Submissions:
-                    </span>{" "}
-                    {applicants?.totalSubmissions}
-                </p>
+
+                <p className="profile-text-size"><span className="proile_info_container_label">Country:</span> {applicants?.membership?.countryOfResidence?.title}</p>
+                <p className="profile-text-size"><span className="proile_info_container_label">City:</span>  {applicants?.membership?.city}</p>
+                <p className="profile-text-size"><span className="proile_info_container_label">Nationality:</span> {applicants?.membership?.nationality?.title}</p>
+                <p className="profile-text-size"><span className="proile_info_container_label">State:</span> {applicants?.membership?.state}</p>
+                <p className="profile-text-size"><span className="proile_info_container_label">Total Profile Applications:</span> {applicants?.totalProfessionalProfile}</p>
+                <p className="profile-text-size"><span className="proile_info_container_label">Total Profile Submissions:</span> {applicants?.totalSubmissions}</p>
+
             </div>
         </div>
     );

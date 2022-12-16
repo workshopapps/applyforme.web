@@ -2,7 +2,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer} from "react-toastify";
 import "./create_view.css";
 
 export const CreateRecruiter = () => {
@@ -20,6 +20,7 @@ export const CreateRecruiter = () => {
     };
     const [loading, setLoading] = useState(false);
     const [countries, setCountries] = useState([]);
+    const [defaultPassword] = useState("78789898");
     const getCountry = async () => {
         try {
             const response = await axios.get(
@@ -76,7 +77,7 @@ export const CreateRecruiter = () => {
                 );
                 setLoading(false);
                 console.log(response);
-                toast.success("Admin successfully created");
+                toast.success("Admin successfully created, an email has being sent to the recruiter ");
             } catch (err) {
                 setLoading(false);
                 console.log(err.response?.data);
@@ -161,7 +162,7 @@ export const CreateRecruiter = () => {
                                     autoFocus
                                     {...register("eAddy", {
                                         required:
-                                            "Please enter your Last nameEmail Address",
+                                            "Please enter your Email Address",
                                         pattern: {
                                             value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
                                             message: "Enter valid email address"
@@ -184,7 +185,10 @@ export const CreateRecruiter = () => {
                                 <input
                                     className="input-tab"
                                     required
-                                    type={password}
+
+                                    type="password"
+                                    value={defaultPassword}
+
                                     name="password"
                                     id="password"
                                     autoFocus
@@ -212,6 +216,7 @@ export const CreateRecruiter = () => {
                                 <label htmlFor="nationality">Nationality</label>
                                 <select
                                     className="select-tab"
+                                    required
                                     name="nationality"
                                     id="nationality"
                                     autoFocus
@@ -262,6 +267,7 @@ export const CreateRecruiter = () => {
                                 <label htmlFor="cor">Country of Resident</label>
                                 <select
                                     className="select-tab"
+                                    required
                                     name="cor"
                                     id="cor"
                                     autoFocus
