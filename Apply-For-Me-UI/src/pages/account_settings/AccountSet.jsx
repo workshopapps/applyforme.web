@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import TopBar from "pages/dashboard_profile/components/TopBar/TopBar";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 // import DashboardSidebar from "../../components/dashboard_sidebar/DashboardSidebar";
 //import { getActiveLink } from './settingservice/SettingsSecondSidebar'
 
@@ -76,10 +76,10 @@ const AccountSettings = ({ details }) => {
                     params: { "id": details.id }
                 }
             );
-            console.log("response", res);
             toast.success("Hello");
         } catch (err) {
-            console.log("error for update", err);
+            toast.error(err?.response?.data?.message);
+            return err?.response?.data;
         }
     };
 
@@ -204,7 +204,7 @@ const AccountSettings = ({ details }) => {
                             </li>
                         </ul>
                     </div>
-
+                    <ToastContainer />
                     <form
                         onSubmit={e => e.preventDefault()}
                         className={classes.form}
