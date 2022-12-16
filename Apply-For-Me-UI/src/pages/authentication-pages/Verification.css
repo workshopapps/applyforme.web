@@ -1,74 +1,89 @@
-.Verification{
+.Verification {
     padding: 2rem 6%;
     width: 100%;
     box-sizing: border-box;
 }
-.vrfy{
+.vrfy {
     width: 20%;
     height: 3.5rem;
-    border: 0.2px solid #2E3192;
+    border: 0.2px solid #2e3192;
     border-radius: 8px;
     outline: none;
     font-size: 3rem;
+    padding-left: 5px;
 }
-.vbdy{
+.vbdy {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     padding-top: 2rem;
 }
-.verify{
+.verify {
     display: flex;
+    gap: 5px;
     flex-direction: row;
-    width: 22%;
+    width: 270px;
+    margin: 0 auto;
     justify-content: space-between;
     padding-top: 5rem;
 }
-.resend{
-    font-size: .8rem;
+.resend {
+    font-size: 0.8rem;
     font-weight: 400;
     color: #111416;
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 1rem 0 10rem 0;
+    padding: 1rem 0 1rem 0;
+    cursor: pointer;
 }
 
+.pass_input_container {
+    padding: 1rem 0 6rem 0;
+}
+.Verification .pass_input_container .password_input {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+    padding: 16px;
+    box-sizing: border-box;
+    background-color: #e8f0fe;
+}
 
-@media only screen and (max-width: 1073px){
-    .verify{
+@media only screen and (max-width: 1073px) {
+    .verify {
         width: 28%;
     }
 }
-@media only screen and (max-width: 873px){
-    .verify{
+@media only screen and (max-width: 873px) {
+    .verify {
         width: 40%;
     }
-    .vrfy{
+    .vrfy {
         height: 4rem;
     }
 }
 
-@media only screen and (max-width: 668px){
-    .verify{
+@media only screen and (max-width: 668px) {
+    .verify {
         width: 50%;
     }
 }
 
-@media only screen and (max-width: 468px){
-    .verify{
+@media only screen and (max-width: 468px) {
+    .verify {
         width: 60%;
         padding-top: 3rem;
     }
-    .resend{
+    .resend {
         padding: 1rem 0 7rem 0;
     }
 }
 
-@media only screen and (max-width: 376px){
-    .verify{
+@media only screen and (max-width: 376px) {
+    .verify {
         width: 80%;
     }
 }
-    
