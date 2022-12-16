@@ -134,6 +134,10 @@
     color: #52515b;
     font-size: 1.3rem;
     font-weight: 400;
+    line-height: 1.5;
+    text-align: justify;
+    line-height: 1.5;
+    letter-spacing: 0.3px;
 }
 .prev_btn {
     background-color: transparent;
@@ -209,6 +213,14 @@
         height: 17rem;
         margin-inline: 2rem;
         outline: none;
+    }
+    .profiledesc_details p {
+        color: #52515b;
+        font-size: 0.75rem;
+        line-height: 1.5;
+        letter-spacing: 0.3px;
+        text-align: justify;
+        font-weight: 400;
     }
 }
 

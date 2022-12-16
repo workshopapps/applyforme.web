@@ -4,7 +4,7 @@ import classes from "./DashboardHeader.module.css";
 import { FiChevronLeft, FiPause, FiTrash } from "react-icons/fi";
 import Logo from "../../assets/images/nav_logo.svg";
 import Notification from "../../assets/images/notification.svg";
-import ProfilePic from "../../assets/images/test_profile_picture.svg";
+import LetteredAvatar from "react-lettered-avatar";
 import Search from "../../assets/images/search.svg";
 import SearchBlue from "../../assets/images/search_blue.svg";
 import Menu from "../../assets/images/menu.svg";
@@ -22,7 +22,7 @@ import ProfileIcon from "../../assets/images/profile-circle.svg";
 import { getActiveLink } from "./service/DashboardSidebarService";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
 
 const DashboardHeader = ({ func, setInputSearchValue }) => {
@@ -32,6 +32,8 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { user } = useSelector(state => state.user);
+    const userName = user.fullName;
     const [mobileSearch, setMobileSearch] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
@@ -89,8 +91,13 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 />
                             </div>
                             <div className={classes.search_logo}>
-                                <img src={SearchBlue} alt="Search " onClick={()=>setMobileSearch(prev =>!prev)}/>
-                                
+                                <img
+                                    src={SearchBlue}
+                                    alt="Search "
+                                    onClick={() =>
+                                        setMobileSearch(prev => !prev)
+                                    }
+                                />
                             </div>
                             <div
                                 className={classes.user_avater}
@@ -99,9 +106,9 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 }
                                 style={{ cursor: "pointer" }}
                             >
-                                <img
-                                    src={ProfilePic}
-                                    alt="User Profile Picture"
+                                <LetteredAvatar
+                                    name={userName}
+                                    backgroundColor={"#78909c"}
                                 />
                             </div>
                             {showMenuProfile && (
@@ -158,28 +165,33 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
 
                         {/*form for searching for users and reverse recruiter */}
                     </section>
-                    
                 </nav>
 
                 {/* Mobile nav */}
-                {mobileSearch && 
-                    
-                         <form
-                                className={classes.search}
-                                onSubmit={event => handleDashboardSubmit(event)}
-                            >
-                               <input
-                                    type="search"
-                                    name="search"
-                                    className={classes.mobile_inp}
-                                    placeholder="Search for and Reverse Recruiter"
-                                />
-                                <button type="submit" className={classes.mobile_btn_cont}>
-                                    {" "}
-                                    <img src={Search} alt="Apply for me logo"  className={classes.mobile_btn}/>
-                                </button>
-                            </form>
-                }
+                {mobileSearch && (
+                    <form
+                        className={classes.search}
+                        onSubmit={event => handleDashboardSubmit(event)}
+                    >
+                        <input
+                            type="search"
+                            name="search"
+                            className={classes.mobile_inp}
+                            placeholder="Search for and Reverse Recruiter"
+                        />
+                        <button
+                            type="submit"
+                            className={classes.mobile_btn_cont}
+                        >
+                            {" "}
+                            <img
+                                src={Search}
+                                alt="Apply for me logo"
+                                className={classes.mobile_btn}
+                            />
+                        </button>
+                    </form>
+                )}
                 {showMenu && <MobileNav setShowMenu={setShowMenu} />}
             </section>
 
@@ -214,9 +226,9 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                         <div className={classes.profile_details}>
                             <div className={classes.img_details}>
                                 <div className={classes.img_wrapper}>
-                                    <img
-                                        src={ProfilePiture}
-                                        alt="profile picture"
+                                    <LetteredAvatar
+                                        name={userName}
+                                        backgroundColor={"#78909c"}
                                     />
                                 </div>
 

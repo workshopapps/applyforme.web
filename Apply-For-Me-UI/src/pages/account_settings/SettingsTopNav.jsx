@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./AccountSettings.module.css";
 import person from "../../pages/dashboard_profile/assets/profilepic.png";
-import bell from "../../assets/images/bell.png";
+import bell from "../../pages/dashboard_profile/assets/notif.png";
 
 const SettingsTopNav = () => {
     return (
@@ -11,9 +11,9 @@ const SettingsTopNav = () => {
 
                 <div>
                     <div className={classes.nav_image}>
+                        <img src={bell} alt="" className={classes.bell} />
                         <img src={person} alt="" className={classes.person} />
                     </div>
-                    <img src={bell} alt="" />
                 </div>
             </div>
         </div>

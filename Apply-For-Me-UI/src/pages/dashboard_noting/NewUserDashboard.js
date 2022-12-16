@@ -1,62 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import avatar from "./img/avatar.png";
-import notification from "./img/notification.png";
+import blueadd from "../../pages/dashboard_profile/assets/blue-add.png";
+// import avatar from "./img/avatar.png";
+// import notification from "./img/notification.png";
 import "./DashboardNothing.css";
 import GoBackMobile from "./GoBackMobile";
+// import axios from "axios";
+import TopBar from "pages/dashboard_profile/components/TopBar/TopBar";
 
 const NewUserDashboard = () => {
     const { user } = useSelector(state => state.user);
     const username = user.fullName;
     const userName = username?.split(" ")[0];
     const token = localStorage.getItem("tokenHngKey");
-    const [statValue, setStatValue] = useState();
-    const getStatisticsDetail = async () => {
-        try {
-            const response = await axios.get(
-                "https://api.applyforme.hng.tech/api/v1/member/stats",
-                {
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
-                }
-            );
-            setStatValue(response?.data);
-        } catch (err) {
-            console.log(err?.response?.data);
-        }
-    };
+    const [value, setValue] = useState({});
+
     useEffect(() => {
-        getStatisticsDetail();
+        fetch(`https://api.applyforme.hng.tech/api/v1/member/stats`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                setValue(data);
+                console.log(data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }, []);
+
+    console.log(value);
+
     return (
         <div className="dashboardnothing">
             {/* this is the top stripe */}
+            <div>
+                <TopBar
+                    title={`Welcome ${userName},`}
+                    style={{
+                        width: "100%",
+                        marginTop: "auto",
+                        color: "#2e3192",
+                        // fontWeight: "700",
+                        marginLeft: "2.5rem"
+                    }}
+                    subtitle={`Let's get started`}
+                />
 
-            <section className="top-dashboard-stripe">
-                <div className="top-dashboard-left">
-                    <h2>Welcome {userName},</h2>
-                    <p>Let’s get started </p>
-                </div>
-                <div className="top-dashboard-right">
-                    <div className="dashboard-img-wrapper-not">
-                        <img src={notification} alt="icon" className="notif" />
-                    </div>
-
-                    <div className="dashboard-img-wrapper">
-                        <Link to="/dashboard/settings">
-                            <img
-                                src={avatar}
-                                alt="notification"
-                                className="profilepic"
-                            />
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            <hr></hr>
+                <hr className="topnav-hr"></hr>
+            </div>
 
             {/* section for overview */}
 
@@ -67,7 +62,7 @@ const NewUserDashboard = () => {
                 <div className="overview-cards-wrapper">
                     <div className="overview-card-wrapper">
                         <div className="overview-card">
-                            <h3>{statValue?.total_number_of_profile}</h3>
+                            <h3>{value?.total_number_of_submissions}</h3>
                             <p>Total Submissions</p>
                         </div>
                     </div>
@@ -81,21 +76,22 @@ const NewUserDashboard = () => {
 
                     <div className="overview-card-wrapper">
                         <div className="overview-card">
-                            <h3>{statValue?.total_number_of_profile}</h3>
-                            <p>Totals Applications</p>
+                            <h3>{value?.total_number_of_profiles}</h3>
+                            <p>Total Profiles</p>
                         </div>
                     </div>
 
                     <div className="mobile-create">
-                        <span> Welcome, you have no job profile yet Tap </span>
+                        <span> Welcome. Tap to create a new job profile</span>
                         <span>
                             {" "}
                             <Link to="/dashboard/user/create-profile">
-                                {" "}
-                                <button> + </button>{" "}
+                                <div className="btn_plus_fixed">
+                                    <img src={blueadd} alt="add" />
+                                </div>
                             </Link>{" "}
                         </span>
-                        <span>to create a new job profile</span>
+                        {/* <span>to create a new job profile</span> */}
                     </div>
                 </div>
             </section>
