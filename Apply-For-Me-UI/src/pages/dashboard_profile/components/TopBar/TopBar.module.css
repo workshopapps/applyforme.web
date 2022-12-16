@@ -3,6 +3,7 @@
     justify-content: space-between;
     width: 100%;
     padding-top: 1rem;
+    padding-right: 2rem
 }
 
 @media only screen and (max-width: 480px) {
@@ -16,7 +17,7 @@
 
     .topbar {
         margin-left: 0;
-        padding-right: 10px;
+
     }
 
     .topbar p {

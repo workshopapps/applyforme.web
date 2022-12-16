@@ -1,14 +1,20 @@
+import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./UserPage.module.css";
+import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
 
 const UsersPage = ({ inputSearchValue }) => {
     const list = useSelector(state => state.RRadmin);
+    const navigate = useNavigate();
     const [search, setSearch] = useState([]);
     const dispatch = useDispatch();
+    const token = localStorage.getItem("tokenHngKey");
     const [pagination, setPagination] = useState({
         "pageNo": 0,
         "pageSize": 10,
@@ -27,8 +33,31 @@ const UsersPage = ({ inputSearchValue }) => {
         dispatch(SuperAdminApplicants(pagination));
     },[dispatch,SuperAdminApplicants])
 
-   
+
+    const handleDeleteApplicants = async(e)=> {
+        try {
+            const response = await axios.delete(
+                `https://api.applyforme.hng.tech/api/v1/super-admin/applicant/delete/${e.id}`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            console.log(response);
+            toast("Applicants deleted successfully");
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+
+        } catch (error) {
+            toast.error("An Error occured, Please  try again");
+            console.log(error.response?.data?.message);
+        }
+    }
+
     console.log(list);
+
     return (
         <div className={classes.main_container}>
            <div className="statisticsContainer">
@@ -48,7 +77,7 @@ const UsersPage = ({ inputSearchValue }) => {
                             </th>
                             <th>Plan</th>
                             <th className={classes.hide_on_mobile}>
-                                Application done
+                                Application Made
                             </th>
                             <th className={classes.hide_header_desktop}>
                                 Stat
@@ -59,6 +88,7 @@ const UsersPage = ({ inputSearchValue }) => {
                         {search?.length !== 0 &&
                          (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
                             search?.map(list => {
+                                const {id} = list.membership;
                                 return (
                                     <tr
                                         className={classes.user_details}
@@ -70,7 +100,19 @@ const UsersPage = ({ inputSearchValue }) => {
                                             {list.membership.emailAddress}
                                         </td>
                                         <td>basic</td>
-                                        <td>{list.totalSubmissions} of 15</td>
+                                        <td>{list.totalSubmissions}</td>
+                                        <td className={classes.hover_item}>
+                                            <div className={classes.hover_item_inner}>
+                                                <p onClick={()=> navigate(`/superAdmin/applicants/profiles/details/${list.membership.id}`)}>
+                                                    <span><AiOutlineEye/></span>
+                                                    View more info
+                                                </p>
+                                                <p onClick={(e)=>handleDeleteApplicants({id})}>
+                                                    <span><AiOutlineDelete/></span>
+                                                    Delete 
+                                                </p>
+                                            </div>            
+                                        </td>
                                     </tr>
                                 );
                             })}

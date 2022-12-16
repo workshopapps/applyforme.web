@@ -13,7 +13,7 @@ const DashboardHome = () => {
     const getStatisticsDetail = async () => {
         try {
             const response = await axios.get(
-                "https://api.applyforme.hng.tech/api/v1/recruiter/stats",
+                "https://api.applyforme.hng.tech/api/v1/recruiter/applicant/statistics",
                 {
                     headers: {
                         "Authorization": `Bearer ${token}`
@@ -44,14 +44,14 @@ const DashboardHome = () => {
                     {/* Applications stat on cards */}
                     <div className={classes.applications_stats}>
                         <div className={classes.applications_stat}>
-                            <h2 className={classes.stat_number}>{statValue?.total_number_of_profiles}</h2>
+                            <h2 className={classes.stat_number}>{statValue?.total_applications}</h2>
                             <p className={classes.stat_text}>
                                 Total Applications
                             </p>
                         </div>
 
                         <div className={classes.applications_stat}>
-                            <h2 className={classes.stat_number}>{statValue?.total_number_of_submissions}</h2>
+                            <h2 className={classes.stat_number}>{statValue?.applied_jobs}</h2>
                             <p className={classes.stat_text}>Applied Jobs</p>
                         </div>
 
