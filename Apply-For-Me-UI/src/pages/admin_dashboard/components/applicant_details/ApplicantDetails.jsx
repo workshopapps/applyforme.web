@@ -13,6 +13,7 @@ const ApplicationDetails = () => {
     const token = localStorage.getItem("tokenHngKey");
     const [details, setDetails] = useState();
     const [isLoading, setIsLoading] = useState(false);
+    const [showCoverLetter, setShowCoverLetter] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
@@ -121,11 +122,16 @@ const ApplicationDetails = () => {
                         </div>
                         <div className={style.info_field}>
                             <h4>Cover Letter</h4>
-                            <a href={details?.coverLetterLink} download>
-                                <img src={pdfIcon} alt="pdf icon" /> get cover
-                                letter
-                            </a>
+                             <h4 onClick={()=>setShowCoverLetter(prevState=>!prevState)}>Click to view cover letter</h4>
                         </div>
+                        {
+                            showCoverLetter &&(
+                                <div className={style.cover}>
+                                    {details?.coverLetterContent}
+                                </div>
+                            )
+                        }
+                       
                     </div>
                        
                 </section>

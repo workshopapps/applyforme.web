@@ -46,7 +46,7 @@ const DashboardHome = () => {
                         <div className={classes.applications_stat}>
                             <h2 className={classes.stat_number}>{statValue?.total_applications}</h2>
                             <p className={classes.stat_text}>
-                                Total Applications
+                                Total Job Profiles
                             </p>
                         </div>
 
@@ -71,7 +71,7 @@ const DashboardHome = () => {
                 <div className={classes.new_applications_stats}>
                     <div className={classes.view_all_wrapper}>
                         <h2 className={classes.new_applications_stats_heading}>
-                            New Applications
+                            New Submissions
                         </h2>
 
                         <button
