@@ -6,6 +6,8 @@
 
 .rrd_applications_wrapper button {
     border: none;
+    padding: 0rem 1rem;
+    border-radius: 5px;
 }
 
 .greeting_text>h1 {
@@ -40,6 +42,7 @@
 }
 
 .applications_stat {
+    padding:0.5rem;
     border: 2px solid #f7f7f8;
     border-radius: 0.5rem;
     display: flex;
@@ -53,12 +56,14 @@
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    text-align:center
 }
 
 .greeting_text>p,
 .stat_text {
     font-size: 0.75rem;
     font-weight: 400;
+    text-align: center;
 }
 
 .job_application_form_button {
@@ -75,7 +80,6 @@
     text-decoration: none;
     color: white;
 }
-
 .new_applications_stats {
     display: flex;
     flex-direction: column;
@@ -109,6 +113,7 @@
 
 .stats_item {
     font-weight: 300;
+    width:25%;
 }
 
 .stats_details_view_button {
@@ -125,10 +130,6 @@
     justify-content: space-between;
 }
 
-.stats_name {
-    width: 40%;
-}
-
 .stats_plan {
     width: 22%;
 }
@@ -138,7 +139,7 @@
 }
 
 .desktop_only {
-    display: none;
+    display: block;
 }
 
 @media screen and (min-width: 768px) {
@@ -180,7 +181,7 @@
 
     .new_applications_stats_heading,
     .new_applications_stats_heading>span {
-        font-size: 1.35rem;
+        font-size: 1rem;
     }
 
     .stats_row {
@@ -241,11 +242,21 @@
         font-size: 1.25rem;
     }
 }
-
 @media screen and (min-width: 1328px) {
     .applications_stats_and_button {
         align-items: center;
         flex-direction: row;
         justify-content: space-between;
+    }
+}
+@media  screen and (min-width: 320px) and (max-width: 767px) {
+    .new_applications_stats_heading,
+    .new_applications_stats_heading>span {
+    font-size: 1rem;
+    }
+    .stats_heading,
+    .stats_item,
+    .stats_details_view_button {
+        font-size: 12px;
     }
 }
