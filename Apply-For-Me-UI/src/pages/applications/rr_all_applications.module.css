@@ -9,9 +9,18 @@
     flex-direction: column;
     flex-wrap: wrap;
 }
-@media only screen and (max-width: 480px) {
+.go_back_cover{
+    padding-right:3rem;
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
     .applications_table_wrapper {
         margin-left: 0;
+    }
+    th {
+        font-size: 14px;
+    }
+    .application_main {
+        padding: 0 1rem;
     }
 }
 @media only screen and (min-width: 620px) {
