@@ -159,8 +159,8 @@ const ApplicationForm = () => {
                     View Applicants details
                 </span>
             </div>
+            <p className={style.FormHeader}>Please, fill this form for every application submitted</p>
             <form className={style.form} onSubmit={handleSubmit}>
-                <p>Please, fill this form for every application submitted</p>
                 {applicationsFormData.map((item, index) => {
                     return (
                         <label htmlFor={item.id} key={index}>
@@ -178,8 +178,9 @@ const ApplicationForm = () => {
                         </label>
                     );
                 })}
-
+            <div className={style.buttonContainer}>
                 <input id="submit" type="submit" value="Submit" />
+            </div>
             </form>
             {loading && (
                 <div className={style.editContainer}>

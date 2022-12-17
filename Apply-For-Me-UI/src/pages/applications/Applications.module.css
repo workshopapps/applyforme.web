@@ -354,7 +354,7 @@ th:last-child {
     height: 40px;
 }
 
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
     .applications_card_title {
         flex-direction: column;
         align-items:flex-start;
@@ -379,40 +379,33 @@ th:last-child {
         padding-left: 1rem;
         padding-right: 1rem;
     }
-
     .applications_table_wrapper {
         display: none;
     }
-
     .applications_list_wrapper {
         display: block;
     }
-
     .dropbtn {
         display: none;
     }
-
     .applications_search_form {
         width: 90%;
         padding-left: 0rem;
     }
-
+    .show_tablet {
+        display: none;
+        color: #7c7ba8;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+    }
+    .rrtable {
+       font-size: 14px;
+    }
     /* … */
 }
 
-.show_tablet {
-    display: none;
-    color: #7c7ba8;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-}
-.hide_tablet {
-    display: none;
-}
-.rrtable {
-   font-size: 14px;
-}
+
 
 @media (min-width: 481px) and (max-width: 768px) {
     .table_head{
