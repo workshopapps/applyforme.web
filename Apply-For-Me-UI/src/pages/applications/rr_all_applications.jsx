@@ -11,7 +11,10 @@ const RRApplications = () => {
             <section className={styles.application_main}>
                 <Table applications={applications} className={styles.table} />
             </section>
-            <GoBack />
+            <div className={styles.go_back_cover}>
+                <GoBack />
+            </div>
+           
         </div>
     );
 };
