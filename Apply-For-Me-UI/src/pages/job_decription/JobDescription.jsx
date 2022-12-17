@@ -101,14 +101,12 @@ const JobDescription = () => {
                         <h5>Job Summary</h5>
                         <p>{descriptionDetails?.summary}</p>
                     </div>
-                    {/* <div>
-                        <h5>Responsibilities</h5>
-                        <ul>
-                            {job.reponsibilities.map(responsibility => (
-                                <li key={responsibility}>{responsibility}</li>
-                            ))}
-                        </ul>
-                    </div> */}
+                    <div>
+                        <h5>Job Link</h5>
+                        <p>
+                            {descriptionDetails?.jobLink}
+                        </p>
+                    </div>
                     {/* <div>
                         <h5>Skills and Experience</h5>
                         <p>{descriptionDetails?.professionalProfile}</p>

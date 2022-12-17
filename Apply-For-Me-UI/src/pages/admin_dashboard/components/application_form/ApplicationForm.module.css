@@ -3,6 +3,16 @@
     padding: 0 20px 50px;
     font-size: 16px;
 }
+.FormHeader{
+    font-size: 20px;
+    margin-bottom: 1rem;
+    margin-top: 4rem;
+}
+.buttonContainer{
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 0.5rem;
+}
 .editContainer {
     position: fixed;
     top: 0;
@@ -42,8 +52,8 @@
 }
 
 .form {
-    display: flex;
-    flex-flow: column nowrap;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
     max-width: 500px;
     gap: 24px;
 }
@@ -127,6 +137,11 @@
     }
 }
 
+@media only screen and (max-width:767px){
+    .form {
+        grid-template-columns: 1fr;
+    }
+}
 @media screen and (min-width: 1200px) {
     .application_form {
         padding: 0 40px 50px;
