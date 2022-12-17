@@ -60,7 +60,7 @@ const Table = () => {
                             <th className={styles.hide_tablet}>State</th>
                             <th>Salary Range</th>
                             <th className={styles.hide_tablet}>Job Type</th>
-                            <th className={styles.table_head}>Date</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,13 +71,11 @@ const Table = () => {
                                 onClick={()=>navigate(`/dashboard/applications/${application.id}`)}
                             >
                                 <td>
-                                    <div>{application.jobCompany}</div>
                                     <div className={styles.show_tablet}>
                                         {application.jobCompany}
                                     </div>
                                 </td>
                                 <td>
-                                    <div>{application.jobTitle}</div>
                                     <div className={styles.show_tablet}>
                                         {application.jobTitle}
                                     </div>
@@ -85,13 +83,21 @@ const Table = () => {
                                 <td className={styles.hide_tablet}>
                                     {application.jobLocation}
                                 </td>
-                                <td className={styles.hide_tablet}>
-                                    {application?.professionalProfile?.salaryRange}
+                                <td >
+                                    <div className={styles.show_tablet}>
+                                        {application?.professionalProfile?.salaryRange}
+                                    </div>
+                                    
                                 </td>
                                 <td className={styles.hide_tablet}>
-                                    {application.jobLocationType}
+                                    {application?.jobLocationType}
                                 </td>
-                                <td>{application.createdOn?.split("T").shift()}</td>
+                                <td >
+                                    <div className={styles.show_tablet}>
+                                        {application.createdOn?.split("T").shift()}
+                                    </div>
+                                    
+                                </td>
                             </tr>
                         ))}
                     </tbody>

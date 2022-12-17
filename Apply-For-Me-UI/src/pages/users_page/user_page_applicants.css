@@ -22,4 +22,18 @@ justify-content: space-evenly;
     color:#2E3192;
     font-size: 25px;
 }
+@media only screen and (min-width:320px) and (max-width:480px){
+    .applicants_profile_container {
+        padding: 1rem;
+    }
+    .profile_header {
+        font-size: 1.5rem;
+    }
+    .proile_info_container_label {
+        font-size: 17px;
+    }
+    .profile-text-size {
+        font-size: 17px;
+    }
+}
 

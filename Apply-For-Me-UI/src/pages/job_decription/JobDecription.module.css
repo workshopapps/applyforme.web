@@ -97,4 +97,7 @@
         gap: 1rem;
         flex-wrap: wrap;
     }
+   .jobContainer{
+        margin-left: 0rem; 
+    }
 }
