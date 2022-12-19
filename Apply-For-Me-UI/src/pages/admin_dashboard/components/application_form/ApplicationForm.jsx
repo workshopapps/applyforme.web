@@ -162,21 +162,40 @@ const ApplicationForm = () => {
             <p className={style.FormHeader}>Please, fill this form for every application submitted</p>
             <form className={style.form} onSubmit={handleSubmit}>
                 {applicationsFormData.map((item, index) => {
-                    return (
-                        <label htmlFor={item.id} key={index}>
-                            <span>{item.labelText}</span>
-                            <br />
-                            <input
-                                name={item.id}
-                                id={item.id}
-                                type="text"
-                                placeholder={item.placeholder}
-                                value={item.value}
-                                onChange={handleChange}
-                                required
-                            />
-                        </label>
-                    );
+                    if(item.id === "summary"){
+                        return(
+                            <label htmlFor={item.id} key={index}>
+                                <span>{item.labelText}</span>
+                                <br />
+                                <textarea
+                                    name={item.id}
+                                    id={item.id}
+                                    type="text"
+                                    className={style.textArea}
+                                    placeholder={item.placeholder}
+                                    value={item.value}
+                                    onChange={handleChange}
+                                    required
+                                />
+                             </label>
+                        )
+                    }else{
+                        return (
+                            <label htmlFor={item.id} key={index}>
+                                <span>{item.labelText}</span>
+                                <br />
+                                <input
+                                    name={item.id}
+                                    id={item.id}
+                                    type="text"
+                                    placeholder={item.placeholder}
+                                    value={item.value}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </label>
+                        );
+                    }
                 })}
             <div className={style.buttonContainer}>
                 <input id="submit" type="submit" value="Submit" />
