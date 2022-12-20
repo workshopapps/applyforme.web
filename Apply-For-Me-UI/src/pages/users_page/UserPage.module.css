@@ -5,6 +5,21 @@
     max-width: 1400px;
     margin: 0 auto;
 }
+.view_button{
+    color:darkslategray;
+    border:1px solid darkslategray;
+    border-radius: 5px;
+    padding:0.25rem;
+    margin-right: 1rem;
+    font-size: 17px;
+}
+.delete_button{
+    color:red;
+    border: 1px solid crimson;
+    border-radius: 5px;
+    padding:0.25rem;
+    font-size: 17px;
+}
 .nav_back{
     width:20%;
 }
@@ -114,12 +129,10 @@
 }
 
 .table tr th {
-    padding: 2rem;
     font-size:16px;
 }
 
 .table tr td {
-    padding: 2rem 0rem 2rem 2rem;
     overflow-wrap: break-word;
 }
 
@@ -189,6 +202,11 @@
     .applicant .table tr td,
     .applicant .table tr th {
         font-size: 0.9rem;
-        
+    }
+    .view_button{
+        font-size: 0.9rem;
+    }
+    .delete_button{
+        font-size: 0.9rem;
     }
 }

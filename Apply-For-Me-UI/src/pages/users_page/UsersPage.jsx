@@ -68,7 +68,7 @@ const UsersPage = ({ inputSearchValue }) => {
                 <table className={classes.table}>
                     <thead>
                         <tr className={classes.table__head}>
-                            <th>Name</th>
+                            <th className={classes.table__head_th}>Name</th>
                             <th className={classes.hide_on_mobile}>
                                 Email Address
                             </th>
@@ -76,9 +76,8 @@ const UsersPage = ({ inputSearchValue }) => {
                             <th className={classes.hide_on_mobile}>
                                 Application Made
                             </th>
-                            <th className={classes.hide_header_desktop}>
-                                Stat
-                            </th>
+                            <th>Action</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -96,19 +95,10 @@ const UsersPage = ({ inputSearchValue }) => {
                                             {" "}
                                             {list.membership.emailAddress}
                                         </td>
-                                        <td>basic</td>
+                                        <td className={classes.hide_on_mobile}>basic</td>
                                         <td>{list.totalSubmissions}</td>
-                                        <td className={classes.hover_item}>
-                                            <div className={classes.hover_item_inner}>
-                                                <p onClick={()=> navigate(`/superAdmin/applicants/profiles/details/${list.membership.id}`)}>
-                                                    <span><AiOutlineEye/></span>
-                                                    View more info
-                                                </p>
-                                                <p onClick={(e)=>handleDeleteApplicants({id})}>
-                                                    <span><AiOutlineDelete/></span>
-                                                    Delete 
-                                                </p>
-                                            </div>            
+                                        <td>
+                                            <span onClick={()=> navigate(`/superAdmin/applicants/profiles/details/${list.membership.id}`)} className={classes.view_button}>view</span><span onClick={(e)=>handleDeleteApplicants({id})} className={classes.delete_button}>delete</span>
                                         </td>
                                     </tr>
                                 );

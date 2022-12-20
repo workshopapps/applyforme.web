@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import Nav from "pages/RR_Dashboard/components/RRD_Nav";
 import { useState, useEffect } from "react";
 import Spinner from "components/spinner/Spinner";
+import LetteredAvatar from "react-lettered-avatar";
 
 const ApplicationDetails = () => {
     const { id } = useParams();
@@ -57,10 +58,10 @@ const ApplicationDetails = () => {
                 </div>
                 <div className={style.header}>
                     <span className={style.circle}>
-                        <img
-                            src={details?.professional?.member?.avatar}
-                            alt="profile avatar"
-                        />
+                        <LetteredAvatar
+                            name={details?.professional?.member?.firstName }
+                            backgroundColor={"#52515b"}
+                        />                      
                     </span>
                     <div>
                         <span

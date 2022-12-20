@@ -109,7 +109,7 @@ th:last-child {
 }
 
 .applications_table_head_row {
-    border-bottom: 0.5px #cccccc solid;
+    border-bottom: 0.5px #cccccc red;
     height: 62px;
     color: #52515b;
     font-weight: 500;
@@ -411,6 +411,9 @@ th:last-child {
     }
 }
 @media only screen and (max-width: 480px) {
+    .hide_salary{
+        display:none;
+    }
     .applications_table_wrapper {
         margin-left: 0;
     }
@@ -420,4 +423,7 @@ th:last-child {
     .rrtable {
        font-size: 14px;
     }
+}
+.hide_salary{
+    display:none;
 }
