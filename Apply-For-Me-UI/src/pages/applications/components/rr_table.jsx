@@ -53,31 +53,33 @@ const Table = () => {
                     <thead>
                         <tr className={styles.applications_table_head_row}>
                             <th>Name</th>
-                            <th>Salary</th>
+                            <th className={styles.hide_salary}>Salary</th>
                             <th className={styles.hide_tablet}>Type</th>
                             <th className={styles.hide_tablet}>Details</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data?.map?.((application, index) => (
-                            <tr
-                                className={styles.applications_table_body_row}
+                                <tr
                                 key={`${application.jobCompany}-${index}`}
+                                    className={styles.applications_table_body_row}
                                 
-                            >
-                                <td>
-                                    <div>{application.profileTitle}</div>
-                                </td>
-                                 <td>{application.salaryRange}</td>  
-                                <td className={styles.hide_tablet}>
-                                    {application.preferredJobLocationType}
-                                </td>
-                                <td>
-                                    <Link to={`/professional-profile/user/details/${application.id}`} style={{textDecoration:"none"}}>
-                                       view
-                                     </Link>
-                                </td>
-                            </tr>
+                                    
+                                >
+                                    <td>
+                                        <div>{application.profileTitle}</div>
+                                    </td>
+                                    <td className={styles.hide_salary}>{application.salaryRange}</td>  
+                                    <td className={styles.hide_tablet}>
+                                        {application.preferredJobLocationType}
+                                    </td>
+                                    <td>
+                                        <Link to={`/professional-profile/user/details/${application.id}`} style={{textDecoration:"none"}}>
+                                        view
+                                        </Link>
+                                    </td>
+                                </tr>
+                            
                         ))}
                     </tbody>
                 </table>

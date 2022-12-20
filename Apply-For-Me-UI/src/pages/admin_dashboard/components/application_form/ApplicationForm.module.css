@@ -3,6 +3,15 @@
     padding: 0 20px 50px;
     font-size: 16px;
 }
+.textArea{
+    color: #414244;
+    font-weight: 300;
+    font-size: 16px;
+    padding: 16px 24px;
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+    width: 100%;
+}
 .FormHeader{
     font-size: 20px;
     margin-bottom: 1rem;
@@ -89,7 +98,6 @@
     padding: 16px 32px;
     width: 240px;
 }
-
 .form input[type="submit"]:hover {
     opacity: 0.9;
 }
@@ -106,30 +114,24 @@
     .go_back_link {
         margin-top: 40px;
     }
-
     .view_applicants {
         font-size: 24px;
         font-weight: 700;
     }
-
     .form {
         max-width: clamp(675px, 80vw, 1000px);
     }
-
     .form p {
         font-size: 24px;
         font-weight: 400;
         margin: 26px 0 24px;
     }
-
     .form label span {
         font-weight: 700;
     }
-
     .form input {
         font-weight: 400;
     }
-
     .form input::placeholder,
     .form input,
     .form label span {
@@ -146,4 +148,16 @@
     .application_form {
         padding: 0 40px 50px;
     }
+}
+@media only screen and (max-width:480px){
+    
+.form input,.textArea{
+    padding: 8px 12px;
+    border-radius: 4px;
+    
+}
+.FormHeader{
+ 
+     margin-top: 1rem; 
+}
 }
