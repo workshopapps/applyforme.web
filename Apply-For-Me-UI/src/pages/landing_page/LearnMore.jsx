@@ -7,7 +7,8 @@ const LearnMore = () => {
     return (
         <div className={classes.learn_container}>
             <div className={classes.learn_content}>
-                <div className={classes.top}>
+                <div className={classes.topContainer}>
+                    <div className={classes.top}>
                     <span
                         className={classes.subheading}
                         style={{ color: "#171B1D" }}
@@ -21,6 +22,9 @@ const LearnMore = () => {
                 </div>
                 <img src="https://res.cloudinary.com/hamskid/image/upload/v1670013377/Content_1_ovmknu.svg" className={classes.learnImg} alt="object not found" />
                 <img src="https://res.cloudinary.com/hamskid/image/upload/v1670013058/Content_eyjw1o.svg" className={classes.learnImg2} alt="object not found" />
+
+                </div>
+                
                 <div className={classes.bottom}>
                     <div className={classes.left}>
                         <h3>

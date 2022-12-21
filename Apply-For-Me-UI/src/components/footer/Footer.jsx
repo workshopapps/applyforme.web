@@ -24,65 +24,66 @@ const Footer = () => {
                                 Job hunting has never been easier. We got you
                                 covered.
                             </p>
-                            <div className={classes.about__text_google}>
+                            {/* <div className={classes.about__text_google}>
                                 <img
                                     src={GoogleDownload}
                                     alt="Google download icon"
                                 />
-                            </div>
+                            </div> */}
+                            <ul className={classes.footer__social_icons}>
+                                <li>
+                                    <img src={Facebook} alt="Facebook logo" />
+                                </li>
+                                <li>
+                                    <img src={Instagram} alt="Instagram logo" />
+                                </li>
+                                <li>
+                                    <img src={Twitter} alt="Twitter logo" />
+                                </li>
+                                <li>
+                                    <img src={Youtube} alt="Youtube logo" />
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <ul className={classes.footer__social_icons}>
+                    
+                </div>
+                <div className={classes.links_wrapper}>
+                    <ul className={classes.links}>
+                        <li>Company</li>
                         <li>
-                            <img src={Facebook} alt="Facebook logo" />
+                            <Link to="/about"> About Us</Link>
                         </li>
                         <li>
-                            <img src={Instagram} alt="Instagram logo" />
+                            <Link to="/blog"> Blog</Link>
                         </li>
                         <li>
-                            <img src={Twitter} alt="Twitter logo" />
+                            <Link to="/privacy"> Privacy Policy</Link>
                         </li>
                         <li>
-                            <img src={Youtube} alt="Youtube logo" />
+                            <Link to="/t&c">Terms and conditions</Link>
                         </li>
                     </ul>
+
+                    <ul className={classes.links}>
+                        <li>Help</li>
+                        <li>
+                            <Link to="/contact"> Contact </Link>
+                        </li>
+                        <li>
+                            <Link to="/faqs">FAQs</Link>
+                        </li>
+                        <li>
+                            <Link to="/pricing"> Pricing</Link>
+                        </li>
+                        <li>
+                            <Link to="/career"> Careers</Link>
+                        </li>
+                    </ul>
+
                 </div>
 
-                <ul className={classes.links}>
-                    <li>Company</li>
-                    <li>
-                        <Link to="/about"> About Us</Link>
-                    </li>
-                    <li>
-                        <Link to="/blog"> Blog</Link>
-                    </li>
-                    <li>
-                        <Link to="/contact"> Contact Us</Link>
-                    </li>
-                    <li>
-                        <Link to="/privacy"> Privacy Policy</Link>
-                    </li>
-                    <li>
-                        <Link to="/t&c">Terms and conditions</Link>
-                    </li>
-                </ul>
-
-                <ul className={classes.links}>
-                    <li>Help</li>
-              
-                    <li>
-                        <Link to="/faqs">FAQs</Link>
-                    </li>
-                    <li>
-                        <Link to="/pricing"> Pricing</Link>
-                    </li>
-                    <li>
-                        <Link to="/career"> Careers</Link>
-                    </li>
-                    <li>
-                        <Link to="/help"> Help and support </Link>
-                    </li>
-                </ul>
+               
             </div>
 
             <section className={classes.sub_footer}>
