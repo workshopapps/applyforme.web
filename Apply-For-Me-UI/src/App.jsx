@@ -74,10 +74,14 @@ import TryoutForm from "pages/tryout_form/TryoutForm";
 import TrySuccess from "pages/tryout_form/Success";
 
 import * as atatus from "atatus-spa";
+import ReactGA from "react-ga";
 import { CreateRecruiter } from "pages/createRecruiter/create_view";
 import { SuperApplicantsPage } from "pages/users_page/user_page_applicants";
 
 atatus.config("c626faaef503411ea6216d7b6112de1c").install();
+
+const TRACKING_ID = "UA-252531970-1";
+ReactGA.initialize(TRACKING_ID);
 
 function App() {
     const dispatch = useDispatch();
@@ -184,7 +188,8 @@ function App() {
                     <Route
                         exact
                         path="/superAdmin/applicants/profiles/details/:id"
-                        element={<SuperApplicantsPage/>}/>
+                        element={<SuperApplicantsPage />}
+                    />
                     <Route
                         exact
                         path="/create/recruiter/page"
