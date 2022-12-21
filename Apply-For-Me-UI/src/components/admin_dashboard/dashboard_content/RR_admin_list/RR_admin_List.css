@@ -1,4 +1,4 @@
-thead th{
+.thead_th{
     padding-top:1.5rem;
      padding-bottom: 1.5rem
  }
@@ -28,7 +28,7 @@ thead th{
  .tableContainer{
      width:100%;
  }
- .tableContainer td,.tableContainer th{
+ .thead_th,.table-td{
      text-align: left;
  }
  .three_dot_icon{

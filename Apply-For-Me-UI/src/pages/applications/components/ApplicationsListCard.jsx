@@ -25,23 +25,56 @@ const ApplicationsListCard = () => {
                     
                 }
             );
-            console.log(response.data)
             setData(response?.data?.content)
         } catch (error) {
             console.log(error?.response)
             toast.error(`Could not get applicants: ${error}`);
         }
     };
+    const sortOldestToNewest = async()=>{
+        try{
+            const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`, 
+                {
+                    params:{
+                        "sortDir":"desc"
+                    },
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            setData(response.data?.content);
+
+        } catch (error) {
+            console.error(`Could not get applicants: ${error}`);
+        }          
+    }   
+    const sortNewestToOldest = async()=>{
+        try{
+            const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`, 
+                {
+                    params:{
+                    "sortDir":"asc"
+                    },
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            setData(response.data?.content);
+
+        } catch (error) {
+            console.error(`Could not get applicants: ${error}`);
+        }          
+    }   
 
     useEffect(() => {
         fetchApplicants();
     }, []);
 
-    console.log("this is the data",data)
-
     return (
         <div className={styles.applications_list_wrapper}>
-            <ApplicationsListHeader />
+            <ApplicationsListHeader sortOldestToNewest={sortOldestToNewest} sortNewestToOldest={sortNewestToOldest}/>
             <div className={styles.applications_list_card}>
                 {data?.map((application, index) => (
                      <div className={styles.applications_card} key={index}>

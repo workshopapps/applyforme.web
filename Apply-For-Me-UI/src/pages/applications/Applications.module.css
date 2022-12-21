@@ -1,6 +1,9 @@
 .applications_table_wrapper {
     width: 100%;
 }
+table {
+  border-collapse: collapse;
+}
 @media only screen and (max-width: 480px) {
     .applications_table_wrapper {
         margin-left: 0;
@@ -58,7 +61,6 @@
     padding-right: 2.5rem;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 0.5px #cccccc solid;
 }
 
 .applications_table_container {
@@ -69,7 +71,6 @@
 }
 
 table {
-    border-collapse: separate;
     border-spacing: 0 15px;
     width: 100%;
     margin: 0 auto;
@@ -113,7 +114,7 @@ th:last-child {
 }
 
 .applications_table_head_row {
-    border-bottom: 0.5px #cccccc solid;
+    border-bottom: 0.5px gainsboro solid;
     height: 62px;
     color: #52515b;
     font-weight: 500;
@@ -124,7 +125,7 @@ th:last-child {
 }
 
 .applications_table_body_row {
-    border-bottom: 0.5px #ededed solid;
+    border-bottom:1px #ededed solid;
     height: 56px;
     text-align: start;
     font-weight: 400;
@@ -364,6 +365,7 @@ th:last-child {
     }
     .applications_container {
         margin-left: 0rem;
+        padding: 0 1rem;
     }
     .applications_page_title h2 {
         font-size: 20px;
@@ -385,9 +387,7 @@ th:last-child {
     .applications_list_wrapper {
         display: block;
     }
-    .dropbtn {
-        display: none;
-    }
+    
     .applications_search_form {
         width: 90%;
         padding-left: 0rem;
