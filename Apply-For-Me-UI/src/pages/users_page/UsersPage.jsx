@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./UserPage.module.css";
-import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
 
 const UsersPage = ({ inputSearchValue }) => {
     const list = useSelector(state => state.RRadmin);
@@ -44,7 +43,6 @@ const UsersPage = ({ inputSearchValue }) => {
                     }
                 }
             );
-            console.log(response);
             toast("Applicants deleted successfully");
             setTimeout(() => {
                 window.location.reload();

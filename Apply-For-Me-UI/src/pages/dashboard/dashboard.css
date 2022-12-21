@@ -1,0 +1,33 @@
+.searchFiled{
+    position: fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    background-color: white;
+    z-index: 1;
+    height: 100%;
+    width: 50%;
+}
+.information_wrapper{
+    padding:0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.searchHeader{
+    padding: 1rem;
+    display:flex;
+    justify-content: space-evenly;
+    background-color: gainsboro;
+}
+.inputForm{
+    width:90%;
+}
+.inputForm_input{
+    width:100%;
+    border-radius: 5px;
+    border: 1px solid gainsboro;
+    background-color: white;
+    color:black;
+}

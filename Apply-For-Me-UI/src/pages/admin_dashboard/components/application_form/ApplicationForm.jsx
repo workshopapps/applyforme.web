@@ -154,7 +154,7 @@ const ApplicationForm = () => {
                 </Link>
                 <span
                     className={style.view_applicants}
-                    onClick={() => navigate("/rr_admin/appilicants_details")}
+                    onClick={() => window.history.back() }
                 >
                     View Applicants details
                 </span>
