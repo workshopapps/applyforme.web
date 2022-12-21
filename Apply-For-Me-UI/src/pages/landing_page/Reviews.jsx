@@ -16,7 +16,7 @@ const Reviews = () => {
 
             <div className={classes.bottom}>
                 <div  className={classes.reviews_content_bottom_div}>
-                    <img src={stars} alt="" className={classes.stars}/>
+                    <img src="https://res.cloudinary.com/hamskid/image/upload/v1671639153/Frame_51199_t6zuyx.svg" alt="object not found" className={classes.stars}/>
                     <p className={classes.reviews}>"We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.."</p>
 
                     <div className={classes.profile}>
@@ -30,7 +30,7 @@ const Reviews = () => {
                     </div>
                 </div>
                 <div className={classes.reviews_content_bottom_div}>
-                    <img src={stars} alt="" className={classes.stars}/>
+                    <img src="https://res.cloudinary.com/hamskid/image/upload/v1671639153/Frame_51199_t6zuyx.svg" alt="object not found" className={classes.stars}/>
                     <p className={classes.reviews}>"We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.."</p>
 
                     <div className={classes.profile}>

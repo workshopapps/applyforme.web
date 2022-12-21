@@ -7,6 +7,9 @@
     padding-right: 0.9rem;
     width:4rem;
 }
+.topContainer{
+    padding:0rem 4rem;
+}
 .learnImg2{
     display:none;
 }
@@ -17,9 +20,9 @@ input[type="file"]{
     font-size: 16px;
 }
 .box{
-    padding: 3rem 1rem 0rem;
+    padding: 2rem;
+    border-radius: 10px;
     background-color: white;
-    margin: 0.5rem;
 }
 
 /*======= Hero section =======*/
@@ -77,8 +80,6 @@ input[type="file"]{
 .services_container {
     width: 100%;
     background-color: #F3F3FB;
-    margin: 5rem 0;
-    border-top: 1px solid #2E3192;
     padding-bottom: 1.5em;
     padding-top: 1rem;
 }
@@ -95,7 +96,7 @@ input[type="file"]{
 .services_content h3 {
     color: #2E3192;
     font-size: 27px;
-    font-weight: 500;
+    font-weight: 300;
     margin-bottom: 1rem;
 }
 .reviews{
@@ -103,6 +104,7 @@ input[type="file"]{
 }
 .believe{
     font-size: 16px;
+    padding: 0 2rem;
 }
 .services_content p {
     color: #52515b;
@@ -118,13 +120,10 @@ input[type="file"]{
 
 .learn_container {
     width: 100%;
-    margin: 4rem 4rem 1rem 0;
     padding: 4rem 0;
-    border-top: 1px solid #2E3192;
 }
 
 .learn_content {
-    width: 90%;
     margin: auto;
 }
 
@@ -133,10 +132,10 @@ input[type="file"]{
 }
 .learn_content h2 {
     margin: 1rem 0 2rem;
-    font-size: 3rem;
+    font-size:40px;
     color: #2E3192;
-    font-weight: 600;
-    width: 60%;
+    font-weight: 500;
+
 }
 
 .learn_content button {
@@ -153,7 +152,8 @@ input[type="file"]{
     display: flex;
     position: relative;
     background: #F3F3FB;
-    padding: 112px 120px;
+    padding: 56px 44px;
+    align-items: center;
     margin-top: 5rem;
 }
 
@@ -172,7 +172,6 @@ input[type="file"]{
 .learn_content .bottom h3 {
     color: #2E3192;
     font-size: 2.5rem;
-    width: 90%;
     font-weight: 500;
 }
 
@@ -204,8 +203,7 @@ input[type="file"]{
 /*==== Pricing section ========*/
 
 .pricing_container {
-    border-top: 1px solid #2E3192;
-    padding: 4rem 0;
+    padding: 0 0 4rem 0;
 }
 
 .pricing_content {
@@ -218,7 +216,7 @@ input[type="file"]{
 }
 
 .pricing_content .top h3 {
-    font-size: 3.5rem;
+    font-size: 40px;
     color: #2E3192;
     margin: 20px 0;
 }
@@ -280,6 +278,7 @@ input[type="file"]{
     border-bottom: 1px solid #52515b;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
+    align-items: center;
 }
 
 .price_card .type {
@@ -340,8 +339,6 @@ input[type="file"]{
     background-color: #F3F3FB;
     width: 100%;
     padding: 2rem 0;
-    border-top: 1px solid #2E3192;
-    border-bottom: 1px solid #2E3192;
     padding-bottom: 4.5rem;
     position: relative;
 }
@@ -359,15 +356,10 @@ input[type="file"]{
     top: -5%;
     left: 20%;
 }
-.reviews_content .top {
-    margin-bottom: 4rem;
-}
-
 .reviews_content .top h3 {
-    font-weight: 600;
+    font-weight: 500;
     color: #2E3192;
-    font-size: 3rem;
-    width: 40%;
+    font-size: 40px;
 }
 
 .reviews_content .bottom {
@@ -449,10 +441,10 @@ input[type="file"]{
 
 
 .FAQ_content div h3 {
-    font-weight: 600;
-    width:100%;
+    font-weight: 500;
+    width: 100%;
     color: #2E3192;
-    font-size: 3rem;
+    font-size: 40px;
 }
 
 .FAQ_content div ul li {
@@ -764,6 +756,50 @@ input[type="file"]{
 }
 
 @media (max-width: 425px) {
+    .FAQ_container {
+        padding:  0;
+    }
+    .reviews_container {
+        padding-bottom: 0rem;
+    }
+    .price_card .type {
+        font-weight: 300;
+        font-size:18px;
+    }
+    .price_card .figure {
+        font-size: 30px;
+        margin: 1rem;
+    }
+    .pricing_content .bottom .price_card .top {
+        border-bottom: 1px solid gainsboro;
+    }
+    .pricing_content .bottom .left {
+        padding-top: 1rem;
+    }
+    .pricing_container {
+        padding: 1rem 0;
+    }
+    .believe{
+        padding: 0;
+    }
+    .learn_content .bottom {
+        margin-top: 1rem;
+        padding: 2rem 1rem;
+    }
+    .learn_container {
+        margin:0;
+        padding: 1rem 0 0;
+    }
+    .topContainer{
+        padding:0rem 1rem;
+    }
+    .services_content h3 {
+        font-weight: 400;
+    }
+    .services_container {
+        margin: 0;
+      
+    }
     .reviews_content .bottom .name {
         margin-bottom: -0.6rem;
     }
@@ -796,8 +832,9 @@ input[type="file"]{
         padding: 16px 0;
     }
     .learn_content button {
-        padding: 1rem;
-        border-radius: 10px;
+        padding: 0.5rem;
+        border-radius: 5px;
+        margin-bottom: 1rem;
     }
     .learn_content .top {
         margin-left: 0;
@@ -810,7 +847,9 @@ input[type="file"]{
         font-size: 40px;
     }
     .pricing_content .bottom .price_card{
-        width:100%;
+        width:80%;
+        border: 1px solid #2E3192;
+        border-radius: 4px
     }
     
     .services_container {
