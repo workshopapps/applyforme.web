@@ -10,11 +10,16 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import * as Yup from "yup";
+import ReactGA from "react-ga";
 
 const TryoutForm = () => {
     const [countries, setCountries] = useState();
     const [jobTitles, setJobTites] = useState();
     const [salaryRange, setSalaryRange] = useState();
+
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname);
+    }, []);
 
     const navigate = useNavigate();
     // Create a Set that only contains unique values from the title property to prevent duplicates that may be fetched
