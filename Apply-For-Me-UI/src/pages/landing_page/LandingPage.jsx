@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import Nav from "../../components/nav/Nav";
 import Hero from "./Hero";
 import classes from "./Hero.module.css";
@@ -9,8 +9,12 @@ import Pricing from "./Pricing";
 import Reviews from "./Reviews";
 import FAQ from "./FAQ";
 import Cookies from "../../components/modals/cookieModal/CookieModal";
+import ReactGA from "react-ga";
 
 const LandingPage = () => {
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname);
+    }, []);
     return (
         <div className={classes.general_container}>
             <Nav />
