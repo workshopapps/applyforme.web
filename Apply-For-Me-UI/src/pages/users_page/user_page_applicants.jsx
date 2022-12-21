@@ -3,7 +3,6 @@ import "./user_page_applicants.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 
 export const SuperApplicantsPage = () => {
     const token = localStorage.getItem("tokenHngKey");
@@ -20,10 +19,8 @@ export const SuperApplicantsPage = () => {
                     }
                 }
             );
-            console.log(response);
             setApplicants(response?.data);
         } catch (error) {
-            toast.error(error.response?.data?.message);
             console.log(error.response?.data);
         }
     };
@@ -75,7 +72,6 @@ export const SuperApplicantsPage = () => {
                 </p>
             </div>
             <div className="proile_info_container">
-
                 <p className="profile-text-size"><span className="proile_info_container_label">Country:</span> {applicants?.membership?.countryOfResidence?.title}</p>
                 <p className="profile-text-size"><span className="proile_info_container_label">City:</span>  {applicants?.membership?.city}</p>
                 <p className="profile-text-size"><span className="proile_info_container_label">Nationality:</span> {applicants?.membership?.nationality?.title}</p>

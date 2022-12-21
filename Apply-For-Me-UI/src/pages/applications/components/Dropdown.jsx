@@ -4,7 +4,7 @@ import { IoFilterOutline } from "react-icons/io5";
 
 import styles from "../Applications.module.css";
 
-const Dropdown = () => {
+const Dropdown = ({sortOldestToNewest, sortNewestToOldest}) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [active, setActive] = React.useState("Oldest to Newest");
     const toggleOpen = () => setIsOpen(!isOpen);
@@ -26,19 +26,21 @@ const Dropdown = () => {
                     className={styles.dropdown_item}
                     onClick={() => {
                         toggleOpen();
-                        setActive("Oldest to Newest");
+                        setActive("Newest to Oldest");
+                       sortNewestToOldest()
                     }}
                 >
-                    Oldest to Newest
+                    Newest to Oldest
                 </span>
                 <span
                     className={styles.dropdown_item}
                     onClick={() => {
                         toggleOpen();
-                        setActive("Newest to Oldest");
+                        setActive("Oldest to Newest");
+                        sortOldestToNewest()
                     }}
                 >
-                    Newest to Oldest
+                    Oldest to Newest
                 </span>
             </div>
         </div>

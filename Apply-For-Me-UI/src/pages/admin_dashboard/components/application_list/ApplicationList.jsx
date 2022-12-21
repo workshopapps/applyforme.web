@@ -80,7 +80,7 @@ const ApplicationList = () => {
                                 <li
                                     className={`${classes.stats_item} ${classes.stats_details}`}
                                 >
-                                    <Link to={`/professional-profile/user/details/${entry.id}`} className={classes.stats_details_view_button}>
+                                    <Link to={`/professional-profile/user/details/${entry.id}`} className={classes.stats_details_view_button} style={{textDecoration:"none", color:"darkslategray",padding:"0.5rem", border:"1px solid darkslategray", borderRadius:"5px"}}>
                                        view
                                     </Link>
                                 </li>

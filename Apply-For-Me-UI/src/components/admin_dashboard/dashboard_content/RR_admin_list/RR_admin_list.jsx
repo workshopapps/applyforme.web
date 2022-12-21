@@ -47,10 +47,10 @@ export const RR_Admin_list=({inputSearchValue})=>{
             <table className="tableContainer">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Date registered</th>
-                        <th>Details</th>
+                        <th className="thead_th">Name</th>
+                        <th className="thead_th">Category</th>
+                        <th className="thead_th">Date registered</th>
+                        <th className="thead_th">Details</th>
                     </tr>
                 </thead>
                 <tbody>
