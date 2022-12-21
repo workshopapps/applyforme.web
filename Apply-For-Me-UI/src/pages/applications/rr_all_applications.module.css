@@ -4,36 +4,29 @@
 .application_main{
     margin: 0 auto;
 }
+.div_table{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.div_table_child{
+    width:25%;
+}
 .applications_container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
+.show_tablet {
+    display: none;
+    color: #7c7ba8;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+}
 .go_back_cover{
     padding-right:3rem;
 }
-@media only screen and (min-width: 320px) and (max-width: 480px) {
-    .applications_table_wrapper {
-        margin-left: 0;
-    }
-    th {
-        font-size: 14px;
-    }
-    .application_main {
-        padding: 0 1rem;
-    }
-}
-@media only screen and (min-width: 620px) {
-    .applications_table_wrapper {
-        width: 70vw;
-    }
-}
-@media only screen and (min-width: 820px) {
-    .applications_table_wrapper {
-        width: 85vw;
-    }
-}
-
 .containerClassName {
     margin: 1rem 2rem;
     font-weight: 500;
@@ -420,4 +413,31 @@ th:last-child {
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
+}
+@media only screen and (min-width: 320px) and (max-width: 620px) {
+    .application_main {
+        padding: 0;
+    }
+    
+}
+@media only screen and (min-width: 620px) {
+    .applications_table_wrapper {
+        width: 70vw;
+    }
+}
+@media only screen and (min-width: 820px) {
+    .applications_table_wrapper {
+        width: 85vw;
+    }
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .applications_table_wrapper {
+        margin-left: 0;
+    }
+    th {
+        font-size: 14px;
+    }
+    .application_main {
+        padding: 0 1rem;
+    }
 }

@@ -37,7 +37,7 @@ const NewUserDashboard = () => {
     return (
         <div className="dashboardnothing">
             {/* this is the top stripe */}
-            <div>
+            <div style={{paddingRight:"1rem"}}>
                 <TopBar
                     title={`Welcome ${userName},`}
                     style={{

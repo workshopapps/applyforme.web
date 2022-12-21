@@ -1,5 +1,5 @@
 .profile_page {
-    padding: 5%;
+    padding:0 5%;
     padding-bottom: 25%;
     width: 100vw;
     min-height: 100vh;
@@ -47,7 +47,7 @@
         justify-content: space-between;
     }
     .edit_box p {
-        width: 20%;
+        word-wrap: break-word;
         font-weight: 400;
         font-size: 1rem;
         margin-bottom: 0.25rem;

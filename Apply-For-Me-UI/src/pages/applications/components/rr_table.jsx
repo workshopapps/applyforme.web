@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import styles from "./rr_table_module.css";
+import "./rr_table_module.css";
 import { Link} from "react-router-dom";
 import ApplicationsListHeader from "./RR_ApplicationsListHeader";
 import axios from "axios";
@@ -26,7 +26,6 @@ const Table = () => {
                             }
                         }
                     );
-                    console.log("REverse Recruiter", response.data)
                     setData(response.data?.content);
                     setPageCout(response.data?.totalPages);
 
@@ -34,6 +33,48 @@ const Table = () => {
                     console.error(`Could not get applicants: ${error}`);
                 }          
     }
+    const sortOldestToNewest = async()=>{
+        try{
+            const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all`, 
+                {
+                    params:{
+                    "pageNo": pagination.pageNo,
+                    "pageSize":pagination.pageSize,
+                    "sortDir":"desc"
+                    },
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            setData(response.data?.content);
+            setPageCout(response.data?.totalPages);
+
+        } catch (error) {
+            console.error(`Could not get applicants: ${error}`);
+        }          
+    }   
+    const sortNewestToOldest = async()=>{
+        try{
+            const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all`, 
+                {
+                    params:{
+                    "pageNo": pagination.pageNo,
+                    "pageSize":pagination.pageSize,
+                    "sortDir":"asc"
+                    },
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            setData(response.data?.content);
+            setPageCout(response.data?.totalPages);
+
+        } catch (error) {
+            console.error(`Could not get applicants: ${error}`);
+        }          
+    }   
 
     useEffect(() => {
         fetchApplicants();
@@ -42,47 +83,34 @@ const Table = () => {
    
     const handlePageClick =(data)=>{
         setPagination(prevState =>({...prevState,"pageNo":data.selected}));
-         fetchApplicants();
+        fetchApplicants();
        
     }
     return (
-        <div className={styles.applications_table_wrapper}>
-            <ApplicationsListHeader />
-            <div className={styles.applications_table_container}>
-                <table  className={styles.rrtable}>
-                    <thead>
-                        <tr className={styles.applications_table_head_row}>
-                            <th>Name</th>
-                            <th className={styles.hide_salary}>Salary</th>
-                            <th className={styles.hide_tablet}>Type</th>
-                            <th className={styles.hide_tablet}>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data?.map?.((application, index) => (
-                                <tr
-                                key={`${application.jobCompany}-${index}`}
-                                    className={styles.applications_table_body_row}
-                                
-                                    
-                                >
-                                    <td>
-                                        <div>{application.profileTitle}</div>
-                                    </td>
-                                    <td className={styles.hide_salary}>{application.salaryRange}</td>  
-                                    <td className={styles.hide_tablet}>
-                                        {application.preferredJobLocationType}
-                                    </td>
-                                    <td>
-                                        <Link to={`/professional-profile/user/details/${application.id}`} style={{textDecoration:"none"}}>
+        <div>
+            <ApplicationsListHeader sortOldestToNewest={sortOldestToNewest} sortNewestToOldest={sortNewestToOldest}/>
+            <div className="table_wrap">
+                <div className="div_table">
+                    <div className="div_table_child">Name</div>
+                    <div className="div_table_child_hideOnMobile">Salary</div>
+                    <div className="div_table_child">Type</div>
+                    <div className="div_table_child">Details</div>
+                </div>
+                {data?.map((application, index) => {
+                    return(
+                            <div className="div_table" key={index}>
+                                <div className="div_table_child">{application.profileTitle}</div>
+                                <div className="div_table_child_hideOnMobile">{application.salaryRange}</div>
+                                <div className="div_table_child">{application.preferredJobLocationType}</div>
+                                <div className="div_table_child"> 
+                                    <Link to={`/professional-profile/user/details/${application.id}`} style={{textDecoration:"none", color:"darkslategray",padding:"0.5rem", border:"1px solid darkslategray", borderRadius:"5px", fontSize:"14px"}}>
                                         view
-                                        </Link>
-                                    </td>
-                                </tr>
-                            
-                        ))}
-                    </tbody>
-                </table>
+                                    </Link>
+                                </div>
+                            </div>
+                    )
+                })}
+                
             </div>
 
             {

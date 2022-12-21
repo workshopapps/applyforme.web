@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 const url = "https://api.applyforme.hng.tech";
 const token = localStorage.getItem("tokenHngKey");
@@ -29,7 +28,6 @@ export const getRRAdminProfile = createAsyncThunk(
     "RRadmin/getRRAdminProfile",
     async values => {
         try {
-            console.log(values);
             const response = await axios.get(
                 `${url}/api/v1/super-admin/member/detail/${values.id}`,
                 {
@@ -261,7 +259,6 @@ const RR_Admin_Slice = createSlice({
             state.loadingStatus = "success";
             if (action.payload) {
                 state.list = action.payload;
-                console.log(state.list);
             }
         },
         [Fetch_RR_Admin.rejected]: (state, action) => {
@@ -280,7 +277,6 @@ const RR_Admin_Slice = createSlice({
             state.deleteStatus = "rejected";
             toast.error("deleted request failed");
             state.deleteError = action.payload;
-            console.log(state.deleteError);
         },
         [SuperAdminApplicants.pending]: state => {
             state.applicantsloadingStatus = "pending";
@@ -294,7 +290,6 @@ const RR_Admin_Slice = createSlice({
         },
         [getRRAdminProfile.pending]: state => {
             state.RRProfileloadingStatus = "pending";
-            console.log(state.RRProfileloadingStatus);
         },
         [getRRAdminProfile.fulfilled]: (state, action) => {
             state.RRProfileloadingStatus = "success";
@@ -302,7 +297,6 @@ const RR_Admin_Slice = createSlice({
         },
         [getRRAdminProfile.rejected]: (state, action) => {
             state.RRProfileloadingStatus = "rejected";
-            console.log(state.RRProfileloadingStatus);
             state.RRProfilerrorStatus = action.payload;
         },
         [getSuperAdminProfileInfo.pending]: state => {

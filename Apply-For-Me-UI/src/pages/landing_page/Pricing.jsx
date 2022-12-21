@@ -21,7 +21,7 @@ const Pricing = () => {
                         onClick={() => navigate("/pricing")}
                         style={{ background: "#2E3192" }}
                     >
-                        View All &#8594;
+                        View All
                     </button>
                 </div>
 

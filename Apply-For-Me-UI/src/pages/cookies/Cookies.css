@@ -80,7 +80,7 @@
 span {
     color: #6567b0;
     line-height: 30px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .root-ish a {
@@ -103,7 +103,7 @@ span {
 
 @media only screen and (max-width: 1024px) {
     span {
-        font-size: 17px;
+        font-size: 15px;
     }
     .heading {
         font-family: "Outfit";
