@@ -23,13 +23,7 @@ const Footer = () => {
                             <p>
                                 Job hunting has never been easier. We got you
                                 covered.
-                            </p>
-                            {/* <div className={classes.about__text_google}>
-                                <img
-                                    src={GoogleDownload}
-                                    alt="Google download icon"
-                                />
-                            </div> */}
+                            </p>                          
                             <ul className={classes.footer__social_icons}>
                                 <li>
                                     <img src={Facebook} alt="Facebook logo" />
@@ -44,6 +38,12 @@ const Footer = () => {
                                     <img src={Youtube} alt="Youtube logo" />
                                 </li>
                             </ul>
+                             <div className={classes.about__text_google}>
+                                <img
+                                    src={GoogleDownload}
+                                    alt="Google download icon"
+                                />
+                            </div>
                         </div>
                     </div>
                     

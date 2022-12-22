@@ -33,44 +33,44 @@ const LearnMore = () => {
                         </h3>
                     </div>
                     <div className={classes.right}>
-                        <p className={classes.believe}>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.</p>
+                        <p className={classes.believe} style={{paddingLeft:"0"}}>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.</p>
 
                         <div className={classes.boxes}>
                             <div
                                 className={classes.box}
-                                style={{ background: "none" }}
+                                style={{ background: "none", paddingLeft:"0" }}
                             >
-                                <span className={classes.figure}>10x</span>
-                                <span style={{ color: "#52515B" }}>
+                                <div className={classes.figure}>10x</div>
+                                <div style={{ color: "#52515B" }}  className={classes.figure_text}>
                                     Increase in productivity
-                                </span>
+                                </div>
                             </div>
                             <div
                                 className={classes.box}
-                                style={{ background: "none" }}
+                                style={{ background: "none", paddingLeft:"0" }}
                             >
-                                <span className={classes.figure}>300%</span>
-                                <span style={{ color: "#52515B" }}>
+                                <div className={classes.figure}>300%</div>
+                                <div style={{ color: "#52515B" }} className={classes.figure_text}>
                                     Return on investment
-                                </span>
+                                </div>
                             </div>
                             <div
                                 className={classes.box}
-                                style={{ background: "none" }}
+                                style={{ background: "none", paddingLeft:"0" }}
                             >
-                                <span className={classes.figure}>5k+</span>
-                                <span style={{ color: "#52515B" }}>
+                                <div className={classes.figure}>5k+</div>
+                                <div style={{ color: "#52515B" }} className={classes.figure_text}>
                                     Happy customers
-                                </span>
+                                </div>
                             </div>
                             <div
                                 className={classes.box}
-                                style={{ background: "none" }}
+                                style={{ background: "none", paddingLeft:"0" }}
                             >
-                                <span className={classes.figure}>100+</span>
-                                <span style={{ color: "#52515B" }}>
+                                <div className={classes.figure}>100+</div>
+                                <div style={{ color: "#52515B" }} className={classes.figure_text}>
                                     5-star reviews
-                                </span>
+                                </div>
                             </div>
                         </div>
                     </div>

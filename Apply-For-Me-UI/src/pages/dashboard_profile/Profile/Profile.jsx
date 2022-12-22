@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 import TopBar from "../components/TopBar/TopBar";
 import styles from "./Profile.module.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -16,6 +17,7 @@ const Profile = ({ profileList }) => {
     const navigate = useNavigate();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [activeId, setActiveId] = useState();
+    
 
     // eslint-disable-next-line no-unused-vars
     const token = localStorage.getItem("tokenKey");
