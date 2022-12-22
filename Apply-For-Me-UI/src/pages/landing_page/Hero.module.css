@@ -3,6 +3,19 @@
     margin: auto;
     background-color: #FBFBFB;
 }
+.fileLabel{
+    color: white;
+    height: 60px;
+    width: 240px;
+    border: 1px solid #2E3192;
+    background-color: #2E3192;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    margin: 1rem 0;
+    border-radius: 5px
+}
 .profile_div_start{
     padding-right: 0.9rem;
     width:4rem;
@@ -13,7 +26,7 @@
 .learnImg2{
     display:none;
 }
-input[type="file"]{
+input[type=file]{
     display:none;
 }
 .sub_heading {
@@ -29,6 +42,7 @@ input[type="file"]{
 
 .hero_container {
     width: 100%;
+    padding-top: 9rem;
 }
 
 .hero_container .hero_content {
@@ -59,7 +73,7 @@ input[type="file"]{
 
 
 .hero_content .left .heading {
-    font-size: 3rem;
+    font-size: 64px;
     font-weight: bold;
     width: 100%;
     color:  #2E3192;
@@ -110,7 +124,6 @@ input[type="file"]{
     color: #52515b;
     font-size: 16px;
     line-height: 30px;
-    margin-bottom: 2rem;
 }
 .services_content .box img {
     margin-bottom: 1rem;
@@ -484,7 +497,11 @@ input[type="file"]{
     border-top: 1px solid #2E3192;
     font-size: 16px;
 }
-
+@media only screen and (max-width:1050px){
+    .hero_container {
+        padding-top: 0rem;
+    }
+}
 @media (max-width: 820px) {
     .uploadFile{
         display: block;
@@ -513,12 +530,12 @@ input[type="file"]{
 
     .services_content .box h3 {
         color: #2E3192;
-        font-size: 15px;
+        font-size: 16px;
         margin-top: 20px;
     }
 
     .services_content .box p {
-        font-size: 15px;
+        font-size: 14px;
         margin-top: 20px;
     }
 
@@ -565,7 +582,7 @@ input[type="file"]{
         margin-top: 4rem;
     }
     .box{
-        padding: 1rem;
+        padding:16px 8px; 
         border-radius: 10px;
     }
     .learnImg2{
@@ -756,6 +773,20 @@ input[type="file"]{
 }
 
 @media (max-width: 425px) {
+    .figure_text{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 150%;
+    }
+    .fileLabel{
+        padding: 12px 56px;
+        gap: 8px;
+        background: #2E3192;
+        border-radius: 8px;
+    }
+    .hero_content .left {
+        align-items: center;
+    }
     .FAQ_container {
         padding:  0;
     }
@@ -844,7 +875,12 @@ input[type="file"]{
         background: #FBFBFB;
     }
     .hero_content .left .heading {
-        font-size: 40px;
+        text-align: center;
+        font-family: 'Outfit';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 115%;
     }
     .pricing_content .bottom .price_card{
         width:80%;

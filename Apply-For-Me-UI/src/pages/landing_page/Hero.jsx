@@ -15,30 +15,16 @@ const Hero = () => {
                         Take a single step to your dream job
                     </h3>
                     <span style={{ color: "#52515B" }}>
-                        Job hunting and application stress can be exhausting,
-                        especially for those with little or no free time. With
-                        the help of ApplyForMe, we help ease your stress, with
-                        our simple and easy to navigate interface. We are your
-                        lifelong Job/career assistant designed to make the
-                        hunting process easy.
+                    Job hunting and application stress can be exhausting, especially for those with little or no free time.
+                    With our simple and easy to navigate interface. We are your lifelong Job/career assistant designed to
+                    make the hunting process easy.
+
+
                     </span>
                     <div className={classes.uploadFile}>
                         {!storedToken && (
                             <button
-                                className="fileLabel"
-                                style={{
-                                    color: "white",
-                                    height: "60px",
-                                    width: "240px",
-                                    border: "1px solid #2E3192",
-                                    backgroundColor: "#2E3192",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    padding: "16px 32px",
-                                    margin: "1rem 0",
-                                    borderRadius: "5px"
-                                }}
+                                className={classes.fileLabel}
                                 onClick={() => navigate("/tryout-form")}
                             >
                                 Try it now
