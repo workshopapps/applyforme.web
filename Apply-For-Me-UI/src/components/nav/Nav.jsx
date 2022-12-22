@@ -55,11 +55,11 @@ const Nav = () => {
                 </div>
 
                 <ul className={classes.nav_links}>
-                    <li className="active">
+                    {/* <li className="active">
                         <NavLink to="/" style={handleActiveLink}>
                             Home
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink to="/about" style={handleActiveLink}>
                             About us
@@ -81,8 +81,8 @@ const Nav = () => {
                 <div className={classes.btn_container}>
                     {!user ? (
                         <>
-                            <Link to="/wel2">
-                                <LightButton text="Sign in" width="127" />
+                            <Link to="/wel2" className={classes.sign_in}>
+                                Sign in
                             </Link>
                             <Link to="/wel1">
                                 <BlueButton text="Get started" width="156" />
