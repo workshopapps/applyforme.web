@@ -70,6 +70,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     public Member updateProfile(Long id, UpdateProfileDto body) {
 
         Member superAdmin = repository.getOne(id);
+
         if (superAdmin == null) {
             throw new MemberNotFoundException(id);
         }
@@ -81,6 +82,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         superAdmin.setPhoneNumber(body.getPhoneNumber());
         superAdmin.setCity(body.getCity());
         superAdmin.setState(body.getState());
+        superAdmin.setAvatar(body.getAvatar());
         repository.updateOne(superAdmin);
         return superAdmin;
     }

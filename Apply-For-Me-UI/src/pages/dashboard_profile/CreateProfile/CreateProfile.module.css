@@ -52,7 +52,7 @@
 .button_inactive {
     background: none;
     border: 0;
-    border-bottom: 3px solid #cccccc;
+    /* border-bottom: 3px solid #cccccc; */
     color: #999999;
     font-weight: 400;
     font-size: 1rem;
@@ -124,12 +124,15 @@
     .stepbuttons {
         display: flex;
         justify-content: flex-end;
-        padding-inline: 10%;
+        padding-right: 2%;
         background-color: #ffff;
         width: 90%;
         padding-bottom: 2rem;
     }
+    .stepbuttons button {
+        width: 300px;
+    }
 }
 .hr_one {
-    border: 0.8px solid #b7b9e6;
+    border: 0.8px solid #f2f2f2;
 }

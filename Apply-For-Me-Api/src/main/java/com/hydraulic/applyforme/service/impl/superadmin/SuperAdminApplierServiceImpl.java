@@ -18,6 +18,7 @@ import com.hydraulic.applyforme.repository.*;
 import com.hydraulic.applyforme.repository.jpa.JobSubmissionRepository;
 import com.hydraulic.applyforme.repository.jpa.MemberJpaRepository;
 import com.hydraulic.applyforme.repository.jpa.RoleJpaRepository;
+import com.hydraulic.applyforme.service.EmailService;
 import com.hydraulic.applyforme.service.superadmin.SuperAdminApplierService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,9 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private EmailService emailService;
 
     public SuperAdminApplierServiceImpl(SuperAdminApplierJpaRepository jpaRepository,
                                         SuperAdminApplierRepository superAdminApplierRepository, RoleJpaRepository roleJpaRepository,
@@ -116,7 +120,7 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
         }
 
         Member member = mapper.map(dto, Member.class);
-        member.setPassword(dto.getPassword());
+        member.setPassword(passwordEncoder.encode(dto.getPassword()));
         member.getRoles().add(existingRole.get());
         member.setNationality(nationality);
         member.setCountryOfResidence(countryOfResidence);
@@ -127,6 +131,7 @@ public class SuperAdminApplierServiceImpl implements SuperAdminApplierService {
                 .submissions(null)
                 .build();
         applierRepository.saveOne(applier);
+        emailService.sendRegistrationMessageToRecruiter(applier.getMember().getEmailAddress(), dto.getPassword());
         return member;
     }
 

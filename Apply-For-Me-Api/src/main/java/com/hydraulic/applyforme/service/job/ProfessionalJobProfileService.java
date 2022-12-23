@@ -32,4 +32,6 @@ public interface ProfessionalJobProfileService {
     boolean deleteAll();
 
 	boolean deleteByProfileId(Long id, Long profile_id);
+
+    List<ProfessionalProfile> findAllJobProfiles();
 }

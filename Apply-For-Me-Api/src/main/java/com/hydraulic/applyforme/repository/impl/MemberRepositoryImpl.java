@@ -6,6 +6,7 @@ import com.hydraulic.applyforme.repository.MemberRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -112,5 +113,36 @@ public class MemberRepositoryImpl implements MemberRepository {
     	
     }
 
+    @Override
+    public Long getAllSubmissions(Long id, Date startDate, Date endDate) {
+        String queryText = "select count(jb) from Submission jb where jb.professional.member.id = :id";
+        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class);
+
+        if (startDate != null && endDate != null) {
+            queryText = "select count(jb) from Submission jb where jb.createdOn between :startDate and :endDate AND jb.professional.member.id = :id";
+            total = entityManager.createQuery(queryText, Long.class);
+            total.setParameter("startDate", startDate, TemporalType.TIMESTAMP);
+            total.setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+        }
+
+        total.setParameter("id" , id);
+
+        return total.getSingleResult();
+    }
+    @Override
+    public Long getAllProfiles(Long id, Date startDate, Date endDate) {
+        String queryText = "select count(pp) from ProfessionalProfile pp where pp.professional.member.id = :id";
+        TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class);
+
+        if (startDate != null && endDate != null) {
+            queryText = "select count(pp) from ProfessionalProfile pp where pp.createdOn between :startDate and :endDate AND pp.professional.member.id = :id";
+            total = entityManager.createQuery(queryText, Long.class);
+            total.setParameter("startDate", startDate, TemporalType.TIMESTAMP);
+            total.setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+        }
+        total.setParameter("id" , id);
+
+        return total.getSingleResult();
+    }
 }
 

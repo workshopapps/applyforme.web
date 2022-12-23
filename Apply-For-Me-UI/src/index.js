@@ -9,7 +9,13 @@ import { Provider } from "react-redux";
 import { AppProvider } from "./hooks/context";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import TagManager from "react-gtm-module";
 
+const tagManagerArgs = {
+    gtmId: "GTM-MQH4JRC"
+};
+
+TagManager.initialize(tagManagerArgs);
 /*
 process.env.NODE_ENV == "production" & Sentry.init({
     dsn: "https://0ef21b8dab334de1b46971b24fd0c943@o4504282479919104.ingest.sentry.io/4504282505216001",
