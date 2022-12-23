@@ -54,7 +54,7 @@ const Nav = () => {
                     </Link>
                 </div>
 
-                <ul className={classes.nav_links}>
+                <ul className={classes.nav_links} style={{marginBottom:"0"}}>
                     {/* <li className="active">
                         <NavLink to="/" style={handleActiveLink}>
                             Home
@@ -134,15 +134,20 @@ const Nav = () => {
                             className={classes.menu__mobile}
                             onClick={() => setDropDown(true)}
                             style={{ display: dropDown ? "none" : "block",
-                            padding: "0.2rem",
-                            borderRadius: "5px" }}
+                            padding: "0.2rem"
+                            }}
                             size="2.5rem"
+                            
                         />
 
                         <FiX
                             className={classes.menu__mobile}
                             onClick={() => setDropDown(false)}
-                            style={{ display: dropDown ? "block" : "none" }}
+                            style={{ display: dropDown ? "block" : "none",
+                            padding: "0.2rem"
+                             }}
+                            size="2.5rem"
+                        
                         />
                     </div>
 
@@ -150,18 +155,14 @@ const Nav = () => {
                         className={classes.nav_links__mobile}
                         style={{ display: dropDown ? "flex" : "none" }}
                     >
-                        <li onClick={() => setDropDown(false)}>
-                            <Link to="/">Home</Link>
+                        <li onClick={() => navigate("/about")}>
+                            <Link to="/about" >About us</Link>
                         </li>
-                        <li onClick={() => setDropDown(false)}>
-                            <Link to="/about">About us</Link>
+                        <li onClick={() => navigate("/pricing")}>
+                            <Link to="/pricing" >Pricing plan</Link>
                         </li>
-
-                        <li onClick={() => setDropDown(false)}>
-                            <Link to="/pricing">Pricing plan</Link>
-                        </li>
-                        <li>
-                            <Link to="/faqs">FAQs</Link>
+                        <li onClick={() => navigate("/faqs")}>
+                            <Link to="/faqs" >FAQs</Link>
                         </li>
                     </ul>
 
@@ -174,14 +175,14 @@ const Nav = () => {
                                 <Link to="/wel2">
                                     <LightButton
                                         text="Sign in"
-                                        width="127"
+                                        width="185"
                                         func={() => setDropDown(false)}
                                     />
                                 </Link>
                                 <Link to="/wel1">
                                     <BlueButton
                                         text="Get started"
-                                        width="156"
+                                        width="185"
                                         func={() => setDropDown(false)}
                                     />
                                 </Link>
@@ -190,7 +191,7 @@ const Nav = () => {
                             <div className={classes.auth__user_btn}>
                                 <BlueButton
                                     text="Dashboard"
-                                    width="156"
+                                    width="185"
                                     func={() =>
                                         navigate(
                                             user.roles[0] ===
@@ -204,7 +205,7 @@ const Nav = () => {
                                 />
                                 <BlueButton
                                     text="Logout"
-                                    width="156"
+                                    width="185"
                                     func={handleLogout}
                                 />
                             </div>
