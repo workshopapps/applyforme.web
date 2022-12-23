@@ -20,7 +20,7 @@ export const PasswordContent = () => {
         if (formField.newpassword.length < 8) {
             errors.newpassword = "new password must be at least 8 characters";
         }
-        if (formField.confirmpassword != formField.newpassword) {
+        if (formField.confirmpassword !== formField.newpassword) {
             errors.confirmpassword = "password doesn't match";
         }
         return errors;

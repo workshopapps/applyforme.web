@@ -9,13 +9,15 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useCallback } from "react";
 
 const JobDescription = () => {
     const { jobId } = useParams();
     const [descriptionDetails, setDescriptionDetails] = useState();
-    const getJobDescriptions = async () => {
+    const token = localStorage.getItem("tokenHngKey");
+    const getJobDescriptions = useCallback(async () => {
         try {
-            const token = localStorage.getItem("tokenHngKey");
+           
             const response = await axios.get(
                 `https://api.applyforme.hng.tech/api/v1/job-submission/user/detail/${jobId}`,
                 {
@@ -28,11 +30,11 @@ const JobDescription = () => {
         } catch (error) {
             toast.error(`Could not get description: ${error}`);
         }
-    };
+    },[jobId, token]);
 
     useEffect(() => {
         getJobDescriptions();
-    }, []);
+    }, [ getJobDescriptions]);
 
     return (
         <div className={styles.jobContainer}>

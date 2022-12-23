@@ -7,10 +7,9 @@ import { Mobile_view_list } from './mobile_list_wrapper';
 import { Fetch_RR_Admin } from 'store/slice/RR_AdminSlice';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
-export const RR_Admin_list=({inputSearchValue})=>{
+export const RR_Admin_list=()=>{
     const RR_recruiter = useSelector((state)=>state.RRadmin);
     const navigate = useNavigate()
-    const [search, setSearch] = useState([]);
     const dispatch = useDispatch();
     const [pagination, setPagination] = useState({
         "pageNo": 0,
@@ -19,18 +18,11 @@ export const RR_Admin_list=({inputSearchValue})=>{
 
     useEffect(()=>{
         dispatch(Fetch_RR_Admin(pagination));
-    },[dispatch])
-    
-    useEffect(()=>{
-        const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list?.length !==0) ? RR_recruiter.list?.content?.filter((item)=>item.firstName.toLowerCase().includes(inputSearchValue)):[]
-        setSearch(avilableList);
-    }, [inputSearchValue, RR_recruiter.list]);
-
-   
+    },[dispatch,pagination])
+ 
     const handlePageClick =(data)=>{
         setPagination(prevState =>({...prevState,"pageNo":data.selected}));
         dispatch(Fetch_RR_Admin(pagination));
-       
     }
 
 
@@ -55,9 +47,9 @@ export const RR_Admin_list=({inputSearchValue})=>{
                 </thead>
                 <tbody>
                     {
-                        search?.length !==0 &&
+                        RR_recruiter.list?.length !==0 &&
                         (RR_recruiter.loadingStatus === "success" && RR_recruiter.list.length !==0) &&
-                        search?.map((user, index)=>{
+                        RR_recruiter.list?.content?.map((user, index)=>{
                                 const {firstName,currentJobTitle,id,createdOn} = user;
                                     return(
                                         <tr key={index}>
@@ -80,16 +72,16 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     </select>
                 </div>
                     {
-                        search?.length !==0 && 
+                        RR_recruiter.list?.length !==0 && 
                         (RR_recruiter.loadingStatus === "success" && RR_recruiter.list.length !==0) &&
-                       search.map((user, index)=>{
-                           const {firstName,currentJobTitle,id} = user;
-                                return(
-                                    <div className='RRlist' key={index}>
-                                         <Mobile_view_list firstName={firstName} currentJobTitle={currentJobTitle} id={id} />
-                                    </div>
-                                  
-                                )                            
+                        RR_recruiter.list?.content.map((user, index)=>{
+                            const {firstName,currentJobTitle,id} = user;
+                                    return(
+                                        <div className='RRlist' key={index}>
+                                            <Mobile_view_list firstName={firstName} currentJobTitle={currentJobTitle} id={id} />
+                                        </div>
+                                    
+                                    )                            
                         })
                     }
             </div>
@@ -100,7 +92,7 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     Please wait...
                 </p>
             )}
-            {(RR_recruiter.loadingStatus === "success" && search?.length ===0) && <p className="text-center">record not found</p>}
+            {(RR_recruiter.loadingStatus === "success" && RR_recruiter.list?.length ===0) && <p className="text-center">No admin has being created</p>}
             {
                 RR_recruiter.list?.totalPages > 1 && (
                     <div>

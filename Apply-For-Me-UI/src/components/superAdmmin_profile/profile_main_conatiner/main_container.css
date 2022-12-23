@@ -3,6 +3,9 @@
     background-color: white;
 
 }
+.mobile_img_top{
+    background:"#78909c";
+}
 
 .profile_content {
     font-family: 'Outfit', sans-serif;
@@ -53,8 +56,10 @@
 }
 
 .proileInfovalue {
-    font-weight: 400;
+    font-weight: 300;
     width: 50%;
+    color: dimgrey;
+    font-size: 17px;
 }
 
 .changePassword {

@@ -16,6 +16,7 @@ const Question = ({ subQuestion, answer, subIcon }) => {
               ? `${styles.faqicon} ${styles.faqicon__active}`
               : `${styles.faqicon}`
           }`}
+          alt="object not found"
         />
       </div>
       {text && <p>{answer}</p>}
