@@ -32,7 +32,7 @@ p {
     .detailsdropdown_box {
         display: grid;
         grid-template-columns: repeat(3, 29%);
-        gap: 1rem;
+        gap: 4.25rem;
         margin-bottom: 1.5rem;
     }
 }
@@ -61,7 +61,7 @@ p {
 
 .uploadcv_box {
     margin-top: 1rem;
-    width: 90%;
+    width: 100%;
     padding: 1.5rem;
     border: 1px solid #bfbfbf;
     border-radius: 3px;

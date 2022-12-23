@@ -34,7 +34,7 @@ const NewUserDashboard = () => {
     return (
         <div className="dashboardnothing">
             {/* this is the top stripe */}
-            <div style={{paddingRight:"1rem"}}>
+            <div style={{ paddingRight: "1rem" }}>
                 <TopBar
                     title={`Welcome ${userName},`}
                     style={{
@@ -70,31 +70,38 @@ const NewUserDashboard = () => {
                         </div>
                     </div>
 
-                    <div className="mobile-create">
-                        <span> Welcome. Tap to create a new job profile</span>
-                        <span>
-                            {" "}
-                            <Link to="/dashboard/user/create-profile">
-                                <div className="btn_plus_fixed">
-                                    <img src={blueadd} alt="add" />
-                                </div>
-                            </Link>{" "}
-                        </span>
-                        {/* <span>to create a new job profile</span> */}
-                    </div>
+                    {value?.total_number_of_profiles === 0 ? (
+                        <div className="mobile-create">
+                            <span>
+                                {" "}
+                                Welcome. Tap to create a new job profile
+                            </span>
+                            <span>
+                                {" "}
+                                <Link to="/dashboard/user/create-profile">
+                                    <div className="btn_plus_fixed">
+                                        <img src={blueadd} alt="add" />
+                                    </div>
+                                </Link>{" "}
+                            </span>
+                            {/* <span>to create a new job profile</span> */}
+                        </div>
+                    ) : null}
                 </div>
             </section>
 
             {/* section for nothing to see here */}
 
             <section className="nothing-to-see-here">
-                <div className="normal-create">
-                    Nothing to see here
-                    <Link to="/dashboard/user/create-profile">
-                        <button>Create a Job Profile +</button>
-                    </Link>{" "}
-                    to get started
-                </div>
+                {value?.total_number_of_profiles === 0 ? (
+                    <div className="normal-create">
+                        Nothing to see here
+                        <Link to="/dashboard/user/create-profile">
+                            <button>Create a Job Profile +</button>
+                        </Link>{" "}
+                        to get started
+                    </div>
+                ) : null}
             </section>
         </div>
     );

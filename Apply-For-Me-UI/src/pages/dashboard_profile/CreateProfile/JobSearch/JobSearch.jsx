@@ -109,7 +109,7 @@ const JobSearch = ({ formData, setFormData }) => {
             <div className={classes.dropdownbox}>
                 <Dropdown
                     options={jobTitleNames}
-                    width={90}
+                    // width={90}
                     value={formData.job_title}
                     onChange={e => {
                         setFormData({
@@ -126,7 +126,7 @@ const JobSearch = ({ formData, setFormData }) => {
                 <Dropdown
                     options={countryNames}
                     value={formData.location}
-                    width={90}
+                    // width={90}
                     placeholderText="Job Location"
                     onChange={e => {
                         setFormData({
@@ -145,7 +145,7 @@ const JobSearch = ({ formData, setFormData }) => {
                         { label: "Remote", value: "Remote" },
                         { label: "Onsite", value: "Onsite" }
                     ]}
-                    width={90}
+                    // width={90}
                     placeholderText="Location Type"
                     value={formData.isRemote}
                     onChange={e => {

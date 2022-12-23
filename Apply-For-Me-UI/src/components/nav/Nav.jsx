@@ -100,8 +100,13 @@ const Nav = () => {
                                             : "/dashboard/"
                                     )
                                 }
-                                style={{color:"#2e3192", fontWeight:"bold"}}
-                                >Dashboard
+                                style={{
+                                    color: "#2e3192",
+                                    fontWeight: "bold",
+                                    cursor: "pointer"
+                                }}
+                            >
+                                Dashboard
                             </p>
                             <BlueButton
                                 text="Logout"
@@ -133,9 +138,11 @@ const Nav = () => {
                         <FiMenu
                             className={classes.menu__mobile}
                             onClick={() => setDropDown(true)}
-                            style={{ display: dropDown ? "none" : "block",
-                            padding: "0.2rem",
-                            borderRadius: "5px" }}
+                            style={{
+                                display: dropDown ? "none" : "block",
+                                padding: "0.2rem",
+                                borderRadius: "5px"
+                            }}
                             size="2.5rem"
                         />
 

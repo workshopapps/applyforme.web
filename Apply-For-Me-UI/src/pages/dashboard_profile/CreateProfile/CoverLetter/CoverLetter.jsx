@@ -41,7 +41,7 @@ const CoverLetter = ({ formData, setFormData }) => {
                 <p className={classes.cl_text}>Template name</p>
                 <Dropdown
                     options={clNames}
-                    width={90}
+                    // width={90}
                     placeholderText="Browse Templates"
                     onChange={e => {
                         populateInputs(e);
@@ -67,7 +67,7 @@ const CoverLetter = ({ formData, setFormData }) => {
                     type="text"
                     value={formData.coverletter_subject}
                     name="coverletter_subject"
-                    width={90}
+                    width={100}
                     onChange={e => {
                         setFormData({
                             ...formData,
