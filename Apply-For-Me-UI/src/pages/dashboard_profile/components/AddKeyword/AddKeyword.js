@@ -15,7 +15,9 @@ const AddKeyword = ({ keywords, setKeywords }) => {
             }
         });
         // same ? null : setKeywords([...keywords, value]);
-        setKeywords([...keywords, value]);
+        if (keywords.length <= 1) {
+            setKeywords([...keywords, value]);
+        }
         e.target.value = "";
     }
     function removeKeyWord(index) {
@@ -29,9 +31,9 @@ const AddKeyword = ({ keywords, setKeywords }) => {
                     onKeyDown={handleKeyDown}
                     className={styles.keyword_input}
                     placeholder="type a keyword"
-                    width={90}
+                    width={100}
                 />
-                <h5>Type keyword and press Enter</h5>
+                <h5>Type keyword and press Enter (Max. 2 keywords)</h5>
             </div>
             {keywords?.map((keyword, index) => (
                 <div

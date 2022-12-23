@@ -104,25 +104,32 @@ const Review = ({ formData, keywords, setStep, id }) => {
     return (
         <div className={styles.form_body}>
             <h3>Review your profile and it's good to go!</h3>
-            {formData.job_title ? (
-                <h3 className={classes.review_jobtitle}>
-                    {formData.job_title}
-                </h3>
-            ) : (
-                <p className={classes.not_filled}>not specified yet</p>
-            )}
+            <div className={classes.review_top}>
+                <div>
+                    {formData.job_title ? (
+                        <h3 className={classes.review_jobtitle}>
+                            {formData.job_title}
+                        </h3>
+                    ) : (
+                        <p className={classes.not_filled}>not specified yet</p>
+                    )}
 
-            <h5>Job title</h5>
+                    <h5>Job title</h5>
+                </div>
+                <div className={classes.review_top_email}>
+                    <p>{userEmail}</p>
+                    <h5>Personal email</h5>
+                </div>
+            </div>
             <hr className={styles.hr_one} />
             <div className={classes.review_box}>
                 <div className={classes.review_box_left}>
-                    <h6>Search Info</h6>
                     <div>
                         {formData.location ? (
                             <p>{formData.location}</p>
                         ) : (
                             <p className={classes.not_filled}>
-                                not specified yet
+                                Not specified yet
                             </p>
                         )}
                         <h5>Job location</h5>
@@ -132,7 +139,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
                             <p>{formData.experience}</p>
                         ) : (
                             <p className={classes.not_filled}>
-                                not specified yet
+                                Not specified yet
                             </p>
                         )}
                         <h5>Experience</h5>
@@ -143,11 +150,12 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                 {included_keywords}
                             </section>
                         ) : (
-                            <p className={classes.not_filled}>No keywords</p>
+
+                            <p className={classes.not_filled}>None specified</p>
+
                         )}
                         <h5>Keywords</h5>
                     </div>
-                    <h6>Personal Info</h6>
                     <div>
                         {/* {formData.cv_file?.name ? (
                             <p className={classes.pdf_name}>
@@ -160,10 +168,6 @@ const Review = ({ formData, keywords, setStep, id }) => {
                         )}
                         <h5>Uploaded CV</h5> */}
                     </div>
-                    <div>
-                        <p>{userEmail}</p>
-                        <h5>Personal email</h5>
-                    </div>
                 </div>
                 {/* <hr className={styles.hr_one} /> */}
                 <div className={classes.cl_template}>
@@ -174,7 +178,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                 <p>{formData.coverletter_subject}</p>
                             ) : (
                                 <p className={classes.not_filled}>
-                                    not yet written
+                                    Not yet written
                                 </p>
                             )}
                             <h5>Cover letter subject</h5>
@@ -188,7 +192,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                     </p>
                                 ) : (
                                     <p className={classes.not_filled}>
-                                        not yet written
+                                        Not yet written
                                     </p>
                                 )}
                             </div>
@@ -199,15 +203,14 @@ const Review = ({ formData, keywords, setStep, id }) => {
                             )}
 
                             <div className={classes.review_buttons}>
-                                <BlueButton
-                                    func={handleSubmit}
-                                    text={"Send profile for searching"}
-                                    width={300}
-                                />
-
                                 <LightButton
                                     text={"Go back to edit"}
                                     func={() => setStep(0)}
+                                    width={300}
+                                />
+                                <BlueButton
+                                    func={handleSubmit}
+                                    text={"Send profile for searching"}
                                     width={300}
                                 />
                             </div>
