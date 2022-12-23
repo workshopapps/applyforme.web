@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import style from "./ApplicationForm.module.css";
 import goBackIcon from "../../../../assets/images/back_arrow.svg";
 import { useState, useEffect } from "react";
@@ -144,69 +145,75 @@ const ApplicationForm = () => {
 
     return (
         <>
-          <ToastContainer />
-         <section className={style.application_form} style={{paddingBottom:"6rem"}}>
-            
-            <RRD_Nav />
-            <div className={style.go_back_link}>
-                <Link to="/rr_admin">
-                    <img src={goBackIcon} alt="" />
-                </Link>
-                <span
-                    className={style.view_applicants}
-                    onClick={() => window.history.back() }
-                >
-                    View Applicants details
-                </span>
-            </div>
-            <p className={style.FormHeader}>Please, fill this form for every application submitted</p>
-            <form className={style.form} onSubmit={handleSubmit}>
-                {applicationsFormData.map((item, index) => {
-                    if(item.id === "summary"){
-                        return(
-                            <label htmlFor={item.id} key={index}>
-                                <span>{item.labelText}</span>
-                                <br />
-                                <textarea
-                                    name={item.id}
-                                    id={item.id}
-                                    type="text"
-                                    className={style.textArea}
-                                    placeholder={item.placeholder}
-                                    value={item.value}
-                                    onChange={handleChange}
-                                    required
-                                />
-                             </label>
-                        )
-                    }else{
-                        return (
-                            <label htmlFor={item.id} key={index}>
-                                <span>{item.labelText}</span>
-                                <br />
-                                <input
-                                    name={item.id}
-                                    id={item.id}
-                                    type="text"
-                                    placeholder={item.placeholder}
-                                    value={item.value}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </label>
-                        );
-                    }
-                })}
-            <div className={style.buttonContainer}>
-                <input id="submit" type="submit" value="Submit" />
-            </div>
-            </form>
-            {loading && (
-                <div className={style.editContainer}>
-                    <div className={style.progress}>Sending application...</div>
+            <ToastContainer />
+            <section
+                className={style.application_form}
+                style={{ paddingBottom: "6rem" }}
+            >
+                <RRD_Nav />
+                <div className={style.go_back_link}>
+                    <Link to="/rr_admin">
+                        <img src={goBackIcon} alt="" />
+                    </Link>
+                    <span
+                        className={style.view_applicants}
+                        onClick={() => window.history.back()}
+                    >
+                        View Applicants details
+                    </span>
                 </div>
-            )}
-        </section>
+                <p className={style.FormHeader}>
+                    Please, fill this form for every application submitted
+                </p>
+                <form className={style.form} onSubmit={handleSubmit}>
+                    {applicationsFormData.map((item, index) => {
+                        if (item.id === "summary") {
+                            return (
+                                <label htmlFor={item.id} key={index}>
+                                    <span>{item.labelText}</span>
+                                    <br />
+                                    <textarea
+                                        name={item.id}
+                                        id={item.id}
+                                        type="text"
+                                        className={style.textArea}
+                                        placeholder={item.placeholder}
+                                        value={item.value}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </label>
+                            );
+                        } else {
+                            return (
+                                <label htmlFor={item.id} key={index}>
+                                    <span>{item.labelText}</span>
+                                    <br />
+                                    <input
+                                        name={item.id}
+                                        id={item.id}
+                                        type="text"
+                                        placeholder={item.placeholder}
+                                        value={item.value}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </label>
+                            );
+                        }
+                    })}
+                    <div className={style.buttonContainer}>
+                        <input id="submit" type="submit" value="Submit" />
+                    </div>
+                </form>
+                {loading && (
+                    <div className={style.editContainer}>
+                        <div className={style.progress}>
+                            Sending application...
+                        </div>
+                    </div>
+                )}
+            </section>
         </>
     );
 };
