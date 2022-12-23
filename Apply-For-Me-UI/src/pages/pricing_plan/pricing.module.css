@@ -69,6 +69,8 @@
     width: min(90%, 85rem);
     margin-inline: auto;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .majorPlan > .card:nth-child(2) {
@@ -127,7 +129,8 @@
     border-radius: 0.5rem;
     padding: 1.5rem;
     margin-bottom: 4rem;
-
+    justify-content:center;
+    width:fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -262,6 +265,14 @@ link.btn {
     transform: rotate(-180deg);
 }
 
+@media only screen and (max-width:899px){
+    .majorPlan {
+        flex-direction: column;
+        margin:0 auto;
+        justify-content: center;
+        align-items: center;
+     }
+}
 @media screen and (max-width: 584px) {
     .toggle {
         display: none;
@@ -270,6 +281,7 @@ link.btn {
 
 /*BreakPoints*/
 @media only screen and (min-width: 900px) {
+   
     .section__head {
         margin-block: 4rem 2rem;
     }
@@ -294,7 +306,6 @@ link.btn {
     }
 
     .majorPlan > .card:nth-child(2) {
-        z-index: 10;
         transform: scale(1.1, 1.25);
     }
 
