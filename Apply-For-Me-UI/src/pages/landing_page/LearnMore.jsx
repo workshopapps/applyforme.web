@@ -18,10 +18,10 @@ const LearnMore = () => {
                     <h2 style={{ color: "#2E3192" }}>
                         With just these few steps, we put you out there
                     </h2>
-                    <button onClick={()=>navigate("/faqs")}><img src="https://res.cloudinary.com/hamskid/image/upload/v1671621976/Frame_51260_fvilxo.svg"/></button>
+                    <button onClick={()=>navigate("/faqs")}><img src="https://res.cloudinary.com/hamskid/image/upload/v1671621976/Frame_51260_fvilxo.svg" alt="object not found" /></button>
                 </div>
-                <img src="https://res.cloudinary.com/hamskid/image/upload/v1670013377/Content_1_ovmknu.svg" className={classes.learnImg} alt="object not found" />
-                <img src="https://res.cloudinary.com/hamskid/image/upload/v1670013058/Content_eyjw1o.svg" className={classes.learnImg2} alt="object not found" />
+                <img src="https://res.cloudinary.com/hamskid/image/upload/v1671796745/Content_2_lzq4bd.svg" className={classes.learnImg} alt="object not found" />
+                <img src="https://res.cloudinary.com/hamskid/image/upload/v1671796910/Content_3_aceczt.svg" className={classes.learnImg2} alt="object not found" />
 
                 </div>
                 

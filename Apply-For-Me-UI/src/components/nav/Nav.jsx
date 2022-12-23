@@ -90,10 +90,8 @@ const Nav = () => {
                         </>
                     ) : (
                         <div className={classes.auth__user_btn}>
-                            <BlueButton
-                                text="Dashboard"
-                                width="156"
-                                func={() =>
+                            <p
+                                onClick={() =>
                                     navigate(
                                         user.roles[0] === "SuperAdministrator"
                                             ? "/user-page"
@@ -102,7 +100,9 @@ const Nav = () => {
                                             : "/dashboard/"
                                     )
                                 }
-                            />
+                                style={{color:"#2e3192", fontWeight:"bold"}}
+                                >Dashboard
+                            </p>
                             <BlueButton
                                 text="Logout"
                                 width="156"

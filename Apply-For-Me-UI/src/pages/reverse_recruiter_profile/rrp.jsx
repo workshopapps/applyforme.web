@@ -8,6 +8,7 @@ import { PasswordContent } from "components/modals/editpersonalinfo/editPassword
 import { EditInfoContent } from "components/modals/editpersonalinfo/editProfileInformation/rr_editProfile";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useCallback } from "react";
 
 const RRProfile = () => {
     const url = "https://api.applyforme.hng.tech";
@@ -15,7 +16,7 @@ const RRProfile = () => {
     const { user } = useSelector(state => state.user);
     const userName = user.fullName;
     const [details, setDetails] = useState();
-    const getRecruiterProfile = async () => {
+    const getRecruiterProfile = useCallback( async () => {
         try {
             const response = await axios.get(
                 `${url}/api/v1/recruiter/details`,
@@ -31,11 +32,10 @@ const RRProfile = () => {
         } catch (error) {
             return error.response?.data;
         }
-    };
+    },[token]);
     useEffect(() => {
         getRecruiterProfile();
-        console.log("hello world");
-    }, []);
+    }, [getRecruiterProfile]);
 
     const [showEditModal, setEditModal] = useState(false);
     const [showPasswordModal, setPasswordModal] = useState(false);

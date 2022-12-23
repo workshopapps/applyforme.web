@@ -51,7 +51,7 @@ const Welcome2 = () => {
                 }
             }, 2000);
         }
-    }, [user]);
+    }, [user, navigate]);
 
     const handleSubmit = async event => {
         event.preventDefault();

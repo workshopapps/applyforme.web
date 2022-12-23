@@ -35,7 +35,7 @@ const Hero = () => {
 
                 <div className={classes.right}>
                     <img
-                        src="https://res.cloudinary.com/hamskid/image/upload/v1669936036/Mask_group_afrsbg.png"
+                        src="https://res.cloudinary.com/hamskid/image/upload/v1671795809/Mask_group_1_ky5sqo.svg"
                         alt=""
                     />
                 </div>

@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import classes from "./Hero.module.css";
 import arrowdown from "../../assets/images/arrow-down.png";
 
 const FAQ = () => {
+    const rotateRef = useRef(null);
     const [faQuestions] = useState([
         {
             id: 1,
@@ -68,19 +69,21 @@ const FAQ = () => {
     function onToggle(id) {
         setToggle(!toggle);
         setID(id);
+        rotateRef.current.classList.add("rotateImg");
     }
 
     const faqList = faQuestions.map((faq, i) => (
         <li key={i} onClick={() => onToggle(faq.id)} >
             <div className={classes.faq1}>
                 <p>{faq.question}</p>
-                <img src={arrowdown} alt="" />
+               <img src={arrowdown} alt="" ref={rotateRef} className={classes.rotate_image}/>
+                {/* {toggle && <img src="https://res.cloudinary.com/hamskid/image/upload/v1671799257/Vector_3_auvm1i.svg" alt=""/> } */}
             </div>
 
             {toggle && faqId === faq.id ? (
                 <div className={classes.faq_one} id={faq.id}>
                     <p className="faqlist">{faq.answer}</p>
-                    <h5 className="faqlist">{faq.month}</h5>
+                    {/* <h5 className="faqlist">{faq.month}</h5> */}
                     <Link to="/faqs/faqspage">Learn more</Link>
                 </div>
             ) : (
@@ -105,7 +108,7 @@ const FAQ = () => {
                     </div>
                 </div>
 
-                <div>
+                <div className={classes.FAQ_main_div}>
                     <ul>{faqList}</ul>
                 </div>
             </div>

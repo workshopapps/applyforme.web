@@ -8,10 +8,9 @@ import { toast } from "react-toastify";
 import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./UserPage.module.css";
 
-const UsersPage = ({ inputSearchValue }) => {
+const UsersPage = () => {
     const list = useSelector(state => state.RRadmin);
     const navigate = useNavigate();
-    const [search, setSearch] = useState([]);
     const dispatch = useDispatch();
     const token = localStorage.getItem("tokenHngKey");
     const [pagination, setPagination] = useState({
@@ -23,14 +22,10 @@ const UsersPage = ({ inputSearchValue }) => {
         dispatch(SuperAdminApplicants(pagination));
        
     }
-    useEffect(()=>{
-        const avilableList = (list.applicantsloadingStatus ==="success" && list.superAdminApplicantsList?.length !==0) ? list.superAdminApplicantsList?.content?.filter((item)=>item.membership.firstName.toLowerCase().includes(inputSearchValue)):[]
-        setSearch(avilableList);
-    }, [inputSearchValue, list.superAdminApplicantsList]);
     
     useEffect(()=>{
         dispatch(SuperAdminApplicants(pagination));
-    },[dispatch])
+    },[dispatch, pagination])
 
 
     const handleDeleteApplicants = async(e)=> {
@@ -47,12 +42,14 @@ const UsersPage = ({ inputSearchValue }) => {
             setTimeout(() => {
                 window.location.reload();
             }, 3000);
+            return response?.data
 
         } catch (error) {
             toast.error("An Error occured, Please  try again");
             console.log(error.response?.data?.message);
         }
     }
+    
     return (
         <div className={classes.main_container}>
            <div className="statisticsContainer">
@@ -70,8 +67,8 @@ const UsersPage = ({ inputSearchValue }) => {
                             <th className={classes.hide_on_mobile}>
                                 Email Address
                             </th>
-                            <th>Plan</th>
-                            <th className={classes.hide_on_mobile}>
+                            <th className={classes.hide_on_mobile}>Plan</th>
+                            <th>
                                 Application Made
                             </th>
                             <th>Action</th>
@@ -79,9 +76,9 @@ const UsersPage = ({ inputSearchValue }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {search?.length !== 0 &&
+                        {list.superAdminApplicantsList?.content?.length !== 0 &&
                          (list.applicantsloadingStatus === "success" && list.superAdminApplicantsList.length !==0) &&
-                            search?.map(list => {
+                            list.superAdminApplicantsList?.content?.map(list => {
                                 const {id} = list.membership;
                                 return (
                                     <tr
@@ -104,7 +101,7 @@ const UsersPage = ({ inputSearchValue }) => {
                     </tbody>
                 </table>
                 {list.applicantsloadingStatus ==="pending" && <p style={{textAlign:"center"}}>Please wait...</p>}
-                {(list.applicantsloadingStatus === "success" && search?.length ===0) && <p className="text-center">record not found</p>}
+                {(list.applicantsloadingStatus === "success" && list.superAdminApplicantsList?.content?.length ===0) && <p className="text-center">record not found</p>}
                 
                     {
                         list.superAdminApplicantsList?.totalPages > 1 &&(

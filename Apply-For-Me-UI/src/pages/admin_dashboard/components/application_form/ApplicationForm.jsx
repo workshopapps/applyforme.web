@@ -2,11 +2,12 @@ import style from "./ApplicationForm.module.css";
 import goBackIcon from "../../../../assets/images/back_arrow.svg";
 import { useState, useEffect } from "react";
 
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 import jwtDecode from "jwt-decode";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
+import { useCallback } from "react";
 
 const ApplicationForm = () => {
     const { id } = useParams();
@@ -54,7 +55,7 @@ const ApplicationForm = () => {
                 );
                 setLoading(false);
                 toast.success("Submission Successfull");
-                console.log(response.data);
+                return response?.data
             } catch (error) {
                 if (error) {
                     setLoading(false);
@@ -66,7 +67,7 @@ const ApplicationForm = () => {
         submitDetails();
     };
 
-    const getProfessionalProfile = async () => {
+    const getProfessionalProfile = useCallback( async () => {
         try {
             const response = await axios.get(
                 `https://api.applyforme.hng.tech/api/v1/professional-profile/detail/${id}`,
@@ -76,17 +77,15 @@ const ApplicationForm = () => {
                     }
                 }
             );
-            console.log(response.data);
             setProfessional(response.data);
-            console.log(professional);
         } catch (err) {
             console.log(err.response?.data);
         }
-    };
+    },[token,id]);
 
     useEffect(() => {
         getProfessionalProfile();
-    }, []);
+    }, [getProfessionalProfile]);
 
     const handleChange = event => {
         const value = event.target.value;
@@ -140,7 +139,6 @@ const ApplicationForm = () => {
             value: `${decoded.fullName}`
         }
     ];
-    const navigate = useNavigate();
 
     return (
         <>
