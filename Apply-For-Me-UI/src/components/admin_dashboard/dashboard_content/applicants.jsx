@@ -34,7 +34,7 @@ export const RRApplicantsPage = ({ inputSearchValue }) => {
                   )
                 : [];
         setSearch(avilableList);
-    }, [inputSearchValue, list.recruiterApplicants]);
+    }, [inputSearchValue, list.recruiterApplicants,list.recruiterApplicantsLoading]);
 
     useEffect(() => {
         dispatch(get_rr_applicants_list({
@@ -42,7 +42,7 @@ export const RRApplicantsPage = ({ inputSearchValue }) => {
             "pageSize": pagination.pageSize,
              member: id
         }));
-    }, [dispatch]);
+    }, [dispatch,id,pagination.pageNo,pagination.pageSize ]);
 
     return (
         <div className={classes.main_container}>

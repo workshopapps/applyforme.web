@@ -25,14 +25,11 @@ const NewUserDashboard = () => {
             .then(response => response.json())
             .then(data => {
                 setValue(data);
-                console.log(data);
             })
             .catch(error => {
                 console.log(error);
             });
-    }, []);
-
-    console.log(value);
+    }, [token]);
 
     return (
         <div className="dashboardnothing">

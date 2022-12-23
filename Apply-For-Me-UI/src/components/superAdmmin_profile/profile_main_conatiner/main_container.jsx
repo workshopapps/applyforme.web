@@ -11,7 +11,7 @@ export const MainContainer = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getSuperAdminProfileInfo());
-    }, []);
+    }, [dispatch]);
     const { superAdminProfileDetails } = personalDetails;
     console.log(superAdminProfileDetails);
     const [showEditModal, setEditModal] = useState(false);
@@ -45,13 +45,13 @@ export const MainContainer = () => {
                 </div>
                 <div className="proileInfoContainer">
                     <div className="mobile_info_top_view">
-                        {/* <div className="mobile_img_top">
-                            <img
+                        <div className="mobile_img_top">
+                            {/* <img
                                 style={{ width: "100%" }}
                                 src={img}
                                 alt="object not found"
-                            />
-                        </div> */}
+                            /> */}
+                        </div>
                         <div className="mobile_info_top">
                             <div className="proileInfo">
                                 <h4 className="proileInfolabel">Name</h4>

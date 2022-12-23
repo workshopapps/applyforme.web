@@ -1,6 +1,6 @@
 import axios from "axios";
 import "./user_page_applicants.css";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export const SuperApplicantsPage = () => {
     const { id } = useParams();
     const [applicants, setApplicants] = useState();
 
-    const getApplicantsInfo = async e => {
+    const getApplicantsInfo = useCallback(async e => {
         try {
             const response = await axios.get(
                 `https://api.applyforme.hng.tech/api/v1/super-admin/applicant/detail/${id}`,
@@ -23,11 +23,11 @@ export const SuperApplicantsPage = () => {
         } catch (error) {
             console.log(error.response?.data);
         }
-    };
+    },[id, token]);
 
     useEffect(() => {
         getApplicantsInfo();
-    }, []);
+    }, [getApplicantsInfo]);
 
     return (
         <div className="applicants_profile_container">

@@ -18,12 +18,12 @@ const LeftDetails = () => {
                 </p>
 
                 <a href="email:info@afm.com" style={{ paddingTop: "2rem" }}>
-                    <img src={mail} className="img-icon" />
+                    <img alt="object not found" src={mail} className="img-icon" />
                     <span>info@afm.com</span>
                 </a>
             </div>
             <div className="img-wrapper">
-                <img className="img-first" src={operator} />
+                <img alt="object not found" className="img-first" src={operator} />
             </div>
         </div>
     );

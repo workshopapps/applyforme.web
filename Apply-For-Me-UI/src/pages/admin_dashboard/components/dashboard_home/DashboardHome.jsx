@@ -5,12 +5,13 @@ import {useNavigate } from "react-router-dom";
 import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useCallback } from "react";
 
 const DashboardHome = () => {
     const navigate = useNavigate();
     const [statValue, setStatValue] = useState({});
     const token = localStorage.getItem("tokenHngKey");
-    const getStatisticsDetail = async () => {
+    const getStatisticsDetail = useCallback( async () => {
         try {
             const response = await axios.get(
                 "https://api.applyforme.hng.tech/api/v1/recruiter/applicant/statistics",
@@ -25,10 +26,10 @@ const DashboardHome = () => {
         } catch (err) {
             console.log(err?.response?.data);
         }
-    };
+    },[token]);
     useEffect(() => {
         getStatisticsDetail();
-    }, []);
+    }, [ getStatisticsDetail]);
     
     return (
         <section>
