@@ -61,7 +61,7 @@ public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantServic
     @Override
     @Transactional
     public boolean delete(Long id) {
-        boolean removed = repository.remove(id);
+        boolean removed = memberRepository.remove(id);
         if (removed) {
             return true;
         }
@@ -102,7 +102,7 @@ public class SuperAdminApplicantServiceImpl implements SuperAdminApplicantServic
         return getMemberResponse(members);
     }
 
-    private ApplyForMeResponse getMemberResponse(Page<Member> members) {
+    public ApplyForMeResponse getMemberResponse(Page<Member> members) {
         Collection<MemberDto> results = members
                 .getContent()
                 .stream()

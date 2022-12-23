@@ -1,18 +1,15 @@
 package com.hydraulic.applyforme.repository.jpa;
 
-import com.hydraulic.applyforme.model.domain.Applier;
 import com.hydraulic.applyforme.model.domain.Submission;
 import com.hydraulic.applyforme.model.dto.admin.ApplierResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface JobSubmissionRepository extends JpaRepository<Submission,Long> {
@@ -27,8 +24,17 @@ public interface JobSubmissionRepository extends JpaRepository<Submission,Long> 
      List<ApplierResponse> getHighestApplier();
 
      @Query("SELECT sbm FROM Submission sbm WHERE sbm.applier.id = :id")
+     Page<Submission> getSubmissionsProfessional(Long id, Pageable pageable);
+
+     @Query(value = "SELECT s FROM Submission s INNER JOIN ProfessionalProfile pp ON s.professional.id = pp.professional.id WHERE s.professional.id = :id")
      Page<Submission> getSubmissions(Long id, Pageable pageable);
 
      @Query("SELECT COUNT (sbm) FROM Submission sbm")
      Long countSubmission();
+
+     @Query (value = "SELECT s from Submission s where s.professional.member.id = ?1 ")
+     List<Submission> findAllByProfessionalId(@Param("id") Long id);
+
+     @Query (value = "SELECT count(s) from Submission s where s.professional.id = ?1 ")
+     Long countSubmissionByProfessional(@Param("id") Long id);
 }

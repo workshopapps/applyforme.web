@@ -3,12 +3,14 @@ package com.hydraulic.applyforme.controller;
 import com.hydraulic.applyforme.model.response.AdminDashboardStatisticsOne;
 import com.hydraulic.applyforme.model.response.ApplierJobSubmissionStatistics;
 import com.hydraulic.applyforme.service.SuperAdminStatService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,9 +28,10 @@ public class SuperAdminStatisticController {
 
     @GetMapping("/counts-part-one")
     public AdminDashboardStatisticsOne getPartOne(
-            @RequestParam(value = "fetchByDate", defaultValue = "0000-01-01", required = false) String date
+            @RequestParam(value = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fromDate,
+            @RequestParam(value = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date toDate
     ){
-        return service.getStatistics(date);
+        return service.getStatistics(fromDate, toDate);
     }
 
     @GetMapping("/applier-submission")

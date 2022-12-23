@@ -5,6 +5,7 @@ import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.dto.professional.DeleteManyProfessionalDto;
 import com.hydraulic.applyforme.model.response.ApplicantDetailsResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
+import org.springframework.data.domain.Page;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -23,4 +24,6 @@ public interface SuperAdminApplicantService {
     ApplyForMeResponse getEntries(int pageNo, int pageSize, String sortBy, String sortDir, String q, Date from, Date to);
 
     ApplicantDetailsResponse getOne(Long id);
+
+    ApplyForMeResponse getMemberResponse(Page<Member> members);
 }

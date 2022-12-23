@@ -2,11 +2,14 @@ package com.hydraulic.applyforme.controller.admin;
 
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.dto.member.CreateRecruiterDto;
+import com.hydraulic.applyforme.model.response.ApplicantForRecruiterResponse;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.EmailService;
 import com.hydraulic.applyforme.service.superadmin.SuperAdminApplierService;
+import com.hydraulic.applyforme.service.superadmin.SuperAdminRecruiterService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,10 +26,14 @@ import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DI
 )
 public class SuperAdminRecruiterController {
 
+    private SuperAdminRecruiterService recruiterService;
     private SuperAdminApplierService service;
     private EmailService emailService;
 
-    public SuperAdminRecruiterController(SuperAdminApplierService service, EmailService emailService) {
+    public SuperAdminRecruiterController(SuperAdminRecruiterService recruiterService,
+                                         SuperAdminApplierService service,
+                                         EmailService emailService) {
+        this.recruiterService = recruiterService;
         this.service = service;
         this.emailService = emailService;
     }
@@ -46,10 +53,8 @@ public class SuperAdminRecruiterController {
     @PostMapping("/save")
     public Member save(@Validated @RequestBody CreateRecruiterDto dto) {
         Member member = service.saveRecruiter(dto);
-//        emailService.confirmRecruiter(dto);
         return member;
     }
-
     @GetMapping("/sort-and-paginate")
     public List<Member> sortAndPaginateRecruiter(
             @RequestParam (value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false)int pageNo,
@@ -58,7 +63,22 @@ public class SuperAdminRecruiterController {
             @RequestParam (value = "sortDir", defaultValue = DEFAULT_PAGE_NUMBER, required = false)String sortDir)
     {
         return service.sortAndPaginateRecruiter(pageNo,pageSize,sortBy,sortDir);
-
     }
 
+
+    @PreAuthorize("hasAnyRole('SuperAdministrator')")
+    @GetMapping("/search-name")
+    public Member searchRecruiterByName(@RequestParam String firstName){
+        return recruiterService.searchRecruitersByName(firstName);
+    }
+
+    @PreAuthorize("hasAnyRole('SuperAdministrator')")
+    @GetMapping("/applicant_list")
+    public ApplyForMeResponse searchRecruiterById(@RequestParam Long member,
+    @RequestParam(value = "pageNo", defaultValue = DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+    @RequestParam(value = "pageSize", defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
+    @RequestParam(value = "sortBy", defaultValue = DEFAULT_SORT_BY, required = false) String sortBy,
+    @RequestParam(value = "sortDir", defaultValue = DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
+        return recruiterService.searchRecruiterById(member, pageNo, pageSize, sortBy, sortDir);
+    }
 }

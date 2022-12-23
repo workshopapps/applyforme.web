@@ -47,6 +47,9 @@ public class ProfessionalProfileUtil {
             case "SENIOR":
                 return JobSeniority.SENIOR;
 
+            case "MID_LEVEL":
+                return JobSeniority.MID_LEVEL;
+
             case "TRAINEE":
                 return JobSeniority.TRAINEE;
 

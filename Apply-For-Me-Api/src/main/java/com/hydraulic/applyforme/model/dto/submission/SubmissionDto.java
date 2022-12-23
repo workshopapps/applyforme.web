@@ -22,6 +22,9 @@ public class SubmissionDto {
     @JsonProperty("applier_id")
     private Long applierId;
 
+    @JsonProperty("professional_profile_id")
+    private Long professionalProfileId;
+
     @JsonProperty("job_title")
     private String jobTitle;
 
