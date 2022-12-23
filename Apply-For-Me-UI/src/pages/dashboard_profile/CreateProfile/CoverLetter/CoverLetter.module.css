@@ -10,7 +10,8 @@
     margin-block: 1rem;
 }
 .cl_textarea {
-    width: 90%;
+    width: 100%;
+    border-radius: 4px;
     resize: none;
     height: 2rem;
     border: 1px solid #6d6e71;
