@@ -29,7 +29,6 @@ const ApplicationDetails = () => {
             .then(response => response.json())
             .then(data => {
                 setDetails( data);
-                console.log("reverse recruiter",data);
                 setIsLoading(false);
             })
             .catch(error => {

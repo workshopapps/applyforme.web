@@ -2,12 +2,13 @@ import classes from "../../../RR_Dashboard/styles/Applications.module.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { useCallback } from "react";
 
 
 const ApplicationList = () => {
     const [listArray, setListArray] = useState();
     const token = localStorage.getItem("tokenHngKey");
-       const getApplicationDetail = async () => {
+       const getApplicationDetail = useCallback( async () => {
            try {
                const response = await axios.get(
                    "https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all",
@@ -17,17 +18,14 @@ const ApplicationList = () => {
                        }
                    }
                );
-               console.log(response.data)
                setListArray(response.data.content);
-               console.log(listArray);
            } catch (err) {
                console.log(err.response?.data);
            }
-       };
+       },[token]);
        useEffect(() => {
         getApplicationDetail ();
-       }, []);
-       console.log(listArray);
+       }, [ getApplicationDetail]);
     return (
         // Application stats Table
         <div className={classes.new_applications_stats_table}>

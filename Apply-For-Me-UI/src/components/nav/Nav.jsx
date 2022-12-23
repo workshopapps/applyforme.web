@@ -90,10 +90,8 @@ const Nav = () => {
                         </>
                     ) : (
                         <div className={classes.auth__user_btn}>
-                            <BlueButton
-                                text="Dashboard"
-                                width="156"
-                                func={() =>
+                            <p
+                                onClick={() =>
                                     navigate(
                                         user.roles[0] === "SuperAdministrator"
                                             ? "/user-page"
@@ -102,7 +100,9 @@ const Nav = () => {
                                             : "/dashboard/"
                                     )
                                 }
-                            />
+                                style={{color:"#2e3192", fontWeight:"bold"}}
+                                >Dashboard
+                            </p>
                             <BlueButton
                                 text="Logout"
                                 width="156"
@@ -133,7 +133,10 @@ const Nav = () => {
                         <FiMenu
                             className={classes.menu__mobile}
                             onClick={() => setDropDown(true)}
-                            style={{ display: dropDown ? "none" : "block" }}
+                            style={{ display: dropDown ? "none" : "block",
+                            padding: "0.2rem",
+                            borderRadius: "5px" }}
+                            size="2.5rem"
                         />
 
                         <FiX

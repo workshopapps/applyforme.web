@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import classes from "./Hero.module.css";
-import stars from "../../assets/images/stars.png";
 import Avatar from "../../assets/images/Avatar1.png";
 import Avatar2 from "../../assets/images/Avatar2.png";
 
@@ -18,7 +16,6 @@ const Reviews = () => {
                     </span>
                     <h3>What they have to say about us</h3>
                 </div>
-
                 <div className={classes.bottom}>
                     <div className={classes.reviews_content_bottom_div}>
                         <img

@@ -9,12 +9,14 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useCallback } from "react";
 
 
 const ApplicationsListCard = () => {
     const [data, setData] = useState([]);
     const token = localStorage.getItem("tokenHngKey");
-    const fetchApplicants = async () => {
+
+    const fetchApplicants =  useCallback(  async () => {
         try {
             const response = await axios.get(
                 `https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`,
@@ -30,7 +32,8 @@ const ApplicationsListCard = () => {
             console.log(error?.response)
             toast.error(`Could not get applicants: ${error}`);
         }
-    };
+    },[token]) 
+
     const sortOldestToNewest = async()=>{
         try{
             const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`, 
@@ -49,6 +52,7 @@ const ApplicationsListCard = () => {
             console.error(`Could not get applicants: ${error}`);
         }          
     }   
+    
     const sortNewestToOldest = async()=>{
         try{
             const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`, 
@@ -63,14 +67,14 @@ const ApplicationsListCard = () => {
             );
             setData(response.data?.content);
 
-        } catch (error) {
+        } catch (error){
             console.error(`Could not get applicants: ${error}`);
         }          
-    }   
+    } 
 
     useEffect(() => {
         fetchApplicants();
-    }, []);
+    }, [ fetchApplicants]);
 
     return (
         <div className={styles.applications_list_wrapper}>

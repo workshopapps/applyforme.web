@@ -93,10 +93,10 @@ export const CreateRecruiter = () => {
             <div className="recruiterContainer">
                 <div className="rContainer_div_1">
                     <div className="afmdiv">
-                        <img src="https://res.cloudinary.com/hamskid/image/upload/v1670693251/Group_3_xwy8bo.svg" />
+                        <img alt="object not found" src="https://res.cloudinary.com/hamskid/image/upload/v1670693251/Group_3_xwy8bo.svg" />
                     </div>
                     <div className="imgDiv ">
-                        <img
+                        <img alt="object not found"
                             className="img_rr"
                             src="https://res.cloudinary.com/hamskid/image/upload/v1670693275/Mask_group_zajxrc.svg"
                         />

@@ -3,6 +3,9 @@
     margin: auto;
     background-color: #FBFBFB;
 }
+.rotateImg{
+    transform:rotate(180deg);
+}
 .fileLabel{
     color: white;
     height: 60px;
@@ -42,23 +45,23 @@ input[type=file]{
 
 .hero_container {
     width: 100%;
-    padding-top: 9rem;
+    padding-top: 8.5rem;
+    padding-bottom: 4.5rem;
 }
 
 .hero_container .hero_content {
     display: flex;
     width: 90%;
-    align-items: center;
+    align-items: flex-start;
     margin: auto;
     margin-top: 1rem;
+    justify-content: space-between;
 }
 
 .hero_content .left {
-    width: 100%;
-    flex: 1;
+    width:50%;
     display: flex;
     flex-direction: column;
-    padding-top: 2.5rem;
     position: relative;
 }
 .file{
@@ -80,9 +83,6 @@ input[type=file]{
     margin-bottom: 1.3rem;
 }
 
-.hero_content .right {
-    flex: 1;
-}
 
 .hero_content .right img {
     width: 85%;
@@ -464,6 +464,7 @@ input[type=file]{
     list-style: none;
     padding: 1rem;
     width: 100%;
+    color: #52515B;
 
     border-bottom: 1px solid #2E3192;
     position: relative;
@@ -499,17 +500,28 @@ input[type=file]{
 }
 @media only screen and (max-width:1050px){
     .hero_container {
-        padding-top: 0rem;
+        padding-top: 3rem;
     }
 }
 @media (max-width: 820px) {
+     .hero_content .left .heading {
+        text-align: center;
+    }
+    .fileLabel{
+        margin:1rem auto;
+    }
     .uploadFile{
         display: block;
     }
 
     .hero_container .hero_content {
+        align-items: center;
         width: 95%;
         margin-top: 1rem;
+    }
+    .hero_content .left {
+        width:100%;
+        
     }
 
     .hero_content .left .browse {
@@ -577,7 +589,10 @@ input[type=file]{
 }
 
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+    .FAQ_main_div{
+        width:100%;
+    }
     .learn_content .bottom {
         margin-top: 4rem;
     }
@@ -597,7 +612,7 @@ input[type=file]{
     .believe{
         font-size: 16px;
     }
-   
+
     .Hero_box__Y9r6z {
         padding: 2rem 1rem 1rem;
         background-color: white;
@@ -614,6 +629,7 @@ input[type=file]{
     .hero_container .hero_content {
         display: flex;
         width: 90%;
+        align-items: center;
     }
 
     .hero_content {
@@ -873,6 +889,7 @@ input[type=file]{
     .hero_container {
         height: fit-content;
         background: #FBFBFB;
+        padding-bottom: 0;
     }
     .hero_content .left .heading {
         text-align: center;

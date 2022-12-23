@@ -9,10 +9,9 @@ import { toast } from "react-toastify";
 import { SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import classes from "./UserPage.module.css";
 
-const UsersPage = ({ inputSearchValue }) => {
+const UsersPage = () => {
     const list = useSelector(state => state.RRadmin);
     const navigate = useNavigate();
-    const [search, setSearch] = useState([]);
     const dispatch = useDispatch();
     const token = localStorage.getItem("tokenHngKey");
     const [pagination, setPagination] = useState({
@@ -23,22 +22,10 @@ const UsersPage = ({ inputSearchValue }) => {
         setPagination(prevState => ({ ...prevState, "pageNo": data.selected }));
         dispatch(SuperAdminApplicants(pagination));
     };
-    useEffect(() => {
-        const avilableList =
-            list.applicantsloadingStatus === "success" &&
-            list.superAdminApplicantsList?.length !== 0
-                ? list.superAdminApplicantsList?.content?.filter(item =>
-                      item.membership.firstName
-                          .toLowerCase()
-                          .includes(inputSearchValue)
-                  )
-                : [];
-        setSearch(avilableList);
-    }, [inputSearchValue, list.superAdminApplicantsList]);
 
     useEffect(() => {
         dispatch(SuperAdminApplicants(pagination));
-    }, [dispatch]);
+    }, [dispatch, pagination]);
 
     const handleDeleteApplicants = async e => {
         try {
@@ -54,11 +41,13 @@ const UsersPage = ({ inputSearchValue }) => {
             setTimeout(() => {
                 window.location.reload();
             }, 3000);
+            return response?.data;
         } catch (error) {
             toast.error("An Error occured, Please  try again");
             console.log(error.response?.data?.message);
         }
     };
+
     return (
         <div className={classes.main_container}>
             <div className="statisticsContainer">
@@ -79,67 +68,77 @@ const UsersPage = ({ inputSearchValue }) => {
                             <th className={classes.hide_on_mobile}>
                                 Email Address
                             </th>
-                            <th>Plan</th>
-                            <th className={classes.hide_on_mobile}>
-                                Application Made
-                            </th>
+                            <th className={classes.hide_on_mobile}>Plan</th>
+                            <th>Application Made</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {search?.length !== 0 &&
+                        {list.superAdminApplicantsList?.content?.length !== 0 &&
                             list.applicantsloadingStatus === "success" &&
                             list.superAdminApplicantsList.length !== 0 &&
-                            search?.map(list => {
-                                const { id } = list.membership;
-                                return (
-                                    <tr
-                                        className={classes.user_details}
-                                        key={list.membership.id}
-                                    >
-                                        <td>{list.membership.firstName}</td>
-                                        <td className={classes.hide_on_mobile}>
-                                            {" "}
-                                            {list.membership.emailAddress}
-                                        </td>
-                                        <td className={classes.hide_on_mobile}>
-                                            basic
-                                        </td>
-                                        <td>{list.totalSubmissions}</td>
-                                        <td>
-                                            <span
-                                                onClick={() =>
-                                                    navigate(
-                                                        `/superAdmin/applicants/profiles/details/${list.membership.id}`
-                                                    )
-                                                }
-                                                className={classes.view_button}
-                                            >
-                                                view
-                                            </span>
-                                            <span
-                                                onClick={e =>
-                                                    handleDeleteApplicants({
-                                                        id
-                                                    })
-                                                }
+                            list.superAdminApplicantsList?.content?.map(
+                                list => {
+                                    const { id } = list.membership;
+                                    return (
+                                        <tr
+                                            className={classes.user_details}
+                                            key={list.membership.id}
+                                        >
+                                            <td>{list.membership.firstName}</td>
+                                            <td
                                                 className={
-                                                    classes.delete_button
+                                                    classes.hide_on_mobile
                                                 }
                                             >
-                                                delete
-                                            </span>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
+                                                {" "}
+                                                {list.membership.emailAddress}
+                                            </td>
+                                            <td
+                                                className={
+                                                    classes.hide_on_mobile
+                                                }
+                                            >
+                                                basic
+                                            </td>
+                                            <td>{list.totalSubmissions}</td>
+                                            <td>
+                                                <span
+                                                    onClick={() =>
+                                                        navigate(
+                                                            `/superAdmin/applicants/profiles/details/${list.membership.id}`
+                                                        )
+                                                    }
+                                                    className={
+                                                        classes.view_button
+                                                    }
+                                                >
+                                                    view
+                                                </span>
+                                                <span
+                                                    onClick={e =>
+                                                        handleDeleteApplicants({
+                                                            id
+                                                        })
+                                                    }
+                                                    className={
+                                                        classes.delete_button
+                                                    }
+                                                >
+                                                    delete
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    );
+                                }
+                            )}
                     </tbody>
                 </table>
                 {list.applicantsloadingStatus === "pending" && (
                     <p style={{ textAlign: "center" }}>Please wait...</p>
                 )}
                 {list.applicantsloadingStatus === "success" &&
-                    search?.length === 0 && (
+                    list.superAdminApplicantsList?.content?.length === 0 && (
                         <p className="text-center">record not found</p>
                     )}
 
