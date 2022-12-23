@@ -5,6 +5,7 @@ import ApplicationsListHeader from "./RR_ApplicationsListHeader";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
+import { useCallback } from "react";
 const Table = () => {
     const [data, setData] = useState([]);
     const [pageCount, setPageCout] = useState(1)
@@ -13,7 +14,7 @@ const Table = () => {
         "pageNo": 0,
         "pageSize": 10,
     });
-    const fetchApplicants = async()=>{
+    const fetchApplicants = useCallback( async()=>{
                 try{
                     const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all`, 
                         {
@@ -32,8 +33,8 @@ const Table = () => {
                 } catch (error) {
                     console.error(`Could not get applicants: ${error}`);
                 }          
-    }
-    const sortOldestToNewest = async()=>{
+    },[token,pagination.pageNo,pagination.pageSize])
+    const sortOldestToNewest =useCallback( async()=>{
         try{
             const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all`, 
                 {
@@ -53,8 +54,9 @@ const Table = () => {
         } catch (error) {
             console.error(`Could not get applicants: ${error}`);
         }          
-    }   
-    const sortNewestToOldest = async()=>{
+    },[token,pagination.pageNo,pagination.pageSize])
+
+    const sortNewestToOldest = useCallback( async()=>{
         try{
             const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all`, 
                 {
@@ -74,11 +76,11 @@ const Table = () => {
         } catch (error) {
             console.error(`Could not get applicants: ${error}`);
         }          
-    }   
+    },[token,pagination.pageNo,pagination.pageSize])   
 
     useEffect(() => {
         fetchApplicants();
-    }, []);
+    }, [fetchApplicants]);
 
    
     const handlePageClick =(data)=>{

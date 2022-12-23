@@ -42,7 +42,7 @@ const Welcome1 = () => {
                 }
             }, 2000);
         }
-    }, [user]);
+    }, [user, navigate]);
 
     const handleSignup = async event => {
         event.preventDefault();

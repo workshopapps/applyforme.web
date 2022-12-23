@@ -12,8 +12,19 @@ import { useNavigate } from "react-router-dom";
 import { userInfo } from "store/slice/UserSlice";
 import ProfileIcon from "../../../assets/images/profile-circle.svg";
 import { useDispatch, useSelector } from "react-redux";
+import { useRef } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import { useCallback } from "react";
+
+
 
 const RRD_Nav = () => {
+    const [mobileSearch, setMobileSearch] = useState(false);
+    const [activateSearchContainer, setActivateSearchContainer] = useState(false)
+    const [searchData, setSearchData] = useState([])
+    const [data, setdata] = useState([])
+    const searchRef = useRef(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { user } = useSelector(state => state.user);
@@ -24,7 +35,8 @@ const RRD_Nav = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        event.target.search.value = "";
+        const itemFound = data.filter((item)=>item.profileTitle.toLowerCase().includes(searchRef.current.value))
+        setSearchData(itemFound)
         // Quota submission code goes here
     };
     const handleSignOut = () => {
@@ -32,6 +44,31 @@ const RRD_Nav = () => {
         dispatch(userInfo(""));
         navigate("/");
     };
+    const token = localStorage.getItem("tokenHngKey");
+    const getApplicationDetail =  useCallback( async () => {
+           try {
+               const response = await axios.get(
+                   "https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all",
+                   {
+                       headers: {
+                           "Authorization": `Bearer ${token}`
+                       }
+                   }
+               );
+               setSearchData(response.data.content);
+               setdata(response.data.content)
+           } catch (err) {
+               console.log(err.response?.data);
+           }
+       },[token]);
+       useEffect(() => {
+        getApplicationDetail();
+       }, [ getApplicationDetail ]);
+
+        const handleChange =(e)=>{
+            const itemFound = data.filter((item)=>item.profileTitle.toLowerCase().includes(e.target.value))
+            setSearchData(itemFound)
+        }
 
     return (
         <section className={classes.main_container}>
@@ -62,9 +99,12 @@ const RRD_Nav = () => {
                             onSubmit={event => handleSubmit(event)}
                         >
                             <input
-                                type="search"
-                                name="search"
-                                placeholder="Search for Users and Reverse Recruiter"
+                               ref={searchRef}
+                               type="search"
+                               name="search"
+                               placeholder="Search for Users"
+                               onFocus={()=>setActivateSearchContainer(true)}
+                               onChange={handleChange}
                             />
                             <button type="submit">
                                 {" "}
@@ -80,7 +120,12 @@ const RRD_Nav = () => {
                                 />
                             </div>
                             <div className={classes.search_logo}>
-                                <img src={SearchBlue} alt="Search " />
+                                <img src={SearchBlue} alt="Search " 
+                                    onClick={() =>
+                                        setMobileSearch(prev => !prev)
+                                    } 
+                                />
+                               
                             </div>
                             <div
                                 className={classes.user_avater}
@@ -130,6 +175,63 @@ const RRD_Nav = () => {
                     </section>
                 </nav>
                 {/* Mobile nav */}
+                {mobileSearch && (
+                    <form
+                        className={classes.mobilesearch}
+                        onSubmit={event => handleSubmit(event)}
+                    >
+                        <input
+                            ref={searchRef}
+                            type="search"
+                            name="search"
+                            className={classes.mobile_inp}
+                            placeholder="Search for and Reverse Recruiter"
+                            onFocus={()=>setActivateSearchContainer(true)}
+                            onChange={handleChange}
+                        />
+                        <button
+                            type="submit"
+                            className={classes.mobile_btn_cont}
+                        >
+                            {" "}
+                            <img
+                                src={Search}
+                                alt="Apply for me logo"
+                                className={classes.mobile_btn}
+                            />
+                        </button>
+                    </form>
+                )}
+                {
+                    activateSearchContainer && (
+                        <div className={classes.SearchContainer}>
+                            <div>
+                                <img className={classes.SearchContainer_cancel} onClick={()=>setActivateSearchContainer(false)} src="https://res.cloudinary.com/hamskid/image/upload/v1670603040/close-svgrepo-com_1_ie1sje.svg" alt="object not found"/>
+                            </div>
+                            <p>Page: 1</p>
+                            {
+                               searchData?.map((data, index)=>{
+                                    return(
+                                        <div className={classes.SearchContainer_child_div} key={index} onClick={()=>navigate(`/professional-profile/user/details/${data?.id}`)}>
+                                            <div className={classes.SearchContainer_child_div_wrapper}>
+                                                <div className={classes.SearchContainer_img_wrapper}>
+                                                <LetteredAvatar
+                                                    name={data?.professional?.member?.firstName }
+                                                    backgroundColor={"#78909c"}
+                                                />  
+                                                </div>
+                                                <div>
+                                                    <p className={classes.SearchContainer_name}>{data?.profileTitle}</p>
+                                                    <p className={classes.SearchContainer_email}>{data?.professional?.member?.emailAddress}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    )
+                }
                 {showMenu && <MobileNav setShowMenu={setShowMenu} />}
             </section>
         </section>

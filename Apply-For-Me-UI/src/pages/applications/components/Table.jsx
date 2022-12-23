@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { ToastContainer, toast } from "react-toastify";
+import { useCallback } from "react";
 const Table = () => {
     const [data, setData] = useState();
     const [pageCount, setPageCout] = useState(1);
@@ -14,9 +15,10 @@ const Table = () => {
         "pageNo": 0,
         "pageSize": 10
     });
-    //https://api.applyforme.hng.tech/api/v1/applicant/jobs-applied
-    //https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all
-    const fetchApplicants = async () => {
+    const [searchValue, setSearchValue] = useState('');
+    const [availableItems,setAvailableItems] = useState([]);
+    
+    const fetchApplicants = useCallback( async () => {
         try {
             const response = await axios.get(
                 `https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`,
@@ -35,7 +37,8 @@ const Table = () => {
         } catch (error) {
             toast.error(`Could not get applicants: ${error}`);
         }
-    };
+    },[token,pagination.pageNo, pagination.pageSize]);
+    
     const sortOldestToNewest = async()=>{
         try{
             const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`, 
@@ -81,7 +84,12 @@ const Table = () => {
 
     useEffect(() => {
         fetchApplicants();
-    }, []);
+    },[fetchApplicants]);
+
+    useEffect(()=>{
+        const search = data?.filter((item)=>item.jobTitle.toLowerCase().includes(searchValue));
+        setAvailableItems(search);
+    },[searchValue, data])
 
     const handlePageClick = data => {
         setPagination(prevState => ({ ...prevState, "pageNo": data.selected }));
@@ -89,7 +97,7 @@ const Table = () => {
     };
     return (
         <div className={styles.applications_table_wrapper}>
-            <ApplicationsListHeader sortOldestToNewest={sortOldestToNewest} sortNewestToOldest={sortNewestToOldest}/>
+            <ApplicationsListHeader sortOldestToNewest={sortOldestToNewest} sortNewestToOldest={sortNewestToOldest} setSearchValue={setSearchValue}/>
             <ToastContainer />
             <div className={styles.applications_table_container}>
                 <table>
@@ -104,7 +112,7 @@ const Table = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data?.map?.((application, index) => (
+                        {availableItems?.map?.((application, index) => (
                             <tr
                                 className={styles.applications_table_body_row}
                                 key={index}
