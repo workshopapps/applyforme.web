@@ -43,7 +43,9 @@ export const EditInfoContent = ({ setEditModal, details }) => {
         //     }
         // };
         // sendToEndPoint();
-        dispatch(updateReverseRecruiterProfileInfo({values,id: details?.id}));
+        dispatch(
+            updateReverseRecruiterProfileInfo({ values, id: details?.id })
+        );
         actions.resetForm();
     };
     // const [fileToUpload, setFileToUpload] = useState("");

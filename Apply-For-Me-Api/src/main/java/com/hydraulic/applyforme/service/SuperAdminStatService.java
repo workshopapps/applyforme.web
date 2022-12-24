@@ -7,6 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface SuperAdminStatService {
-    AdminDashboardStatisticsOne getStatistics(String date);
+    AdminDashboardStatisticsOne getStatistics(Date from, Date to);
     List<ApplierJobSubmissionStatistics> getAppliersTotalSubmissions(Integer pageOffset);
 }

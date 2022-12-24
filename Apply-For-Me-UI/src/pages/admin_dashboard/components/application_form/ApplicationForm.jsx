@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import style from "./ApplicationForm.module.css";
 import goBackIcon from "../../../../assets/images/back_arrow.svg";
 import { useState, useEffect } from "react";

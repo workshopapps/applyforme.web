@@ -18,6 +18,8 @@ public interface SalaryRangeService {
 
     List<SalaryRange> findAll(Integer pageOffset);
 
+    List<SalaryRange> findAll();
+
     SalaryRange findOne(Long id);
 
     SalaryRange save(SalaryRangeDto body);
