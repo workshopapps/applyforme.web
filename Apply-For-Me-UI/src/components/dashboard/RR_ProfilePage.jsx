@@ -25,6 +25,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useRef } from "react";
 import LetteredAvatar from "react-lettered-avatar";
+import Spinner from "components/spinner/PulseLoader";
 const url = "https://api.applyforme.hng.tech";
 // import { Navigate } from "react-router-dom";
 
@@ -382,11 +383,7 @@ const RR_admin_Profile = () => {
                     </div>
                 </section>
             )}
-            {loading && (
-                <div className={classes.editContainer}>
-                    <div className={classes.progress}>Please wait...</div>
-                </div>
-            )}
+            {loading && <Spinner/>}
         </section>
     );
 };
