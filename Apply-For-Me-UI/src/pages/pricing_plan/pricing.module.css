@@ -1,6 +1,6 @@
 /*STYLING OF THE PRICING PAGE*/
 .section__head {
-    margin-block: 2rem 3rem;
+    margin: 10rem 2rem 4rem 2rem;
 }
 
 .headingWrapper {
@@ -264,7 +264,11 @@ link.btn {
 .faqicon__active {
     transform: rotate(-180deg);
 }
-
+@media only screen and (max-width:1050px){
+    .section__head {
+        margin: 4rem 2rem 4rem 2rem;
+    }
+}
 @media only screen and (max-width:899px){
     .majorPlan {
         flex-direction: column;
@@ -282,9 +286,7 @@ link.btn {
 /*BreakPoints*/
 @media only screen and (min-width: 900px) {
    
-    .section__head {
-        margin-block: 4rem 2rem;
-    }
+    
 
     .mainheading {
         margin-bottom: 1.625rem;

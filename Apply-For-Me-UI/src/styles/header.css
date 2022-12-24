@@ -5,6 +5,7 @@
     height: 540px;
     background-repeat: no-repeat;
     background-position: center;
+    margin-top: 5.5rem;
 }
 
 .blur {
@@ -29,7 +30,11 @@
     text-align: center;
     color: #ffffff;
 }
-
+@media screen and (max-width: 1050px){
+    .header {
+        margin-top: 0;
+    }
+}
 @media screen and (max-width: 1023px) {
     .header-text {
         width: 474px;
@@ -38,6 +43,7 @@
         font-size: 24px;
         text-align: center;
     }
+    
 }
 
 @media screen and (max-width: 767px) {
