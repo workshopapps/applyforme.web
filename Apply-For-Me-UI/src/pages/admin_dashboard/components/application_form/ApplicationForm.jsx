@@ -8,6 +8,7 @@ import jwtDecode from "jwt-decode";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useCallback } from "react";
+import Spinner from "components/spinner/PulseLoader";
 
 const ApplicationForm = () => {
     const { id } = useParams();
@@ -199,11 +200,7 @@ const ApplicationForm = () => {
                 <input id="submit" type="submit" value="Submit" />
             </div>
             </form>
-            {loading && (
-                <div className={style.editContainer}>
-                    <div className={style.progress}>Sending application...</div>
-                </div>
-            )}
+            {loading && (<Spinner/>)}
         </section>
         </>
     );

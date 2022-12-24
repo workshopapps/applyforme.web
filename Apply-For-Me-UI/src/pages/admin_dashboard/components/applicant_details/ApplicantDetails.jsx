@@ -13,11 +13,11 @@ const ApplicationDetails = () => {
     const { id } = useParams();
     const token = localStorage.getItem("tokenHngKey");
     const [details, setDetails] = useState();
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [showCoverLetter, setShowCoverLetter] = useState(false);
 
     useEffect(() => {
-        setIsLoading(true);
+      
         fetch(
             `https://api.applyforme.hng.tech/api/v1/professional-profile/detail/${id}`,
             {
