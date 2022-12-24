@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer} from "react-toastify";
 import "./create_view.css";
+import Spinner from "components/spinner/PulseLoader";
 
 export const CreateRecruiter = () => {
     const [password, setPassword] = useState("password");
@@ -396,11 +397,7 @@ export const CreateRecruiter = () => {
                         </div>
                     </form>
                 </div>
-                {loading && (
-                    <div className="editContainer">
-                        <div className="progress">Creating admin...</div>
-                    </div>
-                )}
+                {loading && <Spinner/>}
             </div>
         </>
     );
