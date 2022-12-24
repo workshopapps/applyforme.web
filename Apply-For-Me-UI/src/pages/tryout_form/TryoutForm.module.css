@@ -7,7 +7,7 @@ button {
     margin-inline: auto;
     display: flex;
     flex-direction: column;
-    padding: 1em 2em 40px;
+    padding: 8em 2em 40px 1rem;
 }
 
 .input {
@@ -67,8 +67,15 @@ button {
         width: 95%;
     }
 }
+@media screen and (max-width: 1050px) {
+    .form_wrapper {
+  
+    padding: 4em 2em 40px 1rem;
+}
 
+}
 @media screen and (min-width: 1023px) {
+    
     .row_of_3 {
         display: flex;
         gap: 1.5em;
