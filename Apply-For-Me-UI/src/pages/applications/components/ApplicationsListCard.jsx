@@ -4,7 +4,7 @@ import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { CiLocationOn } from "react-icons/ci";
 import ApplicationsListHeader from "./ApplicationsListHeader";
 import blueadd from "../../dashboard_profile/assets/blue-add.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -15,6 +15,7 @@ import { useCallback } from "react";
 const ApplicationsListCard = () => {
     const [data, setData] = useState([]);
     const token = localStorage.getItem("tokenHngKey");
+    const navigate = useNavigate();
 
     const fetchApplicants =  useCallback(  async () => {
         try {
@@ -81,7 +82,7 @@ const ApplicationsListCard = () => {
             <ApplicationsListHeader sortOldestToNewest={sortOldestToNewest} sortNewestToOldest={sortNewestToOldest}/>
             <div className={styles.applications_list_card}>
                 {data?.map((application, index) => (
-                     <div className={styles.applications_card} key={index}>
+                     <div className={styles.applications_card} key={index} onClick={()=>navigate(`/dashboard/applications/${application.id}`)}>
                         <div className={styles.applications_card_title}>
                             <span>{application?.jobTitle}</span>
                             <span>{application?.createdOn?.split("T").shift()}</span>

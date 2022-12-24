@@ -6,11 +6,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useCallback } from "react";
+import Spinner from "components/spinner/Spinner";
 const Table = () => {
     const [data, setData] = useState([]);
     const [pageCount, setPageCout] = useState(1)
     const token = localStorage.getItem("tokenHngKey");
-     const [pagination, setPagination] = useState({
+    const [isLoading, setIsLoading] = useState(true);
+    const [pagination, setPagination] = useState({
         "pageNo": 0,
         "pageSize": 10,
     });
@@ -29,12 +31,13 @@ const Table = () => {
                     );
                     setData(response.data?.content);
                     setPageCout(response.data?.totalPages);
+                    setIsLoading(false);
 
                 } catch (error) {
                     console.error(`Could not get applicants: ${error}`);
                 }          
     },[token,pagination.pageNo,pagination.pageSize])
-    const sortOldestToNewest =useCallback( async()=>{
+    const sortOldestToNewest = useCallback( async()=>{
         try{
             const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/professional-profile/entries/all`, 
                 {
@@ -88,6 +91,9 @@ const Table = () => {
         fetchApplicants();
        
     }
+    if (isLoading) {
+        return <Spinner/>;
+    }
     return (
         <div>
             <ApplicationsListHeader sortOldestToNewest={sortOldestToNewest} sortNewestToOldest={sortNewestToOldest}/>
@@ -123,7 +129,6 @@ const Table = () => {
                             nextLabel=">"
                             pageRangeDisplayed={5}
                             pageCount={pageCount}
-                            marginPagesDisplayed="1"
                             previousLabel="<"
                             renderOnZeroPageCount={null}
                             onPageChange={handlePageClick}

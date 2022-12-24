@@ -6,11 +6,13 @@ import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useCallback } from "react";
+import Spinner from "components/spinner/Spinner";
 
 const DashboardHome = () => {
     const navigate = useNavigate();
     const [statValue, setStatValue] = useState({});
     const token = localStorage.getItem("tokenHngKey");
+    const [isLoading, setIsLoading] = useState(true);
     const getStatisticsDetail = useCallback( async () => {
         try {
             const response = await axios.get(
@@ -22,14 +24,19 @@ const DashboardHome = () => {
                 }
             );
             setStatValue(response?.data);
-            console.log(response?.data);
+            setIsLoading(false);
         } catch (err) {
+            setIsLoading(false);
             console.log(err?.response?.data);
         }
     },[token]);
     useEffect(() => {
         getStatisticsDetail();
     }, [ getStatisticsDetail]);
+
+    if (isLoading) {
+        return <Spinner/>;
+    }
     
     return (
         <section>
