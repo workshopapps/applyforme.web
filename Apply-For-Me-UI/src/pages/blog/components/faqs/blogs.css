@@ -12,6 +12,13 @@
     display: none;
    
 }
+@media screen and (max-width: 767px) {
+    .blogs {
+        width: 90%;
+        display: block;
+    }
+    
+}
 @media screen and (max-width: 760px) {
     .blogs {
         width: 90%;
