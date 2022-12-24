@@ -170,7 +170,19 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="right col-md-4"></div>
+                    <div className="right col-md-4">
+                        <div className="sub_div">
+                            <p  className="sub_div_p">
+                                Get the latest career resource tips delivered to your email! 
+                                Subscribe to our Newsletter below
+                            </p>
+                            <form  className="sub_div_form">
+                                <input className="sub_div_input" type="text" placeholder="email address" />
+                                <button className="sub_div_button">Subscribe</button>
+                            </form>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

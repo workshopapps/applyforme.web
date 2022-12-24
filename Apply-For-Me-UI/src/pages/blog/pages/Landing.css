@@ -5,9 +5,15 @@
 
 .wrapper {
     position: relative;
+    margin-top: 5.5rem;
     /* top: 12vh; */
 }
-
+@media screen and (max-width: 1050px) {
+    .wrapper {
+    margin-top:0rem;
+    /* top: 12vh; */
+}
+}
 @media screen and (max-width: 760px) {
     .content {
         width: 90%;
