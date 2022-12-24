@@ -154,7 +154,18 @@
     border-radius: 8px;
     width: 70%;
 }
-
+@media screen and (max-width: 568px) {
+    .home .items-container {
+        display: flex;
+        justify-content: space-between;
+         flex-direction: column; 
+    }
+    .home .left .item {
+        width: 100%;
+        padding: 20px 5px;
+        margin: 0 auto;
+    }
+}
 @media screen and (max-width: 860px) {
     .home {
         min-height: 100vh;
