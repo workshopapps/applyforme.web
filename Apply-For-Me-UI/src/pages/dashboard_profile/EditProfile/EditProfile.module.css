@@ -118,11 +118,16 @@
     }
     .buttons_box {
         display: flex;
-        gap: 0.7rem;
+        gap: 1.7rem;
         margin-inline: auto;
+        border-bottom: 1px solid #cccccc;
     }
     .buttons_box button {
-        width: 1%;
+        font-size: 1rem;
+        padding: 0;
+    }
+    .button_active {
+        padding: 0;
     }
 }
 @media screen and (min-width: 610px) {
@@ -149,5 +154,12 @@
     }
     .content_desktop {
         display: none;
+    }
+}
+@media screen and (max-width: 360px) {
+    .buttons_box {
+        display: flex;
+        gap: 1rem;
+        margin-inline: auto;
     }
 }
