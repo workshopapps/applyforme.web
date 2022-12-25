@@ -4,7 +4,7 @@ import CoverLetter from "./CoverLetter/CoverLetter";
 import JobSearch from "./JobSearch/JobSearch";
 import Review from "./Review/Review";
 import Settings from "./Settings/Settings";
-import styles from "./CreateProfile.module.css";
+import styles from "./EditProfile.module.css";
 import TopBar from "../components/TopBar/TopBar";
 import BlueButton from "../../../components/buttons/blue_background/BlueButton";
 import BlueBorderButton from "../../../components/buttons/blue_border_button/BlueBorderButton";

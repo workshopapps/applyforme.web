@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import styles from "../CreateProfile.module.css";
+import styles from "../EditProfile.module.css";
 import classes from "./JobSearch.module.css";
 // import pdf from "../../assets/pdf.png";
 import Dropdown from "../../components/Dropdown/Dropdown";

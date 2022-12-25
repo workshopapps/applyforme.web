@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { NavLink } from "react-router-dom";
-import styles from "../CreateProfile.module.css";
+import styles from "../EditProfile.module.css";
 import classes from "./Review.module.css";
 import { useNavigate } from "react-router-dom";
 import BlueButton from "../../../../components/buttons/blue_background/BlueButton";
@@ -150,9 +150,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                 {included_keywords}
                             </section>
                         ) : (
-
                             <p className={classes.not_filled}>None specified</p>
-
                         )}
                         <h5>Keywords</h5>
                     </div>

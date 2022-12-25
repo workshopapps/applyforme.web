@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../CreateProfile.module.css";
+import styles from "../EditProfile.module.css";
 import classes from "./CoverLetter.module.css";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import Input from "../../components/InputField/InputField";

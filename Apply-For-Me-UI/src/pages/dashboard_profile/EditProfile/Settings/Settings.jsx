@@ -1,4 +1,4 @@
-import styles from "../CreateProfile.module.css";
+import styles from "../EditProfile.module.css";
 import classes from "./Settings.module.css";
 import AddKeyWord from "../../components/AddKeyword/AddKeyword";
 
