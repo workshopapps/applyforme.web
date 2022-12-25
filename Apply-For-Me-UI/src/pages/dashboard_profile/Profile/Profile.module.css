@@ -110,7 +110,7 @@
     cursor: pointer;
 }
 .delete_modal {
-    margin-top: 35vh;
+    margin-top: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -145,13 +145,14 @@
     border-radius: 8px;
     color: #bfbfbf;
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 .modal_buttons button:last-child {
     color: #fbfbff;
     font-weight: 600;
     background: #d44e4e;
     border-radius: 8px;
+    font-size: 1rem;
 }
 .view_icon,
 .delete_icon,
@@ -298,8 +299,10 @@
     .delete_modal {
         height: 17rem;
     }
-    .modal_buttons {
-        flex-direction: column-reverse;
-        margin-inline: auto;
+    .modal_buttons button {
+        width: 8rem;
+    }
+    .delete_modal p {
+        font-size: 1.1rem;
     }
 }
