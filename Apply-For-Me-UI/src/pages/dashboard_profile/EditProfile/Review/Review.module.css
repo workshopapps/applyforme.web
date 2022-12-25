@@ -14,6 +14,7 @@
 }
 .review_buttons button {
     margin-bottom: 1rem;
+    width: 300px;
 }
 .coverletter_body {
     margin-top: 1rem;
@@ -87,9 +88,19 @@
     font-size: 0.875rem;
     color: #737373;
 }
+.hr_one {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid #cccccc;
+}
 @media screen and (max-width: 960px) {
     .review_box {
         margin-top: 1.5rem;
+    }
+    .review_buttons button {
+        margin-bottom: 1rem;
+        width: 100%;
     }
 }
 @media screen and (min-width: 960px) {
