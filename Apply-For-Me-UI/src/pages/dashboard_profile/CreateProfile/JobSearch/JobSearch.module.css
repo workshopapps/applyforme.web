@@ -28,7 +28,7 @@ p {
     padding-top: 0.25rem;
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 1300px) {
     .detailsdropdown_box {
         display: grid;
         grid-template-columns: repeat(3, 29%);

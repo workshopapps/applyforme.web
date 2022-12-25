@@ -2,15 +2,10 @@
     background-color: #f3f3fb;
     padding-left: 5%;
     margin-left: 9rem;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
 }
-@media only screen and (max-width: 480px) {
-    .profile_page,
-    .noprofile {
-        margin-left: 0;
-    }
-}
+
 .noprofile_body {
     margin-top: 242px;
     gap: 1rem;
@@ -45,26 +40,6 @@
     font-size: 1rem;
     font-weight: 600;
 }
-
-@media screen and (min-width: 720px) {
-    #mobile_view {
-        display: none;
-    }
-    #desktop_view {
-        display: flex;
-    }
-}
-@media screen and (max-width: 720px) {
-    #mobile_view {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 242px;
-    }
-    #desktop_view {
-        display: none;
-    }
-}
 .mobile_view p {
     font-weight: 300;
     font-size: 16px;
@@ -79,15 +54,14 @@
     align-items: center;
     justify-content: center;
 }
-.mobile_view img {
+.btn_plus img {
     margin-top: auto;
-    width: 3rem;
-    height: 3rem;
+    width: 1.6rem;
+    height: 1.6rem;
 }
-.btn_plus_fixed {
-    margin-top: auto;
-    width: 3rem;
-    height: 3rem;
+.btn_plus_fixed img {
+    width: 3.3rem;
+    height: 3.3rem;
     position: fixed;
     bottom: 15%;
     right: 7%;
@@ -109,7 +83,7 @@
     animation: loading_animation 2s linear infinite;
 }
 
-/* Define  animation */
+/* Loading  animation */
 @keyframes loading_animation {
     0% {
         background-color: #bfbfbf;
@@ -119,5 +93,43 @@
     50% {
         background-color: #2f80ed;
         background-position: 100% 0%;
+    }
+}
+@media screen and (max-width: 360px) {
+    .btn_plus_fixed img {
+        bottom: 19%;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .profile_page,
+    .noprofile {
+        padding-right: 5%;
+        margin-left: 0;
+    }
+}
+@media screen and (min-width: 720px) {
+    #mobile_view {
+        display: none;
+    }
+    #desktop_view {
+        display: flex;
+    }
+}
+@media screen and (max-width: 720px) {
+    #mobile_view {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 65vh;
+    }
+
+    #desktop_view {
+        display: none;
+    }
+}
+@media screen and (max-width: 950px) {
+    .noprofile_body_text {
+        font-size: 1.25rem;
     }
 }
