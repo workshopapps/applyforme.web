@@ -110,7 +110,10 @@
         padding-bottom: 2rem;
     }
     .form_body {
-        padding: 1.5rem;
+        padding-block: 1.5rem;
+    }
+    .form_body h3 {
+        font-size: 1rem;
     }
     .content_mobile {
         display: none;
