@@ -1,35 +1,3 @@
-@media screen and (max-width: 960px) {
-    .review_box {
-        margin-top: 1.5rem;
-    }
-}
-@media screen and (min-width: 960px) {
-    .review_buttons {
-        display: flex;
-        justify-content: flex-end;
-        gap: 0.5rem;
-    }
-    .review_box_left {
-        display: flex;
-        justify-content: space-between;
-        gap: 3rem;
-    }
-    .review_top {
-        display: flex;
-        justify-content: space-between;
-    }
-    .review_top_email {
-        margin-block: auto;
-    }
-
-    .review_box p {
-        font-size: 1rem;
-        font-weight: 300;
-        line-height: 150%;
-        letter-spacing: 0.01em;
-        color: #52515b;
-    }
-}
 .review_top_email p {
     font-size: 1rem;
     color: #52515b;
@@ -118,4 +86,40 @@
 .clbody_text {
     overflow: auto;
     max-height: 12rem;
+}
+.coverletter_body h6 {
+    font-size: 0.875rem;
+    color: #737373;
+}
+@media screen and (max-width: 960px) {
+    .review_box {
+        margin-top: 1.5rem;
+    }
+}
+@media screen and (min-width: 960px) {
+    .review_buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+    .review_box_left {
+        display: flex;
+        justify-content: space-between;
+        gap: 3rem;
+    }
+    .review_top {
+        display: flex;
+        justify-content: space-between;
+    }
+    .review_top_email {
+        margin-block: auto;
+    }
+
+    .review_box p {
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 150%;
+        letter-spacing: 0.01em;
+        color: #52515b;
+    }
 }

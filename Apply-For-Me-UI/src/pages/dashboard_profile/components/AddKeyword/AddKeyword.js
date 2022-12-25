@@ -30,7 +30,7 @@ const AddKeyword = ({ keywords, setKeywords }) => {
                     type="text"
                     onKeyDown={handleKeyDown}
                     className={styles.keyword_input}
-                    placeholder="type a keyword"
+                    placeholder="Type a keyword"
                     width={100}
                 />
                 <h5>Type keyword and press Enter (Max. 2 keywords)</h5>

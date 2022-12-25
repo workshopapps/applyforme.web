@@ -30,3 +30,8 @@
     font-weight: 400;
     color: #737373;
 }
+@media screen and (max-width: 480px) {
+    .cl_text {
+        font-size: 0.875rem;
+    }
+}

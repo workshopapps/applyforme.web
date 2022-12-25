@@ -102,7 +102,7 @@ const Review = ({ formData, keywords, setStep }) => {
                             {formData.job_title}
                         </h3>
                     ) : (
-                        <p className={classes.not_filled}>not specified yet</p>
+                        <p className={classes.not_filled}>Not specified yet</p>
                     )}
 
                     <h5>Job title</h5>
@@ -141,9 +141,7 @@ const Review = ({ formData, keywords, setStep }) => {
                                 {included_keywords}
                             </section>
                         ) : (
-
                             <p className={classes.not_filled}>None specified</p>
-
                         )}
                         <h5>Keywords</h5>
                     </div>
