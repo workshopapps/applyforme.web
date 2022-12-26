@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import classes from "./DashboardSidebar.module.css";
 import Logo from "../../assets/images/afm-logo.svg";
-import DashboardIcon from "../../assets/images/dashboard_logo.svg";
-import ProfileIcon from "../../assets/images/profile_dashboard_logo.svg";
-import BriefCaseIcon from "../../assets/images/office_briefcase_dashboard_logo.svg";
+import DashboardIcon from "../../assets/images/dashboard_logoo.svg";
+import ProfileIcon from "../../assets/images/profile_dashboard_logoo.svg";
+import BriefCaseIcon from "../../assets/images/office_briefcase_dashboard_logoo.svg";
+import activeDashboardIcon from "../../assets/images/active_dashboard.svg";
+import activeProfileIcon from "../../assets/images/active_profile.svg";
+import activeApplicationsIcon from "../../assets/images/active_applications.svg";
 import mobileOverviewIcon from "../../assets/images/bottomnav-overview-icon.svg";
-import mobileProfilesIcon from "../../assets/images/bottomnav-profiles-icon.svg";
+import mobileProfilesIcon from "../../assets/images/bottom_nav_profile.svg";
 import mobileApplicationsIcon from "../../assets/images/bottomnav-applications-icon.svg";
+import activeMobileDashboard from "../../assets/images/mobile_active_dashboard.svg";
+import activeMobileProfile from "../../assets/images/mobile_active_profile.svg";
+import activeMobileApplications from "../../assets/images/mobile_active_applications.svg";
 
 import { useGlobalContext } from "../../hooks/context";
 
@@ -33,25 +39,34 @@ const DashboardSidebar = () => {
             path: "/dashboard/",
             img: {
                 web: DashboardIcon,
-                mobile: mobileOverviewIcon
+                webActive: activeDashboardIcon,
+                mobile: mobileOverviewIcon,
+                mobileActive: activeMobileDashboard
             },
-            title: "Dashboard"
+            title: "Dashboard",
+            web_title: "Dashboard"
         },
         {
             path: "/dashboard/user",
             img: {
                 web: ProfileIcon,
-                mobile: mobileProfilesIcon
+                webActive: activeProfileIcon,
+                mobile: mobileProfilesIcon,
+                mobileActive: activeMobileProfile
             },
-            title: "Profile"
+            title: "Profile",
+            web_title: "My job profile"
         },
         {
             path: "/dashboard/applications",
             img: {
                 web: BriefCaseIcon,
-                mobile: mobileApplicationsIcon
+                webActive: activeApplicationsIcon,
+                mobile: mobileApplicationsIcon,
+                mobileActive: activeMobileApplications
             },
-            title: "Applications"
+            title: "Applications",
+            web_title: "Applications"
         }
     ];
 
@@ -88,7 +103,11 @@ const DashboardSidebar = () => {
                                             src={link.img.web}
                                             alt="Dashboard icon"
                                         />
-                                        <p>{link.title}</p>
+                                        <img
+                                            src={link.img.webActive}
+                                            alt="Dashboard icon"
+                                        />
+                                        <p>{link.web_title}</p>
                                     </NavLink>
                                 </li>
                             );
@@ -124,6 +143,10 @@ const DashboardSidebar = () => {
                                         <img
                                             src={link.img.mobile}
                                             alt="Dashboard icon"
+                                        />
+                                        <img
+                                            src={link.img.mobileActive}
+                                            alt="Dashboard active"
                                         />
                                         <p>{link.title}</p>
                                     </NavLink>
