@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { NavLink } from "react-router-dom";
-import styles from "../CreateProfile.module.css";
+import styles from "../EditProfile.module.css";
 import classes from "./Review.module.css";
 import { useNavigate } from "react-router-dom";
 import BlueButton from "../../../../components/buttons/blue_background/BlueButton";
@@ -17,7 +17,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
     const navigate = useNavigate();
     let included_keywords = String(keywords);
 
-    if (included_keywords.length <= 1) {
+    if (included_keywords.length <= 0) {
         included_keywords = "No keywords";
     }
     // console.log(included_keywords);
@@ -121,7 +121,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
                     <h5>Personal email</h5>
                 </div>
             </div>
-            <hr className={styles.hr_one} />
+            <hr className={classes.hr_one} />
             <div className={classes.review_box}>
                 <div className={classes.review_box_left}>
                     <div>
@@ -150,9 +150,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                 {included_keywords}
                             </section>
                         ) : (
-
                             <p className={classes.not_filled}>None specified</p>
-
                         )}
                         <h5>Keywords</h5>
                     </div>
@@ -206,13 +204,8 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                 <LightButton
                                     text={"Go back to edit"}
                                     func={() => setStep(0)}
-                                    width={300}
                                 />
-                                <BlueButton
-                                    func={handleSubmit}
-                                    text={"Send profile for searching"}
-                                    width={300}
-                                />
+                                <BlueButton func={handleSubmit} text={"Save"} />
                             </div>
                         </div>
                     </div>
