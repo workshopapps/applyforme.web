@@ -59,9 +59,7 @@ const CoverLetter = ({ formData, setFormData }) => {
                 </small>
             )}
             <div className={classes.cover_letter}>
-                <label>
-                    <p className={classes.cl_text}>Cover letter subject</p>
-                </label>
+                <p className={classes.cl_text}>Cover letter subject</p>
                 <Input
                     className={classes.clsubject_input}
                     type="text"
@@ -77,9 +75,7 @@ const CoverLetter = ({ formData, setFormData }) => {
                 />
             </div>
             <div>
-                <label>
-                    <p className={classes.cl_text}>Cover letter body</p>
-                </label>
+                <p className={classes.cl_text}>Cover letter body</p>
                 <textarea
                     className={classes.cl_textarea}
                     placeholder="Hello,

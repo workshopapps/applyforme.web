@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import styles from "../CreateProfile.module.css";
+import styles from "../EditProfile.module.css";
 import classes from "./JobSearch.module.css";
 // import pdf from "../../assets/pdf.png";
 import Dropdown from "../../components/Dropdown/Dropdown";
@@ -174,7 +174,7 @@ const JobSearch = ({ formData, setFormData }) => {
             </div> */}
             <div className={classes.detailsdropdown_box}>
                 <div>
-                    <p>Experience</p>
+                    <p>Experience level</p>
                     <Dropdown
                         options={[
                             { label: "No experience", value: "trainee" },
@@ -193,7 +193,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     />
                 </div>
                 <div>
-                    <p>Employment Type</p>
+                    <p>Employment type</p>
                     <Dropdown
                         options={[
                             { label: "Contract", value: "contract" },
@@ -211,7 +211,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     />
                 </div>
                 <div>
-                    <p>Salary Expectation</p>
+                    <p>Salary expectation</p>
                     <Dropdown
                         options={salaryNames}
                         placeholderText="Salary Expectation"
@@ -252,7 +252,9 @@ const JobSearch = ({ formData, setFormData }) => {
                 )}
             </div>
             {formData?.shortenedCVUrl ? (
-                <p>If you want to change your CV, upload a new one</p>
+                <p className={classes.newcv_text}>
+                    If you want to change your CV, upload a new one
+                </p>
             ) : null}
             <div className={classes.uploadcv_box}>
                 <p>Upload your CV</p>

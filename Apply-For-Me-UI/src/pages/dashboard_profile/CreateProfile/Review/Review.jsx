@@ -16,7 +16,7 @@ const Review = ({ formData, keywords, setStep }) => {
     const navigate = useNavigate();
     let included_keywords = String(keywords);
 
-    if (included_keywords.length <= 1) {
+    if (included_keywords.length <= 0) {
         included_keywords = "No keywords";
     }
     console.log(included_keywords);
@@ -102,7 +102,7 @@ const Review = ({ formData, keywords, setStep }) => {
                             {formData.job_title}
                         </h3>
                     ) : (
-                        <p className={classes.not_filled}>not specified yet</p>
+                        <p className={classes.not_filled}>Not specified yet</p>
                     )}
 
                     <h5>Job title</h5>
@@ -112,7 +112,7 @@ const Review = ({ formData, keywords, setStep }) => {
                     <h5>Personal email</h5>
                 </div>
             </div>
-            <hr className={styles.hr_one} />
+            <hr className={classes.hr_one} />
             <div className={classes.review_box}>
                 <div className={classes.review_box_left}>
                     <div>
@@ -141,9 +141,7 @@ const Review = ({ formData, keywords, setStep }) => {
                                 {included_keywords}
                             </section>
                         ) : (
-
                             <p className={classes.not_filled}>None specified</p>
-
                         )}
                         <h5>Keywords</h5>
                     </div>
@@ -194,12 +192,10 @@ const Review = ({ formData, keywords, setStep }) => {
                             <div className={classes.review_buttons}>
                                 <LightButton
                                     text={"Go back to edit"}
-                                    width={300}
                                     func={() => setStep(0)}
                                 />
                                 <BlueButton
                                     func={handleSubmit}
-                                    width={300}
                                     text={"Send profile for searching"}
                                 />
                             </div>

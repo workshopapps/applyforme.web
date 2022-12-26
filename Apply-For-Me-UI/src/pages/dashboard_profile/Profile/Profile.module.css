@@ -1,5 +1,5 @@
 .profile_page {
-    padding:0 5%;
+    padding: 0 5%;
     padding-bottom: 25%;
     width: 100vw;
     min-height: 100vh;
@@ -10,75 +10,9 @@
 .sidemarg {
     margin-left: 9rem;
 }
-@media only screen and (max-width: 480px) {
-    .profile_page,
-    .sidemarg {
-        margin-left: 0;
-    }
-}
-
-.edit_box h3 {
-    font-weight: 400;
-    font-size: 1.25rem;
-    margin-bottom: 0.25rem;
-    /* width: 25%; */
-}
-.edit_box p {
-    /* width: 50%; */
-    font-weight: 400;
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
-}
 .job_deets {
     display: flex;
     gap: 0.5rem;
-}
-@media screen and (min-width: 720px) {
-    .each_profile {
-        width: 90%;
-        background: #fefeff;
-        border-radius: 12px;
-        margin-top: 1.25rem;
-        padding-inline: 1.5rem;
-        padding-block: 1.5rem;
-    }
-    .edit_box {
-        display: flex;
-        justify-content: space-between;
-    }
-    .edit_box p {
-        word-wrap: break-word;
-        font-weight: 400;
-        font-size: 1rem;
-        margin-bottom: 0.25rem;
-    }
-    .edit_box h3 {
-        font-weight: 400;
-        font-size: 1.5rem;
-        margin-bottom: 0.25rem;
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 720px) {
-    .each_profile {
-        width: 100%;
-        background: #fefeff;
-        border-radius: 12px;
-        margin-top: 1.25rem;
-        padding-inline: 1.5rem;
-        padding-block: 1.5rem;
-    }
-    .edit_box p {
-        /* width: 22%; */
-        font-weight: 400;
-        font-size: 1rem;
-        margin-bottom: 0.25rem;
-    }
-    .edit_box {
-        display: flex;
-        justify-content: space-between;
-    }
 }
 
 .createjob_button {
@@ -102,11 +36,6 @@
     color: #fbfbff;
     font-size: 1rem;
     font-weight: 600;
-}
-@media screen and (max-width: 480px) {
-    .createjob_button {
-        display: none;
-    }
 }
 
 .profile_description {
@@ -162,16 +91,8 @@
 .loading_box p {
     text-align: center;
 }
-@media only screen and (max-width: 480px) {
-    .loading_box {
-        margin-left: 0;
-    }
-    .loading_animate {
-        margin-inline: auto;
-        width: 50%;
-    }
-}
-/* Define animation  */
+
+/* Loading animation  */
 @keyframes loading_animation {
     0% {
         background-color: #bfbfbf;
@@ -189,7 +110,7 @@
     cursor: pointer;
 }
 .delete_modal {
-    margin-top: 35vh;
+    margin-top: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -198,30 +119,6 @@
     height: 14rem;
     background: #ffffff;
     border-radius: 16px;
-}
-@media screen and (max-width: 860px) {
-    .delete_modal {
-        height: 17rem;
-    }
-    .modal_buttons {
-        flex-direction: column-reverse;
-        margin-inline: auto;
-    }
-}
-@media screen and (max-width: 600px) {
-    .delete_modal {
-        height: 17rem;
-        margin-inline: 2rem;
-        outline: none;
-    }
-    .profiledesc_details p {
-        color: #52515b;
-        font-size: 0.75rem;
-        line-height: 1.5;
-        letter-spacing: 0.3px;
-        text-align: justify;
-        font-weight: 400;
-    }
 }
 
 .delete_modal p {
@@ -248,13 +145,14 @@
     border-radius: 8px;
     color: #bfbfbf;
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 .modal_buttons button:last-child {
     color: #fbfbff;
     font-weight: 600;
     background: #d44e4e;
     border-radius: 8px;
+    font-size: 1rem;
 }
 .view_icon,
 .delete_icon,
@@ -296,13 +194,7 @@
     display: flex;
     gap: 1rem;
 }
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-    .dropdownContent {
-        padding: 0.5rem;
-        /* width: 70px; */
-        left: -5rem;
-    }
-}
+
 .crud_link {
     display: flex;
     cursor: pointer;
@@ -311,20 +203,106 @@
 .crud_link p {
     color: #2e3192;
 }
-.btn_plus_fixed {
-    /* margin-top: auto; */
-    width: 3rem;
-    height: 3rem;
+.btn_plus_fixed img {
     position: fixed;
     bottom: 15%;
     right: 7%;
-}
-.btn_plus_fixed img {
     width: 3rem;
     height: 3rem;
 }
-@media screen and (min-width: 480px) {
-    .mobile_only {
+.each_profile {
+    width: 90%;
+    background: #fefeff;
+    border-radius: 12px;
+    margin-top: 1.25rem;
+    padding-inline: 1.5rem;
+    padding-block: 1.5rem;
+}
+.edit_box {
+    display: flex;
+    justify-content: space-between;
+}
+.edit_box p {
+    word-wrap: break-word;
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+.edit_box h3 {
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+    width: 100%;
+}
+.mobile_only {
+    display: none;
+}
+@media only screen and (max-width: 360px) {
+    .btn_plus_fixed img {
+        bottom: 18%;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .createjob_button {
         display: none;
+    }
+    .loading_box {
+        margin-left: 0;
+    }
+    .loading_animate {
+        margin-inline: auto;
+        width: 50%;
+    }
+    .mobile_only {
+        display: block;
+    }
+    .profile_page {
+        margin-left: 0;
+        padding-bottom: 50%;
+    }
+    .sidemarg {
+        margin-left: 0;
+    }
+    .edit_box h3 {
+        font-size: 1.25rem;
+    }
+    .edit_box p {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    .each_profile {
+        width: 100%;
+    }
+    .dropdownContent {
+        padding: 0.5rem;
+        left: -5rem;
+    }
+}
+@media screen and (max-width: 600px) {
+    .delete_modal {
+        height: 17rem;
+        margin-inline: 2rem;
+        outline: none;
+    }
+    .profiledesc_details p {
+        color: #52515b;
+        font-size: 0.75rem;
+        line-height: 1.5;
+        letter-spacing: 0.3px;
+        text-align: justify;
+        font-weight: 400;
+    }
+}
+@media screen and (max-width: 860px) {
+    .delete_modal {
+        height: 17rem;
+    }
+    .modal_buttons button {
+        width: 8rem;
+    }
+    .delete_modal p {
+        font-size: 1.1rem;
     }
 }

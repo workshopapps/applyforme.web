@@ -11,7 +11,7 @@ const Settings = ({ keywords, setKeywords }) => {
                     posting
                 </h3>
                 <p>
-                    Here you have the opportunity to write a specific keywords
+                    Here, you have the opportunity to write specific keywords
                     your perfect job description would have.
                 </p>
                 <div className={classes.keywords_box}>
