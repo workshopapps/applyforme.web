@@ -4,10 +4,9 @@ import CoverLetter from "./CoverLetter/CoverLetter";
 import JobSearch from "./JobSearch/JobSearch";
 import Review from "./Review/Review";
 import Settings from "./Settings/Settings";
-import styles from "./CreateProfile.module.css";
+import styles from "./EditProfile.module.css";
 import TopBar from "../components/TopBar/TopBar";
 import BlueButton from "../../../components/buttons/blue_background/BlueButton";
-import BlueBorderButton from "../../../components/buttons/blue_border_button/BlueBorderButton";
 import axios from "axios";
 
 const CreateProfile = () => {
@@ -181,38 +180,46 @@ const CreateProfile = () => {
                 </div>
                 <div className={styles.content_desktop}>
                     <nav className={styles.buttons_box}>
-                        {step === 0 ? (
-                            <BlueButton text={"1"} func={() => setStep(0)} />
-                        ) : (
-                            <BlueBorderButton
-                                text={"1"}
-                                func={() => setStep(0)}
-                            />
-                        )}
-                        {step === 1 ? (
-                            <BlueButton text={"2"} func={() => setStep(1)} />
-                        ) : (
-                            <BlueBorderButton
-                                text={"2"}
-                                func={() => setStep(1)}
-                            />
-                        )}
-                        {step === 2 ? (
-                            <BlueButton text={"3"} func={() => setStep(2)} />
-                        ) : (
-                            <BlueBorderButton
-                                text={"3"}
-                                func={() => setStep(2)}
-                            />
-                        )}
-                        {step === 3 ? (
-                            <BlueButton text={"4"} func={() => setStep(3)} />
-                        ) : (
-                            <BlueBorderButton
-                                text={"4"}
-                                func={() => setStep(3)}
-                            />
-                        )}
+                        <button
+                            onClick={() => setStep(0)}
+                            className={
+                                step === 0
+                                    ? styles.button_active
+                                    : styles.button_inactive
+                            }
+                        >
+                            JobSearch
+                        </button>
+                        <button
+                            onClick={() => setStep(1)}
+                            className={
+                                step === 1
+                                    ? styles.button_active
+                                    : styles.button_inactive
+                            }
+                        >
+                            Template
+                        </button>
+                        <button
+                            onClick={() => setStep(2)}
+                            className={
+                                step === 2
+                                    ? styles.button_active
+                                    : styles.button_inactive
+                            }
+                        >
+                            Settings
+                        </button>
+                        <button
+                            onClick={() => setStep(3)}
+                            className={
+                                step === 3
+                                    ? styles.button_active
+                                    : styles.button_inactive
+                            }
+                        >
+                            Review
+                        </button>
                     </nav>
                 </div>
 

@@ -174,7 +174,7 @@ const JobSearch = ({ formData, setFormData }) => {
             </div> */}
             <div className={classes.detailsdropdown_box}>
                 <div>
-                    <p>Experience</p>
+                    <p>Experience level</p>
                     <Dropdown
                         options={[
                             { label: "No experience", value: "trainee" },
@@ -193,7 +193,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     />
                 </div>
                 <div>
-                    <p>Employment Type</p>
+                    <p>Employment type</p>
                     <Dropdown
                         options={[
                             { label: "Contract", value: "contract" },
@@ -211,7 +211,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     />
                 </div>
                 <div>
-                    <p>Salary Expectation</p>
+                    <p>Salary expectation</p>
                     <Dropdown
                         options={salaryNames}
                         placeholderText="Salary Expectation"

@@ -17,7 +17,6 @@ const Profile = ({ profileList }) => {
     const navigate = useNavigate();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [activeId, setActiveId] = useState();
-    
 
     // eslint-disable-next-line no-unused-vars
     const token = localStorage.getItem("tokenKey");
@@ -117,7 +116,7 @@ const Profile = ({ profileList }) => {
                 style={{
                     overlay: {
                         position: "fixed",
-                        background: "rgba(21, 24, 104, 0.03)",
+                        background: "rgba(1, 4, 104, 0.03)",
                         backdropFilter: 'blur("1px")'
                     }
                 }}
