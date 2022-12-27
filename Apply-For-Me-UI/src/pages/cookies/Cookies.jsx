@@ -46,7 +46,7 @@ const Cookies = () => {
                             <h3 className="smheadings">
                                 Types of Technologies That We Use
                             </h3>
-                            <p className="paragraphs">
+                            <div className="paragraphs">
                                 Cookies: A cookie is a small piece of data (text
                                 file) that a website – when visited by a user –
                                 asks your browser to store on your device in
@@ -102,13 +102,13 @@ const Cookies = () => {
                                 cookies is disabled. For more information about
                                 cookies, you may visit{" "}
                                 <span>http://www.allaboutcookies.org</span>.
-                            </p>
+                            </div>
                         </div>
                         <div className="divs">
                             <h3 className="smheadings">
                                 Why We Use Cookies and Similar Technologies
                             </h3>
-                            <p className="paragraphs">
+                            <div className="paragraphs">
                                 We use cookies and similar technologies
                                 described above to recognize your logged-in
                                 state on the Sites, to understand what purchases
@@ -292,7 +292,7 @@ const Cookies = () => {
                                 You can find links to their privacy policies
                                 below in the “Managing Cookies Technologies”
                                 section.
-                            </p>
+                            </div>
                         </div>
                         <div className="divs">
                             <h3 className="smheadings">
@@ -319,7 +319,7 @@ const Cookies = () => {
                             <h3 className="smheadings">
                                 Managing Cookie Technologies
                             </h3>
-                            <p className="paragraphs">
+                            <div className="paragraphs">
                                 You have the ability to control the use of
                                 certain cookies and similar technologies.{" "}
                                 <br></br>
@@ -364,7 +364,7 @@ const Cookies = () => {
                                 <br></br>
                                 Additional Third-Party Cookies and Similar
                                 Technologies Used on the Site.
-                            </p>
+                            </div>
                         </div>
                         <div className="divs">
                             <h3 className="smheadings">Third-Party Tools</h3>
@@ -381,7 +381,7 @@ const Cookies = () => {
                         </div>
                         <div className="divs">
                             <h3 className="smheadings">Contact Us</h3>
-                            <p className="paragraphs">
+                            <div className="paragraphs">
                                 If you have questions about our use of cookies
                                 and similar technologies, please see the “
                                 <span>
@@ -394,7 +394,7 @@ const Cookies = () => {
                                     <a href="Privacy.jsx">Privacy Policy</a>
                                 </span>
                                 .
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>
