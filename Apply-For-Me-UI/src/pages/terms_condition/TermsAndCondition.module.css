@@ -155,6 +155,7 @@
 @media screen and (min-width: 1024px) {
     /**** ||| Fix for large text ||| ****/
     .intro_img {
+        margin-top: 5.5rem;
         font-size: 4.5rem;
         font-weight: 500;
     }
@@ -175,5 +176,10 @@
 
     .small_heading {
         font-size: 1.3rem;
+    }
+}
+@media only screen and (max-width:475px){
+    .intro_img {
+        font-size: 1.5rem;
     }
 }

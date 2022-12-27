@@ -30,6 +30,7 @@ const Pricing = ({
 
     const { user } = useSelector(state => state.user);
     const navigate = useNavigate();
+
     return (
         <>
             <Nav />
@@ -45,7 +46,7 @@ const Pricing = ({
                         <div className={styles.toggle}>
                             <p
                                 onClick={() =>
-                                    setToggle({ yearly: false, monthly: true })
+                                    setToggle({ yearly: !toggle.yearly , monthly: !toggle.monthly })
                                 }
                                 className={
                                     toggle.monthly ? styles.active_toggle : ""
@@ -63,7 +64,7 @@ const Pricing = ({
                             </div>
                             <p
                                 onClick={() =>
-                                    setToggle({ yearly: true, monthly: false })
+                                    setToggle({ yearly: !toggle.yearly , monthly: !toggle.monthly })
                                 }
                                 className={
                                     toggle.yearly ? styles.active_toggle : ""
