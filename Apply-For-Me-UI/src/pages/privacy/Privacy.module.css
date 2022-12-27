@@ -14,6 +14,7 @@
 }
 
 .top_view {
+    margin-top: 4.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,7 +45,7 @@
 .title {
     font-weight: 400;
     font-size: 20px;
-    line-height: 120%;
+    line-height: 30px;
     padding: 16px 0;
 }
 
@@ -55,13 +56,14 @@
 
     font-weight: 400;
     font-size: 12px;
-    line-height: 120%;
+    line-height:45px;
     text-align: justify;
 }
 
 #table_of_content li {
     text-decoration: underline;
     padding-bottom: 16px;
+    line-height: 30px;
 }
 
 .child_content img {

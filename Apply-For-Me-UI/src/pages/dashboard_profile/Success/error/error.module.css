@@ -67,11 +67,19 @@
     }
 }
 
-
-@media screen and (min-width:64rem) {
+@media screen and (max-width:1050px) {
     .container {
-        margin-top: 1.5rem;
+        margin-top: 5.5rem;
     }
+}
+
+@media only screen and (min-width:1051px){
+    .container {
+        margin-top: 7.5rem;
+    }
+}
+@media screen and (min-width:64rem) {
+    
 
     .heading {
         font-size: 16rem;

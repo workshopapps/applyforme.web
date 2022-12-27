@@ -96,6 +96,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    margin-top: 6rem;
 }
 .faqspage {
     display: flex;
@@ -158,6 +159,11 @@
     font-size: 18px;
 }
 
+@media (max-width: 1050px) {
+    .faqses{
+        margin-top: 0;
+    }
+}
 
 @media (max-width: 850px) {
     .faqs__section {
