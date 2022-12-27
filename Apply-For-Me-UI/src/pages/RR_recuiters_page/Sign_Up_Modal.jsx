@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-up";
 
-const Sign_Up_Modal = () => {
+const SignUpModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -140,4 +140,4 @@ const Sign_Up_Modal = () => {
   )
 }
 
-export default Sign_Up_Modal
+export default SignUpModal

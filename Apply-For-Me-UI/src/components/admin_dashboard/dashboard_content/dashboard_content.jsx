@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
 import { useState, useEffect } from "react";
 import "./dashboard_content.css";
-import { RR_Admin_list } from "./RR_admin_list/RR_admin_list";
+import { RRAdminList } from "./RR_admin_list/RR_admin_list";
 import axios from "axios";
 import { useCallback } from "react";
 export const DashboardContent = ({ inputSearchValue }) => {
@@ -69,7 +69,7 @@ export const DashboardContent = ({ inputSearchValue }) => {
                         </div>
                     </div>
                 </div>
-                <RR_Admin_list inputSearchValue={inputSearchValue} />
+                <RRAdminList inputSearchValue={inputSearchValue} />
             </div>
         </>
     );

@@ -73,7 +73,9 @@ const Pricing = ({
                                 {toggleInfo.text2}
                             </p>
                         </div>
-
+                        <div className={styles.seemore}>
+                            <p className={styles.seemorePar}>See more plans</p>
+                        </div>
                         <div className={styles.majorPlan}>
                             {plans.map(
                                 (
@@ -173,6 +175,7 @@ const Pricing = ({
                                 }
                             )}
                         </div>
+
                     </div>
                 </section>
                 <section className={styles.subHead}>

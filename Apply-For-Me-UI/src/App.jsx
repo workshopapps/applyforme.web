@@ -63,11 +63,11 @@ import Verification from "pages/authentication-pages/Verification";
 import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
-import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
+import {RRAdminProfilePage } from "pages/RR_admin_profile/RR_admin_profile";
 import { useEffect } from "react";
 
-import Sign_In from "pages/RR_recuiters_page/Sign_In";
-import Sign_Up from "pages/RR_recuiters_page/Sign_Up";
+import SignIn from "pages/RR_recuiters_page/Sign_In";
+import SignUp from "pages/RR_recuiters_page/Sign_Up";
 import { SuperDashBoard } from "pages/super_admin_dashboard/dashboardview";
 
 import TryoutForm from "pages/tryout_form/TryoutForm";
@@ -162,8 +162,8 @@ function App() {
 
                 {/* RECRUITER ROUTE */}
 
-                <Route exact path="/rr_sign_in" element={<Sign_In />} />
-                <Route exact path="/rr_sign_up" element={<Sign_Up />} />
+                <Route exact path="/rr_sign_in" element={<SignIn />} />
+                <Route exact path="/rr_sign_up" element={<SignUp />} />
 
                 {/*  PROTECTED ROUTE*/}
 
@@ -183,7 +183,7 @@ function App() {
                     <Route
                         exact
                         path="/user-page/reverseRecruiterAdmin/:id"
-                        element={<RR_admin_profile />}
+                        element={<RRAdminProfilePage />}
                     />
                     <Route
                         exact

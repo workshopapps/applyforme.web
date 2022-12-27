@@ -13,7 +13,7 @@ const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-in";
 
 
 
-const Sign_In_Modal = () => {
+const SignInModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -91,4 +91,4 @@ const Sign_In_Modal = () => {
   )
 }
 
-export default Sign_In_Modal
+export default SignInModal

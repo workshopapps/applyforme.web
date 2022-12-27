@@ -1,11 +1,11 @@
 import React from "react";
 import Applications from "./components/Applications";
-import RRD_Nav from "./components/RRD_Nav";
+import RRDNav from "./components/RRD_Nav";
 
 const RRD = () => {
     return (
         <>
-            <RRD_Nav />
+            <RRDNav />
             <Applications />
         </>
     );

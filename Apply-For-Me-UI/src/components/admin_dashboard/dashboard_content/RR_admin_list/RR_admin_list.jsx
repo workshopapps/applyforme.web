@@ -2,12 +2,12 @@
 import { useState,useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import './RR_admin_List.css';
-import { Desktop_List } from './desktop_list_wrapper';
-import { Mobile_view_list } from './mobile_list_wrapper';
+import { DesktopList } from './desktop_list_wrapper';
+import { MobileViewList } from './mobile_list_wrapper';
 import { Fetch_RR_Admin } from 'store/slice/RR_AdminSlice';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
-export const RR_Admin_list=()=>{
+export const RRAdminList=()=>{
     const RR_recruiter = useSelector((state)=>state.RRadmin);
     const navigate = useNavigate()
     const dispatch = useDispatch();
@@ -53,7 +53,7 @@ export const RR_Admin_list=()=>{
                                 const {firstName,currentJobTitle,id,createdOn} = user;
                                     return(
                                         <tr key={index}>
-                                            <Desktop_List firstName={firstName} currentJobTitle={currentJobTitle} id={id} createdOn={createdOn}/>
+                                            <DesktopList firstName={firstName} currentJobTitle={currentJobTitle} id={id} createdOn={createdOn}/>
                                         </tr> 
                                     )
                             })
@@ -78,7 +78,7 @@ export const RR_Admin_list=()=>{
                             const {firstName,currentJobTitle,id} = user;
                                     return(
                                         <div className='RRlist' key={index}>
-                                            <Mobile_view_list firstName={firstName} currentJobTitle={currentJobTitle} id={id} />
+                                            <MobileViewList firstName={firstName} currentJobTitle={currentJobTitle} id={id} />
                                         </div>
                                     
                                     )                            
