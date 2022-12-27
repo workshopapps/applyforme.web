@@ -19,7 +19,7 @@ import { useCallback } from "react";
 
 
 
-const RRD_Nav = () => {
+const RRDNav = () => {
     const [mobileSearch, setMobileSearch] = useState(false);
     const [activateSearchContainer, setActivateSearchContainer] = useState(false)
     const [searchData, setSearchData] = useState([])
@@ -238,4 +238,4 @@ const RRD_Nav = () => {
     );
 };
 
-export default RRD_Nav;
+export default RRDNav;

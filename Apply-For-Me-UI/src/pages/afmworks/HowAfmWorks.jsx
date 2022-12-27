@@ -1,6 +1,6 @@
 import React from 'react'
 import Footer from '../../components/footer/Footer'
-import Helpful_contact from '../../components/helpful/Helpful_contact'
+import HelpfulContact from '../../components/helpful/Helpful_contact'
 import Nav from '../../components/nav/Nav'
 import classes from '../../pages/afmworks/Afmworks.module.css'
 const HowAfmWorks = () => {
@@ -30,7 +30,7 @@ const HowAfmWorks = () => {
             </p>
             
           </div>
-          <Helpful_contact />
+          <HelpfulContact />
         </main>
 
         

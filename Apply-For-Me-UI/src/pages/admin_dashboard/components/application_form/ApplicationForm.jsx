@@ -4,7 +4,7 @@ import goBackIcon from "../../../../assets/images/back_arrow.svg";
 import { useState, useEffect } from "react";
 
 import { Link, useParams } from "react-router-dom";
-import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
+import RRDNav from "pages/RR_Dashboard/components/RRD_Nav";
 import jwtDecode from "jwt-decode";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
@@ -147,7 +147,7 @@ const ApplicationForm = () => {
           <ToastContainer />
          <section className={style.application_form} style={{paddingBottom:"6rem"}}>
             
-            <RRD_Nav />
+            <RRDNav />
             <div className={style.go_back_link}>
                 <Link to="/rr_admin">
                     <img src={goBackIcon} alt="" />
