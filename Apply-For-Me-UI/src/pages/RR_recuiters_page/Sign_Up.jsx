@@ -1,14 +1,14 @@
 import React from 'react'
 import LogoModal from './components/LogoModal';
-import Sign_Up_Modal from './Sign_Up_Modal';
+import SignUpModal from './Sign_Up_Modal';
 
-const Sign_Up = () => {
+const SignUp = () => {
   return (
     <div className='rr_signin'>
       <LogoModal />
-      <Sign_Up_Modal />
+      <SignUpModal />
     </div>
   )
 }
 
-export default Sign_Up
+export default SignUp
