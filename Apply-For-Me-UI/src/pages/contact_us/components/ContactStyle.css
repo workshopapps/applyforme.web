@@ -221,7 +221,7 @@ input.radio {
 /* contact page general styling */
 
 .contact .contact-mid {
-    margin: 3rem auto 3.125rem;
+    margin: 10rem auto 3.125rem;
 }
 
 
@@ -359,5 +359,10 @@ input.radio {
     .img-wrapper {
         display: flex;
         justify-content: center;
+    }
+}
+@media only screen and (max-width:1050px){
+    .contact .contact-mid {
+        margin: 3rem auto 3.125rem;
     }
 }
