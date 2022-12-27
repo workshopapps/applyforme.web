@@ -2,7 +2,7 @@ import classes from "../../../RR_Dashboard/styles/Applications.module.css";
 import ApplicationList from "../application_list/ApplicationList";
 // eslint-disable-next-line no-unused-vars
 import {useNavigate } from "react-router-dom";
-import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
+import RRDNav from "pages/RR_Dashboard/components/RRD_Nav";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useCallback } from "react";
@@ -40,7 +40,7 @@ const DashboardHome = () => {
     
     return (
         <section>
-            <RRD_Nav />
+            <RRDNav />
             <div className={classes.rrd_applications_wrapper}>
                 {/* Greetings */}
                 <div className={classes.greeting_text}>
