@@ -47,99 +47,94 @@ export const pricingPage = {
 
   plans: [
     {
-      basic: "Basic plan",
-      price: "$15.99",
+      basic: "Free plan",
+      price: "$0",
       duration: "Per month",
       model: [
         {
           icon: iconCheck,
-          text: "up to 15 applications per month",
+          text: "Up to 5 applications per month",
           alt: "icon, specifying status"
         },
         {
           icon: iconCheck,
-          text: "can create upto 5 job profiles",
+          text: "Can create up to 1 job profiles",
           alt: "icon, specifying status"
         },
         {
           icon: iconCheck,
-          text: "can create upto 5 job profiles",
+          text: "2 Keywords per job profile",
           alt: "icon, specifying status"
         },
         {
           icon: iconCheck,
-          text: "Access to 2 customer care session on CV review",
+          text: "Access to 2 cover letter templates",
           alt: "icon, specifying status"
         }
       ],
       btnText: "Get started"
     },
     {
-      basic: "Premium plan",
-      price: "$79.99",
+      basic: "Starter plan",
+      price: "$3.99",
       duration: "Per month",
       model: [
         {
           icon: iconCheckOutline,
-          text: "up to 40 applications per month",
+          text: "up to 20 applications per month",
           alt: "icon, specifying status"
         },
         {
           icon: iconCheckOutline,
-          text: "can create upto 15 job profiles",
+          text: "Can create up to 2 job profiles",
           alt: "icon, specifying status"
         },
         {
           icon: iconCheckOutline,
-          text: "up to 40 applications per month",
+          text: "2 keywords per profile",
           alt: "icon, specifying status"
         },
         {
           icon: iconCheckOutline,
-          text: "up to 40 applications per month",
-          alt: "icon, specifying status"
-        },
-        {
-          icon: iconCheckOutline,
-          text: "up to 40 applications per month",
-          alt: "icon, specifying status"
-        },
-        {
-          icon: iconCheckOutline,
-          text: "up to 40 applications per month",
+          text: "Access to 5 cover letter templates",
           alt: "icon, specifying status"
         }
       ],
       btnText: "Get started",
-      stamp: "Best choice"
+      stamp: "Popular choice"
     },
     {
-      basic: "Standard plan",
-      price: "$49.99",
+      basic: "Basic plan",
+      price: "$14.99",
       duration: "Per month",
       model: [
         {
           icon: iconCheck,
-          text: "up to 25 applications per month",
+          text: "Up to 60 applications per month",
           alt: "icon, specifying status"
         },
         {
           icon: iconCheck,
-          text: "can create upto 15 job profiles",
+          text: "Can create up to 4 job profiles",
           alt: "icon, specifying status"
         },
         {
           icon: iconCheck,
-          text: "can create upto 15 job profiles",
+          text: "Two Keywords per job profile",
           alt: "icon, specifying status"
         },
         {
           icon: iconCheck,
-          text: "Access to 2 customer care session on CV review",
+          text: "Access to 10 cover letter templates",
+          alt: "icon, specifying status"
+        },
+        {
+          icon: iconCheck,
+          text: "On demand CV rebuild",
           alt: "icon, specifying status"
         }
       ],
       btnText: "Get started"
-    }
+    },
   ]
 };
