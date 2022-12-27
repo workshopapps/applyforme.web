@@ -1,0 +1,65 @@
+.header {
+    position: relative;
+    background-image: url("/public/img/unsplash_rg1y72eKw6o.jpg");
+    width: 100%;
+    height: 540px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 5.5rem;
+}
+
+.blur {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    bottom: 0%;
+    right: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(17, 17, 17, 0.55);
+}
+.header-text {
+    width: 756px;
+    height: 180px;
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 150%;
+    text-align: center;
+    color: #ffffff;
+}
+@media screen and (max-width: 1050px){
+    .header {
+        margin-top: 0;
+    }
+}
+@media screen and (max-width: 1023px) {
+    .header-text {
+        width: 474px;
+        height: 108px;
+        font-weight: 500;
+        font-size: 24px;
+        text-align: center;
+    }
+    
+}
+
+@media screen and (max-width: 767px) {
+    .header {
+        height: 141px;
+        object-fit: contain;
+        background-size: cover;
+    }
+
+    .header-text {
+        width: 303px;
+        height: 72px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 150%;
+        text-align: center;
+        letter-spacing: 0.01em;
+    }
+}

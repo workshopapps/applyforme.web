@@ -15,10 +15,10 @@ const Table = () => {
         "pageNo": 0,
         "pageSize": 10
     });
-    const [searchValue, setSearchValue] = useState('');
-    const [availableItems,setAvailableItems] = useState([]);
-    
-    const fetchApplicants = useCallback( async () => {
+    const [searchValue, setSearchValue] = useState("");
+    const [availableItems, setAvailableItems] = useState([]);
+
+    const fetchApplicants = useCallback(async () => {
         try {
             const response = await axios.get(
                 `https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`,
@@ -26,27 +26,28 @@ const Table = () => {
                     params: {
                         "pageNo": pagination.pageNo,
                         "pageSize": pagination.pageSize
-                    },headers: {
+                    },
+                    headers: {
                         "Authorization": `Bearer ${token}`
                     }
-                    
                 }
             );
-            setData(response?.data?.content)
+            setData(response?.data?.content);
             setPageCout(response.data?.totalPages);
         } catch (error) {
             toast.error(`Could not get applicants: ${error}`);
         }
-    },[token,pagination.pageNo, pagination.pageSize]);
-    
-    const sortOldestToNewest = async()=>{
-        try{
-            const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`, 
+    }, [token, pagination.pageNo, pagination.pageSize]);
+
+    const sortOldestToNewest = async () => {
+        try {
+            const response = await axios.get(
+                `https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`,
                 {
-                    params:{
-                    "pageNo": pagination.pageNo,
-                    "pageSize":pagination.pageSize,
-                    "sortDir":"desc"
+                    params: {
+                        "pageNo": pagination.pageNo,
+                        "pageSize": pagination.pageSize,
+                        "sortDir": "desc"
                     },
                     headers: {
                         "Authorization": `Bearer ${token}`
@@ -55,19 +56,19 @@ const Table = () => {
             );
             setData(response.data?.content);
             setPageCout(response.data?.totalPages);
-
         } catch (error) {
             console.error(`Could not get applicants: ${error}`);
-        }          
-    }   
-    const sortNewestToOldest = async()=>{
-        try{
-            const response = await axios.get(`https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`, 
+        }
+    };
+    const sortNewestToOldest = async () => {
+        try {
+            const response = await axios.get(
+                `https://api.applyforme.hng.tech/api/v1/job-submission/user/entries/all`,
                 {
-                    params:{
-                    "pageNo": pagination.pageNo,
-                    "pageSize":pagination.pageSize,
-                    "sortDir":"asc"
+                    params: {
+                        "pageNo": pagination.pageNo,
+                        "pageSize": pagination.pageSize,
+                        "sortDir": "asc"
                     },
                     headers: {
                         "Authorization": `Bearer ${token}`
@@ -76,20 +77,21 @@ const Table = () => {
             );
             setData(response.data?.content);
             setPageCout(response.data?.totalPages);
-
         } catch (error) {
             console.error(`Could not get applicants: ${error}`);
-        }          
-    }   
+        }
+    };
 
     useEffect(() => {
         fetchApplicants();
-    },[fetchApplicants]);
+    }, [fetchApplicants]);
 
-    useEffect(()=>{
-        const search = data?.filter((item)=>item.jobTitle.toLowerCase().includes(searchValue));
+    useEffect(() => {
+        const search = data?.filter(item =>
+            item.jobTitle.toLowerCase().includes(searchValue)
+        );
         setAvailableItems(search);
-    },[searchValue, data])
+    }, [searchValue, data]);
 
     const handlePageClick = data => {
         setPagination(prevState => ({ ...prevState, "pageNo": data.selected }));
@@ -97,7 +99,11 @@ const Table = () => {
     };
     return (
         <div className={styles.applications_table_wrapper}>
-            <ApplicationsListHeader sortOldestToNewest={sortOldestToNewest} sortNewestToOldest={sortNewestToOldest} setSearchValue={setSearchValue}/>
+            <ApplicationsListHeader
+                sortOldestToNewest={sortOldestToNewest}
+                sortNewestToOldest={sortNewestToOldest}
+                setSearchValue={setSearchValue}
+            />
             <ToastContainer />
             <div className={styles.applications_table_container}>
                 <table>
@@ -133,46 +139,55 @@ const Table = () => {
                                 <td className={styles.hide_tablet}>
                                     {application?.jobLocationType}
                                 </td>
-                                <td >
+                                <td>
                                     <div className={styles.show_tablet}>
-                                        {application.createdOn?.split("T").shift()}
+                                        {application.createdOn
+                                            ?.split("T")
+                                            .shift()}
                                     </div>
                                 </td>
                                 <td>
                                     <div className={styles.show_tablet}>
-                                        <Link to={`/dashboard/applications/${application.id}`} style={{textDecoration:"none", color:"darkslategray",padding:"0.5rem", border:"1px solid darkslategray", borderRadius:"5px", fontSize:"14px"}}>
+                                        <Link
+                                            to={`/dashboard/applications/${application.id}`}
+                                            style={{
+                                                textDecoration: "none",
+                                                color: "darkslategray",
+                                                padding: "0.5rem",
+                                                border: "1px solid darkslategray",
+                                                borderRadius: "5px",
+                                                fontSize: "14px"
+                                            }}
+                                        >
                                             view
                                         </Link>
                                     </div>
-                                   
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-            {
-                 pageCount > 1 &&(
-                    <div>
-                        <ReactPaginate
-                            breakLabel="..."
-                            nextLabel=">"
-                            pageRangeDisplayed={5}
-                            pageCount={pageCount}
-                            marginPagesDisplayed="1"
-                            previousLabel="<"
-                            renderOnZeroPageCount={null}
-                            onPageChange={handlePageClick}
-                            containerClassName="containerClassName"
-                            pageClassName="pageClassName"
-                            previousClassName="previousClassName"
-                            activeClassName="activeClassName"
-                            nextClassName="nextClassName"
-                            pageLinkClassName="pageLinkClassName"
-                        />
-                    </div>
-                )
-            }
+            {pageCount > 1 && (
+                <div>
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel=">"
+                        pageRangeDisplayed={5}
+                        pageCount={pageCount}
+                        marginPagesDisplayed="1"
+                        previousLabel="<"
+                        renderOnZeroPageCount={null}
+                        onPageChange={handlePageClick}
+                        containerClassName="containerClassName"
+                        pageClassName="pageClassName"
+                        previousClassName="previousClassName"
+                        activeClassName="activeClassName"
+                        nextClassName="nextClassName"
+                        pageLinkClassName="pageLinkClassName"
+                    />
+                </div>
+            )}
         </div>
     );
 };
