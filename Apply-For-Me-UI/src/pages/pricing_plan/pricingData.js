@@ -39,7 +39,7 @@ export const pricingPage = {
       {
         mainQuestion: "What do I have to do?",
         answer:
-          "The membership plan you are on determines how many job profiles you can create. Our plans include Basic, Standard, and Premium. To learn more, see our price page.",
+          "The membership plan you are on determines how many job profiles you can create. Our plans include planName, Standard, and Premium. To learn more, see our price page.",
         subIcon: iconArrowDown
       }
     ]
@@ -47,8 +47,8 @@ export const pricingPage = {
 
   plans: [
     {
-      basic: "Free plan",
-      price: "$0",
+      planName: "Free plan",
+      price: "0",
       duration: "Per month",
       model: [
         {
@@ -75,8 +75,8 @@ export const pricingPage = {
       btnText: "Get started"
     },
     {
-      basic: "Starter plan",
-      price: "$3.99",
+      planName: "Starter plan",
+      price: "3.99",
       duration: "Per month",
       model: [
         {
@@ -104,8 +104,8 @@ export const pricingPage = {
       stamp: "Popular choice"
     },
     {
-      basic: "Basic plan",
-      price: "$14.99",
+      planName: "Basic plan",
+      price: "14.99",
       duration: "Per month",
       model: [
         {

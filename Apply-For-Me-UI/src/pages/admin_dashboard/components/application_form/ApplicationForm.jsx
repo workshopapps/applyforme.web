@@ -142,6 +142,10 @@ const ApplicationForm = () => {
         }
     ];
 
+    if (loading) {
+        return <Spinner />;
+    }
+
     return (
         <>
           <ToastContainer />
@@ -201,7 +205,6 @@ const ApplicationForm = () => {
                 <input id="submit" type="submit" value="Submit" />
             </div>
             </form>
-            {loading && (<Spinner/>)}
         </section>
         </>
     );
