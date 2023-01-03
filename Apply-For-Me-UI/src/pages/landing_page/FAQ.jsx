@@ -76,7 +76,7 @@ const FAQ = () => {
         <li key={i} onClick={() => onToggle(faq.id)} >
             <div className={classes.faq1}>
                 <p>{faq.question}</p>
-               <img src={arrowdown} alt="" ref={rotateRef} className={classes.rotate_image}/>
+               <img src={arrowdown} alt="object not found" ref={rotateRef} className={classes.rotate_image}/>
                 {/* {toggle && <img src="https://res.cloudinary.com/hamskid/image/upload/v1671799257/Vector_3_auvm1i.svg" alt=""/> } */}
             </div>
 

@@ -5,6 +5,7 @@ import "./main_container.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getSuperAdminProfileInfo } from "store/slice/RR_AdminSlice";
+import LetteredAvatar from "react-lettered-avatar";
 
 export const MainContainer = () => {
     const personalDetails = useSelector(state => state.RRadmin);
@@ -51,6 +52,12 @@ export const MainContainer = () => {
                                 src={img}
                                 alt="object not found"
                             /> */}
+                            <LetteredAvatar
+                                name={superAdminProfileDetails?.firstName}
+                                backgroundColor={"#78909c"}
+                                size="100"
+                                radius="10"
+                            />
                         </div>
                         <div className="mobile_info_top">
                             <div className="proileInfo">
