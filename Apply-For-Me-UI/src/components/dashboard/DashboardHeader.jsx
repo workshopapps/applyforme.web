@@ -232,6 +232,7 @@ const DashboardHeader = ({ func}) => {
                             <div>
                                 <img className={classes.SearchContainer_cancel} onClick={()=>setActivateSearchContainer(false)} src="https://res.cloudinary.com/hamskid/image/upload/v1670603040/close-svgrepo-com_1_ie1sje.svg" alt="object not found"/>
                             </div>
+                             <p>Page: 1</p>
                             {
                                 dashboardActive.dashboard && searchData?.map((data, index)=>{
                                     return(

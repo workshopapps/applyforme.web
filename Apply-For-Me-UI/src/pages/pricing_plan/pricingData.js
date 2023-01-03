@@ -47,8 +47,8 @@ export const pricingPage = {
 
   plans: [
     {
-      planName: "Free plan",
-      price: "0",
+      basic: "Free plan",
+      price: "$0",
       duration: "Per month",
       model: [
         {
@@ -75,8 +75,8 @@ export const pricingPage = {
       btnText: "Get started"
     },
     {
-      planName: "Starter plan",
-      price: "3.99",
+      basic: "Starter plan",
+      price: "$3.99",
       duration: "Per month",
       model: [
         {
@@ -104,8 +104,8 @@ export const pricingPage = {
       stamp: "Popular choice"
     },
     {
-      planName: "Basic plan",
-      price: "14.99",
+      basic: "Basic plan",
+      price: "$14.99",
       duration: "Per month",
       model: [
         {
