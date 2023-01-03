@@ -34,7 +34,7 @@ const Table = () => {
                     setIsLoading(false);
 
                 } catch (error) {
-                    console.error(`An error occured: ${error}`);
+                    console.error(`Could not get applicants: ${error}`);
                 }          
     },[token,pagination.pageNo,pagination.pageSize])
     const sortOldestToNewest = useCallback( async()=>{
@@ -55,7 +55,7 @@ const Table = () => {
             setPageCout(response.data?.totalPages);
 
         } catch (error) {
-            console.error(`An error occured: ${error}`);
+            console.error(`Could not get applicants: ${error}`);
         }          
     },[token,pagination.pageNo,pagination.pageSize])
 
@@ -77,7 +77,7 @@ const Table = () => {
             setPageCout(response.data?.totalPages);
 
         } catch (error) {
-            console.error(`An error occured: ${error}`);
+            console.error(`Could not get applicants: ${error}`);
         }          
     },[token,pagination.pageNo,pagination.pageSize])   
 

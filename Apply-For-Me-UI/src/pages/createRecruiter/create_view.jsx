@@ -87,9 +87,7 @@ export const CreateRecruiter = () => {
         };
         createRecruiter();
     };
-    if (loading) {
-        return <Spinner />;
-    }
+
     return (
         <>
             <ToastContainer />
@@ -399,6 +397,7 @@ export const CreateRecruiter = () => {
                         </div>
                     </form>
                 </div>
+                {loading && <Spinner/>}
             </div>
         </>
     );

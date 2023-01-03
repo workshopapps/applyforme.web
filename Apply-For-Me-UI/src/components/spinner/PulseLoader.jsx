@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import BarLoader from "react-spinners/BarLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 import classes from "./Spinner.module.css";
 const Spinner = () => {
     let [color] = useState("#2E3192");
 
     return (
         <div className={classes.spinner_container}>
-            <BarLoader
+            <PulseLoader
                 color={color}
                 size={25}
                 aria-label="Loading Spinner"
