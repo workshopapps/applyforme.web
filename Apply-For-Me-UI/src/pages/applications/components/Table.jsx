@@ -29,13 +29,18 @@ const Table = () => {
                     },
                     headers: {
                         "Authorization": `Bearer ${token}`
+                        
                     }
                 }
             );
-            setData(response?.data?.content);
-            setPageCout(response.data?.totalPages);
+            console.log(response);
+            if(response?.data !== "undefined"){
+                setData(response?.data?.content);
+                setPageCout(response.data?.totalPages);
+            }
         } catch (error) {
-            toast.error(`Could not get applicants: ${error}`);
+            toast.error(`An error occured: ${error}`);
+            console.log(error)
         }
     }, [token, pagination.pageNo, pagination.pageSize]);
 

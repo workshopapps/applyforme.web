@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useCallback } from "react";
-
+import Spinner from "components/spinner/Spinner";
 
 const ApplicationList = () => {
     const [listArray, setListArray] = useState();
+    const [isLoading, setIsLoading] = useState(true);
     const token = localStorage.getItem("tokenHngKey");
        const getApplicationDetail = useCallback( async () => {
            try {
@@ -19,13 +20,18 @@ const ApplicationList = () => {
                    }
                );
                setListArray(response.data.content);
+               setIsLoading(false);
            } catch (err) {
+                setIsLoading(false);
                console.log(err.response?.data);
            }
        },[token]);
        useEffect(() => {
         getApplicationDetail ();
        }, [ getApplicationDetail]);
+       if (isLoading) {
+        return <Spinner />;
+    }
     return (
         // Application stats Table
         <div className={classes.new_applications_stats_table}>
