@@ -24,6 +24,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -38,6 +39,9 @@ public class PaystackServiceImpl implements PaystackService {
 
     private final PaystackPaymentRepository paystackPaymentRepository;
     private final MemberJpaRepository memberJpaRepository;
+
+    @Value("${applyforme.paystack.secret.key}")
+    private String paystackSecretKey;
 
     public PaystackServiceImpl(PaystackPaymentRepository paystackPaymentRepository, MemberJpaRepository memberJpaRepository) {
         this.paystackPaymentRepository = paystackPaymentRepository;
@@ -55,7 +59,7 @@ public class PaystackServiceImpl implements PaystackService {
             HttpPost post = new HttpPost(PAYSTACK_INIT);
             post.setEntity(postingString);
             post.addHeader("Content-type", "application/json");
-            post.addHeader("Authorization", "Bearer " + PAYSTACK_SECRET_KEY);
+            post.addHeader("Authorization", "Bearer " + paystackSecretKey);
             StringBuilder result = new StringBuilder();
             HttpResponse response = client.execute(post);
 
@@ -90,7 +94,7 @@ public class PaystackServiceImpl implements PaystackService {
             HttpPost post = new HttpPost(PAYSTACK_INITIALIZE_PAY);
             post.setEntity(postingString);
             post.addHeader("Content-type", "application/json");
-            post.addHeader("Authorization", "Bearer " + PAYSTACK_SECRET_KEY);
+            post.addHeader("Authorization", "Bearer " + paystackSecretKey);
             StringBuilder result = new StringBuilder();
             HttpResponse response = client.execute(post);
 
@@ -124,7 +128,7 @@ public class PaystackServiceImpl implements PaystackService {
             HttpClient client = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet(PAYSTACK_VERIFY + reference);
             request.addHeader("Content-type", "application/json");
-            request.addHeader("Authorization", "Bearer " + PAYSTACK_SECRET_KEY);
+            request.addHeader("Authorization", "Bearer " + paystackSecretKey);
             StringBuilder result = new StringBuilder();
             HttpResponse response = client.execute(request);
 
@@ -149,7 +153,6 @@ public class PaystackServiceImpl implements PaystackService {
                 var currentUser = CurrentUserUtil.getCurrentUser();
                 Member member = memberJpaRepository.findById(currentUser.getId()).get();
                 PricingPlanType pricingPlanType = PricingPlanType.valueOf(plan.toUpperCase());
-//                Member member = memberJpaRepository.findById(Long.valueOf(7801)).get();
 
                 paymentPaystack = PaymentPaystack.builder()
                         .member(member)
