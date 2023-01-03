@@ -78,6 +78,9 @@ import ReactGA from "react-ga4";
 import { CreateRecruiter } from "pages/createRecruiter/create_view";
 import { SuperApplicantsPage } from "pages/users_page/user_page_applicants";
 
+import { PaystackPage } from "pages/paystack/paystack";
+
+
 atatus.config("c626faaef503411ea6216d7b6112de1c").install();
 
 const MEASUREMENT_ID = "G-RV4WJK9T7P";

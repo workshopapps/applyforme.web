@@ -39,7 +39,7 @@ export const pricingPage = {
       {
         mainQuestion: "What do I have to do?",
         answer:
-          "The membership plan you are on determines how many job profiles you can create. Our plans include Basic, Standard, and Premium. To learn more, see our price page.",
+          "The membership plan you are on determines how many job profiles you can create. Our plans include planName, Standard, and Premium. To learn more, see our price page.",
         subIcon: iconArrowDown
       }
     ]
