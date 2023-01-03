@@ -3,7 +3,9 @@
     margin: auto;
     background-color: #FBFBFB;
 }
-
+.rotateImg{
+    transform:rotate(180deg);
+}
 .fileLabel{
     color: white;
     height: 60px;
@@ -474,9 +476,7 @@ input[type=file]{
     align-items: center;
     justify-content: space-between;
 }
-.rotateImg{
-    transform: rotate(180deg);
-}
+
 .faq_one {
     /* position: absolute;
     top: 50%;

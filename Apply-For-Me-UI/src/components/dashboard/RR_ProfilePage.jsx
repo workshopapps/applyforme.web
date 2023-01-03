@@ -251,6 +251,7 @@ const RR_admin_Profile = () => {
                             <div>
                                 <img className={classes.SearchContainer_cancel} onClick={()=>setActivateSearchContainer(false)} src="https://res.cloudinary.com/hamskid/image/upload/v1670603040/close-svgrepo-com_1_ie1sje.svg" alt="object not found"/>
                             </div>
+                            <p>Page: 1</p>
                             {
                                searchData?.map((data, index)=>{
                                     return(
