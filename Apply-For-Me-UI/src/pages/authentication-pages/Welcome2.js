@@ -8,7 +8,7 @@ import Inputbox from "./components/Elements/Inputbox";
 import Button from "./components/Elements/Button";
 import "./components/Elements/Button.css";
 import Footer from "./Footer";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +21,6 @@ import Spinner from "components/spinner/Spinner";
 const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-in";
 
 const Welcome2 = () => {
-   
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { user } = useSelector(state => state.user);
@@ -38,26 +37,21 @@ const Welcome2 = () => {
         password === "password" ? setPassword("text") : setPassword("password");
     };
     useEffect(() => {
-        if(user && from === '/pricing'){
-            navigate(from);
-        }else{
-            if (user) {
-                setTimeout(() => {
-                    if (user?.roles[0] === "Recruiter") {
-                        navigate("/rr_admin");
-                    } else if (user?.roles[0] === "SuperAdministrator") {
-                        navigate("/user-page");
-                    } else if (
-                        user.roles.length === 1 &&
-                        user?.roles[0] === "Professional"
-                    ) {
-                        navigate("/dashboard/");
-                    }
-                }, 2000);
-            }
+        if (user) {
+            setTimeout(() => {
+                if (user?.roles[0] === "Recruiter") {
+                    navigate("/rr_admin");
+                } else if (user?.roles[0] === "SuperAdministrator") {
+                    navigate("/user-page");
+                } else if (
+                    user.roles.length === 1 &&
+                    user?.roles[0] === "Professional"
+                ) {
+                    navigate("/dashboard");
+                }
+            }, 2000);
         }
-        
-    }, [user, navigate, from]);
+    }, [user, navigate]);
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -141,17 +135,10 @@ const Welcome2 = () => {
                 </form>
                 <span className="ques">
                     Don&#39;t have an account?{" "}
-                    {
-                        from !== "/pricing" ?
-                                <Link to="/wel1" className="special">
-                                    {" "}
-                                    Sign Up
-                                </Link>
-                                :                              
-                                <p onClick={()=>navigate("/wel1",{state: {from: "/pricing"}})}  className="special"> Sign Up</p>
-                                
-                    }
-                    
+                    <Link to="/wel1" className="special">
+                        {" "}
+                        Sign Up
+                    </Link>
                 </span>
                 <Footer />
             </div>

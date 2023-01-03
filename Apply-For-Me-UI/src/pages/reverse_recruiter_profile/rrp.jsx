@@ -26,6 +26,7 @@ const RRProfile = () => {
                     }
                 }
             );
+            console.log(response?.data);
             setDetails(response?.data);
             return response?.data;
         } catch (error) {
@@ -49,15 +50,10 @@ const RRProfile = () => {
                     </button>
                 </div>
                 <div className={rrpCss.topSection}>
-                    <div className={rrpCss.Lwrapper}>
-                        <LetteredAvatar
-                            name={userName}
-                            backgroundColor={"#78909c"}
-                            size="100"
-                        
-                        />
-                    </div>
-                    
+                    <LetteredAvatar
+                        name={userName}
+                        backgroundColor={"#78909c"}
+                    />
                     <div
                         className={rrpCss.btn}
                         onClick={() => setEditModal(prevState => !prevState)}

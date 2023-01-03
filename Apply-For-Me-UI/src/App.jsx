@@ -53,7 +53,7 @@ import RRProfile from "pages/reverse_recruiter_profile/rrp";
 
 // Auth Logic
 import jwt_decode from "jwt-decode";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
 
 //Authentication
@@ -77,8 +77,6 @@ import * as atatus from "atatus-spa";
 import ReactGA from "react-ga4";
 import { CreateRecruiter } from "pages/createRecruiter/create_view";
 import { SuperApplicantsPage } from "pages/users_page/user_page_applicants";
-// import './interceptors/axios';
-import {PaystackPage} from './pages/paystack/paystack';
 
 atatus.config("c626faaef503411ea6216d7b6112de1c").install();
 
@@ -126,9 +124,8 @@ function App() {
                 />
                 <Route
                     exact
-                    path="/checkout/:planName/:paymentInterval/:price"
-                    // element={<Checkout {...formData} />}
-                    element={<PaystackPage/>}
+                    path="/checkout"
+                    element={<Checkout {...formData} />}
                 />
 
                 <Route exact path="blog" element={<Blog />} />
