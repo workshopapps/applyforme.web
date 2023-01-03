@@ -14,7 +14,7 @@ const AboutUs = () => {
             <Who />
             <MidContent />
             <What />
-            <Footer />
+            <Footer/>
         </>
     );
 };
