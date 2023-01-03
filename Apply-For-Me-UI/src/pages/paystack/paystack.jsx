@@ -1,44 +1,43 @@
 import './paystack.css';
 import jwt_decode from "jwt-decode";
 import { useParams } from 'react-router-dom';
-// import Spinner from 'components/spinner/PulseLoader';
-// import { useEffect, useState } from 'react';
-// import { useCallback } from 'react';
-// import axios from 'axios';
+import Spinner from 'components/spinner/PulseLoader';
+import { useEffect, useState } from 'react';
+import { useCallback } from 'react';
+import axios from 'axios';
 
 export const PaystackPage =()=>{
-    // const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
     const {price,planName,planInterval} = useParams(); 
     const channels = ["card","bank"];
     const currency = "NGN";
     console.log(price,planName,planInterval,channels,currency);
-
-    // const [convertedPrice, setConvertedPrice] = useState();
-    // const exchangeBaseUrl = "https://api.apilayer.com/exchangerates_data"
-    // const apiKey ="goMYfU2M6LKZxK6124f1bocjRqu2ITYk"
-    // const convertToNaira = useCallback(async()=>{
-    //     try{
-    //         const response = await
-    //             axios
-    //                 .get(`${exchangeBaseUrl}/convert?to=NGN&from=USD&amount=${price}`,{
-    //                     headers: {
-    //                         "apikey": apiKey
-    //                     }
-    //                 }) 
-    //         setConvertedPrice(response?.data?.result);
-    //         console.log(convertedPrice);
-    //             setLoading(false);
-    //     }catch(err){
-    //         console.log(err);
-    //     }
-    // },[price])
-    // useEffect(()=>{
-    //     convertToNaira()
-    // },[convertToNaira ])
-    // if (loading) {
-    //     return <Spinner/>;
-    // }
+    
+    const [convertedPrice, setConvertedPrice] = useState();
+    const exchangeBaseUrl = "https://api.apilayer.com/exchangerates_data"
+    const convertToNaira = useCallback(async()=>{
+        try{
+            const response = await
+                axios
+                    .get(`${exchangeBaseUrl}/convert?to=NGN&from=USD&amount=${price}`,{
+                        headers: {
+                            "apikey": process.env.REACT_APP_EXCHANGE_RATE_API_KEY
+                        }
+                    }) 
+            setConvertedPrice(response?.data?.result);
+            console.log(convertedPrice);
+                setLoading(false);
+        }catch(err){
+            console.log(err);
+        }
+    },[price,convertedPrice])
+    useEffect(()=>{
+        convertToNaira()
+    },[convertToNaira ])
+    if (loading) {
+        return <Spinner/>;
+    }
     return(
         <div className="form_wrapper_bg">
             <header className="pay_header">

@@ -168,7 +168,7 @@ const Pricing = ({
                                                     }
                                                 )}
                                             </div>
-                                            {(user && (price !==0)) ? (
+                                            {(user) ? (
                                                 <BlueButton
                                                     text="Get Plan"
                                                     width={200}
@@ -179,8 +179,11 @@ const Pricing = ({
                                                                 isAuthorized = true;
                                                             }
                                                         })
-                                                        if(isAuthorized){
+                                                        if(isAuthorized && (price !=="0")){
                                                             navigate(`/checkout/${planName}/${paymentInterval}/${price}`)
+                                                        }
+                                                        else if(isAuthorized && (price ==="0")){
+                                                            return
                                                         }else{
                                                             toast.error("Unauthorized");
                                                         }                                                    
