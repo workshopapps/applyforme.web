@@ -38,9 +38,9 @@ import ApplicantDetails from "./pages/admin_dashboard/components/applicant_detai
 import ApplicationForm from "./pages/admin_dashboard/components/application_form/ApplicationForm";
 import DashboardHome from "./pages/admin_dashboard/components/dashboard_home/DashboardHome";
 import { pricingPage } from "pages/pricing_plan/pricingData";
-import { formData } from "pages/checkout/checkoutData";
+// import { formData } from "pages/checkout/checkoutData";
 import Pricing from "./pages/pricing_plan/Pricing";
-import Checkout from "pages/checkout/Checkout";
+// import Checkout from "pages/checkout/Checkout";
 import ProtectedRoute from "ProtectedRoute";
 //UserDashboard
 import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
@@ -63,7 +63,7 @@ import Verification from "pages/authentication-pages/Verification";
 import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
-import {RRAdminProfilePage } from "pages/RR_admin_profile/RR_admin_profile";
+import { RRAdminProfilePage } from "pages/RR_admin_profile/RR_admin_profile";
 import { useEffect } from "react";
 
 import SignIn from "pages/RR_recuiters_page/Sign_In";
@@ -77,6 +77,7 @@ import * as atatus from "atatus-spa";
 import ReactGA from "react-ga4";
 import { CreateRecruiter } from "pages/createRecruiter/create_view";
 import { SuperApplicantsPage } from "pages/users_page/user_page_applicants";
+import { PaystackPage } from "pages/paystack/paystack";
 
 atatus.config("c626faaef503411ea6216d7b6112de1c").install();
 
@@ -124,8 +125,9 @@ function App() {
                 />
                 <Route
                     exact
-                    path="/checkout"
-                    element={<Checkout {...formData} />}
+                    path="/checkout/:planName/:paymentInterval/:price"
+                    // element={<Checkout {...formData} />}
+                    element={<PaystackPage />}
                 />
 
                 <Route exact path="blog" element={<Blog />} />
@@ -226,7 +228,7 @@ function App() {
                         {/* User Dashboard Profile */}
 
                         <Route
-                            path="/dashboard/"
+                            path="/dashboard"
                             element={<DashboardNothing />}
                         />
                         <Route
