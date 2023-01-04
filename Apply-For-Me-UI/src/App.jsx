@@ -79,6 +79,8 @@ import { CreateRecruiter } from "pages/createRecruiter/create_view";
 import { SuperApplicantsPage } from "pages/users_page/user_page_applicants";
 import { PaystackPage } from "pages/paystack/paystack";
 
+import PaymentVerification from "pages/paystack/verification/Verification";
+
 atatus.config("c626faaef503411ea6216d7b6112de1c").install();
 
 const MEASUREMENT_ID = "G-RV4WJK9T7P";
@@ -113,6 +115,11 @@ function App() {
                 <Route exact path="/tryout-form" element={<TryoutForm />} />
                 <Route exact path="/reverse/profile" element={<RRProfile />} />
                 <Route exact path="/registration" element={<Registration />} />
+                <Route
+                    exact
+                    path="/checkout/verify-payment"
+                    element={<PaymentVerification />}
+                />
                 <Route
                     exact
                     path="/tryout-form/success"
