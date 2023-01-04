@@ -42,7 +42,7 @@ const Pricing = () => {
                                         lineHeight: "30px"
                                     }}
                                 >
-                                    As part of the basic plan, we send 15
+                                    As part of the basic plan, we send 60 job
                                     applications every month to various
                                     employers who are searching for your
                                     skill-set
@@ -64,7 +64,7 @@ const Pricing = () => {
                                         lineHeight: "30px"
                                     }}
                                 >
-                                    You can create up to 5 job profiles of
+                                    You can create up to 4 job profiles of
                                     different qualifications in search of
                                     various roles within an organisation
                                 </span>
@@ -76,9 +76,7 @@ const Pricing = () => {
                                 alt="object not found"
                             />
                             <div>
-                                <h4 style={{ fontWeight: "600" }}>
-                                    CV Review
-                                </h4>
+                                <h4 style={{ fontWeight: "600" }}>CV Review</h4>
                                 <span
                                     style={{
                                         color: "#52515B",
@@ -101,7 +99,7 @@ const Pricing = () => {
                                 className={classes.figure}
                                 style={{ color: "#2E3192" }}
                             >
-                                $15.99
+                                $24.99
                             </span>
                             <span
                                 className={classes.interval}
@@ -117,14 +115,14 @@ const Pricing = () => {
                                     src="https://res.cloudinary.com/hamskid/image/upload/v1669939094/Vector_12_mmv9yq.png"
                                     alt="object not found"
                                 />
-                                up to 15 applications per month
+                                up to 60 applications per month
                             </span>
                             <span style={{ color: "#020313" }}>
                                 <img
                                     src="https://res.cloudinary.com/hamskid/image/upload/v1669939094/Vector_12_mmv9yq.png"
                                     alt="object not found"
                                 />
-                                can create upto 5 job profiles
+                                can create up to 4 job profiles
                             </span>
                             <span style={{ color: "#020313" }}>
                                 <img
