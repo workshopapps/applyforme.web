@@ -50,7 +50,7 @@ export const pricingPage = {
             model: [
                 {
                     icon: iconCheck,
-                    text: "Up to 5 applications per month",
+                    text: "Up to 5 job applications per month",
                     alt: "icon, specifying status"
                 },
                 {
@@ -65,7 +65,7 @@ export const pricingPage = {
                 },
                 {
                     icon: iconCheck,
-                    text: "Access to 2 cover letter templates",
+                    text: "Access to 1 cover letter templates",
                     alt: "icon, specifying status"
                 }
             ],
@@ -73,7 +73,7 @@ export const pricingPage = {
         },
         {
             planName: "Starter plan",
-            price: "3.99",
+            price: "5.99",
             duration: "Per month",
             model: [
                 {
@@ -102,12 +102,12 @@ export const pricingPage = {
         },
         {
             planName: "Basic plan",
-            price: "14.99",
+            price: "24.99",
             duration: "Per month",
             model: [
                 {
                     icon: iconCheck,
-                    text: "Up to 60 applications per month",
+                    text: "Up to 60 job applications per month",
                     alt: "icon, specifying status"
                 },
                 {
@@ -128,6 +128,39 @@ export const pricingPage = {
                 {
                     icon: iconCheck,
                     text: "On demand CV rebuild",
+                    alt: "icon, specifying status"
+                }
+            ],
+            btnText: "Get started"
+        },
+        {
+            planName: "Standard plan",
+            price: "50",
+            duration: "Per month",
+            model: [
+                {
+                    icon: iconCheck,
+                    text: "Up to 80 job applications per month",
+                    alt: "icon, specifying status"
+                },
+                {
+                    icon: iconCheck,
+                    text: "Can create up to 6 job profiles",
+                    alt: "icon, specifying status"
+                },
+                {
+                    icon: iconCheck,
+                    text: "Two Keywords per job profile",
+                    alt: "icon, specifying status"
+                },
+                {
+                    icon: iconCheck,
+                    text: "Access to 12 cover letter templates",
+                    alt: "icon, specifying status"
+                },
+                {
+                    icon: iconCheck,
+                    text: "On demand CV rebuild and review",
                     alt: "icon, specifying status"
                 }
             ],
