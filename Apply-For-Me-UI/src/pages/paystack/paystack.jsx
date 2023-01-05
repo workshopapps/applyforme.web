@@ -18,6 +18,7 @@ export const PaystackPage = () => {
     const exchangeBaseUrl = "https://api.apilayer.com/exchangerates_data";
     const convertToNaira = useCallback(async () => {
         try {
+            setLoading(false);
             const response = await axios.get(
                 `${exchangeBaseUrl}/convert?to=NGN&from=USD&amount=${price}`,
                 {
@@ -28,7 +29,7 @@ export const PaystackPage = () => {
             );
             setConvertedPrice(response?.data?.result);
             console.log(convertedPrice);
-            setLoading(false);
+            // setLoading(false);
         } catch (err) {
             console.log(err);
         }
@@ -39,83 +40,134 @@ export const PaystackPage = () => {
     if (loading) {
         return <Spinner />;
     }
-    return (
-        <div className="form_wrapper_bg">
-            <header className="pay_header">
+
+    // const bodyFormData = new FormData();
+    // bodyFormData.append('name', 'paul',
+
+    // );
+
+    // const bodyFormData = {
+    //     email: 'izekorpaul0@gmail.com',
+    //     amount: '50',
+    //     plan: 'basic',
+    //     currency: 'NGN',
+    //     channels: [
+    //         'first', 'second', 'third'
+    //     ]
+    // }
+    const token = localStorage.getItem("tokenHngKey");
+    const handleSubmit = async () => {
+        try {
+            const res = await axios.post("https://api.applyforme.hng.tech/api/v1/paystack/createplan", 
+                // {
+                //     "amount": "50",
+                //     "email": "izekorpaul0@gmail.com",
+                //     "currency": "NGN",
+                //     "plan": "Basic",
+                //     "channels": [
+                //         "card", "bank"
+                //     ]
+                // },
+                {
+                    "amount": 1000 * 100,
+                    "name": "basic",
+                    "interval": "monthly",
+                },
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+        console.log(res)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+
+return (
+    <div className="form_wrapper_bg">
+        <header className="pay_header">
+            <div>
+                <img
+                    src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/Frame_qq7kqh.svg"
+                    alt="object not found"
+                    className="afm"
+                />
+            </div>
+            <div className="header_cred_wrapper">
+                <span>
+                    <img
+                        src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/account_circle_hwbanv.svg"
+                        alt="object not found"
+                        className="avatar"
+                    />
+                </span>
+                <span className="cred_wrapper">
+                    <h3 className="header_credName">{decoded?.fullName}</h3>
+                </span>
+            </div>
+        </header>
+        <div>
+            <form className="pay_form_wrapper" onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit()
+            }}>
                 <div>
                     <img
-                        src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/Frame_qq7kqh.svg"
+                        src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/Frame_51449_tk7pzn.svg"
                         alt="object not found"
-                        className="afm"
+                        onClick={() => window.history.back()}
                     />
                 </div>
-                <div className="header_cred_wrapper">
-                    <span>
-                        <img
-                            src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/account_circle_hwbanv.svg"
-                            alt="object not found"
-                            className="avatar"
-                        />
-                    </span>
-                    <span className="cred_wrapper">
-                        <h3 className="header_credName">{decoded?.fullName}</h3>
-                    </span>
-                </div>
-            </header>
-            <div>
-                <form className="pay_form_wrapper">
-                    <div>
-                        <img
-                            src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/Frame_51449_tk7pzn.svg"
-                            alt="object not found"
-                            onClick={() => window.history.back()}
-                        />
-                    </div>
-                    <p className="confirm_text">
-                        Please Confirm your payment information to continue
-                    </p>
-                    <div className="inputDiv_wrapper">
-                        <label htmlFor="name" className="form_label">
-                            Name
-                        </label>
-                        <input
-                            type="text"
-                            name="name"
-                            className="pay_input"
-                            defaultValue={decoded?.fullName}
-                        />
-                    </div>
-                    <div className="inputDiv_wrapper">
-                        <label htmlFor="email" className="form_label">
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            name="email"
-                            className="pay_input"
-                            defaultValue={decoded?.emailAddress}
-                        />
-                    </div>
-                    <div className="inputDiv_wrapper">
-                        <label htmlFor="amount" className="form_label">
-                            Amount
-                        </label>
-                        <input
-                            type="text"
-                            name="amount"
-                            className="pay_input"
-                            defaultValue={`$ ${price}`}
-                        />
-                    </div>
-                    <button className="submit_btn">Make payment</button>
-                </form>
-                <div className="paystack_footer">
-                    <img
-                        src="https://res.cloudinary.com/hamskid/image/upload/v1672272450/Secured_by_paystack_payment_gateway_hqgk1j.svg"
-                        alt="object not found"
+                <p className="confirm_text">
+                    Please Confirm your payment information to continue
+                </p>
+                <div className="inputDiv_wrapper">
+                    <label htmlFor="name" className="form_label">
+                        Name
+                    </label>
+                    <input
+                        type="text"
+                        name="name"
+                        className="pay_input"
+                        defaultValue={decoded?.fullName}
                     />
                 </div>
+                <div className="inputDiv_wrapper">
+                    <label htmlFor="email" className="form_label">
+                        Email
+                    </label>
+                    <input
+                        type="email"
+                        name="email"
+                        className="pay_input"
+                        defaultValue={decoded?.emailAddress}
+                    />
+                </div>
+                <div className="inputDiv_wrapper">
+                    <label htmlFor="amount" className="form_label">
+                        Amount
+                    </label>
+                    <input
+                        type="text"
+                        name="amount"
+                        className="pay_input"
+                        defaultValue={`$ ${price}`}
+                    />
+                </div>
+                <button className="submit_btn">Make payment</button>
+            </form>
+            <div className="paystack_footer">
+                <img
+                    src="https://res.cloudinary.com/hamskid/image/upload/v1672272450/Secured_by_paystack_payment_gateway_hqgk1j.svg"
+                    alt="object not found"
+                />
             </div>
         </div>
-    );
+    </div>
+);
 };
