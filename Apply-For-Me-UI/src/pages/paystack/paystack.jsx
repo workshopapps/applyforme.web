@@ -8,6 +8,7 @@ import axios from "axios";
 
 export const PaystackPage = () => {
     const [loading, setLoading] = useState(true);
+    const [authorisation, setAuthorisation] = useState('');
     let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
     const { price, planName, planInterval } = useParams();
     const channels = ["card", "bank"];
@@ -29,6 +30,7 @@ export const PaystackPage = () => {
             );
             setConvertedPrice(response?.data?.result);
             console.log(convertedPrice);
+            convertedPrice ? createPlan() : null
             // setLoading(false);
         } catch (err) {
             console.log(err);
@@ -56,22 +58,14 @@ export const PaystackPage = () => {
     //     ]
     // }
     const token = localStorage.getItem("tokenHngKey");
-    const handleSubmit = async () => {
+    const createPlan = async () => {
         try {
             const res = await axios.post("https://api.applyforme.hng.tech/api/v1/paystack/createplan", 
-                // {
-                //     "amount": "50",
-                //     "email": "izekorpaul0@gmail.com",
-                //     "currency": "NGN",
-                //     "plan": "Basic",
-                //     "channels": [
-                //         "card", "bank"
-                //     ]
-                // },
+
                 {
-                    "amount": 1000 * 100,
-                    "name": "basic",
-                    "interval": "monthly",
+                    "amount": convertedPrice * 100,
+                    "name": decoded?.fullName,
+                    "interval": planInterval,
                 },
                 {
                     headers: {
@@ -80,12 +74,41 @@ export const PaystackPage = () => {
                 }
             );
         console.log(res)
+        res?.data?.status === true ? initializePayment() : null
     } catch (error) {
         console.log(error)
     }
 }
 
+    const initializePayment = async () => {
+        try {
+            const res = await axios.post("https://api.applyforme.hng.tech/api/v1/paystack/initializepayment", 
+                {
+                    "amount": convertedPrice * 100,
+                    "email": decoded?.emailAddress,
+                    "currency": currency,
+                    "plan": planName,
+                    "channels": channels
+                },
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+        console.log(res)
+        localStorage.setItem(paymentRef, planName)
+        localStorage.setItem(paymentRef, planName)
+    } catch (error) {
+        console.log(error)
+    }
+}
 
+const handleSubmit = () => {
+    useEffect(() => {
+        setAuthorisation()
+    }, [authorisation])
+}
 
 
 return (
