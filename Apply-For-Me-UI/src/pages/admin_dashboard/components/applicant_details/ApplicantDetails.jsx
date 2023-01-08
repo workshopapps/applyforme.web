@@ -79,7 +79,7 @@ const ApplicationDetails = () => {
                 </div>
                 <section className={style.job_information}>
                     <h2>Job Information</h2>
-                    <div className={style.field_container}>
+                    <div className={style.field_containers}>
                         <div className={style.info_field}>
                             <h4>Name</h4>
                             <p>{details?.profileTitle}</p>
@@ -97,8 +97,8 @@ const ApplicationDetails = () => {
                             <p>{details?.jobSeniority}</p>
                         </div>
                         <div className={style.info_field}>
-                            <h4>Experience</h4>
-                            <p>{details?.yearsOfExperience}</p>
+                            <h4>Industry</h4>
+                            <p>Tech</p>
                         </div>
                         <div className={style.info_field}>
                             <h4>Salary Expectation</h4>
@@ -107,6 +107,10 @@ const ApplicationDetails = () => {
                         <div className={style.info_field}>
                             <h4>Employment Type</h4>
                             <p>{details?.employmentType}</p>
+                        </div>
+                        <div className={style.info_field}>
+                            <h4>Remaining Aplication</h4>
+                            <p>52</p>
                         </div>
                     </div>
                 </section>

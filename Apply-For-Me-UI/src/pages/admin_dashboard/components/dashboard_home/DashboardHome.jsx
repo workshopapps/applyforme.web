@@ -45,7 +45,7 @@ const DashboardHome = () => {
                 {/* Greetings */}
                 <div className={classes.greeting_text}>
                     <h1>Good evening Admin, 👋🏼</h1>
-                    <p>Here is how you are fairing today</p>
+                    <p>How are you fairing today</p>
                 </div>
 
                 <div className={classes.applications_stats_and_button}>
@@ -79,7 +79,7 @@ const DashboardHome = () => {
                 <div className={classes.new_applications_stats}>
                     <div className={classes.view_all_wrapper}>
                         <h2 className={classes.new_applications_stats_heading}>
-                            New Submissions
+                            New Applications(23)
                         </h2>
 
                         <button
