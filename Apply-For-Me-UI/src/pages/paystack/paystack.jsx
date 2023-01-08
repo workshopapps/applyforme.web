@@ -1,21 +1,23 @@
 import "./paystack.css";
 import jwt_decode from "jwt-decode";
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
 import Spinner from "components/spinner/PulseLoader";
 import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import axios from "axios";
 
 export const PaystackPage = () => {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
-    const { price, planName, planInterval } = useParams();
+    const { price, planName, paymentInterval } = useParams();
     const channels = ["card", "bank"];
     const currency = "NGN";
-    console.log(price, planName, planInterval, channels, currency);
+    console.log(price, planName, paymentInterval, channels, currency);
 
     const [convertedPrice, setConvertedPrice] = useState();
     const exchangeBaseUrl = "https://api.apilayer.com/exchangerates_data";
+    const token = localStorage.getItem("tokenHngKey");
     const convertToNaira = useCallback(async () => {
         try {
             const response = await axios.get(
@@ -33,9 +35,75 @@ export const PaystackPage = () => {
             console.log(err);
         }
     }, [price, convertedPrice]);
+
+    const createPlan = async(planName,paymentInterval)=>{
+        console.log(paymentInterval,planName)
+        try{
+                const  response = await axios
+                .post("https://api.applyforme.hng.tech/api/v1/paystack/createplan",
+                    {
+                        "name":planName,
+                        "interval": paymentInterval,
+                        "amount": Math.round(((convertedPrice *100) + Number.EPSILON) *100)/100,
+                    },
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }               
+                )
+                if(response.data.status === true){
+                    let paymentRef = response.data.reference
+                    let paymentCode = response.data.access_code
+                    localStorage.setItem("paymentRef", paymentRef);
+                    localStorage.setItem("paymentAccessCode", paymentCode);
+                }
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    const initializePlan = async(planName,channels,currency,email)=>{
+        try{
+                const  response = await axios
+                .post("https://api.applyforme.hng.tech/api/v1/paystack/initializepayment",                  
+                    {
+                        "amount": Math.round(((convertedPrice *100) + Number.EPSILON) *100)/100,
+                        "email":email,
+                        "currency": currency,
+                        "plan": planName,
+                        "channels":channels
+                    },
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }    
+                )
+                console.log(response);
+                if(response.data.status === true){
+                    let paymentRef = response.data.reference
+                    let paymentCode = response.data.access_code
+                    let AuthorizationUrl = response.data.authorization_url
+
+                    localStorage.setItem("paymentRef", paymentRef);
+                    localStorage.getItem("paymentAccessCode", paymentCode);
+                    navigate(AuthorizationUrl);
+                }
+        }catch(err){
+            console.log(err)
+        }
+    }
     useEffect(() => {
         convertToNaira();
-    }, [convertToNaira]);
+    }, [convertToNaira])
+    
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        createPlan(planName,paymentInterval);
+        initializePlan(planName,channels,currency,decoded?.emailAddress);
+    }
+        
     if (loading) {
         return <Spinner />;
     }
@@ -63,7 +131,7 @@ export const PaystackPage = () => {
                 </div>
             </header>
             <div>
-                <form className="pay_form_wrapper">
+                <form className="pay_form_wrapper" onSubmit={handleSubmit}>
                     <div>
                         <img
                             src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/Frame_51449_tk7pzn.svg"
