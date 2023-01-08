@@ -9,18 +9,19 @@ import axios from "axios";
 export const PaystackPage = () => {
   const [loading, setLoading] = useState(true);
   const [authorisation, setAuthorisation] = useState('');
+  const [convertedPrice, setConvertedPrice] = useState()
   let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
-  const { price, planName, planInterval } = useParams();
+  const { price, planName, paymentInterval } = useParams();
   const channels = ["card", "bank"];
   const currency = "NGN";
-  console.log(price, planName, planInterval, channels, currency);
+  console.log(price, planName, paymentInterval, channels, currency);
   const navigate = useNavigate()
 
 
   const exchangeBaseUrl = "https://api.apilayer.com/exchangerates_data";
   const convertToNaira = async () => {
     try {
-      setLoading(false);
+      // setLoading(false);
     const res = await axios.get(
         `${exchangeBaseUrl}/convert?to=NGN&from=USD&amount=${price}`,
         {
@@ -29,7 +30,7 @@ export const PaystackPage = () => {
           }
         }
       );
-
+      setConvertedPrice(res.data.result)
       return res.data.result
       // setLoading(false);
     } catch (err) {
@@ -50,14 +51,15 @@ export const PaystackPage = () => {
       const res = await axios.post("https://api.applyforme.hng.tech/api/v1/paystack/createplan",
 
         {
-          "amount": convertedPrice * 100,
           "name": decoded?.fullName,
-          "interval": planInterval,
+          "amount": Math.round(convertedPrice * 100) / 100,
+          "interval": paymentInterval
         },
         {
           headers: {
             "Authorization": `Bearer ${token}`
-          }
+          },
+          
         }
       );
       console.log(res)
@@ -71,7 +73,7 @@ export const PaystackPage = () => {
     try {
       const res = await axios.post("https://api.applyforme.hng.tech/api/v1/paystack/initializepayment",
         {
-          "amount": convertedPrice * 100,
+          "amount": Math.round(convertedPrice * 100) / 100,
           "email": decoded?.emailAddress,
           "currency": currency,
           "plan": planName,
