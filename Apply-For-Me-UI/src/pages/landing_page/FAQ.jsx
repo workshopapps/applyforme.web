@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState} from "react";
 import classes from "./Hero.module.css";
 import arrowdown from "../../assets/images/arrow-down.png";
 

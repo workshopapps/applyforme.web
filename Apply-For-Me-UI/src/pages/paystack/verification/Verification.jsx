@@ -48,7 +48,7 @@ const PaymentVerification = () => {
                 navigate("/pricing");
             },4000);
         }
-    }, [plan, reference, token]);
+    }, [plan, reference, token,navigate,verificationDetails]);
 
     useEffect(() => {
         verifyPayment();
