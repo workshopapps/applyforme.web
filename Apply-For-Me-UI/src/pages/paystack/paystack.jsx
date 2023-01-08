@@ -1,143 +1,125 @@
 import "./paystack.css";
 import jwt_decode from "jwt-decode";
-import { useParams, useNavigate } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
 import Spinner from "components/spinner/PulseLoader";
 import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import axios from "axios";
 
 export const PaystackPage = () => {
-  const [loading, setLoading] = useState(true);
-  const [authorisation, setAuthorisation] = useState('');
-  const [convertedPrice, setConvertedPrice] = useState()
-  let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
-  const { price, planName, paymentInterval } = useParams();
-  const channels = ["card", "bank"];
-  const currency = "NGN";
-  console.log(price, planName, paymentInterval, channels, currency);
-  const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+    const [planCode, setPlanCode] = useState()
+    let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
+    const { price, planName, paymentInterval } = useParams();
+    const channels = ["card", "bank"];
+    const currency = "NGN";
+    console.log(price, planName, paymentInterval, channels, currency);
 
-
-  const exchangeBaseUrl = "https://api.apilayer.com/exchangerates_data";
-  const convertToNaira = async () => {
-    try {
-      // setLoading(false);
-    const res = await axios.get(
-        `${exchangeBaseUrl}/convert?to=NGN&from=USD&amount=${price}`,
-        {
-          headers: {
-            "apikey": process.env.REACT_APP_EXCHANGE_RATE_API_KEY
-          }
+    const [convertedPrice, setConvertedPrice] = useState();
+    const exchangeBaseUrl = "https://api.apilayer.com/exchangerates_data";
+    const token = localStorage.getItem("tokenHngKey");
+    const convertToNaira = useCallback(async () => {
+        try {
+            const response = await axios.get(
+                `${exchangeBaseUrl}/convert?to=NGN&from=USD&amount=${price}`,
+                {
+                    headers: {
+                        "apikey": process.env.REACT_APP_EXCHANGE_RATE_API_KEY
+                    }
+                }
+            );
+            setConvertedPrice(response?.data?.result);
+            console.log(convertedPrice);
+            setLoading(false);
+        } catch (err) {
+            console.log(err);
         }
-      );
-      setConvertedPrice(res.data.result)
-      return res.data.result
-      // setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
-      setTimeout(() => {
-        setLoading(false)
-      }, 1000);
-  }, []);
-  if (loading) {
-    return <Spinner />;
-  }
-  const token = localStorage.getItem("tokenHngKey");
-  const createPlan = async (convertedPrice) => {
-    try {
-      const res = await axios.post("https://api.applyforme.hng.tech/api/v1/paystack/createplan",
+    }, [price, convertedPrice]);
 
-        {
-          "name": decoded?.fullName,
-          "amount": Math.round(convertedPrice * 100) / 100,
-          "interval": paymentInterval
-        },
-        {
-          headers: {
-            "Authorization": `Bearer ${token}`
-          },
-          
+    const createPlan = async(planName,paymentInterval,setPlanCode)=>{
+        console.log(paymentInterval,planName)
+        try{
+                const  response = await axios
+                .post("https://api.applyforme.hng.tech/api/v1/paystack/createplan",
+                    {
+                        "name": planName,
+                        "interval": paymentInterval,
+                        "amount": Math.round(((convertedPrice *100) + Number.EPSILON) *100)/100,
+                    },
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }               
+                )
+                
+                
+                if(response.data.status === true){
+                    let paymentRef = response.data.reference
+                    let paymentCode = response.data.access_code
+                    setPlanCode(response?.data?.data?.plan_code)
+                    console.log(response?.data?.data?.plan_code)
+                    localStorage.setItem("paymentRef", paymentRef);
+                    localStorage.setItem("paymentAccessCode", paymentCode);
+                }
+        }catch(err){
+            console.log(err)
         }
-      );
-      console.log(res)
-    } catch (error) {
-      console.log(error)
-      throw error
     }
-  }
 
-  const initializePayment = async () => {
-    try {
-      const res = await axios.post("https://api.applyforme.hng.tech/api/v1/paystack/initializepayment",
-        {
-          "amount": Math.round(convertedPrice * 100) / 100,
-          "email": decoded?.emailAddress,
-          "currency": currency,
-          "plan": planName,
-          "channels": channels
-        },
-        {
-          headers: {
-            "Authorization": `Bearer ${token}`
-          }
+    const initializePlan = async(email,currency,planCode,channels)=>{
+      console.log(planCode, "ran here")
+        try{
+                const  response = await axios
+                .post("https://api.applyforme.hng.tech/api/v1/paystack/initializepayment",                  
+                    {
+                        "amount": Math.round(((convertedPrice *100) + Number.EPSILON) *100)/100,
+                        "email":email,
+                        "currency": currency,
+                        "plan": planCode,
+                        "channels":channels
+                    },
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }    
+                )
+                console.log(response);
+                if(response.data.status === true){
+                    let paymentRef = response.data.reference
+                    let paymentCode = response.data.access_code
+                    let AuthorizationUrl = response.data.authorization_url
+
+                    localStorage.setItem("paymentRef", paymentRef);
+                    localStorage.getItem("paymentAccessCode", paymentCode);
+                    navigate(AuthorizationUrl);
+                }
+        }catch(err){
+            console.log(err)
         }
-      );
-      console.log(res)
-      // setAuthorisation(res?.data?.data?.authorization_url)
-      // localStorage.setItem("paymentPlan", planName)
-      // localStorage.setItem("paymentRef", res?.data?.data.reference)
-    } catch (error) {
-      console.log(error)
-      throw error
     }
-  }
-
-  const handleSubmit = async () => {
-    try {
-    const converted = await convertToNaira()
-    await createPlan(converted)
-    const res = await initializePayment()
-    localStorage.setItem("paymentPlan", planName)
-    localStorage.setItem("paymentRef", res?.data?.data?.reference)
-    navigate(res?.data?.data?.authorization_url)
-    } catch (error) {
-      console.log(error)
+    useEffect(() => {
+        convertToNaira();
+    }, [convertToNaira])
+    
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        createPlan(planName,paymentInterval,setPlanCode);
+        initializePlan(decoded.emailAddress,currency,planCode,channels);
     }
-
-  }
-
-
-  return (
-    <div className="form_wrapper_bg">
-      <header className="pay_header">
-        <div>
-          <img
-            src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/Frame_qq7kqh.svg"
-            alt="object not found"
-            className="afm"
-          />
-        </div>
-        <div className="header_cred_wrapper">
-          <span>
-            <img
-              src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/account_circle_hwbanv.svg"
-              alt="object not found"
-              className="avatar"
-            />
-          </span>
-          <span className="cred_wrapper">
-            <h3 className="header_credName">{decoded?.fullName}</h3>
-          </span>
-        </div>
-      </header>
+        
+    if (loading) {
+        return <Spinner />;
+    }
+    return (
+        <div className="form_wrapper_bg">
+            
       <div>
-        <form className="pay_form_wrapper" onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit()
-        }}>
+        <form className="pay_form_wrapper" onSubmit={
+          handleSubmit
+        }>
           <div>
             <img
               src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/Frame_51449_tk7pzn.svg"
