@@ -8,7 +8,6 @@ import Instagram from "../../assets/images/footer_instagram_logo.svg";
 import Twitter from "../../assets/images/footer_twitter_logo.svg";
 import Youtube from "../../assets/images/footer_youtube_logo.svg";
 import GoogleDownload from "../../assets/images/google_play_download.svg";
-import {ImLinkedin2} from "react-icons/im";
 
 const Footer = () => {
     return (
@@ -27,29 +26,16 @@ const Footer = () => {
                             </p>                          
                             <ul className={classes.footer__social_icons}>
                                 <li>
-                                    <a href="https://web.facebook.com/profile.php?id=100088838052833">
-                                        <img src={Facebook} alt="Facebook logo" />
-                                    </a>                                  
+                                    <img src={Facebook} alt="Facebook logo" />
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <img src={Instagram} alt="Instagram logo" />
-                                   </a>                                   
+                                    <img src={Instagram} alt="Instagram logo" />
                                 </li>
                                 <li>
-                                    <a href="https://twitter.com/Applyforme_?s=20&t=WuV5SQ-T8HNPoAEB8VU_mw">
-                                        <img src={Twitter} alt="Twitter logo" />
-                                    </a>
+                                    <img src={Twitter} alt="Twitter logo" />
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <img src={Youtube} alt="Youtube logo" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.linkedin.com/company/applyforme1/">
-                                        <ImLinkedin2 color="white" size="2rem"/>
-                                    </a>
+                                    <img src={Youtube} alt="Youtube logo" />
                                 </li>
                             </ul>
                              <div className={classes.about__text_google}>

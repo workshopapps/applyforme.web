@@ -74,21 +74,20 @@
 
 .back_button span {
     margin-right: 24px;
-    color: #52515b;
+    color: #52515B;
 }
 
 .topSection {
     display: flex;
     align-items: center;
     margin: 0 20px;
-    border-bottom: 1px solid #e6e6e9;
-    padding: 1rem 0;
+    border-bottom: 1px solid #E6E6E9;
     justify-content: space-between;
 }
 
 .infoSection {
     margin: 24px 20px;
-    border-bottom: 1px solid #e6e6e9;
+    border-bottom: 1px solid #E6E6E9;
     display: flex;
     padding-bottom: 24px;
 }
@@ -104,7 +103,7 @@
     font-size: 14px;
     line-height: 150%;
     letter-spacing: 0.03em;
-    color: #52515b;
+    color: #52515B;
 }
 
 .left p {
@@ -117,7 +116,7 @@
     font-size: 14px;
     line-height: 150%;
     letter-spacing: 0.03em;
-    color: #52515b;
+    color: #52515B;
 }
 
 .bottomSection {
@@ -142,17 +141,15 @@
 
 .change_password {
     background-color: transparent;
-    border: 2px solid #2e3192;
+    border: 2px solid #2E3192;
     border-radius: 8px;
     padding: 16px 32px;
-    color: #2e3192;
+    color: #2E3192;
     font-weight: 600;
     font-size: 16px;
     line-height: 150%;
 }
-.Lwrapper {
-    width: 100px;
-}
+
 .info_container {
     display: flex;
     flex-direction: column;
@@ -176,6 +173,7 @@
     .editProfileContent {
         width: 60%;
         height: 80%;
+
     }
 }
 
@@ -183,10 +181,12 @@
     .editpasswordContent {
         height: auto;
         width: 80%;
+
     }
 
     .editProfileContent {
         width: 80%;
+
     }
 
     .rr_profile_container {

@@ -2,15 +2,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import classes from "./Hero.module.css";
-import { motion } from "framer-motion";
 const LearnMore = () => {
     const navigate = useNavigate();
     return (
-        <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className={classes.learn_container}>
+        <div className={classes.learn_container}>
             <div className={classes.learn_content}>
                 <div className={classes.topContainer}>
                     <div className={classes.top}>
@@ -81,7 +76,7 @@ const LearnMore = () => {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 
