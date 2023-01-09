@@ -16,7 +16,7 @@ const RRProfile = () => {
     const { user } = useSelector(state => state.user);
     const userName = user.fullName;
     const [details, setDetails] = useState();
-    const getRecruiterProfile = useCallback( async () => {
+    const getRecruiterProfile = useCallback(async () => {
         try {
             const response = await axios.get(
                 `${url}/api/v1/recruiter/details`,
@@ -32,7 +32,7 @@ const RRProfile = () => {
         } catch (error) {
             return error.response?.data;
         }
-    },[token]);
+    }, [token]);
     useEffect(() => {
         getRecruiterProfile();
     }, [getRecruiterProfile]);
@@ -50,10 +50,13 @@ const RRProfile = () => {
                     </button>
                 </div>
                 <div className={rrpCss.topSection}>
-                    <LetteredAvatar
-                        name={userName}
-                        backgroundColor={"#78909c"}
-                    />
+                    <div className={rrpCss.Lwrapper}>
+                        <LetteredAvatar
+                            name={userName}
+                            backgroundColor={"#78909c"}
+                            size="100"
+                        />
+                    </div>
                     <div
                         className={rrpCss.btn}
                         onClick={() => setEditModal(prevState => !prevState)}
