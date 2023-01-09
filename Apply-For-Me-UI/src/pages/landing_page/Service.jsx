@@ -1,13 +1,8 @@
 import React from 'react'
 import classes from "./Hero.module.css"
-import { motion } from "framer-motion";
 const Service = () => {
     return (
-        <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}  className={classes.services_container}>
+        <div className={classes.services_container}>
             <div className={classes.services_content}>
                 <div className={classes.box}>
                     <img
@@ -50,7 +45,7 @@ const Service = () => {
                     </p>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 
