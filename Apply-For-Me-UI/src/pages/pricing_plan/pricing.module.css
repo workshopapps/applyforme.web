@@ -42,6 +42,7 @@
 }
 
 .toggle .toggle_state {
+    transition: width 0.5s;
     background:  #4347B2;
     border-radius: 20px;
     width: 60px;
@@ -62,7 +63,9 @@
     font-weight: 500;
     font-size: 1.5rem;
 }
-
+.toggle_circle {
+    transition: right 0.4s;
+}
 .toggle .toggle_state .toggle_circle {
     background-color: #fff;
     width: 25px;

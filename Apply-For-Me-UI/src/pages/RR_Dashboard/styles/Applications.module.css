@@ -9,7 +9,35 @@
     padding: 0rem 1rem;
     border-radius: 5px;
 }
+.entry_mappping {
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #F2F2F2;
+    padding: 1rem 0;
+    
+}
+h5 {
+    color: #52515B;
+}
 
+.entry_maps {
+    width: 100%;
+    text-align: left;
+}
+.entry_map {
+    width: 100%;
+    text-align: left;
+    color: #52515B !important;
+}
+.entry_map > span {
+    color: #52515B;
+}
+.entry_mapt {
+    text-align: right;
+}
 .greeting_text>h1 {
     font-size: 1rem;
     font-weight: 500;
@@ -113,7 +141,10 @@
 
 .stats_item {
     font-weight: 300;
-    width:25%;
+    width:100%;
+    background-color: red;
+    display: flex;
+    
 }
 
 .stats_details_view_button {
@@ -122,6 +153,7 @@
 }
 
 .stats_row {
+    background-color: yellowgreen;
     border-bottom: 1px solid rgba(230, 230, 233, 1);
     display: flex;
     align-items: center;
@@ -142,7 +174,12 @@
 .desktop_only {
     display: block;
 }
-
+.greeting_text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 @media screen and (min-width: 768px) {
     .rrd_applications_wrapper {
         padding: 2rem 2.5rem;
@@ -150,6 +187,9 @@
 
     .desktop_only {
         display: block;
+    }
+    .tab_option {
+        display: none;
     }
 
     .greeting_text>h1 {
@@ -188,7 +228,7 @@
     .stats_row {
         border-bottom: 1px solid rgba(230, 230, 233, 1);
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: auto auto auto auto auto;
         gap: 4%;
         list-style-type: none;
         padding: 32px 0px 16px;
@@ -215,6 +255,10 @@
     .rrd_applications_wrapper {
         padding: 2rem 7rem;
     }
+    
+    .entry_mappping > h5 {
+        font-size: 1.4rem !important;
+    }
 
     .greeting_text>p,
     .stat_text,
@@ -233,7 +277,7 @@
     }
 
     .stats_row {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: auto auto auto auto auto;
         gap: 3.5%;
     }
 
@@ -260,4 +304,17 @@
     .stats_details_view_button {
         font-size: 12px;
     }
+    .mobile_option {
+        display: none;
+    }
+    .entry_mappping > h5 {
+        font-size: 1rem !important;
+    }
+    .mobile_opt {
+        display: flex;
+        width: 35%;
+        flex-wrap: wrap;
+    }
+    
+
 }
