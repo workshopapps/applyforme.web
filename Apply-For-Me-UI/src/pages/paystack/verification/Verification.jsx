@@ -3,7 +3,6 @@ import axios from "axios";
 import Spinner from "components/spinner/MoonLoader";
 import {FaRegTimesCircle,FaRegCheckCircle} from 'react-icons/fa';
 import "./verification.css";
-import Nav from "components/nav/Nav";
 import { useNavigate } from "react-router-dom";
 
 
@@ -25,6 +24,10 @@ const PaymentVerification = () => {
             const response = await axios.get(
                 `${baseURL}/api/v1/paystack/verifypayment/${reference}/${plan}`,
                 {
+                    params:{
+                        'reference':reference,
+                        'plan':plan
+                    },
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }
@@ -48,7 +51,7 @@ const PaymentVerification = () => {
                 navigate("/pricing");
             },4000);
         }
-    }, [plan, reference, token]);
+    }, [plan, reference, token,navigate,verificationDetails]);
 
     useEffect(() => {
         verifyPayment();
@@ -64,7 +67,6 @@ const PaymentVerification = () => {
     }
     return (
         <>
-            <Nav/>
             {
                 verificationDetails.status === true &&
                     <div className="message_container">

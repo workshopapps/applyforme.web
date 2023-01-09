@@ -2,11 +2,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./Hero.module.css";
-
+import { motion } from "framer-motion";
 const Pricing = () => {
     const navigate = useNavigate();
     return (
-        <div className={classes.pricing_container}>
+        <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+         className={classes.pricing_container}>
             <div className={classes.pricing_content}>
                 <div className={classes.top}>
                     <span
@@ -94,12 +98,12 @@ const Pricing = () => {
 
                     <div className={classes.price_card}>
                         <div className={classes.top}>
-                            <span className={classes.type}>Basic plan</span>
+                            <span className={classes.type}>Free plan</span>
                             <span
                                 className={classes.figure}
                                 style={{ color: "#2E3192" }}
                             >
-                                $24.99
+                                $0
                             </span>
                             <span
                                 className={classes.interval}
@@ -115,21 +119,28 @@ const Pricing = () => {
                                     src="https://res.cloudinary.com/hamskid/image/upload/v1669939094/Vector_12_mmv9yq.png"
                                     alt="object not found"
                                 />
-                                up to 60 applications per month
+                                Up to 5 job applications per month
                             </span>
                             <span style={{ color: "#020313" }}>
                                 <img
                                     src="https://res.cloudinary.com/hamskid/image/upload/v1669939094/Vector_12_mmv9yq.png"
                                     alt="object not found"
                                 />
-                                can create up to 4 job profiles
+                                Can create up to 1 job profiles
                             </span>
                             <span style={{ color: "#020313" }}>
                                 <img
                                     src="https://res.cloudinary.com/hamskid/image/upload/v1669939094/Vector_12_mmv9yq.png"
                                     alt="object not found"
                                 />
-                                Access to 2 customer care session on CV review
+                                Access to 2 Keywords per job profile
+                            </span>
+                            <span style={{ color: "#020313" }}>
+                                <img
+                                    src="https://res.cloudinary.com/hamskid/image/upload/v1669939094/Vector_12_mmv9yq.png"
+                                    alt="object not found"
+                                />
+                                Access to 1 cover letter templates
                             </span>
                         </div>
 
@@ -145,7 +156,7 @@ const Pricing = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
