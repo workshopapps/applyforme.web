@@ -64,7 +64,7 @@
     font-size: 1.5rem;
 }
 .toggle_circle {
-    transition: right 0.5s;
+    transition: right 0.4s;
 }
 .toggle .toggle_state .toggle_circle {
     background-color: #fff;

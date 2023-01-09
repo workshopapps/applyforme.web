@@ -40,7 +40,7 @@ export const PaystackPage = () => {
                 const  response = await axios
                 .post("https://api.applyforme.hng.tech/api/v1/paystack/createplan",
                     {
-                        "name": planName,
+                        "name": planName.toLowerCase(),
                         "interval": paymentInterval,
                         "amount": Math.round(convertedPrice *100),
                     },
@@ -52,8 +52,9 @@ export const PaystackPage = () => {
                 )
                 if(response.data.status === true){
                     let paymentCode = response?.data?.data?.plan_code
+                    let paymentPlan = response?.data?.data?.name
                     initializePlan(decoded.emailAddress,currency,paymentCode,channels);
-                    localStorage.setItem("paymentAccessCode", paymentCode);
+                    localStorage.setItem("paymentPlan", paymentPlan);
                 }
         }catch(err){
             toast.error(err?.response?.data?.message);
@@ -82,6 +83,7 @@ export const PaystackPage = () => {
                     let paymentRef = response?.data?.data?.reference;
                     localStorage.setItem("paymentRef", paymentRef);
                     let AuthorizationUrl = response?.data?.data?.authorization_url
+                    console.log(paymentRef);
                    window.location.href = AuthorizationUrl;
                 }
         }catch(err){
