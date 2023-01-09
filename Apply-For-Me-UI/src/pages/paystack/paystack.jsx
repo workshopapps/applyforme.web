@@ -1,20 +1,18 @@
 import "./paystack.css";
 import jwt_decode from "jwt-decode";
-import {useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Spinner from "components/spinner/PulseLoader";
 import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const PaystackPage = () => {
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
     const { price, planName, paymentInterval } = useParams();
-    const [planCode, setPlanCode] = useState();
     const channels = ["card", "bank"];
     const currency = "NGN";
-    console.log(price, planName, paymentInterval, channels, currency);
 
     const [convertedPrice, setConvertedPrice] = useState();
     const exchangeBaseUrl = "https://api.apilayer.com/exchangerates_data";
@@ -30,20 +28,19 @@ export const PaystackPage = () => {
                 }
             );
             setConvertedPrice(response?.data?.result);
-            console.log(convertedPrice);
             setLoading(false);
         } catch (err) {
-            console.log(err);
+            toast.error(err?.response?.data?.message);
         }
-    }, [price, convertedPrice]);
+    }, [price]);
 
-    const createPlan = async(planName,paymentInterval,setPlanCode)=>{
-        console.log(paymentInterval,planName)
+    const createPlan = async(planName,paymentInterval)=>{
+        setLoading(true);
         try{
                 const  response = await axios
                 .post("https://api.applyforme.hng.tech/api/v1/paystack/createplan",
                     {
-                        "name":planName,
+                        "name": planName,
                         "interval": paymentInterval,
                         "amount": Math.round(convertedPrice *100),
                     },
@@ -54,18 +51,17 @@ export const PaystackPage = () => {
                     }               
                 )
                 if(response.data.status === true){
-                    let paymentRef = response?.data?.data?.reference
                     let paymentCode = response?.data?.data?.plan_code
-                    setPlanCode(response?.data?.data?.plan_code)
-                    localStorage.setItem("paymentRef", paymentRef);
+                    initializePlan(decoded.emailAddress,currency,paymentCode,channels);
                     localStorage.setItem("paymentAccessCode", paymentCode);
                 }
         }catch(err){
-            console.log(err)
+            toast.error(err?.response?.data?.message);
+             setLoading(false);
         }
     }
 
-    const initializePlan = async(channels,currency,email,planCode)=>{
+    const initializePlan = async(email,currency,paymentCode,channels)=>{
         try{
                 const  response = await axios
                 .post("https://api.applyforme.hng.tech/api/v1/paystack/initializepayment",                  
@@ -73,7 +69,7 @@ export const PaystackPage = () => {
                         "amount": Math.round(convertedPrice *100),
                         "email":email,
                         "currency": currency,
-                        "plan": planCode,
+                        "plan": paymentCode,
                         "channels":channels
                     },
                     {
@@ -82,13 +78,15 @@ export const PaystackPage = () => {
                         }
                     }    
                 )
-                console.log(response);
                 if(response.data.status === true){
+                    let paymentRef = response?.data?.data?.reference;
+                    localStorage.setItem("paymentRef", paymentRef);
                     let AuthorizationUrl = response?.data?.data?.authorization_url
-                    navigate(AuthorizationUrl);
+                   window.location.href = AuthorizationUrl;
                 }
         }catch(err){
-            console.log(err)
+            toast.error(err?.response?.data?.message);
+            setLoading(false);
         }
     }
     useEffect(() => {
@@ -97,8 +95,7 @@ export const PaystackPage = () => {
     
     const handleSubmit = (e)=>{
         e.preventDefault();
-        createPlan(planName,paymentInterval,setPlanCode);
-        initializePlan(channels,currency,decoded?.emailAddress,planCode);
+        createPlan(planName,paymentInterval);
     }
         
     if (loading) {
@@ -106,7 +103,7 @@ export const PaystackPage = () => {
     }
     return (
         <div className="form_wrapper_bg">
-            <header className="pay_header">
+              <header className="pay_header">
                 <div>
                     <img
                         src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/Frame_qq7kqh.svg"
@@ -128,59 +125,61 @@ export const PaystackPage = () => {
                 </div>
             </header>
             <div>
-                <form className="pay_form_wrapper" onSubmit={handleSubmit}>
-                    <div>
-                        <img
-                            src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/Frame_51449_tk7pzn.svg"
-                            alt="object not found"
-                            onClick={() => window.history.back()}
-                        />
-                    </div>
-                    <p className="confirm_text">
-                        Please Confirm your payment information to continue
-                    </p>
-                    <div className="inputDiv_wrapper">
-                        <label htmlFor="name" className="form_label">
-                            Name
-                        </label>
-                        <input
-                            type="text"
-                            name="name"
-                            className="pay_input"
-                            defaultValue={decoded?.fullName}
-                        />
-                    </div>
-                    <div className="inputDiv_wrapper">
-                        <label htmlFor="email" className="form_label">
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            name="email"
-                            className="pay_input"
-                            defaultValue={decoded?.emailAddress}
-                        />
-                    </div>
-                    <div className="inputDiv_wrapper">
-                        <label htmlFor="amount" className="form_label">
-                            Amount
-                        </label>
-                        <input
-                            type="text"
-                            name="amount"
-                            className="pay_input"
-                            defaultValue={`$ ${price}`}
-                        />
-                    </div>
-                    <button className="submit_btn">Make payment</button>
-                </form>
-                <div className="paystack_footer">
-                    <img
-                        src="https://res.cloudinary.com/hamskid/image/upload/v1672272450/Secured_by_paystack_payment_gateway_hqgk1j.svg"
-                        alt="object not found"
-                    />
-                </div>
+            <form className="pay_form_wrapper" onSubmit={
+            handleSubmit
+            }>
+            <div>
+                <img
+                src="https://res.cloudinary.com/hamskid/image/upload/v1672269145/Frame_51449_tk7pzn.svg"
+                alt="object not found"
+                onClick={() => window.history.back()}
+                />
             </div>
-        </div>
-    );
+            <p className="confirm_text">
+                Please Confirm your payment information to continue
+            </p>
+            <div className="inputDiv_wrapper">
+                <label htmlFor="name" className="form_label">
+                Name
+                </label>
+                <input
+                type="text"
+                name="name"
+                className="pay_input"
+                defaultValue={decoded?.fullName}
+                />
+            </div>
+            <div className="inputDiv_wrapper">
+                <label htmlFor="email" className="form_label">
+                Email
+                </label>
+                <input
+                type="email"
+                name="email"
+                className="pay_input"
+                defaultValue={decoded?.emailAddress}
+                />
+            </div>
+            <div className="inputDiv_wrapper">
+                <label htmlFor="amount" className="form_label">
+                Amount
+                </label>
+                <input
+                type="text"
+                name="amount"
+                className="pay_input"
+                defaultValue={`$ ${price}`}
+                />
+            </div>
+            <button className="submit_btn">Make payment</button>
+            </form>
+            <div className="paystack_footer">
+            <img
+                src="https://res.cloudinary.com/hamskid/image/upload/v1672272450/Secured_by_paystack_payment_gateway_hqgk1j.svg"
+                alt="object not found"
+            />
+            </div>
+      </div>
+    </div>
+  );
 };
