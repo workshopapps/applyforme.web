@@ -11,6 +11,7 @@ export const PaystackPage = () => {
     const [loading, setLoading] = useState(true);
     let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
     const { price, planName, paymentInterval } = useParams();
+    const [planCode, setPlanCode] = useState();
     const channels = ["card", "bank"];
     const currency = "NGN";
     console.log(price, planName, paymentInterval, channels, currency);
@@ -36,7 +37,7 @@ export const PaystackPage = () => {
         }
     }, [price, convertedPrice]);
 
-    const createPlan = async(planName,paymentInterval)=>{
+    const createPlan = async(planName,paymentInterval,setPlanCode)=>{
         console.log(paymentInterval,planName)
         try{
                 const  response = await axios
@@ -44,7 +45,7 @@ export const PaystackPage = () => {
                     {
                         "name":planName,
                         "interval": paymentInterval,
-                        "amount": Math.round(((convertedPrice *100) + Number.EPSILON) *100)/100,
+                        "amount": Math.round(convertedPrice *100),
                     },
                     {
                         headers: {
@@ -53,8 +54,9 @@ export const PaystackPage = () => {
                     }               
                 )
                 if(response.data.status === true){
-                    let paymentRef = response.data.reference
-                    let paymentCode = response.data.access_code
+                    let paymentRef = response?.data?.data?.reference
+                    let paymentCode = response?.data?.data?.plan_code
+                    setPlanCode(response?.data?.data?.plan_code)
                     localStorage.setItem("paymentRef", paymentRef);
                     localStorage.setItem("paymentAccessCode", paymentCode);
                 }
@@ -63,15 +65,15 @@ export const PaystackPage = () => {
         }
     }
 
-    const initializePlan = async(planName,channels,currency,email)=>{
+    const initializePlan = async(channels,currency,email,planCode)=>{
         try{
                 const  response = await axios
                 .post("https://api.applyforme.hng.tech/api/v1/paystack/initializepayment",                  
                     {
-                        "amount": Math.round(((convertedPrice *100) + Number.EPSILON) *100)/100,
+                        "amount": Math.round(convertedPrice *100),
                         "email":email,
                         "currency": currency,
-                        "plan": planName,
+                        "plan": planCode,
                         "channels":channels
                     },
                     {
@@ -82,12 +84,7 @@ export const PaystackPage = () => {
                 )
                 console.log(response);
                 if(response.data.status === true){
-                    let paymentRef = response.data.reference
-                    let paymentCode = response.data.access_code
-                    let AuthorizationUrl = response.data.authorization_url
-
-                    localStorage.setItem("paymentRef", paymentRef);
-                    localStorage.getItem("paymentAccessCode", paymentCode);
+                    let AuthorizationUrl = response?.data?.data?.authorization_url
                     navigate(AuthorizationUrl);
                 }
         }catch(err){
@@ -100,8 +97,8 @@ export const PaystackPage = () => {
     
     const handleSubmit = (e)=>{
         e.preventDefault();
-        createPlan(planName,paymentInterval);
-        initializePlan(planName,channels,currency,decoded?.emailAddress);
+        createPlan(planName,paymentInterval,setPlanCode);
+        initializePlan(channels,currency,decoded?.emailAddress,planCode);
     }
         
     if (loading) {
