@@ -26,8 +26,6 @@ const Hero = () => {
                     Job hunting and application stress can be exhausting, especially for those with little or no free time.
                     With our simple and easy to navigate interface. We are your lifelong Job/career assistant designed to
                     make the hunting process easy.
-
-
                     </span>
                     <div className={classes.uploadFile}>
                         {!storedToken && (
@@ -44,7 +42,7 @@ const Hero = () => {
                 <div className={classes.right}>
                     <img
                         src="https://res.cloudinary.com/hamskid/image/upload/v1671795809/Mask_group_1_ky5sqo.svg"
-                        alt=""
+                        alt="object not found"
                     />
                 </div>
             </div>
