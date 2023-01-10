@@ -21,7 +21,7 @@ const Plans3 = ({ paymentInterval, plans }) => {
                                 <p className={styles.choice_text}>{stamp}</p>
                             </div>
 
-                            <h3 className={styles.card__heading}>{planName}</h3>
+                            <h3 className={styles.card__heading}>{planName} plan</h3>
                             <p className={styles.card__price}>$ {price}</p>
                             <p className={styles.card__duration}>{duration}</p>
 
