@@ -85,6 +85,7 @@
 
 .job_information>div {
     display: flex;
+
     flex-flow: row wrap;
     gap: 35px;
 }
@@ -128,6 +129,8 @@
 
     .job_information>div {
         gap: 27px;
+        width: 100%;
+        justify-content: space-between;
     }
 }
 
@@ -157,7 +160,10 @@
     }
 
     .job_information>div {
-        justify-content: space-between;
+        width: 100%;
+        display: flex;
+        align-items: left;
+        justify-content: flex-start;
     }
 
     .job_information h2 {

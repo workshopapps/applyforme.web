@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "pages/pricing_plan/pricing.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 //Importing bluebutton component
 import BlueBorderButton from "components/buttons/blue_border_button/BlueBorderButton";
@@ -12,6 +12,7 @@ import Nav from "components/nav/Nav";
 import Footer from "components/footer/Footer";
 import BlueButton from "components/buttons/blue_background/BlueButton";
 import { useSelector } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 
 const Pricing = ({
     primaryHeading,
@@ -27,12 +28,22 @@ const Pricing = ({
         monthly: true,
         yearly: false
     });
+    const [paymentInterval, setpaymentInterval] = useState();
+
+    useEffect(() => {
+        toggle.yearly
+            ? setpaymentInterval("yearly")
+            : setpaymentInterval("monthly");
+    }, [toggle.yearly, paymentInterval]);
+
+    const location = useLocation();
 
     const { user } = useSelector(state => state.user);
     const navigate = useNavigate();
 
     return (
         <>
+            <ToastContainer />
             <Nav />
             <main className={styles.container}>
                 <section className={styles.section__head}>
@@ -46,7 +57,7 @@ const Pricing = ({
                         <div className={styles.toggle}>
                             <p
                                 onClick={() =>
-                                    setToggle({ yearly: !toggle.yearly , monthly: !toggle.monthly })
+                                    setToggle({ yearly: false, monthly: true })
                                 }
                                 className={
                                     toggle.monthly ? styles.active_toggle : ""
@@ -54,17 +65,25 @@ const Pricing = ({
                             >
                                 {toggleInfo.text1}
                             </p>
-                            <div className={styles.toggle_state}>
+                            <div
+                                className={styles.toggle_state}
+                                onClick={() =>
+                                    setToggle({
+                                        yearly: !toggle.yearly,
+                                        monthly: !toggle.monthly
+                                    })
+                                }
+                            >
                                 <span
                                     className={styles.toggle_circle}
                                     style={{
-                                        right: toggle.yearly ? "4px" : ""
+                                        right: toggle.yearly ? "2px" : "2rem"
                                     }}
                                 ></span>
                             </div>
                             <p
                                 onClick={() =>
-                                    setToggle({ yearly: !toggle.yearly , monthly: !toggle.monthly })
+                                    setToggle({ yearly: false, monthly: true })
                                 }
                                 className={
                                     toggle.yearly ? styles.active_toggle : ""
@@ -73,14 +92,14 @@ const Pricing = ({
                                 {toggleInfo.text2}
                             </p>
                         </div>
-                        <div className={styles.seemore}>
+                        {/* <div className={styles.seemore}>
                             <p className={styles.seemorePar}>See more plans</p>
-                        </div>
+                        </div> */}
                         <div className={styles.majorPlan}>
                             {plans.map(
                                 (
                                     {
-                                        basic,
+                                        planName,
                                         price,
                                         duration,
                                         model,
@@ -107,10 +126,10 @@ const Pricing = ({
                                             <h3
                                                 className={styles.card__heading}
                                             >
-                                                {basic}
+                                                {planName} Plan
                                             </h3>
                                             <p className={styles.card__price}>
-                                                {price}
+                                                $ {price}
                                             </p>
                                             <p
                                                 className={
@@ -158,24 +177,58 @@ const Pricing = ({
                                                 <BlueButton
                                                     text="Get Plan"
                                                     width={200}
-                                                    func={() =>
-                                                        navigate("/checkout")
-                                                    }
+                                                    func={() => {
+                                                        let isAuthorized;
+                                                        user?.roles?.forEach(
+                                                            role => {
+                                                                if (
+                                                                    role.includes(
+                                                                        "Professional"
+                                                                    )
+                                                                ) {
+                                                                    isAuthorized = true;
+                                                                }
+                                                            }
+                                                        );
+                                                        if (
+                                                            isAuthorized &&
+                                                            price !== "0"
+                                                        ) {
+                                                            navigate(
+                                                                `/checkout/${planName}/${paymentInterval}/${price}`
+                                                            );
+                                                        } else if (
+                                                            isAuthorized &&
+                                                            price === "0"
+                                                        ) {
+                                                            return;
+                                                        } else {
+                                                            toast.error(
+                                                                "Unauthorized"
+                                                            );
+                                                        }
+                                                    }}
                                                 />
                                             ) : (
-                                                <Link to="/wel2">
+                                                <>
                                                     <BlueButton
                                                         width={200}
                                                         text={btnText}
+                                                        func={() =>
+                                                            navigate("/wel2", {
+                                                                state: {
+                                                                    from: location
+                                                                }
+                                                            })
+                                                        }
                                                     />{" "}
-                                                </Link>
+                                                </>
                                             )}
                                         </div>
                                     );
                                 }
                             )}
                         </div>
-
                     </div>
                 </section>
                 <section className={styles.subHead}>
@@ -192,9 +245,10 @@ const Pricing = ({
                             <h2 className={styles.faqheading}>{faqHeading}</h2>
                             <p className={styles.faqText}>{faqText}</p>
 
-
-                            <BlueBorderButton text={faqBtnText} func={()=>navigate("/contact")}/>
-
+                            <BlueBorderButton
+                                text={faqBtnText}
+                                func={() => navigate("/contact")}
+                            />
                         </div>
 
                         <div className={styles.questionWrapper}>

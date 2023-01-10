@@ -425,7 +425,7 @@ input[type=file]{
     width: 90%;
     margin: auto;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .FAQ_content div {
@@ -444,6 +444,7 @@ input[type=file]{
 .FAQ_content div .text {
     width: 80%;
     margin-right: auto;
+    margin-top: 3rem;
 }
 
 .FAQ_content div .text p {
@@ -453,12 +454,12 @@ input[type=file]{
 }
 
 
-.FAQ_content div h3 {
+/* .FAQ_content div h3 {
     font-weight: 500;
     width: 100%;
     color: #2E3192;
     font-size: 40px;
-}
+} */
 
 .FAQ_content div ul li {
     list-style: none;
@@ -773,6 +774,7 @@ input[type=file]{
 
     .FAQ_content div .text {
         width: 100%;
+        margin-top: 0;
     }
 
     .FAQ_content div ul {
