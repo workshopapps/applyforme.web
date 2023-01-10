@@ -1,10 +1,9 @@
-import { useEffect, useState} from "react";
+import { useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import Spinner from "components/spinner/MoonLoader";
 import {FaRegTimesCircle,FaRegCheckCircle} from 'react-icons/fa';
 import "./verification.css";
 import { useNavigate } from "react-router-dom";
-
 
 const PaymentVerification = () => {
     const navigate = useNavigate();
@@ -19,7 +18,7 @@ const PaymentVerification = () => {
     const [status, setStatus] = useState(false);
     const [isLoading, setisLoading] = useState(true);
 
-    const verifyPayment = async () => {
+    const verifyPayment = useCallback(async () => {
         try {
             const response = await axios.get(
                 `${baseURL}/api/v1/paystack/verifypayment/${reference}/${plan}`,
@@ -42,21 +41,24 @@ const PaymentVerification = () => {
             setisLoading(false);
             setTimeout(()=>{
                 navigate("/pricing");
-            },4000);
-        } catch (err) {
+            },5000);
+        } catch (err){
             console.log(err);
-            setVerificationDetails({...verificationDetails, message: err.response?.data.message});
+            setVerificationDetails((prev)=>{
+                return {...prev, message: err.response?.data.message};
+            })
+           
             setisLoading(false);
             setTimeout(()=>{
                 navigate("/pricing");
-            },4000);
+            },5000);
         }
-    }
+    },[plan,reference,token,navigate])
 
     useEffect(() => {
         verifyPayment();
         console.log("Working");
-    }, []);
+    }, [ verifyPayment]);
 
     if(isLoading){
         return(
