@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import styles from "pages/pricing_plan/pricing.module.css";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //Importing bluebutton component
 import BlueBorderButton from "components/buttons/blue_border_button/BlueBorderButton";
 
 //The question component
 import Question from "pages/pricing_plan/question/Question";
+import Plans3 from "./components/Plans3";
+import Plans4 from "./components/Plans4";
 
 import Nav from "components/nav/Nav";
 import Footer from "components/footer/Footer";
-import BlueButton from "components/buttons/blue_background/BlueButton";
-import { useSelector } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
+//import BlueButton from "components/buttons/blue_background/BlueButton";
+//import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 const Pricing = ({
     primaryHeading,
     primaryText,
     plans,
+    plansFull,
     toggleInfo,
     faqSection,
     secondaryHeading,
@@ -29,22 +32,24 @@ const Pricing = ({
         yearly: false
     });
     const [paymentInterval, setpaymentInterval] = useState();
+    const [seeMore, setSeeMore] = useState(false);
+
+    //const data = seeMore ? plans : plansFull;
 
     useEffect(() => {
         toggle.yearly
             ? setpaymentInterval("yearly")
             : setpaymentInterval("monthly");
     }, [toggle.yearly, paymentInterval]);
+    //const location = useLocation();
 
-    const location = useLocation();
-
-    const { user } = useSelector(state => state.user);
+    //const { user } = useSelector(state => state.user);
     const navigate = useNavigate();
 
     return (
         <>
             <ToastContainer />
-            <Nav />
+            <Nav setSeeMore={setSeeMore} />
             <main className={styles.container}>
                 <section className={styles.section__head}>
                     <div className={styles.headingWrapper}>
@@ -92,11 +97,25 @@ const Pricing = ({
                                 {toggleInfo.text2}
                             </p>
                         </div>
-                        {/* <div className={styles.seemore}>
-                            <p className={styles.seemorePar}>See more plans</p>
-                        </div> */}
-                        <div className={styles.majorPlan}>
-                            {plans.map(
+                        {seeMore ? (
+                            <Plans4
+                                paymentInterval={paymentInterval}
+                                plans={plans}
+                            />
+                        ) : (
+                            <Plans3
+                                paymentInterval={paymentInterval}
+                                plans={plansFull}
+                            />
+                        )}
+
+                        <p className={styles.disclaimer}>
+                            **All CV rebuilds and reviews are on demand services
+                            therefore prices are not included in the pricing
+                            plan but based on individual requests.
+                        </p>
+                        {/* <div className={styles.majorPlan}>
+                            {data.map(
                                 (
                                     {
                                         planName,
@@ -228,7 +247,29 @@ const Pricing = ({
                                     );
                                 }
                             )}
-                        </div>
+                        </div> */}
+
+                        {/* <div >
+                            <p
+                                className={styles.seemorePar}
+                            >
+                                See more plans
+                            </p>
+                        </div> */}
+
+                        {!seeMore && (
+                            <div className={styles.seemore}>
+                                <button
+                                    type="button"
+                                    className={styles.seemorePar}
+                                    onClick={() => {
+                                        setSeeMore(true);
+                                    }}
+                                >
+                                    See more plans
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </section>
                 <section className={styles.subHead}>

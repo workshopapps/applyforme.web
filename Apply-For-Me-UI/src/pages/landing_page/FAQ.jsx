@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import classes from "./Hero.module.css";
 import arrowdown from "../../assets/images/arrow-down.png";
 
@@ -74,7 +74,11 @@ const FAQ = () => {
         <li key={i} onClick={() => onToggle(faq.id)}>
             <div className={classes.faq1}>
                 <p>{faq.question}</p>
-               <img src={arrowdown} alt="obeject not found" className={classes.rotate_image}/>
+                <img
+                    src={arrowdown}
+                    alt="obeject not found"
+                    className={classes.rotate_image}
+                />
                 {/* {toggle && <img src="https://res.cloudinary.com/hamskid/image/upload/v1671799257/Vector_3_auvm1i.svg" alt=""/> } */}
             </div>
 
@@ -97,7 +101,8 @@ const FAQ = () => {
                     <div className={classes.text}>
                         <h3>Frequently asked questions</h3>
                         <p>
-                        Our recruiters are highly experienced, and they know exactly what to look for when they're recruiting.
+                            Our recruiters are highly experienced, and they know
+                            exactly what to look for when they're recruiting.
                         </p>
 
                         <Link to="/contact">
