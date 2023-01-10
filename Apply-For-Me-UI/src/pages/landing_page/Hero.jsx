@@ -17,17 +17,25 @@ const Hero = () => {
             <div className={classes.hero_content}>
                 <div className={classes.left}>
                     <motion.h3
-                        initial={{ opacity: 0, scaleY: 0.5 }}
-                        animate={{ opacity: 1, scaleY: 1 }}
+                        initial={{ opacity: 0, y: 100 }}
+                        animate={{ opacity: 1, y: 1 }}
                         transition={{ duration: 0.5 }} className={classes.heading}>
                         Take a single step to your dream job
                     </motion.h3>
-                    <span style={{ color: "#52515B" }}>
+                    <motion.span
+                        initial={{ opacity: 0, y: 100 }}
+                        animate={{ opacity: 1, y: 1 }}
+                        transition={{ duration: 0.5,delay:0.1 }}
+                     style={{ color: "#52515B" }}>
                     Job hunting and application stress can be exhausting, especially for those with little or no free time.
                     With our simple and easy to navigate interface. We are your lifelong Job/career assistant designed to
                     make the hunting process easy.
-                    </span>
-                    <div className={classes.uploadFile}>
+                    </motion.span>
+                    <motion.div
+                     initial={{ opacity: 0, y: 100 }}
+                     animate={{ opacity: 1, y: 1 }}
+                     transition={{ duration: 0.5,delay:0.2 }}
+                     className={classes.uploadFile}>
                         {!storedToken && (
                             <button
                                 className={classes.fileLabel}
@@ -36,15 +44,19 @@ const Hero = () => {
                                 Try it now
                             </button>
                         )}
-                    </div>
+                    </motion.div>
                 </div>
 
-                <div className={classes.right}>
+                <motion.div
+                    initial={{ opacity: 0, x: 200 }}
+                    animate={{ opacity: 1, x: 1 }}
+                    transition={{ duration: 0.5,delay:0.2 }}
+                    className={classes.right}>
                     <img
                         src="https://res.cloudinary.com/hamskid/image/upload/v1671795809/Mask_group_1_ky5sqo.svg"
                         alt="object not found"
                     />
-                </div>
+                </motion.div>
             </div>
         </motion.div>
     );
