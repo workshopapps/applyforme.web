@@ -111,7 +111,8 @@ const FAQ = () => {
                     <div className={classes.text}>
                         <h3>Frequently asked questions</h3>
                         <p>
-                        Our recruiters are highly experienced, and they know exactly what to look for when they're recruiting.
+                            Our recruiters are highly experienced, and they know
+                            exactly what to look for when they're recruiting.
                         </p>
 
                         <Link to="/contact">
