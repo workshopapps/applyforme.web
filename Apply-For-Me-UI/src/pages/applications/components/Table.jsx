@@ -35,7 +35,7 @@ const Table = () => {
             setData(response?.data?.content);
             setPageCout(response.data?.totalPages);
         } catch (error) {
-            toast.error(`Could not get applicants: ${error}`);
+            toast.error(`${error}`);
         }
     }, [token, pagination.pageNo, pagination.pageSize]);
 

@@ -82,7 +82,7 @@ const Pricing = ({
                                 <span
                                     className={styles.toggle_circle}
                                     style={{
-                                        right: toggle.yearly ? "4px" : ""
+                                        right: toggle.yearly ? "2px" : "2rem"
                                     }}
                                 ></span>
                             </div>
@@ -145,7 +145,7 @@ const Pricing = ({
                                             <h3
                                                 className={styles.card__heading}
                                             >
-                                                {planName}
+                                                {planName} Plan
                                             </h3>
                                             <p className={styles.card__price}>
                                                 $ {price}

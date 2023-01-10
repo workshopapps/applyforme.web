@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+import { useState} from "react";
+>>>>>>> cef9a57b9b100b59a699486e765c9a3616346da2
 import classes from "./Hero.module.css";
 import arrowdown from "../../assets/images/arrow-down.png";
+import {Question} from "./question";
+import { motion } from "framer-motion";
 
 const FAQ = () => {
     const [faQuestions] = useState([
@@ -62,15 +68,16 @@ const FAQ = () => {
             imgUrl: "../../assets/images/arrow-down.png"
         }
     ]);
-    const [toggle, setToggle] = useState(false);
-    const [faqId, setID] = useState(0);
+    // const [toggle, setToggle] = useState(false);
+    // const [faqId, setID] = useState(0);
 
-    function onToggle(id) {
-        setToggle(!toggle);
-        setID(id);
-    }
+    // function onToggle(id) {
+    //     setToggle(!toggle);
+    //     setID(id);
+    // }
 
     const faqList = faQuestions.map((faq, i) => (
+<<<<<<< HEAD
         <li key={i} onClick={() => onToggle(faq.id)}>
             <div className={classes.faq1}>
                 <p>{faq.question}</p>
@@ -81,21 +88,41 @@ const FAQ = () => {
                 />
                 {/* {toggle && <img src="https://res.cloudinary.com/hamskid/image/upload/v1671799257/Vector_3_auvm1i.svg" alt=""/> } */}
             </div>
+=======
+>>>>>>> cef9a57b9b100b59a699486e765c9a3616346da2
 
-            {toggle && faqId === faq.id ? (
-                <div className={classes.faq_one} id={faq.id}>
-                    <p className="faqlist">{faq.answer}</p>
-                    {/* <h5 className="faqlist">{faq.month}</h5> */}
-                    <Link to="/faqs/faqspage">Learn more</Link>
-                </div>
-            ) : (
-                <></>
-            )}
-        </li>
+                <Question 
+                    key={i}
+                    subIcon={arrowdown}
+                    subQuestion={faq.question}
+                    answer={faq.answer}
+                    month={faq.month}
+            />
+        // <li key={i} onClick={() => onToggle(faq.id)}>
+        //     <div className={classes.faq1}>
+        //         <p>{faq.question}</p>
+        //        <img src={arrowdown} alt="obeject not found" className={classes.rotate_image}/>
+        //         {/* {toggle && <img src="https://res.cloudinary.com/hamskid/image/upload/v1671799257/Vector_3_auvm1i.svg" alt=""/> } */}
+        //     </div>
+
+        //     {toggle && faqId === faq.id ? (
+        //         <div className={classes.faq_one} id={faq.id}>
+        //             <p className="faqlist">{faq.answer}</p>
+        //             {/* <h5 className="faqlist">{faq.month}</h5> */}
+        //             <Link to="/faqs/faqspage">Learn more</Link>
+        //         </div>
+        //     ) : (
+        //         <></>
+        //     )}
+        // </li>
     ));
 
     return (
-        <div className={classes.FAQ_container}>
+        <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }} 
+            className={classes.FAQ_container}>
             <div className={classes.FAQ_content}>
                 <div>
                     <div className={classes.text}>
@@ -115,7 +142,7 @@ const FAQ = () => {
                     <ul>{faqList}</ul>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

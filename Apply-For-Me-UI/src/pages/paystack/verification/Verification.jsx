@@ -1,9 +1,8 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState} from "react";
 import axios from "axios";
 import Spinner from "components/spinner/MoonLoader";
 import {FaRegTimesCircle,FaRegCheckCircle} from 'react-icons/fa';
 import "./verification.css";
-import Nav from "components/nav/Nav";
 import { useNavigate } from "react-router-dom";
 
 
@@ -12,7 +11,7 @@ const PaymentVerification = () => {
     const baseURL = "https://api.applyforme.hng.tech";
     const token = localStorage?.getItem("tokenHngKey");
     const reference = localStorage?.getItem("paymentRef");
-    const plan = localStorage?.getItem("paymentAccessCode");
+    const plan = localStorage?.getItem("paymentPlan");
     const [verificationDetails, setVerificationDetails] = useState({
         status:null,
         message:null
@@ -20,11 +19,15 @@ const PaymentVerification = () => {
     const [status, setStatus] = useState(false);
     const [isLoading, setisLoading] = useState(true);
 
-    const verifyPayment = useCallback(async () => {
+    const verifyPayment = async () => {
         try {
             const response = await axios.get(
                 `${baseURL}/api/v1/paystack/verifypayment/${reference}/${plan}`,
                 {
+                    params:{
+                        'reference':reference,
+                        'plan':plan
+                    },
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }
@@ -48,12 +51,12 @@ const PaymentVerification = () => {
                 navigate("/pricing");
             },4000);
         }
-    }, [plan, reference, token]);
+    }
 
     useEffect(() => {
         verifyPayment();
         console.log("Working");
-    }, [verifyPayment]);
+    }, []);
 
     if(isLoading){
         return(
@@ -63,24 +66,25 @@ const PaymentVerification = () => {
         )      
     }
     return (
-        <>
-            <Nav/>
+        <div className="mainContainer">
             {
                 verificationDetails.status === true &&
                     <div className="message_container">
                         <FaRegCheckCircle color="green" size="7rem"/>
-                        <p className="ver_text">{verificationDetails.message}</p>
+                        <p className="status">Verification successful!</p>
+                        <h4 className="ver_text">{verificationDetails.message}</h4>
                     </div>
             }
             {
                 (verificationDetails.status === false || !status) &&
                  <div  className="message_container">
                     <FaRegTimesCircle color="rgb(255, 0, 72)" size="7rem"/>
-                    <p className="ver_text">{verificationDetails.message}</p>
+                    <p className="status">Verification Failed!</p>
+                    <h4 className="ver_text">{verificationDetails.message}</h4>
                  </div>
 
             }
-        </>
+        </div>
     )
 };
 
