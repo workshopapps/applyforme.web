@@ -1,10 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import { useState } from "react";
-=======
 import { useState} from "react";
->>>>>>> cef9a57b9b100b59a699486e765c9a3616346da2
 import classes from "./Hero.module.css";
 import arrowdown from "../../assets/images/arrow-down.png";
 import {Question} from "./question";
@@ -77,19 +73,6 @@ const FAQ = () => {
     // }
 
     const faqList = faQuestions.map((faq, i) => (
-<<<<<<< HEAD
-        <li key={i} onClick={() => onToggle(faq.id)}>
-            <div className={classes.faq1}>
-                <p>{faq.question}</p>
-                <img
-                    src={arrowdown}
-                    alt="obeject not found"
-                    className={classes.rotate_image}
-                />
-                {/* {toggle && <img src="https://res.cloudinary.com/hamskid/image/upload/v1671799257/Vector_3_auvm1i.svg" alt=""/> } */}
-            </div>
-=======
->>>>>>> cef9a57b9b100b59a699486e765c9a3616346da2
 
                 <Question 
                     key={i}
