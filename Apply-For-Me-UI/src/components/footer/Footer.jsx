@@ -4,9 +4,9 @@ import classes from "./Footer.module.css";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/footer_logo.svg";
 import Facebook from "../../assets/images/footer_facebook_logo.svg";
-import Instagram from "../../assets/images/footer_instagram_logo.svg";
+// import Instagram from "../../assets/images/footer_instagram_logo.svg";
 import Twitter from "../../assets/images/footer_twitter_logo.svg";
-import Youtube from "../../assets/images/footer_youtube_logo.svg";
+// import Youtube from "../../assets/images/footer_youtube_logo.svg";
 import GoogleDownload from "../../assets/images/google_play_download.svg";
 import {ImLinkedin2} from "react-icons/im";
 
@@ -31,21 +31,21 @@ const Footer = () => {
                                         <img src={Facebook} alt="Facebook logo" />
                                     </a>                                  
                                 </li>
-                                <li>
+                                {/* <li>
                                     <a href="#">
                                         <img src={Instagram} alt="Instagram logo" />
                                    </a>                                   
-                                </li>
+                                </li> */}
                                 <li>
                                     <a href="https://twitter.com/Applyforme_?s=20&t=WuV5SQ-T8HNPoAEB8VU_mw">
                                         <img src={Twitter} alt="Twitter logo" />
                                     </a>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <a href="#">
                                         <img src={Youtube} alt="Youtube logo" />
                                     </a>
-                                </li>
+                                </li> */}
                                 <li>
                                     <a href="https://www.linkedin.com/company/applyforme1/">
                                         <ImLinkedin2 color="white" size="2rem"/>
