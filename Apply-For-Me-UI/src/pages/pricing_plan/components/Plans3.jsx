@@ -3,11 +3,13 @@ import BlueButton from "components/buttons/blue_background/BlueButton";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import styles from "pages/pricing_plan/pricing.module.css";
+import { useState } from "react";
 
 const Plans3 = ({ paymentInterval, plans }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const { user } = useSelector(state => state.user);
+    const [activeSubScription] = useState("Free")
     return (
         <div className={styles.majorPlan}>
             {plans.map(
@@ -44,45 +46,47 @@ const Plans3 = ({ paymentInterval, plans }) => {
                                     );
                                 })}
                             </div>
-                            {user ? (
-                                <BlueButton
-                                    text="Get Plan"
-                                    width={200}
-                                    func={() => {
-                                        let isAuthorized;
-                                        user?.roles?.forEach(role => {
-                                            if (role.includes("Professional")) {
-                                                isAuthorized = true;
-                                            }
-                                        });
-                                        if (isAuthorized && price !== "0") {
-                                            navigate(
-                                                `/checkout/${planName}/${paymentInterval}/${price}`
-                                            );
-                                        } else if (
-                                            isAuthorized &&
-                                            price === "0"
-                                        ) {
-                                            return;
-                                        } else {
-                                            toast.error("Unauthorized");
-                                        }
-                                    }}
-                                />
-                            ) : (
-                                <>
+                            {
+                                user && (user?.roles?.includes("Professional"))? (
+                                    activeSubScription !== planName ?
                                     <BlueButton
+                                        text="Upgrade"
                                         width={200}
-                                        text={btnText}
-                                        func={() =>
-                                            navigate("/wel2", {
-                                                state: {
-                                                    from: location
-                                                }
-                                            })
-                                        }
-                                    />{" "}
-                                </>
+                                        func={() => {
+                                            if (price !== "0") {
+                                                navigate(
+                                                    `/checkout/${planName}/${paymentInterval}/${price}`
+                                                );
+                                            } else {
+                                                return;
+                                            }
+                                        }}
+                                    />
+                                    :
+                                    <BlueButton
+                                        text="SubScribed"
+                                        width={200}
+                                    />
+                                ) : user && (!user?.roles?.includes("Professional"))? (
+                                    <BlueButton
+                                        text="Get Plan"
+                                        width={200}
+                                        func={()=>toast("SubScriptions are meant for users alone")}
+                                    />
+                                ):(
+                                    <>
+                                        <BlueButton
+                                            width={200}
+                                            text={btnText}
+                                            func={() =>
+                                                navigate("/wel2", {
+                                                    state: {
+                                                        from: location
+                                                    }
+                                                })
+                                            }
+                                        />{" "}
+                                    </>
                             )}
                         </div>
                     );

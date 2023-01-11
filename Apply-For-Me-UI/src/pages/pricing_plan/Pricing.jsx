@@ -34,16 +34,12 @@ const Pricing = ({
     const [paymentInterval, setpaymentInterval] = useState();
     const [seeMore, setSeeMore] = useState(false);
 
-    //const data = seeMore ? plans : plansFull;
-
     useEffect(() => {
         toggle.yearly
             ? setpaymentInterval("yearly")
             : setpaymentInterval("monthly");
     }, [toggle.yearly, paymentInterval]);
-    //const location = useLocation();
-
-    //const { user } = useSelector(state => state.user);
+ 
     const navigate = useNavigate();
 
     return (
@@ -114,149 +110,6 @@ const Pricing = ({
                             therefore prices are not included in the pricing
                             plan but based on individual requests.
                         </p>
-                        {/* <div className={styles.majorPlan}>
-                            {data.map(
-                                (
-                                    {
-                                        planName,
-                                        price,
-                                        duration,
-                                        model,
-                                        btnText,
-                                        stamp
-                                    },
-                                    index
-                                ) => {
-                                    return (
-                                        <div
-                                            className={styles.card}
-                                            key={index}
-                                        >
-                                            <div className={styles.choices}>
-                                                <p
-                                                    className={
-                                                        styles.choice_text
-                                                    }
-                                                >
-                                                    {stamp}
-                                                </p>
-                                            </div>
-
-                                            <h3
-                                                className={styles.card__heading}
-                                            >
-                                                {planName} Plan
-                                            </h3>
-                                            <p className={styles.card__price}>
-                                                $ {price}
-                                            </p>
-                                            <p
-                                                className={
-                                                    styles.card__duration
-                                                }
-                                            >
-                                                {duration}
-                                            </p>
-
-                                            <div
-                                                className={styles.statusWrapper}
-                                            >
-                                                {model.map(
-                                                    (
-                                                        { icon, text, alt },
-                                                        index
-                                                    ) => {
-                                                        return (
-                                                            <div
-                                                                className={
-                                                                    styles.status
-                                                                }
-                                                                key={index}
-                                                            >
-                                                                <img
-                                                                    src={icon}
-                                                                    alt={alt}
-                                                                    className={
-                                                                        styles.status__img
-                                                                    }
-                                                                />
-                                                                <p
-                                                                    className={
-                                                                        styles.status__text
-                                                                    }
-                                                                >
-                                                                    {text}
-                                                                </p>
-                                                            </div>
-                                                        );
-                                                    }
-                                                )}
-                                            </div>
-                                            {user ? (
-                                                <BlueButton
-                                                    text="Get Plan"
-                                                    width={200}
-                                                    func={() => {
-                                                        let isAuthorized;
-                                                        user?.roles?.forEach(
-                                                            role => {
-                                                                if (
-                                                                    role.includes(
-                                                                        "Professional"
-                                                                    )
-                                                                ) {
-                                                                    isAuthorized = true;
-                                                                }
-                                                            }
-                                                        );
-                                                        if (
-                                                            isAuthorized &&
-                                                            price !== "0"
-                                                        ) {
-                                                            navigate(
-                                                                `/checkout/${planName}/${paymentInterval}/${price}`
-                                                            );
-                                                        } else if (
-                                                            isAuthorized &&
-                                                            price === "0"
-                                                        ) {
-                                                            return;
-                                                        } else {
-                                                            toast.error(
-                                                                "Unauthorized"
-                                                            );
-                                                        }
-                                                    }}
-                                                />
-                                            ) : (
-                                                <>
-                                                    <BlueButton
-                                                        width={200}
-                                                        text={btnText}
-                                                        func={() =>
-                                                            navigate("/wel2", {
-                                                                state: {
-                                                                    from: location
-                                                                }
-                                                            })
-                                                        }
-                                                    />{" "}
-                                                </>
-                                            )}
-                                        </div>
-                                    );
-                                }
-                            )}
-                        </div> */}
-
-                        {/* <div >
-                            <p
-                                className={styles.seemorePar}
-                            >
-                                See more plans
-                            </p>
-                        </div> */}
-
                         {!seeMore && (
                             <div className={styles.seemore}>
                                 <button

@@ -3,7 +3,6 @@ import jwt_decode from "jwt-decode";
 import { useParams } from "react-router-dom";
 import Spinner from "components/spinner/PulseLoader";
 import { useState } from "react";
-// import { useCallback } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -13,26 +12,7 @@ export const PaystackPage = () => {
     const { price, planName, paymentInterval } = useParams();
     const channels = ["card", "bank"];
     const currency = "NGN";
-
-    // const [convertedPrice, setConvertedPrice] = useState();
-    // const exchangeBaseUrl = "https://api.apilayer.com/exchangerates_data";
     const token = localStorage.getItem("tokenHngKey");
-    // const convertToNaira = useCallback(async () => {
-    //     try {
-    //         const response = await axios.get(
-    //             `${exchangeBaseUrl}/convert?to=NGN&from=USD&amount=${price}`,
-    //             {
-    //                 headers: {
-    //                     "apikey": process.env.REACT_APP_EXCHANGE_RATE_API_KEY
-    //                 }
-    //             }
-    //         );
-    //         setConvertedPrice(response?.data?.result);
-    //         setLoading(false);
-    //     } catch (err) {
-    //         toast.error(err?.response?.data?.message);
-    //     }
-    // }, [price]);
 
     const createPlan = async(planName,paymentInterval)=>{
         setLoading(true);
@@ -91,9 +71,6 @@ export const PaystackPage = () => {
             setLoading(false);
         }
     }
-    // useEffect(() => {
-    //     convertToNaira();
-    // }, [convertToNaira])
     
     const handleSubmit = (e)=>{
         e.preventDefault();
