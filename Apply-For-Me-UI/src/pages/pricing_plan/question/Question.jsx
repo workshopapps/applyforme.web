@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 
 import styles from "pages/pricing_plan/pricing.module.css";
 
@@ -20,26 +19,7 @@ const Question = ({ subQuestion, answer, subIcon }) => {
           alt="object not found"
         />
       </div>
-      {/* {text && <p>{answer}</p>} */}
-      { 
-        text ? (
-            <motion.p
-                    initial={{display:"none", opacity: 0, height: 0, scaleY:0 }}
-                    animate={{display:"block", opacity: 1, height: "auto",scaleY:1}}
-                    transition={{ duration: 0.3 }}>
-                    {answer}
-            </motion.p>
-        ):
-        (
-            <motion.p
-                    initial={{display:"block", opacity: 1, height: "auto",scaleY:1 }}
-                    animate={{height: 0, opacity: 0, scaleY:0}}
-                    transition={{ duration: 0.3 }}
-                    >
-                    {answer}
-            </motion.p>
-        )
-     }
+      {text && <p>{answer}</p>}
     </div>
   );
 };

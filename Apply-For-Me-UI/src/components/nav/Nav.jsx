@@ -9,7 +9,7 @@ import LightButton from "../buttons/light_button/LightButton";
 import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
 
-const Nav = ({setSeeMore}) => {
+const Nav = () => {
     const initState = {
         "about": false,
         "price": false,
@@ -67,7 +67,7 @@ const Nav = ({setSeeMore}) => {
                     </li>
 
                     <li>
-                        <NavLink to="/pricing" style={handleActiveLink} onClick={() => setSeeMore(false)}>
+                        <NavLink to="/pricing" style={handleActiveLink}>
                             Pricing plan
                         </NavLink>
                     </li>
@@ -165,7 +165,7 @@ const Nav = ({setSeeMore}) => {
                         <li onClick={() => navigate("/about")}>
                             <Link to="/about" >About us</Link>
                         </li>
-                        <li onClick={() => { setSeeMore(false); navigate("/pricing") }}>
+                        <li onClick={() => navigate("/pricing")}>
                             <Link to="/pricing" >Pricing plan</Link>
                         </li>
                         <li onClick={() => navigate("/faqs")}>

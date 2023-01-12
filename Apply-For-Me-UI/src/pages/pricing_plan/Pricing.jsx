@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "pages/pricing_plan/pricing.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //Importing bluebutton component
 import BlueBorderButton from "components/buttons/blue_border_button/BlueBorderButton";
 
 //The question component
 import Question from "pages/pricing_plan/question/Question";
-import Plans3 from "./components/Plans3";
-import Plans4 from "./components/Plans4";
 
 import Nav from "components/nav/Nav";
 import Footer from "components/footer/Footer";
-//import BlueButton from "components/buttons/blue_background/BlueButton";
-//import { useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import BlueButton from "components/buttons/blue_background/BlueButton";
+import { useSelector } from "react-redux";
 
 const Pricing = ({
     primaryHeading,
     primaryText,
     plans,
-    plansFull,
     toggleInfo,
     faqSection,
     secondaryHeading,
@@ -31,25 +27,13 @@ const Pricing = ({
         monthly: true,
         yearly: false
     });
-    const [paymentInterval, setpaymentInterval] = useState();
-    const [seeMore, setSeeMore] = useState(false);
 
-    //const data = seeMore ? plans : plansFull;
-
-    useEffect(() => {
-        toggle.yearly
-            ? setpaymentInterval("yearly")
-            : setpaymentInterval("monthly");
-    }, [toggle.yearly, paymentInterval]);
-    //const location = useLocation();
-
-    //const { user } = useSelector(state => state.user);
+    const { user } = useSelector(state => state.user);
     const navigate = useNavigate();
 
     return (
         <>
-            <ToastContainer />
-            <Nav setSeeMore={setSeeMore} />
+            <Nav />
             <main className={styles.container}>
                 <section className={styles.section__head}>
                     <div className={styles.headingWrapper}>
@@ -62,7 +46,7 @@ const Pricing = ({
                         <div className={styles.toggle}>
                             <p
                                 onClick={() =>
-                                    setToggle({ yearly: false, monthly: true })
+                                    setToggle({ yearly: !toggle.yearly , monthly: !toggle.monthly })
                                 }
                                 className={
                                     toggle.monthly ? styles.active_toggle : ""
@@ -70,25 +54,17 @@ const Pricing = ({
                             >
                                 {toggleInfo.text1}
                             </p>
-                            <div
-                                className={styles.toggle_state}
-                                onClick={() =>
-                                    setToggle({
-                                        yearly: !toggle.yearly,
-                                        monthly: !toggle.monthly
-                                    })
-                                }
-                            >
+                            <div className={styles.toggle_state}>
                                 <span
                                     className={styles.toggle_circle}
                                     style={{
-                                        right: toggle.yearly ? "2px" : "2rem"
+                                        right: toggle.yearly ? "4px" : ""
                                     }}
                                 ></span>
                             </div>
                             <p
                                 onClick={() =>
-                                    setToggle({ yearly: false, monthly: true })
+                                    setToggle({ yearly: !toggle.yearly , monthly: !toggle.monthly })
                                 }
                                 className={
                                     toggle.yearly ? styles.active_toggle : ""
@@ -97,28 +73,14 @@ const Pricing = ({
                                 {toggleInfo.text2}
                             </p>
                         </div>
-                        {seeMore ? (
-                            <Plans4
-                                paymentInterval={paymentInterval}
-                                plans={plans}
-                            />
-                        ) : (
-                            <Plans3
-                                paymentInterval={paymentInterval}
-                                plans={plansFull}
-                            />
-                        )}
-
-                        <p className={styles.disclaimer}>
-                            **All CV rebuilds and reviews are on demand services
-                            therefore prices are not included in the pricing
-                            plan but based on individual requests.
-                        </p>
-                        {/* <div className={styles.majorPlan}>
-                            {data.map(
+                        <div className={styles.seemore}>
+                            <p className={styles.seemorePar}>See more plans</p>
+                        </div>
+                        <div className={styles.majorPlan}>
+                            {plans.map(
                                 (
                                     {
-                                        planName,
+                                        basic,
                                         price,
                                         duration,
                                         model,
@@ -145,10 +107,10 @@ const Pricing = ({
                                             <h3
                                                 className={styles.card__heading}
                                             >
-                                                {planName} Plan
+                                                {basic}
                                             </h3>
                                             <p className={styles.card__price}>
-                                                $ {price}
+                                                {price}
                                             </p>
                                             <p
                                                 className={
@@ -196,80 +158,24 @@ const Pricing = ({
                                                 <BlueButton
                                                     text="Get Plan"
                                                     width={200}
-                                                    func={() => {
-                                                        let isAuthorized;
-                                                        user?.roles?.forEach(
-                                                            role => {
-                                                                if (
-                                                                    role.includes(
-                                                                        "Professional"
-                                                                    )
-                                                                ) {
-                                                                    isAuthorized = true;
-                                                                }
-                                                            }
-                                                        );
-                                                        if (
-                                                            isAuthorized &&
-                                                            price !== "0"
-                                                        ) {
-                                                            navigate(
-                                                                `/checkout/${planName}/${paymentInterval}/${price}`
-                                                            );
-                                                        } else if (
-                                                            isAuthorized &&
-                                                            price === "0"
-                                                        ) {
-                                                            return;
-                                                        } else {
-                                                            toast.error(
-                                                                "Unauthorized"
-                                                            );
-                                                        }
-                                                    }}
+                                                    func={() =>
+                                                        navigate("/checkout")
+                                                    }
                                                 />
                                             ) : (
-                                                <>
+                                                <Link to="/wel2">
                                                     <BlueButton
                                                         width={200}
                                                         text={btnText}
-                                                        func={() =>
-                                                            navigate("/wel2", {
-                                                                state: {
-                                                                    from: location
-                                                                }
-                                                            })
-                                                        }
                                                     />{" "}
-                                                </>
+                                                </Link>
                                             )}
                                         </div>
                                     );
                                 }
                             )}
-                        </div> */}
+                        </div>
 
-                        {/* <div >
-                            <p
-                                className={styles.seemorePar}
-                            >
-                                See more plans
-                            </p>
-                        </div> */}
-
-                        {!seeMore && (
-                            <div className={styles.seemore}>
-                                <button
-                                    type="button"
-                                    className={styles.seemorePar}
-                                    onClick={() => {
-                                        setSeeMore(true);
-                                    }}
-                                >
-                                    See more plans
-                                </button>
-                            </div>
-                        )}
                     </div>
                 </section>
                 <section className={styles.subHead}>
@@ -286,10 +192,9 @@ const Pricing = ({
                             <h2 className={styles.faqheading}>{faqHeading}</h2>
                             <p className={styles.faqText}>{faqText}</p>
 
-                            <BlueBorderButton
-                                text={faqBtnText}
-                                func={() => navigate("/contact")}
-                            />
+
+                            <BlueBorderButton text={faqBtnText} func={()=>navigate("/contact")}/>
+
                         </div>
 
                         <div className={styles.questionWrapper}>
