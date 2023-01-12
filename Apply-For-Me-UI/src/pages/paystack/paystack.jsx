@@ -2,37 +2,37 @@ import "./paystack.css";
 import jwt_decode from "jwt-decode";
 import { useParams } from "react-router-dom";
 import Spinner from "components/spinner/PulseLoader";
-import { useEffect, useState } from "react";
-import { useCallback } from "react";
+import { useState } from "react";
+// import { useCallback } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
 export const PaystackPage = () => {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     let decoded = jwt_decode(localStorage?.getItem("tokenHngKey"));
     const { price, planName, paymentInterval } = useParams();
     const channels = ["card", "bank"];
     const currency = "NGN";
 
-    const [convertedPrice, setConvertedPrice] = useState();
-    const exchangeBaseUrl = "https://api.apilayer.com/exchangerates_data";
+    // const [convertedPrice, setConvertedPrice] = useState();
+    // const exchangeBaseUrl = "https://api.apilayer.com/exchangerates_data";
     const token = localStorage.getItem("tokenHngKey");
-    const convertToNaira = useCallback(async () => {
-        try {
-            const response = await axios.get(
-                `${exchangeBaseUrl}/convert?to=NGN&from=USD&amount=${price}`,
-                {
-                    headers: {
-                        "apikey": process.env.REACT_APP_EXCHANGE_RATE_API_KEY
-                    }
-                }
-            );
-            setConvertedPrice(response?.data?.result);
-            setLoading(false);
-        } catch (err) {
-            toast.error(err?.response?.data?.message);
-        }
-    }, [price]);
+    // const convertToNaira = useCallback(async () => {
+    //     try {
+    //         const response = await axios.get(
+    //             `${exchangeBaseUrl}/convert?to=NGN&from=USD&amount=${price}`,
+    //             {
+    //                 headers: {
+    //                     "apikey": process.env.REACT_APP_EXCHANGE_RATE_API_KEY
+    //                 }
+    //             }
+    //         );
+    //         setConvertedPrice(response?.data?.result);
+    //         setLoading(false);
+    //     } catch (err) {
+    //         toast.error(err?.response?.data?.message);
+    //     }
+    // }, [price]);
 
     const createPlan = async(planName,paymentInterval)=>{
         setLoading(true);
@@ -42,7 +42,7 @@ export const PaystackPage = () => {
                     {
                         "name": planName.toLowerCase(),
                         "interval": paymentInterval,
-                        "amount": Math.round(convertedPrice *100),
+                        "amount": Math.round((price*451.60) *100),
                     },
                     {
                         headers: {
@@ -67,7 +67,7 @@ export const PaystackPage = () => {
                 const  response = await axios
                 .post("https://api.applyforme.hng.tech/api/v1/paystack/initializepayment",                  
                     {
-                        "amount": Math.round(convertedPrice *100),
+                        "amount": Math.round((price*451.60)*100),
                         "email":email,
                         "currency": currency,
                         "plan": paymentCode,
@@ -91,9 +91,9 @@ export const PaystackPage = () => {
             setLoading(false);
         }
     }
-    useEffect(() => {
-        convertToNaira();
-    }, [convertToNaira])
+    // useEffect(() => {
+    //     convertToNaira();
+    // }, [convertToNaira])
     
     const handleSubmit = (e)=>{
         e.preventDefault();
