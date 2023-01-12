@@ -70,7 +70,7 @@ const ApplicationList = () => {
                                         }
                                         style={{
                                             textDecoration: "none",
-                                            color: "#2E3192;",
+                                            color: "#2E3192",
                                             // padding: "0.5rem",
                                             // border: "1px solid darkslategray",
                                             // borderRadius: "5px"
