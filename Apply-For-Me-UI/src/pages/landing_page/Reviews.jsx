@@ -2,13 +2,10 @@ import React from "react";
 import classes from "./Hero.module.css";
 import Avatar from "../../assets/images/Avatar1.png";
 import Avatar2 from "../../assets/images/Avatar2.png";
-import { motion } from "framer-motion";
+
 const Reviews = () => {
     return (
-        <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }} className={classes.reviews_container}>
+        <div className={classes.reviews_container}>
             <div className={classes.reviews_content}>
                 <div className={classes.top}>
                     <span
@@ -74,7 +71,7 @@ const Reviews = () => {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 

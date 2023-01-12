@@ -7,37 +7,25 @@
     width: min(88%, 61.56rem);
     margin-inline: auto;
 }
-
-.seemore {
-    padding: 0rem 7rem 3rem 7rem;
-    text-align: center;
-    font-weight: bold;
+.seemore{
+    padding: 0rem 7rem 0rem 7rem;
+    text-align:right;
+    font-weight:bold;
 }
-
-.seemore:focus {
-    outline: none;
+.seemorePar{
+    font-size: 24px;
+    color:  #2e3192;
 }
-
-.seemorePar {
-    font-size: 1rem;
-    color: #2e3192;
-    background-color: #fff;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
 .mainheading {
     margin-bottom: 0.625rem;
     font-size: 1.25rem;
     text-align: center;
-    color: #4347B2;
+    color:  #4347B2;
     font-weight: 500;
 }
 
 .primaryText {
-    color: #52515b;
-    /*Variables be better, but you don't want to set what another has on their branch*/
+    color: #52515b; /*Variables be better, but you don't want to set what another has on their branch*/
     text-align: center;
     max-width: 44ch;
     line-height: 1.4;
@@ -54,7 +42,6 @@
 }
 
 .toggle .toggle_state {
-    transition: width 0.5s;
     background:  #4347B2;
     border-radius: 20px;
     width: 60px;
@@ -71,13 +58,11 @@
 }
 
 .toggle .active_toggle {
-    color: #4347B2;
+    color:  #4347B2;
     font-weight: 500;
     font-size: 1.5rem;
 }
-.toggle_circle {
-    transition: right 0.4s;
-}
+
 .toggle .toggle_state .toggle_circle {
     background-color: #fff;
     width: 25px;
@@ -96,27 +81,17 @@
     justify-content: center;
 }
 
-.disclaimer {
-    font-weight: 400;
-    font-size: .65rem;
-    line-height: 125%;
-    letter-spacing: 0.06em;
-    text-align: center;
-    color: #000000;
-    padding: 0 2rem 3rem;
-}
-
-.majorPlan>.card:nth-child(2) {
+.majorPlan > .card:nth-child(2) {
     background-color: #2e3192;
     color: #ffffff;
     position: relative;
 }
 
-.card:nth-child(2)>* {
+.card:nth-child(2) > * {
     color: #ffffff;
 }
 
-.card:nth-child(2)>button {
+.card:nth-child(2) > button {
     background-color: #2e3192;
     color: #ffffff;
     border: 2px solid #ffffff;
@@ -133,7 +108,7 @@
     margin-top: 1rem;
 }
 
-.card:nth-child(2)>.choices {
+.card:nth-child(2) > .choices {
     background: #b7b9e6;
     border-radius: 8px;
     padding: 8px;
@@ -146,7 +121,7 @@
     padding: 10px;
 }
 
-.card:nth-child(2)>.choices .choice_text {
+.card:nth-child(2) > .choices .choice_text {
     margin-top: 0;
     color: #52515b;
     text-align: center;
@@ -162,8 +137,8 @@
     border-radius: 0.5rem;
     padding: 1.5rem;
     margin-bottom: 4rem;
-    justify-content: center;
-    width: 30%;
+    justify-content:center;
+    width:30%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -257,7 +232,7 @@ link.btn {
 .faqheading {
     line-height: 1.4;
     margin-bottom: 1rem;
-    color: #4347B2;
+    color:  #4347B2;
 }
 
 .faqText {
@@ -297,26 +272,22 @@ link.btn {
 .faqicon__active {
     transform: rotate(-180deg);
 }
-
-@media only screen and (max-width:1050px) {
+@media only screen and (max-width:1050px){
     .section__head {
         margin: 4rem 2rem 4rem 2rem;
     }
 }
-
-@media only screen and (max-width:899px) {
+@media only screen and (max-width:899px){
     .majorPlan {
         flex-direction: column;
-        margin: 0 auto;
+        margin:0 auto;
         justify-content: center;
         align-items: center;
-    }
-
-    .card {
+     }
+     .card{
         width: fit-content;
-    }
+     }
 }
-
 @media screen and (max-width: 584px) {
     .toggle {
         display: none;
@@ -325,8 +296,8 @@ link.btn {
 
 /*BreakPoints*/
 @media only screen and (min-width: 900px) {
-
-
+   
+    
 
     .mainheading {
         margin-bottom: 1.625rem;
@@ -339,34 +310,21 @@ link.btn {
 
     .majorPlan {
         display: flex;
-        padding: 7rem 0 3rem;
-        flex-direction: row;
-        justify-content: space-around;
+    padding: 7rem 0 ;
+    flex-direction: row;
+    justify-content: space-around;
         gap: 3vmax;
+        padding: 7rem 0;
         position: relative;
         /*grid-template-rows: auto;*/
         /*justify-content: space-between;*/
     }
 
-    .disclaimer {
-        padding-bottom: 3rem;
-        font-weight: 400;
-        font-size: .75rem;
-        line-height: 125%;
-        letter-spacing: 0.06em;
-        text-align: center;
-        color: #000000;
-    }
-
-    .seemorePar {
-        font-size: 1.5rem;
-    }
-
-    .majorPlan>.card:nth-child(2) {
+    .majorPlan > .card:nth-child(2) {
         transform: scale(1.1, 1.25);
     }
 
-    .majorPlan>.card:not(:nth-child(2)) .statusWrapper {
+    .majorPlan > .card:not(:nth-child(2)) .statusWrapper {
         margin-bottom: 2rem;
     }
 
