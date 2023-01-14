@@ -12,6 +12,7 @@
         "atatus-spa": "^4.5.0",
         "axios": "^1.2.0",
         "formik": "^2.2.9",
+        "framer-motion": "^8.4.3",
         "hamburger-react": "^2.5.0",
         "jwt-decode": "^3.1.2",
         "react": "^18.2.0",

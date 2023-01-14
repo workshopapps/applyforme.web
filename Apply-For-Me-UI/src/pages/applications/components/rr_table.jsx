@@ -30,6 +30,7 @@ const Table = () => {
                         }
                     );
                     setData(response.data?.content);
+                    console.log(response.data?.content);
                     setPageCout(response.data?.totalPages);
                     setIsLoading(false);
 
@@ -100,6 +101,7 @@ const Table = () => {
             <div className="table_wrap">
                 <div className="div_table">
                     <div className="div_table_child">Name</div>
+                    <div className="div_table_child">Job Title</div>
                     <div className="div_table_child_hideOnMobile">Salary</div>
                     <div className="div_table_child">Type</div>
                     <div className="div_table_child">Details</div>
@@ -107,6 +109,7 @@ const Table = () => {
                 {data?.map((application, index) => {
                     return(
                             <div className="div_table" key={index}>
+                                <div className="div_table_child">{application.professional.member.firstName}</div>
                                 <div className="div_table_child">{application.profileTitle}</div>
                                 <div className="div_table_child_hideOnMobile">{application.salaryRange}</div>
                                 <div className="div_table_child">{application.preferredJobLocationType}</div>
