@@ -36,7 +36,7 @@ const Table = () => {
             setPageCout(response.data?.totalPages);
         } catch (error) {
             toast.error(`${error}`);
-            console.log("thisis", JSON.stringify(error.response))
+            console.log("thisis",error)
         }
     }, [token, pagination.pageNo, pagination.pageSize]);
 

@@ -34,14 +34,21 @@
     padding: 2%;
     box-sizing: border-box;
 }
+.passowrd-toggler {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+}
 @media screen and (max-width: 860px) {
     .passowrd-label-input {
         padding: 4.5%;
     }
 }
-.passowrd-label img {
-    position: absolute;
-    position: absolute;
-    top: 18px;
-    right: 20px;
+@media only screen and (min-width: 616px) and (max-width: 856px){
+    .passowrd-toggler {
+        position: absolute;
+        top: 24px;
+        right: 20px;
+    }
 }
+
