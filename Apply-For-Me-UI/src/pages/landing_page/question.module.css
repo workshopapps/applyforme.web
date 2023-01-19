@@ -43,7 +43,13 @@
 .minheading {
     font-weight: 400;
     margin-bottom: 1rem;
-    font-size: 1rem;
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+    color: #52515B;
 }
 
 .faqicon {
@@ -68,6 +74,9 @@
 @media screen and (max-width: 584px) {
     .toggle {
         display: none;
+    }
+    .minheading{
+        font-size: 14px;
     }
 }
 

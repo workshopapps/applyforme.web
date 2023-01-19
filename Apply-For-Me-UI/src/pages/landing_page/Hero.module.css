@@ -573,7 +573,13 @@ input[type=file]{
     }
 
     .FAQ_content div h3 {
-        font-size: 1.2rem;
+        font-family: 'Outfit';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 150%;
+        letter-spacing: 0.01em;
+        color: #52515B;
     }
     .learn_content .bottom {
         padding: 80px 40px;
@@ -782,15 +788,18 @@ input[type=file]{
         margin-top: 20px;
     }
     .reviews_content .bottom div{
-    margin: 0 0 2rem 0;
+        margin: 0 0 2rem 0;
     }
     
 .reviews_content .bottom .profile{
-    margin-bottom: -9px;
-}
+        margin-bottom: -9px;
+    }
 }
 
 @media (max-width: 425px) {
+    .FAQ_content div h3{
+        font-size: 14px;
+    }
     .figure_text{
         font-weight: 500;
         font-size: 14px;
