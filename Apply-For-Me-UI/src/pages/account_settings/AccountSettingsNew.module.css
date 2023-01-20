@@ -1,0 +1,133 @@
+.account_settings_container {
+    width: 100%;
+    background: #f3f3fb;
+}
+
+.body_container {
+    width: 85%;
+    min-width: clamp(50rem, 10vw, 59rem);
+}
+
+.body_container .body_content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+    padding-left: 12.5rem;
+}
+
+.general_details > h2 {
+    color: #171b1d;
+    font-size: clamp(1.25rem, 8vw, 2rem);
+    margin-bottom: 0.25rem;
+}
+
+.general_details > p {
+    color: #52515b;
+    margin-bottom: 1rem;
+}
+
+.details_settings {
+    display: flex;
+    column-gap: 3rem;
+    width: 100%;
+}
+
+.details_setting,
+.photo_and_plan_settings,
+.membership_plan_container {
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 0.5rem;
+}
+
+.details_setting {
+    width: 60%;
+}
+
+.photo_and_plan_settings {
+    width: 40%;
+}
+
+.settings_heading {
+    border-bottom: 1px solid #cccccc;
+    color: #171b1d;
+    font-size: clamp(1rem, 9vw, 1.25rem);
+    font-weight: 500;
+    width: 100%;
+}
+
+.settings_form,
+.settings_heading,
+.edit_photo,
+.plan_details_container {
+    padding: 1rem;
+}
+
+.settings_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_row {
+    display: flex;
+}
+
+.form_control > label {
+    color: #171b1d;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 0 0.5rem;
+}
+
+.form_control > input {
+    border: 1px solid #999999;
+    border-radius: 0.4rem;
+    color: #999999;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.7rem;
+    margin-bottom: 1rem;
+}
+
+.form_control:nth-child(2n),
+.update_personal_details {
+    margin-left: 2rem;
+}
+
+.form_control {
+    display: flex;
+    flex-direction: column;
+}
+
+.account_settings_container button {
+    background-color: transparent;
+    border: none;
+}
+
+.account_settings_container button:focus,
+.form_control > input {
+    outline: none;
+}
+
+.update_personal_details {
+    color: #202065;
+    font-weight: 500;
+    margin-top: 0.6rem;
+}
+
+.membership_plan_container {
+    margin-top: 3rem;
+}
+
+@media screen and (max-width: 1238px) {
+    .details_settings {
+        column-gap: 1.5rem;
+    }
+
+    .details_setting {
+        width: 70%;
+    }
+
+    .photo_and_plan_settings {
+        width: 30%;
+    }
+}
