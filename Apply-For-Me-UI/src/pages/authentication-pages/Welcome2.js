@@ -17,6 +17,7 @@ import { userInfo } from "store/slice/UserSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "components/spinner/Spinner";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-in";
 
@@ -89,7 +90,7 @@ const Welcome2 = () => {
                         : err.response.data.message;
                 setError(message);
                 setLoading(false);
-                toast.error(message);
+                toast.error("Authentication Failed");
             });
     };
 
@@ -117,11 +118,22 @@ const Welcome2 = () => {
                             placeholder="Password"
                             required
                         />
-                        <img
-                            src="https://res.cloudinary.com/hamskid/image/upload/v1670631906/Vector_1_qntpu2.svg"
-                            alt="object not found"
-                            onClick={handletoggle}
-                        />
+                        {
+                            password === "password"?
+                            <FaEye
+                                onClick={handletoggle}
+                                size="1.2rem"
+                                color="grey"
+                                className="passowrd-toggler"
+                            />:
+                            <FaEyeSlash
+                                onClick={handletoggle}
+                                size="1.2rem"
+                                color="grey"
+                                className="passowrd-toggler"
+                            />
+                        }
+                        
                     </label>
 
                     {error && <p style={{ color: "red" }}>{error}</p>}
