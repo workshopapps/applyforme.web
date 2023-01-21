@@ -11,7 +11,7 @@
 .body_container .body_content {
     display: flex;
     flex-direction: column;
-    margin-top: 5rem;
+    margin-top: 3rem;
     padding-left: 12.5rem;
 }
 
@@ -59,7 +59,8 @@
 .settings_form,
 .settings_heading,
 .edit_photo,
-.plan_details_container {
+.plan_details_container,
+.edit_plan_container {
     padding: 1rem;
 }
 
@@ -100,7 +101,7 @@
 
 .account_settings_container button {
     background-color: transparent;
-    border: none;
+    border: transparent;
 }
 
 .account_settings_container button:focus,
@@ -114,11 +115,108 @@
     margin-top: 0.6rem;
 }
 
+.edit_photo {
+    align-items: center;
+    border-bottom: 1px solid #cccccc;
+    display: flex;
+}
+
+.edit_photo_buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit_buttons {
+    padding: 0 1rem;
+}
+
+.edit_buttons > button {
+    margin-right: 1rem;
+}
+
+.edit_button_red {
+    color: #8d3434;
+}
+
+.edit_button_blue {
+    color: #202065;
+}
+
+.plan_details {
+    color: #737373;
+    font-size: 0.8rem;
+}
+
+.edit_plan {
+    display: flex;
+}
+
+.current_plan {
+    color: #171b1d;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+
+.change_plan {
+    margin-left: 2rem;
+}
+
+.settings_heading_without_border {
+    border: transparent;
+    padding-bottom: 0.8rem;
+}
+
+.settings_heading_without_padding {
+    padding: 0;
+}
+
 .membership_plan_container {
-    margin-top: 3rem;
+    margin: 3rem 0 5rem;
+}
+
+.plan_details_container {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+}
+
+.plan_details {
+    display: flex;
+    flex-direction: column;
+}
+
+.account_settings_container .preferred_card {
+    border: 1px solid #000000;
+    border-radius: 0.25rem;
+    padding: 0.35rem;
+    text-transform: uppercase;
+}
+
+.card_details {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+.card_number {
+    margin-left: 1.5rem;
+}
+
+.card_number,
+.card_number > span {
+    font-size: 1.5rem;
+    color: #171b1d;
+}
+
+.next_billing_date {
+    margin-top: 1rem;
 }
 
 @media screen and (max-width: 1238px) {
+    .body_container {
+        width: 97%;
+    }
+
     .details_settings {
         column-gap: 1.5rem;
     }
@@ -129,5 +227,11 @@
 
     .photo_and_plan_settings {
         width: 30%;
+    }
+}
+
+@media screen and (max-width: 999px) {
+    .body_container {
+        width: 97%;
     }
 }

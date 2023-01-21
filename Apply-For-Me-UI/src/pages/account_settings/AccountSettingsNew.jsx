@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import classes from "./AccountSettingsNew.module.css";
 // import SettingsTopNav from "./SettingsTopNav";
-// import LetteredAvatar from "react-lettered-avatar";
+import LetteredAvatar from "react-lettered-avatar";
 // import { useEffect } from "react";
 import axios from "axios";
 // import TopBar from "pages/dashboard_profile/components/TopBar/TopBar";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 
 const AccountSettingsNew = ({ details }) => {
     //User Info
-    // const { user } = useSelector(state => state.user);
+    const { user } = useSelector(state => state.user);
 
-    // const fullName = user.fullName;
+    const fullName = user.fullName;
     // const userEmail = user.sub;
     // const [countryDetails, setCountryDetails] = useState([]);
 
@@ -205,25 +205,44 @@ const AccountSettingsNew = ({ details }) => {
                             </h3>
 
                             <div className={classes.edit_photo}>
-                                <div className={classes.previous_photo}></div>
+                                <div className={classes.previous_photo}>
+                                    <LetteredAvatar
+                                        name={fullName}
+                                        backgroundColor={"#52515B"}
+                                    />
+                                </div>
                                 <div className={classes.edit_photo_buttons}>
-                                    <h3 className={classes.settings_heading}>
+                                    <h3
+                                        className={`${classes.settings_heading} ${classes.settings_heading_without_border}`}
+                                    >
                                         Edit your photo
                                     </h3>
                                     <div className={classes.edit_buttons}>
-                                        <button>Delete</button>
-                                        <button>Update</button>
+                                        <button
+                                            className={classes.edit_button_red}
+                                        >
+                                            Delete
+                                        </button>
+                                        <button
+                                            className={classes.edit_button_blue}
+                                        >
+                                            Update
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <div className={classes.edit_plan_container}>
-                                <h4>Plan details</h4>
+                                <h4 className={classes.plan_details}>
+                                    Plan details
+                                </h4>
                                 <div className={classes.edit_plan}>
                                     <div className={classes.current_plan}>
                                         Basic Plan
                                     </div>
-                                    <button className={classes.change_plan}>
+                                    <button
+                                        className={`${classes.change_plan} ${classes.edit_button_blue}`}
+                                    >
                                         change plan
                                     </button>
                                 </div>
@@ -237,10 +256,13 @@ const AccountSettingsNew = ({ details }) => {
                         </h3>
                         <div className={classes.plan_details_container}>
                             <div className={classes.plan_details}>
-                                <div className={classes.card_details}>
-                                    <div>
-                                        <img src="" alt="" />
-                                        <p>
+                                <div className={classes.card_details_container}>
+                                    <div className={classes.card_details}>
+                                        <img
+                                            src="https://res.cloudinary.com/doiq3txf7/image/upload/v1674223425/Praise%20Files/mastercard-svg_itpbkk.svg"
+                                            alt=""
+                                        />
+                                        <p className={classes.card_number}>
                                             ********<span>67789</span>
                                         </p>
                                     </div>
@@ -251,19 +273,22 @@ const AccountSettingsNew = ({ details }) => {
                                 </div>
                                 <div className={classes.next_billing_date}>
                                     <p>Next billing Date</p>
-                                    <h3 className={classes.settings_heading}>
-                                        Your Next Billing date is January 31,
+                                    <h3
+                                        className={`${classes.settings_heading} ${classes.settings_heading_without_border}  ${classes.settings_heading_without_padding}`}
+                                    >
+                                        Your next billing date is January 31,
                                         2023
                                     </h3>
                                 </div>
                             </div>
 
                             <button className={classes.preferred_card}>
-                                {" "}
-                                Preferred Card{" "}
+                                Preferred Card
                             </button>
 
-                            <button className={classes.edit_billing_details}>
+                            <button
+                                className={`${classes.change_plan} ${classes.edit_button_blue}`}
+                            >
                                 edit billing details
                             </button>
                         </div>
