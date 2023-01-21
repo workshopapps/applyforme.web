@@ -77,7 +77,7 @@ const AccountSettingsNew = ({ details }) => {
                 <div className={classes.body_content}>
                     <div className={classes.general_details}>
                         <h2>General Details</h2>
-                        <p>Update your photo and personal detail here</p>
+                        <p>Update your photo and personal details here</p>
                     </div>
 
                     <div className={classes.details_settings}>
@@ -286,9 +286,7 @@ const AccountSettingsNew = ({ details }) => {
                                 Preferred Card
                             </button>
 
-                            <button
-                                className={`${classes.change_plan} ${classes.edit_button_blue}`}
-                            >
+                            <button className={`${classes.edit_button_blue}`}>
                                 edit billing details
                             </button>
                         </div>

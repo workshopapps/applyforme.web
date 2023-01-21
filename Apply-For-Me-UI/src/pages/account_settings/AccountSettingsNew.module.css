@@ -232,6 +232,42 @@
 
 @media screen and (max-width: 999px) {
     .body_container {
-        width: 97%;
+        width: 95%;
+        min-width: auto;
+    }
+
+    .details_settings {
+        flex-direction: column;
+        row-gap: 2.5rem;
+    }
+
+    .details_setting,
+    .photo_and_plan_settings {
+        width: 100%;
+    }
+
+    .plan_details_container {
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .form_row {
+        flex-direction: column;
+    }
+
+    .form_control:nth-child(2n) {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .body_container .body_content {
+        padding: 1.5rem;
+    }
+
+    .body_container {
+        width: 100%;
     }
 }
