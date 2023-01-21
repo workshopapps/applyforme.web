@@ -128,6 +128,7 @@ export const PaystackPage = () => {
                     name="name"
                     className="pay_input"
                     defaultValue={decoded?.fullName}
+                    readOnly={true}
                     />
                 </div>
                 <div className="inputDiv_wrapper">
@@ -139,6 +140,7 @@ export const PaystackPage = () => {
                     name="email"
                     className="pay_input"
                     defaultValue={decoded?.emailAddress}
+                    readOnly={true}
                     />
                 </div>
                 <div className="inputDiv_wrapper">
@@ -150,6 +152,7 @@ export const PaystackPage = () => {
                     name="amount"
                     className="pay_input"
                     defaultValue={`$ ${price}`}
+                    readOnly={true}
                     />
                 </div>
                 <button className="submit_btn">Make payment</button>
