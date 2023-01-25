@@ -8,14 +8,38 @@ import BlueButton from "../buttons/blue_background/BlueButton";
 import LightButton from "../buttons/light_button/LightButton";
 import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
+import { motion } from "framer-motion";
 
 const Nav = ({setSeeMore}) => {
+
     const initState = {
         "about": false,
         "price": false,
         "blog": false,
         "contact": false
     };
+
+    const variants = {
+        open: { opacity: 1, x: 0, transition: { staggerChildren: 0.07, delayChildren: 0.2 } },
+        closed: { opacity: 0, x: "-100%",transition: { staggerChildren: 0.05, staggerDirection: -1 } },
+    }
+    const Itemvariants = {
+        open: {
+          y: 0,
+          opacity: 1,
+          transition: {
+            y: { stiffness: 1000, velocity: -100 }
+          }
+        },
+        closed: {
+          y: 50,
+          opacity: 0,
+          transition: {
+            y: { stiffness: 1000 }
+          }
+        }
+      };
+
     const [dropDown, setDropDown] = useState(false);
     const { user } = useSelector(state => state.user);
     const [active, setActiveLink] = useState({ ...initState });
@@ -157,67 +181,84 @@ const Nav = ({setSeeMore}) => {
                         
                         />
                     </div>
-
-                    <ul
-                        className={classes.nav_links__mobile}
-                        style={{ display: dropDown ? "flex" : "none" }}
+                    <motion.div
+                        animate={dropDown ? "open" : "closed"}
+                        variants={variants}
                     >
-                        <li onClick={() => navigate("/about")}>
-                            <Link to="/about" >About us</Link>
-                        </li>
-                        <li onClick={() => { setSeeMore(false); navigate("/pricing") }}>
-                            <Link to="/pricing" >Pricing plan</Link>
-                        </li>
-                        <li onClick={() => navigate("/faqs")}>
-                            <Link to="/faqs" >FAQs</Link>
-                        </li>
-                    </ul>
 
-                    <div
-                        className={classes.btn_container__mobile}
-                        style={{ display: dropDown ? "flex" : "none" }}
-                    >
-                        {!user ? (
-                            <>
-                                <Link to="/wel2">
-                                    <LightButton
-                                        text="Sign in"
-                                        width="185"
-                                        func={() => setDropDown(false)}
-                                    />
-                                </Link>
-                                <Link to="/wel1">
+                        <ul
+                            className={classes.nav_links__mobile}
+                            style={{ display: dropDown ? "flex" : "none" }}
+                        >
+                            <motion.li
+                                variants={Itemvariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => navigate("/about")}>
+                                <Link to="/about" >About us</Link>
+                            </motion.li>
+                            <motion.li
+                                variants={Itemvariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }} 
+                                onClick={() => { setSeeMore(false); navigate("/pricing") }}>
+                                <Link to="/pricing" >Pricing plan</Link>
+                            </motion.li>
+                            <motion.li
+                                variants={Itemvariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }} 
+                                onClick={() => navigate("/faqs")}>
+                                <Link to="/faqs" >FAQs</Link>
+                            </motion.li>
+                        </ul>
+
+                        <div
+                            className={classes.btn_container__mobile}
+                            style={{ display: dropDown ? "flex" : "none" }}
+                        >
+                            {!user ? (
+                                <>
+                                    <Link to="/wel2">
+                                        <LightButton
+                                            text="Sign in"
+                                            width="185"
+                                            func={() => setDropDown(false)}
+                                        />
+                                    </Link>
+                                    <Link to="/wel1">
+                                        <BlueButton
+                                            text="Get started"
+                                            width="185"
+                                            func={() => setDropDown(false)}
+                                        />
+                                    </Link>
+                                </>
+                            ) : (
+                                <div className={classes.auth__user_btn}>
                                     <BlueButton
-                                        text="Get started"
+                                        text="Dashboard"
                                         width="185"
-                                        func={() => setDropDown(false)}
+                                        func={() =>
+                                            navigate(
+                                                user.roles[0] ===
+                                                    "SuperAdministrator"
+                                                    ? "/user-page"
+                                                    : user.roles[0] === "Recruiter"
+                                                    ? "/rr_admin"
+                                                    : "/dashboard/"
+                                            )
+                                        }
                                     />
-                                </Link>
-                            </>
-                        ) : (
-                            <div className={classes.auth__user_btn}>
-                                <BlueButton
-                                    text="Dashboard"
-                                    width="185"
-                                    func={() =>
-                                        navigate(
-                                            user.roles[0] ===
-                                                "SuperAdministrator"
-                                                ? "/user-page"
-                                                : user.roles[0] === "Recruiter"
-                                                ? "/rr_admin"
-                                                : "/dashboard/"
-                                        )
-                                    }
-                                />
-                                <BlueButton
-                                    text="Logout"
-                                    width="185"
-                                    func={handleLogout}
-                                />
-                            </div>
-                        )}
-                    </div>
+                                    <BlueButton
+                                        text="Logout"
+                                        width="185"
+                                        func={handleLogout}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    </motion.div>
                 </nav>
             </div>
         </section>
