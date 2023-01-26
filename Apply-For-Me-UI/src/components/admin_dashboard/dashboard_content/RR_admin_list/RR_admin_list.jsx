@@ -2,15 +2,14 @@
 import { useState,useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import './RR_admin_List.css';
-import { Desktop_List } from './desktop_list_wrapper';
-import { Mobile_view_list } from './mobile_list_wrapper';
+import { DesktopList } from './desktop_list_wrapper';
+import { MobileViewList } from './mobile_list_wrapper';
 import { Fetch_RR_Admin } from 'store/slice/RR_AdminSlice';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
-export const RR_Admin_list=({inputSearchValue})=>{
+export const RRAdminList=()=>{
     const RR_recruiter = useSelector((state)=>state.RRadmin);
     const navigate = useNavigate()
-    const [search, setSearch] = useState([]);
     const dispatch = useDispatch();
     const [pagination, setPagination] = useState({
         "pageNo": 0,
@@ -19,18 +18,11 @@ export const RR_Admin_list=({inputSearchValue})=>{
 
     useEffect(()=>{
         dispatch(Fetch_RR_Admin(pagination));
-    },[dispatch,Fetch_RR_Admin])
-    
-    useEffect(()=>{
-        const avilableList = (RR_recruiter.loadingStatus ==="success" && RR_recruiter.list?.length !==0) ? RR_recruiter.list?.content?.filter((item)=>item.firstName.toLowerCase().includes(inputSearchValue)):[]
-        setSearch(avilableList);
-    }, [inputSearchValue, RR_recruiter.list]);
-
-   
+    },[dispatch,pagination])
+ 
     const handlePageClick =(data)=>{
         setPagination(prevState =>({...prevState,"pageNo":data.selected}));
         dispatch(Fetch_RR_Admin(pagination));
-       
     }
 
 
@@ -47,21 +39,21 @@ export const RR_Admin_list=({inputSearchValue})=>{
             <table className="tableContainer">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Date registered</th>
-                        <th>Details</th>
+                        <th className="thead_th">Name</th>
+                        <th className="thead_th">Category</th>
+                        <th className="thead_th">Date registered</th>
+                        <th className="thead_th">Details</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        search?.length !==0 &&
+                        RR_recruiter.list?.length !==0 &&
                         (RR_recruiter.loadingStatus === "success" && RR_recruiter.list.length !==0) &&
-                        search?.map((user, index)=>{
+                        RR_recruiter.list?.content?.map((user, index)=>{
                                 const {firstName,currentJobTitle,id,createdOn} = user;
                                     return(
                                         <tr key={index}>
-                                            <Desktop_List firstName={firstName} currentJobTitle={currentJobTitle} id={id} createdOn={createdOn}/>
+                                            <DesktopList firstName={firstName} currentJobTitle={currentJobTitle} id={id} createdOn={createdOn}/>
                                         </tr> 
                                     )
                             })
@@ -80,16 +72,16 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     </select>
                 </div>
                     {
-                        search?.length !==0 && 
+                        RR_recruiter.list?.length !==0 && 
                         (RR_recruiter.loadingStatus === "success" && RR_recruiter.list.length !==0) &&
-                       search.map((user, index)=>{
-                           const {firstName,currentJobTitle,id} = user;
-                                return(
-                                    <div className='RRlist' key={index}>
-                                         <Mobile_view_list firstName={firstName} currentJobTitle={currentJobTitle} id={id} />
-                                    </div>
-                                  
-                                )                            
+                        RR_recruiter.list?.content.map((user, index)=>{
+                            const {firstName,currentJobTitle,id} = user;
+                                    return(
+                                        <div className='RRlist' key={index}>
+                                            <MobileViewList firstName={firstName} currentJobTitle={currentJobTitle} id={id} />
+                                        </div>
+                                    
+                                    )                            
                         })
                     }
             </div>
@@ -100,26 +92,29 @@ export const RR_Admin_list=({inputSearchValue})=>{
                     Please wait...
                 </p>
             )}
-            {(RR_recruiter.loadingStatus === "success" && search?.length ===0) && <p className="text-center">record not found</p>}
-            <div>
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel=">"
-                    pageRangeDisplayed={5}
-                    pageCount={RR_recruiter.list?.totalPages}
-                    marginPagesDisplayed="1"
-                    previousLabel="<"
-                    renderOnZeroPageCount={null}
-                    onPageChange={handlePageClick}
-                    containerClassName="containerClassName"
-                    pageClassName='pageClassName'
-                    previousClassName='previousClassName'
-                    activeClassName="activeClassName"
-                    nextClassName='nextClassName'
-                    pageLinkClassName="pageLinkClassName"
-                />
-            </div>
-            
+            {(RR_recruiter.loadingStatus === "success" && RR_recruiter.list?.length ===0) && <p className="text-center">No admin has being created</p>}
+            {
+                RR_recruiter.list?.totalPages > 1 && (
+                    <div>
+                        <ReactPaginate
+                            breakLabel="..."
+                            nextLabel=">"
+                            pageRangeDisplayed={5}
+                            pageCount={RR_recruiter.list?.totalPages}
+                            marginPagesDisplayed="1"
+                            previousLabel="<"
+                            renderOnZeroPageCount={null}
+                            onPageChange={handlePageClick}
+                            containerClassName="containerClassName"
+                            pageClassName='pageClassName'
+                            previousClassName='previousClassName'
+                            activeClassName="activeClassName"
+                            nextClassName='nextClassName'
+                            pageLinkClassName="pageLinkClassName"
+                        />
+                     </div>
+                )
+            }
         </>
     );
 };

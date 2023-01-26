@@ -3,20 +3,18 @@
     height: 3rem;
     border: 1px solid #6d6e71;
     border-radius: 4px;
-    margin-top: 0.5rem;
     padding-block: 1rem;
-    padding-inline: 2rem;
 }
 .cover_letter {
     margin-block: 1rem;
 }
 .cl_textarea {
-    width: 90%;
+    width: 100%;
+    border-radius: 4px;
     resize: none;
     height: 2rem;
     border: 1px solid #6d6e71;
     height: 17rem;
-    margin-top: 0.5rem;
     padding: 1rem;
 }
 .cl_textarea::placeholder {
@@ -30,4 +28,9 @@
 .cl_text {
     font-weight: 400;
     color: #737373;
+}
+@media screen and (max-width: 480px) {
+    .cl_text {
+        font-size: 0.875rem;
+    }
 }

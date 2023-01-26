@@ -1,21 +1,18 @@
 package com.hydraulic.applyforme.controller;
 
 import com.hydraulic.applyforme.model.dto.authentication.*;
+import com.hydraulic.applyforme.model.exception.InvalidRefreshJwtException;
 import com.hydraulic.applyforme.model.response.ForgotPasswordResponse;
 import com.hydraulic.applyforme.model.response.SignInResponse;
 import com.hydraulic.applyforme.service.AuthenticationService;
 import com.hydraulic.applyforme.service.EmailService;
 import com.hydraulic.applyforme.service.MemberService;
-import com.hydraulic.applyforme.service.impl.UserDetailsServiceImpl;
+import com.hydraulic.applyforme.util.ApplyForMeUtil;
 import com.hydraulic.applyforme.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,30 +31,34 @@ public class AuthenticationController {
 
     public final AuthenticationService authenticationService;
 
-    private final UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private ApplyForMeUtil applyForMeUtil;
 
     @Autowired
     private JwtUtil jwtUtil;
 
 
-    public AuthenticationController(MemberService service, EmailService emailService, AuthenticationService authenticationService, UserDetailsServiceImpl userDetailsService) {
+    public AuthenticationController(MemberService service, EmailService emailService, AuthenticationService authenticationService) {
         this.service = service;
         this.emailService = emailService;
         this.authenticationService = authenticationService;
-        this.userDetailsService = userDetailsService;
     }
 
     @PostMapping("/sign-up")
     public SignInResponse signUp(@Validated @RequestBody SignupDto body) {
         service.save(body);
 //        emailService.sendWelcomeMessage(body.getEmailAddress());
-        return generateSignInToken(body.getEmailAddress());
+        return applyForMeUtil.generateSignInToken(body.getEmailAddress());
     }
 
-    @PostMapping("/sign-up-verification")
-    public String signupVerificationCode(@Validated @RequestBody SignupVerificationDto verificationDto) {
-//        emailService.signupVerification(verificationDto.getEmailAddress());
-        return "Sign up verification code sent";
+    @PostMapping("/sign-out")
+    public String signOut() {
+        return "Sign out successfully";
+    }
+
+    @PostMapping("/sign-up-verification/{email}")
+    public String validateMemberSignUp(@RequestParam("otp") String otp, @PathVariable("email") String email) {
+        return authenticationService.validateMemberSignUp(otp,email);
     }
 
     @PostMapping("/forgot-password")
@@ -70,10 +71,19 @@ public class AuthenticationController {
         return new ForgotPasswordResponse();
     }
 
+
+    // This end point should be used by FE Devs
+    @PostMapping("/send-otp-for-reset-password")
+    public boolean sendOtpForPasswordReset(@RequestParam String email) {
+        authenticationService.sendOtpForPasswordReset(email);
+        return true;
+    }
+
+    //  This EndPoint should also be used by  FE DEv too
     @PostMapping("/reset-password")
-    public String resetPassword(@Validated @RequestBody ResetPasswordDto passwordDto) {
+    public boolean resetPassword(@Validated @RequestBody ResetPasswordDto passwordDto) {
         authenticationService.resetPassword(passwordDto);
-        return "You have successfully changed your password.";
+        return true;
     }
 
     @PostMapping("/sign-in")
@@ -84,15 +94,19 @@ public class AuthenticationController {
         catch(Exception ex) {
              throw ex;
         }
-        return generateSignInToken(body.getEmailAddress());
+        return applyForMeUtil.generateSignInToken(body.getEmailAddress());
     }
 
-    protected SignInResponse generateSignInToken(String emailAddress) {
-        final UserDetails userDetails = userDetailsService
-                .loadUserByUsername(emailAddress);
+    @PostMapping("/refresh-token")
+    public SignInResponse refresh(@Validated @RequestBody RefreshTokenDto dto) throws Exception {
+        try {
+            String username = jwtUtil.getUsernameFromToken(dto.getRefreshToken());
+            return applyForMeUtil.generateSignInToken(username);
+        }
+        catch (Exception e) {
+            throw new InvalidRefreshJwtException();
+        }
 
-        final String token = jwtUtil.generateToken(userDetails);
-        return new SignInResponse(token);
     }
 
 }

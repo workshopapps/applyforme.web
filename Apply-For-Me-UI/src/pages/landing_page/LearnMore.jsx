@@ -2,12 +2,18 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import classes from "./Hero.module.css";
+import { motion } from "framer-motion";
 const LearnMore = () => {
     const navigate = useNavigate();
     return (
-        <div className={classes.learn_container}>
+        <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className={classes.learn_container}>
             <div className={classes.learn_content}>
-                <div className={classes.top}>
+                <div className={classes.topContainer}>
+                    <div className={classes.top}>
                     <span
                         className={classes.subheading}
                         style={{ color: "#171B1D" }}
@@ -17,10 +23,13 @@ const LearnMore = () => {
                     <h2 style={{ color: "#2E3192" }}>
                         With just these few steps, we put you out there
                     </h2>
-                    <button onClick={()=>navigate("/faqs")}>Learn More &#8594;</button>
+                    <button onClick={()=>navigate("/faqs")}><img src="https://res.cloudinary.com/hamskid/image/upload/v1671621976/Frame_51260_fvilxo.svg" alt="object not found" /></button>
                 </div>
-                <img src="https://res.cloudinary.com/hamskid/image/upload/v1670013377/Content_1_ovmknu.svg" className={classes.learnImg} alt="object not found" />
-                <img src="https://res.cloudinary.com/hamskid/image/upload/v1670013058/Content_eyjw1o.svg" className={classes.learnImg2} alt="object not found" />
+                <img src="https://res.cloudinary.com/hamskid/image/upload/v1671796745/Content_2_lzq4bd.svg" className={classes.learnImg} alt="object not found" />
+                <img src="https://res.cloudinary.com/hamskid/image/upload/v1671796910/Content_3_aceczt.svg" className={classes.learnImg2} alt="object not found" />
+
+                </div>
+                
                 <div className={classes.bottom}>
                     <div className={classes.left}>
                         <h3>
@@ -29,50 +38,50 @@ const LearnMore = () => {
                         </h3>
                     </div>
                     <div className={classes.right}>
-                        <p className={classes.believe}>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.</p>
+                        <p className={classes.believe} style={{paddingLeft:"0"}}>We believe career is life, life is once, it is therefore worth enjoying.Study, work, travel, tour, worship, keep working and keep exploring.... It begins with you. We believe career is life, life is once, it is therefore worth enjoying.</p>
 
                         <div className={classes.boxes}>
                             <div
                                 className={classes.box}
-                                style={{ background: "none" }}
+                                style={{ background: "none", paddingLeft:"0" }}
                             >
-                                <span className={classes.figure}>10x</span>
-                                <span style={{ color: "#52515B" }}>
+                                <div className={classes.figure}>10x</div>
+                                <div style={{ color: "#52515B" }}  className={classes.figure_text}>
                                     Increase in productivity
-                                </span>
+                                </div>
                             </div>
                             <div
                                 className={classes.box}
-                                style={{ background: "none" }}
+                                style={{ background: "none", paddingLeft:"0" }}
                             >
-                                <span className={classes.figure}>300%</span>
-                                <span style={{ color: "#52515B" }}>
+                                <div className={classes.figure}>300%</div>
+                                <div style={{ color: "#52515B" }} className={classes.figure_text}>
                                     Return on investment
-                                </span>
+                                </div>
                             </div>
                             <div
                                 className={classes.box}
-                                style={{ background: "none" }}
+                                style={{ background: "none", paddingLeft:"0" }}
                             >
-                                <span className={classes.figure}>5k+</span>
-                                <span style={{ color: "#52515B" }}>
+                                <div className={classes.figure}>5k+</div>
+                                <div style={{ color: "#52515B" }} className={classes.figure_text}>
                                     Happy customers
-                                </span>
+                                </div>
                             </div>
                             <div
                                 className={classes.box}
-                                style={{ background: "none" }}
+                                style={{ background: "none", paddingLeft:"0" }}
                             >
-                                <span className={classes.figure}>100+</span>
-                                <span style={{ color: "#52515B" }}>
+                                <div className={classes.figure}>100+</div>
+                                <div style={{ color: "#52515B" }} className={classes.figure_text}>
                                     5-star reviews
-                                </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

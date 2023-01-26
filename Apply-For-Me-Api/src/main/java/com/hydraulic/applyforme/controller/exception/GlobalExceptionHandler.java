@@ -1,6 +1,9 @@
 package com.hydraulic.applyforme.controller.exception;
 
 import com.hydraulic.applyforme.model.exception.*;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
@@ -368,5 +371,78 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidOnboardTokenException.class)
+    public Object mismatch(InvalidOnboardTokenException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "Member");
+        errors.put("message", ex.getMessage());
+        ex.setCode(HttpStatus.BAD_REQUEST.value());
+        errors.put("code", ex.getCode().toString());
+        return errors;
+    }
 
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(ExpiredJwtException.class)
+    public Object expired(ExpiredJwtException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "User");
+        errors.put("type", "expiredJwt");
+        errors.put("message", ErrorResponseConstant.expiredJwt);
+        errors.put("code", HttpStatus.UNAUTHORIZED.value());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MalformedJwtException.class)
+    public Object malformed(MalformedJwtException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "User");
+        errors.put("type", "malformedJwt");
+        errors.put("message", ErrorResponseConstant.malformedJwt);
+        errors.put("code", HttpStatus.BAD_REQUEST.value());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(SignatureException.class)
+    public Object signature(SignatureException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "User");
+        errors.put("type", "signatureJwt");
+        errors.put("message", ErrorResponseConstant.invalidJwt);
+        errors.put("code", HttpStatus.BAD_REQUEST.value());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidRefreshJwtException.class)
+    public Object invalidity(InvalidRefreshJwtException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "User");
+        errors.put("type", "signatureJwt");
+        errors.put("message", ex.getMessage());
+        errors.put("code", HttpStatus.BAD_REQUEST.value());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(SubmissionDuplicateEntityException.class)
+    public Object submission(SubmissionDuplicateEntityException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "User");
+        errors.put("message", ex.getMessage());
+        errors.put("code", HttpStatus.CONFLICT.value());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidOtpException.class)
+    public Object otp(InvalidOtpException ex) {
+        final Map<String, Object> errors = new HashMap<String, Object>();
+        errors.put("entityName", "User");
+        errors.put("message", ex.getMessage());
+        errors.put("code", HttpStatus.BAD_REQUEST.value());
+        return errors;
+    }
 }

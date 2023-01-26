@@ -5,8 +5,49 @@
     max-width: 1400px;
     margin: 0 auto;
 }
-.sort_header{
+.view_button{
+    color:darkslategray;
+    border:1px solid darkslategray;
+    border-radius: 5px;
+    padding:0.25rem;
+    margin-right: 1rem;
+    font-size: 17px;
+}
+.delete_button{
+    color:red;
+    border: 1px solid crimson;
+    border-radius: 5px;
+    padding:0.25rem;
+    font-size: 17px;
+}
+.nav_back{
+    width:20%;
+}
+.user_details:hover{
+    background-color: aliceblue;
+    position:relative;
+}
+.user_details:hover .hover_item{
+   display: block;
+}
+.hover_item_inner{
+    display: flex;
+    flex-direction: column;
+    width:fit-content;
+    padding:0rem 1rem;
+    background-color: white;
+    border-radius:5px;
+    color:#2E3192;
+}
+.hover_item{
+    right:10px;
+    bottom:0;
+    font-weight: bold;
+    display:none;
+    position: absolute;
    
+}
+.sort_header{
     border-bottom: 1px solid grey;
     margin-bottom: 1rem;
     margin-top: 1rem;
@@ -88,12 +129,10 @@
 }
 
 .table tr th {
-    padding: 2rem;
     font-size:16px;
 }
 
 .table tr td {
-    padding: 2rem 0rem 2rem 2rem;
     overflow-wrap: break-word;
 }
 
@@ -153,12 +192,21 @@
     .user_header p {
         font-size: 0.7rem;
     }
+    .hover_item_inner{
+        padding:0.5rem;
+        font-size:12px;
+    }
 }
 
 @media screen and (max-width: 370px) {
     .applicant .table tr td,
     .applicant .table tr th {
         font-size: 0.9rem;
-        
+    }
+    .view_button{
+        font-size: 0.9rem;
+    }
+    .delete_button{
+        font-size: 0.9rem;
     }
 }

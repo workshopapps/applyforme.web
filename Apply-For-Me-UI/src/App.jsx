@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable no-unused-vars */
 import * as Sentry from "@sentry/react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import LandingPage from "./pages/landing_page/LandingPage";
 import AboutUs from "./pages/about_us/AboutUs";
 import FAQs from "./pages/faqs/FAQs";
@@ -18,8 +18,8 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import AccountSettings from "./pages/account_settings/AccountSettings";
 import UserDashboardLayout from "./pages/user_dashboard/UserDashboardLayout";
 import DashboardNothing from "./pages/dashboard_noting/DashboardNothing";
-import ApplicationsDashboardLayout from "./pages/applications/layouts/ApplicationsDashboardLayout";
 import Applications from "./pages/applications/Applications";
+import RRApplications from "./pages/applications/rr_all_applications";
 import BestQuestions from "./pages/blog/pages/bestquestions/BestQuestions";
 import Skills from "./pages/blog/pages/skills/Skills";
 import Cover from "./pages/blog/pages/cover/Cover";
@@ -38,9 +38,9 @@ import ApplicantDetails from "./pages/admin_dashboard/components/applicant_detai
 import ApplicationForm from "./pages/admin_dashboard/components/application_form/ApplicationForm";
 import DashboardHome from "./pages/admin_dashboard/components/dashboard_home/DashboardHome";
 import { pricingPage } from "pages/pricing_plan/pricingData";
-import { formData } from "pages/checkout/checkoutData";
+// import { formData } from "pages/checkout/checkoutData";
 import Pricing from "./pages/pricing_plan/Pricing";
-import Checkout from "pages/checkout/Checkout";
+// import Checkout from "pages/checkout/Checkout";
 import ProtectedRoute from "ProtectedRoute";
 //UserDashboard
 import NoProfile from "./pages/dashboard_profile/NoProfile/NoProfile";
@@ -63,20 +63,28 @@ import Verification from "pages/authentication-pages/Verification";
 import Password from "pages/authentication-pages/Password";
 import NewPass from "pages/authentication-pages/NewPass";
 import Registration from "pages/authentication-pages/Registration";
-import { RR_admin_profile } from "pages/RR_admin_profile/RR_admin_profile";
+import { RRAdminProfilePage } from "pages/RR_admin_profile/RR_admin_profile";
 import { useEffect } from "react";
 
-import Sign_In from "pages/RR_recuiters_page/Sign_In";
-import Sign_Up from "pages/RR_recuiters_page/Sign_Up";
+import SignIn from "pages/RR_recuiters_page/Sign_In";
+import SignUp from "pages/RR_recuiters_page/Sign_Up";
 import { SuperDashBoard } from "pages/super_admin_dashboard/dashboardview";
 
 import TryoutForm from "pages/tryout_form/TryoutForm";
 import TrySuccess from "pages/tryout_form/Success";
 
 import * as atatus from "atatus-spa";
+import ReactGA from "react-ga4";
 import { CreateRecruiter } from "pages/createRecruiter/create_view";
+import { SuperApplicantsPage } from "pages/users_page/user_page_applicants";
+import { PaystackPage } from "pages/paystack/paystack";
+
+import PaymentVerification from "pages/paystack/verification/Verification";
 
 atatus.config("c626faaef503411ea6216d7b6112de1c").install();
+
+const MEASUREMENT_ID = "G-RV4WJK9T7P";
+ReactGA.initialize(MEASUREMENT_ID);
 
 function App() {
     const dispatch = useDispatch();
@@ -106,7 +114,12 @@ function App() {
                 <Route exact path="/needHelp" element={<NeedHelp />} />
                 <Route exact path="/tryout-form" element={<TryoutForm />} />
                 <Route exact path="/reverse/profile" element={<RRProfile />} />
-                <Route exact path="/registration" element ={<Registration/>}/>
+                <Route exact path="/registration" element={<Registration />} />
+                <Route
+                    exact
+                    path="/checkout/verify-payment"
+                    element={<PaymentVerification />}
+                />
                 <Route
                     exact
                     path="/tryout-form/success"
@@ -119,8 +132,9 @@ function App() {
                 />
                 <Route
                     exact
-                    path="/checkout"
-                    element={<Checkout {...formData} />}
+                    path="/checkout/:planName/:paymentInterval/:price"
+                    // element={<Checkout {...formData} />}
+                    element={<PaystackPage />}
                 />
 
                 <Route exact path="blog" element={<Blog />} />
@@ -145,7 +159,7 @@ function App() {
                 <Route exact path="/wel2" element={<Welcome2 />} />
                 <Route exact path="/reg" element={<Registration />} />
                 <Route exact path="/pass" element={<Password />} />
-                <Route exact path="/nwpass" element={<NewPass />} />
+                <Route exact path="/reset-password" element={<NewPass />} />
                 <Route exact path="/veri" element={<Verification />} />
 
                 {/* onboarding */}
@@ -157,8 +171,8 @@ function App() {
 
                 {/* RECRUITER ROUTE */}
 
-                <Route exact path="/rr_sign_in" element={<Sign_In />} />
-                <Route exact path="/rr_sign_up" element={<Sign_Up />} />
+                <Route exact path="/rr_sign_in" element={<SignIn />} />
+                <Route exact path="/rr_sign_up" element={<SignUp />} />
 
                 {/*  PROTECTED ROUTE*/}
 
@@ -178,7 +192,12 @@ function App() {
                     <Route
                         exact
                         path="/user-page/reverseRecruiterAdmin/:id"
-                        element={<RR_admin_profile />}
+                        element={<RRAdminProfilePage />}
+                    />
+                    <Route
+                        exact
+                        path="/superAdmin/applicants/profiles/details/:id"
+                        element={<SuperApplicantsPage />}
                     />
                     <Route
                         exact
@@ -194,7 +213,7 @@ function App() {
                     {/*Reverse Recruiter Dashboard */}
                     <Route path="/rr_admin" element={<DashboardHome />} />
                     <Route
-                        path="/rr_admin/form"
+                        path="/rr_admin/form/:id"
                         element={<ApplicationForm />}
                     />
                     <Route
@@ -203,7 +222,7 @@ function App() {
                     />
                     <Route
                         path="/rr_admin/all_applications"
-                        element={<Applications />}
+                        element={<RRApplications />}
                     />
                 </Route>
 
@@ -216,7 +235,7 @@ function App() {
                         {/* User Dashboard Profile */}
 
                         <Route
-                            path="/dashboard/"
+                            path="/dashboard"
                             element={<DashboardNothing />}
                         />
                         <Route

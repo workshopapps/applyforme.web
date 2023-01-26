@@ -109,7 +109,7 @@ const JobSearch = ({ formData, setFormData }) => {
             <div className={classes.dropdownbox}>
                 <Dropdown
                     options={jobTitleNames}
-                    width={90}
+                    // width={90}
                     value={formData.job_title}
                     onChange={e => {
                         setFormData({
@@ -126,7 +126,7 @@ const JobSearch = ({ formData, setFormData }) => {
                 <Dropdown
                     options={countryNames}
                     value={formData.location}
-                    width={90}
+                    // width={90}
                     placeholderText="Job Location"
                     onChange={e => {
                         setFormData({
@@ -145,7 +145,7 @@ const JobSearch = ({ formData, setFormData }) => {
                         { label: "Remote", value: "Remote" },
                         { label: "Onsite", value: "Onsite" }
                     ]}
-                    width={90}
+                    // width={90}
                     placeholderText="Location Type"
                     value={formData.isRemote}
                     onChange={e => {
@@ -174,7 +174,7 @@ const JobSearch = ({ formData, setFormData }) => {
             </div> */}
             <div className={classes.detailsdropdown_box}>
                 <div>
-                    <p>Experience</p>
+                    <p>Experience level</p>
                     <Dropdown
                         options={[
                             { label: "No experience", value: "trainee" },
@@ -193,7 +193,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     />
                 </div>
                 <div>
-                    <p>Employment Type</p>
+                    <p>Employment type</p>
                     <Dropdown
                         options={[
                             { label: "Contract", value: "contract" },
@@ -211,7 +211,7 @@ const JobSearch = ({ formData, setFormData }) => {
                     />
                 </div>
                 <div>
-                    <p>Salary Expectation</p>
+                    <p>Salary expectation</p>
                     <Dropdown
                         options={salaryNames}
                         placeholderText="Salary Expectation"

@@ -15,19 +15,16 @@ const Dashboard = () => {
         setPage(getActivePage(data));
     };
 
-    const [dashboardsearchParams, dashboardSetSearchParams] = useState("");
-
     return (
         <div>
             <ToastContainer />
             <DashboardHeader
                 func={handlePageSwitch}
-                setInputSearchValue={dashboardSetSearchParams}
             />
             {page.dashboardPage ? (
-                <DashBoardPage inputSearchValue={dashboardsearchParams} />
+                <DashBoardPage/>
             ) : (
-                <UsersPage  inputSearchValue={dashboardsearchParams}/>
+                <UsersPage/>
             )}
         </div>
     );

@@ -2,12 +2,12 @@ import styles from "../Applications.module.css";
 import Dropdown from "./Dropdown";
 import Search from "./search/Search";
 
-const ApplicationsListHeader = () => {
+const ApplicationsListHeader = ({sortOldestToNewest,sortNewestToOldest,setSearchValue}) => {
     return (
         <div className={styles.applications_table_header}>
-            <Search />
+            <Search setSearchValue={setSearchValue}/>
             <div>
-                <Dropdown />
+                <Dropdown sortOldestToNewest={sortOldestToNewest} sortNewestToOldest={sortNewestToOldest}/>
             </div>
         </div>
     );

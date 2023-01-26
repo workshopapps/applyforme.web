@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 import TopBar from "../components/TopBar/TopBar";
 import styles from "./Profile.module.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -51,12 +52,12 @@ const Profile = ({ profileList }) => {
                     console.log(error);
                 });
             setModalIsOpen(false);
-            toast("Profile deleted successfully");
+            toast.success("Profile deleted successfully");
             setTimeout(() => {
                 window.location.reload();
             }, 3000);
         } catch (error) {
-            toast("Error deleting. Please, try again");
+            toast.error("Error deleting. Please, try again");
             console.log(error);
         }
     };
@@ -115,7 +116,7 @@ const Profile = ({ profileList }) => {
                 style={{
                     overlay: {
                         position: "fixed",
-                        background: "rgba(21, 24, 104, 0.03)",
+                        background: "rgba(1, 4, 104, 0.03)",
                         backdropFilter: 'blur("1px")'
                     }
                 }}
@@ -140,7 +141,12 @@ const Profile = ({ profileList }) => {
 
     return (
         <div className={styles.profile_page}>
-            <TopBar />
+            <TopBar
+                title={"My Job Profile"}
+                style={{
+                    marginTop: "auto"
+                }}
+            />
             <ToastContainer />
             <button
                 className={styles.createjob_button}

@@ -1,7 +1,7 @@
 import React from 'react'
 import BlueBorderButton from '../../components/buttons/blue_border_button/BlueBorderButton'
 import Footer from '../../components/footer/Footer'
-import Helpful_contact from '../../components/helpful/Helpful_contact'
+import HelpfulContact from '../../components/helpful/Helpful_contact'
 import Nav from '../../components/nav/Nav'
 import classes from '../../pages/afmworks/Afmworks.module.css'
 
@@ -38,7 +38,7 @@ const NeedHelp = () => {
                             </li>
                         </ul>
                     </div>
-                    <Helpful_contact/>
+                    <HelpfulContact/>
                 </main>
 
                 <Footer />

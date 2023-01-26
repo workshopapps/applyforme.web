@@ -3,7 +3,7 @@ import "./RR_admin_List.css";
 import { useNavigate } from "react-router-dom";
 import { Delete_RR_Admin } from "store/slice/RR_AdminSlice";
 import { useDispatch } from "react-redux";
-export const Mobile_view_list =({firstName,currentJobTitle,id} )=>{
+export const MobileViewList =({firstName,currentJobTitle,id} )=>{
     const navigate = useNavigate();
     const dispatch = useDispatch();
     return (

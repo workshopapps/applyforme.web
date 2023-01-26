@@ -42,6 +42,19 @@ export default function ProfileDescription() {
     const oneprofile = profileDesc?.find(obj => obj.id === parseInt(id));
     // console.log(oneprofile);
     const navigate = useNavigate();
+    function Link({ url, children }) {
+        let linkText = "Download CV";
+
+        if (url.endsWith("null")) {
+            linkText = "Nothing yet";
+        }
+
+        return (
+            <a href={url} disabled={url.endsWith("null")}>
+                {linkText}
+            </a>
+        );
+    }
     if (done !== "done") {
         return (
             <div className={classes.loading_box}>
@@ -53,7 +66,13 @@ export default function ProfileDescription() {
         return (
             <div className={classes.profile_description}>
                 <div className={classes.sidemarg}>
-                    <TopBar />
+                    <TopBar
+                        title={"My Job Profile"}
+                        style={{
+                            marginTop: "auto"
+                        }}
+                    />
+
                     <button
                         onClick={() => navigate(-1)}
                         className={classes.prev_btn}
@@ -109,11 +128,16 @@ export default function ProfileDescription() {
                             <h5>Salary Expectation</h5>
                         </div>
                         <div>
-                            <a href={`${oneprofile?.resumeLink}`}>
+                            {/* <a href={`${oneprofile?.resumeLink}`}>
                                 <p className={classes.link}>
                                     Click here to download
                                 </p>
-                            </a>
+                            </a> */}
+                            <Link
+                                url={`${oneprofile?.resumeLink}`}
+                                style={{ textDecoration: "none" }}
+                            />
+
                             <h5>Uploaded CV</h5>
                         </div>
                         <div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import BlueButton from '../buttons/blue_background/BlueButton'
 import classes from './Helpful.module.css'
-const Helpful_contact = () => {
+const HelpfulContact = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -19,4 +19,4 @@ const Helpful_contact = () => {
   )
 }
 
-export default Helpful_contact
+export default HelpfulContact

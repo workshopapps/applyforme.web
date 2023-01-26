@@ -1,18 +1,93 @@
+/* eslint-disable no-unused-vars */
 import style from "./ApplicationForm.module.css";
 import goBackIcon from "../../../../assets/images/back_arrow.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
-import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
+import { Link, useParams } from "react-router-dom";
+import RRDNav from "pages/RR_Dashboard/components/RRD_Nav";
+import jwtDecode from "jwt-decode";
+import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
+import { useCallback } from "react";
+import Spinner from "components/spinner/PulseLoader";
 
 const ApplicationForm = () => {
+    const { id } = useParams();
+    const token = localStorage.getItem("tokenHngKey");
+    const decoded = jwtDecode(localStorage.getItem("tokenHngKey"));
+    console.log(decoded);
+    const [professional, setProfessional] = useState();
+    const [loading, setLoading] = useState(false);
     const [state, setState] = useState({
         name: "",
         role: "",
-        plan: "",
         company: "",
-        reverse_recruiter: ""
+        reverse_recruiter: "",
+        location: "",
+        jobLink: "",
+        summary: ""
     });
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        const submitDetails = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.post(
+                    "https://api.applyforme.hng.tech/api/v1/job-submission/save",
+                    {
+                        "professional_id":
+                            professional?.professional?.member.id,
+                        "applier_id": decoded.memberId,
+                        // eslint-disable-next-line no-dupe-keys
+                        "applier_id": decoded.memberId,
+                        "professional_profile_id": professional?.id,
+                        "job_company": state?.company,
+                        "job_title": state?.role,
+                        "job_link": state.jobLink,
+                        "job_location": state.location,
+                        "summary": state.summary,
+                        "other_comment": "unavailable"
+                    },
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }
+                );
+                setLoading(false);
+                toast.success("Submission Successfull");
+                return response?.data
+            } catch (error) {
+                if (error) {
+                    setLoading(false);
+                    toast.error("Submission Failed");
+                    console.log(error.response.data);
+                }
+            }
+        };
+        submitDetails();
+    };
+
+    const getProfessionalProfile = useCallback( async () => {
+        try {
+            const response = await axios.get(
+                `https://api.applyforme.hng.tech/api/v1/professional-profile/detail/${id}`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            setProfessional(response.data);
+        } catch (err) {
+            console.log(err.response?.data);
+        }
+    },[token,id]);
+
+    useEffect(() => {
+        getProfessionalProfile();
+    }, [getProfessionalProfile]);
 
     const handleChange = event => {
         const value = event.target.value;
@@ -27,7 +102,7 @@ const ApplicationForm = () => {
             id: "name",
             labelText: "Applicant's Name",
             placeholder: "John Doe",
-            value: `${state.name}`
+            value: `${professional?.professional?.member?.firstName}`
         },
         {
             id: "role",
@@ -36,62 +111,99 @@ const ApplicationForm = () => {
             value: `${state.role}`
         },
         {
-            id: "plan",
-            labelText: "Membership Plan",
-            placeholder: "Premuim",
-            value: `${state.plan}`
-        },
-        {
             id: "company",
             labelText: "Company's Name",
             placeholder: "Rapid River",
             value: `${state.company}`
         },
         {
+            id: "location",
+            labelText: "Job location",
+            placeholder: "Job Location",
+            value: `${state.location}`
+        },
+        {
+            id: "jobLink",
+            labelText: "jobLink",
+            placeholder: "Job Link",
+            value: `${state.jobLink}`
+        },
+        {
+            id: "summary",
+            labelText: "job summary",
+            placeholder: "job summary",
+            value: `${state.summary}`
+        },
+        {
             id: "reverse_recruiter",
             labelText: "Reverse Recruiter's Name",
             placeholder: "Ora Smith",
-            value: `${state.reverse_recruiter}`
+            value: `${decoded.fullName}`
         }
     ];
-    const navigate = useNavigate();
 
     return (
-        <section className={style.application_form}>
-            <RRD_Nav />
+        <>
+          <ToastContainer />
+         <section className={style.application_form} style={{paddingBottom:"6rem"}}>
+            
+            <RRDNav />
             <div className={style.go_back_link}>
                 <Link to="/rr_admin">
                     <img src={goBackIcon} alt="" />
                 </Link>
                 <span
                     className={style.view_applicants}
-                    onClick={() => navigate("/rr_admin/appilicants_details")}
+                    onClick={() => window.history.back() }
                 >
                     View Applicants details
                 </span>
             </div>
-            <form className={style.form}>
-                <p>Please, fill this form for every application submitted</p>
+            <p className={style.FormHeader}>Please, fill this form for every application submitted</p>
+            <form className={style.form} onSubmit={handleSubmit}>
                 {applicationsFormData.map((item, index) => {
-                    return (
-                        <label htmlFor={item.id} key={index}>
-                            <span>{item.labelText}</span>
-                            <br />
-                            <input
-                                name={item.id}
-                                id={item.id}
-                                type="text"
-                                placeholder={item.placeholder}
-                                value={item.value}
-                                onChange={handleChange}
-                            />
-                        </label>
-                    );
+                    if(item.id === "summary"){
+                        return(
+                            <label htmlFor={item.id} key={index}>
+                                <span>{item.labelText}</span>
+                                <br />
+                                <textarea
+                                    name={item.id}
+                                    id={item.id}
+                                    type="text"
+                                    className={style.textArea}
+                                    placeholder={item.placeholder}
+                                    value={item.value}
+                                    onChange={handleChange}
+                                    required
+                                />
+                             </label>
+                        )
+                    }else{
+                        return (
+                            <label htmlFor={item.id} key={index}>
+                                <span>{item.labelText}</span>
+                                <br />
+                                <input
+                                    name={item.id}
+                                    id={item.id}
+                                    type="text"
+                                    placeholder={item.placeholder}
+                                    value={item.value}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </label>
+                        );
+                    }
                 })}
-
+            <div className={style.buttonContainer}>
                 <input id="submit" type="submit" value="Submit" />
+            </div>
             </form>
+            {loading && (<Spinner/>)}
         </section>
+        </>
     );
 };
 

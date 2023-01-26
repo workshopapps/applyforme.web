@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { NavLink } from "react-router-dom";
-import styles from "../CreateProfile.module.css";
+import styles from "../EditProfile.module.css";
 import classes from "./Review.module.css";
 import { useNavigate } from "react-router-dom";
 import BlueButton from "../../../../components/buttons/blue_background/BlueButton";
@@ -17,10 +17,10 @@ const Review = ({ formData, keywords, setStep, id }) => {
     const navigate = useNavigate();
     let included_keywords = String(keywords);
 
-    if (included_keywords.length <= 1) {
-        included_keywords = "none";
+    if (included_keywords.length <= 0) {
+        included_keywords = "No keywords";
     }
-    console.log(included_keywords);
+    // console.log(included_keywords);
     console.log(formData);
 
     const { user } = useSelector(state => state.user);
@@ -41,11 +41,20 @@ const Review = ({ formData, keywords, setStep, id }) => {
             return alert("Please select your employment type");
         } else if (formData.salary_expectation === "") {
             return alert("Please select your salary expectation");
-        } else if (formData.shortenedCVUrl === "") {
+        } else if (
+            formData.shortenedCVUrl === "" ||
+            formData?.shortenedCVUrl === null
+        ) {
             return alert("Please upload a CV");
-        } else if (formData.coverletter_subject === "") {
+        } else if (
+            formData?.coverletter_subject === "" ||
+            formData?.coverletter_subject === null
+        ) {
             return alert("Please enter a cover letter subject");
-        } else if (formData.coverletter_body.length === "") {
+        } else if (
+            formData?.coverletter_body?.length === "" ||
+            formData?.coverletter_body === null
+        ) {
             return alert("Please enter a cover letter body");
         }
 
@@ -81,9 +90,9 @@ const Review = ({ formData, keywords, setStep, id }) => {
                     })
                 }
             );
-            const finalResponseJson = await finalResponse.json();
+            // const finalResponseJson = await finalResponse.json();
             setLoading(false);
-            // console.log(finalResponse);
+            console.log(finalResponse);
             toast("Profile submitted successfully");
             navigate("/dashboard/user/success");
         } catch (error) {
@@ -95,25 +104,32 @@ const Review = ({ formData, keywords, setStep, id }) => {
     return (
         <div className={styles.form_body}>
             <h3>Review your profile and it's good to go!</h3>
-            {formData.job_title ? (
-                <h3 className={classes.review_jobtitle}>
-                    {formData.job_title}
-                </h3>
-            ) : (
-                <p className={classes.not_filled}>not specified yet</p>
-            )}
+            <div className={classes.review_top}>
+                <div>
+                    {formData.job_title ? (
+                        <h3 className={classes.review_jobtitle}>
+                            {formData.job_title}
+                        </h3>
+                    ) : (
+                        <p className={classes.not_filled}>not specified yet</p>
+                    )}
 
-            <h5>Job title</h5>
-            <hr className={styles.hr_one} />
+                    <h5>Job title</h5>
+                </div>
+                <div className={classes.review_top_email}>
+                    <p>{userEmail}</p>
+                    <h5>Personal email</h5>
+                </div>
+            </div>
+            <hr className={classes.hr_one} />
             <div className={classes.review_box}>
                 <div className={classes.review_box_left}>
-                    <h6>Search Info</h6>
                     <div>
                         {formData.location ? (
                             <p>{formData.location}</p>
                         ) : (
                             <p className={classes.not_filled}>
-                                not specified yet
+                                Not specified yet
                             </p>
                         )}
                         <h5>Job location</h5>
@@ -123,7 +139,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
                             <p>{formData.experience}</p>
                         ) : (
                             <p className={classes.not_filled}>
-                                not specified yet
+                                Not specified yet
                             </p>
                         )}
                         <h5>Experience</h5>
@@ -134,26 +150,21 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                 {included_keywords}
                             </section>
                         ) : (
-                            <p className={classes.not_filled}>none specified</p>
+                            <p className={classes.not_filled}>None specified</p>
                         )}
                         <h5>Keywords</h5>
                     </div>
-                    <h6>Personal Info</h6>
                     <div>
-                        {formData.cv_file?.name ? (
+                        {/* {formData.cv_file?.name ? (
                             <p className={classes.pdf_name}>
-                                {formData.cv_file?.name}
+                                {formData?.shortenedCVUrl}
                             </p>
                         ) : (
                             <p className={classes.not_filled}>
                                 not uploaded yet
                             </p>
                         )}
-                        <h5>Uploaded CV</h5>
-                    </div>
-                    <div>
-                        <p>{userEmail}</p>
-                        <h5>Personal email</h5>
+                        <h5>Uploaded CV</h5> */}
                     </div>
                 </div>
                 {/* <hr className={styles.hr_one} /> */}
@@ -165,7 +176,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                 <p>{formData.coverletter_subject}</p>
                             ) : (
                                 <p className={classes.not_filled}>
-                                    not yet written
+                                    Not yet written
                                 </p>
                             )}
                             <h5>Cover letter subject</h5>
@@ -179,7 +190,7 @@ const Review = ({ formData, keywords, setStep, id }) => {
                                     </p>
                                 ) : (
                                     <p className={classes.not_filled}>
-                                        not yet written
+                                        Not yet written
                                     </p>
                                 )}
                             </div>
@@ -190,15 +201,11 @@ const Review = ({ formData, keywords, setStep, id }) => {
                             )}
 
                             <div className={classes.review_buttons}>
-                                <BlueButton
-                                    func={handleSubmit}
-                                    text={"Send profile for searching"}
-                                />
-
                                 <LightButton
                                     text={"Go back to edit"}
                                     func={() => setStep(0)}
                                 />
+                                <BlueButton func={handleSubmit} text={"Save"} />
                             </div>
                         </div>
                     </div>

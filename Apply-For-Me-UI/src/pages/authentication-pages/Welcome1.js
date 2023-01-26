@@ -11,7 +11,7 @@ import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 // Toaster
@@ -22,27 +22,33 @@ const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-up";
 
 const Welcome1 = () => {
     const dispatch = useDispatch();
+    const location = useLocation();
+    const from = location.state?.from || "/";
     const navigate = useNavigate();
     const { user } = useSelector(state => state.user);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
     useEffect(() => {
-        if (user) {
-            setTimeout(() => {
-                if (user?.roles[0] === "Recruiter") {
-                    navigate("/rr_admin");
-                } else if (user?.roles[0] === "SuperAdministrator") {
-                    navigate("/user-page");
-                } else if (
-                    user.roles.length === 1 &&
-                    user?.roles[0] === "Professional"
-                ) {
-                    navigate("/dashboard");
-                }
-            }, 2000);
+        if (user && from === "/pricing") {
+            navigate("/pricing");
+        } else {
+            if (user) {
+                setTimeout(() => {
+                    if (user?.roles[0] === "Recruiter") {
+                        navigate("/rr_admin");
+                    } else if (user?.roles[0] === "SuperAdministrator") {
+                        navigate("/user-page");
+                    } else if (
+                        user.roles.length === 1 &&
+                        user?.roles[0] === "Professional"
+                    ) {
+                        navigate("/dashboard");
+                    }
+                }, 2000);
+            }
         }
-    }, [user]);
+    }, [user, navigate, from]);
 
     const handleSignup = async event => {
         event.preventDefault();
@@ -57,7 +63,28 @@ const Welcome1 = () => {
         console.log(formData);
         let result = await axios
             .post(`${BaseUrl}`, formData)
-            .then(res => res.data)
+            .then(res => {
+                let result = res.data;
+                let decoded = jwt_decode(result.token);
+                let tokenKey = "tokenHngKey";
+                let refreshKey = "refreshTokenHngKey";
+                localStorage.setItem(refreshKey, result.refresh_token);
+                localStorage.setItem(tokenKey, result.token);
+                dispatch(userInfo(decoded));
+                setError("");
+                setLoading(false);
+                toast.success("Signup Successfully");
+                setTimeout(() => {
+                    if (
+                        user.roles[0] === "Professional" ||
+                        user.roles[0] === "Recruiter"
+                    ) {
+                        navigate("/dashboard");
+                    } else if (user.roles[0] === "SuperAdministrator") {
+                        navigate("/user-page");
+                    }
+                }, 3000);
+            })
             .catch(err => {
                 let message =
                     typeof err.response.data.message === "object"
@@ -66,37 +93,15 @@ const Welcome1 = () => {
                           ]
                         : err.response.data.message;
                 setError(message);
-                console.log(err.response.data.message);
+                setLoading(false);
+                toast.error(message);
             });
-
-        if (result?.token) {
-            let decoded = jwt_decode(result.token);
-            let tokenKey = "tokenHngKey";
-            localStorage.setItem(tokenKey, result.token);
-            dispatch(userInfo(decoded));
-            setError("");
-            setLoading(false);
-            toast("Signup Successfully");
-            setTimeout(() => {
-                if (
-                    user.roles[0] === "Professional" ||
-                    user.roles[0] === "Recruiter"
-                ) {
-                    navigate("/dashboard");
-                } else if (user.roles[0] === "SuperAdministrator") {
-                    navigate("/user-page");
-                }
-            }, 3000);
-        } else {
-            setLoading(false);
-            toast("Error signin up, try again");
-        }
     };
 
     return (
         <div className="Welcome1">
-            <Navbar />
             <ToastContainer />
+            <Navbar />
             <div className="w1bdy">
                 {loading && <Spinner />}
                 <Text child="Welcome to ApplyForMe!!" />
@@ -153,10 +158,20 @@ const Welcome1 = () => {
 
                 <span className="ques">
                     Already have an account?{" "}
-                    <Link to="/wel2" className="special">
-                        {" "}
-                        Sign In
-                    </Link>
+                    {from !== "/pricing" ? (
+                        <Link to="/wel2" className="special">
+                            {" "}
+                            Sign In
+                        </Link>
+                    ) : (
+                        <p
+                            onClick={() => window.history.back()}
+                            className="special"
+                        >
+                            {" "}
+                            Sign Up
+                        </p>
+                    )}
                 </span>
                 <Footer />
             </div>

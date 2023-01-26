@@ -3,6 +3,7 @@ package com.hydraulic.applyforme.repository;
 import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.domain.Member;
 
+import java.util.Date;
 import java.util.List;
 
 public interface MemberRepository {
@@ -20,10 +21,13 @@ public interface MemberRepository {
 
     boolean updateOne(Member member);
 
-
     boolean remove(Long id);
 
     boolean removeMany(List<Long> ids);
 
     boolean removeAll();
+
+    Long getAllSubmissions(Long id, Date startDate, Date endDate);
+
+    Long getAllProfiles(Long id, Date startDate, Date endDate);
 }

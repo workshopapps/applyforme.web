@@ -31,6 +31,8 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
     private final MemberRepository memberRepository;
     private final ProfessionalJpaRepository professionalJpaRepository;
 
+    ProfessionalProfileJpaRepository jpaRepository;
+
     @Autowired
     private ModelMapper modelMapper;
 
@@ -96,17 +98,79 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
         return savedProfessionalProfile;
     }
 
+//    @Override
+//    @Transactional
+//    public ProfessionalProfile update(Long id, ProfessionalProfileDto body) {
+//        ProfessionalProfile existingProfessionalProfile = repository.getOne(id);
+//        if (existingProfessionalProfile == null) {
+//            throw new ProfessionalProfileNotFoundException(id);
+//        }
+//
+//        ProfessionalProfile professionalProfile = new ProfessionalProfile();
+//        professionalProfile = modelMapper.map(body, ProfessionalProfile.class);
+//        professionalProfile.setId(id);
+//        return repository.updateOne(professionalProfile);
+//    }
+
     @Override
     @Transactional
     public ProfessionalProfile update(Long id, ProfessionalProfileDto body) {
-        ProfessionalProfile existingProfessionalProfile = repository.getOne(id);
-        if (existingProfessionalProfile == null) {
-            throw new ProfessionalProfileNotFoundException(id);
+        ProfessionalProfile professionalProfile = repository.getOne(id);
+        if (professionalProfile == null) {
+            throw new ProfessionalNotFoundException(id);
         }
 
-        ProfessionalProfile professionalProfile = new ProfessionalProfile();
-        professionalProfile = modelMapper.map(body, ProfessionalProfile.class);
-        professionalProfile.setId(id);
+        if (body.getOtherComment() != null) {
+            professionalProfile.setOtherComment(body.getOtherComment());
+        }
+        if (body.getOtherSkills() != null) {
+            professionalProfile.setOtherSkills(body.getOtherSkills());
+        }
+        if (body.getCoverLetterLink() != null) {
+            professionalProfile.setCoverLetterLink(body.getCoverLetterLink());
+        }
+        if (body.getCoverLetterSubject() != null) {
+            professionalProfile.setCoverLetterSubject(body.getCoverLetterSubject());
+        }
+        if (body.getCoverLetterContent() != null) {
+            professionalProfile.setCoverLetterContent(body.getCoverLetterContent());
+        }
+        if (body.getProfileTitle() != null) {
+            professionalProfile.setProfileTitle(body.getProfileTitle());
+        }
+        if (body.getYearsOfExperience() != null) {
+            professionalProfile.setYearsOfExperience(body.getYearsOfExperience());
+        }
+        if (body.getPreferredJobLocationType() != null) {
+            professionalProfile.setPreferredJobLocationType(ProfessionalProfileUtil.getJobLocationType(body.getPreferredJobLocationType()));
+        }
+        if (body.getSalaryRange() != null) {
+            professionalProfile.setSalaryRange(body.getSalaryRange());
+        }
+        if (body.getResumeLink() != null) {
+            professionalProfile.setResumeLink(body.getResumeLink());
+        }
+        if (body.getPassportLink() != null) {
+            professionalProfile.setPassportLink(body.getPassportLink());
+        }
+        if (body.getJobSeniority() != null) {
+            professionalProfile.setJobSeniority(ProfessionalProfileUtil.getJobSeniority(body.getJobSeniority()));
+        }
+        if (body.getJobLocation() != null) {
+            professionalProfile.setJobLocation(body.getJobLocation());
+        }
+        if (body.getIncludedKeywords() != null) {
+            professionalProfile.setIncludedKeywords(body.getIncludedKeywords());
+        }
+        if (body.getEmploymentType() != null) {
+            professionalProfile.setEmploymentType(ProfessionalProfileUtil.getEmploymentType(body.getEmploymentType()));
+        }
+        if (body.getIndustry() != null) {
+            professionalProfile.setIndustry(body.getIndustry());
+        }
+        if (body.getDesiredJobTitle() != null) {
+            professionalProfile.setDesiredJobTitle(body.getDesiredJobTitle());
+        }
         return repository.updateOne(professionalProfile);
     }
 
@@ -164,4 +228,12 @@ public class ProfessionalJobProfileServiceImpl implements ProfessionalJobProfile
 		
 		return false;
 	}
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProfessionalProfile> findAllJobProfiles() {
+        return jpaRepository.getAllJobProfileSubmission();
+    }
+
 }
+

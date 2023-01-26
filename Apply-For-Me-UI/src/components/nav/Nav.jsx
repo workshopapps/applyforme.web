@@ -9,7 +9,7 @@ import LightButton from "../buttons/light_button/LightButton";
 import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
 
-const Nav = () => {
+const Nav = ({setSeeMore}) => {
     const initState = {
         "about": false,
         "price": false,
@@ -24,6 +24,7 @@ const Nav = () => {
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem("tokenHngKey");
+        localStorage.removeItem("refreshTokenHngKey");
         dispatch(userInfo(""));
         navigate("/");
     };
@@ -53,12 +54,12 @@ const Nav = () => {
                     </Link>
                 </div>
 
-                <ul className={classes.nav_links}>
-                    <li className="active">
+                <ul className={classes.nav_links} style={{marginBottom:"0"}}>
+                    {/* <li className="active">
                         <NavLink to="/" style={handleActiveLink}>
                             Home
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink to="/about" style={handleActiveLink}>
                             About us
@@ -66,7 +67,7 @@ const Nav = () => {
                     </li>
 
                     <li>
-                        <NavLink to="/pricing" style={handleActiveLink}>
+                        <NavLink to="/pricing" style={handleActiveLink} onClick={() => setSeeMore(false)}>
                             Pricing plan
                         </NavLink>
                     </li>
@@ -80,8 +81,8 @@ const Nav = () => {
                 <div className={classes.btn_container}>
                     {!user ? (
                         <>
-                            <Link to="/wel2">
-                                <LightButton text="Sign in" width="127" />
+                            <Link to="/wel2" className={classes.sign_in}>
+                                Sign in
                             </Link>
                             <Link to="/wel1">
                                 <BlueButton text="Get started" width="156" />
@@ -89,10 +90,8 @@ const Nav = () => {
                         </>
                     ) : (
                         <div className={classes.auth__user_btn}>
-                            <BlueButton
-                                text="Dashboard"
-                                width="156"
-                                func={() =>
+                            <p
+                                onClick={() =>
                                     navigate(
                                         user.roles[0] === "SuperAdministrator"
                                             ? "/user-page"
@@ -101,7 +100,14 @@ const Nav = () => {
                                             : "/dashboard/"
                                     )
                                 }
-                            />
+                                style={{
+                                    color: "#2e3192",
+                                    fontWeight: "bold",
+                                    cursor: "pointer"
+                                }}
+                            >
+                                Dashboard
+                            </p>
                             <BlueButton
                                 text="Logout"
                                 width="156"
@@ -132,13 +138,23 @@ const Nav = () => {
                         <FiMenu
                             className={classes.menu__mobile}
                             onClick={() => setDropDown(true)}
-                            style={{ display: dropDown ? "none" : "block" }}
+
+                            style={{ display: dropDown ? "none" : "block",
+                            padding: "0.2rem"
+
+                            }}
+                            size="2.5rem"
+                            
                         />
 
                         <FiX
                             className={classes.menu__mobile}
                             onClick={() => setDropDown(false)}
-                            style={{ display: dropDown ? "block" : "none" }}
+                            style={{ display: dropDown ? "block" : "none",
+                            padding: "0.2rem"
+                             }}
+                            size="2.5rem"
+                        
                         />
                     </div>
 
@@ -146,18 +162,14 @@ const Nav = () => {
                         className={classes.nav_links__mobile}
                         style={{ display: dropDown ? "flex" : "none" }}
                     >
-                        <li onClick={() => setDropDown(false)}>
-                            <Link to="/">Home</Link>
+                        <li onClick={() => navigate("/about")}>
+                            <Link to="/about" >About us</Link>
                         </li>
-                        <li onClick={() => setDropDown(false)}>
-                            <Link to="/about">About us</Link>
+                        <li onClick={() => { setSeeMore(false); navigate("/pricing") }}>
+                            <Link to="/pricing" >Pricing plan</Link>
                         </li>
-
-                        <li onClick={() => setDropDown(false)}>
-                            <Link to="/pricing">Pricing plan</Link>
-                        </li>
-                        <li>
-                            <Link to="/faqs">FAQs</Link>
+                        <li onClick={() => navigate("/faqs")}>
+                            <Link to="/faqs" >FAQs</Link>
                         </li>
                     </ul>
 
@@ -170,14 +182,14 @@ const Nav = () => {
                                 <Link to="/wel2">
                                     <LightButton
                                         text="Sign in"
-                                        width="127"
+                                        width="185"
                                         func={() => setDropDown(false)}
                                     />
                                 </Link>
                                 <Link to="/wel1">
                                     <BlueButton
                                         text="Get started"
-                                        width="156"
+                                        width="185"
                                         func={() => setDropDown(false)}
                                     />
                                 </Link>
@@ -186,7 +198,7 @@ const Nav = () => {
                             <div className={classes.auth__user_btn}>
                                 <BlueButton
                                     text="Dashboard"
-                                    width="156"
+                                    width="185"
                                     func={() =>
                                         navigate(
                                             user.roles[0] ===
@@ -200,7 +212,7 @@ const Nav = () => {
                                 />
                                 <BlueButton
                                     text="Logout"
-                                    width="156"
+                                    width="185"
                                     func={handleLogout}
                                 />
                             </div>

@@ -3,6 +3,13 @@
     margin: 0 auto;
 
 }
+#country_of_residence,#nationality{
+    padding: 0.8rem;
+    border-radius: 7px;
+    border: 1px solid grey;
+    width: 100%;
+
+}
 
 .image_container {
     text-align: center;
@@ -16,6 +23,10 @@
 .edit_profileContent .editButtonDiv {
     padding-top: 2rem;
 }
+input[type="file"]{
+    display: none;
+}
+
 
 .edit_profileContent form {
     display: flex;

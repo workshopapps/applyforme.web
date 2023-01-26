@@ -6,15 +6,45 @@
 
 .rrd_applications_wrapper button {
     border: none;
+    padding: 0rem 1rem;
+    border-radius: 5px;
+}
+.entry_mappping {
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #F2F2F2;
+    padding: 1rem 0;
+    
+}
+h5 {
+    color: #52515B;
 }
 
-.greeting_text > h1 {
+.entry_maps {
+    width: 100%;
+    text-align: left;
+}
+.entry_map {
+    width: 100%;
+    text-align: left;
+    color: #52515B !important;
+}
+.entry_map > span {
+    color: #52515B;
+}
+.entry_mapt {
+    text-align: right;
+}
+.greeting_text>h1 {
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 0.5rem;
 }
 
-.greeting_text > p {
+.greeting_text>p {
     color: #737373;
 }
 
@@ -40,26 +70,28 @@
 }
 
 .applications_stat {
+    padding:0.5rem;
     border: 2px solid #f7f7f8;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 5rem;
-    padding: 1rem 0.5rem;
-    min-width: 7.5rem;
+    width: 100%;
 }
 
 .stat_number {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    text-align:center
 }
 
-.greeting_text > p,
+.greeting_text>p,
 .stat_text {
     font-size: 0.75rem;
     font-weight: 400;
+    text-align: center;
 }
 
 .job_application_form_button {
@@ -76,7 +108,6 @@
     text-decoration: none;
     color: white;
 }
-
 .new_applications_stats {
     display: flex;
     flex-direction: column;
@@ -93,7 +124,7 @@
     margin: 1.5rem 0 1rem;
 }
 
-.new_applications_stats_heading > span {
+.new_applications_stats_heading>span {
     color: inherit;
 }
 
@@ -110,6 +141,10 @@
 
 .stats_item {
     font-weight: 300;
+    width:100%;
+    background-color: red;
+    display: flex;
+    
 }
 
 .stats_details_view_button {
@@ -118,15 +153,14 @@
 }
 
 .stats_row {
+    background-color: yellowgreen;
     border-bottom: 1px solid rgba(230, 230, 233, 1);
     display: flex;
-    gap: 10%;
+    align-items: center;
     list-style-type: none;
     padding: 32px 0px 16px;
-}
-
-.stats_name {
-    width: 40%;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .stats_plan {
@@ -138,9 +172,14 @@
 }
 
 .desktop_only {
-    display: none;
+    display: block;
 }
-
+.greeting_text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 @media screen and (min-width: 768px) {
     .rrd_applications_wrapper {
         padding: 2rem 2.5rem;
@@ -149,13 +188,16 @@
     .desktop_only {
         display: block;
     }
+    .tab_option {
+        display: none;
+    }
 
-    .greeting_text > h1 {
+    .greeting_text>h1 {
         font-size: 1.5rem;
         font-weight: 700;
     }
 
-    .greeting_text > p,
+    .greeting_text>p,
     .stat_text,
     .job_application_form_button,
     .stats_heading,
@@ -165,7 +207,7 @@
 
     .applications_stat {
         padding-left: 1rem;
-        width: 14.25rem;
+        width: 100%;
     }
 
     .stat_number {
@@ -179,14 +221,14 @@
     }
 
     .new_applications_stats_heading,
-    .new_applications_stats_heading > span {
-        font-size: 1.35rem;
+    .new_applications_stats_heading>span {
+        font-size: 1rem;
     }
 
     .stats_row {
         border-bottom: 1px solid rgba(230, 230, 233, 1);
         display: grid;
-        grid-template-columns: 17% 17% 8% 21% 8% 8%;
+        grid-template-columns: auto auto auto auto auto;
         gap: 4%;
         list-style-type: none;
         padding: 32px 0px 16px;
@@ -213,8 +255,12 @@
     .rrd_applications_wrapper {
         padding: 2rem 7rem;
     }
+    
+    .entry_mappping > h5 {
+        font-size: 1.4rem !important;
+    }
 
-    .greeting_text > p,
+    .greeting_text>p,
     .stat_text,
     .job_application_form_button,
     .stats_heading {
@@ -226,12 +272,12 @@
     }
 
     .new_applications_stats_heading,
-    .new_applications_stats_heading > span {
+    .new_applications_stats_heading>span {
         font-size: 1.75rem;
     }
 
     .stats_row {
-        grid-template-columns: 17% 17.5% 10% 21% 9% 8%;
+        grid-template-columns: auto auto auto auto auto;
         gap: 3.5%;
     }
 
@@ -241,11 +287,34 @@
         font-size: 1.25rem;
     }
 }
-
 @media screen and (min-width: 1328px) {
     .applications_stats_and_button {
         align-items: center;
         flex-direction: row;
         justify-content: space-between;
     }
+}
+@media  screen and (min-width: 320px) and (max-width: 767px) {
+    .new_applications_stats_heading,
+    .new_applications_stats_heading>span {
+    font-size: 1rem;
+    }
+    .stats_heading,
+    .stats_item,
+    .stats_details_view_button {
+        font-size: 12px;
+    }
+    .mobile_option {
+        display: none;
+    }
+    .entry_mappping > h5 {
+        font-size: 1rem !important;
+    }
+    .mobile_opt {
+        display: flex;
+        width: 35%;
+        flex-wrap: wrap;
+    }
+    
+
 }

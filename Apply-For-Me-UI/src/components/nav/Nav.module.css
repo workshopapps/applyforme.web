@@ -1,13 +1,26 @@
 .nav_container {
     width: 100%;
-    padding-top: 1.7rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: #FBFBFB;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0px;
+    background: #FBFBFB;
+    box-shadow: 0px 4px 6px -2px rgba(46, 49, 146, 0.06), 0px 2px 4px -2px rgba(231, 215, 215, 0.06);
 }
 
+.sign_in{
+    color:#2e3192;
+    font-weight: 700;
+}
 .hide__desktop {
     display: none;
 }
-
+.nav_links__mobile li a {
+    width:100%;
+}
 .nav_container__wrapper {
     width: 90%;
     max-width: 1400px;
@@ -79,6 +92,7 @@
 @media screen and (max-width: 1050px) {
     .nav_container {
         position: relative;
+        
     }
 
     .hide__desktop {
@@ -105,19 +119,20 @@
 
     .nav_container {
         padding-top: 0;
-        margin-bottom: 4rem;
+        box-shadow: none;
+        height: 80px;
     }
 
     .nav_container__wrapper__mobile {
+        margin-top: -1px;
+        top:0;
         display: block;
         position: fixed;
         left: 0;
         right: 0;
-        background-color: #fff;
-        display: flex;
-        flex-direction: column;
-        gap: 1.8rem;
+        background-color: #FBFBFB;
         padding: 1rem 0;
+        box-shadow: 0px 4px 6px -2px rgb(46 49 146 / 6%), 0px 2px 4px -2px rgb(231 215 215 / 6%);
         z-index: 100;
     }
 
@@ -136,7 +151,7 @@
         gap: 3rem;
         width: 90%;
         max-width: 1400px;
-        margin: 0 auto;
+        margin: 1.5rem auto;
         position: relative;
     }
 
@@ -160,10 +175,5 @@
         display: flex;
         align-items: center;
         padding: 0 0.8rem;
-    }
-
-    .btn_container__mobile button {
-        max-width: 500px !important;
-        width: 100% !important;
     }
 }

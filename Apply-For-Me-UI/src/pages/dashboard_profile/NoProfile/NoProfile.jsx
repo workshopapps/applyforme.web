@@ -16,7 +16,6 @@ const NoProfile = () => {
         // eslint-disable-next-line no-unused-vars
         let tokenKey = "tokenHngKey";
         let storedToken = localStorage.getItem(tokenKey);
-        console.log(storedToken);
         axios
             .get(
                 "https://api.applyforme.hng.tech/api/v1/professional/profiles",
@@ -28,10 +27,8 @@ const NoProfile = () => {
             )
             .then(response => {
                 // handle success
-                console.log(response.data);
                 setProfileList(response.data);
                 setData("done");
-                // console.log(response.data);
             })
             .catch(error => {
                 // handle error
@@ -45,7 +42,13 @@ const NoProfile = () => {
         } else {
             return (
                 <div className={styles.noprofile}>
-                    <TopBar />
+                    <TopBar
+                        title={"My Job Profile"}
+                        style={{
+                            marginTop: "auto"
+                        }}
+                    />
+
                     <span
                         className={styles.noprofile_body}
                         id={styles.desktop_view}

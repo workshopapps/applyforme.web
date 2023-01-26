@@ -8,7 +8,7 @@ import Inputbox from "./components/Elements/Inputbox";
 import Button from "./components/Elements/Button";
 import "./components/Elements/Button.css";
 import Footer from "./Footer";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,23 +36,26 @@ const Welcome2 = () => {
     const handletoggle = () => {
         password === "password" ? setPassword("text") : setPassword("password");
     };
-
     useEffect(() => {
-        if (user) {
-            setTimeout(() => {
-                if (user?.roles[0] === "Recruiter") {
-                    navigate("/rr_admin");
-                } else if (user?.roles[0] === "SuperAdministrator") {
-                    navigate("/user-page");
-                } else if (
-                    user.roles.length === 1 &&
-                    user?.roles[0] === "Professional"
-                ) {
-                    navigate("/dashboard");
-                }
-            }, 2000);
+        if (user && from === "/pricing") {
+            navigate(from);
+        } else {
+            if (user) {
+                setTimeout(() => {
+                    if (user?.roles[0] === "Recruiter") {
+                        navigate("/rr_admin");
+                    } else if (user?.roles[0] === "SuperAdministrator") {
+                        navigate("/user-page");
+                    } else if (
+                        user.roles.length === 1 &&
+                        user?.roles[0] === "Professional"
+                    ) {
+                        navigate("/dashboard/");
+                    }
+                }, 2000);
+            }
         }
-    }, [user]);
+    }, [user, navigate, from]);
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -62,9 +65,21 @@ const Welcome2 = () => {
             password: event.target.pass.value
         };
 
-        let result = await axios
+        await axios
             .post(`${BaseUrl}`, formData)
-            .then(res => res.data)
+            .then(res => {
+                let result = res.data;
+                let decoded = jwt_decode(result.token);
+                let tokenKey = "tokenHngKey";
+                let refreshKey = "refreshTokenHngKey";
+                localStorage.setItem(refreshKey, result.refresh_token);
+                localStorage.setItem(tokenKey, result.token);
+                dispatch(userInfo(decoded));
+                setError("");
+                setLoading(false);
+                console.log(decoded);
+                toast.success("Login Successfully");
+            })
             .catch(err => {
                 let message =
                     typeof err.response.data.message === "object"
@@ -73,20 +88,9 @@ const Welcome2 = () => {
                           ]
                         : err.response.data.message;
                 setError(message);
+                setLoading(false);
+                toast.error(message);
             });
-
-        if (result?.token) {
-            let decoded = jwt_decode(result.token);
-            let tokenKey = "tokenHngKey";
-            localStorage.setItem(tokenKey, result.token);
-            dispatch(userInfo(decoded));
-            setError("");
-            setLoading(false);
-            toast.success("Login Successfully");
-        } else {
-            setLoading(false);
-            toast.error("Wrong credentials");
-        }
     };
 
     return (
@@ -134,10 +138,24 @@ const Welcome2 = () => {
                 </form>
                 <span className="ques">
                     Don&#39;t have an account?{" "}
-                    <Link to="/wel1" className="special">
-                        {" "}
-                        Sign Up
-                    </Link>
+                    {from !== "/pricing" ? (
+                        <Link to="/wel1" className="special">
+                            {" "}
+                            Sign Up
+                        </Link>
+                    ) : (
+                        <p
+                            onClick={() =>
+                                navigate("/wel1", {
+                                    state: { from: "/pricing" }
+                                })
+                            }
+                            className="special"
+                        >
+                            {" "}
+                            Sign Up
+                        </p>
+                    )}
                 </span>
                 <Footer />
             </div>

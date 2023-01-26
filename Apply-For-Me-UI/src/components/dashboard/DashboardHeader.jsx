@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./DashboardHeader.module.css";
 import { FiChevronLeft, FiPause, FiTrash } from "react-icons/fi";
 import Logo from "../../assets/images/nav_logo.svg";
 import Notification from "../../assets/images/notification.svg";
-import ProfilePic from "../../assets/images/test_profile_picture.svg";
+import LetteredAvatar from "react-lettered-avatar";
 import Search from "../../assets/images/search.svg";
 import SearchBlue from "../../assets/images/search_blue.svg";
 import Menu from "../../assets/images/menu.svg";
@@ -17,34 +17,55 @@ import Signout from "../../assets/images/signout.svg";
 import ProgressBar from "../../assets/images/progress_bar.svg";
 import { MobileNav } from "./mobileNav";
 import { useNavigate } from "react-router-dom";
-import ProfilePiture from "../../assets/images/profile_picture.svg";
 import ProfileIcon from "../../assets/images/profile-circle.svg";
 import { getActiveLink } from "./service/DashboardSidebarService";
 import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "store/slice/UserSlice";
+import { useRef } from "react";
 
-const DashboardHeader = ({ func, setInputSearchValue }) => {
+const DashboardHeader = ({ func}) => {
+    const [searchData, setSearchData] = useState([])
+    const [data, setdata] = useState([])
+    const {superAdminApplicantsList,list} = useSelector(state => state.RRadmin);
     const [dashboardActive, setDashboardActive] = useState({
         dashboard: true,
         user: false
     });
+    useEffect(()=>{
+        if(dashboardActive.dashboard === true){
+            setdata(list.content)
+            setSearchData(list.content)
+        }else{
+            setdata(superAdminApplicantsList.content)
+            setSearchData(superAdminApplicantsList.content)
+        }
+    },[superAdminApplicantsList,list,dashboardActive.dashboard ])
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { user } = useSelector(state => state.user);
+    const userName = user.fullName;
     const [mobileSearch, setMobileSearch] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [showMenuProfile, setShowMenuProfile] = useState(false);
     const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
+    const [activateSearchContainer, setActivateSearchContainer] = useState(false)
     const handleActive = data => {
         setDashboardActive(getActiveLink(data));
     };
-
+    const searchRef = useRef(null);
     const handleDashboardSubmit = event => {
         event.preventDefault();
-        setInputSearchValue(event.target.search.value);
-        event.target.search.value = "";
+        if(dashboardActive.dashboard){
+            const itemFound = data.filter((item)=>item.firstName.toLowerCase().includes(searchRef.current.value))
+            setSearchData(itemFound)
+        }else{
+            const itemFound = data.filter((item)=>item.membership?.firstName.toLowerCase().includes(searchRef.current.value))
+            setSearchData(itemFound)
+        }
     };
     const handleLogout = () => {
         localStorage.removeItem("tokenHngKey");
@@ -58,6 +79,15 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
     const handleQuota = event => {
         event.preventDefault();
     };
+    const handleChange =(e)=>{
+        if(dashboardActive.dashboard){
+            const itemFound = data.filter((item)=>item.firstName.toLowerCase().includes(e.target.value))
+            setSearchData(itemFound)
+        }else{
+            const itemFound = data.filter((item)=>item.membership?.firstName.toLowerCase().includes(e.target.value))
+            setSearchData(itemFound)
+        }
+    }
     return (
         <section className={classes.main_container}>
             <section className={classes.header}>
@@ -89,8 +119,13 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 />
                             </div>
                             <div className={classes.search_logo}>
-                                <img src={SearchBlue} alt="Search " onClick={()=>setMobileSearch(prev =>!prev)}/>
-                                
+                                <img
+                                    src={SearchBlue}
+                                    alt="Search "
+                                    onClick={() =>
+                                        setMobileSearch(prev => !prev)
+                                    }
+                                />
                             </div>
                             <div
                                 className={classes.user_avater}
@@ -99,9 +134,9 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 }
                                 style={{ cursor: "pointer" }}
                             >
-                                <img
-                                    src={ProfilePic}
-                                    alt="User Profile Picture"
+                                <LetteredAvatar
+                                    name={userName}
+                                    backgroundColor={"#78909c"}
                                 />
                             </div>
                             {showMenuProfile && (
@@ -145,9 +180,12 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                                 onSubmit={event => handleDashboardSubmit(event)}
                             >
                                 <input
+                                    ref={searchRef}
                                     type="search"
                                     name="search"
-                                    placeholder="Search for and Reverse Recruiter"
+                                    placeholder="Search for Users and Reverse Recruiter"
+                                    onFocus={()=>setActivateSearchContainer(true)}
+                                    onChange={handleChange}
                                 />
                                 <button type="submit">
                                     {" "}
@@ -158,27 +196,89 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
 
                         {/*form for searching for users and reverse recruiter */}
                     </section>
-                    
                 </nav>
 
                 {/* Mobile nav */}
-                {mobileSearch && 
-                    
-                         <form
-                                className={classes.search}
-                                onSubmit={event => handleDashboardSubmit(event)}
-                            >
-                               <input
-                                    type="search"
-                                    name="search"
-                                    className={classes.mobile_inp}
-                                    placeholder="Search for and Reverse Recruiter"
-                                />
-                                <button type="submit" className={classes.mobile_btn_cont}>
-                                    {" "}
-                                    <img src={Search} alt="Apply for me logo"  className={classes.mobile_btn}/>
-                                </button>
-                            </form>
+                {mobileSearch && (
+                    <form
+                        className={classes.mobilesearch}
+                        onSubmit={event => handleDashboardSubmit(event)}
+                    >
+                        <input
+                            ref={searchRef}
+                            type="search"
+                            name="search"
+                            className={classes.mobile_inp}
+                            placeholder="Search for and Reverse Recruiter"
+                            onFocus={()=>setActivateSearchContainer(true)}
+                            onChange={handleChange}
+                        />
+                        <button
+                            type="submit"
+                            className={classes.mobile_btn_cont}
+                        >
+                            {" "}
+                            <img
+                                src={Search}
+                                alt="Apply for me logo"
+                                className={classes.mobile_btn}
+                            />
+                        </button>
+                    </form>
+                )}
+                {
+                    activateSearchContainer && (
+                        <div className={classes.SearchContainer}>
+                            <div>
+                                <img className={classes.SearchContainer_cancel} onClick={()=>setActivateSearchContainer(false)} src="https://res.cloudinary.com/hamskid/image/upload/v1670603040/close-svgrepo-com_1_ie1sje.svg" alt="object not found"/>
+                            </div>
+                             <p>Page: 1</p>
+                            {
+                                dashboardActive.dashboard && searchData?.map((data, index)=>{
+                                    return(
+                                        <div className={classes.SearchContainer_child_div} key={index}
+                                         onClick={() =>
+                                            navigate(`/user-page/reverseRecruiterAdmin/${data?.id}`)
+                                        }>
+                                            <div className={classes.SearchContainer_child_div_wrapper}>
+                                                <div className={classes.SearchContainer_img_wrapper}>
+                                                    <LetteredAvatar
+                                                        name={data?.firstName }
+                                                        backgroundColor={"#78909c"}
+                                                    /> 
+                                                </div>
+                                                <div>
+                                                    <p className={classes.SearchContainer_name}>{data?.firstName}</p>
+                                                    <p className={classes.SearchContainer_email}>{data?.emailAddress}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                            {
+                                dashboardActive.user && searchData?.map((data, index)=>{
+                                    return(
+                                        <div className={classes.SearchContainer_child_div} key={index}  onClick={()=>
+                                             navigate(`/superAdmin/applicants/profiles/details/${data?.membership?.id}`)}>
+                                            <div className={classes.SearchContainer_child_div_wrapper}>
+                                                <div className={classes.SearchContainer_img_wrapper}>
+                                                    <LetteredAvatar
+                                                        name={data?.membership?.firstName }
+                                                        backgroundColor={"#78909c"}
+                                                    /> 
+                                                </div>
+                                                <div>
+                                                    <p className={classes.SearchContainer_name}>{data?.membership?.firstName}</p>
+                                                    <p className={classes.SearchContainer_email}>{data?.membership?.emailAddress}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    )
                 }
                 {showMenu && <MobileNav setShowMenu={setShowMenu} />}
             </section>
@@ -214,9 +314,9 @@ const DashboardHeader = ({ func, setInputSearchValue }) => {
                         <div className={classes.profile_details}>
                             <div className={classes.img_details}>
                                 <div className={classes.img_wrapper}>
-                                    <img
-                                        src={ProfilePiture}
-                                        alt="profile picture"
+                                    <LetteredAvatar
+                                        name={userName}
+                                        backgroundColor={"#78909c"}
                                     />
                                 </div>
 

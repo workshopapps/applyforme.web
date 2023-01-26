@@ -10,16 +10,19 @@
     background-color: white;
     height: 100vh;
 }
+
 .menu-Header {
     display: flex;
     justify-content: space-between;
 }
+
 .section_menu_sect {
     display: flex;
     flex-direction: column;
     line-height: 50px;
     margin: 2rem 0 4rem;
 }
+
 .second_menu_sect {
     margin: 2rem 0 4rem;
     border-top: 1px solid gainsboro;

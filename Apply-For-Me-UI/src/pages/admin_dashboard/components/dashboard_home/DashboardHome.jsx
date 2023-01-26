@@ -1,37 +1,70 @@
 import classes from "../../../RR_Dashboard/styles/Applications.module.css";
 import ApplicationList from "../application_list/ApplicationList";
-import { Link, useNavigate } from "react-router-dom";
-import RRD_Nav from "pages/RR_Dashboard/components/RRD_Nav";
+// eslint-disable-next-line no-unused-vars
+import {useNavigate } from "react-router-dom";
+import RRDNav from "pages/RR_Dashboard/components/RRD_Nav";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useCallback } from "react";
+import Spinner from "components/spinner/Spinner";
 
 const DashboardHome = () => {
     const navigate = useNavigate();
+    const [statValue, setStatValue] = useState({});
+    const token = localStorage.getItem("tokenHngKey");
+    const [isLoading, setIsLoading] = useState(true);
+    const getStatisticsDetail = useCallback( async () => {
+        try {
+            const response = await axios.get(
+                "https://api.applyforme.hng.tech/api/v1/recruiter/applicant/statistics",
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+            setStatValue(response?.data);
+            setIsLoading(false);
+        } catch (err) {
+            setIsLoading(false);
+            console.log(err?.response?.data);
+        }
+    },[token]);
+    useEffect(() => {
+        getStatisticsDetail();
+    }, [ getStatisticsDetail]);
+
+    if (isLoading) {
+        return <Spinner/>;
+    }
+    
     return (
         <section>
-            <RRD_Nav />
+            <RRDNav />
             <div className={classes.rrd_applications_wrapper}>
                 {/* Greetings */}
                 <div className={classes.greeting_text}>
                     <h1>Good evening Admin, 👋🏼</h1>
-                    <p>Here is how you are fairing today</p>
+                    <p>How are you fairing today</p>
                 </div>
 
                 <div className={classes.applications_stats_and_button}>
                     {/* Applications stat on cards */}
                     <div className={classes.applications_stats}>
                         <div className={classes.applications_stat}>
-                            <h2 className={classes.stat_number}>100</h2>
+                            <h2 className={classes.stat_number}>{statValue?.total_applications}</h2>
                             <p className={classes.stat_text}>
-                                Total Applications
+                                Total Job Profiles
                             </p>
                         </div>
 
                         <div className={classes.applications_stat}>
-                            <h2 className={classes.stat_number}>60</h2>
+                            <h2 className={classes.stat_number}>{statValue?.applied_jobs}</h2>
                             <p className={classes.stat_text}>Applied Jobs</p>
                         </div>
 
                         <div className={classes.applications_stat}>
-                            <h2 className={classes.stat_number}>23</h2>
+                            <h2 className={classes.stat_number}>0</h2>
                             <p className={classes.stat_text}>
                                 Quota for the day
                             </p>
@@ -39,19 +72,14 @@ const DashboardHome = () => {
                     </div>
                     {/* Job Applications Button */}
 
-                    <Link
-                        className={classes.job_application_form_button}
-                        to="/rr_admin/form"
-                    >
-                        Job Application Form
-                    </Link>
+                    
                 </div>
 
                 {/* New Applications Container */}
                 <div className={classes.new_applications_stats}>
                     <div className={classes.view_all_wrapper}>
                         <h2 className={classes.new_applications_stats_heading}>
-                            New Applications <span>(23)</span>
+                            New Applications(23)
                         </h2>
 
                         <button

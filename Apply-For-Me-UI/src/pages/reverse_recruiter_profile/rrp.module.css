@@ -1,10 +1,61 @@
+.editContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(49, 49, 49, 0.8);
+}
+
+.editpasswordContent {
+    padding: 2rem;
+    position: fixed;
+    top: 50%;
+    overflow: auto;
+    z-index: 1;
+    left: 50%;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+}
+
+.editProfileContent {
+    padding: 2rem 2rem 3rem;
+    position: fixed;
+    top: 50%;
+    overflow: auto;
+    z-index: 1;
+    left: 50%;
+    height: 80%;
+    width: 30%;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    border-radius: 1.5rem;
+}
+
+.modal_closal {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.button-type {
+    cursor: pointer;
+}
+
 .page {
     display: flex;
     flex-direction: column;
 }
-.rr_profile_container{
+
+.rr_profile_container {
     padding: 1rem 3rem;
 }
+
 .ProfilePic {
     width: 80px;
     height: 80px;
@@ -23,19 +74,21 @@
 
 .back_button span {
     margin-right: 24px;
-    color: #52515B;
+    color: #52515b;
 }
 
 .topSection {
     display: flex;
     align-items: center;
     margin: 0 20px;
-    border-bottom: 1px solid #E6E6E9;
+    border-bottom: 1px solid #e6e6e9;
+    padding: 1rem 0;
+    justify-content: space-between;
 }
 
 .infoSection {
     margin: 24px 20px;
-    border-bottom: 1px solid #E6E6E9;
+    border-bottom: 1px solid #e6e6e9;
     display: flex;
     padding-bottom: 24px;
 }
@@ -51,7 +104,7 @@
     font-size: 14px;
     line-height: 150%;
     letter-spacing: 0.03em;
-    color: #52515B;
+    color: #52515b;
 }
 
 .left p {
@@ -64,7 +117,7 @@
     font-size: 14px;
     line-height: 150%;
     letter-spacing: 0.03em;
-    color: #52515B;
+    color: #52515b;
 }
 
 .bottomSection {
@@ -78,7 +131,8 @@
 .btn_bottom {
     display: block;
 }
-.btn{
+
+.btn {
     display: none;
 }
 
@@ -88,35 +142,57 @@
 
 .change_password {
     background-color: transparent;
-    border: 2px solid #2E3192;
+    border: 2px solid #2e3192;
     border-radius: 8px;
     padding: 16px 32px;
-    color: #2E3192;
+    color: #2e3192;
     font-weight: 600;
     font-size: 16px;
     line-height: 150%;
 }
-.info_container{
-    display:flex;
+.Lwrapper {
+    width: 100px;
+}
+.info_container {
+    display: flex;
     flex-direction: column;
-    width:100%;
+    width: 100%;
     line-height: 40px;
 }
-.isubinfo_container{
+
+.isubinfo_container {
     justify-content: space-between;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
-.isubinfo_container p{
+
+.isubinfo_container p {
     overflow-wrap: break-word;
-    width:50%;
+    width: 50%;
+}
+
+@media only screen and (max-width: 900px) {
+    .editProfileContent {
+        width: 60%;
+        height: 80%;
+    }
 }
 
 @media screen and (max-width: 768px) {
-    .rr_profile_container{
+    .editpasswordContent {
+        height: auto;
+        width: 80%;
+    }
+
+    .editProfileContent {
+        width: 80%;
+    }
+
+    .rr_profile_container {
         padding: 1rem 1.5rem;
     }
+
     .bottomSection {
         align-self: flex-start;
     }
@@ -134,19 +210,22 @@
         gap: 60px;
     }
 }
+
 @media screen and (max-width: 480px) {
     .ProfilePic {
         width: 90px;
     }
+
     .btn {
         display: block;
         margin-left: 1rem;
     }
 
     .btn_bottom {
-        display:none;
+        display: none;
     }
-    .rr_profile_container{
+
+    .rr_profile_container {
         padding: 1rem 0;
     }
 }

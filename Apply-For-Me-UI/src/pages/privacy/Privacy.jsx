@@ -72,7 +72,7 @@ const Privacy = () => {
                     <p className={privacyCss.title}>
                         <strong>Interpretation</strong>
                     </p>
-                    <p>
+                    <p style={{lineHeight:"45px"}}>
                         The words of which the initial letter is capitalized
                         have meanings defined under the following conditions.
                         The following definitions shall have the same meaning

@@ -3,11 +3,9 @@ package com.hydraulic.applyforme.repository.impl;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
+import com.hydraulic.applyforme.model.domain.Country;
 import com.hydraulic.applyforme.model.dto.submission.ApplierSubmissionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -62,5 +60,34 @@ public class JobSubmissionRepositoryImpl implements JobSubmissionRepository {
 		List submissionList = query.getResultList();
 		System.out.println("submissionList.size(): " + submissionList.size());
 		return submissionList;
+	}
+
+	@Override
+	public List<Submission> getSubmissionsByProfessionalId(Long professional_id) {
+		String query = "select s from Submission s where s.professional.id = :id";
+		TypedQuery<Submission> submissions = entityManager.createQuery(query, Submission.class);
+		submissions.setParameter("id", professional_id);
+		return submissions.getResultList();
+	}
+
+	@Override
+	public Submission getOne(Long id) {
+		return entityManager.find(Submission.class, id);
+	}
+
+	@Override
+	public Long countAllSubmissions() {
+		String queryText = "select count(jb) from Submission jb";
+		TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class);
+
+		return total.getSingleResult();
+	}
+
+	@Override
+	public Long countAllSubmissionByApplier(Long id) {
+		String queryText = "select count(jb) from Submission jb where jb.applier.member.id = :id";
+		TypedQuery<Long> total = entityManager.createQuery(queryText, Long.class);
+		total.setParameter("id", id);
+		return total.getSingleResult();
 	}
 }

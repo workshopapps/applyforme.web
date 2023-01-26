@@ -3,6 +3,45 @@
     padding: 0 20px 50px;
     font-size: 16px;
 }
+.textArea{
+    color: #414244;
+    font-weight: 300;
+    font-size: 16px;
+    padding: 16px 24px;
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+    width: 100%;
+}
+.FormHeader{
+    font-size: 20px;
+    margin-bottom: 1rem;
+    margin-top: 4rem;
+}
+.buttonContainer{
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 0.5rem;
+}
+.editContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(49, 49, 49, 0.8);
+    z-index: 1;
+}
+.progress {
+    color: white;
+    background: rgba(49, 49, 49, 0.8);
+    margin: 0 auto;
+    font-size: 25px;
+    padding: 2rem;
+    margin: 20% auto;
+    width: fit-content;
+}
 
 .go_back_link {
     margin: 20px 0;
@@ -22,8 +61,8 @@
 }
 
 .form {
-    display: flex;
-    flex-flow: column nowrap;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
     max-width: 500px;
     gap: 24px;
 }
@@ -59,7 +98,6 @@
     padding: 16px 32px;
     width: 240px;
 }
-
 .form input[type="submit"]:hover {
     opacity: 0.9;
 }
@@ -76,30 +114,24 @@
     .go_back_link {
         margin-top: 40px;
     }
-
     .view_applicants {
         font-size: 24px;
         font-weight: 700;
     }
-
     .form {
         max-width: clamp(675px, 80vw, 1000px);
     }
-
     .form p {
         font-size: 24px;
         font-weight: 400;
         margin: 26px 0 24px;
     }
-
     .form label span {
         font-weight: 700;
     }
-
     .form input {
         font-weight: 400;
     }
-
     .form input::placeholder,
     .form input,
     .form label span {
@@ -107,8 +139,25 @@
     }
 }
 
+@media only screen and (max-width:767px){
+    .form {
+        grid-template-columns: 1fr;
+    }
+}
 @media screen and (min-width: 1200px) {
     .application_form {
-        padding: 0 100px 50px;
+        padding: 0 40px 50px;
     }
+}
+@media only screen and (max-width:480px){
+    
+.form input,.textArea{
+    padding: 8px 12px;
+    border-radius: 4px;
+    
+}
+.FormHeader{
+ 
+     margin-top: 1rem; 
+}
 }

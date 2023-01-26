@@ -8,6 +8,7 @@ import LightButton from "../../../../components/buttons/light_button/LightButton
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const Review = ({ formData, keywords, setStep }) => {
     const [response, setResponse] = useState(null);
@@ -15,8 +16,8 @@ const Review = ({ formData, keywords, setStep }) => {
     const navigate = useNavigate();
     let included_keywords = String(keywords);
 
-    if (included_keywords.length <= 1) {
-        included_keywords = "none";
+    if (included_keywords.length <= 0) {
+        included_keywords = "No keywords";
     }
     console.log(included_keywords);
     console.log(formData);
@@ -81,36 +82,45 @@ const Review = ({ formData, keywords, setStep }) => {
             );
             const finalResponseJson = await finalResponse.json();
             setLoading(false);
+            toast.success("Profile successfully created");
             // console.log(finalResponse);
             navigate("/dashboard/user/success");
         } catch (error) {
             alert("Failed to submit, please try again");
-            console.log(error);
+            toast.error("Failed to submit. Please try again");
         }
     };
     // console.log(formData);
     return (
         <div className={styles.form_body}>
+            <ToastContainer />
             <h3>Review your profile and it's good to go!</h3>
-            {formData.job_title ? (
-                <h3 className={classes.review_jobtitle}>
-                    {formData.job_title}
-                </h3>
-            ) : (
-                <p className={classes.not_filled}>not specified yet</p>
-            )}
+            <div className={classes.review_top}>
+                <div>
+                    {formData.job_title ? (
+                        <h3 className={classes.review_jobtitle}>
+                            {formData.job_title}
+                        </h3>
+                    ) : (
+                        <p className={classes.not_filled}>Not specified yet</p>
+                    )}
 
-            <h5>Job title</h5>
-            <hr className={styles.hr_one} />
+                    <h5>Job title</h5>
+                </div>
+                <div className={classes.review_top_email}>
+                    <p>{userEmail}</p>
+                    <h5>Personal email</h5>
+                </div>
+            </div>
+            <hr className={classes.hr_one} />
             <div className={classes.review_box}>
                 <div className={classes.review_box_left}>
-                    <h6>Search Info</h6>
                     <div>
                         {formData.location ? (
                             <p>{formData.location}</p>
                         ) : (
                             <p className={classes.not_filled}>
-                                not specified yet
+                                Not specified yet
                             </p>
                         )}
                         <h5>Job location</h5>
@@ -120,7 +130,7 @@ const Review = ({ formData, keywords, setStep }) => {
                             <p>{formData.experience}</p>
                         ) : (
                             <p className={classes.not_filled}>
-                                not specified yet
+                                Not specified yet
                             </p>
                         )}
                         <h5>Experience</h5>
@@ -131,11 +141,10 @@ const Review = ({ formData, keywords, setStep }) => {
                                 {included_keywords}
                             </section>
                         ) : (
-                            <p className={classes.not_filled}>none specified</p>
+                            <p className={classes.not_filled}>None specified</p>
                         )}
                         <h5>Keywords</h5>
                     </div>
-                    <h6>Personal Info</h6>
                     <div>
                         {formData.cv_file?.name ? (
                             <p className={classes.pdf_name}>
@@ -143,14 +152,10 @@ const Review = ({ formData, keywords, setStep }) => {
                             </p>
                         ) : (
                             <p className={classes.not_filled}>
-                                not uploaded yet
+                                Not uploaded yet
                             </p>
                         )}
                         <h5>Uploaded CV</h5>
-                    </div>
-                    <div>
-                        <p>{userEmail}</p>
-                        <h5>Personal email</h5>
                     </div>
                 </div>
                 {/* <hr className={styles.hr_one} /> */}
@@ -162,7 +167,7 @@ const Review = ({ formData, keywords, setStep }) => {
                                 <p>{formData.coverletter_subject}</p>
                             ) : (
                                 <p className={classes.not_filled}>
-                                    not yet written
+                                    Not yet written
                                 </p>
                             )}
                             <h5>Cover letter subject</h5>
@@ -176,7 +181,7 @@ const Review = ({ formData, keywords, setStep }) => {
                                     </p>
                                 ) : (
                                     <p className={classes.not_filled}>
-                                        not yet written
+                                        Not yet written
                                     </p>
                                 )}
                             </div>
@@ -185,14 +190,13 @@ const Review = ({ formData, keywords, setStep }) => {
                             )}
 
                             <div className={classes.review_buttons}>
-                                <BlueButton
-                                    func={handleSubmit}
-                                    text={"Send profile for searching"}
-                                />
-
                                 <LightButton
                                     text={"Go back to edit"}
                                     func={() => setStep(0)}
+                                />
+                                <BlueButton
+                                    func={handleSubmit}
+                                    text={"Send profile for searching"}
                                 />
                             </div>
                         </div>

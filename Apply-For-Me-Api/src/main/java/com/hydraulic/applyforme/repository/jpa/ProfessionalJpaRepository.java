@@ -10,4 +10,5 @@ public interface ProfessionalJpaRepository extends JpaRepository<Professional, L
 
     @Query("select p from Professional p where p.member.id = :id")
     Professional getProfessional(@Param("id") Long memberId);
+    Professional getProfessionalByMember_Id(Long id);
 }

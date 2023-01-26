@@ -12,10 +12,10 @@
 
 .container {
     width: fit-content;
-    margin-top: 0;
+    word-break: break-all;
+    margin-top: 7rem;
     margin-bottom: 3rem;
-    margin-right: 3%;
-    margin-left: 3%;
+    text-align: justify;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -100,10 +100,16 @@ span {
 }
 
 /** Making Medium/Tablet screens responsive */
+@media only screen and (max-width: 1048px) {
+    
+    .container{
+        margin-top: 1rem;
+    }
+}
 
 @media only screen and (max-width: 1024px) {
     span {
-        font-size: 17px;
+        font-size: 15px;
     }
     .heading {
         font-family: "Outfit";

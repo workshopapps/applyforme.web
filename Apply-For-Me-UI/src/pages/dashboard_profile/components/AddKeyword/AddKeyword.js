@@ -8,18 +8,20 @@ const AddKeyword = ({ keywords, setKeywords }) => {
         if (!value.trim()) return;
 
         let same = false;
-         console.log(same)
-        keywords.forEach(k => {
+        console.log(same);
+        keywords?.forEach(k => {
             if (value === k) {
                 same = true;
             }
         });
         // same ? null : setKeywords([...keywords, value]);
-        setKeywords([...keywords, value]);
+        if (keywords.length <= 1) {
+            setKeywords([...keywords, value]);
+        }
         e.target.value = "";
     }
     function removeKeyWord(index) {
-        setKeywords(keywords.filter((el, i) => i !== index));
+        setKeywords(keywords?.filter((el, i) => i !== index));
     }
     return (
         <div className={styles.keywords_input_container}>
@@ -28,10 +30,10 @@ const AddKeyword = ({ keywords, setKeywords }) => {
                     type="text"
                     onKeyDown={handleKeyDown}
                     className={styles.keyword_input}
-                    placeholder="type a keyword"
-                    width={90}
+                    placeholder="Type a keyword"
+                    width={100}
                 />
-                <h5>Type keyword and press Enter</h5>
+                <h5>Type keyword and press Enter (Max. 2 keywords)</h5>
             </div>
             {keywords?.map((keyword, index) => (
                 <div

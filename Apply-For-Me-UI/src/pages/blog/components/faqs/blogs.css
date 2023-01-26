@@ -8,19 +8,27 @@
     margin-bottom: 5rem;
     margin-top: 5rem;
 }
+.blogs {
+    display: none;
+   
+}
+@media screen and (max-width: 767px) {
+    .blogs {
+        width: 90%;
+        display: block;
+    }
+    
+}
 @media screen and (max-width: 760px) {
     .blogs {
         width: 90%;
     }
-}
-.blogs .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    
 }
 
+
 .blogs p {
+
     width: 100%;
     margin: 0 auto;
     font-size: 30px;

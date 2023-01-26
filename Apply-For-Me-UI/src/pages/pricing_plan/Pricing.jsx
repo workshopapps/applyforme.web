@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "pages/pricing_plan/pricing.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //Importing bluebutton component
 import BlueBorderButton from "components/buttons/blue_border_button/BlueBorderButton";
 
 //The question component
 import Question from "pages/pricing_plan/question/Question";
+import Plans3 from "./components/Plans3";
+import Plans4 from "./components/Plans4";
 
 import Nav from "components/nav/Nav";
 import Footer from "components/footer/Footer";
-import BlueButton from "components/buttons/blue_background/BlueButton";
-import { useSelector } from "react-redux";
+//import BlueButton from "components/buttons/blue_background/BlueButton";
+//import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 const Pricing = ({
     primaryHeading,
     primaryText,
     plans,
+    plansFull,
     toggleInfo,
     faqSection,
     secondaryHeading,
@@ -27,12 +31,21 @@ const Pricing = ({
         monthly: true,
         yearly: false
     });
+    const [paymentInterval, setpaymentInterval] = useState();
+    const [seeMore, setSeeMore] = useState(false);
 
-    const { user } = useSelector(state => state.user);
+    useEffect(() => {
+        toggle.yearly
+            ? setpaymentInterval("yearly")
+            : setpaymentInterval("monthly");
+    }, [toggle.yearly, paymentInterval]);
+ 
     const navigate = useNavigate();
+
     return (
         <>
-            <Nav />
+            <ToastContainer />
+            <Nav setSeeMore={setSeeMore} />
             <main className={styles.container}>
                 <section className={styles.section__head}>
                     <div className={styles.headingWrapper}>
@@ -53,17 +66,25 @@ const Pricing = ({
                             >
                                 {toggleInfo.text1}
                             </p>
-                            <div className={styles.toggle_state}>
+                            <div
+                                className={styles.toggle_state}
+                                onClick={() =>
+                                    setToggle({
+                                        yearly: !toggle.yearly,
+                                        monthly: !toggle.monthly
+                                    })
+                                }
+                            >
                                 <span
                                     className={styles.toggle_circle}
                                     style={{
-                                        right: toggle.yearly ? "4px" : ""
+                                        right: toggle.yearly ? "2px" : "2rem"
                                     }}
                                 ></span>
                             </div>
                             <p
                                 onClick={() =>
-                                    setToggle({ yearly: true, monthly: false })
+                                    setToggle({ yearly: false, monthly: true })
                                 }
                                 className={
                                     toggle.yearly ? styles.active_toggle : ""
@@ -72,106 +93,36 @@ const Pricing = ({
                                 {toggleInfo.text2}
                             </p>
                         </div>
+                        {seeMore ? (
+                            <Plans4
+                                paymentInterval={paymentInterval}
+                                plans={plans}
+                            />
+                        ) : (
+                            <Plans3
+                                paymentInterval={paymentInterval}
+                                plans={plansFull}
+                            />
+                        )}
 
-                        <div className={styles.majorPlan}>
-                            {plans.map(
-                                (
-                                    {
-                                        basic,
-                                        price,
-                                        duration,
-                                        model,
-                                        btnText,
-                                        stamp
-                                    },
-                                    index
-                                ) => {
-                                    return (
-                                        <div
-                                            className={styles.card}
-                                            key={index}
-                                        >
-                                            <div className={styles.choices}>
-                                                <p
-                                                    className={
-                                                        styles.choice_text
-                                                    }
-                                                >
-                                                    {stamp}
-                                                </p>
-                                            </div>
-
-                                            <h3
-                                                className={styles.card__heading}
-                                            >
-                                                {basic}
-                                            </h3>
-                                            <p className={styles.card__price}>
-                                                {price}
-                                            </p>
-                                            <p
-                                                className={
-                                                    styles.card__duration
-                                                }
-                                            >
-                                                {duration}
-                                            </p>
-
-                                            <div
-                                                className={styles.statusWrapper}
-                                            >
-                                                {model.map(
-                                                    (
-                                                        { icon, text, alt },
-                                                        index
-                                                    ) => {
-                                                        return (
-                                                            <div
-                                                                className={
-                                                                    styles.status
-                                                                }
-                                                                key={index}
-                                                            >
-                                                                <img
-                                                                    src={icon}
-                                                                    alt={alt}
-                                                                    className={
-                                                                        styles.status__img
-                                                                    }
-                                                                />
-                                                                <p
-                                                                    className={
-                                                                        styles.status__text
-                                                                    }
-                                                                >
-                                                                    {text}
-                                                                </p>
-                                                            </div>
-                                                        );
-                                                    }
-                                                )}
-                                            </div>
-                                            {user ? (
-                                                <BlueButton
-                                                    text="Get Plan"
-                                                    width={200}
-                                                    func={() =>
-                                                        navigate("/checkout")
-                                                    }
-                                                />
-                                            ) : (
-                                                <Link to="/wel2">
-                                                    <BlueButton
-                                                        width={200}
-                                                        text={btnText}
-                                                    />{" "}
-                                                </Link>
-                                            )}
-                                        </div>
-                                    );
-                                }
-                            )}
-                        </div>
+                        <p className={styles.disclaimer}>
+                            **All CV rebuilds and reviews are on demand services
+                            therefore prices are not included in the pricing
+                            plan but based on individual requests.
+                        </p>
+                        {!seeMore && (
+                            <div className={styles.seemore}>
+                                <button
+                                    type="button"
+                                    className={styles.seemorePar}
+                                    onClick={() => {
+                                        setSeeMore(true);
+                                    }}
+                                >
+                                    See more plans
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </section>
                 <section className={styles.subHead}>
@@ -188,9 +139,10 @@ const Pricing = ({
                             <h2 className={styles.faqheading}>{faqHeading}</h2>
                             <p className={styles.faqText}>{faqText}</p>
 
-
-                            <BlueBorderButton text={faqBtnText} func={()=>navigate("/contact")}/>
-
+                            <BlueBorderButton
+                                text={faqBtnText}
+                                func={() => navigate("/contact")}
+                            />
                         </div>
 
                         <div className={styles.questionWrapper}>

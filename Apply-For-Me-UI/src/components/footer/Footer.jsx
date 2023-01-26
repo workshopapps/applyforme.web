@@ -4,10 +4,11 @@ import classes from "./Footer.module.css";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/footer_logo.svg";
 import Facebook from "../../assets/images/footer_facebook_logo.svg";
-import Instagram from "../../assets/images/footer_instagram_logo.svg";
+// import Instagram from "../../assets/images/footer_instagram_logo.svg";
 import Twitter from "../../assets/images/footer_twitter_logo.svg";
-import Youtube from "../../assets/images/footer_youtube_logo.svg";
+// import Youtube from "../../assets/images/footer_youtube_logo.svg";
 import GoogleDownload from "../../assets/images/google_play_download.svg";
+import {ImLinkedin2} from "react-icons/im";
 
 const Footer = () => {
     return (
@@ -23,8 +24,35 @@ const Footer = () => {
                             <p>
                                 Job hunting has never been easier. We got you
                                 covered.
-                            </p>
-                            <div className={classes.about__text_google}>
+                            </p>                          
+                            <ul className={classes.footer__social_icons}>
+                                <li>
+                                    <a href="https://web.facebook.com/profile.php?id=100088838052833">
+                                        <img src={Facebook} alt="Facebook logo" />
+                                    </a>                                  
+                                </li>
+                                {/* <li>
+                                    <a href="#">
+                                        <img src={Instagram} alt="Instagram logo" />
+                                   </a>                                   
+                                </li> */}
+                                <li>
+                                    <a href="https://twitter.com/Applyforme_?s=20&t=WuV5SQ-T8HNPoAEB8VU_mw">
+                                        <img src={Twitter} alt="Twitter logo" />
+                                    </a>
+                                </li>
+                                {/* <li>
+                                    <a href="#">
+                                        <img src={Youtube} alt="Youtube logo" />
+                                    </a>
+                                </li> */}
+                                <li>
+                                    <a href="https://www.linkedin.com/company/applyforme1/">
+                                        <ImLinkedin2 color="white" size="2rem"/>
+                                    </a>
+                                </li>
+                            </ul>
+                             <div className={classes.about__text_google}>
                                 <img
                                     src={GoogleDownload}
                                     alt="Google download icon"
@@ -32,57 +60,44 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    <ul className={classes.footer__social_icons}>
+                    
+                </div>
+                <div className={classes.links_wrapper}>
+                    <ul className={classes.links}>
+                        <li>Company</li>
                         <li>
-                            <img src={Facebook} alt="Facebook logo" />
+                            <Link to="/about"> About Us</Link>
                         </li>
                         <li>
-                            <img src={Instagram} alt="Instagram logo" />
+                            <Link to="/blog"> Blog</Link>
                         </li>
                         <li>
-                            <img src={Twitter} alt="Twitter logo" />
+                            <Link to="/privacy"> Privacy Policy</Link>
                         </li>
                         <li>
-                            <img src={Youtube} alt="Youtube logo" />
+                            <Link to="/t&c">Terms and conditions</Link>
                         </li>
                     </ul>
+
+                    <ul className={classes.links}>
+                        <li>Help</li>
+                        <li>
+                            <Link to="/contact"> Contact </Link>
+                        </li>
+                        <li>
+                            <Link to="/faqs">FAQs</Link>
+                        </li>
+                        <li>
+                            <Link to="/pricing"> Pricing</Link>
+                        </li>
+                        <li>
+                            <Link to="/career"> Careers</Link>
+                        </li>
+                    </ul>
+
                 </div>
 
-                <ul className={classes.links}>
-                    <li>Company</li>
-                    <li>
-                        <Link to="/about"> About Us</Link>
-                    </li>
-                    <li>
-                        <Link to="/blog"> Blog</Link>
-                    </li>
-                    <li>
-                        <Link to="/contact"> Contact Us</Link>
-                    </li>
-                    <li>
-                        <Link to="/privacy"> Privacy Policy</Link>
-                    </li>
-                    <li>
-                        <Link to="/t&c">Terms and conditions</Link>
-                    </li>
-                </ul>
-
-                <ul className={classes.links}>
-                    <li>Help</li>
-              
-                    <li>
-                        <Link to="/faqs">FAQs</Link>
-                    </li>
-                    <li>
-                        <Link to="/pricing"> Pricing</Link>
-                    </li>
-                    <li>
-                        <Link to="/career"> Careers</Link>
-                    </li>
-                    <li>
-                        <Link to="/help"> Help and support </Link>
-                    </li>
-                </ul>
+               
             </div>
 
             <section className={classes.sub_footer}>

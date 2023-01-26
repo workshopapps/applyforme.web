@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -26,15 +27,11 @@ public class SuperAdminStatServiceImpl implements SuperAdminStatService {
     }
     @Override
     @Transactional(readOnly = true)
-    public AdminDashboardStatisticsOne getStatistics(String date) {
+    public AdminDashboardStatisticsOne getStatistics(Date from, Date to) {
 
-        boolean valid = dateValidator.isValid(date);
-        if (valid == Boolean.FALSE){
-            throw new DateInvalidException(date);
-        }
-        Long totalApplications = repository.getAllSubmissions(dateValidator.startDateFormat(date), dateValidator.endDateFormat(date));
-        Long totalUsers = repository.getAllUsers(dateValidator.startDateFormat(date), dateValidator.endDateFormat(date));
-        Long totalRRAdmins = repository.getRRAdmins(dateValidator.startDateFormat(date), dateValidator.endDateFormat(date));
+        Long totalApplications = repository.getAllSubmissions(from, to);
+        Long totalUsers = repository.getAllUsers(from, to);
+        Long totalRRAdmins = repository.getRRAdmins(from, to);
 
         return AdminDashboardStatisticsOne.builder()
                 .totalApplications(totalApplications)

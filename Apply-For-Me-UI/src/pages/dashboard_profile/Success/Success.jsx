@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Success.module.css";
 import success from "../assets/success.png";
@@ -6,13 +7,22 @@ import BlueButton from "../../../components/buttons/blue_background/BlueButton";
 import { useSelector } from "react-redux";
 
 const Success = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const { user } = useSelector(state => state.user);
     const username = user.fullName;
     const userName = username?.split(" ")[0];
 
     return (
         <div className={styles.success_page}>
-            <TopBar />
+            <TopBar
+                title={"My Job Profile"}
+                style={{
+                    marginTop: "auto"
+                }}
+            />
+
             <p className={styles.all_done}>
                 All done! You can view your up to date job profile
             </p>

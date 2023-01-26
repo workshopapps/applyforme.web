@@ -1,11 +1,7 @@
 package com.hydraulic.applyforme.model.domain;
 
 import com.hydraulic.applyforme.model.enums.JobLocationType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -60,8 +56,12 @@ public class Submission {
     @Column(name ="summary")
     private String summary;
 
-    @Column(name = "other_comment", nullable = true)
+    @Column(name = "other_comment")
     private String otherComment;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name ="professional_profile_id")
+    private ProfessionalProfile professionalProfile;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

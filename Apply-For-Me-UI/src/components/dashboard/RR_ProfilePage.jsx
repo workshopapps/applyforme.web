@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import classes from "./DashboardHeader.module.css";
-import { FiChevronLeft, FiPause, FiTrash } from "react-icons/fi";
+import { FiChevronLeft, FiTrash } from "react-icons/fi";
 import Logo from "../../assets/images/nav_logo.svg";
 import Notification from "../../assets/images/notification.svg";
-import ProfilePic from "../../assets/images/test_profile_picture.svg";
 import Search from "../../assets/images/search.svg";
 import SearchBlue from "../../assets/images/search_blue.svg";
 import Menu from "../../assets/images/menu.svg";
@@ -20,14 +19,20 @@ import BlueButton from "../buttons/blue_background/BlueButton";
 import BlueBorderButton from "../buttons/blue_border_button/BlueBorderButton";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getRRAdminProfile } from "store/slice/RR_AdminSlice";
+import { getRRAdminProfile, SuperAdminApplicants } from "store/slice/RR_AdminSlice";
 import { userInfo } from "store/slice/UserSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useRef } from "react";
+import LetteredAvatar from "react-lettered-avatar";
+import Spinner from "components/spinner/PulseLoader";
 const url = "https://api.applyforme.hng.tech";
 // import { Navigate } from "react-router-dom";
 
-const RR_admin_Profile = ({ setInputSearchValue }) => {
+const RR_admin_Profile = () => {
+    const {superAdminApplicantsList} = useSelector(state => state.RRadmin);
+    const [activateSearchContainer, setActivateSearchContainer] = useState(false)
+    
     const navigate = useNavigate();
     const [mobileSearch, setMobileSearch] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -35,27 +40,46 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const dispatch = useDispatch();
     const token = localStorage.getItem("tokenHngKey");
     const recruiter = useSelector(state => state.RRadmin);
-   
+    const [loading, setLoading] = useState(false);
+    const [searchData, setSearchData] = useState([])
+    const [data, setdata] = useState([])
+    const searchRef = useRef(null);
     const { firstName, emailAddress, phoneNumber, currentJobTitle } =
         recruiter.reverseRProfile;
     // const [showProfileDetails, setShowProfileDetails] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const id = useParams();
-    const newId = {id}
-    console.log(newId.id.id)
+    const newId = { id };
+
+    useEffect(()=>{
+            setdata(superAdminApplicantsList.content)
+            setSearchData(superAdminApplicantsList.content)
+    },[superAdminApplicantsList])
+
     useEffect(() => {
         dispatch(getRRAdminProfile(id));
-    }, [dispatch, getRRAdminProfile, id]);
+        dispatch(SuperAdminApplicants({
+            "pageNo": 0,
+            "pageSize": 10,
+        }));
+    }, [dispatch,id]);
+
 
     const handleSubmit = event => {
         event.preventDefault();
-        setInputSearchValue(event.target.search.value);
-        event.target.search.value = "";
+        const itemFound = data.filter((item)=>item.membership?.firstName.toLowerCase().includes(searchRef.current.value))
+        setSearchData(itemFound)
         setShowModal(false);
         // Quota submission code goes here
     };
-    const deleteHandler = async()=> {
+    
+     const handleChange =(e)=>{
+            const itemFound = data.filter((item)=>item.membership?.firstName.toLowerCase().includes(e.target.value))
+            setSearchData(itemFound)
+    }
+    const deleteHandler = async () => {
         try {
+            setLoading(true)
             const response = await axios.delete(
                 `${url}/api/v1/super-admin/recruiter/${newId.id.id}`,
                 {
@@ -64,17 +88,19 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     }
                 }
             );
-            console.log(response);
-            console.log("success")
-            toast("delete successful")
-            navigate("/user-page");
-            return response?.data;
+            setLoading(false);
+            toast("Recruiter deleted successfully");
+            setTimeout(() => {
+                navigate("/user-page");
+            }, 3000);
+            return response;
         } catch (error) {
-            console.log(error)
-            toast.error(error.response?.data?.message);
-            return error.response?.data;
+
+            setLoading(false);
+
+            toast.error("An error occured, Please try again");
         }
-    }
+    };
 
     const handleModalShow = () => {
         setShowModal(true);
@@ -82,11 +108,12 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
     const handleQuota = event => {
         event.preventDefault();
     };
-     const handleLogout = () => {
+    const handleLogout = () => {
         localStorage.removeItem("tokenHngKey");
         dispatch(userInfo(""));
         navigate("/");
     };
+
     return (
         <section className={classes.main_container}>
             <section className={classes.header}>
@@ -114,16 +141,23 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                                 />
                             </div>
                             <div className={classes.search_logo}>
-                                <img src={SearchBlue} alt="Search "  onClick={()=>setMobileSearch(prev =>!prev)}/>
+                                <img
+                                    src={SearchBlue}
+                                    alt="Search "
+                                    onClick={() =>
+                                        setMobileSearch(prev => !prev)
+                                    }
+                                />
                             </div>
                             <div
                                 className={classes.user_avater}
                                 onClick={() => setShowMenuProfile(true)}
                             >
-                                <img
-                                    src={ProfilePic}
-                                    alt="User Profile Picture"
+                                <LetteredAvatar
+                                    name={firstName}
+                                    backgroundColor={"#78909c"}
                                 />
+                                {/* <img src={ProfilePic} alt="User Profile" /> */}
                             </div>
                             {showMenuProfile && (
                                 <div
@@ -153,7 +187,9 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                                                 src={Signout}
                                                 alt="Signout logo"
                                             />
-                                            <p onClick={handleLogout}>Sign out</p>
+                                            <p onClick={handleLogout}>
+                                                Sign out
+                                            </p>
                                         </li>
                                     </ul>
                                 </div>
@@ -166,9 +202,12 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                             onSubmit={event => handleSubmit(event)}
                         >
                             <input
+                                ref={searchRef}
                                 type="search"
                                 name="search"
-                                placeholder="Search for Users and Reverse Recruiter"
+                                placeholder="Search for Users"
+                                onFocus={()=>setActivateSearchContainer(true)}
+                                onChange={handleChange}
                             />
                             <button type="submit">
                                 {" "}
@@ -179,23 +218,63 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                 </nav>
 
                 {/* Mobile nav */}
-                  {mobileSearch && 
-                    
-                         <form
-                                className={classes.search}
-                                onSubmit={event => handleSubmit(event)}
-                            >
-                               <input
-                                    type="search"
-                                    name="search"
-                                    className={classes.mobile_inp}
-                                    placeholder="Search for and Reverse Recruiter"
-                                />
-                                <button type="submit" className={classes.mobile_btn_cont}>
-                                    {" "}
-                                    <img src={Search} alt="Apply for me logo"  className={classes.mobile_btn}/>
-                                </button>
-                            </form>
+                {mobileSearch && (
+                    <form
+                        className={classes.mobilesearch}
+                        onSubmit={event => handleSubmit(event)}
+                    >
+                        <input
+                            ref={searchRef}
+                            type="search"
+                            name="search"
+                            className={classes.mobile_inp}
+                            placeholder="Search for and Reverse Recruiter"
+                            onFocus={()=>setActivateSearchContainer(true)}
+                            onChange={handleChange}
+                        />
+                        <button
+                            type="submit"
+                            className={classes.mobile_btn_cont}
+                        >
+                            {" "}
+                            <img
+                                src={Search}
+                                alt="Apply for me logo"
+                                className={classes.mobile_btn}
+                            />
+                        </button>
+                    </form>
+                )}
+                 {
+                    activateSearchContainer && (
+                        <div className={classes.SearchContainer}>
+                            <div>
+                                <img className={classes.SearchContainer_cancel} onClick={()=>setActivateSearchContainer(false)} src="https://res.cloudinary.com/hamskid/image/upload/v1670603040/close-svgrepo-com_1_ie1sje.svg" alt="object not found"/>
+                            </div>
+                            <p>Page: 1</p>
+                            {
+                               searchData?.map((data, index)=>{
+                                    return(
+                                        <div className={classes.SearchContainer_child_div} key={index} onClick={()=>
+                                            navigate(`/superAdmin/applicants/profiles/details/${data?.membership?.id}`)}>
+                                            <div className={classes.SearchContainer_child_div_wrapper}>
+                                                <div className={classes.SearchContainer_img_wrapper}>
+                                                    <LetteredAvatar
+                                                        name={data?.membership?.firstName }
+                                                        backgroundColor={"#78909c"}
+                                                    /> 
+                                                </div>
+                                                <div>
+                                                    <p className={classes.SearchContainer_name}>{data?.membership?.firstName}</p>
+                                                    <p className={classes.SearchContainer_email}>{data?.membership?.emailAddress}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    )
                 }
                 {showMenu && <MobileNav setShowMenu={setShowMenu} />}
             </section>
@@ -209,11 +288,6 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
 
                     <div className={classes.user_action}>
                         <div className={classes.user_action__btn__mobile}>
-                            <FiPause className={classes.pause} />
-
-                            <p>Suspend</p>
-                        </div>
-                        <div className={classes.user_action__btn__mobile}>
                             <FiTrash className={classes.trash} />
                             <p onClick={deleteHandler}>Delete</p>
                         </div>
@@ -223,7 +297,11 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     <div className={classes.profile_details}>
                         <div className={classes.img_details}>
                             <div className={classes.img_wrapper}>
-                                <img src={ProfilePic} alt="profile picture" />
+                                 <LetteredAvatar
+                                    name={firstName}
+                                    backgroundColor={"#78909c"}
+                                />
+                                {/* <img src={ProfilePic} alt="profile picture" /> */}
                             </div>
 
                             <div className={classes.img_text_details}>
@@ -255,11 +333,6 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     </div>
 
                     <div className={classes.user_action}>
-                        <div className={classes.user_action__btn}>
-                            <FiPause className={classes.pause} />
-
-                            <p>Suspend</p>
-                        </div>
                         <div className={classes.user_action__btn}>
                             <FiTrash className={classes.trash} />
 
@@ -310,6 +383,7 @@ const RR_admin_Profile = ({ setInputSearchValue }) => {
                     </div>
                 </section>
             )}
+            {loading && <Spinner/>}
         </section>
     );
 };
