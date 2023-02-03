@@ -12,37 +12,49 @@ const AccountSettingsNew = ({ details }) => {
     //User Info
     const { user } = useSelector(state => state.user);
 
-    const fullName = user.fullName;
+    const fullName = user?.fullName;
+    console.log(details);
+
     // const userEmail = user.sub;
     // const [countryDetails, setCountryDetails] = useState([]);
 
     const [formField, setFormField] = useState({
+        avatar: details?.avatar !== null ? details?.avatar : "",
         first_name: details?.firstName,
         last_name: details?.lastName,
         email: details?.emailAddress,
         phone_number: details?.phoneNumber,
         address: details?.address,
-        city: "",
-        state: "",
-        country_of_residence: "",
-        nationality: "",
+        city: details?.city !== null ? details.city : "",
+        state: details?.state !== null ? details.state : "",
+        country_of_residence:
+            details?.countryOfResidence !== null
+                ? details.countryOfResidence
+                : 15,
+        nationality: details?.nationality !== null ? details.nationality : 15,
         date_of_birth: details?.dateOfBirth,
-        username: ""
+        current_job_title:
+            details?.currentJobTitle !== null ? details?.currentJobTitle : "",
+        username: details?.username !== null ? details.username : "",
+        new_password: ""
     });
 
     const post = {
+        "avatar": formField.avatar,
         "first_name": formField.first_name,
         "last_name": formField.last_name,
-        "country_of_residence": Number(formField.country),
-        "date_of_birth": formField.dateOfBirth,
+        "nationality": formField.nationality,
+        "country_of_residence": formField.country_of_residence,
+        "date_of_birth": formField.date_of_birth,
         "current_job_title": formField.currentJobTitle,
         "email_address": formField.email,
-        "username": formField.username,
+        // "username": formField.username,
         "phone_number": formField.phone_number,
         "city": formField.city,
         "state": formField.state,
         "address": formField.address
     };
+
     const updateInfo = async () => {
         const token = localStorage.getItem("tokenHngKey");
         try {
@@ -63,12 +75,6 @@ const AccountSettingsNew = ({ details }) => {
             toast.error(err?.response.data.message);
         }
     };
-
-    console.log(updateInfo, setFormField);
-
-    // const submitForm = () => {
-    //     updateInfo();
-    // };
 
     return (
         <div className={classes.account_settings_container}>
@@ -189,6 +195,7 @@ const AccountSettingsNew = ({ details }) => {
                                         />
                                     </div>
                                     <button
+                                        onClick={updateInfo}
                                         className={
                                             classes.update_personal_details
                                         }

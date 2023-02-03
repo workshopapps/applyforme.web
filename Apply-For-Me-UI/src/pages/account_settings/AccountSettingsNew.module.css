@@ -270,4 +270,8 @@
     .body_container {
         width: 100%;
     }
+
+    .update_personal_details {
+        margin-left: 0;
+    }
 }
