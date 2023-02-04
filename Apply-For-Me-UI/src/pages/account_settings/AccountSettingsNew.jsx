@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classes from "./AccountSettingsNew.module.css";
+import { Link } from "react-router-dom";
 // import SettingsTopNav from "./SettingsTopNav";
 import LetteredAvatar from "react-lettered-avatar";
 // import { useEffect } from "react";
@@ -13,13 +14,13 @@ const AccountSettingsNew = ({ details }) => {
     const { user } = useSelector(state => state.user);
 
     const fullName = user?.fullName;
-    console.log(details);
+    // console.log(details);
 
     // const userEmail = user.sub;
     // const [countryDetails, setCountryDetails] = useState([]);
 
     const [formField, setFormField] = useState({
-        avatar: details?.avatar !== null ? details?.avatar : "",
+        avatar: details?.avatar !== null ? details.avatar : "",
         first_name: details?.firstName,
         last_name: details?.lastName,
         email: details?.emailAddress,
@@ -46,14 +47,16 @@ const AccountSettingsNew = ({ details }) => {
         "nationality": formField.nationality,
         "country_of_residence": formField.country_of_residence,
         "date_of_birth": formField.date_of_birth,
-        "current_job_title": formField.currentJobTitle,
+        "current_job_title": formField.current_job_title,
         "email_address": formField.email,
-        // "username": formField.username,
+        "username": formField.username,
         "phone_number": formField.phone_number,
         "city": formField.city,
         "state": formField.state,
         "address": formField.address
     };
+
+    console.log(post);
 
     const updateInfo = async () => {
         const token = localStorage.getItem("tokenHngKey");
@@ -112,7 +115,7 @@ const AccountSettingsNew = ({ details }) => {
                                             type="text"
                                             name="first_name"
                                             id="first_name"
-                                            placeholder="First Name"
+                                            placeholder={details.firstName}
                                         />
                                     </div>
                                     <div className={classes.form_control}>
@@ -131,7 +134,7 @@ const AccountSettingsNew = ({ details }) => {
                                             type="text"
                                             name="last_name"
                                             id="last_name"
-                                            placeholder="Last Name"
+                                            placeholder={details.lastName}
                                         />
                                     </div>
                                 </div>
@@ -151,7 +154,7 @@ const AccountSettingsNew = ({ details }) => {
                                             readOnly
                                             name="email"
                                             id="email"
-                                            placeholder="Email Address"
+                                            placeholder={details.email}
                                         />
                                     </div>
 
@@ -171,7 +174,7 @@ const AccountSettingsNew = ({ details }) => {
                                             type="text"
                                             name="number"
                                             id="number"
-                                            placeholder="+234-567-890-00"
+                                            placeholder={details.phoneNumber}
                                         />
                                     </div>
                                 </div>
@@ -247,11 +250,12 @@ const AccountSettingsNew = ({ details }) => {
                                     <div className={classes.current_plan}>
                                         Basic Plan
                                     </div>
-                                    <button
+                                    <Link
+                                        to="/pricing"
                                         className={`${classes.change_plan} ${classes.edit_button_blue}`}
                                     >
                                         change plan
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -292,10 +296,12 @@ const AccountSettingsNew = ({ details }) => {
                             <button className={classes.preferred_card}>
                                 Preferred Card
                             </button>
-
-                            <button className={`${classes.edit_button_blue}`}>
+                            <Link
+                                to="/pricing"
+                                className={`${classes.edit_button_blue}`}
+                            >
                                 edit billing details
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
