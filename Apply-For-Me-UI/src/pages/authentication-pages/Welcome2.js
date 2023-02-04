@@ -100,8 +100,14 @@ const Welcome2 = () => {
             <ToastContainer />
             <div className="w2bdy">
                 {loading && <Spinner />}
-                <Text child="Welcome Back !!" />
-                <Text2 child="Login to ApplyForMe " />
+                <p 
+                    className="form-text">
+                    Welcome Back!!
+                </p>
+                <p 
+                    className="create-text">
+                    Login to ApplyForMe
+                </p>
                 <form className="form" onSubmit={e => handleSubmit(e)}>
                     <Inputbox
                         type="email"

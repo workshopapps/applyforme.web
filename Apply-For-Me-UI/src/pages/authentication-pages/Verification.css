@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 .vrfy {
-    width: 20%;
+    width: 60px;
     height: 3.5rem;
     border: 0.2px solid #2e3192;
     border-radius: 8px;
@@ -16,20 +16,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    padding-top: 2rem;
+    width: 60%;
+    justify-content: center;
+    margin: 3rem auto;
+    border-radius: 8px;
+    padding:0 3rem;
 }
 .verify {
     display: flex;
+    flex-wrap: wrap;
     gap: 5px;
     flex-direction: row;
-    width: 270px;
+    width: fit-content;
     margin: 0 auto;
-    justify-content: space-between;
-    padding-top: 5rem;
+    justify-content:center;
+}
+.form{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .resend {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 400;
     color: #111416;
     width: 100%;
@@ -51,39 +60,38 @@
     box-sizing: border-box;
     background-color: #e8f0fe;
 }
-
-@media only screen and (max-width: 1073px) {
-    .verify {
-        width: 28%;
-    }
-}
 @media only screen and (max-width: 873px) {
-    .verify {
-        width: 40%;
-    }
     .vrfy {
         height: 4rem;
     }
 }
-
+@media only screen and (max-width: 768px) {
+    .vbdy {
+        padding-top: 2rem;
+        width: 70%;
+    }
+}
 @media only screen and (max-width: 668px) {
-    .verify {
-        width: 50%;
+    .vbdy {
+        width: 100%;
+        padding:2rem;
     }
 }
 
 @media only screen and (max-width: 468px) {
-    .verify {
-        width: 60%;
-        padding-top: 3rem;
-    }
-    .resend {
-        padding: 1rem 0 7rem 0;
+    .vbdy {
+        padding:1rem;
     }
 }
 
 @media only screen and (max-width: 376px) {
-    .verify {
-        width: 80%;
+    .vbdy {
+        padding-top: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+    .resend {
+        padding: 1rem 0 3rem 0;
     }
 }
