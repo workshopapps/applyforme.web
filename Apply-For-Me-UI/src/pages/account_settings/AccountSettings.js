@@ -1,5 +1,4 @@
-// import AccountSet from "./AccountSet";
-import AccountSettingsNew from "./AccountSettingsNew";
+import AccountSet from "./AccountSet";
 import { useState, useEffect } from "react";
 import Spinner from "components/spinner/Spinner";
 
@@ -21,7 +20,11 @@ const AccountSettings = () => {
         return <Spinner />;
     }
 
-    return <AccountSettingsNew details={memberdetails} />;
+    return (
+        <div>
+            <AccountSet details={memberdetails} />
+        </div>
+    );
 };
 
 export default AccountSettings;
