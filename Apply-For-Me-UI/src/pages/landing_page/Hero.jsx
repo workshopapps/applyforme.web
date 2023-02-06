@@ -47,16 +47,13 @@ const Hero = () => {
                     </motion.div>
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, x: 200 }}
-                    animate={{ opacity: 1, x: 1 }}
-                    transition={{ duration: 0.5,delay:0.2 }}
+                <div
                     className={classes.right}>
                     <img
                         src="https://res.cloudinary.com/hamskid/image/upload/v1671795809/Mask_group_1_ky5sqo.svg"
                         alt="object not found"
                     />
-                </motion.div>
+                </div>
             </div>
         </motion.div>
     );

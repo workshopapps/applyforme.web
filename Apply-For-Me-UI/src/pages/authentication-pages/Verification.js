@@ -107,7 +107,9 @@ const Verification = () => {
             <div className="vbdy">
                 <Text child="Verification Code" />
                 <Text2 child="Enter the verification code sent to your email address" />
-                <form onSubmit={e => handleSubmit(e)}>
+                <form 
+                    onSubmit={e => handleSubmit(e)}
+                    className="form">
                     <div className="verify">
                         <input
                             type="number"
@@ -169,7 +171,7 @@ const Verification = () => {
                     <div className="resend" onClick={() => resendOtp()}>
                         Resend verification code
                     </div>
-                    <div className="pass_input_container">
+                    {/* <div className="pass_input_container">
                         <label htmlFor="pass" className="passowrd-label">
                             <input
                                 type={password}
@@ -184,7 +186,7 @@ const Verification = () => {
                                 onClick={handletoggle}
                             />
                         </label>
-                    </div>
+                    </div> */}
                     <BlueButton text="continue" width="240" type="submit" />
                 </form>
             </div>
