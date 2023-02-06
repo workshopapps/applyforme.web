@@ -11,23 +11,58 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 60%;
+    justify-content: center;
+    margin: 0rem auto;
+    border-radius: 8px;
+    padding:0 3rem;
 }
 .nbdy .form {
-    padding: 5rem 0 7rem 0;
+    padding: 0 0 7rem 0;
+    width: 100%;
+    padding: 2rem 0 0 0;
+    box-sizing: border-box;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
 }
 
 .NewPass .input {
+    padding: 19px;
+    gap: 16px;
     width: 100%;
-    height: 100%;
-    border: 1px solid #bdbdbd;
-    border-radius: 8px;
-    padding: 2%;
-    box-sizing: border-box;
-    background-color: #e8f0fe;
+    margin-bottom: 0.4rem;
+    height: 51px;
+    background: #FFFFFF;
+    border: 1px solid #BFD8F9;
+    border-radius: 4px;
 }
 
 .newpass_form button {
     margin: 0 auto;
-    margin-top: 3.5rem;
+    margin-top: 1.5rem;
+}
+@media only screen and (max-width: 768px) {
+    .nbdy {
+        padding-top: 2rem;
+        width: 70%;
+    }
+}
+@media only screen and (max-width: 668px) {
+    .nbdy {
+        width: 100%;
+        padding:2rem;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+    .nbdy {
+        padding:1rem;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .nbdy {
+        padding-top: 1.5rem;
+    }
 }

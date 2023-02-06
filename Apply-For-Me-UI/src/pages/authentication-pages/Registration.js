@@ -53,7 +53,7 @@ const Registration = () => {
                                 <option value="br">Brazil</option>
                             </select>
                         </div>
-                        <label>
+                        <label className="label">
                             <input
                                 type="text"
                                 name="date"
