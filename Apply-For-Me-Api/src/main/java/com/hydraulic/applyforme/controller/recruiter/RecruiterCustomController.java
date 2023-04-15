@@ -1,15 +1,11 @@
 package com.hydraulic.applyforme.controller.recruiter;
 
-import com.hydraulic.applyforme.model.dto.RecruiterCustomDto;
 import com.hydraulic.applyforme.model.response.RecruiterApplicantDetails;
 import com.hydraulic.applyforme.model.response.base.ApplyForMeResponse;
 import com.hydraulic.applyforme.service.RecruiterCustomService;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 import static com.hydraulic.applyforme.constants.PagingConstants.*;
 import static com.hydraulic.applyforme.constants.PagingConstants.DEFAULT_SORT_DIRECTION;
@@ -39,7 +35,10 @@ public class RecruiterCustomController {
 
     @PreAuthorize("hasAnyRole('Recruiter')")
     @GetMapping("/details")
-    public RecruiterApplicantDetails getDetail(@RequestBody RecruiterCustomDto recruiterCustomDto){
-        return service.getOne(recruiterCustomDto);
+    public RecruiterApplicantDetails getDetail(@RequestParam(value="memberid") Long memberid,
+                                               @RequestParam(value="role") String role,
+                                               @RequestParam(value="salary") String salary,
+                                               @RequestParam(value="employement") String employement){
+        return service.getOne(memberid, role, salary, employement);
     }
 }
