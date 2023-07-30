@@ -40,7 +40,7 @@
     background-color: #111416;
 }
 .checkl {
-    height: 2.3rem;
+    height:fit-content;
 }
 
 @media only screen and (max-width: 1073px) {
