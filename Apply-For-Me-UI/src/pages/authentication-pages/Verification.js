@@ -12,11 +12,11 @@ import Spinner from "components/spinner/Spinner";
 
 const Verification = () => {
     const navigate = useNavigate();
-    const [password, setPassword] = useState("password");
+    // const [password, setPassword] = useState("password");
     const [loading, setLoading] = useState(false);
-    const handletoggle = () => {
-        password === "password" ? setPassword("text") : setPassword("password");
-    };
+    // const handletoggle = () => {
+    //     password === "password" ? setPassword("text") : setPassword("password");
+    // };
     const [otpForm, setOtpForm] = useState({
         val1: "",
         val2: "",
@@ -26,7 +26,7 @@ const Verification = () => {
         val6: ""
     });
 
-    const [pass, setPass] = useState("");
+    // const [pass, setPass] = useState("");
 
     useEffect(() => {
         setOtpForm({
@@ -52,7 +52,7 @@ const Verification = () => {
         const data = {
             "otp": `${otp.join("")}`,
             "email_address": `${localStorage.getItem("emailKey")}`,
-            "new_password": `${pass}`
+            // "new_password": `${pass}`
         };
 
         console.log(data);
