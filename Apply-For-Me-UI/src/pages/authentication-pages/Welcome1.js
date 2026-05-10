@@ -18,6 +18,8 @@ import jwt_decode from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "components/spinner/Spinner";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 const BaseUrl = "https://api.applyforme.hng.tech/api/v1/auth/sign-up";
 
 const Welcome1 = () => {
@@ -28,6 +30,10 @@ const Welcome1 = () => {
     const { user } = useSelector(state => state.user);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [password, setPassword] = useState("password");
+    const handletoggle = () => {
+        password === "password" ? setPassword("text") : setPassword("password");
+    };
 
     useEffect(() => {
         if (user && from === "/pricing") {
@@ -104,8 +110,14 @@ const Welcome1 = () => {
             <Navbar />
             <div className="w1bdy">
                 {loading && <Spinner />}
-                <Text child="Welcome to ApplyForMe!!" />
-                <Text2 child="Create your ApplyForMe account here" />
+                <p 
+                    className="form-text">
+                    Welcome to ApplyForMe!!
+                </p>
+                <p 
+                    className="create-text">
+                    Create your ApplyForMe account here
+                </p>
                 <form className="form" onSubmit={e => handleSignup(e)}>
                     <Inputbox
                         type="text"
@@ -131,12 +143,32 @@ const Welcome1 = () => {
                         place="Phone Number"
                         id="nmbr"
                     />
-                    <Inputbox
-                        type="password"
-                        name="pass"
-                        place="Password"
-                        id="pswrd"
-                    />
+                    <label htmlFor="pass" className="passowrd-label">
+                        <input
+                            type={password}
+                            className="passowrd-label-input"
+                            name="pass"
+                            id="pass"
+                            placeholder="Password"
+                            required
+                        />
+                        {
+                            password === "password"?
+                            <FaEye
+                                onClick={handletoggle}
+                                size="1.2rem"
+                                color="grey"
+                                className="passowrd-toggler"
+                            />:
+                            <FaEyeSlash
+                                onClick={handletoggle}
+                                size="1.2rem"
+                                color="grey"
+                                className="passowrd-toggler"
+                            />
+                        }
+                        
+                    </label>
                     <label className="checkl">
                         <input type="checkbox" className="check" />
                         <span className="checkmark"></span>

@@ -1,11 +1,11 @@
 .input {
+    padding: 19px;
+    gap: 16px;
     width: 100%;
-    height: 100%;
-    border: 1px solid #bdbdbd;
-    border-radius: 8px;
-    padding: 2%;
-    box-sizing: border-box;
-    background-color: #e8f0fe;
+    height: 51px;
+    background: #FFFFFF;
+    border: 1px solid #BFD8F9;
+    border-radius: 4px;
 }
 @media screen and (max-width: 860px) {
     .input {
@@ -22,6 +22,7 @@
 }
 .inputbox_label {
     position: relative;
+    width: 100%;
 }
 .eye {
     top: 15px;

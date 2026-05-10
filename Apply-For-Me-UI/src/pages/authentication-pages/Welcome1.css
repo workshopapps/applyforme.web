@@ -7,21 +7,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 60%;
+    justify-content: center;
+    margin: 2rem auto;
+    background: #E9EBF8;
+    border-radius: 8px;
+    padding:3rem;
+}
+.form-text{
+    font-weight: 500;
+    font-size: 32px;
+    color: #2E3192;
+    line-height: 116%;
+    text-align: center;
 }
 .form {
-    width: 60%;
+    width: 100%;
     padding: 2rem 0 0 0;
     box-sizing: border-box;
     height: fit-content;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
 }
 
 .form .lg {
     width: 200px !important;
-    margin: 1rem auto;
+    margin: 0 auto;
 }
 
 .special {
@@ -81,37 +92,64 @@ a {
     padding-bottom: 2rem;
     gap: 0.3rem;
 }
-
-@media only screen and (max-width: 1073px) {
-    .form {
-        width: 70%;
+.passowrd-label {
+    position: relative;
+    width:100%;
+}
+.passowrd-label-input {
+    padding: 19px;
+    gap: 16px;
+    width: 100%;
+    height: 51px;
+    background: #FFFFFF;
+    border: 1px solid #BFD8F9;
+    border-radius: 4px;
+}
+.passowrd-toggler {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+}
+.create-text{
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 150%;
+    letter-spacing: 0.03em;
+    color: #52515B;
+}
+@media screen and (max-width: 860px) {
+    .passowrd-label-input {
+        padding: 4.5%;
+    }
+}
+@media only screen and (min-width: 616px) and (max-width: 856px){
+    .passowrd-toggler {
+        position: absolute;
+        top: 24px;
+        right: 20px;
     }
 }
 @media only screen and (max-width: 768px) {
     .w1bdy {
         padding-top: 2rem;
+        width: 70%;
     }
 }
 @media only screen and (max-width: 668px) {
-    .form {
-        width: 80%;
+    .w1bdy {
+        width: 100%;
+        padding:2rem;
     }
 }
 
 @media only screen and (max-width: 468px) {
-    .form {
-        width: 90%;
-    }
-    .checkl {
-        align-items: flex-start;
+    .w1bdy {
+        padding:1rem;
     }
 }
 
 @media only screen and (max-width: 376px) {
     .w1bdy {
         padding-top: 1.5rem;
-    }
-    .form {
-        width: 100%;
     }
 }

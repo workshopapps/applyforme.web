@@ -11,28 +11,50 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 60%;
+    justify-content: center;
+    margin: 0rem auto;
+    margin-bottom: 2rem;
+    background: #E9EBF8;
+    border-radius: 8px;
+    padding:3rem;
+}
+.form-text{
+    font-weight: 500;
+    font-size: 32px;
+    color: #2E3192;
+    line-height: 116%;
+    text-align: center;
+}
+.form {
     width: 100%;
+    padding: 2rem 0 0 0;
+    box-sizing: border-box;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
 }
 .forgot {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 400;
     color: #111416;
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 .passowrd-label {
     position: relative;
+    width:100%;
 }
 .passowrd-label-input {
-    background-color: #e8f0fe;
+    padding: 19px;
+    gap: 16px;
     width: 100%;
-    height: 100%;
-    border: 1px solid #bdbdbd;
-    border-radius: 8px;
-    padding: 2%;
-    box-sizing: border-box;
+    height: 51px;
+    background: #FFFFFF;
+    border: 1px solid #BFD8F9;
+    border-radius: 4px;
 }
 .passowrd-toggler {
     position: absolute;
@@ -49,6 +71,30 @@
         position: absolute;
         top: 24px;
         right: 20px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .w2bdy {
+        padding-top: 2rem;
+        width: 70%;
+    }
+}
+@media only screen and (max-width: 668px) {
+    .w2bdy {
+        width: 100%;
+        padding:2rem;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+    .w2bdy {
+        padding:1rem;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .w2bdy {
+        padding-top: 1.5rem;
     }
 }
 

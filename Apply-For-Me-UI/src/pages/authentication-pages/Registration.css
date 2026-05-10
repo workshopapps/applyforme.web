@@ -17,8 +17,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    padding-top: 2rem;
+    width: 60%;
+    justify-content: center;
+    margin: 0rem auto;
+    border-radius: 8px;
+    padding:0 3rem;
 }
 .rbdy .form {
     padding-bottom: 5rem;
@@ -27,7 +30,7 @@
     width: 100%;
     height: 100%;
     border: 1px solid #bdbdbd;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 2%;
     box-sizing: border-box;
     -webkit-appearance: none;
@@ -44,14 +47,16 @@
     font-size: 0.8rem;
 }
 .select-wrapper {
-    height: 3rem;
+    height: 4rem;
     position: relative;
     font-size: 0.8rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.label{
+    width:100%;
 }
 
-.form .lg {
-    margin-top: 3rem;
-}
 
 @media only screen and (max-width: 1073px) {
     .Ref {
@@ -66,6 +71,30 @@
 @media only screen and (max-width: 668px) {
     .form {
         width: 80%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .rbdy {
+        padding-top: 2rem;
+        width: 70%;
+    }
+}
+@media only screen and (max-width: 668px) {
+    .rbdy {
+        width: 100%;
+        padding:2rem;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+    .rbdy {
+        padding:1rem;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .rbdy {
+        padding-top: 1.5rem;
     }
 }
 
@@ -100,12 +129,10 @@
     }
 }
 
+
 @media only screen and (max-width: 468px) {
     .form {
         width: 90%;
-    }
-    .checkl {
-        align-items: flex-start;
     }
 }
 

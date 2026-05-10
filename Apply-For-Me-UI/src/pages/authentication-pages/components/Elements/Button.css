@@ -1,6 +1,5 @@
 .btn {
     width: 240px;
-
     background-color: #2e3192;
     border-radius: 8px;
     border: none;
@@ -21,6 +20,8 @@
 .button_label {
     width: 100%;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 1073px) {
