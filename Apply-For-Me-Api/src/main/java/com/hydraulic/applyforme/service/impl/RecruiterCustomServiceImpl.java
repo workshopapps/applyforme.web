@@ -3,7 +3,6 @@ package com.hydraulic.applyforme.service.impl;
 import com.hydraulic.applyforme.model.domain.Member;
 import com.hydraulic.applyforme.model.domain.Professional;
 import com.hydraulic.applyforme.model.domain.Submission;
-import com.hydraulic.applyforme.model.dto.RecruiterCustomDto;
 import com.hydraulic.applyforme.model.dto.submission.SubmissionDto;
 import com.hydraulic.applyforme.model.exception.MemberNotFoundException;
 import com.hydraulic.applyforme.model.response.RecruiterApplicantDetails;
@@ -98,26 +97,26 @@ public class RecruiterCustomServiceImpl implements RecruiterCustomService {
     }
 
     @Override
-    public RecruiterApplicantDetails getOne(RecruiterCustomDto recruiterCustomDto) {
-        Member member = memberRepository.getOne(recruiterCustomDto.getMemberId());
+    public RecruiterApplicantDetails getOne(Long memberid, String role, String salary, String employement) {
+        Member member = memberRepository.getOne(memberid);
 
         if (member == null) {
-            throw new MemberNotFoundException(recruiterCustomDto.getMemberId());
+            throw new MemberNotFoundException(memberid);
         }
 
-        Professional professional = professionalJpaRepository.getProfessional(recruiterCustomDto.getMemberId());
+        Professional professional = professionalJpaRepository.getProfessional(memberid);
 
         RecruiterApplicantDetails response = RecruiterApplicantDetails.builder()
                 .name(member.getFirstName()+" "+member.getLastName())
-                .role(recruiterCustomDto.getRole())
+                .role(role)
                 .joinedOn(member.getCreatedOn())
                 .email(member.getEmailAddress())
                 .phoneNumber(member.getPhoneNumber())
                 .membershipPlan("Basic")
                 .experience(3L)
                 .industry("Tech")
-                .salaryExpectation(recruiterCustomDto.getSalary())
-                .employementType(recruiterCustomDto.getEmployement())
+                .salaryExpectation(salary)
+                .employementType(employement)
                 .cv("Cv of " + member.getFirstName()+".pdf")
                 .coverLetter("Cover letter of "+member.getFirstName()+".pdf")
                 .build();
